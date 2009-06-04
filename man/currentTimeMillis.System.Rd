@@ -1,0 +1,37 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not modify this file since it was automatically generated from:
+% 
+%  System.R
+% 
+% by the Rdoc compiler part of the R.oo package.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\name{currentTimeMillis.System}
+\alias{currentTimeMillis.System}
+\alias{System.currentTimeMillis}
+\alias{currentTimeMillis.System}
+\alias{currentTimeMillis,System-method}
+
+
+\title{Get the current time in milliseconds}
+
+\synopsis{currentTimeMillis.System(this, ...)}
+\usage{System$currentTimeMillis(...)}
+
+\description{
+  Get the current time in milliseconds.
+}
+
+\value{
+  Returns an \code{\link[base]{integer}}.
+}
+
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+
+\seealso{
+  \code{\link[base]{Sys.time}}().
+  \code{\link[base]{proc.time}}().
+  For more information see \code{\link{System}}.
+}
+\keyword{internal}
+\keyword{methods}

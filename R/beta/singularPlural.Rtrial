@@ -1,0 +1,20 @@
+setMethodS3("singularPlural", "numeric", function(count, singular, plural=NULL, pluralSuffix="s", fmtstr="%g", ...) {
+ count <- sprintf(fmtstr, as.numeric(count));
+
+ if (as.integer(count) == as.integer(1)) {
+   noun <- singular;
+ } else {
+   if (is.null(plural))
+     plural <- paste(singular, pluralSuffix, sep="");
+   noun <- plural;
+ }
+
+ sprintf("%s %s", count, noun);
+})
+
+###########################################################################
+# HISTORY:
+# 2005-07-07
+# o Created.
+###########################################################################
+

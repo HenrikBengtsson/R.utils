@@ -1,0 +1,53 @@
+setMethodS3("getArguments", "Options", function(static, method=NA, ...) {
+  # Should return a named list of constructor arguments with elements
+  # being character string vectors specifying the data types/classes
+  # accepted by each argument.
+ 
+  clazz <- Class$fromName(class(static)[1]);
+  if (is.na(method)) {
+    # The constructor
+    args <- formals(clazz);
+  } else {
+    method <- as.character(method);
+    # Any other method of the class
+  }
+}, static=TRUE)
+
+
+setMethodS3("getProperties", "Options", function(static, ...) {
+}, static=TRUE)
+
+setMethodS3("setProperty", "Options", function(this, name, value, ...) {
+  name <- as.character(name);
+  if (length(name) != 1)
+    throw("Argument 'name' must be a single character string: ", paste(name, collapse=", "));
+  
+  # Assign the value to the property.
+  this$name <- value;
+})
+
+
+setMethodS3("fromProperties", "Options", function(static, properties, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Argument 'properties':
+  if (!is.list(properties))
+    throw("Argument 'properties' is not a list: ", mode(properties));
+
+
+  # Create an instance of the same class as 'static'.
+  clazz <- Class$fromName(class(static)[1]);
+  object <- newInstance(clazz);
+
+  # Populate it with the specified properties
+  for (kk in seq(length=length(properties)) {
+    name <- names(properties)[kk];
+    value <- properties[[kk]];
+    setProperty(object, name, value);
+  }
+
+  # Return the new instance
+  object;
+}, static=TRUE)
+

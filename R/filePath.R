@@ -1,0 +1,333 @@
+###########################################################################/**
+# @RdocDefault filePath
+#
+# @title "Construct the path to a file from components and expands Windows Shortcuts along the pathname from root to leaf"
+#
+# @synopsis
+#
+# \description{
+#   @get "title".  This function is backward compatible with 
+#   @see "base::file.path" when argument \code{removeUps=FALSE} and
+#   \code{expandLinks="none"}.
+#
+#   This function exists on all platforms, not only Windows systems.
+# }
+#
+# \arguments{
+#   \item{...}{Arguments to be pasted together to a file path and then be
+#      parsed from the root to the leaf where Windows shortcut files are 
+#      recognized and expanded according to argument \code{which} in each
+#      step.}
+#   \item{fsep}{the path separator to use.}
+#   \item{removeUps}{If @TRUE, relative paths, for instance "foo/bar/../"
+#      are shortend into "foo/", but also "./" are removed from the final 
+#      pathname, if possible.}
+#   \item{expandLinks}{A @character string. If \code{"none"}, Windows 
+#      Shortcut files are ignored.  If \code{"local"}, the absolute target 
+#      on the local file system is used. If \code{"relative"}, the relative 
+#      target is used. If \code{"network"}, the network target is used. If 
+#      \code{"any"}, the first the local, then the relative and finally the
+#      network target is searched for.}
+#   \item{mustExist}{If @TRUE and if the target does not exist, the original
+#      pathname, that is, argument \code{pathname} is returned. In all other
+#      cases the target is returned.}
+#   \item{verbose}{If @TRUE, extra information is written while reading.}
+# }
+# 
+# \value{
+#   Returns a @character string.
+# }
+# 
+# \details{
+#   If \code{expandLinks==TRUE}, each component, call it \emph{parent}, in
+#   the absolute path is processed from the left to the right as follows:
+#   1. If a "real" directory of name \emph{parent} exists, it is followed.
+#   2. Otherwise, if Microsoft Windows Shortcut file with name 
+#      \emph{parent.lnk} exists, it is read. If its local target exists, that
+#      is followed, otherwise its network target is followed.
+#   3. If no valid existing directory was found in (1) or (2), the expanded
+#      this far followed by the rest of the pathname is returned quietly.
+#   4. If all of the absolute path was expanded successfully the expanded
+#      absolute path is returned.
+# }
+#
+# \section{On speed}{
+#   Internal \code{file.exists()} is call while expanding the pathname.
+#   This is used to check if the exists a Windows shortcut file named 
+#   'foo.lnk' in 'path/foo/bar'. If it does, 'foo.lnk' has to be followed,
+#   and in other cases 'foo' is ordinary directory. 
+#   The \code{file.exists()} is unfortunately a bit slow, which is why
+#   this function appears slow if called many times.
+# }
+#
+# @examples "../incl/filePath.Rex"
+#
+# @author
+#
+# \seealso{
+#   @see "readWindowsShortcut".
+#   @see "base::file.path".
+# }
+# 
+# @keyword IO
+#*/###########################################################################
+setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, removeUps=TRUE, expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE, verbose=FALSE) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  removeEmptyDirs <- function(pathname) {
+    # Check if it is a pathname on a Windows network 
+    isOnNetworkBwd <- (regexpr("^\\\\\\\\", pathname) != -1);
+    isOnNetworkFwd <- (regexpr("^//", pathname) != -1);
+
+    # Remove empty directories
+    pathname <- gsub("///*", "/", pathname);
+    pathname <- gsub("\\\\\\\\\\\\*", "\\\\", pathname);
+
+    # If on a network, add the path back again.
+    if (isOnNetworkBwd) {
+      pathname <- paste("\\\\", pathname, sep="");
+      pathname <- gsub("^\\\\\\\\\\\\*", "\\\\\\\\", pathname);
+    }
+    if (isOnNetworkFwd) {
+      pathname <- paste("//", pathname, sep="");
+      pathname <- gsub("^///*", "//", pathname);
+    }
+    pathname;
+  } # removeEmptyDirs()
+
+  removeUpsFromPathname <- function(pathname, split=FALSE) {
+    # Treat C:/, C:\\, ... special
+    if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
+      return(gsub("\\\\", "/", pathname));
+  
+    components <- strsplit(pathname, split="[/\\]")[[1]];
+
+    # Remove all "." parts, because they are non-informative
+    if (length(components) > 1) {
+      components <- components[components != "."];
+    }
+  
+    # Remove ".." and its parent by reading from the left(!)
+    pos <- 2;
+    while (pos <= length(components)) {
+      if (components[pos] == ".." && components[pos-1] != "..") {
+        # Remove the ".." and its parent
+        if (verbose) {
+          cat("Removing: ", paste(components[c(pos-1,pos)], collapse=", "),
+                                                             "\n", sep="");
+        }
+        components <- components[-c(pos-1,pos)];
+        pos <- pos - 1;
+      } else {
+        pos <- pos + 1;
+      }
+    }
+
+    if (split) {
+      components;
+    } else {
+      paste(components, collapse=fsep);
+    }
+  } # removeUpsFromPathname()
+  
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Arguments '...':
+  args <- list(...);
+
+  # First, remove NULL and other empty arguments 
+  isEmpty <- unlist(lapply(args, FUN=function(x) (length(x) == 0)));
+  args <- args[!isEmpty];
+
+  # Second, convert the into character strings
+  args <- lapply(args, FUN=as.character);
+
+  # Argument 'expandLinks':
+  expandLinks <- match.arg(expandLinks);
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Create pathname
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (length(args) == 0)
+    return(NULL);
+
+  pathname <- paste(args, collapse=fsep);
+  # Remove repeated '/' and '\\'.
+  pathname <- removeEmptyDirs(pathname);
+
+  if (expandLinks == "none") {
+    if (removeUps)
+      pathname <- removeUpsFromPathname(pathname);
+    return(pathname);
+  }
+
+  # Treat C:/, C:\\, ... special
+  if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
+    return(gsub("\\\\", "/", pathname));
+
+  # Requires that the 'pathname' is a absolute pathname.
+  pathname0 <- pathname;
+
+  # 1. Remove ".." and their parents and keep "splits".
+  components <- removeUpsFromPathname(pathname, split=TRUE);
+
+
+  # 3. Expand the components from the root into a new absolute pathname
+  isFirst <- TRUE;
+  expandedPathname <- NULL;
+
+  ready <- FALSE;
+  while(!ready) {
+    if (length(components) == 0) {
+      ready <- TRUE;
+      break;
+    }
+
+    # Get next component
+    component <- components[1];
+    components <- components[-1];
+
+    # a. Create the pathname to check
+    if (isFirst) {
+      pathname <- component;
+    } else {
+      pathname <- paste(expandedPathname, component, sep=fsep);
+    }
+
+    if (verbose)
+      print(pathname);
+
+    # b. Is it an explicit Windows Shortcut?  
+    isWindowsShortcut <- (regexpr("[.](lnk|LNK)$", pathname) != -1);
+    if (isWindowsShortcut) {
+      # i. ...then follow it.
+      lnkFile <- pathname;
+    } else {
+      # ii. otherwise, check if the pathname exists
+      if (file.exists(pathname)) {
+        expandedPathname <- pathname;
+        isFirst <- FALSE;
+        next;
+      }
+  
+      if (isFirst) {
+        isFirst <- FALSE;
+        if (file.exists(paste(pathname, "", sep=fsep))) {
+          expandedPathname <- pathname;
+          next;
+        }
+      }
+
+      # iii. If not, assert that a Windows shortcut exists
+      lnkFile <- paste(pathname, c("lnk", "LNK"), sep=".");
+      lnkFile <- lnkFile[file.exists(lnkFile)];
+      if (length(lnkFile) == 0) {
+        if (verbose) {
+          msg <- paste("Failed to expand pathname '", pathname0, "'. No target found for: ", pathname, sep="");
+          cat(msg, "\n");
+        }
+        break;
+      }
+      lnkFile <- lnkFile[1];
+    } # if (isWindowsShortcut)
+
+    # c. Try to read Windows shortcut  
+    tryCatch({
+      lnk <- readWindowsShortcut(lnkFile);
+    }, error=function(ex) {
+      if (verbose) {
+        msg <- paste("Invalid Windows shortcut found when expanding pathname '", pathname0, "': ", lnkFile, sep="");
+        cat(msg, "\n");
+        print(ex);
+      }
+      # It is not possible to call break inside a tryCatch() statement.
+      ready <<- TRUE;
+    })
+    if (ready)
+      break;
+
+    # d. Check for a local pathname and then for a network pathname
+    pathname <- NULL;
+    if (expandLinks == "any") {
+      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
+        pathname <- lnk$pathname;
+ 
+        if (is.null(pathname))
+          pathname <- lnk$relativePath;
+      }
+
+      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
+        if (is.null(pathname))
+          pathname <- lnk$networkPathname;
+      }
+    } else if (expandLinks == "local") {
+      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
+        pathname <- lnk$pathname;
+      }
+    } else if (expandLinks %in% c("relative")) {
+      if (is.null(expandedPathname))
+        expandedPathname <- removeUpsFromPathname(pathname0);
+      pathname <- paste(expandedPathname, lnk$relativePath, sep=fsep);
+      if (removeUps)
+        pathname <- removeUpsFromPathname(pathname);
+    } else if (expandLinks %in% c("network")) {
+      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
+        pathname <- lnk$networkPathname;
+      }
+    }
+
+    if (is.null(pathname)) {
+      if (verbose) {
+        msg <- paste("No target found in Windows shortcut when expanding pathname '", pathname0, "': ", lnkFile, sep="");
+        cat(msg, "\n");
+      }
+      break;
+    }
+
+    expandedPathname <- pathname;
+  } # repeat
+
+  # Are there any remaining components.
+  if (length(components) > 0) {
+    if (mustExist) {
+      pathname <- pathname0;
+    } else {
+      pathname <- paste(pathname, paste(components, collapse=fsep), sep=fsep);
+    }
+  }
+
+  if (removeUps)
+    pathname <- removeUpsFromPathname(pathname);
+
+  pathname;
+}) # filePath()
+
+#############################################################################
+# HISTORY: 
+ 2008-12-03
+# o BUG FIX: filePath("\\\\shared/foo") would return "\\shared/foo".
+# 2005-11-21
+# o BUG FIX: expandLinks="any" would return the relative link instead of
+#   the network pathname, even if there were no local pathname.
+# 2005-10-18
+# o BUG FIX: filePath(".") would return "".
+# o BUG FIX: filePath("//shared/foo") would return "/shared/foo".
+# 2005-09-24
+# o Now filePath() removes repeated '/' and '\\', except for network files
+#   such as \\server\foo\bar.
+# 2005-08-12
+# o If no arguments or only NULL arguments are passed, NULL is returned.
+# 2005-06-15
+# o BUG FIX: filePath("../foo/bar/") would incorrectly remove initial "../" 
+#   and give an error. 
+# 2005-05-31
+# o Now also "./" are removed as "foo/../" are removed.
+# 2005-05-27
+# o Added argument 'removeUps' and 'expandLinks'.
+# o Cleaned up so it is not dependent of the File class.
+# o Created (again?). Used to be a local function of getAbsolutePath() in 
+#   the File class of the R.io package.
+#############################################################################

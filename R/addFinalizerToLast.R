@@ -1,0 +1,105 @@
+###########################################################################/**
+# @RdocDefault addFinalizerToLast
+#
+# @title "Modifies .Last() to call 'finalizeSession()"
+#
+# \description{
+#   @get "title" \emph{before} calling the default \code{.Last()} function.
+#
+#   Note that \code{.Last()} is \emph{not} guaranteed to be called when
+#   the \R session finished.  For instance, the user may quit \R by calling
+#   \code{quit(runLast=FALSE)} or run R in batch mode.
+#
+#   Note that this function is called when the R.utils package is loaded.
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns (invisibly) @TRUE if \code{.Last()} was modified, 
+#   otherwise @FALSE.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "onSessionExit".
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("addFinalizerToLast", "default", function(...) {
+  # Modify existing .Last() or create a new one?
+  if (exists(".Last", mode="function")) {
+    # A) Modify
+    .Last <- get(".Last", mode="function");
+
+    # Already has finalizeSession()?
+    if (identical(attr(.Last, "finalizeSession"), TRUE)) {
+      # And a version from R.utils v0.8.5 or after?
+      ver <- attr(.Last, "finalizeSessionVersion");
+      if (!is.null(ver) && compareVersion(ver, "0.8.5") >= 0) {
+        # ...then everything is fine.
+        return(invisible(FALSE));
+      }
+
+      # Otherwise, overwrite old buggy version.
+    } else {
+      # Rename original .Last() function
+      assign(".LastOriginal", .Last, envir=.GlobalEnv);
+    }
+
+    # Define a new .Last() function
+    .Last <- function(...) {
+      tryCatch({
+        if (exists("finalizeSession", mode="function"))
+          finalizeSession();
+        if (exists(".LastOriginal", mode="function")) {
+          .LastOriginal <- get(".LastOriginal", mode="function");
+          .LastOriginal();
+        }
+      }, error = function(ex) {
+        cat("Ignoring error occured in .Last(): ", as.character(ex));
+      })
+    }
+  } else {
+    # B) Create a new one
+    .Last <- function(...) { 
+      tryCatch({
+        if (exists("finalizeSession", mode="function"))
+          finalizeSession();
+      }, error = function(ex) {
+        cat("Ignoring error occured in .Last(): ", as.character(ex));
+      })
+    }
+  }
+  attr(.Last, "finalizeSession") <- TRUE;
+  attr(.Last, "finalizeSessionVersion") <- packageDescription("R.utils")$Version;
+
+  # Store it.
+  assign(".Last", .Last, envir=.GlobalEnv);
+
+  invisible(FALSE);
+}, private=TRUE)
+
+
+
+############################################################################
+# HISTORY:
+# 2007-02-27
+# o Added so that modified .Last() from R.utils v0.8.4 or before are 
+#   replaced with the newer version.
+# 2007-02-26
+# o Added tryCatch() and explicit check for finalizeSession().  Thanks
+#   Elizabeth Purdum at UC Berkeley for reporting your problems on receiving
+#   'Error in .Last() : could not find function "finalizeSession"' when 
+#   trying to quit R.
+# 2005-06-10
+# o Extra care was need with this function, because otherwise R CMD check
+#   would give an error if called by .First.lib() in R.utils.
+# o Created.
+############################################################################
