@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.1.7 [2009-05-30]
+o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
+  in order to be mapped.
+
+
 Version: 1.1.6 [2009-05-19]
 o UPDATE: Now getEnvironment(), getRegularExpression(), and 
   getReadablePathname() give clearer error messages if more the input

@@ -888,7 +888,7 @@ setMethodS3("more", "Verbose", function(this, dThreshold=1, ...) {
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("less", "Verbose", function(this, ..., dThreshold=1) {
+setMethodS3("less", "Verbose", function(this, dThreshold=1, ...) {
   # Clone first!
   res <- clone(this);
 
@@ -1548,6 +1548,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2009-05-30
+# o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
+#   in order to be mapped.
 # 2008-11-22
 # o STABILITY: Added balance and sanity checks for exit() of Verbose.
 # 2007-05-26
