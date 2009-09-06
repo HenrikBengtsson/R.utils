@@ -60,28 +60,28 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # dword - An 4-byte unsigned integer 
   readByte <- function(con, n=1) {
-    readBin(con=con, what="integer", size=1, n=n, 
+    readBin(con=con, what=integer(), size=1, n=n, 
                                             signed=FALSE, endian="little");
  
   }
 
   # word - A 2-byte unsigned integer 
   readWord <- function(con, n=1) {
-    readBin(con=con, what="integer", size=2, n=n, 
+    readBin(con=con, what=integer(), size=2, n=n, 
                                             signed=FALSE, endian="little");
  
   }
 
   # qword - A 4-byte unsigned integer 
   readDWord <- function(con, n=1) {
-    readBin(con=con, what="integer", size=4, n=n, 
+    readBin(con=con, what=integer(), size=4, n=n, 
                                             signed=FALSE, endian="little");
  
   }
 
   # qword - An 8-byte unsigned integer 
   readQWord <- function(con, n=1) {
-    readBin(con=con, what="integer", size=8, n=n, 
+    readBin(con=con, what=integer(), size=8, n=n, 
                                             signed=FALSE, endian="little");
  
   }
@@ -340,7 +340,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       warning("File format warning: First offset in File Location Info is not 0x1C (28): ", fileLocationInfo$firstOffset);
       # Skip to first offset
       skip <- fileLocationInfo$firstOffset-fileLocationInfo$.offset;
-      readBin(con, what="integer", size=1, n=skip);
+      readBin(con, what=integer(), size=1, n=skip);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
     }
 
@@ -364,7 +364,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         cat("availableOnLocalVolume...\n");
       # Skip to local volume table
       skip <- fileLocationInfo$offsetLocalVolumeInfo-fileLocationInfo$.offset;
-      readBin(con, what="integer", size=1, n=skip);
+      readBin(con, what=integer(), size=1, n=skip);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
 
       table <- list(
@@ -386,7 +386,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         warning("File format warning: Offset to volume name in Local Volume Table is not 0x10 (16): ", table$offsetName);
         # Skip to volume label
         skip <- table$offsetName-table$.offset;
-        readBin(con, what="integer", size=1, n=skip);
+        readBin(con, what=integer(), size=1, n=skip);
         table$.offset <- table$.offset + skip;
       }
 
@@ -421,7 +421,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Skip to base pathname
       skip <- fileLocationInfo$offsetBasePathname-fileLocationInfo$.offset;
-      readBin(con, what="integer", size=1, n=skip);
+      readBin(con, what=integer(), size=1, n=skip);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
       fileLocationInfo$basePathname <- readString(con);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + 
@@ -456,7 +456,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
       # Skip to local volume table
       skip <- fileLocationInfo$offsetNetworkVolumeInfo-fileLocationInfo$.offset;
-      readBin(con, what="integer", size=1, n=skip);
+      readBin(con, what=integer(), size=1, n=skip);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
 
       table <- list(
@@ -472,7 +472,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       if (table$offsetName != table$.offset) {
         warning("File format warning: Offset to network share name in Network Volume Table is not 0x14 (20): ", table$offsetName);
         # Skip to volume label
-        readBin(con, what="integer", size=1, n=table$offsetName-table$.offset);
+        readBin(con, what=integer(), size=1, n=table$offsetName-table$.offset);
       }
   
       table$networkShareName <- readString(con);
@@ -514,7 +514,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Skip to remaining pathname
     skip <- fileLocationInfo$offsetRemainingPathname-fileLocationInfo$.offset;
-    readBin(con, what="integer", size=1, n=skip);
+    readBin(con, what=integer(), size=1, n=skip);
     fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
 
     fileLocationInfo$remainingPathname <- readString(con);

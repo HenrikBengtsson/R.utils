@@ -2,6 +2,18 @@
 Package: R.utils
 ================
 
+Version: 1.1.9 [2009-06-29]
+o Added argument 'useNames=FALSE' to getCharacters() of Arguments.
+  For forgotten reasons, before (the default now) 'names' attributes
+  were always dropped.  Now they can be kept, if wanted.
+o Added dimNA<-().
+
+
+Version: 1.1.8 [2009-06-07]
+o BUG FIX: getParent(..., depth=0) gave an error, instead of returning
+  the input path.
+
+
 Version: 1.1.7 [2009-05-30]
 o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
   in order to be mapped.

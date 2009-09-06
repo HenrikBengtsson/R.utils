@@ -139,7 +139,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
         con <- file(pathname, open="rb");
 
         # (b) Try even to read one byte
-        bfr <- readBin(con, what="raw", n=1);
+        bfr <- readBin(con, what=raw(), n=1);
       } else {
         # (a) Try to list directory [Will this take a lot of time?!?]
         dummy <- list.files(path=pathname);

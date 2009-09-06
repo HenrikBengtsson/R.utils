@@ -400,6 +400,8 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #   \item{nchar}{A @numeric @vector of length one or two. If one,
 #     the maximum number of characters ("length") in \code{s}. If two, 
 #     the minimum and maximum length of \code{s}.}
+#   \item{useNames}{If @TRUE, the 'names' attribute is preserved, otherwise
+#     it is dropped.}
 #   \item{asGString}{If @TRUE, each string is treated as a @see "GString".}
 #   \item{.name}{A @character string for name used in error messages.}
 #   \item{...}{Not used.}
@@ -418,7 +420,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, asGString=TRUE, .name=NULL, ...) {
+setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(s)));
 
@@ -440,14 +442,16 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
     s <- unlist(lapply(s, FUN=trim));
   }
 
-  names(s) <- NULL;
+  if (!useNames) {
+    names(s) <- NULL;
+  }
 
   # Nothing to check?
   if (is.null(nchar))
     return(s);
  
   if (length(nchar) == 1)
-    nchar <- c(1,nchar);
+    nchar <- c(1, nchar);
   
   # Check the string length of each character string
   for (kk in seq(length=length(s))) {
@@ -933,6 +937,9 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-06-29
+# o Added argument 'useNames=FALSE' to getCharacters() of Arguments.
+#   Don't remember why I didn't want names in the first place (see below).
 # 2009-05-18
 # o UPDATE: Now getWritablePathname() gives a more precise error message
 #   if the file exists but the rights to modifies it does not.

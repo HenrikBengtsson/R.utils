@@ -55,7 +55,7 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
   } else {
     con <- file(pathname, open="r+b");
     seek(con=con, where=0, origin="start", rw="read");
-    bfr <- readBin(con=con, what="raw", n=1);
+    bfr <- readBin(con=con, what=raw(), n=1);
     seek(con=con, where=0, origin="start", rw="write");
     writeBin(con=con, bfr);
   }

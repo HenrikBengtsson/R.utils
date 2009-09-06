@@ -48,7 +48,7 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
   isLastCR <- FALSE;
   nbrOfLines <- as.integer(0);
   while(TRUE) {
-    bfr <- readBin(con=con, what="raw", n=chunkSize);
+    bfr <- readBin(con=con, what=raw(), n=chunkSize);
     if (isLastCR) {
       # Don't count LF following a CR in previous chunk.
       if (bfr[1] == LF)

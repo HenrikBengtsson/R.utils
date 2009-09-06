@@ -31,9 +31,9 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$file.sep, ...) {
-  # Argument 'pathname':
-  pathname <- as.character(pathname);
-
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getParentLocal <- function(pathname) {
     if (length(pathname) == 0)
       return(NULL);
@@ -68,28 +68,43 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
   
     # Re-build path to string...
     paste(components, sep="", collapse=fsep);
- } # getParentLocal()
+  } # getParentLocal()
 
- lastPath <- pathname;
- d <- depth;
- while (d > 0) {
-   path <- getParentLocal(lastPath);
-   if (is.null(path))
-     break;
-   if (identical(path, lastPath)) {
-     path <- NULL;
-     break;
-#    throw("No such parent (depth=", depth, ") available: ", pathname);
-   }
-   lastPath <- path;
-   d <- d - 1;
- }
 
- path;  
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'pathname':
+  pathname <- as.character(pathname);
+
+  # Argument 'depth':
+  depth <- as.integer(depth);
+  depth <- Arguments$getInteger(depth, range=c(0,Inf));
+
+  lastPath <- pathname;
+  path <- lastPath;
+  d <- depth;
+  while (d > 0) {
+    path <- getParentLocal(lastPath);
+    if (is.null(path))
+      break;
+    if (identical(path, lastPath)) {
+      path <- NULL;
+      break;
+ #    throw("No such parent (depth=", depth, ") available: ", pathname);
+    }
+    lastPath <- path;
+    d <- d - 1;
+  }
+ 
+  path;  
 })
 
 ###########################################################################
 # HISTORY: 
+# 2009-06-07
+# o BUG FIX: getParent(..., depth=0) gave an error, instead of returning
+#   the input path.
 # 2007-03-07
 # o Now getParent(...) returns NULL if the parent directory does not
 #   exists, regardless of depth.
