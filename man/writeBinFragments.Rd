@@ -25,7 +25,8 @@
      of N from-to index intervals specifying the elements to be read.}
    \item{size}{The size of the data type to be read. If \code{\link[base]{NA}}, the natural
     size of the data type is used.}
-   \item{...}{Additional arguments passed to \code{\link[base]{writeBin}}().}
+   \item{...}{Additional arguments passed to
+    \code{\link[base:readBin]{writeBin}()}.}
  }
 
  \value{

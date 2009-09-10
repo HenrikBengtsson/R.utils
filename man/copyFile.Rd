@@ -34,7 +34,7 @@
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   \code{\link[base]{file.copy}}()
+   \code{\link[base:files]{file.copy}()}.
  }
 
 

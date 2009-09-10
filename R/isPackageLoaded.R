@@ -5,8 +5,8 @@
 #
 # \description{
 #   @get "title".
-#   Note that, contrary to @see "base::require", this function does not
-#   load the package if not loaded.
+#   Note that, contrary to \code{\link[base:library]{require}()}, 
+#   this function does not load the package if not loaded.
 # }
 #
 # @synopsis
@@ -26,7 +26,6 @@
 #
 # \seealso{
 #   To check if a package is installed or not, see @see "isPackageInstalled".
-#   @see "base::require".
 # }
 #
 # @keyword utilities

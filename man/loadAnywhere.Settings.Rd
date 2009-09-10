@@ -38,7 +38,7 @@
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   \code{\link[R.utils:write.Settings]{*write}()}.
+   \code{\link[R.utils:saveAnywhere.Settings]{*saveAnywhere}()}.
    For more information see \code{\link{Settings}}.
  }
 

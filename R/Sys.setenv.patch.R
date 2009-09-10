@@ -2,7 +2,7 @@
 # @RdocDocumentation "Sys.setenv"
 #
 # \description{
-#   If you searched for help on @see "base::Sys.setenv" but got this page
+#   If you searched for help on \code{Sys.setenv()} but got this page
 #   instead, you are most likely running R v2.5.0 or newer.  Then, see
 #   the above link or \code{help(Sys.setenv, package="base")}.
 #

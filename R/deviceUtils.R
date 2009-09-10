@@ -58,7 +58,7 @@ devIsOpen <- function(which=dev.cur(), ...) {
 # @author
 #
 # \seealso{
-#   @see "grDevices::dev.list".
+#   \code{\link[grDevices:dev]{dev.list}()}.
 # }
 #
 # @keyword device
@@ -189,14 +189,14 @@ devSetLabel <- function(which=dev.cur(), label, ...) {
 # }
 #
 # \value{
-#   Returns what @see "grDevices::dev.set" returns.
+#   Returns what \code{\link[grDevices:dev]{dev.set}()} returns.
 # }
 #
 # @author
 #
 # \seealso{
 #   @see "devOff" and @see "devDone".
-#   Internally, @see "grDevices::dev.set" is used.
+#   Internally, \code{\link[grDevices:dev]{dev.set}()} is used.
 # }
 #
 # @keyword device
@@ -279,14 +279,14 @@ devSet <- function(which=dev.next(), ...) {
 # }
 #
 # \value{
-#   Returns what @see "grDevices::dev.off" returns.
+#   Returns what \code{\link[grDevices:dev]{dev.off}()} returns.
 # }
 #
 # @author
 #
 # \seealso{
 #   @see "devDone".
-#   Internally, @see "grDevices::dev.off" is used.
+#   Internally, \code{\link[grDevices:dev]{dev.off}()} is used.
 # }
 #
 # @keyword device

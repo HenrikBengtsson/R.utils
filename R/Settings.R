@@ -233,7 +233,7 @@ setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", 
 #   \item{path}{The default path, if no settings files are specified.
 #      This defaults to the current user's home directory.}
 #   \item{...}{Arguments passed to 
-#      \code{\link[R.utils:save.Object]{save}()} in superclass Object.}
+#      \code{\link[R.oo:save.Object]{save}()} in superclass Object.}
 # }
 #
 # \value{
@@ -300,7 +300,7 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
 # @author
 #
 # \seealso{
-#   @seemethod "write".
+#   @seemethod "saveAnywhere".
 #   @seeclass
 # }
 #
@@ -356,8 +356,7 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
 # \arguments{
 #   \item{saveOption}{A @character string of the option used to set
 #      if user is prompted or not.}
-#   \item{...}{Arguments passed to 
-#      \code{\link[R.utils:write.Options]{write}()} in superclass Options.}
+#   \item{...}{Arguments passed to @see "saveAnywhere".}
 # }
 #
 # \value{

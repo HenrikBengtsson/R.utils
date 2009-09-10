@@ -81,7 +81,6 @@ cat("Erroneous hooks: ", sum(isErroneous), "\n");
 \seealso{
   Internally, after retriving hook functions, \code{\link{callHooks.list}}() is
   called.
-  See \link[base:UserHooks]{UserHooks} how to set hooks.
 }
 
 

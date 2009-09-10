@@ -24,8 +24,7 @@
  \arguments{
    \item{saveOption}{A \code{\link[base]{character}} string of the option used to set
       if user is prompted or not.}
-   \item{...}{Arguments passed to
-      \code{\link[R.utils:write.Options]{write}()} in superclass Options.}
+   \item{...}{Arguments passed to \code{\link{saveAnywhere}}().}
  }
 
  \value{

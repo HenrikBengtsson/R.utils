@@ -40,7 +40,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[R.utils]{capitalize}} and \code{\link[R.utils]{decapitalize}}.
+  \code{\link[R.utils]{capitalize}}.
   \code{\link[base]{chartr}}().
 }
 

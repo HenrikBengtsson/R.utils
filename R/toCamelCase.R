@@ -31,7 +31,7 @@
 # @author
 #
 # \seealso{
-#   @see "R.utils::capitalize" and @see "R.utils::decapitalize".
+#   @see "R.utils::capitalize".
 #   @see "base::chartr".
 # }
 #

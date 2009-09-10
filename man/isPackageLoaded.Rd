@@ -14,8 +14,8 @@
 
 \description{
   Checks if a package is loaded or not.
-  Note that, contrary to \code{\link[base]{require}}(), this function does not
-  load the package if not loaded.
+  Note that, contrary to \code{\link[base:library]{require}()},
+  this function does not load the package if not loaded.
 }
 
 \usage{\method{isPackageLoaded}{default}(package, version=NULL, ...)}
@@ -35,7 +35,6 @@
 
 \seealso{
   To check if a package is installed or not, see \code{\link{isPackageInstalled}}().
-  \code{\link[base]{require}}().
 }
 
 

@@ -30,7 +30,7 @@
    \item{path}{The default path, if no settings files are specified.
       This defaults to the current user's home directory.}
    \item{...}{Arguments passed to
-      \code{\link[R.utils:save.Object]{save}()} in superclass Object.}
+      \code{\link[R.oo:save.Object]{save}()} in superclass Object.}
  }
 
  \value{

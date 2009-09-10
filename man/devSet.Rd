@@ -24,14 +24,14 @@
  }
 
  \value{
-   Returns what \code{\link[grDevices]{dev.set}} returns.
+   Returns what \code{\link[grDevices:dev]{dev.set}()} returns.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link{devOff}}() and \code{\link{devDone}}().
-   Internally, \code{\link[grDevices]{dev.set}} is used.
+   Internally, \code{\link[grDevices:dev]{dev.set}()} is used.
  }
 
 

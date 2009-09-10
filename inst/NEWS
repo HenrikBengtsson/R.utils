@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.2.0 [2009-09-09]
+o Fixed broken/missing Rd links.
+
+
 Version: 1.1.9 [2009-06-29]
 o Added argument 'useNames=FALSE' to getCharacters() of Arguments.
   For forgotten reasons, before (the default now) 'names' attributes

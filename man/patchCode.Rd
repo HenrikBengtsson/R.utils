@@ -55,7 +55,7 @@
    file tree containing patches.
 
    To set an options, see \code{\link[base]{options}}(). To set a system
-   environment, see \code{\link[base:putenv]{Sys.setenv}}().
+   environment, see \code{\link[base]{Sys.setenv}}().
    The character \code{;} is interpreted as a separator. Due to
    incompatibility with Windows pathnames, \code{:} is \emph{not} a
    valid separator.

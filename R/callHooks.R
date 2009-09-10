@@ -27,7 +27,6 @@
 # \seealso{
 #   Internally, after retriving hook functions, @see "callHooks.list" is
 #   called.
-#   See \link[base:UserHooks]{UserHooks} how to set hooks.
 # }
 #
 # @keyword programming
@@ -91,7 +90,6 @@ setMethodS3("callHooks", "default", function(hookName, ..., removeCalledHooks=FA
 #
 # \seealso{
 #   See @see "callHooks" to call hook function by name.
-#   See \link[base:UserHooks]{UserHooks} how to set hooks.
 # }
 #
 # @keyword programming

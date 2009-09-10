@@ -24,14 +24,14 @@
  }
 
  \value{
-   Returns what \code{\link[grDevices]{dev.off}} returns.
+   Returns what \code{\link[grDevices:dev]{dev.off}()} returns.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link{devDone}}().
-   Internally, \code{\link[grDevices]{dev.off}} is used.
+   Internally, \code{\link[grDevices:dev]{dev.off}()} is used.
  }
 
 

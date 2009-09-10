@@ -37,7 +37,6 @@
 
 \seealso{
   See \code{\link{callHooks}}() to call hook function by name.
-  See \link[base:UserHooks]{UserHooks} how to set hooks.
 }
 
 

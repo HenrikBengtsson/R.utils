@@ -25,7 +25,7 @@
 # @author
 #
 # \seealso{
-#   @see "base::file.copy"
+#   \code{\link[base:files]{file.copy}()}.
 # }
 #
 # @keyword internal
