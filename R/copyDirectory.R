@@ -14,9 +14,9 @@
 #   \item{to}{The pathname of the destination directory.}
 #   \item{...}{Additional arguments passed to 
 #     \code{\link[base:files]{file.copy}}(), e.g. \code{overwrite}.}
-#   \item{private}{If @TRUE, files (and directory) starting with
+#   \item{private}{If @TRUE, files (and directories) starting with
 #         a period is also copied, otherwise not.}
-#   \item{recursive}{If @TRUE, the subdirectories are copied too,
+#   \item{recursive}{If @TRUE, subdirectories are copied too,
 #         otherwise not.}
 # }
 #
