@@ -45,12 +45,21 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
   if (!overwrite && file.exists(link)) {
     throw("Cannot create link. File already exists: ", link);
   }
+
   # Argument 'target':
   target <- Arguments$getReadablePathname(target, mustExist=TRUE);
+  target <- getAbsolutePath(target);
 
   # Argument 'methods':
   methods <- match.arg(methods, several.ok=TRUE);
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Create directory where link should be, if missing
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  path <- dirname(getAbsolutePath(link));
+  path <- Arguments$getWritablePath(path);
+  rm(path);
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Unix: Try to create a symbolic link
