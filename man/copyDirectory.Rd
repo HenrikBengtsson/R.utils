@@ -23,9 +23,9 @@
   \item{to}{The pathname of the destination directory.}
   \item{...}{Additional arguments passed to
     \code{\link[base:files]{file.copy}}(), e.g. \code{overwrite}.}
-  \item{private}{If \code{\link[base:logical]{TRUE}}, files (and directory) starting with
+  \item{private}{If \code{\link[base:logical]{TRUE}}, files (and directories) starting with
         a period is also copied, otherwise not.}
-  \item{recursive}{If \code{\link[base:logical]{TRUE}}, the subdirectories are copied too,
+  \item{recursive}{If \code{\link[base:logical]{TRUE}}, subdirectories are copied too,
         otherwise not.}
 }
 

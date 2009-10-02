@@ -53,6 +53,7 @@ file.show(history)
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
+   \code{\link{readWindowsShortcut}}()
    \code{\link{filePath}}
  }
 
@@ -66,11 +67,15 @@ file.show(history)
        comp.lang.java.help, Aug 1999.
        \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
    [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
-       April 2008. \url{http://wiki.tcl.tk/1844}
+       April 2008. \url{http://wiki.tcl.tk/1844} \cr
    [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com,
-       April 24, 2009.
+       April 24, 2009. \cr
        \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
+   [7] [MS-SHLLINK]: Shell Link (.LNK) Binary File Format, Microsoft Inc.,
+       September 25, 2009. \cr
  }
 
 
+
+\keyword{file}
 \keyword{IO}

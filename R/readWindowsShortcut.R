@@ -29,6 +29,7 @@
 # @author
 #
 # \seealso{
+#   @see "readWindowsShortcut"
 #   \code{\link{filePath}}
 # }
 # 
@@ -42,12 +43,15 @@
 #       comp.lang.java.help, Aug 1999.
 #       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
 #   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
-#       April 2008. \url{http://wiki.tcl.tk/1844}
+#       April 2008. \url{http://wiki.tcl.tk/1844} \cr
 #   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com, 
-#       April 24, 2009.
+#       April 24, 2009. \cr
 #       \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
+#   [7] [MS-SHLLINK]: Shell Link (.LNK) Binary File Format, Microsoft Inc.,
+#       September 25, 2009. \cr
 # }
 #
+# @keyword file
 # @keyword IO
 #*/###########################################################################
 # MORE REFERENCES:
@@ -593,6 +597,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2009-10-01
+# o Microsoft has released a document [7] describing the LNK file format.
 # 2009-05-14
 # o Added another reference to the Rdocs.
 # 2008-12-03
