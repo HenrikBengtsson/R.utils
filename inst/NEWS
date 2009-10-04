@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.2.1 [2009-10-01]
+Version: 1.2.1 [2009-10-03]
 o Added createLink().
 o Added createWindowsShortcut(). Currently it only works on Windows
   and version of Windows that runs VB scripts.

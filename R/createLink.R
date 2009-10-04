@@ -65,9 +65,10 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
   # Unix: Try to create a symbolic link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("unix-symlink", methods)) {
+    targetF <- getAbolutePath(target);
     res <- NULL;
     tryCatch({
-      file.symlink(target, link);
+      file.symlink(targetF, link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
     }, warning = function(ex) {
     });
@@ -124,6 +125,9 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
 
 ############################################################################
 # HISTORY:
+# 2009-10-03
+# o BUG FIX: Argument 'from' in file.symlink(from, to) must be a path
+#   accessible from dirname(to), i.e. it is best to use an absolute path.
 # 2009-10-01
 # o Created.
 ############################################################################
