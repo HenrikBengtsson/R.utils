@@ -65,7 +65,7 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
   # Unix: Try to create a symbolic link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("unix-symlink", methods)) {
-    targetF <- getAbolutePath(target);
+    targetF <- getAbsolutePath(target);
     res <- NULL;
     tryCatch({
       file.symlink(targetF, link);
