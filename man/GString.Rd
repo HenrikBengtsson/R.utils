@@ -58,7 +58,7 @@ extends character\cr
 
 
  \bold{Methods inherited from character}:\cr
-all.equal, as.data.frame, as.Date, as.POSIXlt, formula, getDLLRegisteredRoutines, isOpen, reorder, toAsciiRegExprPattern, toFileListTree
+all.equal, as.data.frame, as.Date, as.POSIXlt, formula, getDLLRegisteredRoutines, isOpen, reorder, toAsciiRegExprPattern, toFileListTree, uses
 
 
 }

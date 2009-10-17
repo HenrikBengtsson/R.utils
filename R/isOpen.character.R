@@ -2,7 +2,7 @@
 # @class character
 # @RdocMethod isOpen
 #
-# @title "Checks if there is an open connection in \R to a file"
+# @title "Checks if there is an open connection to a file"
 #
 # @synopsis
 #

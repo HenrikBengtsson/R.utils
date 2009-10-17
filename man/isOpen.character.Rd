@@ -12,12 +12,12 @@
 \alias{isOpen.character}
 
 
- \title{Checks if there is an open connection in \R to a file}
+ \title{Checks if there is an open connection to a file}
 
  \usage{\method{isOpen}{character}(pathname, rw=c("read", "write"), ...)}
 
  \description{
-  Checks if there is an open connection in \R to a file.
+  Checks if there is an open connection to a file.
  }
 
  \arguments{
