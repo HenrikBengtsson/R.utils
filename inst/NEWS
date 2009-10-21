@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.2.3 [2009-10-20]
+o Added findSourceTraceback(), which finds the pathnames of all
+  files currently being source():ed.
+
+
 Version: 1.2.2 [2009-10-16]
 o Some cleanup of Rd files to meet the stricter requirements.
 
