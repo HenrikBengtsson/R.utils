@@ -255,22 +255,47 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
     }
   } else {
     # Check if parent directory exists
-    parent <- getParent(pathname);
-    if (!isDirectory(parent)) {
+    path <- getParent(pathname);
+    if (!isDirectory(path)) {
       # Check if parent directory should be created
       if (!mkdirs) {
-        parent <- Arguments$getReadablePath(parent, mustExist=TRUE);
+        path <- Arguments$getReadablePath(path, mustExist=TRUE);
       }
 
-      if (!mkdirs(parent)) {
-  	throw("Failed not create file path: ", parent);
+      if (!mkdirs(path)) {
+  	throw("Failed not create file path: ", path);
       }
     }
+
+    # Check if file permissions allow to create a file in the directory
+    if (fileAccess(path, mode=2) == -1) {
+      throw("No write permission for directory: ", path);
+    }
+
+    # Try to create a file
+    filenameT <- basename(tempfile());
+    pathnameT <- file.path(path, filenameT);
+    on.exit({
+      if (isFile(pathnameT)) {
+        file.remove(pathnameT);
+      }
+    }, add=TRUE);
+    tryCatch({
+      cat(file=pathnameT, Sys.time());
+    }, error = function(ex) {
+      throw("No permission to create a new file in directory: ", path);
+    });
   }
 
   pathname;
 }, static=TRUE)
 
+
+
+setMethodS3("getWritablePath", "Arguments", function(static, path=NULL, ...) {
+  pathname <- getWritablePathname(static, file="dummy-not-created", path=path, ...);
+  getParent(pathname);
+}, static=TRUE, protected=TRUE)
 
 
 
@@ -295,12 +320,6 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
     throw("Failed to create directory (recursively): ", pathname);
 
   pathname;
-}, static=TRUE, protected=TRUE)
-
-
-setMethodS3("getWritablePath", "Arguments", function(static, path=NULL, ...) {
-  pathname <- getWritablePathname(static, file="dummy-not-created", path=path, ...);
-  getParent(pathname); 
 }, static=TRUE, protected=TRUE)
 
 
@@ -937,6 +956,9 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-10-30
+# o Now Arguments$getWritablePathname(path) validates that there is enough
+#   file permissions so that a file can be created in the 'path' directory.
 # 2009-06-29
 # o Added argument 'useNames=FALSE' to getCharacters() of Arguments.
 #   Don't remember why I didn't want names in the first place (see below).

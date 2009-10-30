@@ -36,13 +36,13 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:currentTimeMillis.System]{currentTimeMillis}} \tab Get the current time in milliseconds.\cr
- \tab \code{\link[R.utils:findGhostscript.System]{findGhostscript}} \tab Searches for the ghostview binary on the current system.\cr
- \tab \code{\link[R.utils:findGraphicsDevice.System]{findGraphicsDevice}} \tab Searches for a working PNG device.\cr
- \tab \code{\link[R.utils:getHostname.System]{getHostname}} \tab Retrieves the computer name of the current host.\cr
- \tab \code{\link[R.utils:getUsername.System]{getUsername}} \tab Retrieves the name of the user running R.\cr
- \tab \code{\link[R.utils:openBrowser.System]{openBrowser}} \tab Opens an HTML document using the OS default HTML browser.\cr
- \tab \code{\link[R.utils:parseDebian.System]{parseDebian}} \tab Parses a string, file or connection for Debian formatted parameters.\cr
+ \tab \code{currentTimeMillis} \tab  -\cr
+ \tab \code{findGhostscript} \tab  -\cr
+ \tab \code{findGraphicsDevice} \tab  -\cr
+ \tab \code{getHostname} \tab  -\cr
+ \tab \code{getUsername} \tab  -\cr
+ \tab \code{openBrowser} \tab  -\cr
+ \tab \code{parseDebian} \tab  -\cr
 }
 
 

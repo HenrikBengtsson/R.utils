@@ -53,40 +53,40 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:as.character.Verbose]{as.character}} \tab Returns a character string version of this object.\cr
- \tab \code{\link[R.utils:as.double.Verbose]{as.double}} \tab Gets a numeric value of this object.\cr
- \tab \code{\link[R.utils:as.logical.Verbose]{as.logical}} \tab Gets a logical value of this object.\cr
- \tab \code{\link[R.utils:capture.Verbose]{capture}} \tab Captures output of a function.\cr
- \tab \code{\link[R.utils:cat.Verbose]{cat}} \tab Concatenates and prints objects if above threshold.\cr
- \tab \code{\link[R.utils:enter.Verbose]{enter}} \tab Writes a message and indents the following output.\cr
- \tab \code{\link[R.utils:equals.Verbose]{equals}} \tab Checks if this object is equal to another.\cr
- \tab \code{\link[R.utils:evaluate.Verbose]{evaluate}} \tab Evaluates a function and prints its results if above threshold.\cr
- \tab \code{\link[R.utils:exit.Verbose]{exit}} \tab Writes a message and unindents the following output.\cr
- \tab \code{\link[R.utils:getThreshold.Verbose]{getThreshold}} \tab Gets current verbose threshold.\cr
- \tab \code{\link[R.utils:getTimestampFormat.Verbose]{getTimestampFormat}} \tab Gets the default timestamp format.\cr
- \tab \code{\link[R.utils:header.Verbose]{header}} \tab Writes a header.\cr
- \tab \code{\link[R.utils:isOn.Verbose]{isOn}} \tab Checks if the output is on.\cr
- \tab \code{\link[R.utils:isVisible.Verbose]{isVisible}} \tab Checks if a certain verbose level will be shown or not.\cr
- \tab \code{\link[R.utils:less.Verbose]{less}} \tab Creates a cloned instance with a higher threshold.\cr
- \tab \code{\link[R.utils:more.Verbose]{more}} \tab Creates a cloned instance with a lower threshold.\cr
- \tab \code{\link[R.utils:newline.Verbose]{newline}} \tab Writes one or several empty lines.\cr
- \tab \code{\link[R.utils:off.Verbose]{off}} \tab Turn off the output.\cr
- \tab \code{\link[R.utils:on.Verbose]{on}} \tab Turn on the output.\cr
+ \tab \code{as.character} \tab  -\cr
+ \tab \code{as.double} \tab  -\cr
+ \tab \code{as.logical} \tab  -\cr
+ \tab \code{capture} \tab  -\cr
+ \tab \code{cat} \tab  -\cr
+ \tab \code{enter} \tab  -\cr
+ \tab \code{equals} \tab  -\cr
+ \tab \code{evaluate} \tab  -\cr
+ \tab \code{exit} \tab  -\cr
+ \tab \code{getThreshold} \tab  -\cr
+ \tab \code{getTimestampFormat} \tab  -\cr
+ \tab \code{header} \tab  -\cr
+ \tab \code{isOn} \tab  -\cr
+ \tab \code{isVisible} \tab  -\cr
+ \tab \code{less} \tab  -\cr
+ \tab \code{more} \tab  -\cr
+ \tab \code{newline} \tab  -\cr
+ \tab \code{off} \tab  -\cr
+ \tab \code{on} \tab  -\cr
  \tab \code{popState} \tab  -\cr
- \tab \code{\link[R.utils:print.Verbose]{print}} \tab Prints objects if above threshold.\cr
- \tab \code{\link[R.utils:printf.Verbose]{printf}} \tab Formats and prints object if above threshold.\cr
- \tab \code{\link[R.utils:pushState.Verbose]{pushState}} \tab Pushes the current indentation state of the Verbose object.\cr
- \tab \code{\link[R.utils:ruler.Verbose]{ruler}} \tab Writes a ruler.\cr
- \tab \code{\link[R.utils:setDefaultLevel.Verbose]{setDefaultLevel}} \tab Sets the current default verbose level.\cr
- \tab \code{\link[R.utils:setThreshold.Verbose]{setThreshold}} \tab Sets verbose threshold.\cr
- \tab \code{\link[R.utils:setTimestampFormat.Verbose]{setTimestampFormat}} \tab Sets the default timestamp format.\cr
- \tab \code{\link[R.utils:str.Verbose]{str}} \tab Prints the structure of an object if above threshold.\cr
- \tab \code{\link[R.utils:summary.Verbose]{summary}} \tab Generates a summary of an object if above threshold.\cr
- \tab \code{\link[R.utils:timestamp.Verbose]{timestamp}} \tab Writes a timestamp.\cr
+ \tab \code{print} \tab  -\cr
+ \tab \code{printf} \tab  -\cr
+ \tab \code{pushState} \tab  -\cr
+ \tab \code{ruler} \tab  -\cr
+ \tab \code{setDefaultLevel} \tab  -\cr
+ \tab \code{setThreshold} \tab  -\cr
+ \tab \code{setTimestampFormat} \tab  -\cr
+ \tab \code{str} \tab  -\cr
+ \tab \code{summary} \tab  -\cr
+ \tab \code{timestamp} \tab  -\cr
  \tab \code{timestampOff} \tab  -\cr
- \tab \code{\link[R.utils:timestampOn.Verbose]{timestampOn}} \tab Turns automatic timestamping on and off.\cr
- \tab \code{\link[R.utils:warnings.Verbose]{warnings}} \tab Outputs any warnings recorded.\cr
- \tab \code{\link[R.utils:writeRaw.Verbose]{writeRaw}} \tab Writes objects if above threshold.\cr
+ \tab \code{timestampOn} \tab  -\cr
+ \tab \code{warnings} \tab  -\cr
+ \tab \code{writeRaw} \tab  -\cr
 }
 
 

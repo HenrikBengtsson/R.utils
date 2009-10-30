@@ -53,7 +53,7 @@ file.show(history)
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   \code{\link{readWindowsShortcut}}()
+   \code{\link{createWindowsShortcut}}()
    \code{\link{filePath}}
  }
 

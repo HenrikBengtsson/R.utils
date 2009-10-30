@@ -48,15 +48,15 @@ extends \link[R.utils]{Verbose}\cr
  \tab \code{evaluate} \tab  -\cr
  \tab \code{exit} \tab  -\cr
  \tab \code{header} \tab  -\cr
- \tab \code{\link[R.utils:isOn.NullVerbose]{isOn}} \tab Checks if the output is on.\cr
- \tab \code{\link[R.utils:isVisible.NullVerbose]{isVisible}} \tab Checks if a certain verbose level will be shown or not.\cr
+ \tab \code{isOn} \tab  -\cr
+ \tab \code{isVisible} \tab  -\cr
  \tab \code{newline} \tab  -\cr
  \tab \code{print} \tab  -\cr
  \tab \code{printf} \tab  -\cr
  \tab \code{ruler} \tab  -\cr
  \tab \code{str} \tab  -\cr
  \tab \code{summary} \tab  -\cr
- \tab \code{\link[R.utils:writeRaw.NullVerbose]{writeRaw}} \tab All output methods.\cr
+ \tab \code{writeRaw} \tab  -\cr
 }
 
 

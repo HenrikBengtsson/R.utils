@@ -10,17 +10,18 @@
 \alias{fileAccess.default}
 \alias{fileAccess}
 
-\title{Checks the permission of a file}
+\title{Checks the permission of a file or a directory}
 
 \description{
- Checks the permission of a file.
+ Checks the permission of a file or a directory.
 }
 
 \usage{\method{fileAccess}{default}(pathname, mode=0, safe=TRUE, ...)}
 
 \arguments{
-  \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}
-  \item{mode}{An \code{\link[base]{integer}}...}
+  \item{pathname}{A \code{\link[base]{character}} string of the file or the directory
+      to be checked.}
+  \item{mode}{An \code{\link[base]{integer}} (0,1,2,4), cf. \code{\link[base]{file.access}}().}
   \item{safe}{If \code{\link[base:logical]{TRUE}}, the permissions are tested more carefully,
       otherwise \code{\link[base]{file.access}}() is used.}
   \item{...}{Not used.}

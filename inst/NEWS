@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.2.4 [2009-10-30]
+o Now Arguments$getWritablePathname(path) validates that there is enough
+  file permissions so that a file can be created in the 'path' directory.
+
+
 Version: 1.2.3 [2009-10-20]
 o Added findSourceTraceback(), which finds the pathnames of all
   files currently being source():ed.

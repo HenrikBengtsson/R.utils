@@ -1,7 +1,7 @@
 ###########################################################################/**
 # @RdocDefault fileAccess
 #
-# @title "Checks the permission of a file"
+# @title "Checks the permission of a file or a directory"
 #
 # \description{
 #  @get "title".
@@ -10,8 +10,9 @@
 # @synopsis
 #
 # \arguments{
-#   \item{pathname}{A @character string of the pathname to be checked.}
-#   \item{mode}{An @integer...}
+#   \item{pathname}{A @character string of the file or the directory
+#       to be checked.}
+#   \item{mode}{An @integer (0,1,2,4), cf. @see "base::file.access".}
 #   \item{safe}{If @TRUE, the permissions are tested more carefully,
 #       otherwise @see "base::file.access" is used.}
 #   \item{...}{Not used.}
@@ -105,8 +106,15 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # mode = 2: Test for write permission of file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (mode == 2) {
-    if (!isFile(pathname)) {
+    if (isDirectory(pathname)) {
       # Safe testing of write permission for a directory is not implemented.
+      return(fa);
+    }
+
+    # This is actually redundant, because of the above file.exists() test,
+    # but we keep it here to make it explicit what we are doing.
+    if (!isFile(pathname)) {
+      # If the file does not exist, we have no permissions.
       return(fa);
     }
 
@@ -163,6 +171,8 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
 ###########################################################################
 # HISTORY: 
+# 2009-10-28
+# o Clarified in the Rdoc that also directories can be tested.
 # 2008-12-03
 # o Updated with more warnings().
 # o BUG FIX: mode=4 did not work.

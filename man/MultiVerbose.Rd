@@ -46,8 +46,8 @@ extends \link[R.utils]{Verbose}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:lapply.MultiVerbose]{lapply}} \tab Applies a function to each of the Verbose objects.\cr
- \tab \code{\link[R.utils:writeRaw.MultiVerbose]{writeRaw}} \tab Writes to each of the Verbose objects.\cr
+ \tab \code{lapply} \tab  -\cr
+ \tab \code{writeRaw} \tab  -\cr
 }
 
 

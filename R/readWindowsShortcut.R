@@ -29,7 +29,7 @@
 # @author
 #
 # \seealso{
-#   @see "readWindowsShortcut"
+#   @see "createWindowsShortcut"
 #   \code{\link{filePath}}
 # }
 # 
