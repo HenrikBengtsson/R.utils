@@ -16,6 +16,9 @@
 #  \item{path}{Optional path, if \code{file} is a filename.}
 #  \item{compress}{If @TRUE, the file is compressed to, otherwise not.}
 #  \item{...}{Other arguments accepted by \code{save()} in the base package.}
+#  \item{safe}{If @TRUE and \code{file} is a file, then, in order to lower
+#    the risk for incomplete files, the object is first written to a
+#    temporary file, which is then renamed to the final name.}
 # }
 #
 # \value{
@@ -32,7 +35,7 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, compress=TRUE, ...) {
+setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,12 +45,41 @@ setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, comp
     file <- digest::digest(as.list(object));  # Might be slow.
     file <- sprintf("%s.xdr", file);
   } 
-  if (!inherits(file, "connection")) {
+
+  saveToFile <- (!inherits(file, "connection"));
+  if (saveToFile) {
     file <- filePath(path, file, expandLinks="any");
+  }
+
+  # Write to a temporary file?
+  if (safe && saveToFile) {
+    # Final pathname
+    pathname <- file;
+    # Temporary pathname
+    pathnameT <- sprintf("%s.tmp", pathname);
+    if (file.exists(pathnameT)) {
+      throw("Cannot save to file. Temporary file already exists: ", pathnameT);
+    }
+    # Write to a temporary file
+    file <- pathnameT;
+    on.exit({
+      if (file.exists(pathnameT)) {
+        file.remove(pathnameT);
+      }
+    }, add=TRUE);
   }
 
   saveLoadReference <- object;
   base::save(saveLoadReference, file=file, ..., compress=compress, ascii=FALSE);
+
+  # Rename temporary file?
+  if (safe && saveToFile) {
+    file.rename(pathnameT, pathname);
+    if (!file.exists(pathname) || file.exists(pathnameT)) {
+      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname);
+    }
+    file <- pathname;
+  }
 
   invisible(file);
 }) # saveObject()
@@ -56,6 +88,8 @@ setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, comp
 
 ##############################################################################
 # HISTORY:
+# 2009-10-30
+# o ROBUSTIFICATION: Added argument 'safe=TRUE' to saveObject().
 # 2007-06-09
 # o Replaced digest() with digest::digest().
 # 2007-04-03

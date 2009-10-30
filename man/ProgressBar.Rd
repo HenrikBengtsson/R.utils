@@ -43,17 +43,17 @@ extends \link[R.oo]{Object}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.character} \tab  -\cr
- \tab \code{getBarString} \tab  -\cr
- \tab \code{increase} \tab  -\cr
- \tab \code{isDone} \tab  -\cr
- \tab \code{reset} \tab  -\cr
- \tab \code{setMaxValue} \tab  -\cr
- \tab \code{setProgress} \tab  -\cr
- \tab \code{setStepLength} \tab  -\cr
- \tab \code{setTicks} \tab  -\cr
- \tab \code{setValue} \tab  -\cr
- \tab \code{update} \tab  -\cr
+ \tab \code{\link[R.utils:as.character.ProgressBar]{as.character}} \tab Gets a string description of the progress bar.\cr
+ \tab \code{\link[R.utils:getBarString.ProgressBar]{getBarString}} \tab Gets the progress bar string to be displayed.\cr
+ \tab \code{\link[R.utils:increase.ProgressBar]{increase}} \tab Increases (steps) progress bar.\cr
+ \tab \code{\link[R.utils:isDone.ProgressBar]{isDone}} \tab Checks if progress bar is completed.\cr
+ \tab \code{\link[R.utils:reset.ProgressBar]{reset}} \tab Reset progress bar.\cr
+ \tab \code{\link[R.utils:setMaxValue.ProgressBar]{setMaxValue}} \tab Sets maximum value.\cr
+ \tab \code{\link[R.utils:setProgress.ProgressBar]{setProgress}} \tab Sets current progress.\cr
+ \tab \code{\link[R.utils:setStepLength.ProgressBar]{setStepLength}} \tab Sets default step length.\cr
+ \tab \code{\link[R.utils:setTicks.ProgressBar]{setTicks}} \tab Sets values for which ticks should be visible.\cr
+ \tab \code{\link[R.utils:setValue.ProgressBar]{setValue}} \tab Sets current value.\cr
+ \tab \code{\link[R.utils:update.ProgressBar]{update}} \tab Updates progress bar.\cr
 }
 
 

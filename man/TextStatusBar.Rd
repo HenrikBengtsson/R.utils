@@ -44,14 +44,14 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{flush} \tab  -\cr
- \tab \code{getLabel} \tab  -\cr
- \tab \code{newline} \tab  -\cr
- \tab \code{popMessage} \tab  -\cr
- \tab \code{setLabel} \tab  -\cr
- \tab \code{setLabels} \tab  -\cr
- \tab \code{update} \tab  -\cr
- \tab \code{updateLabels} \tab  -\cr
+ \tab \code{\link[R.utils:flush.TextStatusBar]{flush}} \tab Flushes the output.\cr
+ \tab \code{\link[R.utils:getLabel.TextStatusBar]{getLabel}} \tab Gets the current value of a label.\cr
+ \tab \code{\link[R.utils:newline.TextStatusBar]{newline}} \tab Writes a newline.\cr
+ \tab \code{\link[R.utils:popMessage.TextStatusBar]{popMessage}} \tab Adds a message above the status bar.\cr
+ \tab \code{\link[R.utils:setLabel.TextStatusBar]{setLabel}} \tab Sets the value of a label.\cr
+ \tab \code{\link[R.utils:setLabels.TextStatusBar]{setLabels}} \tab Sets new values of given labels.\cr
+ \tab \code{\link[R.utils:update.TextStatusBar]{update}} \tab Updates the status bar (visually).\cr
+ \tab \code{\link[R.utils:updateLabels.TextStatusBar]{updateLabels}} \tab Sets the new values of given labels and updates the status bar.\cr
 }
 
 

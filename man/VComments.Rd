@@ -45,9 +45,9 @@ extends \emph{\link[R.utils]{SmartComments}}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{convertComment} \tab  -\cr
- \tab \code{reset} \tab  -\cr
- \tab \code{validate} \tab  -\cr
+ \tab \code{\link[R.utils:convertComment.VComments]{convertComment}} \tab Converts a verbose comment to R code.\cr
+ \tab \code{\link[R.utils:reset.VComments]{reset}} \tab Resets a VComments compiler.\cr
+ \tab \code{\link[R.utils:validate.VComments]{validate}} \tab Validates the compiled lines.\cr
 }
 
 

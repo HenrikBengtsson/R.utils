@@ -16,7 +16,7 @@
   Saves an object to a file or a connection.
 }
 
-\usage{\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ...)}
+\usage{\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)}
 
 \arguments{
  \item{object}{The object to be saved.}
@@ -25,6 +25,9 @@
  \item{path}{Optional path, if \code{file} is a filename.}
  \item{compress}{If \code{\link[base:logical]{TRUE}}, the file is compressed to, otherwise not.}
  \item{...}{Other arguments accepted by \code{save()} in the base package.}
+ \item{safe}{If \code{\link[base:logical]{TRUE}} and \code{file} is a file, then, in order to lower
+   the risk for incomplete files, the object is first written to a
+   temporary file, which is then renamed to the final name.}
 }
 
 \value{

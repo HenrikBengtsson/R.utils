@@ -39,11 +39,11 @@ extends \link[R.oo]{Object}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{check} \tab  -\cr
- \tab \code{inherits} \tab  -\cr
- \tab \code{isMatrix} \tab  -\cr
- \tab \code{isScalar} \tab  -\cr
- \tab \code{isVector} \tab  -\cr
+ \tab \code{\link[R.utils:check.Assert]{check}} \tab Static method asserting that a generic condition is true.\cr
+ \tab \code{\link[R.utils:inherits.Assert]{inherits}} \tab Static method asserting that an object inherits from of a certain class.\cr
+ \tab \code{\link[R.utils:isMatrix.Assert]{isMatrix}} \tab Static method asserting thatan object is a matrix.\cr
+ \tab \code{\link[R.utils:isScalar.Assert]{isScalar}} \tab Static method asserting thatan object is a single value.\cr
+ \tab \code{\link[R.utils:isVector.Assert]{isVector}} \tab Static method asserting thatan object is a vector.\cr
 }
 
 

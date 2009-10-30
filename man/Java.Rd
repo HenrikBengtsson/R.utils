@@ -50,18 +50,18 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{asByte} \tab  -\cr
- \tab \code{asInt} \tab  -\cr
- \tab \code{asLong} \tab  -\cr
- \tab \code{asShort} \tab  -\cr
- \tab \code{readByte} \tab  -\cr
- \tab \code{readInt} \tab  -\cr
- \tab \code{readShort} \tab  -\cr
- \tab \code{readUTF} \tab  -\cr
- \tab \code{writeByte} \tab  -\cr
- \tab \code{writeInt} \tab  -\cr
- \tab \code{writeShort} \tab  -\cr
- \tab \code{writeUTF} \tab  -\cr
+ \tab \code{\link[R.utils:asByte.Java]{asByte}} \tab Converts a numeric to a Java byte.\cr
+ \tab \code{\link[R.utils:asInt.Java]{asInt}} \tab Converts an numeric to a Java integer.\cr
+ \tab \code{\link[R.utils:asLong.Java]{asLong}} \tab Converts a numeric to a Java long.\cr
+ \tab \code{\link[R.utils:asShort.Java]{asShort}} \tab Converts a numeric to a Java short.\cr
+ \tab \code{\link[R.utils:readByte.Java]{readByte}} \tab Reads a Java formatted byte (8 bits) from a connection.\cr
+ \tab \code{\link[R.utils:readInt.Java]{readInt}} \tab Reads a Java formatted int (32 bits) from a connection.\cr
+ \tab \code{\link[R.utils:readShort.Java]{readShort}} \tab Reads a Java formatted short (16 bits) from a connection.\cr
+ \tab \code{\link[R.utils:readUTF.Java]{readUTF}} \tab Reads a Java (UTF-8) formatted string from a connection.\cr
+ \tab \code{\link[R.utils:writeByte.Java]{writeByte}} \tab Writes a byte (8 bits) to a connection in Java format.\cr
+ \tab \code{\link[R.utils:writeInt.Java]{writeInt}} \tab Writes a integer (32 bits) to a connection in Java format.\cr
+ \tab \code{\link[R.utils:writeShort.Java]{writeShort}} \tab Writes a short (16 bits) to a connection in Java format.\cr
+ \tab \code{\link[R.utils:writeUTF.Java]{writeUTF}} \tab Writes a string to a connection in Java format (UTF-8).\cr
 }
 
 

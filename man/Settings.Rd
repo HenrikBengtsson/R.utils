@@ -44,12 +44,12 @@ extends \link[R.utils]{Options}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{findSettings} \tab  -\cr
- \tab \code{getLoadedPathname} \tab  -\cr
- \tab \code{isModified} \tab  -\cr
- \tab \code{loadAnywhere} \tab  -\cr
- \tab \code{promptAndSave} \tab  -\cr
- \tab \code{saveAnywhere} \tab  -\cr
+ \tab \code{\link[R.utils:findSettings.Settings]{findSettings}} \tab Searches for the settings file in one or several directories.\cr
+ \tab \code{\link[R.utils:getLoadedPathname.Settings]{getLoadedPathname}} \tab Gets the pathname of the settings file loaded.\cr
+ \tab \code{\link[R.utils:isModified.Settings]{isModified}} \tab Checks if settings has been modified compared to whats on file.\cr
+ \tab \code{\link[R.utils:loadAnywhere.Settings]{loadAnywhere}} \tab Loads settings from file.\cr
+ \tab \code{\link[R.utils:promptAndSave.Settings]{promptAndSave}} \tab Prompt user to save modified settings.\cr
+ \tab \code{\link[R.utils:saveAnywhere.Settings]{saveAnywhere}} \tab Saves settings to file.\cr
 }
 
 

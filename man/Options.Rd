@@ -46,16 +46,16 @@ extends \link[R.oo]{Object}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.character} \tab  -\cr
- \tab \code{as.list} \tab  -\cr
- \tab \code{equals} \tab  -\cr
- \tab \code{getLeaves} \tab  -\cr
- \tab \code{getOption} \tab  -\cr
- \tab \code{hasOption} \tab  -\cr
- \tab \code{names} \tab  -\cr
- \tab \code{nbrOfOptions} \tab  -\cr
- \tab \code{setOption} \tab  -\cr
- \tab \code{str} \tab  -\cr
+ \tab \code{\link[R.utils:as.character.Options]{as.character}} \tab Returns a character string version of this object.\cr
+ \tab \code{\link[R.utils:as.list.Options]{as.list}} \tab Gets a list representation of the options.\cr
+ \tab \code{\link[R.utils:equals.Options]{equals}} \tab Checks if this object is equal to another Options object.\cr
+ \tab \code{\link[R.utils:getLeaves.Options]{getLeaves}} \tab Gets all (non-list) options in a flat list.\cr
+ \tab \code{\link[R.utils:getOption.Options]{getOption}} \tab Gets an option.\cr
+ \tab \code{\link[R.utils:hasOption.Options]{hasOption}} \tab Checks if an option exists.\cr
+ \tab \code{\link[R.utils:names.Options]{names}} \tab Gets the full pathname of all (non-list) options.\cr
+ \tab \code{\link[R.utils:nbrOfOptions.Options]{nbrOfOptions}} \tab Gets the number of options set.\cr
+ \tab \code{\link[R.utils:setOption.Options]{setOption}} \tab Sets an option.\cr
+ \tab \code{\link[R.utils:str.Options]{str}} \tab Prints the structure of the options.\cr
 }
 
 

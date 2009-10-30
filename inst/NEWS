@@ -3,8 +3,13 @@ Package: R.utils
 ================
 
 Version: 1.2.4 [2009-10-30]
-o Now Arguments$getWritablePathname(path) validates that there is enough
-  file permissions so that a file can be created in the 'path' directory.
+o ROBUSTIFICATION: Lowered the risk for saveObject() to leave an
+  imcomplete file due to say power failures etc.  This is done by
+  first writing to a temporary file, which is then renamed.  If the
+  temporary file already exists, an exception is thrown.
+o ROBUSTIFICATION: Now Arguments$getWritablePathname(path) validates 
+  that there is enough file permissions so that a file can be created
+  in the 'path' directory.
 
 
 Version: 1.2.3 [2009-10-20]

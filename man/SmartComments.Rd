@@ -42,11 +42,11 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{compile} \tab  -\cr
- \tab \code{convertComment} \tab  -\cr
- \tab \code{parse} \tab  -\cr
- \tab \code{reset} \tab  -\cr
- \tab \code{validate} \tab  -\cr
+ \tab \code{\link[R.utils:compile.SmartComments]{compile}} \tab Preprocess a vector of code lines.\cr
+ \tab \code{\link[R.utils:convertComment.SmartComments]{convertComment}} \tab Converts a single smart comment to R code.\cr
+ \tab \code{\link[R.utils:parse.SmartComments]{parse}} \tab Parses one single smart comment.\cr
+ \tab \code{\link[R.utils:reset.SmartComments]{reset}} \tab Resets a SmartComments compiler.\cr
+ \tab \code{\link[R.utils:validate.SmartComments]{validate}} \tab Validates the compiled lines.\cr
 }
 
 

@@ -34,27 +34,27 @@ extends \link[R.oo]{Object}\cr
  \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{getCharacter} \tab  -\cr
- \tab \code{getCharacters} \tab  -\cr
+ \tab \code{\link[R.utils:getCharacters.Arguments]{getCharacters}} \tab Coerces to a character vector and validates.\cr
  \tab \code{getDirectory} \tab  -\cr
  \tab \code{getDouble} \tab  -\cr
- \tab \code{getDoubles} \tab  -\cr
- \tab \code{getEnvironment} \tab  -\cr
+ \tab \code{\link[R.utils:getDoubles.Arguments]{getDoubles}} \tab Coerces to a double vector and validates.\cr
+ \tab \code{\link[R.utils:getEnvironment.Arguments]{getEnvironment}} \tab Gets an existing environment.\cr
  \tab \code{getIndex} \tab  -\cr
- \tab \code{getIndices} \tab  -\cr
+ \tab \code{\link[R.utils:getIndices.Arguments]{getIndices}} \tab Coerces to a integer vector and validates.\cr
  \tab \code{getInteger} \tab  -\cr
- \tab \code{getIntegers} \tab  -\cr
+ \tab \code{\link[R.utils:getIntegers.Arguments]{getIntegers}} \tab Coerces to a integer vector and validates.\cr
  \tab \code{getLogical} \tab  -\cr
- \tab \code{getLogicals} \tab  -\cr
+ \tab \code{\link[R.utils:getLogicals.Arguments]{getLogicals}} \tab Coerces to a logical vector and validates.\cr
  \tab \code{getNumeric} \tab  -\cr
- \tab \code{getNumerics} \tab  -\cr
+ \tab \code{\link[R.utils:getNumerics.Arguments]{getNumerics}} \tab Coerces to a numeric vector and validates.\cr
  \tab \code{getReadablePath} \tab  -\cr
- \tab \code{getReadablePathname} \tab  -\cr
- \tab \code{getReadablePathnames} \tab  -\cr
- \tab \code{getRegularExpression} \tab  -\cr
- \tab \code{getVector} \tab  -\cr
- \tab \code{getVerbose} \tab  -\cr
+ \tab \code{\link[R.utils:getReadablePathname.Arguments]{getReadablePathname}} \tab Gets a readable pathname.\cr
+ \tab \code{\link[R.utils:getReadablePathnames.Arguments]{getReadablePathnames}} \tab Gets a readable pathname.\cr
+ \tab \code{\link[R.utils:getRegularExpression.Arguments]{getRegularExpression}} \tab Gets a valid regular expression pattern.\cr
+ \tab \code{\link[R.utils:getVector.Arguments]{getVector}} \tab Validates a vector.\cr
+ \tab \code{\link[R.utils:getVerbose.Arguments]{getVerbose}} \tab Coerces to Verbose object.\cr
  \tab \code{getWritablePath} \tab  -\cr
- \tab \code{getWritablePathname} \tab  -\cr
+ \tab \code{\link[R.utils:getWritablePathname.Arguments]{getWritablePathname}} \tab Gets a writable pathname.\cr
 }
 
 

@@ -43,8 +43,8 @@ extends \link[R.utils]{ProgressBar}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{remove} \tab  -\cr
- \tab \code{update} \tab  -\cr
+ \tab \code{\link[R.utils:remove.FileProgressBar]{remove}} \tab Removes the progress file for a file progress bar.\cr
+ \tab \code{\link[R.utils:update.FileProgressBar]{update}} \tab Updates file progress bar.\cr
 }
 
 

@@ -40,20 +40,20 @@ extends character\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.character} \tab  -\cr
- \tab \code{getBuiltinDate} \tab  -\cr
- \tab \code{getBuiltinDatetime} \tab  -\cr
- \tab \code{getBuiltinHostname} \tab  -\cr
- \tab \code{getBuiltinOs} \tab  -\cr
- \tab \code{getBuiltinPid} \tab  -\cr
- \tab \code{getBuiltinRhome} \tab  -\cr
- \tab \code{getBuiltinRversion} \tab  -\cr
- \tab \code{getBuiltinTime} \tab  -\cr
- \tab \code{getBuiltinUsername} \tab  -\cr
- \tab \code{getRaw} \tab  -\cr
- \tab \code{getVariableValue} \tab  -\cr
- \tab \code{parse} \tab  -\cr
- \tab \code{print} \tab  -\cr
+ \tab \code{\link[R.utils:as.character.GString]{as.character}} \tab Gets the processed character string.\cr
+ \tab \code{\link[R.utils:getBuiltinDate.GString]{getBuiltinDate}} \tab Gets the current date.\cr
+ \tab \code{\link[R.utils:getBuiltinDatetime.GString]{getBuiltinDatetime}} \tab Gets the current date and time.\cr
+ \tab \code{\link[R.utils:getBuiltinHostname.GString]{getBuiltinHostname}} \tab Gets the hostname of the system running R.\cr
+ \tab \code{\link[R.utils:getBuiltinOs.GString]{getBuiltinOs}} \tab Gets the operating system of the running machine.\cr
+ \tab \code{\link[R.utils:getBuiltinPid.GString]{getBuiltinPid}} \tab Gets the process id of the current R session.\cr
+ \tab \code{\link[R.utils:getBuiltinRhome.GString]{getBuiltinRhome}} \tab Gets the path where R is installed.\cr
+ \tab \code{\link[R.utils:getBuiltinRversion.GString]{getBuiltinRversion}} \tab Gets the current R version.\cr
+ \tab \code{\link[R.utils:getBuiltinTime.GString]{getBuiltinTime}} \tab Gets the current time.\cr
+ \tab \code{\link[R.utils:getBuiltinUsername.GString]{getBuiltinUsername}} \tab Gets the username of the user running R.\cr
+ \tab \code{\link[R.utils:getRaw.GString]{getRaw}} \tab Gets the unprocessed GString.\cr
+ \tab \code{\link[R.utils:getVariableValue.GString]{getVariableValue}} \tab Gets a variable value given a name and attributes.\cr
+ \tab \code{\link[R.utils:parse.GString]{parse}} \tab Parses a GString.\cr
+ \tab \code{\link[R.utils:print.GString]{print}} \tab Prints the processed GString.\cr
 }
 
 
