@@ -10,6 +10,9 @@ o ROBUSTIFICATION: Lowered the risk for saveObject() to leave an
 o ROBUSTIFICATION: Now Arguments$getWritablePathname(path) validates 
   that there is enough file permissions so that a file can be created
   in the 'path' directory.
+o CLEAN UP: On Windows Vista, createLink() produced a stderr message
+  "You do not have sufficient privilege to perform this operation", when
+  trying to use Windows 'mklink' command.  Those message are now silenced.
 
 
 Version: 1.2.3 [2009-10-20]

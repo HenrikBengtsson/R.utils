@@ -90,7 +90,7 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
     }
     res <- NULL;
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE);
+      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
     }, error = function(ex) {
     });
@@ -125,6 +125,10 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
 
 ############################################################################
 # HISTORY:
+# 2009-10-30
+# o CLEAN UP: On Windows Vista, createLink() produced a stderr message
+#   "You do not have sufficient privilege to perform this operation", when
+#   trying to use Windows 'mklink' command.  Now those message are silenced.
 # 2009-10-03
 # o BUG FIX: Argument 'from' in file.symlink(from, to) must be a path
 #   accessible from dirname(to), i.e. it is best to use an absolute path.

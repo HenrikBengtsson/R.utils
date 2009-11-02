@@ -268,13 +268,14 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
     }
 
     # Check if file permissions allow to create a file in the directory
-    if (fileAccess(path, mode=2) == -1) {
+    pathT <- ifelse(is.null(path), ".", path);
+    if (fileAccess(pathT, mode=2) == -1) {
       throw("No write permission for directory: ", path);
     }
 
     # Try to create a file
     filenameT <- basename(tempfile());
-    pathnameT <- file.path(path, filenameT);
+    pathnameT <- filePath(path, filenameT);
     on.exit({
       if (isFile(pathnameT)) {
         file.remove(pathnameT);
