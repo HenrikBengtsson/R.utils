@@ -53,7 +53,7 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
   vars <- base::load(file=file);
 
   if (!"saveLoadReference" %in% vars)
-    throw("The file was not save by saveObject(): ", file);
+    throw("The file was not saved by saveObject(): ", file);
 
   saveLoadReference;
 }) # loadObject()
