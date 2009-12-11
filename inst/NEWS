@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.2.5 [2009-11-20]
+o If 'x' is a logical vector, Arguments$getIndices(x) will now return
+  the same as if x <- which(x).
+
+
 Version: 1.2.4 [2009-10-30]
 o ROBUSTIFICATION: Lowered the risk for saveObject() to leave an
   imcomplete file due to say power failures etc.  This is done by

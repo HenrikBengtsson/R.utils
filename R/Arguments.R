@@ -684,12 +684,14 @@ setMethodS3("getInteger", "Arguments", function(static, ..., length=1) {
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Arguments passed to @method "getInteger".}
-#   \item{range}{Allowed range. See @method "getNumeric" for details.}
+#   \item{x}{A single @vector.  If @logical, @see "base::which" is used.}
+#   \item{...}{Arguments passed to @method "getIntegers".}
+#   \item{range}{Allowed range. See @method "getNumerics" for details.}
+#   \item{.name}{A @character string for name used in error messages.}
 # }
 #
 # \value{
-#  Returns a @integer @vector.
+#  Returns an @integer @vector.
 # }
 #
 # @author
@@ -700,8 +702,13 @@ setMethodS3("getInteger", "Arguments", function(static, ..., length=1) {
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getIndices", "Arguments", function(static, ..., range=c(1,Inf)) {
-  getIntegers(static, ..., range=range);
+setMethodS3("getIndices", "Arguments", function(static, x, ..., range=c(1,Inf), .name=NULL) {
+  if (is.null(.name))
+    .name <- as.character(deparse(substitute(x)));
+  if (is.logical(x)) {
+    x <- which(x);
+  }
+  getIntegers(static, x, ..., range=range, .name=.name);
 }, static=TRUE)
 
 setMethodS3("getIndex", "Arguments", function(static, ..., length=1) {
@@ -957,6 +964,9 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-11-20
+# o If 'x' is a logical vector, Arguments$getIndices(x) will now return
+#   the same as if x <- which(x).
 # 2009-10-30
 # o Now Arguments$getWritablePathname(path) validates that there is enough
 #   file permissions so that a file can be created in the 'path' directory.
