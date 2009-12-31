@@ -12,7 +12,7 @@
 #
 #   By default \code{eps} is the smallest possible floating point value
 #   that can be represented by the running machine, i.e. 
-#   \code{.Machine$double.eps} and \code{neps} is one. 
+#   \code{.Machine$double.eps} and \code{neps} is one.
 #   By changing \code{neps} it is easy to adjust how close to zero "close"
 #   means without having to know the machine precision (or remembering how
 #   to get it).
@@ -33,6 +33,8 @@
 # @author
 #
 # \seealso{
+#   @see "base::all.equal".
+#   @see "base::Comparison".
 #   \code{\link[base:zMachine]{.Machine}}.
 # }
 #

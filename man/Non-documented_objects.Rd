@@ -196,6 +196,9 @@
  \alias{cat.FileListTree}
  \alias{toAsciiRegExprPattern}
  \alias{toAsciiRegExprPattern.character}
+ \alias{getCommonPrefix}
+ \alias{mergeByCommonTails}
+ \alias{splitByCommonTails}
 
 
  \description{
