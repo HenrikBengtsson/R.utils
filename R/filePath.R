@@ -8,7 +8,8 @@
 # \description{
 #   @get "title".  This function is backward compatible with 
 #   @see "base::file.path" when argument \code{removeUps=FALSE} and
-#   \code{expandLinks="none"}.
+#   \code{expandLinks="none"}, except that a (character) @NA is
+#   return if any argument is NA.
 #
 #   This function exists on all platforms, not only Windows systems.
 # }
@@ -151,8 +152,14 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create pathname
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (length(args) == 0)
+  if (length(args) == 0) {
     return(NULL);
+  }
+
+  if (any(sapply(args, FUN=is.na))) {
+    naValue <- as.character(NA);
+    return(naValue);
+  }
 
   pathname <- paste(args, collapse=fsep);
   # Remove repeated '/' and '\\'.
@@ -307,7 +314,11 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 #############################################################################
 # HISTORY: 
- 2008-12-03
+# 2009-12-30
+# o ROBUSTNESS: Any NA arguments in '...' to filePath(...) would be parsed 
+#   as "NA" resulting in paths such as "NA/foo/NA" (just as file.path() 
+#   does it).  Now a (character) NA is returned.
+# 2008-12-03
 # o BUG FIX: filePath("\\\\shared/foo") would return "\\shared/foo".
 # 2005-11-21
 # o BUG FIX: expandLinks="any" would return the relative link instead of

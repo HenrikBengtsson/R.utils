@@ -16,14 +16,15 @@
   Method to load objects to a new environment for objects previously stored by \code{\link[base]{save}}().
 }
 
-\usage{\method{loadToEnv}{default}(...)}
+\usage{\method{loadToEnv}{default}(..., envir=new.env())}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[base]{load}}().}
+  \item{envir}{The \code{\link[base]{environment}} to load the objects to.}
 }
 
 \value{
- Returns an \code{\link[base]{environment}} containing all loaded objects.
+ Returns \code{\link[base]{environment}} \code{envir} containing all loaded objects.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

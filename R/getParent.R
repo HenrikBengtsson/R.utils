@@ -75,6 +75,16 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
+  if (length(pathname) > 1) {
+    throw("Argument 'pathname' must be a single character string: ", 
+                                             paste(pathname, collapse=", "));
+  }
+
+  if (is.na(pathname)) {
+    naValue <- as.character(NA);
+    return(naValue);
+  }
+
   pathname <- as.character(pathname);
 
   # Argument 'depth':
@@ -102,6 +112,9 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
 
 ###########################################################################
 # HISTORY: 
+# 2009-12-30
+# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
+#   returns a (character) NA if the input is NA.
 # 2009-06-07
 # o BUG FIX: getParent(..., depth=0) gave an error, instead of returning
 #   the input path.

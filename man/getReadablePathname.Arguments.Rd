@@ -36,6 +36,11 @@
  Returns a \code{\link[base]{character}} string of the absolute pathname of the file.
 }
 
+\section{Missing values}{
+  If \code{file} or \code{path} is \code{\link[base]{NA}} and \code{mustExist} is \code{\link[base:logical]{FALSE}},
+  then (character) \code{\link[base]{NA}} is returned, otherwise an exception is thrown.
+}
+
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{

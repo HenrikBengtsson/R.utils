@@ -39,6 +39,10 @@
  If the argument was invalid an \code{\link[R.oo]{Exception}} is thrown.
 }
 
+\section{Missing values}{
+  If any argument in \code{...} is \code{\link[base]{NA}}, an exception is thrown.
+}
+
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{

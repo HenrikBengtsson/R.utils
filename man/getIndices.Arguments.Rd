@@ -23,16 +23,18 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIndices.Arguments(static, ..., range=c(1, Inf))}
-\usage{Arguments$getIndices(..., range=c(1, Inf))}
+\synopsis{getIndices.Arguments(static, x, ..., range=c(1, Inf), .name=NULL)}
+\usage{Arguments$getIndices(x, ..., range=c(1, Inf), .name=NULL)}
 
 \arguments{
-  \item{...}{Arguments passed to @method "getInteger".}
-  \item{range}{Allowed range. See @method "getNumeric" for details.}
+  \item{x}{A single \code{\link[base]{vector}}.  If \code{\link[base]{logical}}, \code{\link[base]{which}}() is used.}
+  \item{...}{Arguments passed to @method "getIntegers".}
+  \item{range}{Allowed range. See @method "getNumerics" for details.}
+  \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}
 }
 
 \value{
- Returns a \code{\link[base]{integer}} \code{\link[base]{vector}}.
+ Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

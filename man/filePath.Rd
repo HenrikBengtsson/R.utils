@@ -17,7 +17,8 @@
  \description{
    Construct the path to a file from components and expands Windows Shortcuts along the pathname from root to leaf.  This function is backward compatible with
    \code{\link[base]{file.path}}() when argument \code{removeUps=FALSE} and
-   \code{expandLinks="none"}.
+   \code{expandLinks="none"}, except that a (character) \code{\link[base]{NA}} is
+   return if any argument is NA.
 
    This function exists on all platforms, not only Windows systems.
  }

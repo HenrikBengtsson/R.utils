@@ -36,6 +36,7 @@
  \alias{getRegularExpression}
  \alias{getWritablePath}
  % Devel methods
+ \alias{getInstanceOf}
  \alias{getDirectory.Arguments}
  \alias{getReadablePath.Arguments}
  \alias{getWritablePath.Arguments}
@@ -47,6 +48,10 @@
 
  % The connection class
  \alias{isEof}
+
+ % The GenericSummary class
+ \alias{GenericSummary}
+ \alias{print.GenericSummary}
 
  % The GString class
  \alias{getBuiltinDate}

@@ -47,6 +47,11 @@ setConstructorS3("Arguments", function(...) {
 #  Returns a @character string of the absolute pathname of the file.
 # }
 #
+# \section{Missing values}{
+#   If \code{file} or \code{path} is @NA and \code{mustExist} is @FALSE,
+#   then (character) @NA is returned, otherwise an exception is thrown.
+# }
+#
 # @author
 #
 # \seealso{
@@ -74,19 +79,28 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     path <- getCharacter(static, path, length=c(1,1));
   }
 
-  if (is.null(file) && is.null(path))
+  if (is.null(file) && is.null(path)) {
     throw("Both argument 'file' and 'path' are NULL.");
+  }
 
   # Argument 'mustExist':
   mustExist <- getLogical(static, mustExist);
 
-  # Argument 'mustExist':
+  # Argument 'absolutePath':
   absolutePath <- getLogical(static, absolutePath);
-
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Process arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (mustExist) {
+    if (!is.null(file) && is.na(file)) {
+      throw("No such file/directory because argument 'file' is NA.");
+    }
+    if (!is.null(path) && is.na(path)) {
+      throw("No such file/directory because argument 'path' is NA.");
+    }
+  }
+
   pathname <- filePath(path, file, expandLinks="any");
 
   if (absolutePath) {
@@ -100,15 +114,15 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
       depth <- 1;
       while(TRUE) {
         parent <- getParent(pathname, depth=depth);
-        if (is.null(parent) || isDirectory(parent))
+        if (is.na(parent) || is.null(parent) || isDirectory(parent))
           break;
         depth <- depth + 1;
       } # while()
 
       reason <- NULL;
-      if (is.null(parent)) {
+      if (is.na(parent) || is.null(parent)) {
         parent <- getParent(pathname);
-        if (is.null(parent)) {
+        if (is.na(parent) || is.null(parent)) {
           reason <- "no such file in the current working directory";
         } else {
           reason <- sprintf("none of the parent directories [%s/] exist", parent);
@@ -216,6 +230,10 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #  If the argument was invalid an @see "R.oo::Exception" is thrown.
 # }
 #
+# \section{Missing values}{
+#   If any argument in \code{...} is @NA, an exception is thrown.
+# }
+#
 # @author
 #
 # \seealso{
@@ -242,6 +260,10 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
 
   # Create pathname
   pathname <- getReadablePathname(static, ..., mustExist=mustExist);
+
+  if (is.na(pathname)) {
+    throw("Cannot retrieve writable file/directory because it is NA.");
+  }
 
   if (isFile(pathname)) {
     # Check if it is ok that the file already exists
@@ -309,6 +331,10 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
 
   # Create pathname
   pathname <- getReadablePathname(static, path=path, ..., mustExist=mustExist);
+
+  if (is.na(pathname)) {
+    throw("Cannot retrieve directory because it is NA.");
+  }
 
   # Nothing to do?
   if (isDirectory(pathname))
@@ -450,10 +476,13 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   if (length(s) == 0)
     return(s);
 
+  # Coerce GString:s to character strings?
   if (asGString) {
-    # Coerce GString to character string.
     s <- unlist(lapply(s, FUN=function(x) {
-      as.character(GString(x));
+      if (!is.na(x)) {
+        x <- GString(x);
+      }
+      as.character(x);
     }));
   }
 
@@ -461,6 +490,11 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
     # Trim the strings.
     s <- unlist(lapply(s, FUN=trim));
   }
+
+  # Coerce to character strings
+  s <- unlist(lapply(s, FUN=function(x) {
+    as.character(x);
+  }));
 
   if (!useNames) {
     names(s) <- NULL;
@@ -954,16 +988,94 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
     return(NULL);
 
   pathname <- getReadablePathname(static, path=path, ...);
-  if (!isDirectory(pathname))
+  if (!is.na(pathname) && !isDirectory(pathname)) {
     throw("Argument 'path' is not a directory: ", path);
+  }
+
   pathname;
 }, static=TRUE, protected=TRUE)
 
 
 
 
+
+
+#########################################################################/**
+# @RdocMethod getInstanceOf
+#
+# @title "Gets an instance of the object that is of a particular class"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{object}{The object that should be returned as an instance of
+#      class \code{class}.}
+#   \item{class}{A @character string specifying the name of the class that
+#      the returned object should inherit from.}
+#   \item{coerce}{If @TRUE and the object is not of the wanted class, then
+#      method will be coerced to that class, if possible.  Otherwise,
+#      an error is thrown.}
+#   \item{...}{Not used.}
+#   \item{.name}{A @character string for name used in error messages.}
+# }
+#
+# \value{
+#   Returns an object inheriting from class \code{class}.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/#########################################################################
+setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce=FALSE, ..., .name=NULL) {
+  if (is.null(.name)) {
+    .name <- as.character(deparse(substitute(object)));
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'class':
+  class <- Arguments$getCharacter(class);
+
+  # Argument 'coerce':
+  coerce <- Arguments$getLogical(coerce);
+
+  # Argument 'object':
+  if (!inherits(object, class)) {
+    if (coerce) {
+      object <- as(object, class, ...);
+    } else {
+      throw(sprintf("Argument '%s' is neither of nor inherits class %s: %s", 
+                     .name, class[1], paste(class(object), collapse=", ")));
+    }
+  }
+
+  # Return the object
+  object;
+}, static=TRUE, protected=TRUE)
+
+
+
 ############################################################################
 # HISTORY:
+# 2007-12-30
+# o Now Arguments$getWritablePath() and Arguments$getWritablePathname()
+#   throws an error is an NA file/directory is specified.
+# o Now Arguments$getReadablePath() and Arguments$getReadablePathname()
+#   throws an error is an NA file/directory is specified, unless 
+#   'mustExist' is FALSE.
+# o Added Arguments$getInstanceOf(...).
+# o BUG FIX: Arguments$getCharacters(s) would return a *logical* instead
+#   of a *character* vector if 's' contained all NAs.
 # 2009-11-20
 # o If 'x' is a logical vector, Arguments$getIndices(x) will now return
 #   the same as if x <- which(x).

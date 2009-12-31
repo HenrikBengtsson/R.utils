@@ -61,8 +61,23 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   } # getName()
 
 
-  if (is.null(pathname))
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'pathname':
+  if (length(pathname) > 1) {
+    throw("Argument 'pathname' must be a single character string: ", 
+                                             paste(pathname, collapse=", "));
+  }
+
+  if (is.na(pathname)) {
+    naValue <- as.character(NA);
+    return(naValue);
+  }
+
+  if (is.null(pathname)) {
     pathname <- ".";
+  }
 
   if (!isAbsolutePath(pathname)) {
     workDirectory <- strsplit(workDirectory, split="[/\\]")[[1]];
@@ -93,6 +108,9 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
 ###########################################################################
 # HISTORY: 
+# 2009-12-30
+# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
+#   returns a (character) NA if the input is NA.
 # 2007-04-03
 # o BUG FIX: getAbsolutePath("C:/foo/", expandTilde=TRUE) would return
 #   "C://foo" and not "C:/foo".

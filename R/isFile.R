@@ -34,6 +34,8 @@
 setMethodS3("isFile", "default", function(pathname, ...) {
   if (length(pathname) == 0)
     return(FALSE);
+  if (is.na(pathname))
+    return(FALSE);
 
   pathname <- as.character(pathname);
 
@@ -63,6 +65,9 @@ setMethodS3("isFile", "default", function(pathname, ...) {
 
 ###########################################################################
 # HISTORY: 
+# 2009-12-30
+# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
+#   Before it gave an unexpected error.
 # 2005-11-29
 # o BUG FIX: Added protection against infinite loops where relative path 
 #   is the same as the absolute path.

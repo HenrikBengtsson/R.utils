@@ -37,6 +37,8 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
     return(TRUE);
   if (identical(pathname, ""))
     pathname <- "."; # As in Java.
+  if (is.na(pathname))
+    return(FALSE);
 
   # Current working directory is a directory.
   if (pathname == ".")
@@ -96,6 +98,9 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
 
 ###########################################################################
 # HISTORY: 
+# 2009-12-30
+# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
+#   Before it gave an unexpected error.
 # 2005-10-28
 # o BUG FIX: isDirectory() on a file would result in an infinite recursive
 #   loop to itself.

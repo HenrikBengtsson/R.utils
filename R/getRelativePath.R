@@ -62,12 +62,18 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  if (is.null(pathname))
-    pathname <- ".";
-
   if (length(pathname) > 1) {
     throw("Argument 'pathname' must be a single character string: ", 
                                              paste(pathname, collapse=", "));
+  }
+
+  if (is.na(pathname)) {
+    naValue <- as.character(NA);
+    return(naValue);
+  }
+
+  if (is.null(pathname)) {
+    pathname <- ".";
   }
 
   # If not an absolute path, assume it is a relative path already.
@@ -143,6 +149,9 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
 ###########################################################################
 # HISTORY: 
+# 2009-12-30
+# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
+#   returns a (character) NA if the input is NA.
 # 2007-04-03
 # o Removed the warning when a relative path could not be found because
 #   the two paths are on different file systems.

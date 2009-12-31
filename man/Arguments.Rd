@@ -41,6 +41,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.utils:getEnvironment.Arguments]{getEnvironment}} \tab Gets an existing environment.\cr
  \tab \code{getIndex} \tab  -\cr
  \tab \code{\link[R.utils:getIndices.Arguments]{getIndices}} \tab Coerces to a integer vector and validates.\cr
+ \tab \code{\link[R.utils:getInstanceOf.Arguments]{getInstanceOf}} \tab Gets an instance of the object that is of a particular class.\cr
  \tab \code{getInteger} \tab  -\cr
  \tab \code{\link[R.utils:getIntegers.Arguments]{getIntegers}} \tab Coerces to a integer vector and validates.\cr
  \tab \code{getLogical} \tab  -\cr

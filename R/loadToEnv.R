@@ -11,10 +11,11 @@
 #
 # \arguments{
 #   \item{...}{Arguments passed to @see "base::load".}
+#   \item{envir}{The @environment to load the objects to.}
 # }
 #
 # \value{
-#  Returns an @environment containing all loaded objects.
+#  Returns @environment \code{envir} containing all loaded objects.
 # }
 #
 # @author
@@ -27,15 +28,16 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-setMethodS3("loadToEnv", "default", function(...) {
-  env <- new.env();
-  base::load(..., env=env);
-  env;
+setMethodS3("loadToEnv", "default", function(..., envir=new.env()) {
+  base::load(..., envir=envir);
+  envir;
 }, private=TRUE) # loadToEnv()
 
 
 ##############################################################################
 # HISTORY:
+# 2009-12-19
+# o Added argument envir=new.env() to loadToEnv().
 # 2007-03-24
 # o Moved to R.utils from aroma.affymetrix.
 # 2006-11-24
