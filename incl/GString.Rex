@@ -10,7 +10,7 @@ cat(as.character(GString("Hello ${who}\n")))
 cat(GString("Hello ${who}\n"))
 
 # Escaping
-cat(as.character(GString("Hello \\${who}\n")))
+cat(as.character(GString("Hello \\\\${who}\n")))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

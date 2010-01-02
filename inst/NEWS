@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.3.0 [2010-01-01]
+Version: 1.3.0 [2010-01-02]
 o Added argument 'max' to Arguments$getIndices().
 o Added Arguments$getInstanceOf(...).
 o Now Arguments$getWritablePath() and Arguments$getWritablePathname()
@@ -16,6 +16,7 @@ o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
 o ROBUSTNESS: Any NA arguments in '...' to filePath(...) would be parsed 
   as "NA" resulting in paths such as "NA/foo/NA" (just as file.path() 
   does it).  Now a (character) NA is returned.
+o BUG FIX: The example(GString) code escaped a backslash incorrectly.
 o BUG FIX: Arguments$getCharacters(s) would return a *logical* instead
   of a *character* vector if 's' contained all NAs.
 o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
