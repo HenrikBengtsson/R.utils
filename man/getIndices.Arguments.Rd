@@ -23,13 +23,14 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIndices.Arguments(static, x, ..., range=c(1, Inf), .name=NULL)}
-\usage{Arguments$getIndices(x, ..., range=c(1, Inf), .name=NULL)}
+\synopsis{getIndices.Arguments(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
+\usage{Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
 
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.  If \code{\link[base]{logical}}, \code{\link[base]{which}}() is used.}
   \item{...}{Arguments passed to @method "getIntegers".}
   \item{range}{Allowed range. See @method "getNumerics" for details.}
+  \item{max}{The maximum of the default range.}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}
 }
 

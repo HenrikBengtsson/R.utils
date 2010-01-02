@@ -612,8 +612,13 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
   if (xrange[1] < range[1] || xrange[2] > range[2]) {
     xrange <- as.character(xrange);
     range <- as.character(range);
-    throw(sprintf("Range of argument '%s' is out of range [%s,%s]: [%s,%s]", 
+    if (length(x) == 1) {
+      throw(sprintf("Argument '%s' is out of range [%s,%s]: %s", 
+                          .name, range[1], range[2], x));
+    } else {
+      throw(sprintf("Range of argument '%s' is out of range [%s,%s]: [%s,%s]", 
                           .name, range[1], range[2], xrange[1], xrange[2]));
+    }
   }
 
   x;
@@ -721,6 +726,7 @@ setMethodS3("getInteger", "Arguments", function(static, ..., length=1) {
 #   \item{x}{A single @vector.  If @logical, @see "base::which" is used.}
 #   \item{...}{Arguments passed to @method "getIntegers".}
 #   \item{range}{Allowed range. See @method "getNumerics" for details.}
+#   \item{max}{The maximum of the default range.}
 #   \item{.name}{A @character string for name used in error messages.}
 # }
 #
@@ -736,12 +742,33 @@ setMethodS3("getInteger", "Arguments", function(static, ..., length=1) {
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getIndices", "Arguments", function(static, x, ..., range=c(1,Inf), .name=NULL) {
+setMethodS3("getIndices", "Arguments", function(static, x, ..., max=Inf, range=c(1*(max > 0L),max), .name=NULL) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(x)));
+
+  # Argument 'x':
   if (is.logical(x)) {
     x <- which(x);
   }
+
+  # Argument 'max':
+  if (length(max) != 1) {
+    throw("Argument 'max' must be a single value: ", length(max));
+  }
+  max <- as.numeric(max);
+  if (is.na(max)) {
+    throw("Argument 'max' is NA/NaN: ", max);
+  } else if (max < 0) {
+    throw("Argument 'max' must be positive: ", max);
+  }
+
+  # Special dealing with range = c(0,0)
+  if (!is.null(range) && range[2] < 1L) {
+    if (length(x) > 0) {
+      throw(sprintf("Argument 'x' is of length %d although the range ([%s,%s]) implies that is should be empty.", length(x), range[1], range[2]));
+    }
+  }
+
   getIntegers(static, x, ..., range=range, .name=.name);
 }, static=TRUE)
 
@@ -1067,7 +1094,11 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
-# 2007-12-30
+# 2010-01-01
+# o Now Arguments$getNumerics(x) displays the value of 'x' in the error
+#   message if it is a *single* value and out of range.
+# o Added argument 'max' to Arguments$getIndices().
+# 2009-12-30
 # o Now Arguments$getWritablePath() and Arguments$getWritablePathname()
 #   throws an error is an NA file/directory is specified.
 # o Now Arguments$getReadablePath() and Arguments$getReadablePathname()
