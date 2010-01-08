@@ -688,8 +688,78 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
 }, static=TRUE)
 
 
+setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(), ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'drive':
+  drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
+  pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
+  if (regexpr(pattern, toupper(drive)) == -1) {
+    throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+  }
+
+  # Argument 'path':
+  path <- Arguments$getReadablePath(path, mustExist=TRUE);
+
+
+  # Map
+  cmd <- sprintf("subst %s %s", toupper(drive), path);
+  res <- system(cmd, intern=TRUE);
+  if (length(res) > 0) {
+    throw(sprintf("Failed to map drive '%s' to path '%s': %s", 
+                                                   drive, path, res));
+  }
+
+  # Return new path
+  newPath <- sprintf("%s/", drive);
+  invisible(newPath);
+}, static=TRUE)
+
+
+
+setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'drive':
+  drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
+  pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
+  if (regexpr(pattern, toupper(drive)) == -1) {
+    throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+  }
+
+  # Get old paths
+  maps <- getMappedDrivesOnWindows(static);
+  oldPath <- maps[toupper(drive)];
+
+  # Unmap
+  cmd <- sprintf("subst %s /D", toupper(drive));
+  res <- system(cmd, intern=TRUE);
+  if (length(res) > 0) {
+    throw(sprintf("Failed to unmap drive '%s': %s", drive, res));
+  }
+
+  # Return old path
+  invisible(oldPath);
+}, static=TRUE)
+
+
+setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
+  mounts <- system("subst", intern=TRUE);
+  pattern <- "^(.:).*[ ]*=>[ ]*(.*)[ ]*";
+  drives <- gsub(pattern, "\\1", mounts);
+  paths <- gsub(pattern, "\\2", mounts);
+  names(paths) <- drives;
+  paths;
+}, static=TRUE)
+
+
 ############################################################################
 # HISTORY:
+# 2010-01-06
+# o Added System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
+#   System$getMappedDrivesOnWindows().
 # 2007-06-09
 # o BUG FIX: Used omit.na() instead of na.omit() in static method 
 #   parseDebian() of System.

@@ -118,6 +118,12 @@
  \alias{getUsername}
  \alias{openBrowser}
  \alias{parseDebian}
+ \alias{getMappedDrivesOnWindows}
+ \alias{getMappedDrivesOnWindows.System}
+ \alias{mapDriveOnWindows}
+ \alias{mapDriveOnWindows.System}
+ \alias{unmapDriveOnWindows}
+ \alias{unmapDriveOnWindows.System}
 
  % The System class
  \alias{getLabel}
