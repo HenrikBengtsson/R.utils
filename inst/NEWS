@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.3.1 [2010-01-06]
+Version: 1.3.1 [2010-01-08]
 o Added System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
   System$getMappedDrivesOnWindows() for associating drive letters
   with paths on Windows.

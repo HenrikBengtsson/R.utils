@@ -19,7 +19,7 @@
 #  \item{onError}{If an error occures, the error may stop the job,
 #        give a warning, or silently be skipped.}
 #  \item{verbose}{A @logical or a @see "Verbose" object.}
-#  \item{...}{Not used.}
+#  \item{...}{Additional arguments passed to @see "sourceTo".}
 # }
 #
 # \value{
@@ -174,6 +174,8 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
 
 ###########################################################################
 # HISTORY:
+# 2010-01-08
+# o Updated help on argument '...'.
 # 2008-10-24
 # o Now sourceDirectory() also searches for source files with extensions
 #   *.r, *.q, *.s, and *.S, cf. R manual 'Writing R Extensions'.
