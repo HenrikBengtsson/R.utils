@@ -86,8 +86,8 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
       if (!is.null(lastSrcd) && (lastSrcd > lastModified)) {
         return(invisible(NULL));
       }
-      lastSourced[[absPathname]] <- Sys.time();
     }
+    lastSourced[[absPathname]] <- Sys.time();
 
     # Open file
     fh <- file(file, open="r");
@@ -120,7 +120,7 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   # "main"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Read all lines from the connection
-  lines <- readLines(con=fh);
+  lines <- readLines(con=fh, warn=FALSE);
   hooks <- getHook("sourceTo/onPreprocess");
   if (length(hooks) > 0) {
     if (length(hooks) > 1)
@@ -166,6 +166,11 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
 
 #############################################################################
 # HISTORY: 
+# 2010-01-09
+# o Now sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(..., 
+#   modifiedOnly=TRUE) will work as expected.  Before you had to do at
+#   least one modifiedOnly=TRUE call for it to work.
+# o Now sourceTo() no longer gives a warning if there is a missing EOL.
 # 2008-12-01
 # o Now sourceTo() uses the more trusted fileAccess() of R.utils.
 # 2007-06-09
