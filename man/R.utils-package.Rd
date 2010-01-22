@@ -36,13 +36,9 @@
 
 \section{Installation and updates}{
 
-  To install this package do\cr
+  To install this package do:\cr
 
   \code{install.packages("R.utils")}
-
-  Required packages are installed in the same way.
-
-  To get the "devel" version, see \url{http://www.braju.com/R/}.
 }
 
 \section{To get started}{

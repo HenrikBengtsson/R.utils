@@ -23,7 +23,8 @@
    \item{file}{Default file name (pattern).}
    \item{horizontal}{If \code{\link[base:logical]{FALSE}}, an horizontal EPS file is created,
          otherwise a portrait file is created.}
-   \item{paper}{}
+   \item{paper}{A \code{\link[base]{character}} string specifying the paper type. Overrides
+         the default of \code{postscript()}.}
    \item{...}{Other arguments accepted by \code{postscript()}.}
  }
 

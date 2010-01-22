@@ -28,7 +28,7 @@
  \item{onError}{If an error occures, the error may stop the job,
        give a warning, or silently be skipped.}
  \item{verbose}{A \code{\link[base]{logical}} or a \code{\link{Verbose}} object.}
- \item{...}{Not used.}
+ \item{...}{Additional arguments passed to \code{\link{sourceTo}}().}
 }
 
 \value{

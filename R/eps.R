@@ -14,7 +14,8 @@
 #   \item{file}{Default file name (pattern).}
 #   \item{horizontal}{If @FALSE, an horizontal EPS file is created,
 #         otherwise a portrait file is created.}
-#   \item{paper}{}
+#   \item{paper}{A @character string specifying the paper type. Overrides
+#         the default of \code{postscript()}.}
 #   \item{...}{Other arguments accepted by \code{postscript()}.}
 # }
 #
@@ -53,6 +54,8 @@ eps <- function(file="Rplot%03d.eps", horizontal=FALSE, paper="special", ...) {
 
 ############################################################################
 # HISTORY:
+# 2010-01-22
+# o Added description to Rd argument 'paper'.
 # 2007-12-07
 # o The default EPS file had extension *.ps not *.eps.
 # 2005-01-16
