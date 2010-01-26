@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.3.3 [2010-01-25]
+o ROBUSTNESS: Added validation of argument 'range' in Arguments methods.
+
+
 Version: 1.3.2 [2010-01-09]
 o sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(..., 
   modifiedOnly=TRUE) will now work as expected.  Before you had to 

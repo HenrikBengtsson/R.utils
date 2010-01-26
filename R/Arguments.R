@@ -561,8 +561,10 @@ setMethodS3("getCharacter", "Arguments", function(static, ..., length=c(0,1)) {
 # @keyword IO
 #*/#########################################################################
 setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL) {
-  if (is.null(.name))
+  # Argument '.name':
+  if (is.null(.name)) {
     .name <- as.character(deparse(substitute(x)));
+  }
   x <- getVector(static, x, ..., .name=.name);
   xMode <- storage.mode(x);
 
@@ -605,6 +607,14 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
   # Nothing to check?
   if (is.null(range))
     return(x);
+
+  # Argument 'range':
+  if (length(range) != 2) {
+    throw("Argument 'range' should be of length 2: ", length(range));
+  }
+  if (range[2] < range[1]) {
+    throw(sprintf("Argument 'range' is not ordered: c(%s,%s)", range[1], range[2]));
+  }
 
   withCallingHandlers({
     xrange <- range(x, na.rm=TRUE);
@@ -762,10 +772,23 @@ setMethodS3("getIndices", "Arguments", function(static, x, ..., max=Inf, range=c
     throw("Argument 'max' must be positive: ", max);
   }
 
+  # Argument 'range':
+  if (!is.null(range)) {
+    if (length(range) != 2) {
+      throw("Argument 'range' should be of length 2: ", length(range));
+    }
+    if (range[2] < range[1]) {
+      throw(sprintf("Argument 'range' is not ordered: c(%s,%s)", range[1], range[2]));
+    }
+  }
+
+
   # Special dealing with range = c(0,0)
-  if (!is.null(range) && range[2] < 1L) {
-    if (length(x) > 0) {
-      throw(sprintf("Argument 'x' is of length %d although the range ([%s,%s]) implies that is should be empty.", length(x), range[1], range[2]));
+  if (!is.null(range)) {
+    if (range[2] < 1L) {
+      if (length(x) > 0) {
+        throw(sprintf("Argument 'x' is of length %d although the range ([%s,%s]) implies that is should be empty.", length(x), range[1], range[2]));
+      }
     }
   }
 
@@ -1094,6 +1117,8 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2010-01-25
+# o ROBUSTNESS: Added validation of argument 'range' in Arguments methods.
 # 2010-01-01
 # o Now Arguments$getNumerics(x) displays the value of 'x' in the error
 #   message if it is a *single* value and out of range.
