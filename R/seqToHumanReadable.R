@@ -23,6 +23,10 @@
 #   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 # }
 #
+# \seealso{
+#   @see "seqToIntervals".
+# }
+#
 # @keyword "attribute"
 #*/#########################################################################t 
 setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collapse=", ", ...) {
@@ -74,6 +78,8 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
 
 ###########################################################################
 # HISTORY: 
+# 2010-02-22
+# o Added Rdoc "see also" references.
 # 2005-11-14
 # o BUG FIX: Sequences of length one was given as intervals, e.g. 10-10.
 # 2005-02-20

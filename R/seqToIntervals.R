@@ -21,6 +21,7 @@
 # \seealso{
 #   @set "class=matrix"
 #   @seemethod "intervalsToSeq".
+#   To identify sequences of \emph{equal} values, see @see "base::rle".
 # }
 #
 # @keyword "attribute"
@@ -74,6 +75,8 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
 
 ###########################################################################
 # HISTORY: 
+# 2010-02-22
+# o Added Rdoc "see also" references.
 # 2008-06-21
 # o Major speed up of seqToIntervals().  The previous implementation was
 #   building up the result iteratively where in each iteration a new

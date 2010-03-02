@@ -32,5 +32,9 @@
   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 }
 
+\seealso{
+  \code{\link{seqToIntervals}}().
+}
+
 
 \keyword{attribute}

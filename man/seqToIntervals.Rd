@@ -42,6 +42,7 @@ stopifnot(all.equal(x,z))
 \seealso{
  
   \code{\link[R.utils:intervalsToSeq.matrix]{*intervalsToSeq}()}.
+  To identify sequences of \emph{equal} values, see \code{\link[base]{rle}}().
 }
 
 
