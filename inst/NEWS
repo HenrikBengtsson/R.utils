@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.4.0 [2010-03-24]
+o Now R.utils requires R v2.5.0 (circa 2007) or newer.  This
+  is because there was a change in base::parse() from R v2.4.1
+  and R v2.5.0.  See news for R.utils v0.9.3.
+o Added a NAMESPACE.
+
+
 Version: 1.3.4 [2010-03-02]
 o Added alpha version of an onGarbageCollect() method.
 o BUG FIX: findSourceTraceback() stopped working; probably due to some

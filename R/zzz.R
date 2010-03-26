@@ -3,24 +3,27 @@
 .conflicts.OK <- TRUE;
 
 
-.First.lib <- function(libname, pkgname) {
+## .First.lib <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) { 
   pkg <- Package(pkgname);
-  assign(pkgname, pkg, pos=getPosition(pkg));
+  pos <- getPosition(pkg);
+  assign(pkgname, pkg, pos=pos);
 
   # Add a default Verbose object at threshold -1.
-  assign("verbose", Verbose(threshold=-1), pos=getPosition(pkg));
+  assign("verbose", Verbose(threshold=-1), pos=pos);
 
   # Patch for Sys.setenv() and Sys.putenv()
   # Sys.setenv() replaces Sys.putenv() from R v2.5.0. Code for migration.
   if (!exists("Sys.setenv", mode="function", envir=baseenv())) {
-    env <- as.environment("package:R.utils");
-    assign("Sys.setenv", Sys.putenv, envir=env);
+    assign("Sys.setenv", Sys.putenv, pos=pos);
   }
 
   # Patch for default parse() depending on R version
-  env <- as.environment("package:R.utils");
-  setMethodS3("parse", "default", appendVarArgs(base::parse), 
-                                            conflict="quiet", envir=env);
+#  env <- as.environment("package:R.utils");
+#  setMethodS3("parse", "default", appendVarArgs(base::parse), 
+#                                            conflict="quiet");#  , envir=env);
+#  assign("parse.default", parse.default, pos=pos);
+#  assignInNamespace("parse.default", parse.default, pos=pos);
 
   # Add as.character.hexmode(), if missing.
   .patchAsCharacterHexMode();
