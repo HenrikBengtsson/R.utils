@@ -4,7 +4,7 @@
 # @title "Counts the number of lines in a text file"
 #
 # \description{
-#  @get "title" by count the number of occurances of platform-independent 
+#  @get "title" by counting the number of occurances of platform-independent 
 #  newlines (CR, LF, and CR+LF [1]), including a last line with neither.
 #  An empty file has zero lines.
 # }
