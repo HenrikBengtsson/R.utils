@@ -54,7 +54,7 @@
 #
 # \section{On speed}{
 #   Internal \code{file.exists()} is call while expanding the pathname.
-#   This is used to check if the exists a Windows shortcut file named 
+#   This is used to check if there exists a Windows shortcut file named 
 #   'foo.lnk' in 'path/foo/bar'. If it does, 'foo.lnk' has to be followed,
 #   and in other cases 'foo' is ordinary directory. 
 #   The \code{file.exists()} is unfortunately a bit slow, which is why
