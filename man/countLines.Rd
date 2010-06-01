@@ -13,7 +13,7 @@
  \title{Counts the number of lines in a text file}
 
  \description{
-  Counts the number of lines in a text file by count the number of occurances of platform-independent
+  Counts the number of lines in a text file by counting the number of occurances of platform-independent
   newlines (CR, LF, and CR+LF [1]), including a last line with neither.
   An empty file has zero lines.
  }

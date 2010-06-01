@@ -3,7 +3,7 @@
 #
 # @title "Extract Command Line Arguments"
 #
-# @synopsis
+# \usage{commandArgs(@eval "t<-formals(R.utils::commandArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")}
 #
 # \description{
 #  Provides access to a copy of the command line arguments supplied when 
