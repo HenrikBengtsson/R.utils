@@ -143,7 +143,6 @@
 # @alias newline
 # @alias on
 # @alias off
-# @alias printf
 # @alias ruler
 # @alias setDefaultLevel 
 # @alias setThreshold
