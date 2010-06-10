@@ -7,7 +7,7 @@ o Added printf(), as a convenient wrapper for cat(sprintf(...)).
 
 
 Version: 1.4.1 [2010-05-26]
-o Added downloadFile().
+o Added downloadFile() for safer and more convenient downloads.
 
 
 Version: 1.4.0 [2010-03-24]
