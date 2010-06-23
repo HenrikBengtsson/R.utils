@@ -23,7 +23,9 @@
 # }
 #
 # \details{
-#  This method will replace replicated slashes ('/') with a single one.
+#  This method will replace replicated slashes ('/') with a single one,
+#  except for the double forward slashes prefixing a Microsoft Windows UNC
+#  (Universal Naming Convention) pathname.
 # }
 #
 # @author
@@ -43,19 +45,23 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     components <- strsplit(pathname, split="[/\\]")[[1]];
 
     len <- length(components);
-    if (len == 0) 
+    if (len == 0) {
       return("");
+    }
 
     name <- components[len];
-    if (name == ".") 
+    if (name == ".") {
       return("");
+    }
 
     reg <- regexpr("^.:", name);
-    if (reg != -1)
+    if (reg != -1) {
       name <- substring(name, attr(reg, "match.length")+1);
+    }
 
-    if (removeSuffix)
+    if (removeSuffix) {
       name <- gsub("[.][^.]*$", "", name); # Remove the suffix.
+    }
 
     name; 
   } # getName()
@@ -67,7 +73,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Argument 'pathname':
   if (length(pathname) > 1) {
     throw("Argument 'pathname' must be a single character string: ", 
-                                             paste(pathname, collapse=", "));
+                                           paste(pathname, collapse=", "));
   }
 
   if (is.na(pathname)) {
@@ -88,8 +94,9 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
     pathname <- strsplit(pathname, split="[/\\]")[[1]];
     len <- length(pathname);
-    if (len != 0)
+    if (len != 0) {
       pathname <- pathname[-len];
+    }
 
     pathname <- c(workDirectory, pathname, name);
     pathname <- paste(pathname, sep="", collapse=.Platform$file.sep);
@@ -97,17 +104,30 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     pathname <- filePath(pathname, removeUps=TRUE);
   }
 
-  if (expandTilde)
+  if (expandTilde) {
     pathname <- file.path(dirname(pathname), basename(pathname));
+  }
 
-  # Especially expandTilde=TRUE may add an extra /.
+  # Especially expandTilde=TRUE may add an extra slash ('/').
+  # Replace all replicated slashes ('/') with single ones, except
+  # if they are at the beginning of the path, because then they
+  # are Microsoft Windows UNC paths.
+  isWindowsUNC <- (regexpr("^//", pathname) != -1);
   pathname <- gsub("//*", "/", pathname);
+  if (isWindowsUNC) {
+    # Make sure WindowsUNC starts with "//".
+    pathname <- paste("/", pathname, sep="");
+  }
 
   pathname;
 })  
 
+
 ###########################################################################
 # HISTORY: 
+# 2010-06-23
+# o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
+#   the initial double-slashes ('//') and return "/server/dir/".
 # 2009-12-30
 # o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
 #   returns a (character) NA if the input is NA.

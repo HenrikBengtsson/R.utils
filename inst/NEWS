@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.4.3 [2010-06-23]
+o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
+  the initial double-slashes ('//') and return "/server/dir/".
+  Thanks Richard Cotton at Health and Safety Laboratory (HSL), UK,
+  for reporting this.
+
+
 Version: 1.4.2 [2010-06-09]
 o Added printf(), as a convenient wrapper for cat(sprintf(...)).
 

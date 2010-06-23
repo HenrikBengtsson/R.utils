@@ -32,7 +32,9 @@
 }
 
 \details{
- This method will replace replicated slashes ('/') with a single one.
+ This method will replace replicated slashes ('/') with a single one,
+ except for the double forward slashes prefixing a Microsoft Windows UNC
+ (Universal Naming Convention) pathname.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
