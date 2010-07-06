@@ -9,7 +9,8 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
   }
 
   # Put the characters into a matrix
-  data <- matrix(NA, nrow=length(chars), ncol=max(nchars));
+  naValue <- as.character(NA);
+  data <- matrix(naValue, nrow=length(chars), ncol=max(nchars));
   for (kk in seq(along=chars)) {
     cc <- seq(length=nchars[kk]);
     data[kk,cc] <- chars[[kk]];
@@ -40,6 +41,9 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2010-07-05
+# o Now getCommonPrefix() allocates a character matrix with NAs, and no
+#   longer a logical NA matrix.
 # 2006-12-15
 # o Created (since stringTree() is broken and this is good enough).
 ##############################################################################

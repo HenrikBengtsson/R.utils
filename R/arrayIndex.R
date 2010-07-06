@@ -19,7 +19,7 @@
 # }
 #
 # \value{
-#  Returns a @numeric @matrix of \code{length(i)} rows and 
+#  Returns an @integer @matrix of \code{length(i)} rows and 
 #  \code{length(dim)} columns.
 # }
 #
@@ -33,6 +33,8 @@
 # }
 #
 # \seealso{
+#   From R v2.11.0 there is @see "base::arrayInd", which does
+#   the same thing as this method.
 #   @see "base::which" with argument \code{arr.ind=TRUE}.
 # }
 #
@@ -40,20 +42,28 @@
 # @keyword utilities
 #*/########################################################################### 
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
-  ndim <- length(dim);      # number of dimension
-  pi <- cumprod(c(1,dim));  # base
+  ndim <- length(dim);       # number of dimension
+  dim <- as.integer(dim);
+  pi <- cumprod(c(1L,dim));  # base
 
   # Allocate return matrix
-  j <- matrix(NA, nrow=length(i), ncol=ndim);
+  naValue <- as.integer(NA);
+  j <- matrix(naValue, nrow=length(i), ncol=ndim);
 
   i <- (i-1);
-  for (kk in 1:ndim)
-    j[,kk] <- (i %% pi[kk+1])/pi[kk];
-  1 + floor(j);
+  for (kk in 1:ndim) {
+    j[,kk] <- as.integer(floor((i %% pi[kk+1])/pi[kk]));
+  }
+  j <- j + 1L;
+
+  j;
 })
 
 ############################################################################
 # HISTORY:
+# 2010-07-05
+# o Now arrayIndex() returns an @integer @matrix.
+# o Added an Rd link to base::arrayInd.
 # 2006-03-07
 # o Created as an answer to R-help thread "[R] returning the largest element
 #   in an array/matrix?" on 2006-03-07.

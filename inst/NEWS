@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.4.4 [2010-07-05]
+o Now arrayIndex() returns an @integer @matrix.
+o DOCUMENTATION: Now the help of arrayIndex() links to the
+  new arrayInd() in the base package.
+
+
 Version: 1.4.3 [2010-06-23]
 o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
   the initial double-slashes ('//') and return "/server/dir/".
