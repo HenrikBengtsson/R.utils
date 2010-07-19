@@ -28,7 +28,7 @@
 }
 
 \value{
- Returns a \code{\link[base]{numeric}} \code{\link[base]{matrix}} of \code{length(i)} rows and
+ Returns an \code{\link[base]{integer}} \code{\link[base]{matrix}} of \code{length(i)} rows and
  \code{length(dim)} columns.
 }
 
@@ -56,6 +56,8 @@ print(arrayIndex(which.max(m), dim=dim(m)))
 }
 
 \seealso{
+  From R v2.11.0 there is \code{\link[base]{arrayInd}}(), which does
+  the same thing as this method.
   \code{\link[base]{which}}() with argument \code{arr.ind=TRUE}.
 }
 
