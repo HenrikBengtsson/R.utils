@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.5.0 [2010-08-04]
+o Added stext(), which previously was in the aroma.core package.
+
+
 Version: 1.4.4 [2010-07-05]
 o Now arrayIndex() returns an @integer @matrix.
 o DOCUMENTATION: Now the help of arrayIndex() links to the
