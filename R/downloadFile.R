@@ -18,8 +18,11 @@
 #  \item{overwrite}{If @TRUE, an already downloaded file is overwritten,
 #    otherwise an error is thrown.}
 #  \item{...}{Additional arguments passed to @see "utils::download.file".}
+#  \item{username, password}{@character strings specifying the username
+#    and password for authenticated downloads.  The alternative is to
+#    specify these via the URL.}
 #  \item{binary}{If @TRUE, the file is downloaded exactly "as is", that is,
-#    byte by byte (strongly recommended).}
+#    byte by byte (recommended).}
 #    which means it willand the downloaded file is empty, the file
 #  \item{dropEmpty}{If @TRUE and the downloaded file is empty, the file
 #    is ignored and @NULL is returned.}
@@ -29,6 +32,12 @@
 # \value{
 #   Returns the local pathname to the downloaded filename,
 #   or @NULL if no file was downloaded.
+# }
+#
+# \details{
+#   Currently arguments \code{username} and \code{password} are only used
+#   for downloads via URL protocol 'https'.  The 'https' protocol requires
+#   that 'wget' is available on the system.
 # }
 #
 # \examples{\dontrun{
@@ -46,7 +55,7 @@
 # @keyword programming
 # @keyword file
 #*/###########################################################################
-setMethodS3("downloadFile", "character", function(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., binary=TRUE, dropEmpty=TRUE, verbose=FALSE) {
+setMethodS3("downloadFile", "character", function(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -63,6 +72,16 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   pathname <- Arguments$getWritablePathname(filename, path=path,
                                          mustNotExist=(!overwrite && !skip));
 
+  # Argument 'username':
+  if (!is.null(username)) {
+    username <- Arguments$getCharacter(username);
+  }
+
+  # Argument 'password':
+  if (!is.null(password)) {
+    password <- Arguments$getCharacter(password);
+  }
+
   # Argument 'binary':
   binary <- Arguments$getLogical(binary);
 
@@ -76,7 +95,26 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
   verbose && enter(verbose, "Downloading URL");
   verbose && cat(verbose, "URL: ", url);
+
+  protocol <- gsub("^([^:]*)://.*", "\\1", url, ignore.case=TRUE);
+  protocol <- tolower(protocol);
+  verbose && cat(verbose, "Protocol: ", protocol);
+
+  # Is username and password given by the URL?
+  pattern <- "^([^:]*)://([^:]*):([^:]*)@.*";
+  if (regexpr(pattern, url) != -1) {
+    if (!is.null(username)) {
+      warning("Argument 'username' was overridden by username specified by argument 'url'.");
+    }
+    if (!is.null(password)) {
+      warning("Argument 'password' was overridden by password specified by argument 'url'.");
+    }
+    username <- gsub(pattern, "\\2", url);
+    password <- gsub(pattern, "\\3", url);
+  }
+
   verbose && cat(verbose, "Pathname: ", pathname);
+
 
   if (isFile(pathname)) {
     if (skip) {
@@ -102,10 +140,24 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Download file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  mode <- ifelse(binary, "wb", "w");
-  verbose && cat(verbose, "Download mode: ", mode);
-  res <- download.file(url, destfile=pathnameT, mode=mode, 
+  verbose && enter(verbose, "Downloading");
+  if (is.element(protocol, c("https")) {
+    verbose && cat(verbose, "Username: ", username);
+    verbose && cat(verbose, "Password: ", password);
+    opts <- sprintf("--http-user=%s --http-passwd=%s", username, password);
+    fmtstr <- "wget --output-document=\"%s\" --no-check-certificate %s %s";
+    cmd <- sprintf(fmtstr, pathnameT, opts, url);
+    verbose && cat(verbose, "Command: ", cmd);
+    res <- system(cmd);
+  } else {
+    mode <- ifelse(binary, "wb", "w");
+    verbose && cat(verbose, "Download mode: ", mode);
+    res <- download.file(url, destfile=pathnameT, mode=mode, 
                                              quiet=!isVisible(verbose), ...);
+  }
+  verbose && cat(verbose, "Downloading finished\n");
+  verbose && cat(verbose, "Download result:", res);
+  verbose && exit(verbose);
 
   # Remove failed or "empty" downloads
   fi <- file.info(pathnameT);
@@ -141,6 +193,8 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
 ############################################################################
 # HISTORY:
+# 2010-08-23
+# o Added support for https authentication via wget.
 # 2010-05-27
 # o Created.
 ############################################################################

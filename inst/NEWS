@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.5.1 [2010-08-23]
+o Now downloadFile() supports authentication, if 'wget' is 
+  available on the system.
+
+
 Version: 1.5.0 [2010-08-04]
 o Added stext(), which previously was in the aroma.core package.
 
