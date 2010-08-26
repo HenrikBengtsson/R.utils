@@ -141,7 +141,7 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   # Download file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   verbose && enter(verbose, "Downloading");
-  if (is.element(protocol, c("https")) {
+  if (is.element(protocol, c("https"))) {
     verbose && cat(verbose, "Username: ", username);
     verbose && cat(verbose, "Password: ", password);
     opts <- sprintf("--http-user=%s --http-passwd=%s", username, password);
