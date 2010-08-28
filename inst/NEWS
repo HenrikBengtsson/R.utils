@@ -2,9 +2,9 @@
 Package: R.utils
 ================
 
-Version: 1.5.1 [2010-08-23]
-o Added readHelpAs() for locating and reading Rd help files 
-  in various formats.
+Version: 1.5.1 [2010-08-28]
+o Added readRdHelp() for locating and reading installed 
+  Rd help pages in various formats.
 o Now downloadFile() supports authentication, if 'wget' is 
   available on the system.
 
