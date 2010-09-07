@@ -89,7 +89,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   if (mode == 0) {
     faSafe <- -as.integer(!fe);
     if (fa != faSafe) {
-      warning("file.access() and file.exists() gives different results for mode=0 (", fa, " != ", faSafe, "). Will use the file.exists() results: ", pathname);
+      warning("file.access(..., mode=0) and file.exists() gives different results (", fa, " != ", faSafe, "). Will use the file.exists() results: ", pathname);
     }
     return(faSafe);
   }
@@ -99,12 +99,19 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # mode = 1: Test for executable permission of file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (mode == 1) {
-    fi <- file.info(pathname);
-    isExecutable <- (fi$exe != "no");
-    faSafe <- -as.integer(!isExecutable);
-    if (fa != faSafe) {
-      warning("file.access() and file.info() gives different results for mode=1 (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
+    faSafe <- fa;
+
+    if (isDirectory(pathname)) {
+      # No particular test exists for this case, rely on file.access().
+    } else if (isFile(pathname)) {
+      fi <- file.info(pathname);
+      isExecutable <- (fi$exe != "no");
+      faSafe <- -as.integer(!isExecutable);
+      if (fa != faSafe) {
+        warning("file.access(..., mode=1) and file.info()$exe gives different results (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
+      }
     }
+
     return(faSafe);
   }
 
@@ -155,7 +162,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       }
 
       if (fa != faSafe) {
-        warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
+        warning("file.access(..., mode=2) and file(..., open=\"ab\") gives different results (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
       }
 
       return(faSafe);
@@ -182,7 +189,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     })
 
     if (fa != faSafe) {
-      warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
+      warning("file.access(..., mode=2) and file(..., open=\"ab\") gives different results (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
     }
 
     return(faSafe);
@@ -213,7 +220,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     })
 
     if (fa != faSafe) {
-      warning("file.access() and file()+readBin() gives different results for mode=4 (", fa, " != ", faSafe, "). Will use the file()+readBin() results: ", pathname);
+      warning("file.access(..., mode=4) and file(..., open=\"rb\")+readBin() gives different results (", fa, " != ", faSafe, "). Will use the file()+readBin() results: ", pathname);
     }
 
     return(faSafe);
@@ -225,6 +232,8 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 ###########################################################################
 # HISTORY: 
 # 2010-09-06
+# o Updated fileAccess(..., mode=1) to only look at file.info()$exe if
+#   it is a file, otherwise rely on file.access().
 # o Forgot to remove any temporary created files.
 # 2010-09-05
 # o DOCUMENTATION: Added an example to help(fileAccess).

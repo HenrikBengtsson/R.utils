@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.5.2 [2010-09-06]
+o Now fileAccess(..., mode=1) only utilizes file.info()$exe if
+  it is a file, otherwise it relies on file.access().
 o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
   when 'path' is a directory.  Thanks Chao Chen at University of 
   Chicago for reporting issues with this.
