@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.5.2 [2010-09-05]
+Version: 1.5.2 [2010-09-06]
 o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
   when 'path' is a directory.  Thanks Chao Chen at University of 
   Chicago for reporting issues with this.

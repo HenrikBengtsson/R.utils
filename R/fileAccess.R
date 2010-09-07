@@ -147,6 +147,13 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
         # If we end up here, we do not have permissions
       })
 
+      # Close connection and remove temporary file
+      if (!is.null(con) && file.exists(pathname)) {
+        close(con);
+        con <- NULL;
+        file.remove(pathname);
+      }
+
       if (fa != faSafe) {
         warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
       }
@@ -217,6 +224,8 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
 ###########################################################################
 # HISTORY: 
+# 2010-09-06
+# o Forgot to remove any temporary created files.
 # 2010-09-05
 # o DOCUMENTATION: Added an example to help(fileAccess).
 # o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
