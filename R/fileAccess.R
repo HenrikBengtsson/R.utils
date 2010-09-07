@@ -27,24 +27,31 @@
 # \details{
 #   In \R there is @see "base::file.access" for checking whether the
 #   permission of a file.
-#   Unfortunately, this function cannot be 100\% trusted depending on
+#   Unfortunately, that function cannot be 100\% trusted depending on
 #   platform used and file system queried, cf. [1].
 # }
+#
+# @examples "../incl/fileAccess.Rex"
 #
 # \seealso{
 #   @see "base::file.access"
 # }
 #
 # \references{
-#   [1] R-devel thread 
-#       \emph{file.access() on network (mounted) drive on Windows Vista?}
-#       on Nov 26, 2008.
+#  [1] R-devel thread 
+#      \emph{file.access() on network (mounted) drive on Windows Vista?}
+#      on Nov 26, 2008.\cr
+#  [2] Filesystem permissions, Wikipedia, 2010.
+#      \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 # }
 #
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
 setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
   pathname <- Arguments$getCharacter(pathname);
 
@@ -61,7 +68,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     return(fa);
 
 
-  # If file doesn't exists, there we have none of the permission either.
+  # If file doesn't exists, then we have none of the permission either.
   fe <- file.exists(pathname);
   if (!fe)
     return(as.integer(-1));
@@ -82,7 +89,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   if (mode == 0) {
     faSafe <- -as.integer(!fe);
     if (fa != faSafe) {
-      warning("file.access() and file.exists() gives different results for mode=0 (", fa, " != ", faSafe, "). Will use the file.exists() results");
+      warning("file.access() and file.exists() gives different results for mode=0 (", fa, " != ", faSafe, "). Will use the file.exists() results: ", pathname);
     }
     return(faSafe);
   }
@@ -96,7 +103,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     isExecutable <- (fi$exe != "no");
     faSafe <- -as.integer(!isExecutable);
     if (fa != faSafe) {
-      warning("file.access() and file.info() gives different results for mode=1 (", fa, " != ", faSafe, "). Will use the file.info() results.");
+      warning("file.access() and file.info() gives different results for mode=1 (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
     }
     return(faSafe);
   }
@@ -107,9 +114,45 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (mode == 2) {
     if (isDirectory(pathname)) {
-      # Safe testing of write permission for a directory is not implemented.
-      return(fa);
-    }
+      # "The write permission, [...] for a directory, this permission 
+      #  grants the ability to modify entries in the directory. This 
+      #  includes creating files, deleting files, and renaming files." [2]
+
+      # (a) Generate a random filename that does not already exist
+      path <- pathname;
+      pathname <- NULL;
+      for (n in 1:16) {
+        repeat {
+          chars <- sample(c(base::letters, base::LETTERS), size=n);
+          filename <- paste(chars, collapse="");
+          pathname <- file.path(path, filename);
+          if (!file.exists(pathname))
+            break;
+          pathname <- NULL;
+        }
+        if (!is.null(pathname))
+          break;
+      } # for (n ...)
+
+      # (b) Try to open the random filename for writing
+      faSafe <- as.integer(-1);
+      tryCatch({
+        suppressWarnings({
+          con <- file(pathname, open="ab");
+        });
+
+        # If we get here, we have permission
+        faSafe <- as.integer(0);
+      }, error = function(ex) {
+        # If we end up here, we do not have permissions
+      })
+
+      if (fa != faSafe) {
+        warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
+      }
+
+      return(faSafe);
+    } # if (isDirectory(pathname))
 
     # This is actually redundant, because of the above file.exists() test,
     # but we keep it here to make it explicit what we are doing.
@@ -121,7 +164,9 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     faSafe <- as.integer(-1);
     tryCatch({
       # (a) Try to open the file for writing
-      con <- file(pathname, open="ab");
+      suppressWarnings({
+        con <- file(pathname, open="ab");
+      });
 
       # If we get here, we have permission
       faSafe <- as.integer(0);
@@ -130,11 +175,12 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     })
 
     if (fa != faSafe) {
-      warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results.");
+      warning("file.access() and file() gives different results for mode=2 (", fa, " != ", faSafe, "). Will use the file() results: ", pathname);
     }
 
     return(faSafe);
   }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # mode = 4: Test for read permission of file
@@ -160,7 +206,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     })
 
     if (fa != faSafe) {
-      warning("file.access() and file()+readBin() gives different results for mode=4 (", fa, " != ", faSafe, "). Will use the file()+readBin() results.");
+      warning("file.access() and file()+readBin() gives different results for mode=4 (", fa, " != ", faSafe, "). Will use the file()+readBin() results: ", pathname);
     }
 
     return(faSafe);
@@ -171,6 +217,13 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
 ###########################################################################
 # HISTORY: 
+# 2010-09-05
+# o DOCUMENTATION: Added an example to help(fileAccess).
+# o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
+#   when 'path' is a directory.
+# o Now the warning():s generated by fileAccess() also contains the
+#   path/pathname tested.
+# o Added Rdoc reference to Wikipedia.
 # 2009-10-28
 # o Clarified in the Rdoc that also directories can be tested.
 # 2008-12-03

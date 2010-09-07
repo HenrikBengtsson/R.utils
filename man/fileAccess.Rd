@@ -36,8 +36,72 @@
 \details{
   In \R there is \code{\link[base]{file.access}}() for checking whether the
   permission of a file.
-  Unfortunately, this function cannot be 100\% trusted depending on
+  Unfortunately, that function cannot be 100\% trusted depending on
   platform used and file system queried, cf. [1].
+}
+
+\examples{
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Current directory
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+path <- "."
+
+# Test for existence
+print(fileAccess(path, mode=0))
+# Test for execute permission
+print(fileAccess(path, mode=1))
+# Test for write permission
+print(fileAccess(path, mode=2))
+# Test for read permission
+print(fileAccess(path, mode=4))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# A temporary file
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+pathname <- tempfile()
+cat(file=pathname, "Hello world!")
+
+# Test for existence
+print(fileAccess(pathname, mode=0))
+# Test for execute permission
+print(fileAccess(pathname, mode=1))
+# Test for write permission
+print(fileAccess(pathname, mode=2))
+# Test for read permission
+print(fileAccess(pathname, mode=4))
+
+file.remove(pathname)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The 'base' package directory
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+path <- system.file(package="base")
+
+# Test for existence
+print(fileAccess(path, mode=0))
+# Test for execute permission
+print(fileAccess(path, mode=1))
+# Test for write permission
+print(fileAccess(path, mode=2))
+# Test for read permission
+print(fileAccess(path, mode=4))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The 'base' package DESCRIPTION file
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+pathname <- system.file("DESCRIPTION", package="base")
+
+# Test for existence
+print(fileAccess(pathname, mode=0))
+# Test for execute permission
+print(fileAccess(pathname, mode=1))
+# Test for write permission
+print(fileAccess(pathname, mode=2))
+# Test for read permission
+print(fileAccess(pathname, mode=4))
 }
 
 \seealso{
@@ -45,9 +109,11 @@
 }
 
 \references{
-  [1] R-devel thread
-      \emph{file.access() on network (mounted) drive on Windows Vista?}
-      on Nov 26, 2008.
+ [1] R-devel thread
+     \emph{file.access() on network (mounted) drive on Windows Vista?}
+     on Nov 26, 2008.\cr
+ [2] Filesystem permissions, Wikipedia, 2010.
+     \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 }
 
 
