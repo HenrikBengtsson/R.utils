@@ -105,10 +105,13 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       # No particular test exists for this case, rely on file.access().
     } else if (isFile(pathname)) {
       fi <- file.info(pathname);
-      isExecutable <- (fi$exe != "no");
-      faSafe <- -as.integer(!isExecutable);
-      if (fa != faSafe) {
-        warning("file.access(..., mode=1) and file.info()$exe gives different results (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
+      # Specific test, if on Windows
+      if (!is.null(fi$exe)) {
+        isExecutable <- (fi$exe != "no");
+        faSafe <- -as.integer(!isExecutable);
+        if (fa != faSafe) {
+          warning("file.access(..., mode=1) and file.info()$exe gives different results (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
+        }
       }
     }
 
@@ -231,9 +234,13 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
 ###########################################################################
 # HISTORY: 
+# 2010-09-11
+# o BUG FIX: Updated fileAccess(..., mode=1) to only look at 
+#   file.info()$exe if it is a file and on Windows, otherwise rely on
+#   file.access().
 # 2010-09-06
-# o Updated fileAccess(..., mode=1) to only look at file.info()$exe if
-#   it is a file, otherwise rely on file.access().
+# o BUG FIX: Updated fileAccess(..., mode=1) to only look at 
+#   file.info()$exe if it is a file, otherwise rely on file.access().
 # o Forgot to remove any temporary created files.
 # 2010-09-05
 # o DOCUMENTATION: Added an example to help(fileAccess).
