@@ -44,5 +44,9 @@
   cat(paste(decapitalize(words), collapse=" "), "\n") # "hello wOrld"
 }
 
+\seealso{
+  \code{\link[R.utils]{toCamelCase}}.
+}
+
 
 \keyword{programming}

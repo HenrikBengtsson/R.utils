@@ -35,6 +35,10 @@
 #   cat(paste(decapitalize(words), collapse=" "), "\n") # "hello wOrld"
 # }
 #
+# \seealso{
+#   @see "R.utils::toCamelCase".
+# }
+#
 # @keyword "programming"
 #*/#########################################################################
 setMethodS3("capitalize", "default", function(str, ...) {
