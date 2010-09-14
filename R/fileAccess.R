@@ -63,6 +63,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
   # file.access()  
   fa <- base::file.access(pathname, mode=mode);
+  names(fa) <- NULL;
 
   if (!safe)
     return(fa);
@@ -234,6 +235,8 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
 ###########################################################################
 # HISTORY: 
+# 2010-09-13
+# o fileAccess() no longer return a named value if file.access() is used.
 # 2010-09-11
 # o BUG FIX: Updated fileAccess(..., mode=1) to only look at 
 #   file.info()$exe if it is a file and on Windows, otherwise rely on
