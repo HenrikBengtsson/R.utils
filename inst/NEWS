@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.5.2 [2010-09-13]
+Version: 1.5.2 [2010-09-15]
 o fileAccess() no longer return a named value if file.access() is used.
 o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
   when 'path' is a directory.  Thanks Chao Chen at University of 
@@ -10,6 +10,7 @@ o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2)
 o BUG FIX: Now fileAccess(..., mode=1) only utilizes file.info()$exe
   if it is a file and on Windows, otherwise it relies on file.access().
 o DOCUMENTATION: Added an example to help(fileAccess).
+o MISC: Added support for readRdHelp(..., format="text") in R < 2.10.0.
 
 
 Version: 1.5.1 [2010-08-28]

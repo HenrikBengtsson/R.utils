@@ -25,11 +25,45 @@
 # @keyword programming
 #*/########################################################################### 
 setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "latex", "rd"), drop=TRUE) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  readRdHelpTextPreR210 <- function(...) {
+    stdoutPager <- function(con, ...) {
+      cat(readLines(con), sep="\n");
+    }
+    capture.output({
+      do.call("help", args=list(..., pager=stdoutPager));
+    });
+  } # readRdHelpTextPreR210()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'format':
   format <- match.arg(format);
 
   # Argument 'drop':
   drop <- Arguments$getLogical(drop);
+
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # For R versions before v2.10.0 only
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  rVer <- as.character(getRversion());
+  if (compareVersion(rVer, "2.10.0") < 0) {
+    if (format == "text") {
+      res <- readRdHelpTextPreR210(...);
+      if (!drop) {
+        res <- list(res);
+      }
+      return(res);
+    } else {
+      throw("Unsupported format for R v", rVer, ": ", format);
+    }
+  }
 
 
   # Find the help
@@ -76,6 +110,8 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
 
 ############################################################################
 # HISTORY:
+# 2010-09-15
+# o Added some support for readRdHelp(..., format="text") on R < 2.10.0.
 # 2010-08-28
 # o Renamed to readRdHelp().
 # 2010-08-23
