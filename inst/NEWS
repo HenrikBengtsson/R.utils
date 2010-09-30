@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.5.3 [2010-09-29]
+o Added an example to help(findSourceTraceback).
+o BUG FIX: Each entry identified by findSourceTraceback()
+  would be duplicated.
+
+
 Version: 1.5.2 [2010-09-15]
 o fileAccess() no longer returns a named value if file.access() is used.
 o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
