@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.5.4 [2010-10-13]
+o Now the 'link' argument of createLink() is inferred from the 
+  'target' argument if it is "." (or NULL).
+
+
 Version: 1.5.3 [2010-09-29]
 o Added an example to help(findSourceTraceback).
 o BUG FIX: Each entry identified by findSourceTraceback()

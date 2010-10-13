@@ -13,7 +13,9 @@
 # }
 #
 # \arguments{
-#   \item{link}{The path or pathname of the link to be created.}
+#   \item{link}{The path or pathname of the link to be created.
+#     If \code{"."} (or @NULL), it is inferred from the
+#     \code{target} argument.}
 #   \item{target}{The target file or directory to which the shortcut should
 #     point to.}
 #   \item{overwrite}{If @TRUE, an existing link file is overwritten, 
@@ -37,18 +39,22 @@
 # @keyword file
 # @keyword IO
 #*/###########################################################################
-setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, methods=c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut"), ...) {
+setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE, methods=c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut"), ...) {
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite);
-
-  # Argument 'link':
-  if (!overwrite && file.exists(link)) {
-    throw("Cannot create link. File already exists: ", link);
-  }
 
   # Argument 'target':
   target <- Arguments$getReadablePathname(target, mustExist=TRUE);
   target <- getAbsolutePath(target);
+
+  # Argument 'link':
+  if (is.null(link) || link == ".") {
+    # Infer from 'target'
+    link <- basename(target);
+  }
+  if (!overwrite && file.exists(link)) {
+    throw("Cannot create link. File already exists: ", link);
+  }
 
   # Argument 'methods':
   methods <- match.arg(methods, several.ok=TRUE);
@@ -125,6 +131,9 @@ setMethodS3("createLink", "default", function(link, target, overwrite=FALSE, met
 
 ############################################################################
 # HISTORY:
+# 2010-10-13
+# o Now the 'link' argument of createLink() is inferred from the 'target'
+#   argument if it is NULL.
 # 2009-10-30
 # o CLEAN UP: On Windows Vista, createLink() produced a stderr message
 #   "You do not have sufficient privilege to perform this operation", when
