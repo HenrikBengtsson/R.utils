@@ -2,6 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.5.7 [2010-11-07]
+o ROBUSTNESS: Now read/writeBinFragments() assert that argument 'idxs'
+  contains only non-negative indices.
+o Added support to readBinFragments() to start reading from either the
+  current file position (default; as previously) or from the start of
+  the connection.  For backward compatibility, we keep the default to
+  be relative to the current position, but this may change in the future.
+
+
 Version: 1.5.6 [2010-11-03]
 o Added resample(), which contrary to sample() also works
   when drawing from a single element.

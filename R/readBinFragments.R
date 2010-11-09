@@ -14,7 +14,12 @@
 #   \item{what}{A @character string or an object specifying the the 
 #     data type (@see "base::mode") to be read.}
 #   \item{idxs}{A @vector of (non-duplicated) indices or a Nx2 @matrix
-#     of N from-to index intervals specifying the elements to be read.}
+#     of N from-to index intervals specifying the elements to be read.
+#     Positions are either relative to the start or the current location
+#     of the file/connection as given by argument \code{origin}.}
+#   \item{origin}{A @character string specify whether the indices
+#    in argument \code{idxs} are relative to the \code{"start"} or
+#    the \code{"current"} position of the file/connection.}
 #   \item{size}{The size of the data type to be read. If @NA, the natural
 #    size of the data type is used.}
 #   \item{...}{Additional arguments passed to @see "base::readBin".}
@@ -35,7 +40,10 @@
 #
 # @keyword IO
 #*/#########################################################################   
-setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, ..., verbose=FALSE) {
+setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c("current", "start"), size=NA, ..., verbose=FALSE) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'con':
   if (is.character(con)) {
     pathname <- con;
@@ -49,8 +57,9 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, 
       }
     });
   } else if (inherits(con, "connection")) {
-    if (!isSeekable(con))
+    if (!isSeekable(con)) {
       throw("Argument 'con' is a non-seekable connection.");
+    }
   }
 
   # Argument 'what':
@@ -66,18 +75,24 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, 
     idxs <- as.matrix(idxs);
   }
   if (!is.numeric(idxs)) {
-    stop("Argument 'idxs' must be numeric: ", class(idxs)[1]);
+    throw("Argument 'idxs' must be numeric: ", class(idxs)[1]);
   }
+  if (any(idxs < 0)) {
+    throw("Argument 'idxs' contains negative indices: ", paste(head(idxs[idxs < 0]), collapse=", "));
+  }
+
+  # Argument 'origin':
+  origin <- match.arg(origin);
 
   # Argument 'size':
   if (length(size) != 1) {
-    stop("Argument 'size' must be a single value: ", length(size));
+    throw("Argument 'size' must be a single value: ", length(size));
   }
   if (is.na(size)) {
     # Calculating the natural size
     size <- as.integer(object.size(vector(mode=what, length=1e4))/1e4);
   } else if (!is.numeric(size)) {
-    stop("Argument 'size' must be numeric or NA: ", class(size)[1]);
+    throw("Argument 'size' must be numeric or NA: ", class(size)[1]);
   }
 
   # Argument 'verbose':
@@ -92,13 +107,28 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, 
   if (is.matrix(idxs)) {
     idxs <- intervalsToSeq(idxs);
   }
+  idxs <- as.double(idxs);
 
   # Allocate return vector
   nAll <- length(idxs);
 
   # Order the indices
   o <- order(idxs);
-  idxs <- as.integer(idxs)[o];
+  idxs <- idxs[o];
+
+
+  # Read from the start of the connect?
+  if (origin == "start") {
+    seek(con=con, where=0, origin="start", rw="read");
+  }
+
+##  The below is not working (at least on Windows), because it may induce
+##  negative 'where':s in seek() which doesn't seem to work. /HB 2010-11-07
+##  # Starting positions (double in order to address larger vectors!)
+##  offset <- seek(con=con, origin="start", rw="read"); # Get current file offset
+##  if (offset > 0) {
+##    idxs <- idxs - offset;
+##  }
 
   # Allocate return vector
   res <- vector(mode=what, length=nAll);
@@ -107,8 +137,8 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, 
   destOffset <- srcOffset <- as.integer(0);
   while(length(idxs) > 0) {
     # Skip to first element to be read
-    if (idxs[1] > 1) {
-      skip <- idxs[1]-as.integer(1);
+    if (idxs[1] != 0) {
+      skip <- idxs[1]-1;
       verbose && cat(verbose, "Number of elements skipped: ", skip);
       seek(con=con, where=skip*size, origin="current", rw="read");
       idxs <- idxs - skip;
@@ -159,6 +189,12 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, size=NA, 
 
 ############################################################################
 # HISTORY:
+# 2010-11-07
+# o ROBUSTNESS: Asserts that argument 'idxs' contains non-negative indices.
+# o Added support to readBinFragments() to start reading from either the
+#   current file position (default; as previously) or from the start of
+#   the connection.  For backward compatibility, we keep the default to
+#   be relative to the current position, but this may change in the future.
 # 2008-07-01
 # o SPEED UP: Made readBinFragments() by having it read data in chunks and
 #   ignoring non-requested elements.

@@ -13,7 +13,8 @@
 #   \item{con}{A @connection or the pathname of an existing file.}
 #   \item{object}{A @vector of objects to be written.}
 #   \item{idxs}{A @vector of (non-duplicated) indices or a Nx2 @matrix
-#     of N from-to index intervals specifying the elements to be read.}
+#     of N from-to index intervals specifying the elements to be read.
+#     Positions are always relative to the start of the file/connection.}
 #   \item{size}{The size of the data type to be read. If @NA, the natural
 #    size of the data type is used.}
 #   \item{...}{Additional arguments passed to 
@@ -35,6 +36,9 @@
 # @keyword IO
 #*/#########################################################################   
 setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'con':
   if (is.character(con)) {
     pathname <- con;
@@ -61,6 +65,9 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   }
   if (!is.numeric(idxs)) {
     stop("Argument 'idxs' must be numeric: ", class(idxs)[1]);
+  }
+  if (any(idxs < 0)) {
+    throw("Argument 'idxs' contains negative indices: ", paste(head(idxs[idxs < 0]), collapse=", "));
   }
 
   # Argument 'size':
@@ -117,8 +124,9 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
     stop("The number of elements specified by argument 'idxs' does not match the number of objects written: ", nAll, " != ", size*length(object));
   }
 
+
   # Starting positions (double in order to address larger vectors!)
-  offset <- seek(con=con, rw="write"); # Current file offset
+  offset <- seek(con=con, origin="start", rw="write"); # Get current file offset
   froms <- as.double(oSeqs[,1])*size + (offset - size);
 
   rm(oSeqs); # Not needed anymore
@@ -127,7 +135,7 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   for (kk in seq(length=length(froms))) {
     n <- ns[kk];
     idx <- outOffset + 1:n;
-    seek(con=con, where=froms[kk], rw="write");
+    seek(con=con, where=froms[kk], origin="start", rw="write");
 #    print(list(idx=idx, where=froms[kk], n=n, values=object[idx]));
     writeBin(object[idx], con=con, size=size, ...);
     outOffset <- outOffset + n;
@@ -140,6 +148,8 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
 
 ############################################################################
 # HISTORY:
+# 2010-11-07
+# o ROBUSTNESS: Asserts that argument 'idxs' contains non-negative indices.
 # 2008-06-16
 # o Now argument 'idxs' can also be an matrix of index intervals.
 # o Added Rdoc comments.
