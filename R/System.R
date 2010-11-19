@@ -703,8 +703,24 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   path <- Arguments$getReadablePath(path, mustExist=TRUE);
 
 
+  # New path, if successful
+  newPath <- sprintf("%s/", drive);
+
+  # Already mapped?
+  mapped <- System$getMappedDrivesOnWindows();
+  mappedTo <- mapped[drive];
+  if (!is.na(mappedTo)) {
+    mappedTo <- Arguments$getReadablePath(mappedTo);
+    if (path != mappedTo) {
+      throw(sprintf("Drive letter %s is already mapped to another path ('%s'), which is different from the requested one: %s", drive, mappedTo, path));
+    }
+
+    # If mapped to the same path, nothing to do
+    return(invisible(newPath));
+  }
+
   # Map
-  cmd <- sprintf("subst %s %s", toupper(drive), path);
+  cmd <- sprintf("subst %s \"%s\"", toupper(drive), path);
   res <- system(cmd, intern=TRUE);
   if (length(res) > 0) {
     throw(sprintf("Failed to map drive '%s' to path '%s': %s", 
@@ -712,7 +728,6 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   }
 
   # Return new path
-  newPath <- sprintf("%s/", drive);
   invisible(newPath);
 }, static=TRUE)
 
@@ -734,7 +749,7 @@ setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
   oldPath <- maps[toupper(drive)];
 
   # Unmap
-  cmd <- sprintf("subst %s /D", toupper(drive));
+  cmd <- sprintf("subst \"%s\" /D", toupper(drive));
   res <- system(cmd, intern=TRUE);
   if (length(res) > 0) {
     throw(sprintf("Failed to unmap drive '%s': %s", drive, res));
@@ -757,6 +772,11 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2010-11-19
+# o ROBUSTNESS: Now System$mapDriveOnWindows() does not give an error
+#   if trying to map the same drive letter to the same path multiple times.
+# o BUG FIX: System$mapDriveOnWindows() and System$unmapDriveOnWindows()
+#   did not work if the path contained a space.  Now the path is quoted.
 # 2010-01-06
 # o Added System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
 #   System$getMappedDrivesOnWindows().
