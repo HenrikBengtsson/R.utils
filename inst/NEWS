@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.5.8 [2010-11-17]
+o BUG FIX: Now removeDirectory() also works for paths starting with
+  a tilde (~).  The reason was/is that base::unlink() used internally
+  does not support that.  We now use base::path.expand() first.
+
+
 Version: 1.5.7 [2010-11-07]
 o ROBUSTNESS: Now read/writeBinFragments() assert that argument 'idxs'
   contains only non-negative indices.
