@@ -389,7 +389,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
     return(x);
 
   if (is.null(.name))
-    .name <- as.character(deparse(substitute(ss)));
+    .name <- as.character(deparse(substitute(x)));
 
   # See ?is.vector for how it is defined. /HB 2009-05-19
   attrs <- attributes(x);
@@ -955,7 +955,7 @@ setMethodS3("getVerbose", "Arguments", function(static, verbose, defaultThreshol
 #*/#########################################################################
 setMethodS3("getRegularExpression", "Arguments", function(static, pattern=NULL, ..., .name=NULL) {
   if (is.null(.name)) {
-    .name <- as.character(deparse(substitute(envir)));
+    .name <- as.character(deparse(substitute(pattern)));
   }
 
   if (is.null(pattern)) {
@@ -1117,6 +1117,9 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2010-11-19
+# o TYPO: Static methods getVector() and getRegularExpression() of
+#   Arguments would report the incorrect argument name.
 # 2010-01-25
 # o ROBUSTNESS: Added validation of argument 'range' in Arguments methods.
 # 2010-01-01
