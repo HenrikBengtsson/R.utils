@@ -5,6 +5,8 @@ Package: R.utils
 Version: 1.5.8 [2010-11-19]
 o ROBUSTNESS: Now System$mapDriveOnWindows() does not give an error if
   trying to map the same drive letter to the same path multiple times.
+o TYPO: Static methods getVector() and getRegularExpression() of
+  Arguments would report the incorrect argument name.
 o BUG FIX: System$mapDriveOnWindows() and System$unmapDriveOnWindows()
   did not work if the path contained a space.  Now the path is quoted.
 o BUG FIX: Now removeDirectory() also works for paths starting with
