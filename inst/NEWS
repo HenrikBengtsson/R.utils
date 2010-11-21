@@ -2,7 +2,9 @@
 Package: R.utils
 ================
 
-Version: 1.5.8 [2010-11-19]
+Version: 1.5.8 [2010-11-21]
+o ROBUSTNESS: Now loadObject() asserts that the file exists.  If file
+  doesn't exist, an informative error message is thrown.
 o ROBUSTNESS: Now System$mapDriveOnWindows() does not give an error if
   trying to map the same drive letter to the same path multiple times.
 o TYPO: Static methods getVector() and getRegularExpression() of

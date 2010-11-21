@@ -43,7 +43,8 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (!inherits(file, "connection")) {
-    file <- filePath(path, file, expandLinks="any");
+    ## file <- filePath(path, file, expandLinks="any");
+    file <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE);
   }
 
   # Declare variable
@@ -62,6 +63,9 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2010-11-21
+# o ROBUSTNESS: Now loadObject() asserts that the file exists.  If file
+#   doesn't exist, an informative error message is thrown.
 # 2007-06-09
 # o Added explicit "declaration" of 'saveLoadReference'.
 # 2007-04-03
