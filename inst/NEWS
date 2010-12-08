@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.6.0 [2010-12-07]
+o Added evalWithTimeout().
+
+
 Version: 1.5.8 [2010-11-21]
 o ROBUSTNESS: Now loadObject() asserts that the file exists.  If file
   doesn't exist, an informative error message is thrown.

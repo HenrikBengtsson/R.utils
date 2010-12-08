@@ -22,8 +22,8 @@
    \item{path}{A \code{\link[base]{character}} string specifying the directory to be removed.}
    \item{recursive}{If \code{\link[base:logical]{TRUE}}, subdirectories and files are also removed.
      If \code{\link[base:logical]{FALSE}}, and directory is non-empty, an exception is thrown.}
-   \item{mustExist}{If \code{\link[base:logical]{TRUE}}, a the directory does not exist, an exception
-     is thrown.}
+   \item{mustExist}{If \code{\link[base:logical]{TRUE}}, and the directory does not exist,
+     an exception is thrown.}
    \item{...}{Not used.}
  }
 
