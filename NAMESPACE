@@ -7,3 +7,4 @@ export(.conflicts.OK)
 # Export all public methods, that is, those without a preceeding dot
 # in their names.
 exportPattern("^[^\\.]")
+
