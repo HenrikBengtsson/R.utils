@@ -288,9 +288,9 @@ setMethodS3("convertComment", "VComments", function(this, vcomment, .currLine=NA
 setMethodS3("validate", "VComments", function(this, lines, ...) {
   # Check number of enters and exits.
   pattern <- paste("enter(", this$verboseName, sep="");
-  nbrOfEnters <- sum(regexpr(pattern, lines, fix=TRUE) != -1);
+  nbrOfEnters <- sum(regexpr(pattern, lines, fixed=TRUE) != -1);
   pattern <- paste("exit(", this$verboseName, sep="");
-  nbrOfExits <- sum(regexpr(pattern, lines, fix=TRUE) != -1);
+  nbrOfExits <- sum(regexpr(pattern, lines, fixed=TRUE) != -1);
   if (nbrOfEnters != nbrOfExits) {
     warning("Number of verbose enters and exits do not match: ", 
                                              nbrOfEnters, " != ", nbrOfExits);
@@ -302,6 +302,8 @@ setMethodS3("validate", "VComments", function(this, lines, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2011-02-01
+# o ROBUSTNESS: Now using argument 'fixed' (not 'fix') in regexpr() calls.
 # 2005-07-07
 # o Added output of warnings.
 # 2005-06-26
