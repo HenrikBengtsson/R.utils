@@ -382,15 +382,24 @@ devDone <- function(which=dev.cur(), ...) {
 #     @function.}
 #   \item{...}{Additional arguments passed to the device @function, e.g.
 #     \code{width} and \code{height}.}
-#   \item{aspectRatio}{If this and argument \code{width} is specified,
-#     then argument \code{height} is set/updated to be
-#     \code{aspectRatio*width}.}
+#   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
+#     of the image.  See below.}
 #   \item{label}{An optional @character string specifying the label of the
 #     opened device.}
 # }
 #
 # \value{
 #   Returns what the device @function returns.
+# }
+#
+# \section{Aspect ratio}{
+#   The aspect ratio of an image is the height relative to the width.
+#   If argument \code{height} is not given (or @NULL), it is 
+#   calculated as \code{aspectRatio*width} as long as they are given.
+#   Likewise, if argument \code{width} is not given (or @NULL), it is
+#   calculated as \code{width/aspectRatio} as long as they are given.
+#   If neither \code{width} nor \code{height} is given, or if both
+#   are given, then \code{aspectRatio} is ignored.
 # }
 #
 # @author
@@ -428,13 +437,23 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
   # Arguments to be passed to the device function
   args <- list(...);
 
+  # Drop 'width' and 'height' if NULL
+  args$width <- args$width;
+  args$height <- args$height;
+
   # Update argument 'height' by aspect ratio?
   if (!is.null(aspectRatio)) {
-    if (is.element("width", names(args))) {
-      # Update/set argument 'height'
-      args$height <- aspectRatio * args$width;
-    } else {
-      warning("Argument 'aspectRatio' was ignored, because argument 'width' was not specified: ", aspectRatio);
+    width <- args$width;
+    height <- args$height;
+
+    if (is.null(width) && is.null(height)) {
+      warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given: ", aspectRatio);
+    } else if (!is.null(width) && !is.null(height)) {
+      warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+    } else if (!is.null(width)) {
+      args$height <- aspectRatio * width;
+    } else if (!is.null(height)) {
+      args$width <- height / aspectRatio;
     }
   }
 
@@ -472,12 +491,12 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # \arguments{
 #   \item{type}{Specifies the type of device to be used by
 #     @see "R.utils::devNew".}
+#   \item{expr}{The @expression of graphing commands to be evaluated.}
+#   \item{envir}{The @environment where \code{expr} should be evaluated.}
 #   \item{name, tags}{The fullname name of the image is specified
 #     as the name with optional comma-separated tags appended.}
 #   \item{ext}{The filename extension of the image file generated, if any.
 #    By default, it is inferred from argument \code{type}.}
-#   \item{expr}{The @expression of graphing commands to be evaluated.}
-#   \item{envir}{The @environment where \code{expr} should be evaluated.}
 #   \item{...}{Additional arguments passed to @see "R.utils::devNew".}
 #   \item{filename}{The filename of the image saved, if any.
 #     See also below.}
@@ -487,9 +506,8 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # }
 #
 # \value{
-#   Returns a @character string of the fullname of the image, i.e. 
-#   argument \code{name} followed by optional comma-separated tags.
-#   Several attributes are also set.
+#   Returns a named @list with items specifying for instance
+#   the pathname, the fullname etc of the generated image.
 #   \emph{Note that the return value may be changed in future releases.}
 # }
 #
@@ -509,7 +527,7 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), name, tags=NULL, expr, envir=parent.frame(), ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=FALSE) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -521,12 +539,16 @@ devEval <- function(type=getOption("device"), name, tags=NULL, expr, envir=paren
 
   # Result object
   fullname <- paste(c(name, tags), collapse=",");
-  res <- fullname;
-  attr(res, "type") <- type;
-  attr(res, "path") <- path;
-  attr(res, "fullname") <- fullname;
-  attr(res, "filename") <- filename;
-  attr(res, "pathname") <- pathname;
+
+  res <- list(
+    type = type,
+    name = name,
+    tags = tags,
+    fullname = fullname,
+    filename = filename,
+    path = path,
+    pathname = pathname
+  );
 
   if (force || !isFile(pathname)) {
     devNew(type, pathname, ...);
@@ -599,6 +621,10 @@ devEval <- function(type=getOption("device"), name, tags=NULL, expr, envir=paren
 
 ############################################################################
 # HISTORY: 
+# 2011-02-14
+# o Now devEval() returns a named list.
+# o GENERALIZED: Argument 'aspectRatio' to devNew() can now updated
+#   either 'height' or 'width', depending on which is given.
 # 2011-02-13
 # o Added devEval().
 # o Added argument 'aspectRatio' to devNew(), which updates/set the 

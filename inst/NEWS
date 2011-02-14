@@ -2,10 +2,10 @@
 Package: R.utils
 ================
 
-Version: 1.6.2 [2011-02-13]
+Version: 1.6.2 [2011-02-14]
 o Added trial version of devEval() for simple creation of images.
 o Added argument 'aspectRatio' to devNew(), which updates/set the 
-  'height', if argument 'width' is given, otherwise ignored.
+  'height' or the 'width', if the other is not given.
 
 
 Version: 1.6.1 [2011-02-01]
