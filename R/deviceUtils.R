@@ -476,13 +476,12 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 #     as the name with optional comma-separated tags appended.}
 #   \item{ext}{The filename extension of the image file generated, if any.
 #    By default, it is inferred from argument \code{type}.}
-#   \item{expr}{The @expression of graphing commands to be evaluated.
-#     as the name with optional comma-separated tags appended.}
+#   \item{expr}{The @expression of graphing commands to be evaluated.}
+#   \item{envir}{The @environment where \code{expr} should be evaluated.}
 #   \item{...}{Additional arguments passed to @see "R.utils::devNew".}
 #   \item{filename}{The filename of the image saved, if any.
 #     See also below.}
 #   \item{path}{The directory where then image should be saved, if any.}
-#   \item{envir}{The @environment where \code{expr} should be evaluated.}
 #   \item{force}{If @TRUE, and the image file already exists, then it is
 #     overwritten, otherwise not.}
 # }
@@ -510,7 +509,7 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), name, tags=NULL, expr, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", envir=parent.frame(), force=FALSE) {
+devEval <- function(type=getOption("device"), name, tags=NULL, expr, envir=parent.frame(), ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

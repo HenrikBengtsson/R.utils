@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not modify this file since it was automatically generated from:
+% 
+%  deviceUtils.R
+% 
+% by the Rdoc compiler part of the R.oo package.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \name{devEval}
+\alias{devEval}
+
+
+ \title{Opens a new device, evaluate (graphing) code, and closes device}
+
+ \description{
+  Opens a new device, evaluate (graphing) code, and closes device.
+ }
+
+ \usage{devEval(type=getOption("device"), name, tags=NULL, expr, envir=parent.frame(), ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path="figures/", force=FALSE)}
+
+ \arguments{
+   \item{type}{Specifies the type of device to be used by
+     \code{\link[R.utils]{devNew}}.}
+   \item{name, tags}{The fullname name of the image is specified
+     as the name with optional comma-separated tags appended.}
+   \item{ext}{The filename extension of the image file generated, if any.
+    By default, it is inferred from argument \code{type}.}
+   \item{expr}{The \code{\link[base]{expression}} of graphing commands to be evaluated.}
+   \item{envir}{The \code{\link[base]{environment}} where \code{expr} should be evaluated.}
+   \item{...}{Additional arguments passed to \code{\link[R.utils]{devNew}}.}
+   \item{filename}{The filename of the image saved, if any.
+     See also below.}
+   \item{path}{The directory where then image should be saved, if any.}
+   \item{force}{If \code{\link[base:logical]{TRUE}}, and the image file already exists, then it is
+     overwritten, otherwise not.}
+ }
+
+ \value{
+   Returns a \code{\link[base]{character}} string of the fullname of the image, i.e.
+   argument \code{name} followed by optional comma-separated tags.
+   Several attributes are also set.
+   \emph{Note that the return value may be changed in future releases.}
+ }
+
+ \section{Generated image file}{
+   If created, the generated image file is saved in the directory
+   specfied by argument \code{path} with a filename consisting of
+   the \code{name} followed by optional comma-separated \code{tags}
+   and a filename extension given by argument \code{ext}.
+ }
+
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+
+ \seealso{
+   \code{\link{devNew}}().
+ }
+
+
+
+\keyword{device}
+\keyword{utilities}
