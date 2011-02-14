@@ -488,7 +488,10 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # }
 #
 # \value{
-#   Returns what the device @function returns.
+#   Returns a @character string of the fullname of the image, i.e. 
+#   argument \code{name} followed by optional comma-separated tags.
+#   Several attributes are also set.
+#   \emph{Note that the return value may be changed in future releases.}
 # }
 #
 # \section{Generated image file}{
