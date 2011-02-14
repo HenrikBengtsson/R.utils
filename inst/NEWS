@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.6.2 [2011-02-13]
+o Added trial version of devEval() for simple creation of images.
+o Added argument 'aspectRatio' to devNew(), which updates/set the 
+  'height', if argument 'width' is given, otherwise ignored.
+
+
 Version: 1.6.1 [2011-02-01]
 o ROBUSTNESS: Now using argument 'fixed' (not 'fix') in regexpr() calls.
 

@@ -59,6 +59,13 @@ stopifnot(identical(md5a, md5b))
   \code{\link[base]{file.info}}().
 }
 
+\references{
+  [1] R-devel mailing list thread
+      \emph{Unix-like touch to update modification timestamp of file?},
+      started on 2008-02-26.
+      \url{http://tolstoy.newcastle.edu.au/R/e4/devel/08/02/0654.html}\cr
+}
+
 
 
 
