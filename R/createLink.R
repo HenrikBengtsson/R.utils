@@ -7,8 +7,8 @@
 #
 # \description{
 #   @get "title".
-#   First it tries to create a (Unix-like) symbolic links and if that was
-#   not successful it tries to create a Windows Shortcut links.
+#   First it tries to create a (Unix-like) symbolic link and if that was
+#   not successful it tries to create a Windows Shortcut link.
 #   If neither works, an exception is thrown.
 # }
 #
