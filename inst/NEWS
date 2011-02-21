@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.6.3 [2011-02-20]
+o Added argument 'par' to devNew() for applying graphical parameters
+  at thesame time as the device is opened, which is especially
+  useful when using devEval().
+o Changed argument 'force' of devEval() to default to TRUE.
+
+
 Version: 1.6.2 [2011-02-14]
 o Added trial version of devEval() for simple creation of images.
 o Added argument 'aspectRatio' to devNew(), which updates/sets

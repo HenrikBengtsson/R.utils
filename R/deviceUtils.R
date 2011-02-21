@@ -384,6 +384,9 @@ devDone <- function(which=dev.cur(), ...) {
 #     \code{width} and \code{height}.}
 #   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
 #     of the image.  See below.}
+#   \item{par}{An optional named @list of graphical settings applied,
+#     that is, passed to @see "graphics::par", immediately after
+#     opening the device.}
 #   \item{label}{An optional @character string specifying the label of the
 #     opened device.}
 # }
@@ -412,7 +415,7 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, par=NULL, label=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -425,6 +428,13 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
   # Argument 'aspectRatio':
   if (!is.null(aspectRatio)) {
     aspectRatio <- Arguments$getDouble(aspectRatio, range=c(0,Inf));
+  }
+
+  # Argument 'par':
+  if (!is.null(par)) {
+    if (!is.list(par) || is.null(names(par))) {
+      throw("Argument 'par' has to be a named list: ", mode(par));
+    }
   }
 
   # Argument 'label':
@@ -471,6 +481,10 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
   res <- do.call(type, args=args);
 
   devSetLabel(label=label);
+
+  if (!is.null(par)) {
+    par(par);
+  }
 
   invisible(res);
 } # devNew()
@@ -527,7 +541,7 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, label=NULL) 
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=FALSE) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -621,6 +635,11 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-02-20
+# o Changed argument 'force' of devEval() to default to TRUE.
+# o Added argument 'par' to devNew() allowing for applying graphical
+#   settings at same time as the device is opened, which is especially
+#   useful when using devEval().
 # 2011-02-14
 # o Now devEval() returns a named list.
 # o GENERALIZED: Argument 'aspectRatio' to devNew() can now updated

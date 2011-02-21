@@ -16,8 +16,8 @@
 
  \description{
    Creates a link to a file or a directory.
-   First it tries to create a (Unix-like) symbolic links and if that was
-   not successful it tries to create a Windows Shortcut links.
+   First it tries to create a (Unix-like) symbolic link and if that was
+   not successful it tries to create a Windows Shortcut link.
    If neither works, an exception is thrown.
  }
 
@@ -41,8 +41,8 @@
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   \code{\link{createWindowsShortcut}}()
-   \code{\link[base:files]{file.symlink()}}
+   \code{\link{createWindowsShortcut}}() and
+   \code{\link[base:files]{file.symlink}()}
  }
 
 
