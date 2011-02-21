@@ -32,8 +32,8 @@
 # @author
 #
 # \seealso{
-#   @see "createWindowsShortcut"
-#   \code{\link[base:files]{file.symlink()}}
+#   @see "createWindowsShortcut" and
+#   \code{\link[base:files]{file.symlink}()}
 # }
 #
 # @keyword file
