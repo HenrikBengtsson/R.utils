@@ -2,10 +2,11 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Create a file atomically
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+n <- 10;
 createFileAtomically("foobar.txt", FUN=function(pathname) {
   cat(file=pathname, "This file was created atomically.\n");
   cat(file=pathname, "Timestamp: ", as.character(Sys.time()), "\n", sep="");
-  for (kk in 1:10) { 
+  for (kk in 1:n) { 
     cat(file=pathname, kk, "\n", append=TRUE);
     Sys.sleep(0.1);
   }
