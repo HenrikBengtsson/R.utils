@@ -3,9 +3,10 @@ Package: R.utils
 ================
 
 Version: 1.6.4 [2011-02-28]
-o Added trial versions of push- and popTemporaryFile(), which are
-  useful for creating files atomically (by first writing to a
-  temporary file which is renamed upon completion).
+o Added trial versions of push-, popTemporaryFile() and 
+  createFileAtomically(), which are useful for creating files
+  atomically (by first writing to a temporary file which is
+  renamed upon completion).
 
 
 Version: 1.6.3 [2011-02-20]
