@@ -637,7 +637,7 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
     System$findGhostscript();
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Tempory output file for testing
+  # Temporary output file for testing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   file <- tempfile("findGraphicsDevice-testFile");
   on.exit({
