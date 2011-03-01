@@ -1,12 +1,13 @@
 ########################################################################/**
 # @RdocDefault popTemporaryFile
 #
-# @title "Renames a temporary file and returned the pathname with the temporary suffix dropped"
+# @title "Drops a temporary suffix from the temporary pathname"
 #
 # @synopsis
 #
 # \description{
-#  @get "title".
+#  @get "title" and, by default, renames an existing temporary file
+#  accordingly.
 # }
 #
 # \arguments{
@@ -35,7 +36,7 @@
 # @author
 # 
 # \seealso{
-#  @see "pushTemporaryFile".
+#  See @see "pushTemporaryFile" for more details and an example.
 # }
 #
 # @keyword "utilities" 

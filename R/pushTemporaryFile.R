@@ -6,7 +6,14 @@
 # @synopsis
 #
 # \description{
-#  @get "title".
+#  @get "title" and, optionally, renames an existing file accordingly.
+#
+#  In combination with @see "popTemporaryFile", this method is useful
+#  for creating a file/writing data to file \emph{atomically}, by
+#  first writing to a temporary file which is the renamed.  If for
+#  some reason the generation of the file was interrupted, for instance
+#  by a user interrupt or a power failure, then it is only the temporary
+#  file that is incomplete.
 # }
 #
 # \arguments{
