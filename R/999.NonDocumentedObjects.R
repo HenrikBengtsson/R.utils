@@ -183,6 +183,10 @@
 # @alias verbose
 # @alias wrap
 # @alias whichVector
+# @alias popTemporaryFile
+# @alias popTemporaryFile.default
+# @alias pushTemporaryFile
+# @alias pushTemporaryFile.default
 #
 # % Private
 # @alias toFileListTree
