@@ -28,7 +28,7 @@
  \arguments{
    \item{filename}{The filename of the file.}
    \item{path}{The path of the file.}
-   \item{suffix}{The temporary suffix to be appended.}
+   \item{suffix}{The suffix to be appended.}
    \item{isFile}{If \code{\link[base:logical]{TRUE}}, the file must exist and will be renamed
       on the file system.  If \code{\link[base:logical]{FALSE}}, it is only the pathname string
       that will be modified. For details, see below.}
@@ -37,7 +37,7 @@
  }
 
  \value{
-   Returns the pathname with the temporary suffix appended.
+   Returns the pathname with the suffix appended.
  }
 
  \details{

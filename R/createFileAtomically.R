@@ -38,7 +38,11 @@
 # @author
 # 
 # \seealso{
-#  Internally @see "pushTemporaryFile" and @see "popTemporaryFile" is used.
+#  Internally,
+#  @see "pushTemporaryFile" and @see "popTemporaryFile" are used for
+#  working toward a temporary file, and
+#  @see "pushBackupFile" and @see "popBackupFile" are used for backing up
+#  and restoring already existing file.
 # }
 #
 # @keyword "utilities" 
@@ -82,33 +86,12 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
     return(pathname);
   }
 
-  # Backing up existing file?
-  pathnameB <- NULL;
-  if (overwrite && isFile(pathname)) {
-    verbose && enter(verbose, "Backing up existing file");
-    pathnameB <- sprintf("%s.bak", pathname);
-    pathnameB <- Arguments$getWritablePathname(pathnameB, mustNotExist=TRUE);
-    file.rename(pathname, pathnameB);
-    pathnameB <- Arguments$getWritablePathname(pathnameB, mustExist=TRUE);
-    verbose && exit(verbose);
-
-    # Restore backup file, in case creation of new file was not succesful.
-    on.exit({
-      # Successful?
-      successful <- isFile(pathname);
-      if (successful) {
-        # Drop backup
-        verbose && enter(verbose, "Removing backup file because the new file was successfully created");
-        file.remove(pathnameB);
-        verbose && exit(verbose);
-      } else {
-        verbose && enter(verbose, "Restoring original file from backup because the creation of the new file failed");
-        file.rename(pathnameB, pathname);
-        pathname <- Arguments$getWritablePathname(pathname, mustExist=TRUE);
-        verbose && exit(verbose);
-      }
-    }, add=TRUE);
-  }
+  # Backing existing file, if it exists
+  pathnameB <- pushBackupFile(pathname, verbose=verbose);
+  on.exit({
+    # Restore or drop backup file
+    popBackupFile(pathnameB, drop=TRUE, verbose=verbose);
+  }, add=TRUE);
 
 
   # Write to a temporary pathname
@@ -136,6 +119,8 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
 
 ############################################################################
 # HISTORY:
+# 2011-03-01
+# o Now createFileAtomically() utilizes push- and popBackupFile().
 # 2011-02-28
 # o Added createFileAtomically().
 # o Created.

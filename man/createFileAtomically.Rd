@@ -93,7 +93,11 @@ file.remove("foobar.txt.tmp");
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-  Internally \code{\link{pushTemporaryFile}}() and \code{\link{popTemporaryFile}}() is used.
+  Internally,
+  \code{\link{pushTemporaryFile}}() and \code{\link{popTemporaryFile}}() are used for
+  working toward a temporary file, and
+  \code{\link{pushBackupFile}}() and \code{\link{popBackupFile}}() are used for backing up
+  and restoring already existing file.
  }
 
 
