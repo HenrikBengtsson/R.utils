@@ -118,7 +118,7 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
       verbose && exit(verbose);
     } else {
       verbose && enter(verbose, "Copying existing backup file");
-      res <- file.copy(pathnameB, pathname);
+      res <- copyFile(pathnameB, pathname);
       verbose && cat(verbose, "Result: ", res);
       verbose && exit(verbose);
     }

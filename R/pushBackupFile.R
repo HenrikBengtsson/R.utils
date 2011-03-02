@@ -97,7 +97,7 @@ setMethodS3("pushBackupFile", "default", function(filename, path=NULL, suffix=".
   if (isFile) {
     if (copy) {
       verbose && enter(verbose, "Copy existing file");
-      res <- file.copy(pathname, pathnameB);
+      res <- copyFile(pathname, pathnameB);
       verbose && cat(verbose, "Result: ", res);
       verbose && exit(verbose);
     } else {
