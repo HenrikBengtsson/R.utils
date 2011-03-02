@@ -12,7 +12,7 @@
 
  \title{Creates a file atomically}
 
- \usage{\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, verbose=FALSE)}
+ \usage{\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE)}
 
  \description{
   Creates a file atomically by first creating and writing to a temporary file which
@@ -35,6 +35,8 @@
       successfully created, the already original file is restored.
       If restoration also failed, the original file remains as
       the pathname with suffix \code{".bak"} appended.}
+   \item{backup}{If \code{\link[base:logical]{TRUE}} and a file with the same pathname already exists,
+      then it is backed up.}
    \item{verbose}{A \code{\link[base]{logical}} or \code{\link{Verbose}}.}
  }
 

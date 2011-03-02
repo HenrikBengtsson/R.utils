@@ -26,6 +26,8 @@
 #      successfully created, the already original file is restored.
 #      If restoration also failed, the original file remains as
 #      the pathname with suffix \code{".bak"} appended.}
+#   \item{backup}{If @TRUE and a file with the same pathname already exists,
+#      then it is backed up.}
 #   \item{verbose}{A @logical or @see "Verbose".}
 # }
 #
@@ -49,7 +51,7 @@
 # @keyword "programming"
 # @keyword "IO"
 #*/#########################################################################  
-setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, verbose=FALSE) {
+setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -59,6 +61,9 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite);
 
+  # Argument 'backup':
+  backup <- Arguments$getLogical(backup);
+  
   # Arguments 'filename' & 'path':
   pathname <- Arguments$getWritablePathname(filename, path=path, mustNotExist=(!skip && !overwrite));
 
@@ -86,13 +91,14 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
     return(pathname);
   }
 
-  # Backing existing file, if it exists
-  pathnameB <- pushBackupFile(pathname, verbose=verbose);
-  on.exit({
-    # Restore or drop backup file
-    popBackupFile(pathnameB, drop=TRUE, verbose=verbose);
-  }, add=TRUE);
-
+  # Back existing file, if it exists?
+  if (backup) {
+    pathnameB <- pushBackupFile(pathname, verbose=verbose);
+    on.exit({
+      # Restore or drop backup file
+      popBackupFile(pathnameB, drop=TRUE, verbose=verbose);
+    }, add=TRUE);
+  }
 
   # Write to a temporary pathname
   pathnameT <- pushTemporaryFile(pathname, ..., verbose=verbose);
@@ -120,6 +126,7 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
 ############################################################################
 # HISTORY:
 # 2011-03-01
+# o Added argument 'backup'.
 # o Now createFileAtomically() utilizes push- and popBackupFile().
 # 2011-02-28
 # o Added createFileAtomically().
