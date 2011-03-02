@@ -9,7 +9,8 @@ o Added trial versions of push-, popBackupFile() for backing up
   and restoring a file.
 o Added trial versions of push-, popTemporaryFile() for working
   toward a temporary file.
-o ROBUSTNESS: Now copyDirectory() uses copyFile() instead of file.copy().
+o Added trial version of renameFile(), which to additional
+  validation afterward.
 
 
 Version: 1.6.3 [2011-02-20]
