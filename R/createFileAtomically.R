@@ -27,7 +27,9 @@
 #      If restoration also failed, the original file remains as
 #      the pathname with suffix \code{".bak"} appended.}
 #   \item{backup}{If @TRUE and a file with the same pathname already exists,
-#      then it is backed up.}
+#      then it is backed up while creating the new file.  If the new file
+#      was not successfully created, the original file is restored from
+#      the backup copy.}
 #   \item{verbose}{A @logical or @see "Verbose".}
 # }
 #
