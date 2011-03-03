@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.6.4 [2011-03-01]
+Version: 1.6.5 [2011-03-03]
 o Added trial version of createFileAtomically() for creating files
   atomically, by writing to a temporary file which is then renamed.
 o Added trial versions of push-, popBackupFile() for backing up
@@ -11,6 +11,10 @@ o Added trial versions of push-, popTemporaryFile() for working
   toward a temporary file.
 o Added trial version of renameFile(), which to additional
   validation afterward.
+
+
+Version: 1.6.4 [2011-02-28]
+o (Incomplete revision submitted to CRAN by mistake)
 
 
 Version: 1.6.3 [2011-02-20]
