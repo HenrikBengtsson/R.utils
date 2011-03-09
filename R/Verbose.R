@@ -679,6 +679,8 @@ setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=th
 #  \item{...}{Objects to be passed to @see "base::sprintf".}
 #  \item{fmtstr}{A @character string specify the printf format string.}
 #  \item{level}{A @numeric value to be compared to the threshold.}
+#  \item{timestamp}{A @logical indicating if output should start with a
+#     timestamp, or not.}
 # }
 #
 # \value{
@@ -691,11 +693,11 @@ setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=th
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultLevel) {
+setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp) {
   if (!isVisible(this, level))
     return(invisible(FALSE));
 
-  cat(this, sprintf(fmtstr, ...), newline=FALSE);
+  cat(this, sprintf(fmtstr, ...), newline=FALSE, timestamp=timestamp);
 })
 
 
@@ -1548,6 +1550,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2010-03-08
+# o Added argument 'timestamp' to printf() for Verbose so that the
+#   timestamp can be turned off/on explicitly as for cat().
 # 2009-05-30
 # o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
 #   in order to be mapped.

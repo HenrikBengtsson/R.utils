@@ -21,12 +21,14 @@
    calls.
  }
 
- \usage{\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel)}
+ \usage{\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp)}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{sprintf}}().}
   \item{fmtstr}{A \code{\link[base]{character}} string specify the printf format string.}
   \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
+  \item{timestamp}{A \code{\link[base]{logical}} indicating if output should start with a
+     timestamp, or not.}
  }
 
  \value{
