@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.6.6 [2011-03-08]
+o Now Arguments$getWritablePath(NULL) returns NULL without asserting
+  write permission, which is analogue to how it is done with
+  Arguments$getReadablePath(NULL).
+
+
 Version: 1.6.5 [2011-03-03]
 o Added trial version of createFileAtomically() for creating files
   atomically, by writing to a temporary file which is then renamed.

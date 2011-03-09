@@ -316,6 +316,10 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
 
 
 setMethodS3("getWritablePath", "Arguments", function(static, path=NULL, ...) {
+  # Special case: If path == NULL, the skip
+  if (is.null(path))
+    return(NULL);
+
   pathname <- getWritablePathname(static, file="dummy-not-created", path=path, ...);
   getParent(pathname);
 }, static=TRUE, protected=TRUE)
@@ -1117,6 +1121,10 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2011-03-08
+# o Now Arguments$getWritablePath(NULL) returns NULL without asserting
+#   write permission, which is analogue to how it is done with
+#   Arguments$getReadablePath(NULL).
 # 2010-11-19
 # o TYPO: Static methods getVector() and getRegularExpression() of
 #   Arguments would report the incorrect argument name.
