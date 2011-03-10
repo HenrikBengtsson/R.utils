@@ -568,6 +568,11 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
     devNew(type, pathname, ...);
     on.exit({
       devDone();
+
+      # Archive file?
+      if (getOption("R.archive/devEval", FALSE)) {
+        archiveFile(pathname);
+      }
     }, add=TRUE);
   
     eval(expr, envir=envir);
@@ -635,6 +640,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-09
+# o Added support for automatic file archiving in devEval().
 # 2011-02-20
 # o Changed argument 'force' of devEval() to default to TRUE.
 # o Added argument 'par' to devNew() allowing for applying graphical

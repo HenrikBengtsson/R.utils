@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 1.7.0 [2011-03-09]
+o REPRODUCIBLE RESEARCH: Now devEval() archives any generated image
+  files if getOption("R.archive/devEval") is TRUE.
+o REPRODUCIBLE RESEARCH: Added archiveFile() for adding a file to the
+  archive directory.  It makes use of internal utility function 
+  getArchivePath(), getArchiveFilename(), and getArchivePathname().
+
+
 Version: 1.6.6 [2011-03-08]
 o Now Arguments$getWritablePath(NULL) returns NULL without asserting
   write permission, which is analogue to how it is done with

@@ -180,6 +180,12 @@
  \alias{mergeIntervals}
  \alias{intervalsToSeq}
 
+ % Archiving
+ \alias{archiveFile}
+ \alias{getArchiveFilename}
+ \alias{getArchivePath}
+ \alias{getArchivePathname}
+
  % Misc.
  \alias{downloadFile}
  \alias{extract}
