@@ -201,6 +201,7 @@
 # @alias getCommonPrefix
 # @alias mergeByCommonTails
 # @alias splitByCommonTails
+# @alias newEnvEval
 # 
 #
 # \description{

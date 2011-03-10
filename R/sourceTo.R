@@ -15,6 +15,8 @@
 # \arguments{
 #   \item{file}{A @connection or a @character string giving the pathname
 #         of the file or URL to read from.}
+#   \item{path}{An optional @character string giving the path to the file.
+#         Ignored if \code{file} is a connection.}
 #   \item{chdir}{If @TRUE and \code{file} is a pathname, the \R 
 #         working directory is temporarily changed to the directory 
 #         containing \code{file} for evaluating.}
@@ -60,7 +62,7 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE) {
+setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,31 +74,37 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   }
 
   if (is.character(file)) {
-    if (!isFile(file))
-      throw("Argument 'file' is not an existing file: ", file);
-    isReadable <- (fileAccess(file, mode=4) == 0);
-    if (!isReadable)
-      throw("Argument 'file' is a non-readable file: ", file);
-
-    absPathname <- getAbsolutePath(file);
-    if (modifiedOnly) {
-      # Check if file has been modified since last time.
-      lastModified <- file.info(file)$mtime;
-      lastSrcd <- lastSourced[[absPathname]];
-      if (!is.null(lastSrcd) && (lastSrcd > lastModified)) {
-        return(invisible(NULL));
-      }
+    # Argument 'path':
+    if (!is.null(path)) {
+      file <- file.path(path, file);
     }
-    lastSourced[[absPathname]] <- Sys.time();
+
+    # A URL to be sourced?
+    isUrl <- (length(grep("^(ftp|http|file)://", file)) > 0);
+
+    if (!isUrl) {
+      # Arguments 'file' & 'path':
+      file <- Arguments$getReadablePathname(file, mustExist=TRUE);
+
+      absPathname <- getAbsolutePath(file);
+      if (modifiedOnly) {
+        # Check if file has been modified since last time.
+        lastModified <- file.info(file)$mtime;
+        lastSrcd <- lastSourced[[absPathname]];
+        if (!is.null(lastSrcd) && (lastSrcd > lastModified)) {
+          return(invisible(NULL));
+        }
+      }
+      lastSourced[[absPathname]] <- Sys.time();
+    } # if (!isUrl)
 
     # Open file
     fh <- file(file, open="r");
 
     # Change R working directory temporarily?
-    if (chdir) {
-      isUrl <- (length(grep("^(ftp|http|file)://", file)) > 0);
+    if (chdir && !isUrl) {
       path <- dirname(file);
-      if (!isUrl && path != ".") {
+      if (path != ".") {
         owd <- getwd();
         on.exit(setwd(owd), add=TRUE);
         setwd(path);
@@ -156,7 +164,7 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   res <- eval(expr, envir=envir);
 
   # If successfully sourced, record last modification date.
-  if (is.character(file)) {
+  if (is.character(file) && !isUrl) {
     options("R.utils::sourceTo/lastSourced"=lastSourced);
   }
 
@@ -166,6 +174,9 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
 
 #############################################################################
 # HISTORY: 
+# 2011-03-09
+# o BUG FIX: sourceTo() would not work for URLs.
+# o Added argument 'path' to sourceTo().
 # 2010-01-09
 # o Now sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(..., 
 #   modifiedOnly=TRUE) will work as expected.  Before you had to do at

@@ -3,11 +3,14 @@ Package: R.utils
 ================
 
 Version: 1.7.0 [2011-03-09]
+o Added newEnvEval().
+o Added argument 'path' to sourceTo().
 o REPRODUCIBLE RESEARCH: Now devEval() archives any generated image
   files if getOption("R.archive/devEval") is TRUE.
 o REPRODUCIBLE RESEARCH: Added archiveFile() for adding a file to the
   archive directory.  It makes use of internal utility function 
   getArchivePath(), getArchiveFilename(), and getArchivePathname().
+o BUG FIX: sourceTo() would not work for URLs.
 
 
 Version: 1.6.6 [2011-03-08]

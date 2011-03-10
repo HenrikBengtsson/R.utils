@@ -12,7 +12,7 @@
 
  \title{Parses and evaluates code from a file or a connection}
 
- \usage{\method{sourceTo}{default}(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE)}
+ \usage{\method{sourceTo}{default}(file, path=NULL, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE)}
 
  \description{
    Parses and evaluates code from a file or a connection.
@@ -24,6 +24,8 @@
  \arguments{
    \item{file}{A \code{\link[base:connections]{connection}} or a \code{\link[base]{character}} string giving the pathname
          of the file or URL to read from.}
+   \item{path}{An optional \code{\link[base]{character}} string giving the path to the file.
+         Ignored if \code{file} is a connection.}
    \item{chdir}{If \code{\link[base:logical]{TRUE}} and \code{file} is a pathname, the \R
          working directory is temporarily changed to the directory
          containing \code{file} for evaluating.}
