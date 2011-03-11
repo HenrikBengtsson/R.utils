@@ -3,8 +3,7 @@ Package: R.utils
 ================
 
 Version: 1.7.0 [2011-03-10]
-o Now argument 'aspectRatio' of devNew() defaults to 1
-  (instead of @NULL).
+o Now argument 'aspectRatio' of devNew() defaults to 1 (not NULL).
 o Added setOption(), the "set version" of getOption().
 o Added env() for creating an environment and evaluating an
   expression inside of it in one go.

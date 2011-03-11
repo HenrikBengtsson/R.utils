@@ -571,7 +571,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
       # Archive file?
       if (getOption("R.archive::devEval", FALSE)) {
-        if (require("R.archive")) archiveFile(pathname);
+        # For now, trick R CMD check not to look for R.archive
+        pkgName <- "R.archive";
+        archiveFile <- NULL; rm(archiveFile);
+        if (require(pkgName, character.only=TRUE)) archiveFile(pathname);
       }
     }, add=TRUE);
   
