@@ -2,8 +2,9 @@
 Package: R.utils
 ================
 
-Version: 1.7.0 [2011-03-09]
-o Added newEnvEval().
+Version: 1.7.0 [2011-03-10]
+o Added env() for creating an environment and evaluating an
+  expression inside of it in one go.
 o Added argument 'path' to sourceTo().
 o REPRODUCIBLE RESEARCH: Now devEval() archives any generated image
   files if getOption("R.archive/devEval") is TRUE.

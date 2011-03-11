@@ -31,10 +31,10 @@ getArchiveFilename <- function(filename, ...) {
 
   # Generate identifiers
   tz <- getOption("R.archive/tz", "");
+  # Example: 04:13:59.03
+  # timestamp <- format(Sys.time(), "%H%M%OS0", tz=tz);
   # Example: 04:13:59
   timestamp <- format(Sys.time(), "%H%M%S", tz=tz);
-  # Example: 04:13:59.03GMT
-  timestamp <- format(Sys.time(), "%H%M%OS", tz=tz);
   timestamp <- sprintf("%s%s", timestamp, tz);
 
   tags <- c(timestamp);
