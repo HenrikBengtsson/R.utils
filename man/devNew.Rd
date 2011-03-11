@@ -16,7 +16,7 @@
   Opens a new device.
  }
 
- \usage{devNew(type=getOption("device"), ..., aspectRatio=NULL, par=NULL, label=NULL)}
+ \usage{devNew(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the type of device to be

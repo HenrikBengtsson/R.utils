@@ -3,14 +3,14 @@ Package: R.utils
 ================
 
 Version: 1.7.0 [2011-03-10]
+o Now argument 'aspectRatio' of devNew() defaults to 1
+  (instead of @NULL).
+o Added setOption(), the "set version" of getOption().
 o Added env() for creating an environment and evaluating an
   expression inside of it in one go.
 o Added argument 'path' to sourceTo().
-o REPRODUCIBLE RESEARCH: Now devEval() archives any generated image
-  files if getOption("R.archive/devEval") is TRUE.
-o REPRODUCIBLE RESEARCH: Added archiveFile() for adding a file to the
-  archive directory.  It makes use of internal utility function 
-  getArchivePath(), getArchiveFilename(), and getArchivePathname().
+o REPRODUCIBLE RESEARCH: Now devEval() archives any generated
+  image files if R.archive option 'devEval' is TRUE.
 o BUG FIX: sourceTo() would not work for URLs.
 
 

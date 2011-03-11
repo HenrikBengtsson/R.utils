@@ -415,7 +415,7 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, par=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -570,8 +570,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
       devDone();
 
       # Archive file?
-      if (getOption("R.archive/devEval", FALSE)) {
-        archiveFile(pathname);
+      if (getOption("R.archive::devEval", FALSE)) {
+        if (require("R.archive")) archiveFile(pathname);
       }
     }, add=TRUE);
   
@@ -640,6 +640,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-10
+# o Now argument 'aspectRatio' of devNew() defaults to 1 (instead of @NULL).
 # 2011-03-09
 # o Added support for automatic file archiving in devEval().
 # 2011-02-20
