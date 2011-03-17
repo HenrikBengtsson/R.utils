@@ -318,7 +318,7 @@ devOff <- function(which=dev.cur(), ...) {
 ###########################################################################/**
 # @RdocFunction devDone
 #
-# @title "Closes an on-screen (interactive) device"
+# @title "Closes an open device unless it is a on-screen (interactive) device"
 #
 # \description{
 #  @get "title".
@@ -570,11 +570,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
       devDone();
 
       # Archive file?
-      if (getOption("R.archive::devEval", FALSE)) {
-        # For now, trick R CMD check not to look for R.archive
-        pkgName <- "R.archive";
-        archiveFile <- NULL; rm(archiveFile);
-        if (require(pkgName, character.only=TRUE)) archiveFile(pathname);
+      if (isPackageLoaded("R.archive")) {
+        # To please R CMD check
+        getArchiveOption <- archiveFile <- NULL;
+        getArchiveOption("devEval", FALSE) && archiveFile(pathname);
       }
     }, add=TRUE);
   
@@ -643,6 +642,9 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-16
+# o Now R.archive:ing is only done if the R.archive package is loaded.
+# o DOCUMENTATION: The title of devDone() was incorrect.
 # 2011-03-10
 # o Now argument 'aspectRatio' of devNew() defaults to 1 (instead of @NULL).
 # 2011-03-09

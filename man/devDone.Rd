@@ -10,10 +10,10 @@
 \alias{devDone}
 
 
- \title{Closes an on-screen (interactive) device}
+ \title{Closes an open device unless it is a on-screen (interactive) device}
 
  \description{
-  Closes an on-screen (interactive) device.
+  Closes an open device unless it is a on-screen (interactive) device.
  }
 
  \usage{devDone(which=dev.cur(), ...)}

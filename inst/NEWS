@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.7.1 [2011-03-16]
+o The automatic archiving of devEval() is not considered unless
+  the R.archive package is loaded, regardless of option settings.
+o DOCUMENTATION: The title of help(devDone) was incorrect.
+
+
 Version: 1.7.0 [2011-03-10]
 o Now argument 'aspectRatio' of devNew() defaults to 1 (not NULL).
 o Added setOption(), the "set version" of getOption().
