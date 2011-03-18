@@ -3,6 +3,10 @@ Package: R.utils
 ================
 
 Version: 1.7.1 [2011-03-18]
+o devNew() gained option 'devNew/args/par', which can be used to specify 
+  the default graphical parameters for devNew().  Any additional 
+  parameters passed via argument 'par' will override such default ones, 
+  if both specifies the same parameter.
 o The automatic archiving of devEval() is not considered unless
   the R.archive package is loaded, regardless of option settings.
 o DOCUMENTATION: The title of help(devDone) was incorrect.

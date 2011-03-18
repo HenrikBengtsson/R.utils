@@ -482,8 +482,11 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 
   devSetLabel(label=label);
 
-  if (!is.null(par)) {
-    par(par);
+  # Default and user-specific parameters
+  parT <- getOption("devNew/args/par", list());
+  parT <- c(parT, par);
+  if (length(parT) > 0) {
+    par(parT);
   }
 
   invisible(res);
@@ -642,6 +645,11 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-18
+# o devNew() gained option 'devNew/args/par', which can be used to specify 
+#   the default graphical parameters for devNew().  Any additional 
+#   parameters passed via argument 'par' will override such default ones,
+#   if both specifies the same parameter.
 # 2011-03-16
 # o Now R.archive:ing is only done if the R.archive package is loaded.
 # o DOCUMENTATION: The title of devDone() was incorrect.
