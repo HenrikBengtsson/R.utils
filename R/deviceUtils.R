@@ -573,7 +573,7 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
       if (isPackageLoaded("R.archive")) {
         # To please R CMD check
         getArchiveOption <- archiveFile <- NULL;
-        getArchiveOption("devEval", FALSE) && archiveFile(pathname);
+        if (getArchiveOption("devEval", FALSE)) archiveFile(pathname);
       }
     }, add=TRUE);
   
