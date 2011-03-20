@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.7.2 [2011-03-18]
+o Now argument 'path' of devEval() defaults to 
+  getOption("devEval/args/path", "figures/").
+o Now devEval() does a better job of "cleaning up" 'name' and 'tags'.
+
+
 Version: 1.7.1 [2011-03-18]
 o devNew() gained option 'devNew/args/par', which can be used to specify 
   the default graphical parameters for devNew().  Any additional 
