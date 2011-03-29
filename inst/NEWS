@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.7.3 [2011-03-29]
+o Now argument 'force' of devEval() defaults to 
+  getOption("devEval/args/force", TRUE).
+
+
 Version: 1.7.2 [2011-03-18]
 o Now argument 'path' of devEval() defaults to 
   getOption("devEval/args/path", "figures/").
