@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.7.3 [2011-03-30]
+Version: 1.7.3 [2011-04-02]
 o Added hpaste() for human-readable pasting, e.g. "1, 2, 3, ..., 10".
 o Now argument 'force' of devEval() defaults to 
   getOption("devEval/args/force", TRUE).

@@ -16,11 +16,12 @@
 #    the collapse string used between the last two elements.
 #    If \code{lastCollapse} is @NULL (default), it is corresponds
 #    to using the default collapse.}
-#  \item{maxCount, abbreviate}{An positive @integer (also @Inf) 
-#    specifying the number of elements to be outputted.  If there 
-#    are more elements in \code{x} than \code{maxCount+1}, then 
-#    \code{x} is truncated to consist of \code{x[1:(maxCount-1)]},
-#    \code{abbreviate}, and \code{x[length(x)]}.
+#  \item{maxHead, maxTail, abbreviate}{Non-negative @integers (also @Inf) 
+#    specifying the maxium number of elements of the beginning and
+#    then end of the vector to be outputted.  If \code{n = length(x)}
+#    is greater than \code{maxHead+maxTail+1}, then \code{x} is
+#    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate}, 
+#    and \code{x[(n-maxTail+1):n]}.
 #  }
 #  \item{quote}{An @character string used to quote each element.}
 #  \item{...}{Not used.}
@@ -40,9 +41,12 @@
 #
 # @keyword programming
 #*/########################################################################### 
-setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, maxCount=if (missing(lastCollapse)) 4 else Inf, abbreviate="...", quote=NULL, ...) {
-  # Argument 'maxCount':
-  maxCount <- Arguments$getNumeric(maxCount, range=c(1, Inf));
+setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...", quote=NULL, ...) {
+  # Argument 'maxHead':
+  maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf));
+
+  # Argument 'maxTail':
+  maxTail <- Arguments$getNumeric(maxTail, range=c(0, Inf));
 
   if (is.null(lastCollapse)) {
     lastCollapse <- collapse;
@@ -59,26 +63,31 @@ setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, m
     x <- paste(quote, x, quote, sep="");
   }
 
-  head <- x[-n];
-  tail <- x[n];
-
   # Abbreviate?
-  if (length(x) > maxCount + 1) {
-    head <- c(head[1:(maxCount-1L)], abbreviate);
+  if (n > maxHead + maxTail + 1) {
+    head <- x[seq(length=maxHead)];
+    tail <- rev(rev(x)[seq(length=maxTail)]);
+    x <- c(head, abbreviate, tail);
   }
 
-  s <- tail;
-  if (length(head) > 0) {
-    head <- paste(head, collapse=collapse);
-    s <- paste(head, s, sep=lastCollapse);
+  n <- length(x);
+  if (!is.null(collapse) && n > 1) {
+    if (lastCollapse == collapse) {
+      x <- paste(x, collapse=collapse);
+    } else {
+      xT <- paste(x[1:(n-1)], collapse=collapse);
+      x <- paste(xT, x[n], sep=lastCollapse);
+    }
   }
 
-  s;
+  x;
 }) # hpaste()
 
 
 ##############################################################################
 # HISTORY:
+# 2011-04-02
+# o Now hpaste() uses arguments 'maxHead' and 'maxTail' instead of 'maxCount'.
 # 2011-03-30
 # o Added hpaste() for human-readable pasting of elements in a vector.
 # o Created.
