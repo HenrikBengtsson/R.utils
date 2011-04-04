@@ -10,16 +10,18 @@
 \alias{hpaste.default}
 \alias{hpaste}
 
- \title{Pasting a vector into a human-readable string}
+ \title{Concatenating vectors into human-readable strings}
 
  \description{
-  Pasting a vector into a human-readable string such as "1, 2, 3, ..., 10".
+  Concatenating vectors into human-readable strings such as "1, 2, 3, ..., 10".
  }
 
- \usage{\method{hpaste}{default}(x, collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...", quote=NULL, ...)}
+ \usage{\method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")}
 
  \arguments{
-  \item{x}{A \code{\link[base]{vector}} whose elements should be pasted together.}
+  \item{...}{Arguments to be pasted.}
+  \item{sep}{A \code{\link[base]{character}} string used to concatenate the arguments
+    in \code{...}, if more than one.}
   \item{collapse, lastCollapse}{The \code{\link[base]{character}} strings to collapse
     the elements together, where \code{lastCollapse} is specifying
     the collapse string used between the last two elements.
@@ -30,14 +32,16 @@
     then end of the vector to be outputted.  If \code{n = length(x)}
     is greater than \code{maxHead+maxTail+1}, then \code{x} is
     truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
-    and \code{x[(n-maxTail+1):n]}.
-  }
-  \item{quote}{An \code{\link[base]{character}} string used to quote each element.}
-  \item{...}{Not used.}
+    and \code{x[(n-maxTail+1):n]}.}
  }
 
  \value{
   Returns a \code{\link[base]{character}} string.
+ }
+
+ \details{
+  \code{hpaste(..., sep=" ", maxHead=Inf)} corresponds to
+  \code{paste(..., sep=" ", collapse=", ")}.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
@@ -46,7 +50,7 @@
 
 # Some vectors
 x <- 1:6
-y <- 1:10
+y <- 10:1
 z <- LETTERS[x]
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -71,11 +75,11 @@ printf("x = \%s.\n", hpaste(x, maxHead=1, maxTail=2))
 
 # Turning off abbreviation
 printf("y = \%s.\n", hpaste(y, maxHead=Inf))
-## y = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+## y = 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
 ## ...or simply
 printf("y = \%s.\n", paste(y, collapse=", "))
-## y = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+## y = 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -86,18 +90,33 @@ printf("x = \%s.\n", hpaste(x, lastCollapse=" and "))
 ## x = 1, 2, 3, 4, 5 and 6.
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Qouting
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-printf("z = \%s.\n", hpaste(z, quote="'"))
-## z = 'A', 'B', 'C', ..., 'F'.
 
-printf("z = \%s.\n", hpaste(z, quote="'", maxHead=Inf))
-## z = 'A', 'B', 'C', 'D', 'E', 'F'.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Backward compatibility with paste()
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+s1 <- hpaste(x, maxHead=Inf)
+s2 <- paste(x, collapse=", ")
+printf("s = \%s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste('<', x, '>', maxHead=Inf)
+s2 <- paste('<', x, '>', sep="", collapse=", ")
+printf("s = \%s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste(x, y, z, sep="/", maxHead=Inf)
+s2 <- paste(x, y, z, sep="/", collapse=", ")
+printf("s = \%s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste(x, collapse=NULL, maxHead=Inf)
+s2 <- paste(x, collapse=NULL)
+stopifnot(identical(s1, s2))
+
 }
 
  \seealso{
-   \code{\link[base]{paste}}().
+   Internally \code{\link[base]{paste}}() is used.
  }
 
 

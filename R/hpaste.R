@@ -1,7 +1,7 @@
 ###########################################################################/** 
 # @RdocDefault hpaste
 #
-# @title "Pasting a vector into a human-readable string"
+# @title "Concatenating vectors into human-readable strings"
 #
 # \description{
 #  @get "title" such as "1, 2, 3, ..., 10".
@@ -10,7 +10,9 @@
 # @synopsis
 #
 # \arguments{
-#  \item{x}{A @vector whose elements should be pasted together.}
+#  \item{...}{Arguments to be pasted.}
+#  \item{sep}{A @character string used to concatenate the arguments 
+#    in \code{...}, if more than one.}
 #  \item{collapse, lastCollapse}{The @character strings to collapse
 #    the elements together, where \code{lastCollapse} is specifying
 #    the collapse string used between the last two elements.
@@ -21,14 +23,16 @@
 #    then end of the vector to be outputted.  If \code{n = length(x)}
 #    is greater than \code{maxHead+maxTail+1}, then \code{x} is
 #    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate}, 
-#    and \code{x[(n-maxTail+1):n]}.
-#  }
-#  \item{quote}{An @character string used to quote each element.}
-#  \item{...}{Not used.}
+#    and \code{x[(n-maxTail+1):n]}.}
 # }
 #
 # \value{
 #  Returns a @character string.
+# }
+#
+# \details{
+#  \code{hpaste(..., sep=" ", maxHead=Inf)} corresponds to
+#  \code{paste(..., sep=" ", collapse=", ")}.
 # }
 # 
 # @author 
@@ -36,12 +40,12 @@
 # @examples "../incl/hpaste.Rex"
 #
 # \seealso{
-#   @see "base::paste".
+#   Internally @see "base::paste" is used.
 # }
 #
 # @keyword programming
 #*/########################################################################### 
-setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...", quote=NULL, ...) {
+setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...") {
   # Argument 'maxHead':
   maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf));
 
@@ -52,25 +56,23 @@ setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, m
     lastCollapse <- collapse;
   }
 
+
+  # Build vector 'x'
+  x <- paste(..., sep=sep);
   n <- length(x);
 
   # Nothing todo?
   if (n == 0) return(x);
   if (is.null(collapse)) return(x);
 
-  # Quote each element?
-  if (!is.null(quote)) {
-    x <- paste(quote, x, quote, sep="");
-  }
-
   # Abbreviate?
   if (n > maxHead + maxTail + 1) {
     head <- x[seq(length=maxHead)];
     tail <- rev(rev(x)[seq(length=maxTail)]);
     x <- c(head, abbreviate, tail);
+    n <- length(x);
   }
 
-  n <- length(x);
   if (!is.null(collapse) && n > 1) {
     if (lastCollapse == collapse) {
       x <- paste(x, collapse=collapse);
@@ -86,6 +88,11 @@ setMethodS3("hpaste", "default", function(x, collapse=", ", lastCollapse=NULL, m
 
 ##############################################################################
 # HISTORY:
+# 2011-04-03
+# o Dropped argument 'quote'; can easily be done using hpaste("'", x, "'").
+# o Now hpaste(..., sep=" ", maxHead=Inf) corresponds to
+#   paste(..., sep=" ", collapse=", ").
+# o Added argument sep="" to hpaste().
 # 2011-04-02
 # o Now hpaste() uses arguments 'maxHead' and 'maxTail' instead of 'maxCount'.
 # 2011-03-30

@@ -1,7 +1,7 @@
 
 # Some vectors
 x <- 1:6
-y <- 1:10
+y <- 10:1
 z <- LETTERS[x]
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -26,11 +26,11 @@ printf("x = %s.\n", hpaste(x, maxHead=1, maxTail=2))
 
 # Turning off abbreviation
 printf("y = %s.\n", hpaste(y, maxHead=Inf))
-## y = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+## y = 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
 ## ...or simply
 printf("y = %s.\n", paste(y, collapse=", "))
-## y = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+## y = 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -41,11 +41,26 @@ printf("x = %s.\n", hpaste(x, lastCollapse=" and "))
 ## x = 1, 2, 3, 4, 5 and 6.
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# Qouting
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-printf("z = %s.\n", hpaste(z, quote="'"))
-## z = 'A', 'B', 'C', ..., 'F'.
 
-printf("z = %s.\n", hpaste(z, quote="'", maxHead=Inf))
-## z = 'A', 'B', 'C', 'D', 'E', 'F'.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Backward compatibility with paste()
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+s1 <- hpaste(x, maxHead=Inf)
+s2 <- paste(x, collapse=", ")
+printf("s = %s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste('<', x, '>', maxHead=Inf)
+s2 <- paste('<', x, '>', sep="", collapse=", ")
+printf("s = %s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste(x, y, z, sep="/", maxHead=Inf)
+s2 <- paste(x, y, z, sep="/", collapse=", ")
+printf("s = %s.\n", s1);
+stopifnot(identical(s1, s2))
+
+s1 <- hpaste(x, collapse=NULL, maxHead=Inf)
+s2 <- paste(x, collapse=NULL)
+stopifnot(identical(s1, s2))
+

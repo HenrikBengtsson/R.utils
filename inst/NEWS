@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.7.4 [2011-04-03]
+o Now hpaste(..., sep=" ", maxHead=Inf) corresponds to
+  paste(..., sep=" ", collapse=", ").  Added to example.
+
+
 Version: 1.7.3 [2011-04-02]
 o Added hpaste() for human-readable pasting, e.g. "1, 2, 3, ..., 10".
 o Now argument 'force' of devEval() defaults to 
