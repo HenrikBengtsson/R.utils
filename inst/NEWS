@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.7.5 [2011-04-12]
+o Now devEval("jpg", ...) is recognized as devEval("jpeg", ...).
+
+
 Version: 1.7.4 [2011-04-03]
 o Now hpaste(..., sep=" ", maxHead=Inf) corresponds to
   paste(..., sep=" ", collapse=", ").  Added to example.

@@ -1,6 +1,6 @@
 Package: R.utils
-Version: 1.7.4
-Date: 2011-04-03
+Version: 1.7.5
+Date: 2011-04-12
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>

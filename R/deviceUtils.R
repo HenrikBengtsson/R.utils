@@ -467,6 +467,12 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
     }
   }
 
+  # Device type aliases?
+  if (is.character(type)) {
+    if (type == "jpg") {
+      type <- "jpeg";
+    }
+  }
 
   # Exclude 'file' and 'filename' arguments?
   if (is.character(type)) {
@@ -650,6 +656,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-04-12
+# o Now devEval("jpg", ...) is recognized as devEval("jpeg", ...).
 # 2011-03-29
 # o Now argument 'force' of devEval() defaults to 
 #   getOption("devEval/args/force", TRUE).
