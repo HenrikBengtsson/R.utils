@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.7.6 [2011-04-30]
+o Added isReplicated() and replicates() for identifying entries
+  in a vector that are non-unique.  Corresponding isSingle() and
+  singles() identifies entries that exists only once.
+
+
 Version: 1.7.5 [2011-04-12]
 o Now devEval("jpg", ...) is recognized as devEval("jpeg", ...).
 
