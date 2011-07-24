@@ -2,8 +2,13 @@
 Package: R.utils
 ================
 
-Version: 1.7.7 [2011-04-30]
-o .conflicts.OK is no longer exported, because it would cause
+Version: 1.7.8 [2011-07-24]
+o Undoing v1.7.7 to again exports '.conflicts.OK' in order to avoid
+  several warnings when loading package.
+
+
+Version: 1.7.7 [2011-07-23]
+o '.conflicts.OK' is no longer exported, because it would cause
   other "downstream" packages to generate a WARNING in R CMD check.
 
 

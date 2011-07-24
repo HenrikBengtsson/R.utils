@@ -5,7 +5,7 @@
 import(R.oo)
 
 # Object that must exported explicitly
-#export(.conflicts.OK) 
+export(.conflicts.OK) 
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
