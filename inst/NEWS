@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.7.7 [2011-04-30]
+o .conflicts.OK is no longer exported, because it would cause
+  other "downstream" packages to generate a WARNING in R CMD check.
+
+
 Version: 1.7.6 [2011-04-30]
 o Added isReplicated() and replicates() for identifying entries
   in a vector that are non-unique.  Corresponding isSingle() and
