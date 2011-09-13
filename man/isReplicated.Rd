@@ -70,6 +70,7 @@ stopifnot(all(table(x[!reps]) == 1))
 stopifnot(all(reps == rev(isReplicated(rev(x)))))
 stopifnot(all(reps == duplicated(x) | duplicated(x, fromLast=TRUE)))
 stopifnot(all(reps == !is.element(x, setdiff(x, unique(x[duplicated(x)])))))
+stopifnot(all(sort(c(singles(x), replicates(x))) == sort(x)))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

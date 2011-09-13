@@ -194,6 +194,8 @@
 # @alias getCommonPrefix
 # @alias mergeByCommonTails
 # @alias splitByCommonTails
+# @alias writeDataFrame
+# @alias writeDataFrame.data.frame
 # 
 #
 # \description{
