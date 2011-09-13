@@ -47,15 +47,13 @@ setMethodS3("writeDataFrame", "data.frame", function(data, filename, path=NULL, 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Write to file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  verbose && enter(verbose, "Writing to file");
-
   # Remove existing file?
   if (overwrite && isFile(pathname)) {
     file.remove(pathname);
   }
 
   # Write to a temporary file
-  pathnameT <- pushTemporaryFile(pathname, verbose=verbose);  
+  pathnameT <- pushTemporaryFile(pathname);  
 
   # Write header
   bfr <- paste(headerPrefix, names(header), headerSep, header, sep="");
@@ -65,12 +63,7 @@ setMethodS3("writeDataFrame", "data.frame", function(data, filename, path=NULL, 
   write.table(file=pathnameT, data, append=TRUE, sep=sep, quote=quote, row.names=row.names, col.names=col.names, ...);
 
   # Rename temporary file
-  pathname <- popTemporaryFile(pathnameT, verbose=verbose); 
-  verbose && exit(verbose);
-
-  verbose && exit(verbose);  # "Writing CDF...exit"
-
-  verbose && exit(verbose);
+  pathname <- popTemporaryFile(pathnameT); 
 
   pathname;
 }) # writeDataFrame()
