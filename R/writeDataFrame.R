@@ -1,13 +1,65 @@
-setMethodS3("writeDataFrame", "data.frame", function(data, filename, path=NULL, sep="\t", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), headerPrefix="# ", headerSep=": ", createdBy=NULL, createdOn=format(Sys.time(), format="%Y-%m-%d %H:%M:%S %Z"), nbrOfRows=nrow(data), overwrite=FALSE) {
+########################################################################/**
+# @set "class=data.frame"
+# @RdocMethod writeDataFrame
+#
+# @title "Writes a data.frame to tabular text file"
+#
+# @synopsis
+#
+# \description{
+#  @get "title" with an optional header.
+# }
+#
+# \arguments{
+#   \item{data}{A @data.frame.}
+#   \item{file}{A @connection or a filename to write to.}
+#   \item{path}{The directory where the file will be written.}
+#   \item{sep, quote, row.names, col.names, ...}{Additional arguments 
+#     passed to @see "utils::write.table".}
+#   \item{header}{An optional named @list of header rows to be written
+#     at the beginning of the file.  If @NULL, no header will be written.}
+#   \item{createdBy, createdOn, nbrOfRows}{If non-@NULL, common header
+#     rows to be added to the header.}
+#   \item{headerPrefix}{A @character string specifying the prefix of each 
+#     header row.}
+#   \item{headerSep}{A @character string specifying the character
+#     separating the header name and header values.}
+#   \item{append}{If @TRUE, the output is appended to an existing file.}
+#   \item{overwrite}{If @TRUE, an existing file is overwritten.}
+# }
+#
+# \value{
+#   Returns (invisibly) the pathname to the file written
+#   (or the @connection written to).
+# }
+#
+# @author
+# 
+# \seealso{
+#  @see "utils::write.table".
+#  @see "readTable".
+# }
+#
+# @keyword IO
+#*/#########################################################################    
+setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep="\t", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format="%Y-%m-%d %H:%M:%S %Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  # Argument 'filename' & 'path':
-  pathname <- Arguments$getWritablePathname(filename, path=path, mustNotExist=!overwrite);  
+  # Argument 'file' & 'path':
+  if (inherits(file, "connection")) {
+    con <- file;
+  } else {
+    pathname <- Arguments$getWritablePathname(file, path=path, 
+                                       mustNotExist=(!append && !overwrite));
+    con <- NULL;
+  }
 
   # Argument 'header':
-  if (!is.list(header)) {
-    throw("Argument 'header' is not a list: ", class(header)[1]);
+  if (!is.null(header)) {
+    if (!is.list(header)) {
+      throw("Argument 'header' is not a list: ", class(header)[1]);
+    }
   }
 
   # Argument 'headerPrefix':
@@ -35,43 +87,72 @@ setMethodS3("writeDataFrame", "data.frame", function(data, filename, path=NULL, 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Build header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  header$createdBy <- createdBy;
-  header$createdOn <- createdOn;
-  header$nbrOfRows <- nbrOfRows;  
-  header$nbrOfColumns <- ncol(data);  
-  header$columnNames <- colnames(data);
-  header$columnClasses <- sapply(data, FUN=storage.mode);
-  header <- lapply(header, FUN=paste, collapse=sep);
-
+  if (!is.null(header)) {
+    header$createdBy <- createdBy;
+    header$createdOn <- createdOn;
+    header$nbrOfRows <- nbrOfRows;  
+    header$nbrOfColumns <- ncol(data);  
+    header$columnNames <- colnames(data);
+    header$columnClasses <- sapply(data, FUN=storage.mode);
+    header <- lapply(header, FUN=paste, collapse=sep);
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Write to file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  # Remove existing file?
-  if (overwrite && isFile(pathname)) {
-    file.remove(pathname);
+  if (is.null(con)) {
+    # Remove existing file?
+    if (!append && overwrite && isFile(pathname)) {
+      file.remove(pathname);
+    }
+
+    # Write to a temporary file (which may be an existing file)
+    pathnameT <- pushTemporaryFile(pathname, isFile=isFile(pathname));
+
+    # Open file connection
+    open <- ifelse(append, "at", "wt");
+    con <- file(pathnameT, open=open);
+
+    on.exit({
+      if (!is.null(con)) {
+        close(con);
+        con <- NULL;
+      }
+    });
   }
 
-  # Write to a temporary file
-  pathnameT <- pushTemporaryFile(pathname);  
-
   # Write header
-  bfr <- paste(headerPrefix, names(header), headerSep, header, sep="");
-  cat(file=pathnameT, bfr, sep="\n");
+  if (!is.null(header)) {
+    bfr <- paste(headerPrefix, names(header), headerSep, header, sep="");
+    cat(file=con, bfr, sep="\n");
+  }
 
   # Write data section
-  write.table(file=pathnameT, data, append=TRUE, sep=sep, quote=quote, row.names=row.names, col.names=col.names, ...);
+  write.table(file=con, data, sep=sep, quote=quote,
+              row.names=row.names, col.names=col.names, ...);
 
-  # Rename temporary file
-  pathname <- popTemporaryFile(pathnameT); 
+  if (inherits(file, "connection")) {
+    res <- con;
+  } else {
+    # Close opened file connection
+    close(con);
+    con <- NULL;
 
-  pathname;
+    # Rename temporary file
+    pathname <- popTemporaryFile(pathnameT);
+
+    res <- pathname;
+  }
+
+  invisible(res);
 }) # writeDataFrame()
 
 
 #############################################################################
 # HISTORY:
 # 2011-09-12
+# o Added support for writing to a connection.
+# o Added Rdoc comments.
 # o Added writeDataFrame().  Is really true that I haven't created this
 #   method earlier/somewhere else?
 # o Created.
