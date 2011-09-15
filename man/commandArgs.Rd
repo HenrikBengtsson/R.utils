@@ -70,12 +70,15 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \examples{
-library(R.utils)
-source("~/braju.com.R/R.utils,R-forge/R.utils/R/commandArgs.R")
 
 ######################################################################
 # Non-parsed command-line arguments
 ######################################################################
+# Display how this instance of R was invoked.
+cmd <- paste(commandArgs(), collapse=" ")
+cat("How R was invoked:\n");
+cat(cmd, "\n")
+
 # Get all arguments
 args <- commandArgs()
 print(args)
@@ -88,14 +91,6 @@ print(args)
 args0 <- base::commandArgs()
 args <- commandArgs()
 stopifnot(all.equal(args, args0, check.attributes=FALSE))
-
-# Display how this instance of R was invoked.
-cmd <- paste(commandArgs(), collapse=" ")
-cat("How R was invoked:\n");
-cat(cmd, "\n")
-
-# Spawn another copy of this application as it was invoked.
-# system(cmd)
 
 
 ######################################################################
@@ -118,7 +113,6 @@ keys <- attachLocally(args)
 cat("Command-line arguments attached to global environment:\n");
 print(keys);
 str(mget(keys, envir=globalenv()))
-
 }
 
 \seealso{

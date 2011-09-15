@@ -1,5 +1,3 @@
-library(R.utils)
-source("~/braju.com.R/R.utils,R-forge/R.utils/R/commandArgs.R")
 
 ######################################################################
 # Non-parsed command-line arguments
@@ -23,9 +21,6 @@ args <- commandArgs()
 stopifnot(all.equal(args, args0, check.attributes=FALSE))
 
 
-stop()
-
-
 ######################################################################
 # Parsed command-line arguments
 ######################################################################
@@ -46,4 +41,3 @@ keys <- attachLocally(args)
 cat("Command-line arguments attached to global environment:\n");
 print(keys);
 str(mget(keys, envir=globalenv()))
-
