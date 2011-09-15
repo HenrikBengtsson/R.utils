@@ -46,12 +46,15 @@
 }
 
 \value{
-  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} containing the names of the executable and
-  the user-supplied command line arguments, or a \code{\link[base]{list}} if \code{asValue}
-  is \code{\link[base:logical]{TRUE}}.
+  If \code{asValue} is \code{\link[base:logical]{FALSE}}, a \code{\link[base]{character}} \code{\link[base]{vector}} is returned, which
+  contains the name of the executable and the non-parsed user-supplied
+  arguments.
 
-  The first element is the name
-  of the executable by which \R was invoked. As far as I am aware, the
+  If \code{asValue} is \code{\link[base:logical]{TRUE}}, a named \code{\link[base]{list}} containing is returned, which
+  contains the the executable and the parsed user-supplied arguments.
+
+  The first element is the name of the executable by which \R was invoked.
+  As far as I am aware, the
   exact form of this element is platform dependent. It may be the fully
   qualified name, or simply the last component (or basename) of the
   application. The attribute \code{isReserved} is a \code{\link[base]{logical}} \code{\link[base]{vector}}
@@ -67,19 +70,55 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \examples{
-  # Get all arguments
-  commandArgs()
+library(R.utils)
+source("~/braju.com.R/R.utils,R-forge/R.utils/R/commandArgs.R")
 
-  ## Spawn a copy of this application as it was invoked.
-  ## system(paste(commandArgs(), collapse=" "))
+######################################################################
+# Non-parsed command-line arguments
+######################################################################
+# Get all arguments
+args <- commandArgs()
+print(args)
 
-  # Get only "private" arguments and not the name of the R executable.
-  commandArgs(excludeReserved=TRUE)[-1]
+# Get only "private" arguments and not the name of the R executable.
+args <- commandArgs(excludeReserved=TRUE)[-1]
+print(args)
 
-  # If R is started as
-  #   R DATAPATH=../data --args --root="do da" --foo bar --details --a=2
-  # then commandArgs(asValue=TRUE) returns a list like
-  #   list(R=NA, DATAPATH="../data" args=TRUE, root="do da", foo="bar", details=TRUE, a="2")
+# Assert backward compatibility
+args0 <- base::commandArgs()
+args <- commandArgs()
+stopifnot(all.equal(args, args0, check.attributes=FALSE))
+
+# Display how this instance of R was invoked.
+cmd <- paste(commandArgs(), collapse=" ")
+cat("How R was invoked:\n");
+cat(cmd, "\n")
+
+# Spawn another copy of this application as it was invoked.
+# system(cmd)
+
+
+######################################################################
+# Parsed command-line arguments
+######################################################################
+# Get all arguments as a named list, e.g. if R is started as:
+#
+#   R DATAPATH=../data --args --root="do da" --foo bar --details --a=2
+#
+# then 'args' below will equal
+#
+#   list(R=NA, DATAPATH="../data" args=TRUE, root="do da",
+#        foo="bar", details=TRUE, a="2")
+args <- commandArgs(asValue=TRUE)
+str(args)
+
+# Turn arguments into R variables
+args <- commandArgs(asValue=TRUE, excludeReserved=TRUE)[-1]
+keys <- attachLocally(args)
+cat("Command-line arguments attached to global environment:\n");
+print(keys);
+str(mget(keys, envir=globalenv()))
+
 }
 
 \seealso{

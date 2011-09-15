@@ -37,12 +37,15 @@
 # }
 #
 # \value{
-#   Returns a @character @vector containing the names of the executable and 
-#   the user-supplied command line arguments, or a @list if \code{asValue}
-#   is @TRUE.
+#   If \code{asValue} is @FALSE, a @character @vector is returned, which
+#   contains the name of the executable and the non-parsed user-supplied 
+#   arguments.
 #
-#   The first element is the name
-#   of the executable by which \R was invoked. As far as I am aware, the
+#   If \code{asValue} is @TRUE, a named @list containing is returned, which
+#   contains the the executable and the parsed user-supplied arguments.
+#
+#   The first element is the name of the executable by which \R was invoked.
+#   As far as I am aware, the
 #   exact form of this element is platform dependent. It may be the fully
 #   qualified name, or simply the last component (or basename) of the
 #   application. The attribute \code{isReserved} is a @logical @vector
@@ -57,21 +60,7 @@
 #
 # @author
 #
-# \examples{
-#   # Get all arguments
-#   commandArgs()
-#
-#   ## Spawn a copy of this application as it was invoked.
-#   ## system(paste(commandArgs(), collapse=" "))
-#
-#   # Get only "private" arguments and not the name of the R executable.
-#   commandArgs(excludeReserved=TRUE)[-1]
-#
-#   # If R is started as
-#   #   R DATAPATH=../data --args --root="do da" --foo bar --details --a=2 
-#   # then commandArgs(asValue=TRUE) returns a list like
-#   #   list(R=NA, DATAPATH="../data" args=TRUE, root="do da", foo="bar", details=TRUE, a="2")
-# }
+# @examples "../incl/commandArgs.Rex"
 #
 # \seealso{
 #   @see "base::commandArgs", @see "base::Platform"
@@ -97,11 +86,13 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   # According to R v2.0.1:
 ## reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
   # According to R v2.7.1:
-  reservedArgs <- c("--help", "-h", "--version", "--encoding=.*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f", "--file=.*", "=e", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
+##  reservedArgs <- c("--help", "-h", "--version", "--encoding=.*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
+  # According to R v2.13.1:
+  reservedArgs <- c("--help", "-h", "--version", "--encoding[= ].*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
 
-  # a) Unix
+  # a) Unix (and OSX?!? /HB 2011-09-14)
   if ("unix" %in% os) {
-    reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=.*", "-d", "--gui=.*", "-g")
+    reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=.*", "-d", "--gui=.*", "-g", "--interactive", "--arch=.*")
   }
   
   # b) Macintosh
@@ -125,9 +116,29 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   # Flag reserved arguments
   args <- base::commandArgs(...);
 
+  # Temporarily patch any '-<key> <value>' and '--<key> <value>' arguments
+  args0 <- args;
+  isKeyValue <- (regexpr("^([^=])*=.*$", args) != -1);
+  isFlag <- (regexpr("^(-|--)([^ =])*$", args) != -1);
+  isNextKeyValue <- c(isKeyValue[-1], FALSE);
+  isNextFlag <- c(isFlag[-1], FALSE);
+  isNextValue <- (!isNextKeyValue & !isNextFlag);
+  isNextValue[length(isNextValue)] <- FALSE;
+  isKeyValuePair <- (isFlag & isNextValue);
+  if (any(isKeyValuePair)) {
+    idxs <- which(isKeyValuePair);
+    args[idxs] <- paste(args[idxs], args[idxs+1L], sep=" ");
+    args[idxs+1L] <- args[idxs];
+  }
+
   isReserved <- logical(length(args));
-  for (rarg in reservedArgs)
+  for (rarg in reservedArgs) {
     isReserved <- isReserved | (regexpr(rarg, args) != -1);
+  }
+
+  # Undo any patching
+  args <- args0;
+
 
   # Flag environment variable arguments
   pattern <- "^([^=-]*)(=)(.*)$";
@@ -135,10 +146,12 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
 
   # Exclude non wanted elements
   keep <- rep(TRUE, length(args));
-  if (excludeReserved)
+  if (excludeReserved) {
     keep <- keep & !isReserved;
-  if (excludeEnvVars)
+  }
+  if (excludeEnvVars) {
     keep <- keep & !isEnvVars;
+  }
 
   attrs <- list(isReserved=isReserved, isEnvVars=isEnvVars);
   attrs <- c(attributes(args), attrs);
@@ -152,6 +165,7 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
       # --<key>=<value>
       pattern <- "^--([^=]*)(=)(.*)$";
       if (regexpr(pattern, arg) != -1) {
+        # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
         key <- gsub(pattern, "\\1", arg);
@@ -164,6 +178,31 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
       # --<key>
       pattern <- "^--([^=]*)$";
       if (regexpr(pattern, arg) != -1) {
+        # Was previous a non-valued flag?
+        if (length(values) < length(keys))
+          values <- c(values, TRUE);
+        key <- gsub(pattern, "\\1", arg);
+        keys <- c(keys, key);
+        next;
+      }
+
+      # -<key>=<value>
+      pattern <- "^-([^=]*)(=)(.*)$";
+      if (regexpr(pattern, arg) != -1) {
+        # Was previous a non-valued flag?
+        if (length(values) < length(keys))
+          values <- c(values, TRUE);
+        key <- gsub(pattern, "\\1", arg);
+        value <- gsub(pattern, "\\3", arg);
+        keys <- c(keys, key);
+        values <- c(values, value);
+        next;
+      } 
+
+      # -<key>
+      pattern <- "^-([^ ]*)$";
+      if (regexpr(pattern, arg) != -1) {
+        # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
         key <- gsub(pattern, "\\1", arg);
@@ -174,6 +213,7 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
       # <key>=<value>
       pattern <- "^([^=-]*)(=)(.*)$";
       if (regexpr(pattern, arg) != -1) {
+        # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
         key <- gsub(pattern, "\\1", arg);
@@ -186,8 +226,9 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
       values <- c(values, arg);
     } # for (arg ...)
 
-    if (length(values) < length(keys))
+    if (length(values) < length(keys)) {
       values <- c(values, TRUE);
+    }
 
     if (length(values) != length(keys)) {
       throw("Internal error of commandArgs(). The lengths of keys and values does not match: keys=(", paste(keys, collapse=", "), "), values=(", paste(values, collapse=", "), ")");
@@ -202,6 +243,10 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
 
 ############################################################################
 # HISTORY:
+# 2011-09-14
+# o BUG FIX: commandArgs() would not handle '-<key> <value>' and
+#   '--<key> <value>' properly in all cases.
+# o Added a bit meat to example(commandArgs).
 # 2008-10-17
 # o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") : 
 #   invalid argument type' if both arguments excludeReserved=TRUE and

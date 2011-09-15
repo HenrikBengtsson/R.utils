@@ -22,8 +22,7 @@
 
  \arguments{
    \item{data}{A \code{\link[base]{data.frame}}.}
-   \item{file}{A \code{\link[base:connections]{connection}} or a filename specifying
-     the file to be written.}
+   \item{file}{A \code{\link[base:connections]{connection}} or a filename to write to.}
    \item{path}{The directory where the file will be written.}
    \item{sep, quote, row.names, col.names, ...}{Additional arguments
      passed to \code{\link[utils]{write.table}}.}
