@@ -340,7 +340,25 @@ setMethodS3("setDefaultLevel", "Verbose", function(this, level, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getThreshold", "Verbose", function(this, ...) {
-  this$threshold;
+  threshold <- this$threshold;
+
+  # Assert that threshold is within the valid range.  This is part of the
+  # transition of move from negative to positive verbose levels:
+  # 1. Disallow all positive value for a long time.
+  # 2. Yet later, ignore the sign, i.e. abs(threshold).
+  # 3. Much later, disallow all negative values for a long time.
+  # 4. Possibly, allow negative values after all this.
+  # /HB 2011-09-18
+  validRange <- getOption("R.utils::Verbose/validThresholdRanges", c(-Inf,Inf));
+  if (!is.null(validRange)) {
+    validRange <- Arguments$getDoubles(validRange, length=c(2,2));
+    if (threshold < validRange[1] || threshold > validRange[2]) {
+      throw(sprintf("The threshold is out of the valid range [%s,%s]: %s", 
+                                    validRange[1], validRange[2], threshold));
+    }
+  }
+
+  threshold;
 })
 
 
@@ -1550,6 +1568,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2011-09-18
+# o Added a range test internally to getThreshold(), where the valid range
+#   can be set via as an R option.
 # 2010-03-08
 # o Added argument 'timestamp' to printf() for Verbose so that the
 #   timestamp can be turned off/on explicitly as for cat().

@@ -696,12 +696,17 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
   pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
   if (regexpr(pattern, toupper(drive)) == -1) {
-    throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+    drive0 <- drive;
+    # Add a colon, in case user forgot
+    drive <- sprintf("%s:", drive);
+    if (regexpr(pattern, toupper(drive)) == -1) {
+      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive0);
+    }
   }
 
   # Argument 'path':
+#  path <- Arguments$getReadablePathname(path, mustExist=FALSE);
   path <- Arguments$getReadablePath(path, mustExist=TRUE);
-
 
   # New path, if successful
   newPath <- sprintf("%s/", drive);
@@ -719,12 +724,21 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
     return(invisible(newPath));
   }
 
-  # Map
-  cmd <- sprintf("subst %s \"%s\"", toupper(drive), path);
+  # UNC paths should be mapped by 'net', 
+  # cf. http://support.microsoft.com/kb/218740
+  isWindowsUNC <- (regexpr("^//", path) != -1);
+  if (isWindowsUNC) {
+    # Map using 'net use'
+    cmd <- sprintf("net use %s \"%s\"", toupper(drive), path);
+  } else {
+    # Map using 'subst'
+    cmd <- sprintf("subst %s \"%s\"", toupper(drive), path);
+  }
+
   res <- system(cmd, intern=TRUE);
   if (length(res) > 0) {
-    throw(sprintf("Failed to map drive '%s' to path '%s': %s", 
-                                                   drive, path, res));
+    throw(sprintf("Failed to map drive '%s' to path '%s': %s (using '%s')",
+                                                   drive, path, res, cmd));
   }
 
   # Return new path
@@ -741,7 +755,12 @@ setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
   drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
   pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
   if (regexpr(pattern, toupper(drive)) == -1) {
-    throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+    drive0 <- drive;
+    # Add a colon, in case user forgot
+    drive <- sprintf("%s:", drive);
+    if (regexpr(pattern, toupper(drive)) == -1) {
+      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+    }
   }
 
   # Get old paths
@@ -772,6 +791,13 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-09-19
+# o Now System$mapDriveOnWindows() can also map Windows UNC path 
+#   (i.e. network resource).  This was triggered by a discussion with
+#   Keith Jewell at Campden BRI Group, UK.
+# o Now System$mapDriveOnWindows() and System$unmapDriveOnWindows()
+#   accept drive letters with or without the trailing colon, e.g.
+#   "C:" as well as "C".
 # 2010-11-19
 # o ROBUSTNESS: Now System$mapDriveOnWindows() does not give an error
 #   if trying to map the same drive letter to the same path multiple times.
