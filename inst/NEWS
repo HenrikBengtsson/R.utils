@@ -9,6 +9,8 @@ o Now System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
   Keith Jewell at Campden BRI Group, UK.
 o WORKAROUND: isDirectory("C:/") would not return TRUE due to a
   bug in file.info("C:/") causing it to return NAs.
+o Now attachLocally() returns a character vector also of length 
+  zero.  Before NULL was returned.
 
 
 Version: 1.8.0 [2011-09-14]

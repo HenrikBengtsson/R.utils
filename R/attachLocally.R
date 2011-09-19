@@ -47,7 +47,7 @@ setMethodS3("attachLocally", "list", function(object, fields=NULL, excludeFields
 
   # Note: we cannot do 'fields <- setdiff(fields, excludeFields)', because
   # that will also remove duplicates!
-  attachedFields <- c();
+  attachedFields <- character(length=0);
   for (field in fields) {
     if (field %in% excludeFields)
       next;
@@ -80,6 +80,9 @@ setMethodS3("attachLocally", "environment", function(object, fields=NULL, ..., e
 
 ############################################################################
 # HISTORY:
+# 2011-09-19
+# o Now attachLocally() returns a character vector also of length zero.
+#   Before NULL was returned.
 # 2005-06-14
 # o Added Rdoc comments.
 # o Added argument 'excludeFields'. Method now also returns attached fields.
