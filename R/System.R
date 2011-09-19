@@ -849,8 +849,10 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
   paths <- gsub("\\", "/", paths, fixed=TRUE);
 
   # Order by drive letters
-  o <- order(names(paths));
-  paths <- paths[o];
+  if (length(paths) > 1) {
+    o <- order(names(paths));
+    paths <- paths[o];
+  }
 
   paths;
 }, static=TRUE)
