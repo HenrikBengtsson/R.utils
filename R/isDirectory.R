@@ -66,9 +66,17 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
   isdir <- file.info(pathnameD)$isdir;
   if (identical(isdir, TRUE))
     return(TRUE);
-
   if (identical(isdir, FALSE))
     return(FALSE);
+
+  # 2a. WORKAROUND: file.info("C:/") gives NA; use "C:/." instead.
+  pathnameD <- paste(pathname, "/.", sep="");
+  isdir <- file.info(pathnameD)$isdir;
+  if (identical(isdir, TRUE))
+    return(TRUE);
+  if (identical(isdir, FALSE))
+    return(FALSE);
+
 
   # Is it the same as working directory?
   wd <- gsub("[/\\\\]$", "", getwd());            # Remove trailing '/'.
@@ -98,6 +106,9 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
 
 ###########################################################################
 # HISTORY: 
+# 2011-09-19
+# o WORKAROUND: isDirectory("C:/") would not return TRUE due to a
+#   bug in file.info("C:/") causing it to return NAs.
 # 2009-12-30
 # o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
 #   Before it gave an unexpected error.

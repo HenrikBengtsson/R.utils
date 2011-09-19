@@ -3,12 +3,12 @@ Package: R.utils
 ================
 
 Version: 1.8.1 [2011-09-19]
-o Now System$mapDriveOnWindows() can also map Windows UNC path 
+o Now System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
+  System$getMappedDrivesOnWindows() also handles Windows UNC paths
   (i.e. network resource).  This was triggered by a discussion with
   Keith Jewell at Campden BRI Group, UK.
-o Now System$mapDriveOnWindows() and System$unmapDriveOnWindows()
-  accept drive letters with or without the trailing colon, e.g.
-  "C:" as well as "C".
+o WORKAROUND: isDirectory("C:/") would not return TRUE due to a
+  bug in file.info("C:/") causing it to return NAs.
 
 
 Version: 1.8.0 [2011-09-14]
