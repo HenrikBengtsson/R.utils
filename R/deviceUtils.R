@@ -457,9 +457,13 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
     height <- args$height;
 
     if (is.null(width) && is.null(height)) {
-      warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given: ", aspectRatio);
+      if (aspectRatio != 1) {
+        warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given: ", aspectRatio);
+      }
     } else if (!is.null(width) && !is.null(height)) {
-      warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+      if (aspectRatio != 1) {
+        warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+      }
     } else if (!is.null(width)) {
       args$height <- aspectRatio * width;
     } else if (!is.null(height)) {
@@ -656,6 +660,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-09-24
+# o devNew() no longer gives a warning about argument 'aspectRatio' is
+#   specified when both or neither of 'width' and 'height' are given,
+#   and 'aspectRatio' is 1.
 # 2011-04-12
 # o Now devEval("jpg", ...) is recognized as devEval("jpeg", ...).
 # 2011-03-29

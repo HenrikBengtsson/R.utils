@@ -1,14 +1,12 @@
-filename <- system.file("data-ex/HISTORY.LNK", package="R.utils")
-lnk <- readWindowsShortcut(filename)
+
+pathname <- system.file("data-ex/HISTORY.LNK", package="R.utils")
+lnk <- readWindowsShortcut(pathname)
 
 # Print all information
 print(lnk)
 
 # Get the relative path to the target file
-history <- file.path(dirname(filename), lnk$relativePath)
+history <- file.path(dirname(pathname), lnk$relativePath)
 
 # Alternatively, everything in one call
-history <- filePath(filename, expandLinks="relative")
-
-file.show(history)
-
+history <- filePath(pathname, expandLinks="relative")

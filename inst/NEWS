@@ -2,6 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.8.2 [2011-09-24]
+o devNew() no longer gives a warning about argument 'aspectRatio' is
+  specified when both or neither of 'width' and 'height' are given,
+  and 'aspectRatio' is 1.
+o Internal readDWord() and readQWord() of readWindowsShortcut() would
+  try read 4- and 8-byte integers as non-signed, which is not supported
+  by base::readBin() and hence instead read as signed integers.
+  Starting with R v2.13.1 this would generate a lot of warnings.
+
+
 Version: 1.8.1 [2011-09-19]
 o Now System$mapDriveOnWindows(), System$unmapDriveOnWindows(), and
   System$getMappedDrivesOnWindows() also handles Windows UNC paths

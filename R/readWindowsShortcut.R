@@ -76,17 +76,17 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
  
   }
 
-  # qword - A 4-byte unsigned integer 
+  # qword - A 4-byte unsigned integer (actually as signed integer)
   readDWord <- function(con, n=1) {
     readBin(con=con, what=integer(), size=4, n=n, 
-                                            signed=FALSE, endian="little");
+                                            signed=TRUE, endian="little");
  
   }
 
-  # qword - An 8-byte unsigned integer 
+  # qword - An 8-byte unsigned integer (actually as signed integer)
   readQWord <- function(con, n=1) {
     readBin(con=con, what=integer(), size=8, n=n, 
-                                            signed=FALSE, endian="little");
+                                            signed=TRUE, endian="little");
  
   }
 
@@ -597,6 +597,10 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2011-09-24
+# o Internal readDWord() and readQWord() of readWindowsShortcut() would
+#   try read 4- and 8-byte integers as non-signed, which is not supported
+#   by base::readBin() and hence instead read as signed integers.
 # 2009-10-01
 # o Microsoft has released a document [7] describing the LNK file format.
 # 2009-05-14
