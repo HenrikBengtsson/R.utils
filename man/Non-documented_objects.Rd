@@ -205,6 +205,8 @@
  \alias{mergeByCommonTails}
  \alias{splitByCommonTails}
  \alias{writeDataFrame}
+ \alias{installPackages}
+ \alias{installPackages.default}
 
 
  \description{

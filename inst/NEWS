@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.8.3 [2011-09-30]
+o Added installPackages() for installing R packages by names or URLs.
+  This method was previously in the hbLite.R script of braju.com.
+
+
 Version: 1.8.2 [2011-09-24]
 o devNew() no longer gives a warning about argument 'aspectRatio' is
   specified when both or neither of 'width' and 'height' are given,
