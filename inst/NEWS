@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.8.4 [2011-10-08]
+o Now the default for argument 'methods' of createLink() can be set
+  via option "createLink/args/methods".
+
+
 Version: 1.8.3 [2011-09-30]
 o Added installPackages() for installing R packages by names or URLs.
   This method was previously in the hbLite.R script of braju.com.

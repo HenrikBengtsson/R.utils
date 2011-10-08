@@ -39,7 +39,7 @@
 # @keyword file
 # @keyword IO
 #*/###########################################################################
-setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE, methods=c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut"), ...) {
+setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...) {
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite);
 
@@ -131,6 +131,9 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
 
 ############################################################################
 # HISTORY:
+# 2011-10-08
+# o Now the default of argument 'methods' of createLink() can be set
+#   via option "createLink/args/methods".
 # 2010-10-13
 # o Now the 'link' argument of createLink() is inferred from the 'target'
 #   argument if it is NULL.
