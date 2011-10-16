@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.8.5 [2011-10-16]
+o CORRECTION: Arguments$getNumerics(c(Inf), disallow="Inf") would report
+  that it contains "NA" instead of "Inf" values".
+
+
 Version: 1.8.4 [2011-10-08]
 o Now the default for argument 'methods' of createLink() can be set
   via option "createLink/args/methods".

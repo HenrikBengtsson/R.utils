@@ -603,7 +603,7 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
 
     # For conveniency, disallow 'Inf' here too; other range takes care of it.
     if (is.element("Inf", disallow) && any(is.infinite(x))) {
-      throw(sprintf("Argument '%s' contains %d NA value(s).", 
+      throw(sprintf("Argument '%s' contains %d (-/+)Inf value(s).", 
                                              .name, sum(is.infinite(x))));
     }
   }
@@ -1121,6 +1121,9 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2011-10-16
+# o CORRECTION: Arguments$getNumerics(c(Inf), disallow="Inf") would report
+#   that it contains "NA" instead of "Inf" values".
 # 2011-03-08
 # o Now Arguments$getWritablePath(NULL) returns NULL without asserting
 #   write permission, which is analogue to how it is done with
