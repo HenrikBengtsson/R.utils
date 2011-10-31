@@ -528,6 +528,8 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 #   \item{filename}{The filename of the image saved, if any.
 #     See also below.}
 #   \item{path}{The directory where then image should be saved, if any.}
+#   \item{field}{An optional @character string specifying a specific
+#     field of the named result @list to be returned.}
 #   \item{force}{If @TRUE, and the image file already exists, then it is
 #     overwritten, otherwise not.}
 # }
@@ -535,6 +537,8 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 # \value{
 #   Returns a named @list with items specifying for instance
 #   the pathname, the fullname etc of the generated image.
+#   If argument \code{field} is given, then the value of the
+#   corresponding element is returned.
 #   \emph{Note that the return value may be changed in future releases.}
 # }
 #
@@ -554,7 +558,7 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), force=getOption("devEval/args/force", TRUE)) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, force=getOption("devEval/args/force", TRUE)) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -567,6 +571,11 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
   fullname <- trim(fullname);
   fullname <- fullname[nchar(fullname) > 0];
   fullname <- paste(fullname, collapse=",");
+
+  # Argument 'field':
+  if (!is.null(field)) {
+    field <- Arguments$getCharacter(field);
+  }
 
   # Argument 'force':
   force <- Arguments$getLogical(force);
@@ -596,6 +605,11 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
     }, add=TRUE);
   
     eval(expr, envir=envir);
+  }
+
+  # Subset?
+  if (!is.null(field)) {
+    res <- res[[field]];
   }
 
   res;
@@ -660,6 +674,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-10-31
+# o Added argument 'field' to devEval().
 # 2011-09-24
 # o devNew() no longer gives a warning about argument 'aspectRatio' is
 #   specified when both or neither of 'width' and 'height' are given,

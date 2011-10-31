@@ -16,7 +16,7 @@
   Opens a new device, evaluate (graphing) code, and closes device.
  }
 
- \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), force=getOption("devEval/args/force", TRUE))}
+ \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, force=getOption("devEval/args/force", TRUE))}
 
  \arguments{
    \item{type}{Specifies the type of device to be used by
@@ -31,6 +31,8 @@
    \item{filename}{The filename of the image saved, if any.
      See also below.}
    \item{path}{The directory where then image should be saved, if any.}
+   \item{field}{An optional \code{\link[base]{character}} string specifying a specific
+     field of the named result \code{\link[base]{list}} to be returned.}
    \item{force}{If \code{\link[base:logical]{TRUE}}, and the image file already exists, then it is
      overwritten, otherwise not.}
  }
@@ -38,6 +40,8 @@
  \value{
    Returns a named \code{\link[base]{list}} with items specifying for instance
    the pathname, the fullname etc of the generated image.
+   If argument \code{field} is given, then the value of the
+   corresponding element is returned.
    \emph{Note that the return value may be changed in future releases.}
  }
 
