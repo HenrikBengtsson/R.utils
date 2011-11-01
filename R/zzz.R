@@ -15,6 +15,8 @@
   # Patch for Sys.setenv() and Sys.putenv()
   # Sys.setenv() replaces Sys.putenv() from R v2.5.0. Code for migration.
   if (!exists("Sys.setenv", mode="function", envir=baseenv())) {
+    # To please R CMD check on R (>= 2.15.0)
+    Sys.putenv <- NULL; rm("Sys.putenv"); 
     assign("Sys.setenv", Sys.putenv, pos=pos);
   }
 
@@ -53,6 +55,8 @@
 
 ############################################################################
 # HISTORY: 
+# 2010-11-01
+# o Added a workaround for an R (>= 2.15.0) CMD check NOTE.
 # 2008-07-03
 # o Now as.character.hexmode() is added from .First.lib().
 # 2007-06-09
