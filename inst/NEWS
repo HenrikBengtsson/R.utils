@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.8.8 [2011-11-01]
+o Added argument 'dims' to extract() for arrays.  Also, argument 'drop'
+  was moved to the end.
+
+
 Version: 1.8.7 [2011-11-01]
 o CLEANUP: Fixed a R CMD check NOTE that would show up in R v2.15.0 devel.
 

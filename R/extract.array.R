@@ -19,9 +19,10 @@
 #  \item{x}{An @array or a @matrix.}
 #  \item{...}{These arguments are by default put into the 
 #     \code{indices} @list.}
-#  \item{indices}{A @list of index @vectors to be extracted. 
-#     The names (coerced to integers) of the list elements are the
-#     dimension indices for each of the index vectors.}
+#  \item{indices}{A @list of index @vectors to be extracted.}
+#  \item{dims}{An @vector of dimensions - one per element
+#     in \code{indices} - which will be coerced to @integers.
+#     If @NULL, it will default to \code{seq(along=indices)}.}
 #  \item{drop}{If @TRUE, dimensions of length one are dropped, 
 #     otherwise not.}
 # }
@@ -40,12 +41,12 @@
 #
 # @keyword programming
 #*/########################################################################### 
-setMethodS3("extract", "array", function(x, ..., drop=FALSE, indices=list(...)) { 
+setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(indices), drop=FALSE) { 
   nindices <- length(indices);
-  if (nindices == 0)
+  if (nindices == 0) {
     throw("Argument 'indices' is empty.");
+  }
 
-  dims <- names(indices);
   if (is.null(dims)) {
     dims <- seq(length=nindices);
   } else {
@@ -101,6 +102,9 @@ setMethodS3("extract", "default", function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-11-01
+# o Added argument 'dims' to extract() for arrays.
+# o Moved argument 'drop' to the end/.
 # 2005-11-23
 # o Created.
 ############################################################################  

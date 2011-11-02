@@ -23,15 +23,16 @@
   of the object your wish to extract values from, cf. example.
 }
 
-\usage{\method{extract}{array}(x, ..., drop=FALSE, indices=list(...))}
+\usage{\method{extract}{array}(x, ..., indices=list(...), dims=names(indices), drop=FALSE)}
 
 \arguments{
  \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}
  \item{...}{These arguments are by default put into the
     \code{indices} \code{\link[base]{list}}.}
- \item{indices}{A \code{\link[base]{list}} of index \code{\link[base]{vector}}s to be extracted.
-    The names (coerced to integers) of the list elements are the
-    dimension indices for each of the index vectors.}
+ \item{indices}{A \code{\link[base]{list}} of index \code{\link[base]{vector}}s to be extracted.}
+ \item{dims}{An \code{\link[base]{vector}} of dimensions - one per element
+    in \code{indices} - which will be coerced to \code{\link[base]{integer}}s.
+    If \code{\link[base]{NULL}}, it will default to \code{seq(along=indices)}.}
  \item{drop}{If \code{\link[base:logical]{TRUE}}, dimensions of length one are dropped,
     otherwise not.}
 }
@@ -41,7 +42,9 @@
 }
 
 \examples{
-cat("\nCreate an array 'x' with a random number of dimensions:\n")
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Example using an array with a random number of dimensions
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 maxdim <- 4
 dim <- sample(3:maxdim, size=sample(2:maxdim, size=1), replace=TRUE)
 ndim <- length(dim)
@@ -62,9 +65,21 @@ cat("\nExtract 'x[3,2:3,...]':\n")
 print(extract(x, "1"=3,"2"=2:3))
 
 cat("\nExtract 'x[...,2:3]':\n")
-indices <- list(2:3)
-names(indices) <- length(dim(x))
-print(extract(x, indices=indices))
+print(extract(x, indices=2:3, dims=length(dim(x))))
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Assertions
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+y <- array(1:24, dim=c(2,3,4))
+yA <- y[,,2:3]
+yB <- extract(y, indices=list(2:3), dims=length(dim(y)))
+stopifnot(identical(yB, yA))
+
+yA <- y[,2:3,2]
+yB <- extract(y, indices=list(2:3,2), dims=c(2,3), drop=TRUE)
+stopifnot(identical(yB, yA))
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
