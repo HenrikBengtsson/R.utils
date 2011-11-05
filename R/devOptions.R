@@ -21,12 +21,14 @@
 #   Returns names @list.
 # }
 #
+# @examples "../incl/devOptions.Rex"
+#
 # @author
 #
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devOptions <- function(type, special=TRUE, ...) {
+devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pdf", "pictex", "png", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local setups
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,32 +49,36 @@ devOptions <- function(type, special=TRUE, ...) {
     xfig=list(grDevices::xfig)
   );
 
-  getPSDimensions <- function(options=ps.options(), ...) {
-    knownDimensions <- list(
-      executive=c(7.25,10.5),
-      legal=c(8.5,14),
-      letter=c(8.5,11),
-      a4=c(8.27, 11.69)
-    );
+  paperSizes <- list(
+    a4        = c(8.27, 11.69),
+    executive = c(7.25, 10.5 ),
+    legal     = c(8.5 , 14   ),
+    letter    = c(8.5 , 11   )
+  );
 
-    # See argument 'paper' in help("postcript").
+  # See argument 'paper' in help("xfig") and help("postcript")
+
+  getSpecialDimensions <- function(options=list(), sizes=names(paperSizes), ...) {
     paper <- tolower(options$paper);
-
     if (paper == "default") {
       paper <- getOption("papersize", "a4");
     }
 
-    knownDimensions[[paper]];
-  } # getPSDimensions()
+    paperSizes <- paperSizes[sizes];
+    dim <- paperSizes[[paper]];
+    # Replace "special" 0:s with NA:s, to indicate they are missing
+    dim[dim == 0] <- as.double(NA);
+    dim;
+  } # getSpecialDimensions()
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'type':
-  type0 <- type;
   type <- Arguments$getCharacter(type);
   type <- tolower(type);
+  type <- match.arg(type);
 
   # Rename
   type[type == "jpg"] <- "jpeg";
@@ -81,7 +87,6 @@ devOptions <- function(type, special=TRUE, ...) {
   if (!is.element(type, names(devList))) {
     throw("Cannot infer device options. Unknown device: ", type);
   }
-
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -133,16 +138,15 @@ devOptions <- function(type, special=TRUE, ...) {
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Special cases
+  # Special cases?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (special) {
     if (is.element(type, c("eps", "postscript"))) {
-      # See argument 'paper' in help("postcript").
-      dim <- getPSDimensions(opts);
-
-      # Replace "special" 0:s with NA:s, to indicate they are missing
-      dim[dim == 0] <- as.double(NA);
-
+      dim <- getSpecialDimensions(opts, c("a4", "executive", "letter", "legal"));
+      opts$width <- dim[1];
+      opts$height <- dim[2];
+    } else if (type == "xfig") {
+      dim <- getSpecialDimensions(opts, c("a4", "letter", "legal"));
       opts$width <- dim[1];
       opts$height <- dim[2];
     }

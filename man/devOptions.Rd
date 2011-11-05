@@ -17,7 +17,7 @@
   the default arguments of the device function.
  }
 
- \usage{devOptions(type, special=TRUE, ...)}
+ \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pdf", "pictex", "png", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the device.}
@@ -29,6 +29,16 @@
  \value{
    Returns names \code{\link[base]{list}}.
  }
+
+ \examples{
+# List the default widths and heights for all known dimensions
+types <- eval(formals(devOptions)$type)
+dims <- sapply(types, FUN=function(type) {
+  devOptions(type)[c("width", "height")]
+})
+dims <- t(dims)
+print(dims)
+}
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
