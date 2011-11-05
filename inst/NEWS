@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.9.1 [2011-11-05]
+o Added devOptions().
+
+
 Version: 1.9.0 [2011-11-03]
 o Added queryRCmdCheck(), which retrieves the status of 'R CMD check',
   iff it is running.
