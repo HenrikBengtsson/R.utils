@@ -18,7 +18,7 @@
 # }
 #
 # \value{
-#   Returns names @list.
+#   Returns a named @list.
 # }
 #
 # @examples "../incl/devOptions.Rex"
