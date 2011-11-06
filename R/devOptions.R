@@ -24,8 +24,8 @@
 # \details{
 #  If argument \code{special} is @TRUE, then the 'width' and 'height'
 #  options are adjusted according to the rules explained for
-#  argument 'paper' in @see "grDevices::pdf", "grDevices::postscript",
-#  and "grDevices::xfig".
+#  argument 'paper' in @see "grDevices::pdf", @see "grDevices::postscript",
+#  and @see "grDevices::xfig".
 # }
 #
 # @examples "../incl/devOptions.Rex"
@@ -35,7 +35,7 @@
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pdf", "pictex", "png", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...) {
+devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local setups
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -43,11 +43,13 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
     bmp=list(grDevices::bmp),
     cairo_pdf=list(grDevices::cairo_pdf),
     cairo_ps=list(grDevices::cairo_ps),
-    eps=list(R.utils::eps, grDevices::postscript),
+    eps=list(eps, grDevices::postscript),
     jpeg=list(grDevices::jpeg),
+    jpeg2=list(jpeg2, grDevices::bitmap, grDevices::postscript),
     pdf=list(grDevices::pdf),
     pictex=list(grDevices::pictex),
     png=list(grDevices::png),
+    png2=list(png2, grDevices::bitmap, grDevices::postscript),
     postscript=list(grDevices::postscript),
     svg=list(grDevices::svg),
     tiff=list(grDevices::tiff),
@@ -107,7 +109,7 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get builtin device options, if available
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.element(type, c("eps", "postscript"))) {
+  if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
     opts <- ps.options();
   } else if (type == "pdf") {
     opts <- pdf.options();
@@ -122,7 +124,8 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get (nested) device formals
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  defArgs <- lapply(rev(devList[[type]]), FUN=formals);
+  devs <- devList[[type]];
+  defArgs <- lapply(rev(devs), FUN=formals);
   defArgs <- Reduce(append, defArgs);
   # Drop '...'
   defArgs <- defArgs[names(defArgs) != "..."];

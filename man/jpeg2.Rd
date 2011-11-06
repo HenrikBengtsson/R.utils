@@ -7,8 +7,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{jpeg2}
-\alias{jpeg2.default}
 \alias{jpeg2}
+
 
 \title{A JPEG device for Bitmap Files via GhostScript}
 
@@ -16,7 +16,7 @@
   A JPEG device for Bitmap Files via GhostScript.
 }
 
-\usage{\method{jpeg2}{default}(filename, width=480, height=480, res=144, type="jpeg", ...)}
+\usage{jpeg2(filename, width=480, height=480, res=144, type="jpeg", ...)}
 
 \arguments{
  \item{filename}{The name of the file to be produced.}

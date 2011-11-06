@@ -3,8 +3,10 @@ Package: R.utils
 ================
 
 Version: 1.9.1 [2011-11-05]
-o Added default 'width' and 'height' values to eps().
 o Added devOptions().
+o Added default 'width' and 'height' values to eps().
+o Turned png2() and jpeg2() into plain functions without a generic.  
+  This is consistent with how eps() is defined.
 
 
 Version: 1.9.0 [2011-11-03]

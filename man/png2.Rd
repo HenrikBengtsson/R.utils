@@ -7,8 +7,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{png2}
-\alias{png2.default}
 \alias{png2}
+
 
 \title{A PNG device for Bitmap Files via GhostScript}
 
@@ -16,7 +16,7 @@
   A PNG device for Bitmap Files via GhostScript.
 }
 
-\usage{\method{png2}{default}(filename, width=480, height=480, res=144, type="png256", ...)}
+\usage{png2(filename, width=480, height=480, res=144, type="png256", ...)}
 
 \arguments{
  \item{filename}{The name of the file to be produced.}

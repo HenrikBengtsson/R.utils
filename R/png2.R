@@ -1,5 +1,5 @@
 ###########################################################################/**
-# @RdocDefault png2
+# @RdocFunction png2
 #
 # @title "A PNG device for Bitmap Files via GhostScript"
 #
@@ -25,14 +25,17 @@
 #
 # @keyword device
 #*/########################################################################### 
-setMethodS3("png2", "default", function(filename, width=480, height=480, res=144, type="png256", ...) {
+png2 <- function(filename, width=480, height=480, res=144, type="png256", ...) {
   bitmap(file=filename, type=type, width=width/res, height=height/res, res=res, ...);
-})
+}
 
 
 
 ############################################################################
 # HISTORY:
+# 2011-11-05
+# o Turned png2() into a plain function without a generic.  This is
+#   consistent with how eps() is defined.
 # 2005-09-18
 # o Created.
 ############################################################################

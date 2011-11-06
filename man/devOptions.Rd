@@ -17,7 +17,7 @@
   the default arguments of the device function.
  }
 
- \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pdf", "pictex", "png", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...)}
+ \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the device.}
@@ -33,8 +33,8 @@
  \details{
   If argument \code{special} is \code{\link[base:logical]{TRUE}}, then the 'width' and 'height'
   options are adjusted according to the rules explained for
-  argument 'paper' in \code{\link[grDevices]{pdf}}, "grDevices::postscript",
-  and "grDevices::xfig".
+  argument 'paper' in \code{\link[grDevices]{pdf}}, \code{\link[grDevices]{postscript}},
+  and \code{\link[grDevices]{xfig}}.
  }
 
  \examples{
