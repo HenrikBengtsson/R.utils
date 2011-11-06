@@ -462,6 +462,7 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
       if (aspectRatio != 1) {
         width <- devOptions(type)$width;
         if (!is.null(width) && is.numeric(width) && is.finite(width)) {
+          args$width <- width;
           args$height <- aspectRatio * width;
         } else {
           warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given and 'width' could not be inferred from devOptions(\"", type, "\"): ", aspectRatio);

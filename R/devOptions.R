@@ -12,9 +12,12 @@
 #
 # \arguments{
 #   \item{type}{A @character string specifying the device.}
+#   \item{custom}{If @TRUE, also the default settings specific to this
+#      function is returned. For more details, see below.}
 #   \item{special}{A @logical.  For more details, see below.}
-#   \item{...}{Optional named arguments that overrides the
-#     default options.}
+#   \item{...}{Optional named arguments for setting new defaults.
+#      For more details, see below.}
+#   \item{reset}{If @TRUE, the device options are reset to R defaults.}
 # }
 #
 # \value{
@@ -28,6 +31,16 @@
 #  and @see "grDevices::xfig".
 # }
 #
+# \section{Setting new defaults}{
+#  When setting device options, the \code{getOption("devOptions")[[type]]}
+#  option is modified.  This means that for such options to be effective,
+#  any device function needs to query also such options, which for instance
+#  is done by @see "devNew".
+#
+#  Also, for certain devices (eps, postscript, pdf windows and x11), 
+#  builtin R device options are set.
+# }
+#
 # @examples "../incl/devOptions.Rex"
 #
 # @author
@@ -35,7 +48,7 @@
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...) {
+devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local setups
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -90,6 +103,35 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   } # getSpecialDimensions()
 
 
+  getDevOptions <- function(type, ...) {
+    opts <- getOption("devOptions", list());
+    opts <- opts[[type]];
+    if (is.null(opts)) {
+      opts <- list();
+    }
+    opts;
+  } # getDevOptions()
+
+
+  setDevOptions <- function(type, ..., reset=FALSE) {
+    devOpts <- getOption("devOptions", list());
+    oopts <- opts <- devOpts[[type]];
+    if (reset) {
+      opts <- NULL;
+    } else {
+      args <- list(...);
+      if (length(args) > 0) {
+        for (key in names(args)) {
+          opts[[key]] <- args[[key]];
+        }
+      }
+    }
+    devOpts[[type]] <- opts;
+    options(devOptions=devOpts);
+    invisible(oopts);
+  } # setDevOptions()
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -100,26 +142,63 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   type[type == "ps"] <- "postscript";
   type <- match.arg(type);
 
-
   if (!is.element(type, names(devList))) {
-    throw("Cannot infer device options. Unknown device: ", type);
+    throw("Cannot query/modify device options. Unknown device: ", type);
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Reset?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (reset) {
+    res <- devOptions(type=type, special=special, reset=FALSE);
+    setDevOptions(type, reset=TRUE);
+
+    # Only for certain devices...
+    if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
+      ps.options(reset=TRUE);
+    } else if (type == "pdf") {
+      pdf.options(reset=TRUE);
+    } else if (is.element(type, c("windows", "x11"))) {
+      windows.options(reset=TRUE);
+    }
+
+    return(invisible(res));
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Assign user arguments, iff possible
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # User arguments
+  args <- list(...);
+  if (length(args) > 0) {
+    do.call("setDevOptions", args=c(list(type), args));
+  
+    # Only for certain devices...
+    if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
+      do.call("ps.options", args=args);
+    } else if (type == "pdf") {
+      do.call("pdf.options", args=args);
+    } else if (is.element(type, c("windows", "x11"))) {
+      do.call("windows.options", args=args);
+    }
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get builtin device options, if available
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Only for certain devices...
   if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
     opts <- ps.options();
   } else if (type == "pdf") {
     opts <- pdf.options();
-  } else if (type == "windows") {
+  } else if (is.element(type, c("windows", "x11"))) {
     opts <- windows.options();
-  } else if (type == "x11") {
-    opts <- get(".Windows.Options", envir=grDevices:::.WindowsEnv);
   } else {
     opts <- list();
   }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get (nested) device formals
@@ -132,19 +211,23 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   # Drop overridden values
   defArgs <- defArgs[!duplicated(names(defArgs), fromLast=TRUE)];
 
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # User arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  args <- list(...);
-
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Merge arguments that either are not in the predefined set of
   # device options, or ones that replaced the default value.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  optsT <- c(opts, defArgs, args);
+  optsT <- c(opts, defArgs);
 
+
+  # Include custom options specific to devOptions()?
+  if (custom) {
+    devOpts <- getDevOptions(type);
+    optsT <- c(optsT, devOpts);
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Build the concensus of all options
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (a) Keep all non-duplicated options
   dups <- duplicated(names(optsT));
   idxsA <- which(!dups);
@@ -162,7 +245,7 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Special cases?
+  # Adjust for special cases?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (special) {
     if (is.element(type, c("eps", "postscript"))) {

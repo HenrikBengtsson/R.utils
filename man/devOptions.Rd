@@ -17,13 +17,16 @@
   the default arguments of the device function.
  }
 
- \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), special=TRUE, ...)}
+ \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the device.}
+   \item{custom}{If \code{\link[base:logical]{TRUE}}, also the default settings specific to this
+      function is returned. For more details, see below.}
    \item{special}{A \code{\link[base]{logical}}.  For more details, see below.}
-   \item{...}{Optional named arguments that overrides the
-     default options.}
+   \item{...}{Optional named arguments for setting new defaults.
+      For more details, see below.}
+   \item{reset}{If \code{\link[base:logical]{TRUE}}, the device options are reset to R defaults.}
  }
 
  \value{
@@ -35,6 +38,16 @@
   options are adjusted according to the rules explained for
   argument 'paper' in \code{\link[grDevices]{pdf}}, \code{\link[grDevices]{postscript}},
   and \code{\link[grDevices]{xfig}}.
+ }
+
+ \section{Setting new defaults}{
+  When setting device options, the \code{getOption("devOptions")[[type]]}
+  option is modified.  This means that for such options to be effective,
+  any device function needs to query also such options, which for instance
+  is done by \code{\link{devNew}}().
+
+  Also, for certain devices (eps, postscript, pdf windows and x11),
+  builtin R device options are set.
  }
 
  \examples{
