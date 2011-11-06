@@ -1,7 +1,9 @@
-# List the default widths and heights for all known devices
-types <- eval(formals(devOptions)$type)
-dims <- sapply(types, FUN=function(type) {
-  devOptions(type)[c("width", "height")]
+# Tabulate some of the default settings for known devices
+knownDevices <- eval(formals(devOptions)$type)
+fields <- c("width", "height", "bg", "fg", "pointsize")
+opts <- sapply(knownDevices, FUN=function(type) {
+  devOptions(type)[fields]
 })
-dims <- t(dims)
-print(dims)
+rownames(opts) <- fields
+opts <- t(opts)
+print(opts)

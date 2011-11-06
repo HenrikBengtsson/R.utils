@@ -21,23 +21,32 @@
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the device.}
-   \item{special}{If \code{\link[base:logical]{TRUE}}, 'width' and 'height' options will be
-     adjusted according to rules special to the particular device.}
-   \item{...}{Not used.}
+   \item{special}{A \code{\link[base]{logical}}.  For more details, see below.}
+   \item{...}{Optional named arguments that overrides the
+     default options.}
  }
 
  \value{
    Returns a named \code{\link[base]{list}}.
  }
 
+ \details{
+  If argument \code{special} is \code{\link[base:logical]{TRUE}}, then the 'width' and 'height'
+  options are adjusted according to the rules explained for
+  argument 'paper' in \code{\link[grDevices]{pdf}}, "grDevices::postscript",
+  and "grDevices::xfig".
+ }
+
  \examples{
-# List the default widths and heights for all known devices
-types <- eval(formals(devOptions)$type)
-dims <- sapply(types, FUN=function(type) {
-  devOptions(type)[c("width", "height")]
+# Tabulate some of the default settings for known devices
+knownDevices <- eval(formals(devOptions)$type)
+fields <- c("width", "height", "bg", "fg", "pointsize")
+opts <- sapply(knownDevices, FUN=function(type) {
+  devOptions(type)[fields]
 })
-dims <- t(dims)
-print(dims)
+rownames(opts) <- fields
+opts <- t(opts)
+print(opts)
 }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

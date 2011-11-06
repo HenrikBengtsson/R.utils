@@ -12,6 +12,7 @@
 #
 # \arguments{
 #   \item{file}{Default file name (pattern).}
+#   \item{width, height}{The width and height of the figure.}
 #   \item{horizontal}{If @FALSE, an horizontal EPS file is created,
 #         otherwise a portrait file is created.}
 #   \item{paper}{A @character string specifying the paper type. Overrides
@@ -24,19 +25,19 @@
 # }
 # 
 # \examples{\dontrun{
-#   eps("foo.eps")
+#   eps("foo.eps", width=7, height=7)
 #
 #   # is identical to
 #
-#   postscript("foo.eps", onefile=TRUE, horizontal=FALSE)
+#   postscript("foo.eps", width=7, height=7, onefile=TRUE, horizontal=FALSE)
 #
 #   # and
 #
-#   dev.print(eps, "foo.eps")
+#   dev.print(eps, "foo.eps", ...)
 #
 #   # is identical to
 #
-#   dev.print(postscript, "foo.eps", onefile=TRUE, horizontal=FALSE, paper="special")
+#   dev.print(postscript, "foo.eps", onefile=TRUE, horizontal=FALSE, paper="special", ...)
 # }}
 #
 # \keyword{device}
@@ -47,13 +48,15 @@
 #
 # @author
 #*/#########################################################################
-eps <- function(file="Rplot%03d.eps", horizontal=FALSE, paper="special", ...) {
-  postscript(file=file, onefile=FALSE, horizontal=horizontal, paper=paper, ...);
+eps <- function(file="Rplot%03d.eps", width=7, height=7, horizontal=FALSE, paper="special", ...) {
+  postscript(file=file, width=width, height=height, horizontal=horizontal, paper=paper, onefile=FALSE, ...);
 }
 
 
 ############################################################################
 # HISTORY:
+# 2011-11-05
+# o Added default 'width' and 'height' values to eps().
 # 2010-01-22
 # o Added description to Rd argument 'paper'.
 # 2007-12-07

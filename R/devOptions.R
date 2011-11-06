@@ -12,13 +12,20 @@
 #
 # \arguments{
 #   \item{type}{A @character string specifying the device.}
-#   \item{special}{If @TRUE, 'width' and 'height' options will be
-#     adjusted according to rules special to the particular device.}
-#   \item{...}{Not used.}
+#   \item{special}{A @logical.  For more details, see below.}
+#   \item{...}{Optional named arguments that overrides the
+#     default options.}
 # }
 #
 # \value{
 #   Returns a named @list.
+# }
+#
+# \details{
+#  If argument \code{special} is @TRUE, then the 'width' and 'height'
+#  options are adjusted according to the rules explained for
+#  argument 'paper' in @see "grDevices::pdf", "grDevices::postscript",
+#  and "grDevices::xfig".
 # }
 #
 # @examples "../incl/devOptions.Rex"
@@ -49,25 +56,34 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
     xfig=list(grDevices::xfig)
   );
 
-  paperSizes <- list(
-    a4        = c(8.27, 11.69),
-    executive = c(7.25, 10.5 ),
-    legal     = c(8.5 , 14   ),
-    letter    = c(8.5 , 11   )
-  );
 
-  # See argument 'paper' in help("xfig") and help("postcript")
-
+  # See argument 'paper' in help("pdf"), help("postscript"), and
+  # help("xfig").
   getSpecialDimensions <- function(options=list(), sizes=names(paperSizes), ...) {
+    paperSizes <- list(
+      a4        = c( 8.27, 11.69),
+      a4r       = c(11.69,  8.27),
+      executive = c( 7.25, 10.5 ),
+      legal     = c( 8.5 , 14   ),
+      letter    = c( 8.5 , 11   ),
+      USr       = c(11   , 8.5  )
+    );
+  
     paper <- tolower(options$paper);
     if (paper == "default") {
       paper <- getOption("papersize", "a4");
     }
 
-    paperSizes <- paperSizes[sizes];
-    dim <- paperSizes[[paper]];
-    # Replace "special" 0:s with NA:s, to indicate they are missing
-    dim[dim == 0] <- as.double(NA);
+    if (paper != "special") {
+      paperSizes <- paperSizes[sizes];
+      dim <- paperSizes[[paper]];
+
+      # Replace "special" 0:s with NA:s, to indicate they are missing
+      dim[dim == 0] <- as.double(NA);
+    } else {
+      dim <- c(options$width, options$height);
+    }
+
     dim;
   } # getSpecialDimensions()
 
@@ -76,13 +92,12 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'type':
-  type <- Arguments$getCharacter(type);
   type <- tolower(type);
-  type <- match.arg(type);
-
-  # Rename
+  # Aliases
   type[type == "jpg"] <- "jpeg";
   type[type == "ps"] <- "postscript";
+  type <- match.arg(type);
+
 
   if (!is.element(type, names(devList))) {
     throw("Cannot infer device options. Unknown device: ", type);
@@ -107,19 +122,25 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get (nested) device formals
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  args <- lapply(rev(devList[[type]]), FUN=formals);
-  args <- Reduce(append, args);
+  defArgs <- lapply(rev(devList[[type]]), FUN=formals);
+  defArgs <- Reduce(append, defArgs);
   # Drop '...'
-  args <- args[names(args) != "..."];
+  defArgs <- defArgs[names(defArgs) != "..."];
   # Drop overridden values
-  args <- args[!duplicated(names(args), fromLast=TRUE)];
+  defArgs <- defArgs[!duplicated(names(defArgs), fromLast=TRUE)];
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # User arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  args <- list(...);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Merge arguments that either are not in the predefined set of
   # device options, or ones that replaced the default value.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  optsT <- append(opts, args);
+  optsT <- c(opts, defArgs, args);
 
   # (a) Keep all non-duplicated options
   dups <- duplicated(names(optsT));
@@ -142,11 +163,19 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "pd
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (special) {
     if (is.element(type, c("eps", "postscript"))) {
-      dim <- getSpecialDimensions(opts, c("a4", "executive", "letter", "legal"));
-      opts$width <- dim[1];
-      opts$height <- dim[2];
+      sizes <- c("a4", "executive", "legal", "letter");
+      dim <- getSpecialDimensions(opts, sizes);
     } else if (type == "xfig") {
-      dim <- getSpecialDimensions(opts, c("a4", "letter", "legal"));
+      sizes <- c("a4", "legal", "letter");
+      dim <- getSpecialDimensions(opts, sizes);
+    } else if (type == "pdf") {
+      sizes <- c("a4", "a4r", "executive", "legal", "letter", "USr");
+      dim <- getSpecialDimensions(opts, sizes);
+    } else {
+      dim <- NULL;
+    }
+
+    if (!is.null(dim)) {
       opts$width <- dim[1];
       opts$height <- dim[2];
     }
