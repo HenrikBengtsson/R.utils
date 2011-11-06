@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.9.2 [2011-11-06]
+o Added evalCapture() for evaluating an expression and
+  capturing its deparsed code and/or output.
+
+
 Version: 1.9.1 [2011-11-05]
 o Added toEPS(), toPDF(), toPNG() and toSVG().
 o Added devOptions().

@@ -197,6 +197,7 @@
 # @alias writeDataFrame
 # @alias installPackages
 # @alias installPackages.default
+# @alias print.CapturedEvaluation
 # 
 #
 # \description{
