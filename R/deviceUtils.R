@@ -401,8 +401,10 @@ devDone <- function(which=dev.cur(), ...) {
 #   calculated as \code{aspectRatio*width} as long as they are given.
 #   Likewise, if argument \code{width} is not given (or @NULL), it is
 #   calculated as \code{width/aspectRatio} as long as they are given.
-#   If neither \code{width} nor \code{height} is given, or if both
-#   are given, then \code{aspectRatio} is ignored.
+#   If neither \code{width} nor \code{height} is given, then \code{width}
+#   defaults to \code{devOptions(type)$width}.
+#   If both \code{width} and \code{height} are given, then 
+#   \code{aspectRatio} is ignored.
 # }
 #
 # @author
@@ -458,7 +460,12 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 
     if (is.null(width) && is.null(height)) {
       if (aspectRatio != 1) {
-        warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given: ", aspectRatio);
+        width <- devOptions(type)$width;
+        if (!is.null(width) && is.numeric(width) && is.finite(width)) {
+          args$height <- aspectRatio * width;
+        } else {
+          warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given and 'width' could not be inferred from devOptions(\"", type, "\"): ", aspectRatio);
+        }
       }
     } else if (!is.null(width) && !is.null(height)) {
       if (aspectRatio != 1) {
@@ -548,6 +555,8 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 #   the \code{name} followed by optional comma-separated \code{tags}
 #   and a filename extension given by argument \code{ext}.
 # }
+#
+# @examples "../incl/devEval.Rex"
 #
 # @author
 #
@@ -674,6 +683,9 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-11-05
+# o Now the default 'width' is inferred from devOptions() is 'height'
+#   is not given and aspectRatio != 1.
 # 2011-10-31
 # o Added argument 'field' to devEval().
 # 2011-09-24

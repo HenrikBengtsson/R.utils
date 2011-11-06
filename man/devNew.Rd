@@ -43,8 +43,10 @@
    calculated as \code{aspectRatio*width} as long as they are given.
    Likewise, if argument \code{width} is not given (or \code{\link[base]{NULL}}), it is
    calculated as \code{width/aspectRatio} as long as they are given.
-   If neither \code{width} nor \code{height} is given, or if both
-   are given, then \code{aspectRatio} is ignored.
+   If neither \code{width} nor \code{height} is given, then \code{width}
+   defaults to \code{devOptions(type)$width}.
+   If both \code{width} and \code{height} are given, then
+   \code{aspectRatio} is ignored.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
