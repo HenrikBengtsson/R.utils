@@ -22,6 +22,8 @@
 #
 # \value{
 #   Returns a named @list.
+#   If the requested device does not exists (certain devices are OS
+#   specific), then an empty @list is returned.
 # }
 #
 # \details{
@@ -37,7 +39,7 @@
 #  any device function needs to query also such options, which for instance
 #  is done by @see "devNew".
 #
-#  Also, for certain devices (eps, postscript, pdf windows and x11), 
+#  Also, for certain devices (eps, pdf, postscript, quartz, windows and x11), 
 #  builtin R device options are set.
 # }
 #
@@ -48,28 +50,74 @@
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE) {
+devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "quartz", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local setups
+  # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  devList <- list(
-    bmp=list(grDevices::bmp),
-    cairo_pdf=list(grDevices::cairo_pdf),
-    cairo_ps=list(grDevices::cairo_ps),
-    eps=list(eps, grDevices::postscript),
-    jpeg=list(grDevices::jpeg),
-    jpeg2=list(jpeg2, grDevices::bitmap, grDevices::postscript),
-    pdf=list(grDevices::pdf),
-    pictex=list(grDevices::pictex),
-    png=list(grDevices::png),
-    png2=list(png2, grDevices::bitmap, grDevices::postscript),
-    postscript=list(grDevices::postscript),
-    svg=list(grDevices::svg),
-    tiff=list(grDevices::tiff),
-    windows=list(grDevices::windows),
-    x11=list(grDevices::x11),
-    xfig=list(grDevices::xfig)
-  );
+  if (.Platform$OS.type == "windows") {
+    # To please R CMD check
+    windows.options <- NULL; rm("windows.options");
+    x11.options <- windows.options;
+  }
+
+
+  # A template for a dummy device options function.
+  getNnnOptions <- function(type, ...) {
+    optList <- list(
+      eps="ps.options",
+      jpeg2="ps.options",
+      pdf="pdf.options",
+      png2="ps.options",
+      postscript="ps.options",
+      quartz="quartz.options",
+      windows="windows.options",
+      x11="x11.options"
+    );
+
+    dummy <- function(...) { list(); }
+
+    if (!is.element(type, names(optList))) {
+      return(dummy);
+    }
+
+    key <- optList[[type]];
+
+    # Sanity check
+    stopifnot(length(key) == 1);
+
+    # Does the nnn.function() already exists?
+    envir <- getNamespace("grDevices");
+    if (exists(key, envir=envir, mode="function")) {
+      fcn <- get(key, envir=envir, mode="function");
+      return(fcn);
+    } else if (exists(key, mode="function")) {
+      fcn <- get(key, mode="function");
+      return(fcn);
+    }
+
+    # If not, create either a real one or a dummy one...
+    typeC <- capitalize(type);
+    keyE <- sprintf(".%senv", typeC);
+    if (exists(keyE, envir=envir, mode="environment")) {
+      # A real one
+      envir <- get(keyE, envir=envir, mode="environment");
+      fcn <- function(..., reset=FALSE) {
+        keyO <- sprintf(".%s.Options", typeC);
+        opts <- get(keyO, envir=envir, mode="list");
+        if (reset) {
+          keyD <- sprintf("%s.default", keyO);
+          opts <- get(keyD, envir=envir, mode="list");
+          assign(keyD, value=opts, envir=envir);
+        }
+        opts;
+      };
+    } else {
+      # A dummy
+      fcn <- dummy;
+    }
+
+    fcn;
+  } # getNnnOptions()
 
 
   # See argument 'paper' in help("pdf"), help("postscript"), and
@@ -133,6 +181,30 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local setups
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  devList <- list(
+    bmp=c("grDevices::bmp"),
+    cairo_pdf=c("grDevices::cairo_pdf"),
+    cairo_ps=c("grDevices::cairo_ps"),
+    eps=c("eps", "grDevices::postscript"),
+    jpeg=c("grDevices::jpeg"),
+    jpeg2=c("jpeg2", "grDevices::bitmap", "grDevices::postscript"),
+    pdf=c("grDevices::pdf"),
+    pictex=c("grDevices::pictex"),
+    png=c("grDevices::png"),
+    png2=c("png2", "grDevices::bitmap", "grDevices::postscript"),
+    postscript=c("grDevices::postscript"),
+    quartz=c("grDevices::quartz"),
+    svg=c("grDevices::svg"),
+    tiff=c("grDevices::tiff"),
+    windows=c("grDevices::windows"),
+    x11=c("grDevices::x11"),
+    xfig=c("grDevices::xfig")
+  );
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'type':
@@ -146,6 +218,38 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
     throw("Cannot query/modify device options. Unknown device: ", type);
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Locate the nnn.options() function for this type of device
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  nnn.options <- getNnnOptions(type);
+#print(nnn.options);
+#stop();
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Locate the list of device functions used by this type of device
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  devs <- devList[[type]];
+
+  # Find all device functions.  If non-existent, return a dummy
+  dummy <- function() {};
+  parts <- strsplit(devs, split="::", fixed=TRUE);
+  devs <- lapply(parts, FUN=function(s) {
+    if (length(s) > 1) {
+      envir <- getNamespace(s[1]);
+      s <- s[-1];
+    } else {
+      envir <- as.environment(-1);
+    }
+
+    if (exists(s[1], envir=envir, mode="function")) {
+      get(s[1], envir=envir, mode="function");
+    } else {
+      dummy;
+    }
+  });
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Reset?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -154,13 +258,7 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
     setDevOptions(type, reset=TRUE);
 
     # Only for certain devices...
-    if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
-      ps.options(reset=TRUE);
-    } else if (type == "pdf") {
-      pdf.options(reset=TRUE);
-    } else if (is.element(type, c("windows", "x11"))) {
-      windows.options(reset=TRUE);
-    }
+    nnn.options(reset=TRUE);
 
     return(invisible(res));
   }
@@ -175,13 +273,7 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
     do.call("setDevOptions", args=c(list(type), args));
   
     # Only for certain devices...
-    if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
-      do.call("ps.options", args=args);
-    } else if (type == "pdf") {
-      do.call("pdf.options", args=args);
-    } else if (is.element(type, c("windows", "x11"))) {
-      do.call("windows.options", args=args);
-    }
+    do.call("nnn.options", args=args);
   }
 
 
@@ -189,27 +281,19 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   # Get builtin device options, if available
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Only for certain devices...
-  if (is.element(type, c("eps", "postscript", "jpeg2", "png2"))) {
-    opts <- ps.options();
-  } else if (type == "pdf") {
-    opts <- pdf.options();
-  } else if (is.element(type, c("windows", "x11"))) {
-    opts <- windows.options();
-  } else {
-    opts <- list();
-  }
+  opts <- nnn.options();
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get (nested) device formals
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  devs <- devList[[type]];
   defArgs <- lapply(rev(devs), FUN=formals);
   defArgs <- Reduce(append, defArgs);
   # Drop '...'
   defArgs <- defArgs[names(defArgs) != "..."];
   # Drop overridden values
   defArgs <- defArgs[!duplicated(names(defArgs), fromLast=TRUE)];
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Merge arguments that either are not in the predefined set of
@@ -273,6 +357,10 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
 
 ############################################################################
 # HISTORY: 
+# 2011-11-07
+# o Added 'quarts' to the list of (possible) devices.
+# o BUG FIX: devOptions() assumed that all devices exist on
+#   all platforms, causing it to give an error on some.
 # 2011-11-05
 # o Created.
 ############################################################################

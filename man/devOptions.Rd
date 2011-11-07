@@ -17,7 +17,7 @@
   the default arguments of the device function.
  }
 
- \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE)}
+ \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "quartz", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the device.}
@@ -31,6 +31,8 @@
 
  \value{
    Returns a named \code{\link[base]{list}}.
+   If the requested device does not exists (certain devices are OS
+   specific), then an empty \code{\link[base]{list}} is returned.
  }
 
  \details{
@@ -46,7 +48,7 @@
   any device function needs to query also such options, which for instance
   is done by \code{\link{devNew}}().
 
-  Also, for certain devices (eps, postscript, pdf windows and x11),
+  Also, for certain devices (eps, pdf, postscript, quartz, windows and x11),
   builtin R device options are set.
  }
 

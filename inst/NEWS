@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.9.3 [2011-11-07]
+o Added 'quarts' to the list of (possible) devices for devOptions().
+o BUG FIX: devOptions() assumed that all devices exist on
+  all platforms, causing it to give an error on some.
+
+
 Version: 1.9.2 [2011-11-06]
 o Added evalCapture() for evaluating an expression and
   capturing its deparsed code and/or output.
