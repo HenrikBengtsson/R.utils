@@ -562,6 +562,8 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 # @author
 #
 # \seealso{
+#   To change default device parameters such as the width or the height,
+#   @see "devOptions".
 #   @see "devNew".
 # }
 #
@@ -624,6 +626,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
   res;
 } # devEval()
+
+
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
