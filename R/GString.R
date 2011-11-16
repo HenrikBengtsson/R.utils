@@ -568,6 +568,11 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
 setMethodS3("parse", "GString", function(object, ...) {
   s <- getRaw(object);
 
+  # If there is no markup, then there is nothing to parse
+  if (!regexpr("${", s, fixed=TRUE) != -1) {
+    return(list(text=s));
+  }
+
   # Parse the GString into a list of 'strings' intermixed with 'gstrings'.
   parts <- list();
 
@@ -636,7 +641,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     s <- substr(s, start=last+1, stop=nchar(s));
     if (nchar(s) == 0)
       break;
-  }
+  } # while(TRUE)
 
   parts;
 }, private=TRUE)
@@ -672,12 +677,19 @@ setMethodS3("as.character", "GString", function(x, ...) {
   # To please R CMD check
   object <- x;
 
+  # If there is no markup, then return alrady here.
+  s <- unclass(object);
+  if (!regexpr("${", s, fixed=TRUE) != -1) {
+    return(s);
+  }
+
   parts <- parse(object, ...);
+  keys <- names(parts);
   ...abcdef <- TRUE;
 
   envir <- parent.frame(n=1); # Correct?
 
-  isVariable <- (names(parts) == "variable");
+  isVariable <- (keys == "variable");
   for (kk in which(isVariable)) {
     part <- parts[[kk]];
     value <- getVariableValue(object, name=part$name, 
@@ -688,7 +700,7 @@ setMethodS3("as.character", "GString", function(x, ...) {
     parts[[kk]] <- value;
   }
 
-  isExpression <- (names(parts) == "expression");
+  isExpression <- (keys == "expression");
   for (kk in which(isExpression)) {
     part <- parts[[kk]];
     expr <- parse(text=part$call);
@@ -712,6 +724,12 @@ setMethodS3("as.character", "GString", function(x, ...) {
 
 ######################################################################
 # HISTORY:
+# 2011-11-15
+# o KNOWN ISSUES: as.character() is also finding objects of the
+#   local environment.
+# o SPEEDUP: Now as.character() and parse() for GString return
+#   faster if the string is a plain string without markup etc.
+#   This made as.character() about 10-15 times faster.
 # 2005-12-05
 # o BUG FIX: getVariableValue() would generate an error if a
 #   functions was detected. Now, NA is returned.

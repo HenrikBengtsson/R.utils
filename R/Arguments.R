@@ -482,12 +482,14 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
 
   # Coerce GString:s to character strings?
   if (asGString) {
-    s <- unlist(lapply(s, FUN=function(x) {
-      if (!is.na(x)) {
-        x <- GString(x);
-      }
+    # Treat only strings with GString markup.  This avoids lots of
+    # GString overhead if there are no GStrings.
+    hasMarkup <- (regexpr("${", s, fixed=TRUE) != -1);
+    idxs <- which(hasMarkup & !is.na(s));
+    s[idxs] <- unlist(lapply(s[idxs], FUN=function(x) {
+      x <- GString(x);
       as.character(x);
-    }));
+    }), use.names=FALSE);
   }
 
   if (trim) {
@@ -1121,6 +1123,10 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2011-11-15
+# o SPEEDUP: Now Arguments$getCharacters(s, asGString=TRUE) is much
+#   faster for elements of 's' that are non-GStrings.  For long character
+#   vectors the speedup is 100-200x times.
 # 2011-10-16
 # o CORRECTION: Arguments$getNumerics(c(Inf), disallow="Inf") would report
 #   that it contains "NA" instead of "Inf" values".

@@ -2,6 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.9.4 [2011-11-15]
+o SPEEDUP: Now Arguments$getCharacters(s, asGString=TRUE) is much
+  faster for elements of 's' that are non-GStrings.  For long
+  character vectors the speedup is 100-200x times.
+o SPEEDUP: Now as.character() and parse() for GString return
+  faster if the string is a plain string without markup etc.
+  This made as.character() about 10-15 times faster.
+
+
 Version: 1.9.3 [2011-11-07]
 o Added 'quarts' to the list of (possible) devices for devOptions().
 o BUG FIX: devOptions() assumed that all devices exist on
