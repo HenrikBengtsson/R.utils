@@ -26,6 +26,9 @@
 #*/###########################################################################
 setConstructorS3("GString", function(..., sep="") {
   s <- paste(..., sep=sep);
+  if (length(s) > 1) {
+    throw("Trying to coerce more than one character string to a GString, which is not supported.");
+  }
   extend(s, "GString");
 })
 
@@ -569,7 +572,7 @@ setMethodS3("parse", "GString", function(object, ...) {
   s <- getRaw(object);
 
   # If there is no markup, then there is nothing to parse
-  if (!regexpr("${", s, fixed=TRUE) != -1) {
+  if (length(s) == 0 || !regexpr("${", s, fixed=TRUE) != -1) {
     return(list(text=s));
   }
 
@@ -679,7 +682,8 @@ setMethodS3("as.character", "GString", function(x, ...) {
 
   # If there is no markup, then return alrady here.
   s <- unclass(object);
-  if (!regexpr("${", s, fixed=TRUE) != -1) {
+  # If there is no markup, then there is nothing to parse
+  if (length(s) == 0 || !regexpr("${", s, fixed=TRUE) != -1) {
     return(s);
   }
 
@@ -724,6 +728,8 @@ setMethodS3("as.character", "GString", function(x, ...) {
 
 ######################################################################
 # HISTORY:
+# 2011-11-19
+# o Now parse() and as.character() also handle "empty" GString:s.
 # 2011-11-15
 # o KNOWN ISSUES: as.character() is also finding objects of the
 #   local environment.
