@@ -4,6 +4,7 @@ Package: R.utils
 
 Version: 1.9.5 [2011-11-19]
 o ROBUSTNESS: Now parse() and as.character() handles "empty" GString:s.
+o ROBUSTNESS: Now GString() asserts that it only holds one string.
 
 
 Version: 1.9.4 [2011-11-15]
