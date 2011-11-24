@@ -48,6 +48,11 @@ evalCapture <- function(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="
     }
   }
 
+  # WORKAROUND: The following will *not* evaluate in environment
+  # 'envir' due to capture.output() *unless* we evaluate 'envir'
+  # before.  This sanity check will do that. /HB 2011-11-23
+  stopifnot(is.environment(envir));
+
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r");
   res <- capture.output({
@@ -78,6 +83,11 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2011-11-23
+# o BUG FIX: evalCapture() with argument 'envir' defaulting to parent.frame()
+#   would not be evaluated in the parent frame as it should.  It appears
+#   that the internal capture.output() prevents this from happening, unless
+#   argument 'envir' is explictly evaluated within evalCapture(). 
 # 2011-11-05
 # o Added evalCapture(..., code=TRUE, output=TRUE), which is adopted from
 #   evalWithEcho() in R.rsp v0.6.5.

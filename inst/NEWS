@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.9.6 [2011-11-22]
+o BUG FIX: evalCapture() with argument 'envir' defaulting to parent.frame()
+  would not be evaluated in the parent frame as it should.  It appears
+  that the internal capture.output() prevents this from happening, unless
+  argument 'envir' is explictly evaluated within evalCapture(). 
+
+
 Version: 1.9.5 [2011-11-19]
 o ROBUSTNESS: Now parse() and as.character() handles "empty" GString:s.
 o ROBUSTNESS: Now GString() asserts that it only holds one string.
