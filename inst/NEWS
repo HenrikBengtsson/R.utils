@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.9.6 [2011-11-22]
+Version: 1.9.6 [2011-11-23]
 o BUG FIX: evalCapture() with argument 'envir' defaulting to parent.frame()
   would not be evaluated in the parent frame as it should.  It appears
   that the internal capture.output() prevents this from happening, unless
