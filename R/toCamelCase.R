@@ -4,7 +4,7 @@
 # @title "Converts a string of words into a merged camel-cased word"
 #
 # \description{
-#   @get "title", e.g. "a short black" is converted to "aShortBlack".
+#   @get "title", e.g. "a single espresso" is converted to "aSingleEspresso".
 # }
 #
 # @synopsis
@@ -22,11 +22,7 @@
 #  Returns a @character string.
 # }
 #
-# \examples{
-#   s <- "hello world"
-#   print(toCamelCase(s))  # helloWorld
-#   stopifnot(toCamelCase(s) == toCamelCase(toCamelCase(s)))
-# }
+# @examples "../incl/toCamelCase.Rex"
 #
 # @author
 #
@@ -46,7 +42,7 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, split="[ \t]
     isUpperCase <- (!s %in% s2);
     s2 <- capitalize(s2);
     s2[isUpperCase] <- s[isUpperCase];
-    paste(s2, collapse="")
+    paste(s2, collapse="");
   });
   s <- unlist(s);
   if (!capitalize)
