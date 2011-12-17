@@ -44,7 +44,7 @@
 # @keyword IO
 # @keyword programming
 #*/########################################################################### 
-evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "ignore")) {
+evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent")) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -85,6 +85,8 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
 
 ############################################################################
 # HISTORY:
+# 2011-12-16
+# o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.
 # 2010-12-07
 # o Added Rdoc comments with an example.
 # 2010-12-06

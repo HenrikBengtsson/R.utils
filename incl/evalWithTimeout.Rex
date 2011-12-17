@@ -32,3 +32,12 @@ tryCatch({
 res <- evalWithTimeout({
   foo();
 }, timeout=1.08, onTimeout="warning");
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Evaluate code, if it takes too long, generate
+# a timeout, and return silently NULL.
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- evalWithTimeout({
+  foo();
+}, timeout=1.08, onTimeout="silent");

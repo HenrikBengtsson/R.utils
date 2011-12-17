@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.9.7 [2011-12-16]
+o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.  Thanks
+  Nicholas Beeton (Univ. of Tasmania, Australia) for reporting on this.
+
+
 Version: 1.9.6 [2011-11-23]
 o BUG FIX: evalCapture() with argument 'envir' defaulting to parent.frame()
   would not be evaluated in the parent frame as it should.  It appears

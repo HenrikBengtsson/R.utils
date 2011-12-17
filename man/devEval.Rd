@@ -75,6 +75,8 @@ print(res$pathname)
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
+   To change default device parameters such as the width or the height,
+   \code{\link{devOptions}}().
    \code{\link{devNew}}().
  }
 

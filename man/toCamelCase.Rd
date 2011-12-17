@@ -13,7 +13,7 @@
 \title{Converts a string of words into a merged camel-cased word}
 
 \description{
-  Converts a string of words into a merged camel-cased word, e.g. "a short black" is converted to "aShortBlack".
+  Converts a string of words into a merged camel-cased word, e.g. "a single espresso" is converted to "aSingleEspresso".
 }
 
 \usage{\method{toCamelCase}{default}(s, capitalize=FALSE, split="[ 	]+", ...)}
@@ -32,9 +32,11 @@
 }
 
 \examples{
-  s <- "hello world"
-  print(toCamelCase(s))  # helloWorld
-  stopifnot(toCamelCase(s) == toCamelCase(toCamelCase(s)))
+s <- "hello world"
+print(toCamelCase(s))  # helloWorld
+print(toCamelCase(s, capitalize=TRUE))  # HelloWorld
+stopifnot(toCamelCase(s) == toCamelCase(toCamelCase(s)))
+
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
