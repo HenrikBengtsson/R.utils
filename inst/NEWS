@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.9.7 [2011-12-16]
+o BUGFIX: evalWithTimeout() would not detect timeouts in non-English
+  locales.
 o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.  Thanks
   Nicholas Beeton (Univ. of Tasmania, Australia) for reporting on this.
 

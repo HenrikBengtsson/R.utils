@@ -33,8 +33,10 @@
 }
 
 \value{
- Returns the results of the expression evaluated,
- or \code{\link[base]{NULL}} if \code{onTimeout="warning"} and a timeout event occured.
+ Returns the results of the expression evaluated.
+ If timed out, \code{\link[base]{NULL}} is returned if \code{onTimeout} was
+ \code{"warning"} or \code{"silent"}.
+ If \code{"error"} a \code{\link{TimeoutException}} is thrown.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
