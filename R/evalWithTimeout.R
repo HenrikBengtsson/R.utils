@@ -30,13 +30,6 @@
 #  If \code{"error"} a @see "TimeoutException" is thrown.
 # }
 #
-# \details{
-#   Currently, there is a risk that this function will only detect
-#   a timeout event in if an English locale is used.  The reason for
-#   this is that it tests for timeouts by parsing the message of any
-#   errors caught.
-# }
-#
 # @author
 #
 # @examples "../incl/evalWithTimeout.Rex"
