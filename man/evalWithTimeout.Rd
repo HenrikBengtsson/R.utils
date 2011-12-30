@@ -39,6 +39,13 @@
  If \code{"error"} a \code{\link{TimeoutException}} is thrown.
 }
 
+\section{Non-supported cases}{
+ It is not possible to interrupt/break out of a "readline" prompt
+ (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using
+ timeouts; the timeout exception will not be thrown until after
+ the user completes the prompt (i.e. after pressing ENTER).
+}
+
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \examples{

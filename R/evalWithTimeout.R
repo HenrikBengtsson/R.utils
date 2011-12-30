@@ -30,6 +30,13 @@
 #  If \code{"error"} a @see "TimeoutException" is thrown.
 # }
 #
+# \section{Non-supported cases}{
+#  It is not possible to interrupt/break out of a "readline" prompt
+#  (e.g. @see "base::readline" and @see "base::readLines") using
+#  timeouts; the timeout exception will not be thrown until after
+#  the user completes the prompt (i.e. after pressing ENTER).
+# }
+#
 # @author
 #
 # @examples "../incl/evalWithTimeout.Rex"
@@ -88,6 +95,9 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
 
 ############################################################################
 # HISTORY:
+# 2011-12-30
+# o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
+#   does not throw a timeout exception until after readline() returns.
 # 2011-12-16
 # o GENERALIZATION: evalWithTimeout() would fail to detect timeouts
 #   in non-English locales.

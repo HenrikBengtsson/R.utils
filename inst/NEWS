@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.9.8 [2011-12-30]
+o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
+  does not throw a timeout exception until after readline() returns.
+
+
 Version: 1.9.7 [2011-12-16]
 o BUG FIX: evalWithTimeout() would not detect timeouts in R sessions
   that use a non-English locale.
