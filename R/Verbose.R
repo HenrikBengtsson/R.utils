@@ -610,8 +610,15 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
     return(invisible(FALSE));
 
   msg <- paste(..., sep="");
-  if (this$asGString)
-    msg <- as.character(GString(msg));
+  if (this$asGString) {
+    if (length(msg) > 1) {
+      msg <- sapply(msg, FUN=function(s) {
+        as.character(GString(s));
+      });
+    } else {
+      msg <- as.character(GString(msg));
+    }
+  }
 
   cat(file=this$.con, append=TRUE, msg);
 
@@ -1568,6 +1575,10 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2012-01-11
+# o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce 
+#   more than one character string to a GString, which is not supported."
+#   iff passing a vector of strings.
 # 2011-09-18
 # o Added a range test internally to getThreshold(), where the valid range
 #   can be set via as an R option.

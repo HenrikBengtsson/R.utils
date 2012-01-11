@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.9.9 [2012-01-11]
+o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce 
+  more than one character string to a GString, which is not supported."
+  iff passing a vector of strings.
+
+
 Version: 1.9.8 [2011-12-30]
 o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
   does not throw a timeout exception until after readline() returns.
