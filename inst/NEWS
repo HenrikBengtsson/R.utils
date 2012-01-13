@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 1.9.10 [2012-01-12]
+o CLEANUP: reassignInPackage() calls function that are considered
+  "unsafe" by the new CRAN policies, i.e. unlockBinding() and
+  assignInNamespace().  However, we still wish to keep this method
+  available to advanced users.  In order to avoid getting NOTEs
+  from R CMD check, we have "hidden" those unsafe function calls.
+
+
 Version: 1.9.9 [2012-01-11]
 o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce 
   more than one character string to a GString, which is not supported."
