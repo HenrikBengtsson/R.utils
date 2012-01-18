@@ -607,7 +607,7 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
 #
 # @keyword device
 #*/######################################################################### 
-setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, png), maxCount=300, sleepInterval=0.1, findGhostscript=TRUE, ...) {
+setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -670,13 +670,17 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
       # The following wait-and-poll code is typically only necessary for
       # the bitmap() device since it calls ghostscript, which is called
       # without waiting for it to finish.  The default is to poll for the
-      # dummy image file for 30 seconds in intervals of 0.1 seconds.
+      # dummy image file for 10 seconds in intervals of 0.1 seconds.
       # If not found by then, the device is considered not to be found.
       # Hopefully, this is never the case.
       count <- 0;
       while (count < maxCount) {
-        if (file.exists(file))
-          return(device);
+        if (file.exists(file)) {
+          size <- file.info(file)$size;
+          if (!is.na(size) && size > 0) {
+            return(device);
+          }
+        }
         Sys.sleep(sleepInterval);
         count <- count + 1;
       }
@@ -860,6 +864,11 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-01-17
+# o ROBUSTNESS: Now System$findGraphicsDevice() not only assert that
+#   an image file is generated, but also that its filesize is non-zero.
+#   This avoids returning devices that generates empty image files.
+#   Also updated the time out to 10 secs (was 30 secs).
 # 2011-09-19
 # o Now System$getMappedDrivesOnWindows() always returns paths with 
 #   forward slashes and handles drive letters mapped by both 'subst'

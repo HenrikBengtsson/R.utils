@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.9.11 [2012-01-17]
+o ROBUSTNESS: Now System$findGraphicsDevice() not only assert that
+  an image file is generated, but also that its filesize is non-zero.
+  This avoids returning devices that generates empty image files.
+  Also updated the time out to 10 secs (was 30 secs).
+
+
 Version: 1.9.10 [2012-01-12]
 o CLEANUP: reassignInPackage() calls function that are considered
   "unsafe" by the new CRAN policies, i.e. unlockBinding() and
