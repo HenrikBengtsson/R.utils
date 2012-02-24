@@ -192,6 +192,8 @@
  \alias{verbose}
  \alias{wrap}
  \alias{whichVector}
+ \alias{draw}
+ \alias{swapXY}
 
  % Private
  \alias{toFileListTree}
