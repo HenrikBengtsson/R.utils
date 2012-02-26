@@ -16,7 +16,7 @@
   Opens a new device.
  }
 
- \usage{devNew(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL)}
+ \usage{devNew(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NULL, label=NULL)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the type of device to be
@@ -26,6 +26,8 @@
      \code{width} and \code{height}.}
    \item{aspectRatio}{A \code{\link[base]{numeric}} ratio specifying the aspect ratio
      of the image.  See below.}
+   \item{scale}{A \code{\link[base]{numeric}} scalar factor specifying how much the
+     width and the height should be rescaled.}
    \item{par}{An optional named \code{\link[base]{list}} of graphical settings applied,
      that is, passed to \code{\link[graphics]{par}}, immediately after
      opening the device.}

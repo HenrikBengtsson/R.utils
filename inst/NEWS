@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.11.0 [2012-02-25]
+o Added argument 'scale' to devNew().
+
+
 Version: 1.10.0 [2012-02-23]
 o Added swapXY() and draw() for 'density' objects.  Used to be
   in the aroma.core package.

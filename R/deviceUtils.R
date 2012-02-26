@@ -384,6 +384,8 @@ devDone <- function(which=dev.cur(), ...) {
 #     \code{width} and \code{height}.}
 #   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
 #     of the image.  See below.}
+#   \item{scale}{A @numeric scalar factor specifying how much the
+#     width and the height should be rescaled.}
 #   \item{par}{An optional named @list of graphical settings applied,
 #     that is, passed to @see "graphics::par", immediately after
 #     opening the device.}
@@ -417,7 +419,7 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NULL, label=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -430,6 +432,11 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
   # Argument 'aspectRatio':
   if (!is.null(aspectRatio)) {
     aspectRatio <- Arguments$getDouble(aspectRatio, range=c(0,Inf));
+  }
+
+  # Argument 'scale':
+  if (!is.null(scale)) {
+    scale <- Arguments$getDouble(scale, range=c(0,Inf));
   }
 
   # Argument 'par':
@@ -453,7 +460,10 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
   args$width <- args$width;
   args$height <- args$height;
 
-  # Update argument 'height' by aspect ratio?
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Update argument 'height' by argument 'aspectRatio'?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (!is.null(aspectRatio)) {
     width <- args$width;
     height <- args$height;
@@ -479,14 +489,49 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Rescale 'width' & 'height' by argument 'scale'?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  if (!is.null(scale) && scale != 1) {
+    width <- args$width;
+    if (is.null(width)) {
+      width <- devOptions(type)$width;
+      if (!is.numeric(width) || !is.finite(width)) {
+        width <- NULL;
+      }
+    }
+      
+    height <- args$height;
+    if (is.null(height)) {
+      height <- devOptions(type)$height;
+      if (!is.numeric(height) || !is.finite(height)) {
+        height <- NULL;
+      }
+    }
+
+    if (!is.null(width) && !is.null(height)) {
+      args$height <- scale * height;
+      args$width <- scale * width;
+    } else {
+      warning("Argument 'scale' was ignored because both 'width' and 'height' were not given: ", scale);
+    }
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Device type aliases?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (is.character(type)) {
     if (type == "jpg") {
       type <- "jpeg";
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Exclude 'file' and 'filename' arguments?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (is.character(type)) {
     knownInteractive <- grDevices:::.known_interactive.devices;
     if (is.element(tolower(type), tolower(knownInteractive))) {
@@ -495,7 +540,10 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Open device by calling device function
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   res <- do.call(type, args=args);
 
   devSetLabel(label=label);
@@ -688,6 +736,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2012-02-25
+# o Added argument 'scale' to devNew().
 # 2011-11-05
 # o Now the default 'width' is inferred from devOptions() is 'height'
 #   is not given and aspectRatio != 1.
