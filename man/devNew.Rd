@@ -16,14 +16,15 @@
   Opens a new device.
  }
 
- \usage{devNew(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NULL, label=NULL)}
+ \usage{devNew(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NULL, label=NULL)}
 
  \arguments{
    \item{type}{A \code{\link[base]{character}} string specifying the type of device to be
      opened. This string should match the name of an existing device
      \code{\link[base]{function}}.}
    \item{...}{Additional arguments passed to the device \code{\link[base]{function}}, e.g.
-     \code{width} and \code{height}.}
+     \code{width} and \code{height}.  If not given, the are inferred
+     from \code{\link{devOptions}}().}
    \item{aspectRatio}{A \code{\link[base]{numeric}} ratio specifying the aspect ratio
      of the image.  See below.}
    \item{scale}{A \code{\link[base]{numeric}} scalar factor specifying how much the
@@ -37,6 +38,13 @@
 
  \value{
    Returns what the device \code{\link[base]{function}} returns.
+ }
+
+ \section{Width and heights}{
+   The default width and height of the generated image is specific to
+   the type of device used.  There is not straightforward programatical
+   way to infer these defaults; here we use \code{\link{devOptions}}(), which
+   in most cases returns the correct defaults.
  }
 
  \section{Aspect ratio}{

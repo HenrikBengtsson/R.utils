@@ -2,18 +2,20 @@
 Package: R.utils
 ================
 
-Version: 1.11.0 [2012-02-25]
+Version: 1.11.0 [2012-02-26]
+o GENERALIZATION: Now devOptions() accepts passing a device function
+  in addition a string, e.g. devOptions(png) and devOptions("png").
 o Added argument 'scale' to devNew().
+o BUG FIX: Before devNew(..., aspectRatio=1) would ignore
+  devOptions(...)$width if neither argument 'width' nor 'height'
+  was given.
 
 
 Version: 1.10.0 [2012-02-23]
 o Added swapXY() and draw() for 'density' objects.  Used to be
   in the aroma.core package.
-o ROBUSTNESS: Package now explicitly depends on 'utils'.  Before 
-  it relied on 'R.oo' to load 'utils', but the former is now only
-  importing it.  Because 'utils' is loaded by default in R, this
-  is only important in cases where 'R.utils' is loaded before 
-  'utils', e.g. when loading it in a .Rprofile startup scripts.
+o ROBUSTNESS: Package now explicitly depends on 'utils' and
+  'R.methodsS3'. Before it relied on 'R.oo' to load those.
 
 
 Version: 1.9.11 [2012-01-17]

@@ -381,7 +381,8 @@ devDone <- function(which=dev.cur(), ...) {
 #     opened. This string should match the name of an existing device 
 #     @function.}
 #   \item{...}{Additional arguments passed to the device @function, e.g.
-#     \code{width} and \code{height}.}
+#     \code{width} and \code{height}.  If not given, the are inferred
+#     from @see "devOptions".}
 #   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
 #     of the image.  See below.}
 #   \item{scale}{A @numeric scalar factor specifying how much the
@@ -395,6 +396,13 @@ devDone <- function(which=dev.cur(), ...) {
 #
 # \value{
 #   Returns what the device @function returns.
+# }
+#
+# \section{Width and heights}{
+#   The default width and height of the generated image is specific to
+#   the type of device used.  There is not straightforward programatical
+#   way to infer these defaults; here we use @see "devOptions", which
+#   in most cases returns the correct defaults.
 # }
 #
 # \section{Aspect ratio}{
@@ -419,7 +427,19 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NULL, label=NULL) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  cleanLength <- function(x, ...) {
+    name <- substitute(x);
+    if (is.null(x) || !is.numeric(x) || !is.finite(x)) {
+      warning("Ignoring non-finite '", name, "' value: ", x);
+      x <- NULL;
+    }
+    x;
+  } # cleanLength()
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -429,14 +449,14 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NU
     type <- as.character(type);
   }
 
-  # Argument 'aspectRatio':
-  if (!is.null(aspectRatio)) {
-    aspectRatio <- Arguments$getDouble(aspectRatio, range=c(0,Inf));
-  }
-
   # Argument 'scale':
   if (!is.null(scale)) {
     scale <- Arguments$getDouble(scale, range=c(0,Inf));
+  }
+
+  # Argument 'aspectRatio':
+  if (!is.null(aspectRatio)) {
+    aspectRatio <- Arguments$getDouble(aspectRatio, range=c(0,Inf));
   }
 
   # Argument 'par':
@@ -456,38 +476,44 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NU
   # Arguments to be passed to the device function
   args <- list(...);
 
-  # Drop 'width' and 'height' if NULL
+  # Drop 'width' and 'height', iff NULL (=treat as non-specified/missing)
   args$width <- args$width;
   args$height <- args$height;
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  # Update argument 'height' by argument 'aspectRatio'?
+  # Update the 'height' by argument 'aspectRatio'?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (!is.null(aspectRatio)) {
     width <- args$width;
     height <- args$height;
 
-    if (is.null(width) && is.null(height)) {
+    # Were both 'width' and 'height' explicitly specified?
+    if (!is.null(width) && !is.null(height)) {
       if (aspectRatio != 1) {
+        warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+      }
+    } else {
+      # None of 'width' and 'height' was specified?
+      if (is.null(width) && is.null(height)) {
+        # (a) Infer 'width' from devOptions()...
         width <- devOptions(type)$width;
-        if (!is.null(width) && is.numeric(width) && is.finite(width)) {
+        width <- cleanLength(width);
+        if (!is.null(width)) {
           args$width <- width;
           args$height <- aspectRatio * width;
         } else {
           warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given and 'width' could not be inferred from devOptions(\"", type, "\"): ", aspectRatio);
         }
+      } else if (!is.null(width)) {
+        # Argument 'width' was specified but not 'height'
+        args$height <- aspectRatio * width;
+      } else if (!is.null(height)) {
+        # Argument 'height' was specified but not 'width'
+        args$width <- height / aspectRatio;
       }
-    } else if (!is.null(width) && !is.null(height)) {
-      if (aspectRatio != 1) {
-        warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
-      }
-    } else if (!is.null(width)) {
-      args$height <- aspectRatio * width;
-    } else if (!is.null(height)) {
-      args$width <- height / aspectRatio;
     }
-  }
+  } # if (!is.null(aspectRatio))
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -495,26 +521,38 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, scale=1, par=NU
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (!is.null(scale) && scale != 1) {
     width <- args$width;
+
+    # Infer 'width' from the settings
     if (is.null(width)) {
       width <- devOptions(type)$width;
-      if (!is.numeric(width) || !is.finite(width)) {
-        width <- NULL;
-      }
+      width <- cleanLength(width);
     }
-      
-    height <- args$height;
-    if (is.null(height)) {
-      height <- devOptions(type)$height;
-      if (!is.numeric(height) || !is.finite(height)) {
-        height <- NULL;
+
+    # Possible to rescale?
+    if (is.null(width)) {
+      warning("Argument 'scale' was ignored because it was not possible to infer 'width': ", scale);
+    } else {
+      # Infer 'height'...
+      if (!is.null(aspectRatio)) {
+        # ...from aspect ratio
+        height <- aspectRatio * width;
+      } else {
+        # ...from settings
+        height <- args$height;
+        if (is.null(height)) {
+          height <- devOptions(type)$height;
+          height <- cleanLength(height);
+        }
+        if (is.null(height)) {
+          warning("Argument 'scale' was ignored because it was not possible to infer 'height': ", scale);
+        }
       }
     }
 
+    # So finally, possible to rescale?
     if (!is.null(width) && !is.null(height)) {
-      args$height <- scale * height;
       args$width <- scale * width;
-    } else {
-      warning("Argument 'scale' was ignored because both 'width' and 'height' were not given: ", scale);
+      args$height <- scale * height;
     }
   }
 
@@ -736,7 +774,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
-# 2012-02-25
+# 2012-02-26
+# o BUG FIX: Before devNew(..., aspectRatio=1) would ignore
+#   devOptions(...)$width if neither argument 'width' nor 'height'
+#   was given.
 # o Added argument 'scale' to devNew().
 # 2011-11-05
 # o Now the default 'width' is inferred from devOptions() is 'height'

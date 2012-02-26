@@ -20,7 +20,8 @@
  \usage{devOptions(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "quartz", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE)}
 
  \arguments{
-   \item{type}{A \code{\link[base]{character}} string specifying the device.}
+   \item{type}{A \code{\link[base]{character}} string or a device \code{\link[base]{function}} specifying
+      the device to be queried.}
    \item{custom}{If \code{\link[base:logical]{TRUE}}, also the default settings specific to this
       function is returned. For more details, see below.}
    \item{special}{A \code{\link[base]{logical}}.  For more details, see below.}

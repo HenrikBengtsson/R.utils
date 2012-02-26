@@ -11,7 +11,8 @@
 # @synopsis
 #
 # \arguments{
-#   \item{type}{A @character string specifying the device.}
+#   \item{type}{A @character string or a device @function specifying 
+#      the device to be queried.}
 #   \item{custom}{If @TRUE, also the default settings specific to this
 #      function is returned. For more details, see below.}
 #   \item{special}{A @logical.  For more details, see below.}
@@ -51,6 +52,30 @@
 # @keyword utilities
 #*/########################################################################### 
 devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jpeg2", "pdf", "pictex", "png", "png2", "postscript", "quartz", "svg", "tiff", "windows", "x11", "xfig"), custom=TRUE, special=TRUE, ..., reset=FALSE) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local setups
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  devList <- list(
+    bmp=c("grDevices::bmp"),
+    cairo_pdf=c("grDevices::cairo_pdf"),
+    cairo_ps=c("grDevices::cairo_ps"),
+    eps=c("eps", "grDevices::postscript"),
+    jpeg=c("grDevices::jpeg"),
+    jpeg2=c("jpeg2", "grDevices::bitmap", "grDevices::postscript"),
+    pdf=c("grDevices::pdf"),
+    pictex=c("grDevices::pictex"),
+    png=c("grDevices::png"),
+    png2=c("png2", "grDevices::bitmap", "grDevices::postscript"),
+    postscript=c("grDevices::postscript"),
+    quartz=c("grDevices::quartz"),
+    svg=c("grDevices::svg"),
+    tiff=c("grDevices::tiff"),
+    windows=c("grDevices::windows"),
+    x11=c("grDevices::x11"),
+    xfig=c("grDevices::xfig")
+  );
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -180,39 +205,61 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   } # setDevOptions()
 
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local setups
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  devList <- list(
-    bmp=c("grDevices::bmp"),
-    cairo_pdf=c("grDevices::cairo_pdf"),
-    cairo_ps=c("grDevices::cairo_ps"),
-    eps=c("eps", "grDevices::postscript"),
-    jpeg=c("grDevices::jpeg"),
-    jpeg2=c("jpeg2", "grDevices::bitmap", "grDevices::postscript"),
-    pdf=c("grDevices::pdf"),
-    pictex=c("grDevices::pictex"),
-    png=c("grDevices::png"),
-    png2=c("png2", "grDevices::bitmap", "grDevices::postscript"),
-    postscript=c("grDevices::postscript"),
-    quartz=c("grDevices::quartz"),
-    svg=c("grDevices::svg"),
-    tiff=c("grDevices::tiff"),
-    windows=c("grDevices::windows"),
-    x11=c("grDevices::x11"),
-    xfig=c("grDevices::xfig")
-  );
+  getDeviceFunctions <- function(type, default=function() {}, ...) {
+    # Find all device functions.  If non-existent, return the default
+    devs <- devList[[type]];
+
+    parts <- strsplit(devs, split="::", fixed=TRUE);
+    devs <- lapply(parts, FUN=function(s) {
+      if (length(s) > 1) {
+        envir <- getNamespace(s[1]);
+        s <- s[-1];
+      } else {
+        envir <- as.environment(-1);
+      }
+
+      if (exists(s[1], envir=envir, mode="function")) {
+        get(s[1], envir=envir, mode="function");
+      } else {
+        default;
+      }
+    });
+
+    devs;
+  } # getDeviceFunctions()
+
+
+  findDeviceFunction <- function(fcn, ...) {
+    types <- names(devList);
+
+    for (type in types) {
+      devs <- getDeviceFunctions(type, default=NULL);
+      for (dev in devs) {
+        if (identical(fcn, dev)) {
+          return(type);
+        }
+      }
+    } # for (type ...)
+
+    "<function>";
+  } # findDeviceFunction()
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'type':
-  type <- tolower(type);
-  # Aliases
-  type[type == "jpg"] <- "jpeg";
-  type[type == "ps"] <- "postscript";
-  type <- match.arg(type);
+  if (is.function(type)) {
+    # Try to find name of device function
+    type <- findDeviceFunction(fcn=type);
+  }
+  if (is.character(type)) {
+    type <- tolower(type);
+    # Aliases
+    type[type == "jpg"] <- "jpeg";
+    type[type == "ps"] <- "postscript";
+    type <- match.arg(type);
+  }
 
   if (!is.element(type, names(devList))) {
     throw("Cannot query/modify device options. Unknown device: ", type);
@@ -223,31 +270,13 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
   # Locate the nnn.options() function for this type of device
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   nnn.options <- getNnnOptions(type);
-#print(nnn.options);
-#stop();
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Locate the list of device functions used by this type of device
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  devs <- devList[[type]];
-
-  # Find all device functions.  If non-existent, return a dummy
-  dummy <- function() {};
-  parts <- strsplit(devs, split="::", fixed=TRUE);
-  devs <- lapply(parts, FUN=function(s) {
-    if (length(s) > 1) {
-      envir <- getNamespace(s[1]);
-      s <- s[-1];
-    } else {
-      envir <- as.environment(-1);
-    }
-
-    if (exists(s[1], envir=envir, mode="function")) {
-      get(s[1], envir=envir, mode="function");
-    } else {
-      dummy;
-    }
-  });
+  # If non-existent, return a dummy
+  devs <- getDeviceFunctions(type, default=function() {});
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -357,6 +386,9 @@ devOptions <- function(type=c("bmp", "cairo_pdf", "cairo_ps", "eps", "jpeg", "jp
 
 ############################################################################
 # HISTORY: 
+# 2012-02-26
+# o GENERALIZATION: Now devOptions() accepts passing a device function
+#   in addition a sting, e.g. devOptions(png) and devOptions("png").
 # 2011-11-07
 # o Added 'quarts' to the list of (possible) devices.
 # o BUG FIX: devOptions() assumed that all devices exist on
