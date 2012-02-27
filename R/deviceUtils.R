@@ -383,10 +383,10 @@ devDone <- function(which=dev.cur(), ...) {
 #   \item{...}{Additional arguments passed to the device @function, e.g.
 #     \code{width} and \code{height}.  If not given, the are inferred
 #     from @see "devOptions".}
-#   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
-#     of the image.  See below.}
 #   \item{scale}{A @numeric scalar factor specifying how much the
 #     width and the height should be rescaled.}
+#   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
+#     of the image.  See below.}
 #   \item{par}{An optional named @list of graphical settings applied,
 #     that is, passed to @see "graphics::par", immediately after
 #     opening the device.}

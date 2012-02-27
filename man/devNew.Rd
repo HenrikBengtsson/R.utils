@@ -25,10 +25,10 @@
    \item{...}{Additional arguments passed to the device \code{\link[base]{function}}, e.g.
      \code{width} and \code{height}.  If not given, the are inferred
      from \code{\link{devOptions}}().}
-   \item{aspectRatio}{A \code{\link[base]{numeric}} ratio specifying the aspect ratio
-     of the image.  See below.}
    \item{scale}{A \code{\link[base]{numeric}} scalar factor specifying how much the
      width and the height should be rescaled.}
+   \item{aspectRatio}{A \code{\link[base]{numeric}} ratio specifying the aspect ratio
+     of the image.  See below.}
    \item{par}{An optional named \code{\link[base]{list}} of graphical settings applied,
      that is, passed to \code{\link[graphics]{par}}, immediately after
      opening the device.}
