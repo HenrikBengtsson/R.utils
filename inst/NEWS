@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 1.11.1 [2012-02-28]
+o ROBUSTNESS: The creation of image files by devEval() is now
+  close to being "atomic".  That is, if the code for plotting the 
+  figure is interrupted (e.g. by a user interrupt or an error),
+  then any created image file is removed.  This avoids leaving
+  incomplete/blank image files behind.
+
+
 Version: 1.11.0 [2012-02-26]
 o GENERALIZATION: Now devOptions() accepts passing a device function
   in addition a string, e.g. devOptions(png) and devOptions("png").

@@ -16,7 +16,7 @@
   Opens a new device, evaluate (graphing) code, and closes device.
  }
 
- \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, force=getOption("devEval/args/force", TRUE))}
+ \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "keep"), force=getOption("devEval/args/force", TRUE))}
 
  \arguments{
    \item{type}{Specifies the type of device to be used by
@@ -33,6 +33,9 @@
    \item{path}{The directory where then image should be saved, if any.}
    \item{field}{An optional \code{\link[base]{character}} string specifying a specific
      field of the named result \code{\link[base]{list}} to be returned.}
+   \item{onIncomplete}{A \code{\link[base]{character}} string specifying what to do with
+     an image file that was incompletely generated due to an interrupt
+     or an error.}
    \item{force}{If \code{\link[base:logical]{TRUE}}, and the image file already exists, then it is
      overwritten, otherwise not.}
  }
@@ -50,6 +53,12 @@
    specfied by argument \code{path} with a filename consisting of
    the \code{name} followed by optional comma-separated \code{tags}
    and a filename extension given by argument \code{ext}.
+
+   By default, the image file is only created if the \code{expr}
+   is evaluated completely.  If it is, for instance, interrupted
+   by the user or due to an error, then any incomplete/blank image
+   file that was created will be removed.  This behavior can be
+   turned of using argument \code{onIncomplete}.
  }
 
  \examples{

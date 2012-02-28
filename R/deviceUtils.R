@@ -624,6 +624,9 @@ devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NU
 #   \item{path}{The directory where then image should be saved, if any.}
 #   \item{field}{An optional @character string specifying a specific
 #     field of the named result @list to be returned.}
+#   \item{onIncomplete}{A @character string specifying what to do with
+#     an image file that was incompletely generated due to an interrupt
+#     or an error.}
 #   \item{force}{If @TRUE, and the image file already exists, then it is
 #     overwritten, otherwise not.}
 # }
@@ -641,6 +644,12 @@ devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NU
 #   specfied by argument \code{path} with a filename consisting of
 #   the \code{name} followed by optional comma-separated \code{tags}
 #   and a filename extension given by argument \code{ext}.
+#
+#   By default, the image file is only created if the \code{expr}
+#   is evaluated completely.  If it is, for instance, interrupted
+#   by the user or due to an error, then any incomplete/blank image
+#   file that was created will be removed.  This behavior can be
+#   turned of using argument \code{onIncomplete}.
 # }
 #
 # @examples "../incl/devEval.Rex"
@@ -656,7 +665,11 @@ devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NU
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, force=getOption("devEval/args/force", TRUE)) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "keep"), force=getOption("devEval/args/force", TRUE)) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -675,8 +688,13 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
     field <- Arguments$getCharacter(field);
   }
 
+  # Argument 'onIncomplete':
+  onIncomplete <- match.arg(onIncomplete);
+
   # Argument 'force':
   force <- Arguments$getLogical(force);
+
+
 
   # Result object
   res <- list(
@@ -690,6 +708,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
   );
 
   if (force || !isFile(pathname)) {
+    done <- FALSE;
+
     devNew(type, pathname, ...);
     on.exit({
       devDone();
@@ -700,9 +720,19 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
         getArchiveOption <- archiveFile <- NULL;
         if (getArchiveOption("devEval", FALSE)) archiveFile(pathname);
       }
+
+      if (!done) {
+        if (onIncomplete == "remove") {
+          # Remove an incomplete image file
+          if (isFile(pathname)) {
+            file.remove(pathname);
+          }
+        }
+      }
     }, add=TRUE);
   
     eval(expr, envir=envir);
+    done <- TRUE;
   }
 
   # Subset?
@@ -774,6 +804,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2012-02-28
+# o Added argument 'onIncomplete' to devEval().  The default is now to
+#   remove any half-generated image files so that no incomplete/blank
+#   image files are left behind.
 # 2012-02-26
 # o BUG FIX: Before devNew(..., aspectRatio=1) would ignore
 #   devOptions(...)$width if neither argument 'width' nor 'height'
