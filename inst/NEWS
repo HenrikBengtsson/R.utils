@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.11.2 [2012-02-29]
+o CLEANUP: Now capture() for Verbose uses withVisible() instead of
+  an .Internal(eval.with.vis()) call.
+
+
 Version: 1.11.1 [2012-02-28]
 o ROBUSTNESS: The creation of image files by devEval() is now
   close to being "atomic".  That is, if the code for plotting the 

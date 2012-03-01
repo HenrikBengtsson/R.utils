@@ -1127,7 +1127,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 
   pf <- parent.frame();
   evalVis <- function(expr) {
-    .Internal(eval.with.vis(expr, pf, NULL));
+    withVisible(eval(expr, pf));
   }
 
   for (kk in seq(length = length(args))) {
@@ -1575,6 +1575,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2012-02-29
+# o CLEANUP: Now capture() for Verbose uses withVisible() instead of
+#   an .Internal(eval.with.vis()) call.
 # 2012-01-11
 # o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce 
 #   more than one character string to a GString, which is not supported."
