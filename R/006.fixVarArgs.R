@@ -1,17 +1,60 @@
 # Added '...' to some base functions. These will later be
 # turned into default functions by setMethodS3().
 
-getOption <- appendVarArgs(getOption)
-inherits <- appendVarArgs(inherits)
-isOpen <- appendVarArgs(isOpen)
-parse <- appendVarArgs(parse)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Methods in 'base'
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+getOption <- appendVarArgs(getOption);
 
-if (exists("timestamp", mode="function"))
-  timestamp <- appendVarArgs(timestamp)
+# USED TO DO: inherits <- appendVarArgs(inherits)
+inherits <- function(...) UseMethod("inherits");
+setMethodS3("inherits", "default", function(...) {
+  base::inherits(...);
+})
+
+# USED TO DO: isOpen <- appendVarArgs(isOpen)
+isOpen <- function(...) UseMethod("isOpen");
+setMethodS3("isOpen", "default", function(...) {
+  base::isOpen(...);
+})
+
+# USED TO DO: parse <- appendVarArgs(parse)
+parse <- function(...) UseMethod("parse");
+setMethodS3("parse", "default", function(...) {
+  base::parse(...);
+})
+
+# Other fixes to avoid .Internal()
+cat <- function(...) UseMethod("cat");
+setMethodS3("cat", "default", function(...) {
+  base::cat(...);
+})
+
+# Other fixes to avoid .Internal()
+lapply <- function(...) UseMethod("lapply");
+setMethodS3("lapply", "default", function(...) {
+  base::lapply(...);
+})
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Methods in 'base'
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+if (exists("timestamp", mode="function")) {
+  # USED TO DO: timestamp <- appendVarArgs(timestamp);
+  timestamp <- function(...) UseMethod("timestamp");
+  setMethodS3("timestamp", "default", function(...) {
+    utils::timestamp(...);
+  })
+}
 
 
 ############################################################################
 # HISTORY:
+# 2012-03-06
+# o Replaced several appendVarArgs() with explicit default functions
+#   in order to avoid copying functions with .Internal() calls.
 # 2006-05-09
 # o Now '...' is added to parse() in zzz.R.
 # 2006-03-28

@@ -76,7 +76,6 @@
  \seealso{
   \code{\link[base]{source}}().
   \code{\link[base]{library}}().
-  \code{\link{relibrary}}().
  }
 
 

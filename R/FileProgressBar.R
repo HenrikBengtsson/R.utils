@@ -93,7 +93,7 @@ setMethodS3("update", "FileProgressBar", function(object, visual=TRUE, ...) {
 
 
 #########################################################################/**
-# @RdocMethod remove
+# @RdocMethod cleanup
 #
 # @title "Removes the progress file for a file progress bar"
 # 
@@ -118,7 +118,7 @@ setMethodS3("update", "FileProgressBar", function(object, visual=TRUE, ...) {
 #   @seeclass
 # }
 #*/######################################################################### 
-setMethodS3("remove", "FileProgressBar", function(object, ...) {
+setMethodS3("cleanup", "FileProgressBar", function(object, ...) {
   # To please R CMD check...
   this <- object;
 
@@ -132,6 +132,12 @@ setMethodS3("remove", "FileProgressBar", function(object, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-06
+# o CRAN POLICY: Renamed remove() for FileProgressBar to cleanup(),
+#   because otherwise it would be inevitable to create an internal
+#   copy of base::remove() which contains an .Internal() call.
+#   This move may break existing code that calls remove() on an
+#   FileProgressBar object.
 # 2005-09-06
 # o Added remove() method to remove progress files.
 # 2005-03-01

@@ -67,7 +67,6 @@
 # \seealso{
 #  @see "base::source".
 #  @see "base::library".
-#  @see "relibrary".
 # }
 #
 # @keyword "utilities" 

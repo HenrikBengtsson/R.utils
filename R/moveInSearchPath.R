@@ -87,7 +87,8 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   env <- pos.to.env(from);
 
   # Detach old position without side effects
-  .Internal(detach(from));
+  expr <- parse(text=".Internal(detach(from))");
+  eval(expr);
 
   if (to > from)
     to <- to - 1;

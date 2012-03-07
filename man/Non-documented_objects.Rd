@@ -90,10 +90,10 @@
  \alias{nbrOfOptions}
 
  % The ProgressBar and FileProgressBar classes
+ \alias{cleanup}
  \alias{getBarString}
  \alias{increase}
  \alias{isDone}
- \alias{remove}
  \alias{reset}
  \alias{setMaxValue}
  \alias{setProgress}

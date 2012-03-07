@@ -6,16 +6,16 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{remove.FileProgressBar}
-\alias{remove.FileProgressBar}
-\alias{FileProgressBar.remove}
-\alias{remove.FileProgressBar}
-\alias{remove,FileProgressBar-method}
+ \name{cleanup.FileProgressBar}
+\alias{cleanup.FileProgressBar}
+\alias{FileProgressBar.cleanup}
+\alias{cleanup.FileProgressBar}
+\alias{cleanup,FileProgressBar-method}
 
 
  \title{Removes the progress file for a file progress bar}
 
- \usage{\method{remove}{FileProgressBar}(object, ...)}
+ \usage{\method{cleanup}{FileProgressBar}(object, ...)}
 
  \description{
    Removes the progress file for a file progress bar.

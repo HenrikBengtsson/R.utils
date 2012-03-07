@@ -2,9 +2,21 @@
 Package: R.utils
 ================
 
+Version: 1.12.0 [2012-03-06]
+o CRAN POLICY: Renamed remove() for FileProgressBar to cleanup(),
+  because otherwise it would be inevitable to create an internal
+  copy of base::remove() which contains an .Internal() call.
+  This move may break existing code that calls remove() on an
+  FileProgressBar object.
+o CRAN POLICY: Removed all internal copies of 'base' and 'utils'
+  functions that have .Internal() calls.
+o CLEANUP: Removed relibrary() function, because it has not worked
+  properly since R introduced namespaces, which is several years.
+
+
 Version: 1.11.2 [2012-02-29]
-o CLEANUP: Now capture() for Verbose uses withVisible() instead of
-  an .Internal(eval.with.vis()) call.
+o CRAN POLICY: Now capture() for Verbose uses withVisible() instead
+  of an .Internal(eval.with.vis()) call.
 
 
 Version: 1.11.1 [2012-02-28]

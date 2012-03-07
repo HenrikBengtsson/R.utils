@@ -116,7 +116,7 @@ str(mget(keys, envir=globalenv()))
 }
 
 \seealso{
-  \code{\link[base]{commandArgs}}(), \code{\link[base]{Platform}}()
+  \code{\link[base]{commandArgs}}(), \code{\link[base]{Platform}}
 }
 
 
