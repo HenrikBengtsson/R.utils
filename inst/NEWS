@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.12.0 [2012-03-06]
+Version: 1.12.0 [2012-03-08]
 o CRAN POLICY: Renamed remove() for FileProgressBar to cleanup(),
   because otherwise it would be inevitable to create an internal
   copy of base::remove() which contains an .Internal() call.
