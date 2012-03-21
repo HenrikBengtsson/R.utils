@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.12.1 [2012-03-20]
+o BUG FIX: .onAttach() would try to call getMessage(ex) on an 'error'
+  if there was a problem adding a finalizer, resulting in "no applicable
+  method for 'getMessage' applied to an object of class "c('simpleError',
+  'error', 'condition')".  Now using 'ex$message' instead.
+
+
 Version: 1.12.0 [2012-03-08]
 o CRAN POLICY: Renamed remove() for FileProgressBar to cleanup(),
   because otherwise it would be inevitable to create an internal

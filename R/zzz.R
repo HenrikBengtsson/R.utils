@@ -34,7 +34,7 @@
   tryCatch({
     addFinalizerToLast();
   }, error=function(ex) {
-    warning(getMessage(ex));
+    warning(ex$message);
   })
 
   onSessionExit(function(...) detachPackage(pkgname));
@@ -55,6 +55,11 @@
 
 ############################################################################
 # HISTORY: 
+# 2012-03-20
+# o BUG FIX: .onAttach() would try to call getMessage(ex) on an 'error'
+#   if there was a problem adding a finalizer, resulting in "no applicable
+#   method for 'getMessage' applied to an object of class "c('simpleError',
+#   'error', 'condition')".  Now using 'ex$message' instead.
 # 2010-11-01
 # o Added a workaround for an R (>= 2.15.0) CMD check NOTE.
 # 2008-07-03
