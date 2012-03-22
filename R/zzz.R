@@ -34,7 +34,8 @@
   tryCatch({
     addFinalizerToLast();
   }, error=function(ex) {
-    warning(ex$message);
+    msg <- paste("The R.utils package may have failed to append a session finalizer to .Last(), because: ", ex$message, sep="");
+    warning(msg, call.=FALSE, immediate.=TRUE);
   })
 
   onSessionExit(function(...) detachPackage(pkgname));
