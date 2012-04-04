@@ -665,7 +665,7 @@ devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NU
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "keep"), force=getOption("devEval/args/force", TRUE)) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "rename", "keep"), force=getOption("devEval/args/force", TRUE)) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -721,14 +721,30 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
         if (getArchiveOption("devEval", FALSE)) archiveFile(pathname);
       }
 
-      if (!done) {
+      if (!done && isFile(pathname)) {
         if (onIncomplete == "remove") {
-          # Remove an incomplete image file
-          if (isFile(pathname)) {
-            file.remove(pathname);
+          # Remove incomplete image file
+          file.remove(pathname);
+        } else if (onIncomplete == "rename") {
+          # Rename incomplete image file to denote that
+          # it is incomplete.
+          pattern <- "^(.*)[.]([^.]*)$";
+          if (regexpr(pattern, pathname) != -1) {
+            fullname <- gsub(pattern, "\\1", pathname);
+            ext <- gsub(pattern, "\\2", pathname);
+            fmtstr <- sprintf("%s,INCOMPLETE_%%03d.%s", fullname, ext);
+          } else {
+            fmtstr <- sprintf("%s,INCOMPLETE_%%03d", pathname);
           }
-        }
-      }
+
+          # Try to rename
+          for (kk in 1:999) {
+            pathnameN <- sprintf(fmtstr, kk);
+            if (isFile(pathnameN)) next;
+            file.rename(pathname, pathnameN);
+          } # for (kk ...)
+        } # if (onIncomplete == ...)
+      } # if (!done && isFile(...))
     }, add=TRUE);
   
     eval(expr, envir=envir);
@@ -804,6 +820,9 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2012-04-04
+# o Now it is possible to have devEval() rename incompletely generated
+#   image files, by using argument onIncomplete="rename".
 # 2012-02-28
 # o Added argument 'onIncomplete' to devEval().  The default is now to
 #   remove any half-generated image files so that no incomplete/blank

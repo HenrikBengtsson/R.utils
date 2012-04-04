@@ -16,7 +16,7 @@
   Opens a new device, evaluate (graphing) code, and closes device.
  }
 
- \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "keep"), force=getOption("devEval/args/force", TRUE))}
+ \usage{devEval(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("\%s.\%s", paste(c(name, tags), collapse = ","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "rename", "keep"), force=getOption("devEval/args/force", TRUE))}
 
  \arguments{
    \item{type}{Specifies the type of device to be used by

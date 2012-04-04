@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.12.2 [2012-04-04]
+o Now it is possible to have devEval() rename incompletely generated
+  image files, by using argument onIncomplete="rename".  This will simply
+  troubleshooting.  The default is still to remove incomplete files.
+o ROBUSTNESS: Updated package dependencies.
+
+
 Version: 1.12.1 [2012-03-20]
 o BUG FIX: .onAttach() would try to call getMessage(ex) on an 'error'
   if there was a problem adding a finalizer, resulting in "no applicable
