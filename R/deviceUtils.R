@@ -741,8 +741,18 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
           for (kk in 1:999) {
             pathnameN <- sprintf(fmtstr, kk);
             if (isFile(pathnameN)) next;
-            file.rename(pathname, pathnameN);
+            res <- file.rename(pathname, pathnameN);
+            # Done?
+            if (res && isFile(pathnameN)) {
+              pathname <- pathnameN;
+              break;
+            }
           } # for (kk ...)
+
+          # Failed to rename?
+          if (isFile(pathname)) {
+            throw("Failed to rename incomplete image file: ", pathname);
+          }
         } # if (onIncomplete == ...)
       } # if (!done && isFile(...))
     }, add=TRUE);
@@ -820,6 +830,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2012-04-05
+# o Now devEval() returns the correct pathname if onIncomplete="rename"
+#   and image file was incomplete.  Now it also gives an error, if it
+#   for some reason fails to rename the file in such cases.
 # 2012-04-04
 # o Now it is possible to have devEval() rename incompletely generated
 #   image files, by using argument onIncomplete="rename".
