@@ -9,9 +9,11 @@
  \name{toEPS}
 \alias{toEPS}
 
+ \alias{toBMP}
  \alias{toPDF}
  \alias{toPNG}
  \alias{toSVG}
+ \alias{toTIFF}
 
  \title{Methods for creating image files of a specific format}
 
