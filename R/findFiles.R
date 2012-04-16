@@ -1,5 +1,5 @@
 ########################################################################/**
-# @RdocFunction findFiles
+# @RdocDefault findFiles
 #
 # @title "Finds one or several files in multiple directories"
 #
@@ -25,7 +25,7 @@
 #  Returns a @vector of the full pathnames of the files found.
 # }
 #
-# \section{Paths}{
+# \section{Search path}{
 #   The \code{paths} argument may also contain paths specified as
 #   semi-colon (\code{";"}) separated paths, e.g.
 #   \code{"/usr/;usr/bin/;.;"}.
@@ -43,7 +43,7 @@
 # @keyword IO
 # @keyword internal
 #**/#######################################################################
-findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE, allFiles=TRUE, ...) {
+setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE, allFiles=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -59,31 +59,20 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
     paths;
   } # splitPaths()
 
-
-  # Checks if a package is loaded or not (should be in the 'base' package)
-  isPackageLoaded <- function(package, version=NULL, ...) {
-    s <- search();
-    if (is.null(version)) {
-      s <- sub("_[0-9.-]*", "", s);
-    } else {
-      package <- manglePackageName(package, version);
-    }
-    pattern <- sprintf("package:%s", package);
-    (pattern %in% s);
-  } # isPackageLoaded()
-
-  
+ 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'paths':
   paths <- splitPaths(paths);
-  if (is.null(paths))
+  if (is.null(paths)) {
     paths <- ".";
+  }
 
   # Argument 'pattern':
-  if (!is.null(pattern))
+  if (!is.null(pattern)) {
     pattern <- as.character(pattern);
+  }
 
   # Argument 'recursive':
   recursive <- as.logical(recursive);
@@ -95,9 +84,6 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Prepare list of paths to be scanned
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  hasRutilsLoaded <- isPackageLoaded("R.utils");
-  ## hasRutils <- suppressWarnings(require(R.utils, quietly=TRUE));
-
   # Don't search the same path twice
   paths <- unique(paths);
 
@@ -108,22 +94,24 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
     path <- file.path(dirname(path), basename(path));
     path <- gsub("^[.][/\\]", "", path);
 
-    # Follow Windows shortcut links?
-    if (hasRutilsLoaded)
-      path <- filePath(path, expandLinks="any");
+    # Follow Windows shortcut links
+    path <- filePath(path, expandLinks="any");
 
     # Does the path exist and is it a directory
     # Note, isdir is TRUE for directories, FALSE for files,
     # *and* NA for non-existing files, e.g. items found by
     # list.files() but are broken Unix links.
-    isDirectory <- identical(file.info(path)$isdir, TRUE);
-    if (!file.exists(path) || !isDirectory)
+    if (!isDirectory(path)) {
       path <- NA;
+    }
 
     paths[kk] <- path;
   }
-  if (length(paths) > 0)
+
+  # Drop unknown paths
+  if (length(paths) > 0) {
     paths <- paths[!is.na(paths)];
+  }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -142,15 +130,14 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
     }
 
     # Nothing to do?
-    if (length(files) == 0)
+    if (length(files) == 0) {
       next;
-
-    # Expand Windows shortcut links?
-    files0 <- files;
-    if (hasRutilsLoaded) {
-      # Remember these
-      files <- sapply(files, FUN=filePath, expandLinks="any", USE.NAMES=FALSE);
     }
+
+    # Expand Windows shortcut links
+    files0 <- files;
+    # Remember these
+    files <- sapply(files, FUN=filePath, expandLinks="any", USE.NAMES=FALSE);
 
     # Keep only existing files and directories
     ok <- sapply(files, FUN=function(file) {
@@ -160,15 +147,16 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
     files0 <- files0[ok];
 
     # Nothing to do?
-    if (length(files) == 0)
+    if (length(files) == 0) {
       next;
+    }
 
     # First search the files, then the directories, so...
     # Note, isdir is TRUE for directories, FALSE for files,
     # *and* NA for non-existing files, e.g. items found by
     # list.files() but are broken Unix links.
     isDir <- sapply(files, FUN=function(file) {
-      identical(file.info(file)$isdir, TRUE);
+      ## identical(file.info(file)$isdir, TRUE);
       file.info(file)$isdir;
     }, USE.NAMES=FALSE);
 
@@ -179,8 +167,9 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
     isDir <- isDir[ok];
 
     # Nothing to do?
-    if (length(files) == 0)
+    if (length(files) == 0) {
       next;
+    }
 
     # Directories and files in lexicographic order
     dirs <- files[isDir];
@@ -196,8 +185,9 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
 
     if (length(files) > 0) {
       files <- sort(files);
-      if (firstOnly)
+      if (firstOnly) {
         return(files[1]);
+      }
 
       # Store results
       pathnames <- c(pathnames, files);
@@ -205,14 +195,16 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
 
     # Search directories recursively?
     if (recursive) {
-      if (length(dirs) == 0)
+      if (length(dirs) == 0) {
         next;
+      }
 
       for (dir in sort(dirs)) {
         files <- findFiles(pattern=pattern, paths=dir, recursive=recursive,
                                                  firstOnly=firstOnly, ...);
-        if (length(files) > 0 && firstOnly)
+        if (length(files) > 0 && firstOnly) {
           return(files[1]);
+        }
 
         pathnames <- c(pathnames, files);
       }
@@ -220,12 +212,14 @@ findFiles <- function(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE,
   } # for (path ...)
 
   pathnames;
-} # findFiles()
+}) # findFiles()
 
 
 ############################################################################
 # HISTORY:
 # 2012-04-16 [HB]
+# o Turned findFiles() into a "default" method.
+# o Now code assumes availability of needed R.utils methods.
 # o Copied from affxparser package to R.utils.
 # 2008-02-21 [HB]
 # o Added an internal generic isPackageLoaded() function.
