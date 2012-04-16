@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.13.1 [2012-04-16]
+o Added findFiles(), which orginates from the affxparser package.
+
+
 Version: 1.13.0 [2012-04-07]
 o Added toBMP() and toTIFF().
 
