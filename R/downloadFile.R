@@ -1,6 +1,7 @@
 ###########################################################################/**
 # @set "class=character"
 # @RdocMethod downloadFile
+# @alias downloadFile
 #
 # @title "Downloads a file"
 #
