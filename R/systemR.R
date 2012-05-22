@@ -2,7 +2,7 @@
 # @RdocDefault systemR
 # @alias systemR
 #
-# @title "Launches another R processes from within R"
+# @title "Launches another R process from within R"
 #
 # @synopsis
 #

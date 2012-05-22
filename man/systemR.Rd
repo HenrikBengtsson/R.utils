@@ -11,12 +11,12 @@
 \alias{systemR}
  \alias{systemR}
 
- \title{Launches another R processes from within R}
+ \title{Launches another R process from within R}
 
  \usage{\method{systemR}{default}(command="", ..., Rcommand="R", verbose=FALSE)}
 
  \description{
-   Launches another R processes from within R via \code{\link[base]{system}}() by automatically locating the
+   Launches another R process from within R via \code{\link[base]{system}}() by automatically locating the
    R executable, cf [1].
  }
 
