@@ -180,7 +180,6 @@
  \alias{intervalsToSeq}
 
  % Misc.
- \alias{downloadFile}
  \alias{extract}
  \alias{gunzip.default}
  \alias{isOpen}

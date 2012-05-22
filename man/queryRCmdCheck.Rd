@@ -30,6 +30,10 @@
  then \code{"notRunning"} is returned.
 }
 
+\section{Limitations}{
+ This function only works if the working directory has not been changed.
+}
+
 \examples{
 
 status <- queryRCmdCheck()

@@ -1,12 +1,12 @@
 Package: R.utils
-Version: 1.14.0
-Date: 2012-05-01
+Version: 1.15.0
+Date: 2012-05-22
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Depends: R (>= 2.5.0), utils, R.methodsS3 (>= 1.2.2), R.oo (>= 1.9.3), R.devices (>= 2.1.1)
+Depends: R (>= 2.5.0), utils, R.methodsS3 (>= 1.2.2), R.oo (>= 1.9.3)
 Imports: utils, R.methodsS3 (>= 1.2.2), R.oo (>= 1.9.3)
-Suggests: digest (>= 0.5.2)
+Suggests: digest (>= 0.5.2), R.devices (>= 2.1.1)
 Description: This package provides utility classes and methods useful when programming in R and developing R packages.
 License: LGPL (>= 2.1)
 URL: http://www.braju.com/R/
