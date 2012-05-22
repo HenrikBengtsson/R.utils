@@ -14,7 +14,7 @@ o Moved all functions related to graphical devices to new package
   R.devices (v2.1.1), which is now on CRAN.  For backward
   compatibility, the R.utils package will for now depend and 
   hence load the R.devices package.
-o CLEANUP: Dropped all functions that was moved to R.devices,
+o CLEANUP: Dropped all functions that were moved to R.devices,
   e.g. devEval() and toNNN() functions.
 
 
