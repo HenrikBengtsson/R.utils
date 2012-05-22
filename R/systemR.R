@@ -68,7 +68,7 @@ setMethodS3("systemR", "default", function(command="", ..., Rcommand="R", verbos
   Rbin <- file.path(Rpath, Rcommand);
   command <- paste(command, collapse=" ");
   command <- paste(command, sep=" ");
-  cmd <- sprintf('%s %s', Rbin, command);
+  cmd <- sprintf('%s %s', shQuote(Rbin), command);
   verbose && cat(verbose, "System command: ", cmd);
 
   system(cmd, ...);
