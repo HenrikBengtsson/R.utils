@@ -37,10 +37,10 @@
 # @keyword utilities
 #*/###########################################################################
 setMethodS3("dataFrame", "default", function(colClasses, nrow=1, ...) {
-  df <- vector("list", length(colClasses));
+  df <- vector("list", length=length(colClasses));
   names(df) <- names(colClasses);
   for (kk in seq(along=df)) {
-    df[[kk]] <- vector(colClasses[kk], nrow);
+    df[[kk]] <- vector(colClasses[kk], length=nrow);
   }
 
   attr(df, "row.names") <- seq(length=nrow);

@@ -34,7 +34,7 @@
 # \section{Windows Shortcut links}{
 #   Windows Shortcut links (*.lnk) are recognized and can be used
 #   to immitate links to directories elsewhere.
-#   For more details, see @see "R.utils::filePath".
+#   For more details, see @see "filePath".
 # }
 #
 # @author

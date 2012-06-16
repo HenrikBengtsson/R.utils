@@ -1,11 +1,17 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
-# Packages to be imported
-import(R.oo)
+# utils:
+import("utils")
+## importFrom("utils", download.file)
+## importFrom("utils", download.file)
+## importFrom("utils", str)
+## importFrom("utils", write.table)
 
-# Object that must exported explicitly
-export(.conflicts.OK) 
+
+# R.methodsS3/R.oo:
+import("R.methodsS3")
+import("R.oo")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -15,3 +21,5 @@ export(.conflicts.OK)
 # in their names.
 exportPattern("^[^\\.]")
 
+# Object that must exported explicitly
+export(.conflicts.OK) 
