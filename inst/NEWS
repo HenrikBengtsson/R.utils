@@ -32,7 +32,7 @@ o Added toBMP() and toTIFF().
 
 Version: 1.12.2 [2012-04-05]
 o Now it is possible to have devEval() rename incompletely generated
-  image files, by using argument onIncomplete="rename".  This will simply
+  image files, by using argument onIncomplete="rename".  This will simplify
   troubleshooting.  The default is still to remove incomplete files.
 o ROBUSTNESS: Updated package dependencies.
 
