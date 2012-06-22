@@ -4,6 +4,8 @@ Package: R.utils
 
 Version: 1.15.1 [2012-06-16]
 o Now package only imports/no longer depends on the 'utils' package.
+  This means that all packages that depends on 'R.utils' for loading
+  'utils' for them need to explicitly load it themselves.
 
 
 Version: 1.15.0 [2012-05-22]
