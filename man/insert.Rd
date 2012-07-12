@@ -41,7 +41,7 @@ x <- insert(y, ats=1, values=rep(NA,2), useNames=FALSE)
 print(x)
 
 # Insert at last position (names of 'values' are ignored
-# because input vector has not names)
+# because input vector has no names)
 x <- insert(1:3, ats=4, values=c(d=2, e=1))
 Ex <- c(1:3,2,1)
 print(x)

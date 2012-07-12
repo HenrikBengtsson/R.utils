@@ -43,7 +43,7 @@
 \section{Windows Shortcut links}{
   Windows Shortcut links (*.lnk) are recognized and can be used
   to immitate links to directories elsewhere.
-  For more details, see \code{\link[R.utils]{filePath}}.
+  For more details, see \code{\link{filePath}}().
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

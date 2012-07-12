@@ -558,8 +558,7 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
 #
 #  By default, this method tests a list of potential graphical devices and 
 #  returns the first that successfully creates an image file.  
-#  By default, it tries to create a PNG image file by first testing the
-#  \code{bitmap()} device (via \code{png2()}) and then the built-in
+#  By default, it tries to create a PNG image file via the built-in
 #  \code{png()} device.
 # }
 #
@@ -588,8 +587,6 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
 #   fcn <- System$findGraphicsDevice();
 #   if (identical(fcn, png)) {
 #     cat("PNG device found: png()");
-#   } else if (identical(fcn, png2)) {
-#     cat("PNG device found: png2()");
 #   } else if (identical(fcn, bitmap)) {
 #     cat("PNG device found: bitmap()");
 #   } else {
@@ -607,7 +604,7 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
 #
 # @keyword device
 #*/######################################################################### 
-setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...) {
+setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -864,6 +861,9 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-07-10
+# o  System$findGraphicsDevice() no longer tries to create a PNG device
+#    using png2(), because that has now moved to R.devices.
 # 2012-01-17
 # o ROBUSTNESS: Now System$findGraphicsDevice() not only assert that
 #   an image file is generated, but also that its filesize is non-zero.

@@ -61,6 +61,10 @@ source(pathnameA, echo=TRUE);
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
+ \seealso{
+   See also \code{\link[utils]{sourceutils}}.
+ }
+
 
 
 \keyword{IO}

@@ -29,13 +29,12 @@
 
   By default, this method tests a list of potential graphical devices and
   returns the first that successfully creates an image file.
-  By default, it tries to create a PNG image file by first testing the
-  \code{bitmap()} device (via \code{png2()}) and then the built-in
+  By default, it tries to create a PNG image file via the built-in
   \code{png()} device.
  }
 
- \synopsis{findGraphicsDevice.System(static, devices=list(png2, png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
-\usage{System$findGraphicsDevice(devices=list(png2, png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
+ \synopsis{findGraphicsDevice.System(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
+\usage{System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
 
  \arguments{
    \item{devices}{A \code{\link[base]{list}} of graphics device driver \code{\link[base]{function}}s to be
@@ -60,8 +59,6 @@
    fcn <- System$findGraphicsDevice();
    if (identical(fcn, png)) {
      cat("PNG device found: png()");
-   } else if (identical(fcn, png2)) {
-     cat("PNG device found: png2()");
    } else if (identical(fcn, bitmap)) {
      cat("PNG device found: bitmap()");
    } else {
