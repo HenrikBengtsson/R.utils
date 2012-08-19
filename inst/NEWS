@@ -4,7 +4,7 @@ Package: R.utils
 
 Version: 1.16.0 [2012-07-11]
 o CLEANUP: Dropped the graphics device related functions that
-  were moved to R.devices (except the png2() function).
+  were moved to R.devices.
 o System$findGraphicsDevice() no longer tries to create a PNG
   device using png2(), because that has now moved to R.devices.
 o Updated package dependencies.
