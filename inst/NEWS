@@ -2,6 +2,19 @@
 Package: R.utils
 ================
 
+Version: 1.16.1 [2012-09-07]
+o Now createLink() also supports targets with '~' in the path.
+o ROBUSTNESS: createLink(target="C:/") would try to create a link with
+  name "C:", which is not valid resulting is the somewhat confusing
+  error on "cannot symlink 'S:' to 'S:', reason 'Access is denied'".
+  Now it instead throws "Cannot infer a valid link name from argument
+  'target': C:/".
+o ROBUSTNESS/BUG FIX: On Windows, it could happen that createLink() 
+  would generate a zero-size link file that did not link to the target
+  as a result of a failed file.symlink().  This is now tested for such
+  that if an invalid link file was created, it is removed again.
+
+
 Version: 1.16.0 [2012-07-11]
 o CLEANUP: Dropped the graphics device related functions that
   were moved to R.devices.

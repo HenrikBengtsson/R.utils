@@ -24,7 +24,7 @@
  \arguments{
    \item{link}{The path or pathname of the link to be created.
      If \code{"."} (or \code{\link[base]{NULL}}), it is inferred from the
-     \code{target} argument.}
+     \code{target} argument, if possible.}
    \item{target}{The target file or directory to which the shortcut should
      point to.}
    \item{overwrite}{If \code{\link[base:logical]{TRUE}}, an existing link file is overwritten,

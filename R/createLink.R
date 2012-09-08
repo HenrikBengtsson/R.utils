@@ -15,7 +15,7 @@
 # \arguments{
 #   \item{link}{The path or pathname of the link to be created.
 #     If \code{"."} (or @NULL), it is inferred from the
-#     \code{target} argument.}
+#     \code{target} argument, if possible.}
 #   \item{target}{The target file or directory to which the shortcut should
 #     point to.}
 #   \item{overwrite}{If @TRUE, an existing link file is overwritten, 
@@ -44,6 +44,7 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
   overwrite <- Arguments$getLogical(overwrite);
 
   # Argument 'target':
+  target <- normalizePath(target);
   target <- Arguments$getReadablePathname(target, mustExist=TRUE);
   target <- getAbsolutePath(target);
 
@@ -51,6 +52,9 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
   if (is.null(link) || link == ".") {
     # Infer from 'target'
     link <- basename(target);
+    if (regexpr("^[a-zA-Z]:$", link) != -1) {
+      throw("Cannot infer a valid link name from argument 'target': ", target);
+    }
   }
   if (!overwrite && file.exists(link)) {
     throw("Cannot create link. File already exists: ", link);
@@ -74,12 +78,19 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
     targetF <- getAbsolutePath(target);
     res <- NULL;
     tryCatch({
-      file.symlink(targetF, link);
+      file.symlink(from=targetF, to=link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
     }, warning = function(ex) {
     });
     if (!is.null(res)) {
       return(res);
+    }
+
+    # Cleanup, in case something was created but the link is not 
+    # working, which can happen on Windows.  If it worked, then
+    # 'res' should be non-NULL above.
+    if (file.exists(link)) {
+      file.remove(link);
     }
   }
 
@@ -131,6 +142,17 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
 
 ############################################################################
 # HISTORY:
+# 2012-09-07
+# o Now createLink() also supports targets with '~' in the path.
+# o ROBUSTNESS/BUG FIX: On Windows, it could happen that createLink() 
+#   would generate a zero-size link file that did not link to the target
+#   as a result of a failed file.symlink().  This is now tested for such
+#   that if an invalid link file was created, it is removed again.
+# o ROBUSTNESS: createLink(target="C:/") would try to create a link with
+#   name "C:", which is not valid resulting is the somewhat confusing
+#   error on "cannot symlink 'S:' to 'S:', reason 'Access is denied'".
+#   Now it instead throws "Cannot infer a valid link name from argument
+#   'target': C:/".
 # 2011-10-08
 # o Now the default of argument 'methods' of createLink() can be set
 #   via option "createLink/args/methods".
