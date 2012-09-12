@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.16.2 [2012-09-12]
+o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
+  .Internal(detach(...)) but instead base::detach() in such a
+  way that neither detach hooks nor .Last.lib() are called. 
+
+
 Version: 1.16.1 [2012-09-07]
 o Now createLink() also supports targets with '~' in the path.
 o ROBUSTNESS: createLink(target="C:/") would try to create a link with

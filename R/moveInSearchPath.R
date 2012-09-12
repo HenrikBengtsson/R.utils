@@ -87,8 +87,7 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   env <- pos.to.env(from);
 
   # Detach old position without side effects
-  expr <- parse(text=".Internal(detach(from))");
-  eval(expr);
+  .detachPlain(from);
 
   if (to > from)
     to <- to - 1;
@@ -109,6 +108,11 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 
 ############################################################################
 # HISTORY:
+# 2012-09-12
+# o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
+#   .Internal(detach(...)) but instead .detachPlain() which in turn
+#   calls base::detach() in such a way that neither detach hook nor
+#   .Last.lib() are called.
 # 2007-09-17
 # o BUG FIX: moveInSearchPath() would make the package environment loose 
 #   the 'path' attribute, which is for instance needed by 
