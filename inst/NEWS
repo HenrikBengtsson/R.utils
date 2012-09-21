@@ -8,6 +8,7 @@ o Now insert() silently expands 'values' to be of the same length
 o toCamelCase(..., preserveSameCase=TRUE) makes all-upper-case
   words into same-case words, e.g. toCamelCase("HTML View",
   preserveSameCase=TRUE) outputs "htmlView" (not "hTMLView").
+  Added system tests for toCamelCase().
 
 
 Version: 1.16.2 [2012-09-12]

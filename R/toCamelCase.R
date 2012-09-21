@@ -73,6 +73,9 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
       s2[isUpperCase] <- s[isUpperCase];
       paste(s2, collapse="");
     }); 
+    if (!capitalize) {
+      s <- decapitalize(s); 
+    }
   }
 
   s <- unlist(s);
