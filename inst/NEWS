@@ -5,6 +5,9 @@ Package: R.utils
 Version: 1.16.3 [2012-09-21]
 o Now insert() silently expands 'values' to be of the same length 
   as 'ats', iff length(values) == 1.
+o toCamelCase(..., preserveSameCase=TRUE) makes all-upper-case
+  words into same-case words, e.g. toCamelCase("HTML View",
+  preserveSameCase=TRUE) outputs "htmlView" (not "hTMLView").
 
 
 Version: 1.16.2 [2012-09-12]
