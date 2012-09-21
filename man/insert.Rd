@@ -21,13 +21,23 @@
 \arguments{
   \item{x}{The \code{\link[base]{vector}} of data values.}
   \item{ats}{The indices of \code{x} where the values should be inserted.}
-  \item{values}{A \code{\link[base]{list}} or a \code{\link[base]{vector}} of the values to be inserted.}
+  \item{values}{A \code{\link[base]{list}} or a \code{\link[base]{vector}} of the values to be inserted.
+     Should be of same length as \code{ats}, unless if a single value
+     when it is automatically extended without a warning.}
   \item{useNames}{If \code{\link[base:logical]{FALSE}}, the names attribute is dropped/ignored,
      otherwise not.  Only applied if argument \code{x} is named.}
   \item{...}{Not used.}
 }
 
 \examples{
+
+# Insert NAs (default) between all values
+y <- c(a=1, b=2, c=3)
+print(y)
+x <- insert(y, ats=2:length(y))
+Ex <- c(y[1], NA, y[2], NA, y[3])
+print(x)
+stopifnot(identical(x,Ex))
 
 # Insert at first position
 y <- c(a=1, b=2, c=3)

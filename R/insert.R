@@ -12,7 +12,9 @@
 # \arguments{
 #   \item{x}{The @vector of data values.}
 #   \item{ats}{The indices of \code{x} where the values should be inserted.}
-#   \item{values}{A @list or a @vector of the values to be inserted.}
+#   \item{values}{A @list or a @vector of the values to be inserted.
+#      Should be of same length as \code{ats}, unless if a single value
+#      when it is automatically extended without a warning.}
 #   \item{useNames}{If @FALSE, the names attribute is dropped/ignored, 
 #      otherwise not.  Only applied if argument \code{x} is named.}
 #   \item{...}{Not used.}
@@ -71,8 +73,12 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   }
 
   if (length(ats) != length(values)) {
-    throw("Argument 'ats' and argument 'values' has different lengths: ", 
+    if (length(values) == 1) {
+      values <- rep(values, length.out=length(ats));
+    } else {
+      throw("Argument 'ats' and argument 'values' has different lengths: ", 
                                        length(ats), " != ", length(values));
+    }
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -154,6 +160,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
 
 ############################################################################
 # HISTORY:
+# 2012-09-21
+# o Now insert() silently expands 'values' to be of the same length 
+#   as 'ats', iff length(values) == 1.
 # 2008-12-27
 # o Added argument 'useNames' to insert(), which is now aware of names
 #   of the input object.

@@ -1,4 +1,12 @@
 
+# Insert NAs (default) between all values
+y <- c(a=1, b=2, c=3)
+print(y)
+x <- insert(y, ats=2:length(y))
+Ex <- c(y[1], NA, y[2], NA, y[3])
+print(x)
+stopifnot(identical(x,Ex))
+
 # Insert at first position
 y <- c(a=1, b=2, c=3)
 print(y)

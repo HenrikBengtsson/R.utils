@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.16.3 [2012-09-21]
+o Now insert() silently expands 'values' to be of the same length 
+  as 'ats', iff length(values) == 1.
+
+
 Version: 1.16.2 [2012-09-12]
 o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
   .Internal(detach(...)) but instead base::detach() in such a
