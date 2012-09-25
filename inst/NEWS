@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.16.4 [2012-09-24]
+o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
+
+
 Version: 1.16.3 [2012-09-21]
 o Now insert() silently expands 'values' to be of the same length 
   as 'ats', iff length(values) == 1.

@@ -142,7 +142,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     if (fileAccess(pathname, mode=4) == -1) {
       throw("Pathname exists, but there is no permission to read file: ", pathname);
     }
-  }
+  } # if (mustExist)
     
   pathname;
 }, static=TRUE)
@@ -1039,16 +1039,16 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
 
 
 
-setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
+setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
   if (is.null(path))
     return(NULL);
 
-  pathname <- getReadablePathname(static, path=path, ...);
-  if (!is.na(pathname) && !isDirectory(pathname)) {
+  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
+  if (mustExist && !is.na(path) && !isDirectory(path)) {
     throw("Argument 'path' is not a directory: ", path);
   }
 
-  pathname;
+  path;
 }, static=TRUE, protected=TRUE)
 
 
@@ -1123,6 +1123,8 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2012-09-24
+# o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
 # 2011-11-15
 # o SPEEDUP: Now Arguments$getCharacters(s, asGString=TRUE) is much
 #   faster for elements of 's' that are non-GStrings.  For long character
