@@ -65,12 +65,12 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   links <- c(link, sprintf("%s.LNK", link));
   if (any(file.exists(links))) {
     if (skip) {
-      warning("Link was not create. File already exists: ", link);
+      warning("Link was not create. Link file already exists: ", link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
       return(res);
     }
     if (!overwrite) {
-      throw("Cannot create link. File already exists: ", link);
+      throw("Cannot create link. Link file already exists: ", link);
     }
   }
 
