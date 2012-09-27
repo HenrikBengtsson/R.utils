@@ -18,6 +18,8 @@
 #     \code{target} argument, if possible.}
 #   \item{target}{The target file or directory to which the shortcut should
 #     point to.}
+#   \item{skip}{If @TRUE and a file with the same name as argument 
+#     \code{link} already exists, then the nothing is done.}
 #   \item{overwrite}{If @TRUE, an existing link file is overwritten, 
 #     otherwise not.}
 #   \item{methods}{A @character @vector specifying what methods (and in
@@ -39,7 +41,10 @@
 # @keyword file
 # @keyword IO
 #*/###########################################################################
-setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...) {
+setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...) {
+  # Argument 'skip':
+  skip <- Arguments$getLogical(skip);
+
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite);
 
@@ -56,8 +61,17 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
       throw("Cannot infer a valid link name from argument 'target': ", target);
     }
   }
-  if (!overwrite && file.exists(link)) {
-    throw("Cannot create link. File already exists: ", link);
+
+  links <- c(link, sprintf("%s.LNK", link));
+  if (any(file.exists(links))) {
+    if (skip) {
+      warning("Link was not create. File already exists: ", link);
+      res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      return(res);
+    }
+    if (!overwrite) {
+      throw("Cannot create link. File already exists: ", link);
+    }
   }
 
   # Argument 'methods':
@@ -71,6 +85,28 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
   path <- Arguments$getWritablePath(path);
   rm(path);
 
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Overwrite?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (overwrite) {
+    linksS <- links[file.exists(links)];
+    if (length(linksS) > 0) {
+      linksD <- sprintf("%s.%s", linksS, basename(tempdir()));
+      # Remove current link, by renaming to a temporary name.
+      file.rename(linksS, linksD);
+      on.exit({
+        # Undo if failing to create link below.
+        if (length(linksS) > 0) {
+          file.rename(linksD, linksS);
+        } else if (length(linksD) > 0) {
+          file.remove(linksD);
+        }
+      });
+    }
+  }
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Unix: Try to create a symbolic link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -83,6 +119,7 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
     }, warning = function(ex) {
     });
     if (!is.null(res)) {
+      if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
       return(res);
     }
 
@@ -112,6 +149,7 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
     }, error = function(ex) {
     });
     if (!is.null(res)) {
+      if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
       return(res);
     }
   }
@@ -128,6 +166,7 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
     }, error = function(ex) {
     });
     if (!is.null(res)) {
+      if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
       return(res);
     }
   }
@@ -142,6 +181,13 @@ setMethodS3("createLink", "default", function(link=".", target, overwrite=FALSE,
 
 ############################################################################
 # HISTORY:
+# 2012-09-26
+# o Added argument 'skip' to createLink().
+# o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 
+#   the overwrite, iff it failed to create the new link.
+# o BUG FIX: createLink(..., overwrite=TRUE) would give an error saying
+#   "file already exists" (iff that is true) when it tries to create
+#   a "unix-symlink" link.  Thanks Taku Tokuyasu at UCSF for the report.
 # 2012-09-07
 # o Now createLink() also supports targets with '~' in the path.
 # o ROBUSTNESS/BUG FIX: On Windows, it could happen that createLink() 

@@ -12,7 +12,7 @@
 
  \title{Creates a link to a file or a directory}
 
- \usage{\method{createLink}{default}(link=".", target, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...)}
+ \usage{\method{createLink}{default}(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...)}
 
  \description{
    Creates a link to a file or a directory.
@@ -27,6 +27,8 @@
      \code{target} argument, if possible.}
    \item{target}{The target file or directory to which the shortcut should
      point to.}
+   \item{skip}{If \code{\link[base:logical]{TRUE}} and a file with the same name as argument
+     \code{link} already exists, then the nothing is done.}
    \item{overwrite}{If \code{\link[base:logical]{TRUE}}, an existing link file is overwritten,
      otherwise not.}
    \item{methods}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying what methods (and in

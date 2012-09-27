@@ -2,6 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.16.5 [2012-09-26]
+o Added argument 'skip' to createLink().
+o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 
+  the overwrite, iff it failed to create the new link.
+o BUG FIX: createLink(..., overwrite=TRUE) would give an error saying
+  "file already exists" (iff that is true) when it tries to create
+  a "unix-symlink" link.  Thanks Taku Tokuyasu at UCSF for the report.
+
+
 Version: 1.16.4 [2012-09-24]
 o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
 
