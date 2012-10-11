@@ -39,6 +39,14 @@
  If \code{"error"} a \code{\link{TimeoutException}} is thrown.
 }
 
+\details{
+ This method utilizes \code{\link[base]{setTimeLimit}}() by first setting the
+ timeout limits, then evaluating the expression that may or may not
+ timeout.  The method is guaranteed to reset the timeout limits to be
+ infitely long upon exiting, regardless whether it returns normally
+ or preemptively due to a timeout or an error.
+}
+
 \section{Non-supported cases}{
  It is not possible to interrupt/break out of a "readline" prompt
  (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using

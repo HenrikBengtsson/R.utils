@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.16.6 [2012-10-09]
+o BUG FIX: evalWithTimeout() would not reset the time limits after
+  returning.  Thanks to Gregory Ryslik at Yale University for 
+  reporting on this.
+
+
 Version: 1.16.5 [2012-09-26]
 o Added argument 'skip' to createLink().
 o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 

@@ -30,6 +30,14 @@
 #  If \code{"error"} a @see "TimeoutException" is thrown.
 # }
 #
+# \details{
+#  This method utilizes @see "base::setTimeLimit" by first setting the
+#  timeout limits, then evaluating the expression that may or may not
+#  timeout.  The method is guaranteed to reset the timeout limits to be
+#  infitely long upon exiting, regardless whether it returns normally
+#  or preemptively due to a timeout or an error.
+# }
+#
 # \section{Non-supported cases}{
 #  It is not possible to interrupt/break out of a "readline" prompt
 #  (e.g. @see "base::readline" and @see "base::readLines") using
@@ -69,6 +77,10 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
   res <- invisible();
 
   setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE);
+  on.exit({
+    setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE);
+  });
+
   tryCatch({
     res <- eval(..., envir=envir);
   }, error = function(ex) {
@@ -95,6 +107,10 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
 
 ############################################################################
 # HISTORY:
+# 2012-10-09 [HB on Kauai]
+# o BUG FIX: evalWithTimeout() would not reset the time limits after
+#   returning. Thanks to Gregory Ryslik at Yale University for reporting
+#   on this.
 # 2011-12-30
 # o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
 #   does not throw a timeout exception until after readline() returns.
