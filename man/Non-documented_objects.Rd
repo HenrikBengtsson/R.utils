@@ -27,6 +27,7 @@
  \alias{getNumerics}
  \alias{getVector}
  \alias{getVerbose}
+ \alias{getFilename}
  \alias{getReadablePathname}
  \alias{getReadablePathnames}
  \alias{getWritablePathname}

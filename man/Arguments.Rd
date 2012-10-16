@@ -39,6 +39,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{getDouble} \tab  -\cr
  \tab \code{\link[R.utils:getDoubles.Arguments]{getDoubles}} \tab Coerces to a double vector and validates.\cr
  \tab \code{\link[R.utils:getEnvironment.Arguments]{getEnvironment}} \tab Gets an existing environment.\cr
+ \tab \code{\link[R.utils:getFilename.Arguments]{getFilename}} \tab Gets and validates a filename.\cr
  \tab \code{getIndex} \tab  -\cr
  \tab \code{\link[R.utils:getIndices.Arguments]{getIndices}} \tab Coerces to a integer vector and validates.\cr
  \tab \code{\link[R.utils:getInstanceOf.Arguments]{getInstanceOf}} \tab Gets an instance of the object that is of a particular class.\cr

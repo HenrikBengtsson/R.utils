@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.17.0 [2012-10-16]
+o Moved Arguments$getFilename() from R.filesets to R.utils.
+  Added Rd help.
+o ROBUSTNESS: Bumped up package dependencies.
+
+
 Version: 1.16.6 [2012-10-09]
 o BUG FIX: evalWithTimeout() would not reset the time limits after
   returning.  Thanks to Gregory Ryslik at Yale University for 
