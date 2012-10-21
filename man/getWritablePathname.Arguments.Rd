@@ -19,8 +19,8 @@
  Gets a writable pathname.
 }
 
-\synopsis{getWritablePathname.Arguments(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE)}
-\usage{Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE)}
+\synopsis{getWritablePathname.Arguments(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)}
+\usage{Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}.}
@@ -32,6 +32,8 @@
     pathname is accepted.}
   \item{mkdirs}{If \code{\link[base:logical]{TRUE}}, \code{mustNotExist} is \code{\link[base:logical]{FALSE}}, and the path to
     the file does not exist, it is (recursively) created.}
+  \item{maxTries}{A positive \code{\link[base]{integer}} specifying how many times the
+    method should try to create a missing directory before giving up.}
 }
 
 \value{
@@ -41,6 +43,18 @@
 
 \section{Missing values}{
   If any argument in \code{...} is \code{\link[base]{NA}}, an exception is thrown.
+}
+
+\section{Slow file systems}{
+  On very rare occassions, we have observed on a large shared file
+  system that if one tests for the existance of a directory immediately
+  after creating it with \code{\link[base]{dir.create}}(), it may appear not
+  to be created.  We believe this is due to the fact that there is a
+  short delay between creating a directory and that information being
+  fully propagated on the file system.  To minimize the risk for such
+  false assertions on "slow" file systems, this method tries to create
+  a missing directory multiple times (argument \code{maxTries}) (while
+  waiting a short period of time between each round) before giving up.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

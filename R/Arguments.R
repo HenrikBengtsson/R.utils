@@ -339,6 +339,8 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #     pathname is accepted.}
 #   \item{mkdirs}{If @TRUE, \code{mustNotExist} is @FALSE, and the path to
 #     the file does not exist, it is (recursively) created.}
+#   \item{maxTries}{A positive @integer specifying how many times the
+#     method should try to create a missing directory before giving up.}
 # }
 #
 # \value{
@@ -348,6 +350,18 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #
 # \section{Missing values}{
 #   If any argument in \code{...} is @NA, an exception is thrown.
+# }
+#
+# \section{Slow file systems}{
+#   On very rare occassions, we have observed on a large shared file 
+#   system that if one tests for the existance of a directory immediately 
+#   after creating it with @see "base::dir.create", it may appear not
+#   to be created.  We believe this is due to the fact that there is a
+#   short delay between creating a directory and that information being
+#   fully propagated on the file system.  To minimize the risk for such
+#   false assertions on "slow" file systems, this method tries to create
+#   a missing directory multiple times (argument \code{maxTries}) (while
+#   waiting a short period of time between each round) before giving up.
 # }
 #
 # @author
@@ -361,7 +375,7 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE) {
+setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5L) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -392,39 +406,72 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
       throw("No permission to modify existing file: ", pathname);
     }
   } else {
-    # Check if parent directory exists
+    # Check if directory exists
     path <- getParent(pathname);
     if (!isDirectory(path)) {
-      # Check if parent directory should be created
+      # Does the directory have to exists (mkdirs=FALSE)?
       if (!mkdirs) {
-        path <- Arguments$getReadablePath(path, mustExist=TRUE);
+        path <- getReadablePath(static, path, mustExist=TRUE);
       }
 
-      if (!mkdirs(path)) {
-  	throw("Failed not create file path: ", path);
+      # If not, first try to create the parent directory, iff missing.
+      # This should give a more informative error message, if it fails.
+      pathP <- getParent(path);
+      createParent <- !isDirectory(pathP);
+      if (createParent) {
+        pathnameP <- getWritablePathname(static, file="dummy-not-tested", path=pathP, mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=maxTries);
+      }
+
+      # Argument 'maxTries':
+      maxTries <- getInteger(static, maxTries, range=c(1L,100L));
+
+      # Try to create the directory
+      res <- FALSE;
+      for (tt in 1:maxTries) {
+        mkdirs(path);
+        # Succeeded?
+        res <- isDirectory(path);
+        if (res) break;
+        # If not, wait a bit and try again...
+        Sys.sleep(0.5);
+      } # for (tt in ...)
+
+      if (!res) {
+        # Check if file permissions allow to create a directory
+        pathP <- ifelse(is.null(pathP), ".", pathP);
+        if (fileAccess(pathP, mode=2) == -1) {
+          reason <- ", most likely because of lack of file permissions";
+        } else {
+          reason <- " for unknown reasons"
+        }
+        
+        throw(sprintf("Failed not create file path (tried %d time(s))%s (%s %s but nothing beyond; current directory is '%s'): %s", maxTries, reason, pathP, ifelse(createParent, "was created", "exists"), getwd(), path));
       }
     }
 
-    # Check if file permissions allow to create a file in the directory
-    pathT <- ifelse(is.null(path), ".", path);
-    if (fileAccess(pathT, mode=2) == -1) {
-      throw("No write permission for directory: ", path);
-    }
-
-    # Try to create a file
-    filenameT <- basename(tempfile());
-    pathnameT <- filePath(path, filenameT);
-    on.exit({
-      if (isFile(pathnameT)) {
-        file.remove(pathnameT);
+    filename <- basename(pathname);
+    if (filename != "dummy-not-tested") {
+      # Check if file permissions allow to create a file in the directory
+      pathT <- ifelse(is.null(path), ".", path);
+      if (fileAccess(pathT, mode=2) == -1) {
+        throw("No write permission for directory: ", path);
       }
-    }, add=TRUE);
-    tryCatch({
-      cat(file=pathnameT, Sys.time());
-    }, error = function(ex) {
-      throw("No permission to create a new file in directory: ", path);
-    });
-  }
+  
+      # Try to create a file
+      filenameT <- basename(tempfile());
+      pathnameT <- filePath(path, filenameT);
+      on.exit({
+        if (isFile(pathnameT)) {
+          file.remove(pathnameT);
+        }
+      }, add=TRUE);
+      tryCatch({
+        cat(file=pathnameT, Sys.time());
+      }, error = function(ex) {
+        throw("No permission to create a new file in directory: ", path);
+      });
+    } # if (filename != "dummy-not-tested")
+  } # if (isFile(pathname))
 
   pathname;
 }, static=TRUE)
@@ -457,14 +504,18 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
   }
 
   # Nothing to do?
-  if (isDirectory(pathname))
+  if (isDirectory(pathname)) {
     return(pathname);
+  }
 
-  if (!mkdirs)
+  if (!mkdirs) {
     throw("Directory does not exist: ", pathname);
+  }
 
-  if (!mkdirs(pathname))
+  mkdirs(pathname);
+  if (!isDirectory(pathname)) {
     throw("Failed to create directory (recursively): ", pathname);
+  }
 
   pathname;
 }, static=TRUE, protected=TRUE)
@@ -1239,6 +1290,10 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2012-10-21
+# o ROBUSTNESS: Added argument 'maxTries' to Arguments$getWritablePathname()
+#   to have the method try to create missing directories multiple times
+#   before giving up.
 # 2012-10-16
 # o Moved Arguments$getFilename() from R.filesets to R.utils.
 #   Added Rd help.

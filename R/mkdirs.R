@@ -58,17 +58,25 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
   }
 
   # Finally, create this directory
-  res <- dir.create(pathname);
-  if (!res) {
-    # If failed, try to create it by its relative pathname
-    pathname <- getRelativePath(pathname);
+  if (!isDirectory(pathname)) {
     res <- dir.create(pathname);
+    if (!res) {
+      # If failed, try to create it by its relative pathname
+      pathname <- getRelativePath(pathname);
+      res <- dir.create(pathname);
+    }
   }
+
   res;
 })
 
 ###########################################################################
 # HISTORY: 
+# 2012-10-19
+# o mkdirs(path) could generate a warning if the path was created
+#   by another process as a race condition.  Now it always checks to 
+#   see if the directory already exists just before trying to create
+#   the directory.
 # 2005-08-01
 # o mkdirs() tries to create directory with relative path if absolute
 #   path fails. This sometimes works when the file permission are missing.
