@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.17.4 [2012-10-26]
+o BUG FIX: example(createWindowsShortcut) would throw an error on
+  systems with .Platform$file.sep == "\\".  Thanks Uwe Ligges (R core)
+  for the report.
+
+
 Version: 1.17.3 [2012-10-26]
 o RECOMMENDATION: Since R v2.11.0, you should use base::which() instead
   of whichVector(), which now help("whichVector") also explains.  Also,

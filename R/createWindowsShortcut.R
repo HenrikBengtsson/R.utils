@@ -152,6 +152,9 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
 #############################################################################
 # HISTORY:
+# 2012-10-26
+# o BUG FIX: example(createWindowsShortcut) would throw an error on
+#   systems with .Platform$file.sep == "\\"
 # 2009-10-01
 # o Microsoft has released a document [7] describing the LNK file format.
 # o Created.

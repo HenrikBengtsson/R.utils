@@ -489,7 +489,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #      if (table$.offset != table$length) {
       if (table$.offset != table$unknown2) {
-        warning("Unexpected file format: Length of table structure did not match the number of bytes read.");
+        warning("File format warning: Length of table structure did not match the number of bytes read: ", table$.offset, " != ", table$unknown2);
       }
 
       # Update the offset for file location info

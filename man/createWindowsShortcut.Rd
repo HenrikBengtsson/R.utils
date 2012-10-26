@@ -40,10 +40,10 @@ targets <- list(
 )
 
 for (kk in seq(along=targets)) {
-  cat("Link #", kk, "\n", sep="");
+  cat("Link #", kk, "\n", sep="")
 
-  target <- targets[[kk]];
-  cat("Target: ", target, "\n", sep="");
+  target <- targets[[kk]]
+  cat("Target: ", target, "\n", sep="")
 
   # Name of *.lnk file
   pathname <- sprintf("\%s.LNK", tempfile())
@@ -55,13 +55,14 @@ for (kk in seq(along=targets)) {
 
   # Was it created?
   if (isFile(pathname)) {
-    cat("Created link file: ", pathname, "\n", sep="");
+    cat("Created link file: ", pathname, "\n", sep="")
 
     # Validate that it points to the correct target
-    dest <- filePath(pathname, expandLinks="any")
-    cat("Available target: ", dest, "\n", sep="");
+    dest <- filePath(pathname, expandLinks="any", fsep="/")
+    cat("Available target: ", dest, "\n", sep="")
 
     file.remove(pathname)
+    dest <- normalizePath(dest, winslash="/")
     stopifnot(tolower(dest) == tolower(target))
   }
 }
