@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.17.3 [2012-10-26]
+o RECOMMENDATION: Since R v2.11.0, you should use base::which() instead
+  of whichVector(), which now help("whichVector") also explains.  Also,
+  whichVector() was removed from the help index of the package.
+o CRAN POLICY: Made the examples run faster for R CMD check.
+
+
 Version: 1.17.2 [2012-10-21]
 o ROBUSTNESS: Added argument 'maxTries' to Arguments$getWritablePathname()
   to have the method try to create missing directories multiple times

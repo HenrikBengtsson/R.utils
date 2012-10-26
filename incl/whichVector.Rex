@@ -1,6 +1,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Simulate two large named logical vectors, 
-# one with missing values one with out
+# one with missing values one without
 # - - - - - - - - - - - - - - - - - - - - - - - - - - 
 N <- 1e6;
 

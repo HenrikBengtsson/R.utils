@@ -4,7 +4,8 @@ reset(pb)
 while (!isDone(pb)) {
   x <- rnorm(3e4)
   increase(pb)
-  Sys.sleep(0.02)
+  # Emulate a slow process
+  if (interactive()) Sys.sleep(0.02)
 }
 cat("\n")
 
@@ -14,7 +15,8 @@ reset(pb)
 while (!isDone(pb)) {
   x <- rnorm(3e4)
   increase(pb)
-  Sys.sleep(0.02)
+  # Emulate a slow process
+  if (interactive()) Sys.sleep(0.02)
 }
 
 cat("\n")

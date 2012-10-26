@@ -109,10 +109,8 @@ for (kk in seq(length=nfiles)) {
   lines <- readLines(file)
   nlines <- nlines + length(lines)
 
-  # Emulate slow process
-  if (interactive()) {
-    Sys.sleep(rexp(1, rate=40))
-  }
+  # Emulate a slow process
+  if (interactive()) Sys.sleep(rexp(1, rate=40))
 
   # Update the status bar
   if (sb) {

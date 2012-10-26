@@ -11,7 +11,8 @@ createAtomically <- function(pathname, ...) {
   cat(file=pathnameT, "This file was created atomically:\n");
   for (kk in 1:10) { 
     cat(file=pathnameT, kk, "\n", append=TRUE);
-    Sys.sleep(0.1);
+    # Emulate a slow process
+    if (interactive()) Sys.sleep(0.1)
   }
   cat(file=pathnameT, "END OF FILE\n", append=TRUE);
 

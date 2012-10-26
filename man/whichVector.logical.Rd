@@ -17,8 +17,11 @@
 
  \description{
    Identifies TRUE elements in a logical vector.
-   This method is faster than \code{\link[base]{which}}() for \code{\link[base]{logical}} \code{\link[base]{vector}}s,
-   especially when there are no missing values.
+
+   \emph{NOTE: \code{\link[base]{which}}() should be used instead of this method}
+  unless you are running R (< 2.11.0), for which this method is faster
+   than \code{\link[base]{which}}() for \code{\link[base]{logical}} \code{\link[base]{vector}}s, especially when there
+   are no missing values.
  }
 
  \usage{\method{whichVector}{logical}(x, na.rm=TRUE, use.names=TRUE, ...)}
@@ -37,16 +40,21 @@
  }
 
  \section{Benchmarking}{
-   Simple comparison on R v2.7.1 on Windows XP, show that
+   In R v2.11.0 \code{\link[base]{which}}() was made approx. 10 times
+   faster via a native implementation.  Because of this, this
+   method is of little use and approximately 3 times slower.
+   However, for earlier version of R, this method is still
+   significantly faster.  For example,
+   simple comparison on R v2.7.1 on Windows XP, show that
    this implementation can be more than twice as fast as
    \code{\link[base]{which}}(), especially when there are no missing
    value (and \code{na.rm=FALSE}) is used.
  }
 
- \examples{
-# - - - - - - - - - - - - - - - - - - - - - - - - - -
+ \examples{\dontrun{
+  # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Simulate two large named logical vectors,
-# one with missing values one with out
+# one with missing values one without
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 N <- 1e6;
 
@@ -99,7 +107,8 @@ for (kk in 1:K) {
 cat(sprintf("whichVector(y)/which(y): \%.2f\n", (t2/t1)[3]));
 stopifnot(identical(idxs1, idxs2));
 
-}
+
+ }}
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
@@ -108,5 +117,7 @@ stopifnot(identical(idxs1, idxs2));
  }
 
 
+
 \keyword{methods}
 \keyword{programming}
+\keyword{internal}
