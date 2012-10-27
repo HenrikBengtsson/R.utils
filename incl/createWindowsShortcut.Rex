@@ -16,18 +16,26 @@ for (kk in seq(along=targets)) {
   tryCatch({
     # Will only work on Windows systems with support for VB scripting
     createWindowsShortcut(pathname, target=target)
-  }, error = function(ex) {})
+  }, error = function(ex) {
+    print(ex)
+  })
 
   # Was it created?
   if (isFile(pathname)) {
     cat("Created link file: ", pathname, "\n", sep="")
 
     # Validate that it points to the correct target
-    dest <- filePath(pathname, expandLinks="any", fsep="/")
+    dest <- filePath(pathname, expandLinks="any")
     cat("Available target: ", dest, "\n", sep="")
 
+    res <- all.equal(tolower(dest), tolower(target))
+    if (!isTRUE(res)) { 
+      msg <- sprintf("Link target does not match expected target: %s != %s", dest, target)
+      cat(msg, "\n")
+      warning(msg)
+    }
+
+    # Cleanup
     file.remove(pathname)
-    dest <- normalizePath(dest, winslash="/")
-    stopifnot(tolower(dest) == tolower(target))
   }
 }

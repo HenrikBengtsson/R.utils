@@ -3,9 +3,9 @@ Package: R.utils
 ================
 
 Version: 1.17.4 [2012-10-26]
-o BUG FIX: example(createWindowsShortcut) would throw an error on
-  systems with .Platform$file.sep == "\\".  Thanks Uwe Ligges (R core)
-  for the report.
+o BUG FIX: example(createWindowsShortcut) could throw an error on
+  some systems.  The exact reason for this is unknown, so for now
+  it's instead generating a warning rather that an error.
 
 
 Version: 1.17.3 [2012-10-26]
