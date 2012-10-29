@@ -27,7 +27,7 @@
 #      Shortcut files are ignored.  If \code{"local"}, the absolute target 
 #      on the local file system is used. If \code{"relative"}, the relative 
 #      target is used. If \code{"network"}, the network target is used. If 
-#      \code{"any"}, the first the local, then the relative and finally the
+#      \code{"any"}, first the local, then the relative and finally the
 #      network target is searched for.}
 #   \item{mustExist}{If @TRUE and if the target does not exist, the original
 #      pathname, that is, argument \code{pathname} is returned. In all other
@@ -40,8 +40,8 @@
 # }
 # 
 # \details{
-#   If \code{expandLinks==TRUE}, each component, call it \emph{parent}, in
-#   the absolute path is processed from the left to the right as follows:
+#   If \code{expandLinks != "none"}, each component, call it \emph{parent}, 
+#   in the absolute path is processed from the left to the right as follows:
 #   1. If a "real" directory of name \emph{parent} exists, it is followed.
 #   2. Otherwise, if Microsoft Windows Shortcut file with name 
 #      \emph{parent.lnk} exists, it is read. If its local target exists, that
@@ -66,6 +66,7 @@
 # @author
 #
 # \seealso{
+#   @see "readWindowsShellLink".
 #   @see "readWindowsShortcut".
 #   @see "base::file.path".
 # }
@@ -186,28 +187,28 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   isFirst <- TRUE;
   expandedPathname <- NULL;
 
-  ready <- FALSE;
-  while(!ready) {
-    if (length(components) == 0) {
-      ready <- TRUE;
-      break;
-    }
 
+  while(length(components) > 0L) {
     # Get next component
     component <- components[1];
     components <- components[-1];
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # a. Create the pathname to check
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (isFirst) {
       pathname <- component;
     } else {
       pathname <- paste(expandedPathname, component, sep=fsep);
     }
 
-    if (verbose)
+    if (verbose) {
       print(pathname);
+    }
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # b. Is it an explicit Windows Shortcut?  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     isWindowsShortcut <- (regexpr("[.](lnk|LNK)$", pathname) != -1);
     if (isWindowsShortcut) {
       # i. ...then follow it.
@@ -241,49 +242,56 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       lnkFile <- lnkFile[1];
     } # if (isWindowsShortcut)
 
-    # c. Try to read Windows shortcut  
-    tryCatch({
-      lnk <- readWindowsShortcut(lnkFile);
-    }, error=function(ex) {
-      if (verbose) {
-        msg <- paste("Invalid Windows shortcut found when expanding pathname '", pathname0, "': ", lnkFile, sep="");
-        cat(msg, "\n");
-        print(ex);
-      }
-      # It is not possible to call break inside a tryCatch() statement.
-      ready <<- TRUE;
-    })
-    if (ready)
-      break;
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # c. Try to read Windows shortcut
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    lnk <- tryCatch({
+      # (i) using new reader
+      readWindowsShellLink(lnkFile);
+    }, error=function(ex) {
+      # (ii) using old reverse-enginered reader
+      tryCatch({
+        readWindowsShortcut(lnkFile);
+      }, error=function(ex) {
+        if (verbose) {
+          msg <- paste("Invalid Windows shortcut found when expanding pathname '", pathname0, "': ", lnkFile, sep="");
+          cat(msg, "\n");
+          print(ex);
+        }
+        return(NULL);
+      });
+    });
+
+    # Failed to read Windows Shell Link, then don't continue
+    if (is.null(lnk)) {
+      break;
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # d. Check for a local pathname and then for a network pathname
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     pathname <- NULL;
     if (expandLinks == "any") {
-      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
-        pathname <- lnk$pathname;
- 
-        if (is.null(pathname))
-          pathname <- lnk$relativePath;
-      }
-
-      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
-        if (is.null(pathname))
+      pathname <- lnk$pathname;
+      if (is.null(pathname)) {
+        pathname <- lnk$relativePathname;
+        if (is.null(pathname)) {
           pathname <- lnk$networkPathname;
+        }
       }
     } else if (expandLinks == "local") {
-      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
-        pathname <- lnk$pathname;
-      }
+      pathname <- lnk$pathname;
     } else if (expandLinks %in% c("relative")) {
-      if (is.null(expandedPathname))
+      if (is.null(expandedPathname)) {
         expandedPathname <- removeUpsFromPathname(pathname0);
-      pathname <- paste(expandedPathname, lnk$relativePath, sep=fsep);
-      if (removeUps)
-        pathname <- removeUpsFromPathname(pathname);
-    } else if (expandLinks %in% c("network")) {
-      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
-        pathname <- lnk$networkPathname;
       }
+      pathname <- paste(expandedPathname, lnk$relativePathname, sep=fsep);
+      if (removeUps) {
+        pathname <- removeUpsFromPathname(pathname);
+      }
+    } else if (expandLinks %in% c("network")) {
+      pathname <- lnk$networkPathname;
     }
 
     if (is.null(pathname)) {
@@ -295,7 +303,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     }
 
     expandedPathname <- pathname;
-  } # repeat
+  } # while(...)
 
   # Are there any remaining components.
   if (length(components) > 0) {
@@ -306,14 +314,31 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     }
   }
 
-  if (removeUps)
+  if (is.null(pathname)) {
+    if (mustExist) {
+      pathname <- pathname0;
+    } else {
+      stop(sprintf("Failed to expand file path (expandLinks=c(%s)): %s", paste(sQuote(expandLinks), collapse=", "), pathname0));
+    }
+  }
+
+  if (removeUps && !is.null(pathname)) {
     pathname <- removeUpsFromPathname(pathname);
+  }
 
   pathname;
 }) # filePath()
 
+
 #############################################################################
 # HISTORY: 
+# 2012-10-29
+# o ROBUSTNESS: Now filePath(.., expandLinks, mustExist=FALSE) gives an
+#   informative error if path could not be expanded.
+# o GENERALIZATION: Now filePath() does a better job reading Windows
+#   Shell Links/Windows Shortcut (*.lnk) files.
+# o GENERALIZATION/CLEANUP: Now filePath() needs to know less about the 
+#   Windows Shell Link file format, when expanding *.lnk files.
 # 2009-12-30
 # o ROBUSTNESS: Any NA arguments in '...' to filePath(...) would be parsed 
 #   as "NA" resulting in paths such as "NA/foo/NA" (just as file.path() 

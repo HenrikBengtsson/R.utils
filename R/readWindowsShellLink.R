@@ -481,7 +481,6 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       # Parse the volume label
       data <- id$data;
       if (offset > 0L) {
-        print(offset);
         data <- data[-c(1:offset)];
       }
       n <- which(data == as.raw(0x0))-1L;
@@ -919,6 +918,15 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For convenience
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  key <- "relativePath";
+  if (is.element(key, names(lnk$stringData))) {
+    value <- lnk$stringData[[key]];
+    if (!clean) {
+      value <- value$data;
+    }
+    lnk$relativePathname <- value;
+  }
+
   key <- "localBasePath";
   if (is.element(key, names(lnk$linkInfo))) {
     path <- lnk$linkInfo[[key]];

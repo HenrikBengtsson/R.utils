@@ -36,7 +36,7 @@
       Shortcut files are ignored.  If \code{"local"}, the absolute target
       on the local file system is used. If \code{"relative"}, the relative
       target is used. If \code{"network"}, the network target is used. If
-      \code{"any"}, the first the local, then the relative and finally the
+      \code{"any"}, first the local, then the relative and finally the
       network target is searched for.}
    \item{mustExist}{If \code{\link[base:logical]{TRUE}} and if the target does not exist, the original
       pathname, that is, argument \code{pathname} is returned. In all other
@@ -49,8 +49,8 @@
  }
 
  \details{
-   If \code{expandLinks==TRUE}, each component, call it \emph{parent}, in
-   the absolute path is processed from the left to the right as follows:
+   If \code{expandLinks != "none"}, each component, call it \emph{parent},
+   in the absolute path is processed from the left to the right as follows:
    1. If a "real" directory of name \emph{parent} exists, it is followed.
    2. Otherwise, if Microsoft Windows Shortcut file with name
       \emph{parent.lnk} exists, it is read. If its local target exists, that
@@ -88,6 +88,7 @@ print(filename)
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
+   \code{\link{readWindowsShellLink}}().
    \code{\link{readWindowsShortcut}}().
    \code{\link[base]{file.path}}().
  }

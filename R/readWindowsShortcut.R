@@ -577,6 +577,11 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For convenience
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  value <- lnk$relativePath;
+  if (!is.null(value)) {
+    lnk$relativePathname <- value;
+  }
+
   if (header$flags["pointsToFileOrDirectory"]) {
     if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
       lnk$pathname <- paste(lnk$fileLocationInfo$basePathname, 
@@ -597,6 +602,10 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2012-10-29
+# o Now readWindowsShortcut() returns list element 'relativePathname',
+#   which is identical to 'relativePath'.  This is just to be consistent
+#   with the new readWindowsShellLink().
 # 2011-09-24
 # o Internal readDWord() and readQWord() of readWindowsShortcut() would
 #   try read 4- and 8-byte integers as non-signed, which is not supported

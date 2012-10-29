@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.18.0 [2012-10-29]
+o GENERALIZATION: Now filePath() does a better job reading Windows
+  Shell Links/Windows Shortcut (*.lnk) files.
 o Added trial version of readWindowsShellLink(), which eventually
   will replace readWindowsShortcut().
 
