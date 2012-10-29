@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.18.0 [2012-10-29]
+o Added trial version of readWindowsShellLink(), which eventually
+  will replace readWindowsShortcut().
+
+
 Version: 1.17.4 [2012-10-26]
 o BUG FIX: example(createWindowsShortcut) could throw an error on
   some systems.  The exact reason for this is unknown, so for now
