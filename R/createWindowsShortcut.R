@@ -132,8 +132,14 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate correctness
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Throws a parsing error
-  lnk <- readWindowsShortcut(pathname);
+  # Try to read Windows shortcut (throws a parsing error if so)
+  lnk <- tryCatch({
+    # (i) Try using new reader...
+    readWindowsShellLink(pathname);
+  }, error = function(ex) {
+    # (ii) ...using old reverse-enginered reader
+    readWindowsShortcut(pathname);
+  });
 
   target0 <- getAbsolutePath(target);
   target1 <- Arguments$getReadablePathname(link);
@@ -152,6 +158,9 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
 #############################################################################
 # HISTORY:
+# 2012-10-29
+# o ROBUSTNESS: Now createWindowsShortcut() uses an improved validation
+#   strategy of the created *.lnk file.
 # 2009-10-01
 # o Microsoft has released a document [7] describing the LNK file format.
 # o Created.
