@@ -95,7 +95,9 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
     path <- gsub("^[.][/\\]", "", path);
 
     # Follow Windows shortcut links
-    path <- filePath(path, expandLinks="any");
+    # NB: Here 'mustExist=TRUE' means that filePath() will always return
+    # a pathname, not that it will give an error if file does not exist.
+    path <- filePath(path, expandLinks="any", mustExist=TRUE);
 
     # Does the path exist and is it a directory
     # Note, isdir is TRUE for directories, FALSE for files,

@@ -217,7 +217,9 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     }
   }
 
-  pathname <- filePath(path, file, expandLinks="any");
+  # NB: Here 'mustExist=TRUE' means that filePath() will always return
+  # a pathname, not that it will give an error if file does not exist.
+  pathname <- filePath(path, file, expandLinks="any", mustExist=TRUE);
 
   if (absolutePath) {
     pathname <- getAbsolutePath(pathname);

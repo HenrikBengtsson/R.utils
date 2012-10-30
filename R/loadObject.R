@@ -43,7 +43,6 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (!inherits(file, "connection")) {
-    ## file <- filePath(path, file, expandLinks="any");
     file <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE);
   }
 
