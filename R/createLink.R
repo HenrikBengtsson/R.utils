@@ -7,9 +7,12 @@
 #
 # \description{
 #   @get "title".
-#   First it tries to create a (Unix-like) symbolic link and if that was
-#   not successful it tries to create a Windows Shortcut link.
-#   If neither works, an exception is thrown.
+#   This method tries to create a link to a file/directory on the
+#   file system, e.g. a symbolic link and Windows Shortcut links.
+#   It depends on operating and file system (and argument settings),
+#   which type of link is finally created, but all this is hidden 
+#   internally so that links can be created the same way regardless
+#   of system.
 # }
 #
 # \arguments{
@@ -36,6 +39,11 @@
 # \seealso{
 #   @see "createWindowsShortcut" and
 #   \code{\link[base:files]{file.symlink}()}
+# }
+#
+# \references{
+#   Ben Garrett, \emph{Windows File Junctions, Symbolic Links and Hard Links},
+#   September 2009 [\url{http://goo.gl/R21AC}]\cr
 # }
 #
 # @keyword file
@@ -181,6 +189,8 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2012-11-01
+# o Updated the Rd help.
 # 2012-09-26
 # o Added argument 'skip' to createLink().
 # o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 
