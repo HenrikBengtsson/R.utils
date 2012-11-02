@@ -53,6 +53,9 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
+  destpath <- dirname(destname);
+  if (!isDirectory(destpath)) mkdirs(destpath);
+
   inn <- file(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
@@ -95,6 +98,9 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
+  destpath <- dirname(destname);
+  if (!isDirectory(destpath)) mkdirs(destpath);
+
   inn <- gzfile(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
@@ -132,6 +138,9 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
 ############################################################################
 # HISTORY:
+# 2012-11-01
+# o Now gzip()/gunzip() creates the directory of destination pathname
+#   'destfile', iff missing.
 # 2008-11-03
 # o Now gzip() and gunzip() removes the partially written output file if
 #   the process is interrupted.

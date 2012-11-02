@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.18.1 [2012-10-31]
+o Now gzip()/gunzip() creates the directory of destination pathname
+  'destfile', iff missing.
+
+
 Version: 1.18.0 [2012-10-29]
 o Added trial version of readWindowsShellLink(), which eventually
   will replace readWindowsShortcut().
