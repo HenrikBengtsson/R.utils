@@ -88,12 +88,16 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   # Build header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (!is.null(header)) {
-    header$createdBy <- createdBy;
-    header$createdOn <- createdOn;
+    if (!is.null(createdBy)) {
+      header$createdBy <- createdBy;
+    }
+    if (!is.null(createdOn)) {
+      header$createdOn <- createdOn;
+    }
     header$nbrOfRows <- nbrOfRows;  
     header$nbrOfColumns <- ncol(data);  
     header$columnNames <- colnames(data);
-    header$columnClasses <- sapply(data, FUN=storage.mode);
+    header$columnClasses <- sapply(data, FUN=function(x) class(x)[1L]);
     header <- lapply(header, FUN=paste, collapse=sep);
   }
 
@@ -150,6 +154,13 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
 
 #############################################################################
 # HISTORY:
+# 2012-11-04
+# o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
+#   would contain "integer" for "factor":s.  Now using class(x)[1] instead
+#   of storage.mode(x) to infer column classes.
+# o BUG FIX: Despite documented header fields 'createdBy' and 'createdOn'
+#   to be ignored if NULL, they did set the corresponding' element in
+#   'header' argument to NULL if they were NULL.
 # 2011-09-12
 # o Added support for writing to a connection.
 # o Added Rdoc comments.

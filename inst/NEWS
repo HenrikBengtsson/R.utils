@@ -2,6 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.18.2 [2012-11-04]
+o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
+  would contain "integer" for "factor":s.  Now using class(x)[1] instead
+  of storage.mode(x) to infer column classes.
+o BUG FIX: Despite documented header fields 'createdBy' and 'createdOn'
+  to be ignored if NULL, they did set the corresponding' element in
+  'header' argument to NULL if they were NULL.
+
+
 Version: 1.18.1 [2012-10-31]
 o Now gzip()/gunzip() creates the directory of destination pathname
   'destfile', iff missing.
