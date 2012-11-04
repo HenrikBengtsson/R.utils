@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.18.2 [2012-11-04]
+o CLEANUP: Replaced all whichVector() with which(), because the
+  latter is now the fastest again.
 o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
   would contain "integer" for "factor":s.  Now using class(x)[1] instead
   of storage.mode(x) to infer column classes.

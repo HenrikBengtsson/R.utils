@@ -60,18 +60,18 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
       break;
 
     # Replace all CRLF:s to become LF:s
-    idxsCR <- whichVector(bfr == CR);
+    idxsCR <- which(bfr == CR);
     nCR <- length(idxsCR);
     if (nCR > 0) {
       idxsCRLF <- idxsCR[(bfr[idxsCR+as.integer(1)] == LF)];
       bfr <- bfr[-idxsCRLF];
       n <- length(bfr);
       rm(idxsCRLF);
-      nCR <- length(whichVector(bfr == CR));
+      nCR <- length(which(bfr == CR));
     }
 
     # Count all CR:s and LF:s
-    nLF <- length(whichVector(bfr == LF));
+    nLF <- length(which(bfr == LF));
     nbrOfLines <- nbrOfLines + (nCR + nLF);
 
     # If last symbol is CR it might be followed by a LF in
