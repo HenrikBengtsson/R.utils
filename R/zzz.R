@@ -12,23 +12,12 @@
   # Add a default Verbose object at threshold -1.
   assign("verbose", Verbose(threshold=-1), pos=pos);
 
-  # Patch for Sys.setenv() and Sys.putenv()
-  # Sys.setenv() replaces Sys.putenv() from R v2.5.0. Code for migration.
-  if (!exists("Sys.setenv", mode="function", envir=baseenv())) {
-    # To please R CMD check on R (>= 2.15.0)
-    Sys.putenv <- NULL; rm("Sys.putenv"); 
-    assign("Sys.setenv", Sys.putenv, pos=pos);
-  }
-
   # Patch for default parse() depending on R version
 #  env <- as.environment("package:R.utils");
 #  setMethodS3("parse", "default", appendVarArgs(base::parse), 
 #                                            conflict="quiet");#  , envir=env);
 #  assign("parse.default", parse.default, pos=pos);
 #  assignInNamespace("parse.default", parse.default, pos=pos);
-
-  # Add as.character.hexmode(), if missing.
-  .patchAsCharacterHexMode();
 
   # Make .Last() call finalizeSession() when R finishes.
   tryCatch({

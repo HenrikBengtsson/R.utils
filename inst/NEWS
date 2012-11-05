@@ -5,6 +5,8 @@ Package: R.utils
 Version: 1.18.2 [2012-11-04]
 o CLEANUP: Replaced all whichVector() with which(), because the
   latter is now the fastest again.
+o CLEANUP: Dropped pre-R 2.3.0 patch of as.character.hexmode().
+o CLEANUP: Dropped pre-R 2.5.0 patch of Sys.setenv().
 o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
   would contain "integer" for "factor":s.  Now using class(x)[1] instead
   of storage.mode(x) to infer column classes.
@@ -14,8 +16,8 @@ o BUG FIX: Despite documented header fields 'createdBy' and 'createdOn'
 
 
 Version: 1.18.1 [2012-10-31]
-o Now gzip()/gunzip() creates the directory of destination pathname
-  'destfile', iff missing.
+o Now gzip()/gunzip()/bunzip2() creates the directory of destination
+  pathname 'destfile', iff missing.
 
 
 Version: 1.18.0 [2012-10-29]

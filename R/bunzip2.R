@@ -42,6 +42,9 @@ setMethodS3("bunzip2", "default", function(filename, destname=gsub("[.]bz2$", ""
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
+  destpath <- dirname(destname);
+  if (!isDirectory(destpath)) mkdirs(destpath); 
+
   inn <- bzfile(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
@@ -71,6 +74,9 @@ setMethodS3("bunzip2", "default", function(filename, destname=gsub("[.]bz2$", ""
 
 ############################################################################
 # HISTORY:
+# 2012-11-04
+# o Now bunzip2() creates the directory of destination pathname
+#   'destfile', iff missing.
 # 2007-08-14
 # o Created from gunzip.R.
 ############################################################################
