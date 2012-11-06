@@ -3,7 +3,7 @@
 status <- R.utils::queryRCmdCheck()
 
 if (status != "notRunning") {
-  cat("The current R session was launched by R CMD check. Status: ", status, "\n")
+  cat("The current R session was launched by R CMD check. Status:", status, "\n")
 } else {
   cat("The current R session was not launched by R CMD check.\n")
 }
