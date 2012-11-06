@@ -46,7 +46,10 @@ queryRCmdCheck <- function(...) {
   pattern <- ".+[.]Rcheck$";
 
   # Is 'R CMD check' checking tests?
-  evidences[["tests"]] <- ((regexpr(pattern, parent) != -1) && (dirname == "tests"));
+  evidences[["tests"]] <- (
+    (regexpr(pattern, parent) != -1) && 
+    (regexpr("^tests(|_.*)$", dirname) != -1)
+  );
 
   # Is the current working directory as expected?
   evidences[["pwd"]] <- (evidences[["tests"]] || (regexpr(pattern, dirname) != -1));
@@ -74,6 +77,9 @@ queryRCmdCheck <- function(...) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-06
+# o BUG FIX: queryRCmdCheck() did not detect "tests" evidences when
+#   'R CMD check' was testing multiple architectures.
 # 2011-11-03
 # o Created.
 ############################################################################
