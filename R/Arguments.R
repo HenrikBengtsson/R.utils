@@ -266,6 +266,18 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 }, static=TRUE)
 
 
+setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
+  if (is.null(path))
+    return(NULL);
+
+  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
+  if (mustExist && !is.na(path) && !isDirectory(path)) {
+    throw("Argument 'path' is not a directory: ", path);
+  }
+
+  path;
+}, static=TRUE, protected=TRUE)
+
 
 
 #########################################################################/**
@@ -1204,21 +1216,6 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
                                                    .name, class(envir)[1]));
   }
 }, static=TRUE)
-
-
-
-
-setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
-  if (is.null(path))
-    return(NULL);
-
-  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
-  if (mustExist && !is.na(path) && !isDirectory(path)) {
-    throw("Argument 'path' is not a directory: ", path);
-  }
-
-  path;
-}, static=TRUE, protected=TRUE)
 
 
 
