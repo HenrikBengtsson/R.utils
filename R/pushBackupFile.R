@@ -121,7 +121,7 @@ setMethodS3("pushBackupFile", "default", function(filename, path=NULL, suffix=".
   verbose && exit(verbose);
 
   pathnameB;
-}) # popTemporaryFile()
+}) # pushBackupFile()
 
 
 ############################################################################

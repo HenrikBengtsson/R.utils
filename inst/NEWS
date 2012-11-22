@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.18.4 [2012-11-21]
+o Now declaring all S3 methods in the namespace.
+
+
 Version: 1.18.3 [2012-11-06]
 o BUG FIX: queryRCmdCheck() did not detect "tests" evidences when
   'R CMD check' was testing multiple architectures.
