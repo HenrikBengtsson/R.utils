@@ -2,10 +2,17 @@
 # conflicts() in [R] base.
 .conflicts.OK <- TRUE;
 
+.onLoad <- function(libname, pkgname) {
+  ns <- asNamespace(pkgname);
+  # This make print(R.utils::R.utils) work without loading the package
+  delayedAssign(pkgname, Package(pkgname), assign.env=ns);
+} # .onLoad()
 
-## .First.lib <- function(libname, pkgname) {
+
 .onAttach <- function(libname, pkgname) { 
-  pkg <- Package(pkgname);
+  pos <- which(pkgname == search());
+  if (length(pos) == 1L) {
+    pkg <- Package(pkgname);
   pos <- getPosition(pkg);
   assign(pkgname, pkg, pos=pos);
 
