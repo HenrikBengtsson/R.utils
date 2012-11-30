@@ -11,34 +11,35 @@
 
 .onAttach <- function(libname, pkgname) { 
   pos <- which(pkgname == search());
+
   if (length(pos) == 1L) {
+    # Add a default Verbose object at threshold -1.
+    assign("verbose", Verbose(threshold=-1), pos=pos);
+
+    # Patch for default parse() depending on R version
+#    env <- as.environment("package:R.utils");
+#    setMethodS3("parse", "default", appendVarArgs(base::parse), 
+#                                       conflict="quiet");
+#    assign("parse.default", parse.default, pos=pos);
+#    assignInNamespace("parse.default", parse.default, pos=pos);
+  
+    # Make .Last() call finalizeSession() when R finishes.
+    tryCatch({
+      addFinalizerToLast();
+    }, error=function(ex) {
+      msg <- paste("The R.utils package may have failed to append a session finalizer to .Last(), because: ", ex$message, sep="");
+      warning(msg, call.=FALSE, immediate.=TRUE);
+    })
+
     pkg <- Package(pkgname);
-  pos <- getPosition(pkg);
-  assign(pkgname, pkg, pos=pos);
+    assign(pkgname, pkg, pos=pos);
 
-  # Add a default Verbose object at threshold -1.
-  assign("verbose", Verbose(threshold=-1), pos=pos);
+    onSessionExit(function(...) detachPackage(pkgname));
 
-  # Patch for default parse() depending on R version
-#  env <- as.environment("package:R.utils");
-#  setMethodS3("parse", "default", appendVarArgs(base::parse), 
-#                                            conflict="quiet");#  , envir=env);
-#  assign("parse.default", parse.default, pos=pos);
-#  assignInNamespace("parse.default", parse.default, pos=pos);
-
-  # Make .Last() call finalizeSession() when R finishes.
-  tryCatch({
-    addFinalizerToLast();
-  }, error=function(ex) {
-    msg <- paste("The R.utils package may have failed to append a session finalizer to .Last(), because: ", ex$message, sep="");
-    warning(msg, call.=FALSE, immediate.=TRUE);
-  })
-
-  onSessionExit(function(...) detachPackage(pkgname));
-
-  packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
-    getDate(pkg), ") successfully loaded. See ?", pkgname, " for help.");
-}
+    packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
+      getDate(pkg), ") successfully loaded. See ?", pkgname, " for help.");
+  } # if (length(pos) == 1L)
+} # .onAttach()
 
 
 .Last.lib <- function(libpath) {

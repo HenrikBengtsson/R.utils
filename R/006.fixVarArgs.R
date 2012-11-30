@@ -30,13 +30,6 @@ setMethodS3("cat", "default", function(...) {
   base::cat(...);
 })
 
-# Other fixes to avoid .Internal()
-lapply <- function(...) UseMethod("lapply");
-setMethodS3("lapply", "default", function(...) {
-  base::lapply(...);
-})
-
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Methods in 'base'

@@ -47,11 +47,10 @@ setConstructorS3("MultiVerbose", function(verboseList=NULL, ...) {
 })
 
 
-
 ###########################################################################/**
-# @RdocMethod lapply
+# @RdocMethod as.list
 #
-# @title "Applies a function to each of the Verbose objects"
+# @title "Gets a list of Verbose objects"
 #
 # \description{
 #   @get "title".
@@ -60,11 +59,11 @@ setConstructorS3("MultiVerbose", function(verboseList=NULL, ...) {
 # @synopsis
 #
 # \arguments{
-#  \item{...}{Objects passed to @see "base::lapply".}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
-#   Returns what @see "base::lapply" returns.
+#   Returns a @list of @see "Verbose" objects.
 # }
 #
 # @author
@@ -73,13 +72,11 @@ setConstructorS3("MultiVerbose", function(verboseList=NULL, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("lapply", "MultiVerbose", function(X, ...) {
+setMethodS3("as.list", "MultiVerbose", function(x, ...) {
   # To please R CMD check
-  this <- X;
-
-  lapply(this$.verboseList, ...);
+  this <- x;
+  this$.verboseList;
 }, protected=TRUE)
-
 
 
 
@@ -95,11 +92,12 @@ setMethodS3("lapply", "MultiVerbose", function(X, ...) {
 # @synopsis
 #
 # \arguments{
-#  \item{...}{Objects to be passed to @seemethod "lapply".}
+#  \item{...}{Additiona objects to be passed to \code{writeRaw()} for
+#     each @see "Verbose" object.}
 # }
 #
 # \value{
-#   Returns what @seemethod "lapply" returns.
+#   Returns (invisibly) @TRUE.
 # }
 #
 # @author
@@ -121,6 +119,9 @@ setMethodS3("writeRaw", "MultiVerbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2012-11-29
+# o CLEANUP: Dropped lapply() for MultiVerbose.
+# o Added as.list() to MultiVerbose.
 # 2007-11-26
 # o BUG FIX: writeRaw() of MultiVerbose returned a list of logicals.  Now
 #   it returns TRUE.

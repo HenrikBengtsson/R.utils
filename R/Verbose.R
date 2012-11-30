@@ -1133,7 +1133,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
   for (kk in seq(length = length(args))) {
     expr <- args[[kk]];
     if (mode(expr) == "expression") {
-      tmp <- lapply(expr, evalVis);
+      tmp <- lapply(expr, FUN=evalVis);
     } else if (mode(expr) == "call") {
       tmp <- list(evalVis(expr));
     } else if (mode(expr) == "name") {

@@ -22,11 +22,12 @@
  \usage{\method{writeRaw}{MultiVerbose}(this, ...)}
 
  \arguments{
-  \item{...}{Objects to be passed to \code{\link[R.utils:lapply.MultiVerbose]{*lapply}()}.}
+  \item{...}{Additiona objects to be passed to \code{writeRaw()} for
+     each \code{\link{Verbose}} object.}
  }
 
  \value{
-   Returns what \code{\link[R.utils:lapply.MultiVerbose]{*lapply}()} returns.
+   Returns (invisibly) \code{\link[base:logical]{TRUE}}.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

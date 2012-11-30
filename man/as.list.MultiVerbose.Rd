@@ -6,27 +6,27 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{lapply.MultiVerbose}
-\alias{lapply.MultiVerbose}
-\alias{MultiVerbose.lapply}
-\alias{lapply.MultiVerbose}
-\alias{lapply,MultiVerbose-method}
+ \name{as.list.MultiVerbose}
+\alias{as.list.MultiVerbose}
+\alias{MultiVerbose.as.list}
+\alias{as.list.MultiVerbose}
+\alias{as.list,MultiVerbose-method}
 
 
- \title{Applies a function to each of the Verbose objects}
+ \title{Gets a list of Verbose objects}
 
  \description{
-   Applies a function to each of the Verbose objects.
+   Gets a list of Verbose objects.
  }
 
- \usage{\method{lapply}{MultiVerbose}(X, ...)}
+ \usage{\method{as.list}{MultiVerbose}(x, ...)}
 
  \arguments{
-  \item{...}{Objects passed to \code{\link[base]{lapply}}().}
+  \item{...}{Not used.}
  }
 
  \value{
-   Returns what \code{\link[base]{lapply}}() returns.
+   Returns a \code{\link[base]{list}} of \code{\link{Verbose}} objects.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

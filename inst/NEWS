@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.19.0 [2012-11-29]
+o CLEANUP: Dropped lapply() for MultiVerbose.
+o Added as.list() to MultiVerbose.
+
+
 Version: 1.18.4 [2012-11-21]
 o Now declaring all S3 methods in the namespace.
 
