@@ -46,7 +46,8 @@
   # Revert to original .Last() function
   .LastOriginal <- NULL; # To please R CMD check R v2.6.0
   if (exists(".LastOriginal", mode="function", envir=.GlobalEnv)) {
-    assign(".Last", .LastOriginal, envir=.GlobalEnv);
+    env <- globalenv(); # To please R CMD check
+    assign(".Last", .LastOriginal, envir=env);
     rm(".LastOriginal", envir=.GlobalEnv);
   }
 } # .Last.lib()

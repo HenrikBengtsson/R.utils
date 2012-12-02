@@ -50,7 +50,8 @@ setMethodS3("addFinalizerToLast", "default", function(...) {
       # Otherwise, overwrite old buggy version.
     } else {
       # Rename original .Last() function
-      assign(".LastOriginal", .Last, envir=.GlobalEnv);
+      env <- globalenv(); # To please R CMD check
+      assign(".LastOriginal", .Last, envir=env);
     }
 
     # Define a new .Last() function
@@ -81,7 +82,8 @@ setMethodS3("addFinalizerToLast", "default", function(...) {
   attr(.Last, "finalizeSessionVersion") <- packageDescription("R.utils")$Version;
 
   # Store it.
-  assign(".Last", .Last, envir=.GlobalEnv);
+  env <- globalenv(); # To please R CMD check
+  assign(".Last", .Last, envir=env);
 
   invisible(FALSE);
 }, private=TRUE)
