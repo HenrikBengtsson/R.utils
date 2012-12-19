@@ -10,7 +10,7 @@
 
 
 .onAttach <- function(libname, pkgname) { 
-  pos <- which(pkgname == search());
+  pos <- which(sprintf("package:%s", pkgname) == search());
 
   if (length(pos) == 1L) {
     # Add a default Verbose object at threshold -1.
