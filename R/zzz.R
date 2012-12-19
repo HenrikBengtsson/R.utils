@@ -36,8 +36,7 @@
 
     onSessionExit(function(...) detachPackage(pkgname));
 
-    packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
-      getDate(pkg), ") successfully loaded. See ?", pkgname, " for help.");
+    startupMessage(pkg);
   } # if (length(pos) == 1L)
 } # .onAttach()
 

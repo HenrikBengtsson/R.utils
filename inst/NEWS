@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.19.3 [2012-12-19]
+o Utilizing new startupMessage() of R.oo.
+
+
 Version: 1.19.2 [2012-12-18]
 o R CMD check for R devel no longer gives a NOTE on attach().
 
