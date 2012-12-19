@@ -94,7 +94,8 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 
 
   # Attach at new position
-  attach(env, pos=to, name=attr(env, "name"));
+  attachX <- base::attach;
+  attachX(env, pos=to, name=attr(env, "name"));
 
   # Restore attributes (patch for bug in attach()? /HB 2007-09-17)
   attrs <- attributes(env);
@@ -108,6 +109,8 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 
 ############################################################################
 # HISTORY:
+# 2012-12-18
+# o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-09-12
 # o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
 #   .Internal(detach(...)) but instead .detachPlain() which in turn

@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.19.2 [2012-12-18]
+o R CMD check for R devel no longer gives a NOTE on attach().
+
+
 Version: 1.19.1 [2012-12-02]
 o CLEANUP: R CMD check no longer warns on global assignments.
 o BUG FIX: Arguments$getIndices(x, max=0, disallow="NaN") where 'x'
