@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.19.4 [2013-01-07]
+o Now '.Last.lib' is exported.
+o Bumped up package dependencies.
+
+
 Version: 1.19.3 [2012-12-19]
 o Utilizing new startupMessage() of R.oo.
 

@@ -21,6 +21,9 @@ import("utils")
 # in their names.
 exportPattern("^[^\\.]")
 
+# .Last.lib needs to be exported in order to be used.
+export(.Last.lib)
+
 # Object that must exported explicitly
 export(.conflicts.OK) 
 
