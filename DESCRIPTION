@@ -1,9 +1,9 @@
 Package: R.utils
-Version: 1.19.4
+Version: 1.19.5
 Depends: R (>= 2.5.0), R.oo (>= 1.11.4)
 Imports: utils, R.methodsS3 (>= 1.4.2), R.oo (>= 1.11.4)
 Suggests: digest (>= 0.6.0)
-Date: 2013-01-07
+Date: 2013-01-11
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
