@@ -5,6 +5,7 @@ Package: R.utils
 Version: 1.19.5 [2013-01-11]
 o BUG FIX: Specifying argument 'version' to isPackageLoaded() would give
   "Error: 'manglePackageName' is defunct." in recent versions of R.
+  Thanks to Brian Ripley (R core) for reporting on this.
 
 
 Version: 1.19.4 [2013-01-07]
