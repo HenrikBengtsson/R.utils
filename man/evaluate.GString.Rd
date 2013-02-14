@@ -6,23 +6,24 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{as.character.GString}
-\alias{as.character.GString}
-\alias{GString.as.character}
-\alias{as.character.GString}
-\alias{as.character,GString-method}
+\name{evaluate.GString}
+\alias{evaluate.GString}
+\alias{GString.evaluate}
+\alias{evaluate.GString}
+\alias{evaluate,GString-method}
 
 
-\title{Gets the processed character string}
+\title{Parses and evaluates a GString}
 
 \description{
-  Gets the processed character string.
+  Parses and evaluates a GString.
 }
 
-\usage{\method{as.character}{GString}(x, envir=parent.frame(), ...)}
+\usage{\method{evaluate}{GString}(object, envir=parent.frame(), ...)}
 
 \arguments{
- \item{...}{Not used.}
+ \item{envir}{The \code{\link[base]{environment}} in which the \code{\link{GString}} is evaluated.}
+ \item{...}{Additional arguments passed to \code{\link[R.utils:parse.GString]{*parse}()}.}
 }
 
 \value{

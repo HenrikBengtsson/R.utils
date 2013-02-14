@@ -15,7 +15,7 @@
 
 
 \description{
-  This package provides utility classes and methods useful when programming in R and developing R packages.
+  This package provides utility methods useful when programming and developing R packages.
 
   \emph{Warning}:
   The Application Programming Interface (API) of the classes and methods

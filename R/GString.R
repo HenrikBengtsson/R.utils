@@ -1,5 +1,6 @@
 ###########################################################################/**
-# @RdocClass GString
+# @RdocClass "GString"
+# @set "name=GString-class"
 #
 # @title "Character string with advanced substitutions"
 #
@@ -22,11 +23,15 @@
 #
 # @author
 #
+# \seealso{
+#   For conveniency, see functions @see "gstring" and @see "gcat".
+# }
+#
 # @visibility public
 #*/###########################################################################
 setConstructorS3("GString", function(..., sep="") {
   s <- paste(..., sep=sep);
-  if (length(s) > 1) {
+  if (length(s) > 1L) {
     throw("Trying to coerce more than one character string to a GString, which is not supported.");
   }
   extend(s, "GString");
@@ -163,16 +168,16 @@ setMethodS3("getBuiltinHostname", "GString", function(static, ...) {
   host <- host[host != ""];
 
   # 1. Try calling 'uname'
-  if (length(host) == 0) {
+  if (length(host) == 0L) {
     tryCatch({
-      host <- readLines(pipe("/usr/bin/env uname -n"))
+      host <- readLines(pipe("/usr/bin/env uname -n"));
       host <- host[host != ""];
     }, error = function(ex) {})
   }
 
-  if (length(host) == 0)
+  if (length(host) == 0L)
     host <- NA;
-  host[1];
+  host[1L];
 }, static=TRUE)
 
 
@@ -208,21 +213,21 @@ setMethodS3("getBuiltinUsername", "GString", function(static, ...) {
   user <- user[user != "unknown"];
 
   # 2. Try Sys.getenv()
-  if (length(user) == 0) {
+  if (length(user) == 0L) {
     user <- Sys.getenv(c("USER", "USERNAME"));
     user <- user[user != ""];
   }
 
   # 3. Try calling 'whoami'
-  if (length(user) == 0) {
+  if (length(user) == 0L) {
     tryCatch({
       user <- readLines(pipe("/usr/bin/env whoami"))
       user <- user[user != ""];
     }, error = function(ex) {})
   }
-  if (length(user) == 0)
+  if (length(user) == 0L)
     user <- NA;
-  user[1];
+  user[1L];
 }, static=TRUE)
 
 
@@ -445,20 +450,29 @@ setMethodS3("getBuiltinOs", "GString", function(static, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("getVariableValue", "GString", function(static, name, attributes=NULL, where=c("builtin", "parent", "Sys.getenv", "getOption"), missingValue=NA, ...) {
-  if (is.null(name))
+setMethodS3("getVariableValue", "GString", function(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption", "envir*"), envir=parent.frame(), missingValue=NA, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Argument 'name':
+  if (is.null(name)) {
     throw("Argument 'name' is NULL.");
-
-  if (!is.character(name))
+  } else if (!is.character(name)) {
     throw("Argument 'name' must be a character string: ", mode(name));
+  }
+
+  # Argument 'envir':
+  stopifnot(is.environment(envir));
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Process attributes
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  attrs <- strsplit(attributes, split=", ")[[1]];
-  if (length(attrs) > 0) {
-    isSimpleAttr <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9._]+=.*$", attrs) == -1);
+  attrs <- strsplit(attributes, split=", ")[[1L]];
+  if (length(attrs) > 0L) {
+    isSimpleAttr <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9._]+=.*$", attrs) == -1L);
     simpleAttrs <- attrs[isSimpleAttr];
-    if (length(simpleAttrs) == 0)
+    if (length(simpleAttrs) == 0L)
       simpleAttrs <- NULL;
     attrs <- paste(attrs[!isSimpleAttr], collapse=", ");
     attrs <- eval(parse(text=paste("list(", attrs, ")")));
@@ -470,7 +484,7 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
   value <- NULL;
   for (ww in where) {
     if (ww == "builtin") {
-      capitalizedName <- paste(toupper(substr(name,1,1)), substr(name,2,nchar(name)), sep="");
+      capitalizedName <- paste(toupper(substr(name, start=1L, stop=1L)), substr(name, start=2L, stop=nchar(name)), sep="");
       builtInMethodName <- paste("getBuiltin", capitalizedName, sep="");
       tryCatch({
         args <- list(static);
@@ -479,19 +493,29 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
       }, error = function(ex) { })
     } else if (ww == "Sys.getenv") {
       value <- Sys.getenv(name);
-      if (nchar(value) == 0)
+      if (nchar(value) == 0L)
         value <- NULL;
     } else if (ww == "options") {
       value <- getOption(name);
+    } else if (ww == "envir") {
+      if (exists(name, envir=envir, inherits=FALSE)) {
+        value <- get(name, envir=envir, inherits=FALSE);
+        break;
+      }
+    } else if (ww == "envir*") {
+      if (exists(name, envir=envir, inherits=TRUE)) {
+        value <- get(name, envir=envir, inherits=TRUE);
+        break;
+      }
     } else if (ww == "parent") {
-      n <- 0;
+      n <- 0L;
       while (TRUE) {
-        n <- n + 1;
-        envir <- parent.frame(n=n);
-        if (exists("...abcdef", envir=envir, inherits=FALSE))
+        n <- n + 1L;
+        envirP <- parent.frame(n=n);
+        if (exists("...abcdef", envir=envirP, inherits=FALSE))
           next;
-        if (exists(name, envir=envir, inherits=FALSE)) {
-          value <- get(name, envir=envir, inherits=FALSE);
+        if (exists(name, envir=envirP, inherits=FALSE)) {
+          value <- get(name, envir=envirP, inherits=FALSE);
           break;
         }
         if (identical(envir, .GlobalEnv))
@@ -518,8 +542,8 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
       # Apply simple attributes
       for (attr in simpleAttrs) {
         if (attr == "capitalize") {
-          value <- paste(toupper(substring(value,1,1)), 
-                                 substring(value,2), sep=""); 
+          value <- paste(toupper(substring(value, first=1L, last=1L)), 
+                                 substring(value, first=2L), sep=""); 
         } else {
           tryCatch({
             fcn <- get(attr, mode="function");
@@ -528,7 +552,7 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
         }
       }
 
-      if (any(nchar(value) > 0))
+      if (any(nchar(value) > 0L))
         break;
     }
   } # for (ww in ...)
@@ -538,7 +562,6 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
 
   value;
 }, static=TRUE, private=TRUE)
-
 
 
 
@@ -572,7 +595,7 @@ setMethodS3("parse", "GString", function(object, ...) {
   s <- getRaw(object);
 
   # If there is no markup, then there is nothing to parse
-  if (length(s) == 0 || !regexpr("${", s, fixed=TRUE) != -1) {
+  if (length(s) == 0L || !regexpr("${", s, fixed=TRUE) != -1L) {
     return(list(text=s));
   }
 
@@ -587,8 +610,8 @@ setMethodS3("parse", "GString", function(object, ...) {
     pattern <- "^\\$(\\[.*\\]|)\\{([^\\}]*)\\}";
     pos <- regexpr(pattern, s);
     matchLen <- attr(pos, "match.length");
-    pos <- pos[1];
-    if (pos != -1) {
+    pos <- pos[1L];
+    if (pos != -1L) {
       text <- "";
     } else {
       pattern <- "[^\\\\$]\\$(\\[.*\\]|)\\{([^\\}]*)\\}";
@@ -596,7 +619,7 @@ setMethodS3("parse", "GString", function(object, ...) {
       matchLen <- attr(pos, "match.length");
       pos <- pos[1];
       if (pos != -1) {
-        text <- substr(s, start=1, stop=pos);
+        text <- substr(s, start=1L, stop=pos);
         text <- gsub("\\\\\\$", "$", text);
       } else {
         text <- s;
@@ -609,7 +632,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     prefix <- list(text=text);
     parts <- append(parts, prefix);
 
-    last <- pos + matchLen - 1;
+    last <- pos + matchLen - 1L;
     var <- substr(s, start=pos, stop=last);
 
     attributes <- gsub(pattern, "\\1", var);
@@ -619,7 +642,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     name <- gsub(pattern, "\\2", var);
 
     pattern <- "^(.*)/(.*)/(.*)";
-    if (regexpr(pattern, name) != -1) {
+    if (regexpr(pattern, name) != -1L) {
       searchPattern <- gsub(pattern, "\\2", name);
       replacePattern <- gsub(pattern, "\\3", name);
       name <- gsub(pattern, "\\1", name);
@@ -629,26 +652,99 @@ setMethodS3("parse", "GString", function(object, ...) {
     }
 
     pattern <- "^`(.*)`";
-    isExpression <- (regexpr(pattern, name) != -1);
+    isExpression <- (regexpr(pattern, name) != -1L);
     if (isExpression) {
       call <- gsub(pattern, "\\1", name);
       part <- list(expression=list(call=call));
     } else { 
       part <- list(variable=list(name=name));
     }
-    part[[1]]$attributes <- attributes;
-    part[[1]]$searchReplace <- searchReplace;
+    part[[1L]]$attributes <- attributes;
+    part[[1L]]$searchReplace <- searchReplace;
 
     parts <- append(parts, part);
 
-    s <- substr(s, start=last+1, stop=nchar(s));
-    if (nchar(s) == 0)
+    s <- substr(s, start=last+1L, stop=nchar(s));
+    if (nchar(s) == 0L)
       break;
   } # while(TRUE)
 
   parts;
 }, private=TRUE)
 
+
+
+###########################################################################/**
+# @RdocMethod evaluate
+#
+# @title "Parses and evaluates a GString"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{envir}{The @environment in which the @see "GString" is evaluated.}
+#  \item{...}{Additional arguments passed to @seemethod "parse".}
+# }
+#
+# \value{
+#   Returns a @character string.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#*/###########################################################################
+setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
+  # Argument 'envir':
+  stopifnot(is.environment(envir));
+
+  # If there is no markup, then return alrady here.
+  s <- unclass(object);
+  # If there is no markup, then there is nothing to parse
+  if (length(s) == 0L || !regexpr("${", s, fixed=TRUE) != -1L) {
+    return(s);
+  }
+
+  parts <- parse(object, ...);
+  keys <- names(parts);
+  ...abcdef <- TRUE;
+
+  isVariable <- (keys == "variable");
+  for (kk in which(isVariable)) {
+    part <- parts[[kk]];
+    value <- getVariableValue(object, name=part$name, 
+                              attributes=part$attributes, envir=envir, ...);
+    if (!is.null(part$searchReplace))
+      value <- gsub(part$searchReplace$search, 
+                    part$searchReplace$replace, value);
+    parts[[kk]] <- value;
+  }
+
+  isExpression <- (keys == "expression");
+  for (kk in which(isExpression)) {
+    part <- parts[[kk]];
+    expr <- parse(text=part$call);
+    value <- eval(expr);
+    if (!is.null(part$searchReplace))
+      value <- gsub(part$searchReplace$search, 
+                    part$searchReplace$replace, value);
+    parts[[kk]] <- value;
+  }
+
+  s <- "";
+  for (kk in seq(length=length(parts))) {
+    part <- parts[[kk]];
+    s <- paste(s, part, sep="");
+  }
+
+  s;
+}, protected=TRUE) # evaluate()
 
 
 ###########################################################################/**
@@ -676,58 +772,123 @@ setMethodS3("parse", "GString", function(object, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("as.character", "GString", function(x, ...) {
-  # To please R CMD check
-  object <- x;
+setMethodS3("as.character", "GString", function(x, envir=parent.frame(), ...) {
+  evaluate(x, envir=envir, ...);
+})
 
-  # If there is no markup, then return alrady here.
-  s <- unclass(object);
-  # If there is no markup, then there is nothing to parse
-  if (length(s) == 0 || !regexpr("${", s, fixed=TRUE) != -1) {
-    return(s);
+
+
+
+###########################################################################/**
+# @RdocDefault gstring
+# @alias gstring.GString
+#
+# @title "Parses and evaluates a GString into a regular string"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{...}{@character strings.}
+#   \item{file, path}{Alternatively, a file, a URL or a @connection from 
+#      with the strings are read.
+#      If a file, the \code{path} is prepended to the file, iff given.}
+#  \item{envir}{The @environment in which the @see "GString" is evaluated.}
+# }
+#
+# \value{
+#   Returns a @character string.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "gcat".
+# }
+#*/###########################################################################
+setMethodS3("gstring", "GString", function(s, envir=parent.frame(), ...) {
+  evaluate(s, envir=envir, ...);
+})
+
+setMethodS3("gstring", "default", function(..., file=NULL, path=NULL, envir=parent.frame()) {
+  # Argument 'file' & 'path':
+  if (inherits(file, "connection")) {
+  } else if (is.character(file)) {
+    if (!is.null(path)) {
+      file <- file.path(path, file);
+    }
+    if (!isUrl(file)) {
+      file <- Arguments$getReadablePathname(file, absolute=TRUE);
+    }
   }
 
-  parts <- parse(object, ...);
-  keys <- names(parts);
-  ...abcdef <- TRUE;
-
-  envir <- parent.frame(n=1); # Correct?
-
-  isVariable <- (keys == "variable");
-  for (kk in which(isVariable)) {
-    part <- parts[[kk]];
-    value <- getVariableValue(object, name=part$name, 
-                                    attributes=part$attributes, envir=envir);
-    if (!is.null(part$searchReplace))
-      value <- gsub(part$searchReplace$search, 
-                    part$searchReplace$replace, value);
-    parts[[kk]] <- value;
+  if (is.null(file)) {
+    s <- GString(...);
+  } else {
+    s <- readLines(file);
+    s <- GString(s);
   }
 
-  isExpression <- (keys == "expression");
-  for (kk in which(isExpression)) {
-    part <- parts[[kk]];
-    expr <- parse(text=part$call);
-    value <- eval(expr);
-    if (!is.null(part$searchReplace))
-      value <- gsub(part$searchReplace$search, 
-                    part$searchReplace$replace, value);
-    parts[[kk]] <- value;
-  }
+  gstring(s, envir=envir);
+})
 
-  s <- "";
-  for (kk in seq(length=length(parts))) {
-    part <- parts[[kk]];
-    s <- paste(s, part, sep="");
-  }
 
-  s;
+
+###########################################################################/**
+# @RdocDefault gcat
+# @alias gcat.GString
+#
+# @title "Parses, evaluates and outputs a GString"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{...}{@character strings passed to @see "gstring".}
+#   \item{file}{A @connection, or a pathname where to direct the output.
+#               If \code{""}, the output is sent to the standard output.}
+#   \item{append}{Only applied if \code{file} specifies a pathname;
+#     If @TRUE, then the output is appended to the file, otherwise 
+#     the files content is overwritten.}
+#  \item{envir}{The @environment in which the @see "GString" is evaluated.}
+# }
+#
+# \value{
+#   Returns (invisibly) a @character string.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "gstring".
+# }
+#*/###########################################################################
+setMethodS3("gcat", "GString", function(..., file="", append=FALSE, envir=parent.frame()) {
+  s <- gstring(..., envir=envir);
+  cat(s, file=file, append=append);
+  invisible(s);
+})
+
+setMethodS3("gcat", "default", function(..., file="", append=FALSE, envir=parent.frame()) {
+  s <- gstring(..., envir=envir);
+  cat(s, file=file, append=append);
+  invisible(s);
 })
 
 
 
 ######################################################################
 # HISTORY:
+# 2013-02-14
+# o Added gstring() and gcat().
+# 2013-02-13
+# o Added evaluate() for GString.
 # 2011-11-19
 # o Now parse() and as.character() also handle "empty" GString:s.
 # 2011-11-15
@@ -751,4 +912,3 @@ setMethodS3("as.character", "GString", function(x, ...) {
 # o Added Rdoc comments to all methods.
 # o Created.
 ######################################################################
-

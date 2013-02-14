@@ -62,7 +62,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 
   # Argument 'code':
   if (!is.null(code)) {
-    code <- Arguments$getCharacters(code, gString=FALSE);
+    code <- Arguments$getCharacters(code, asGString=FALSE);
     code <- gsub("\r\n|\n\r|\r", "\n", code);
     code <- unlist(strsplit(code, split="\n"));
     pathname <- "R code";
@@ -200,6 +200,8 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 
 ############################################################################
 # HISTORY:
+# 2013-02-14
+# o BUG FIX: displayCode(code) would GString process 'code'.
 # 2005-10-21
 # o Rename all 'mustExists' arguments to 'mustExist' in calls to Arguments.
 # 2005-09-23

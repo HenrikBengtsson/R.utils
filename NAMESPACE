@@ -218,6 +218,7 @@ S3method("print", "GenericSummary")
 
 
 # GString
+S3method("evaluate", "GString")
 S3method("getRaw", "GString")
 S3method("print", "GString")
 S3method("getBuiltinPid", "GString")
@@ -232,6 +233,10 @@ S3method("getBuiltinOs", "GString")
 S3method("getVariableValue", "GString")
 S3method("parse", "GString")
 S3method("as.character", "GString")
+S3method("gstring", "GString")
+S3method("gstring", "default")
+S3method("gcat", "GString")
+S3method("gcat", "default")
 
 
 # Java

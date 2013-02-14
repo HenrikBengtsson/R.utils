@@ -185,8 +185,6 @@
  \alias{gunzip.default}
  \alias{isOpen}
  \alias{isOpen.default}
- \alias{lapply}
- \alias{lapply.default}
  \alias{remove.default}
  \alias{unwrap}
  \alias{verbose}

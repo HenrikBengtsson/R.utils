@@ -46,7 +46,7 @@ extends \link[R.utils]{Verbose}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.list} \tab  -\cr
+ \tab \code{\link[R.utils:as.list.MultiVerbose]{as.list}} \tab Gets a list of Verbose objects.\cr
  \tab \code{\link[R.utils:writeRaw.MultiVerbose]{writeRaw}} \tab Writes to each of the Verbose objects.\cr
 }
 

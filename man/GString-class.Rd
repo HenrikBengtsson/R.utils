@@ -11,6 +11,7 @@
 \alias{GString}
 
 
+
 \title{Character string with advanced substitutions}
 
 \description{
@@ -41,6 +42,8 @@ extends character\cr
  \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.utils:as.character.GString]{as.character}} \tab Gets the processed character string.\cr
+ \tab \code{\link[R.utils:evaluate.GString]{evaluate}} \tab Parses and evaluates a GString.\cr
+ \tab \code{gcat} \tab  -\cr
  \tab \code{\link[R.utils:getBuiltinDate.GString]{getBuiltinDate}} \tab Gets the current date.\cr
  \tab \code{\link[R.utils:getBuiltinDatetime.GString]{getBuiltinDatetime}} \tab Gets the current date and time.\cr
  \tab \code{\link[R.utils:getBuiltinHostname.GString]{getBuiltinHostname}} \tab Gets the hostname of the system running R.\cr
@@ -52,6 +55,7 @@ extends character\cr
  \tab \code{\link[R.utils:getBuiltinUsername.GString]{getBuiltinUsername}} \tab Gets the username of the user running R.\cr
  \tab \code{\link[R.utils:getRaw.GString]{getRaw}} \tab Gets the unprocessed GString.\cr
  \tab \code{\link[R.utils:getVariableValue.GString]{getVariableValue}} \tab Gets a variable value given a name and attributes.\cr
+ \tab \code{gstring} \tab  -\cr
  \tab \code{\link[R.utils:parse.GString]{parse}} \tab Parses a GString.\cr
  \tab \code{\link[R.utils:print.GString]{print}} \tab Prints the processed GString.\cr
 }
@@ -168,6 +172,10 @@ cat("\n")
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+
+\seealso{
+  For conveniency, see functions \code{\link{gstring}}() and \code{\link{gcat}}().
+}
 
 
 \keyword{classes}

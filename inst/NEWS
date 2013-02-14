@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.20.0 [2013-02-14]
+o Added gstring() and gcat().
+o BUG FIX: displayCode(code) incorrectly processed 'code' as GString:s.
+
+
 Version: 1.19.5 [2013-01-11]
 o BUG FIX: Specifying argument 'version' to isPackageLoaded() would give
   "Error: 'manglePackageName' is defunct." in recent versions of R.
