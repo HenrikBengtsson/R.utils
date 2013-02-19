@@ -450,7 +450,7 @@ setMethodS3("getBuiltinOs", "GString", function(static, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("getVariableValue", "GString", function(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption", "envir*"), envir=parent.frame(), missingValue=NA, ...) {
+setMethodS3("getVariableValue", "GString", function(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -495,23 +495,22 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
       value <- Sys.getenv(name);
       if (nchar(value) == 0L)
         value <- NULL;
-    } else if (ww == "options") {
+    } else if (ww == "getOption") {
       value <- getOption(name);
     } else if (ww == "envir") {
-      if (exists(name, envir=envir, inherits=FALSE)) {
-        value <- get(name, envir=envir, inherits=FALSE);
-        break;
-      }
-    } else if (ww == "envir*") {
       if (exists(name, envir=envir, inherits=TRUE)) {
         value <- get(name, envir=envir, inherits=TRUE);
         break;
       }
     } else if (ww == "parent") {
+      envirL <- NULL;
       n <- 0L;
       while (TRUE) {
         n <- n + 1L;
         envirP <- parent.frame(n=n);
+        if (identical(envirP, envirL))
+          break;
+        envirL <- envirP;
         if (exists("...abcdef", envir=envirP, inherits=FALSE))
           next;
         if (exists(name, envir=envirP, inherits=FALSE)) {
@@ -641,14 +640,20 @@ setMethodS3("parse", "GString", function(object, ...) {
 
     name <- gsub(pattern, "\\2", var);
 
-    pattern <- "^(.*)/(.*)/(.*)";
-    if (regexpr(pattern, name) != -1L) {
-      searchPattern <- gsub(pattern, "\\2", name);
-      replacePattern <- gsub(pattern, "\\3", name);
-      name <- gsub(pattern, "\\1", name);
-      searchReplace <- list(search=searchPattern, replace=replacePattern);
+    searchReplace <- NULL;
+    patterns <- c("^[']([^']*)[']$", '^["]([^"]*)["]$');
+    if (all(sapply(patterns, FUN=regexpr, name) == -1L)) {
+      pattern <- "^(.*)/(.*)/(.*)";
+      if (regexpr(pattern, name) != -1L) {
+        searchPattern <- gsub(pattern, "\\2", name);
+        replacePattern <- gsub(pattern, "\\3", name);
+        name <- gsub(pattern, "\\1", name);
+        searchReplace <- list(search=searchPattern, replace=replacePattern);
+      }
     } else {
-      searchReplace <- NULL;
+      for (pattern in patterns) {
+        name <- gsub(pattern, "\\1", name);
+      }
     }
 
     pattern <- "^`(.*)`";
@@ -885,6 +890,11 @@ setMethodS3("gcat", "default", function(..., file="", append=FALSE, envir=parent
 
 ######################################################################
 # HISTORY:
+# 2013-02-18
+# o BUG FIX: evaluate(..., where="parent") for GString would result
+#   in an endless loop.
+# o Now it is possible to escape the sed-like search replace format
+#   for GString:s via quoting, e.g. ${'R.rsp/HttpDaemon/RspVersion'} .
 # 2013-02-14
 # o Added gstring() and gcat().
 # 2013-02-13

@@ -3,7 +3,7 @@ Version: 1.20.0
 Depends: R (>= 2.5.0), R.oo (>= 1.11.7)
 Imports: utils, R.methodsS3 (>= 1.4.2), R.oo (>= 1.11.7)
 Suggests: digest (>= 0.6.2)
-Date: 2013-02-14
+Date: 2013-02-18
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>

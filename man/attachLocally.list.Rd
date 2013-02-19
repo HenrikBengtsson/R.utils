@@ -13,6 +13,7 @@
 
  \alias{attachLocally.data.frame}
  \alias{attachLocally.environment}
+ \alias{attachLocally}
 
  \title{Assigns an objects elements locally}
 

@@ -2,8 +2,12 @@
 Package: R.utils
 ================
 
-Version: 1.20.0 [2013-02-14]
+Version: 1.20.0 [2013-02-18]
 o Added gstring() and gcat().
+o Now it is possible to escape the sed-like search replace format
+  for GString:s via quoting, e.g. ${'R.rsp/HttpDaemon/RspVersion'} .
+o BUG FIX: evaluate(..., where="parent") for GString would result
+  in an endless loop.
 o BUG FIX: displayCode(code) incorrectly processed 'code' as GString:s.
 
 
