@@ -24,7 +24,12 @@
 #     In addition, if \code{-foo value} is given, this is interpreted
 #     as \code{-foo=value}, as long as \code{value} does not start with
 #     a double dash (\code{--}).}
-#   \item{defaults}{A named @list of default arguments.}
+#   \item{defaults}{A @character @vector or a named @list of default 
+#     arguments.  Any command-line or fixed arguments will override
+#     default arguments with the same name.}
+#   \item{fixed}{A @character @vector or a named @list of fixed
+#     arguments.  These will override default and command-line
+#     arguments with the same name.}
 #   \item{adhoc}{(ignored if \code{asValues=FALSE}) If @TRUE, then
 #     additional ad hoc coercion of @character command line arguments
 #     is performed by trial and error, iff possible.}
@@ -44,6 +49,7 @@
 #      If \code{"current"}, the current platform is used. If \code{"ANY"} or
 #      @NULL, all three OSs are assumed for total cross-platform
 #      compatibility.}
+#   \item{args}{A @character @vector of command-line arguments.}
 #   \item{...}{Passed to @see "base::commandArgs" of the \pkg{base} package.}
 # }
 #
@@ -73,8 +79,8 @@
 #   returned as a named @list.  By default, the values of these
 #   arguments are @character strings.
 #   However, any command-line argument that share name with one of
-#   the default arguments in \code{defaults}, then its value is
-#   coerced to the data type of that default value (via @see "base::as").
+#   the fixed or default arguments, then its value is coerced to
+#   the corresponding data type (via @see "methods::as").
 #   This provides a mechanism for specifying data types other than
 #   @character strings.
 #   
@@ -99,7 +105,7 @@
 #
 # @keyword "programming"
 #*/#########################################################################
-commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, ...) {
+commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, args=base::commandArgs(...), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -119,6 +125,20 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
     x;
   } # assertNamedList()
 
+  coerceAs <- function(args, types) {
+    types <- types[types != "NULL"];
+    idxs <- which(is.element(names(args), names(types)));
+    if (length(idxs) > 0L) {
+      argsT <- args[idxs];
+      typesT <- types[names(argsT)];
+      for (jj in seq_along(argsT)) {
+        argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj]);
+      }
+      args[idxs] <- argsT;
+    }
+    args;
+  } # coerceAs()
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -127,6 +147,20 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
   if (asValues) {
     defaults <- as.list(defaults);
     defaults <- assertNamedList(defaults);
+  } else {
+    if (is.list(defaults)) {
+      throw("Argument 'defaults' must not be a list when asValues=FALSE.");
+    }
+  }
+
+  # Argument 'fixed':
+  if (asValues) {
+    fixed <- as.list(fixed);
+    fixed <- assertNamedList(fixed);
+  } else {
+    if (is.list(fixed)) {
+      throw("Argument 'fixed' must not be a list when asValues=FALSE.");
+    }
   }
 
   # Argument 'os':
@@ -137,10 +171,21 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
   }
   os <- tolower(os);
   if (any(is.na(match(os, c("unix", "mac", "windows"))))) {
-    stop("Argument 'os' contains unknown values.");
+    throw("Argument 'os' contains unknown values.");
+  }
+
+  # Argument 'args':
+  if (is.null(args)) {
+    args <- base::commandArgs(...);
+  } else if (!is.character(args)) {
+    throw("Argument 'args' must be a character vector: ", class(args)[1L]);
   }
 
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Infer which arguments are reserved R arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # (1) Get the list of reserved R command line arguments
   # Reserved R command line options according to paragraph
   # 'R accepts the following command-line options' in
   # "An Introduction to R" for R v 2.7.1 (was v2.0.1):
@@ -175,16 +220,14 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
   # Create regular expression patterns out of the reserved arguments
   reservedArgs <- paste("^", reservedArgs, "$", sep="");
-  
-  # Retrieve the command-line arguments
-  args <- base::commandArgs(...);
+
 
   # Temporarily patch any '-<key> <value>' and '--<key> <value>' arguments
   args0 <- args;
-  isKeyValue <- (regexpr("^([^=])*=.*$", args) != -1);
-  isFlag <- (regexpr("^(-|--)([^ =])*$", args) != -1);
-  isNextKeyValue <- c(isKeyValue[-1], FALSE);
-  isNextFlag <- c(isFlag[-1], FALSE);
+  isKeyValue <- (regexpr("^([^=])*=.*$", args) != -1L);
+  isFlag <- (regexpr("^(-|--)([^ =])*$", args) != -1L);
+  isNextKeyValue <- c(isKeyValue[-1L], FALSE);
+  isNextFlag <- c(isFlag[-1L], FALSE);
   isNextValue <- (!isNextKeyValue & !isNextFlag);
   isNextValue[length(isNextValue)] <- FALSE;
   isKeyValuePair <- (isFlag & isNextValue);
@@ -196,19 +239,28 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
   isReserved <- logical(length(args));
   for (rarg in reservedArgs) {
-    isReserved <- isReserved | (regexpr(rarg, args) != -1);
+    isReserved <- isReserved | (regexpr(rarg, args) != -1L);
   }
 
   # Undo any patching
   args <- args0;
 
+  # Not needed anymore
+  rm(isKeyValue, isFlag, isNextKeyValue, isNextFlag, 
+     isNextValue, isKeyValuePair, args0);
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Flag environment variable arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   pattern <- "^([^=-]*)(=)(.*)$";
-  isEnvVars <- (regexpr(pattern, args) != -1);
+  isEnvVars <- (regexpr(pattern, args) != -1L);
 
-  # Exclude non wanted elements
-  keep <- rep(TRUE, length(args));
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Exclude non-wanted elements
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  keep <- rep(TRUE, times=length(args));
   if (excludeReserved) {
     keep <- keep & !isReserved;
   }
@@ -221,13 +273,20 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
   args <- args[keep];
   attributes(args) <- attrs;
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Coerce arguments to a named list?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (asValues) {
-    keys <- args[1];
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (a) Parse key-value pairs
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    keys <- args[1L];
     values <- list(NA);
-    for (arg in args[-1]) {
+    for (arg in args[-1L]) {
       # --<key>=<value>
       pattern <- "^--([^=]*)(=)(.*)$";
-      if (regexpr(pattern, arg) != -1) {
+      if (regexpr(pattern, arg) != -1L) {
         # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
@@ -240,7 +299,7 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
       # --<key>
       pattern <- "^--([^=]*)$";
-      if (regexpr(pattern, arg) != -1) {
+      if (regexpr(pattern, arg) != -1L) {
         # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
@@ -251,7 +310,7 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
       # -<key>=<value>
       pattern <- "^-([^=]*)(=)(.*)$";
-      if (regexpr(pattern, arg) != -1) {
+      if (regexpr(pattern, arg) != -1L) {
         # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
@@ -264,7 +323,7 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
       # -<key>
       pattern <- "^-([^ ]*)$";
-      if (regexpr(pattern, arg) != -1) {
+      if (regexpr(pattern, arg) != -1L) {
         # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
@@ -275,7 +334,7 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
 
       # <key>=<value>
       pattern <- "^([^=-]*)(=)(.*)$";
-      if (regexpr(pattern, arg) != -1) {
+      if (regexpr(pattern, arg) != -1L) {
         # Was previous a non-valued flag?
         if (length(values) < length(keys))
           values <- c(values, TRUE);
@@ -301,22 +360,26 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
     args <- values;
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Corce arguments to known data types of the defaults?
+    # (b) Override by/append fixed arguments?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (length(args) > 0L && length(defaults) > 0L) {
-      types <- sapply(defaults, FUN=storage.mode);
-      idxs <- which(is.element(names(args), names(types)));
-      if (length(idxs) > 0L) {
-        argsT <- args[idxs];
-        typesT <- types[names(argsT)];
-        for (jj in seq_along(argsT)) {
-          argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj]);
-        }
-        args[idxs] <- argsT;
-      }
+    if (length(fixed) > 0L) {
+      args <- c(args, fixed);
     }
 
-    # Ad hoc corcion of numerics?
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (c) Corce arguments to known data types?
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (length(defaults) + length(fixed) > 0L) {
+      # First to the 'fixed', then remaining to the 'defaults'.
+      types <- sapply(c(defaults, fixed), FUN=storage.mode);
+      keep <- !duplicated(names(types), fromLast=TRUE);
+      types <- types[keep];
+      args <- coerceAs(args, types=types);
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (d) Ad hoc corcion of numerics?
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (adhoc && length(args) > 0L) {
       modes <- sapply(args, FUN=storage.mode);
       idxs <- which(modes == "character");
@@ -336,45 +399,108 @@ commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FAL
       }
     } # if (adhoc)
 
-    # Append defaults, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (e) Prepend defaults, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
       idxs <- which(!is.element(names(defaults), names(args)));
       if (length(idxs) > 0L) {
-        args <- c(args, defaults[idxs]);
+        args <- c(defaults[idxs], args);
       }
     }
   } else {
-    # Append defaults, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Append fixed argument, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (length(fixed) > 0L) {
+      args <- c(args, setdiff(fixed, args));
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Prepend defaults, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
       idxs <- which(!is.element(defaults, args));
       if (length(idxs) > 0L) {
-        args <- c(args, defaults[idxs]);
+        args <- c(defaults[idxs], args);
       }
     }
   } # if (asValues)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Keep unique arguments?
+  # Keep only unique arguments?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (unique && length(args) > 0L) {
-    keep <- !duplicated(names(args), fromLast=TRUE);
+    if (asValues) {
+      keep <- !duplicated(names(args), fromLast=TRUE);
+    } else {
+      keep <- !duplicated(args, fromLast=TRUE);
+    }
     args <- args[keep];
   }
   
   args;
 } # commandArgs()
 
-cmdArgs <- function(...) {
-  commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L];
+
+
+cmdArgs <- function(args=NULL, ...) {
+  # Argument 'args':
+  if (identical(args, "*")) args <- list("*");
+  if (!is.null(args) && !is.list(args)) {
+    throw("Argument 'args' must be a list or NULL: ", class(args)[1L]);
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Default call?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.null(args)) {
+    return(commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L]);
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Split 'args' into 'defaults', 'args', and 'fixed'
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Find the asterisk ('*')
+  if (length(args) == 0L) {
+    idxA <- integer(0L);
+  } else {
+    idxA <- which(sapply(args, FUN=identical, "*"));
+    # Use only first asterisk if more than one is used
+    if (length(idxA) > 1L) {
+      excl <- idxA[-1L];
+      args <- args[excl];
+      idxA <- idxA[1L];
+    }
+  }
+
+  # None?
+  if (length(idxA) == 0L) {
+    defaults <- NULL;
+    fixed <- args;
+    args <- character(0L);
+  } else {
+    n <- length(args); # Here n >= 1
+    idxsD <- if (idxA == 1L) integer(0L) else 1:(idxA-1L);
+    idxsF <- if (idxA == n)  integer(0L) else (idxA+1L):n;
+    defaults <- args[idxsD];
+    fixed <- args[idxsF];
+    args <- NULL;
+  }
+
+  commandArgs(asValues=TRUE, defaults=defaults, fixed=fixed, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, args=args, ...)[-1L];
 } # cmdArgs()
+
 
 ############################################################################
 # HISTORY:
 # 2013-02-21
-# o Added arguments 'default', 'adhoc' and 'unique' to commandArgs().
+# o Added arguments 'default', 'fixed', 'adhoc' and 'unique' to commandArgs().
 # 2011-09-14
 # o BUG FIX: commandArgs() would not handle '-<key> <value>' and
 #   '--<key> <value>' properly in all cases.

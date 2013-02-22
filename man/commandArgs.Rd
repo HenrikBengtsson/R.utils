@@ -14,8 +14,8 @@
  \title{Extract Command Line Arguments}
 
  \usage{
-   commandArgs(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, ...)
-   cmdArgs(...)
+   commandArgs(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, args=base::commandArgs(...), ...)
+   cmdArgs(args=NULL, ...)
  }
 
  \description{
@@ -33,7 +33,12 @@
      In addition, if \code{-foo value} is given, this is interpreted
      as \code{-foo=value}, as long as \code{value} does not start with
      a double dash (\code{--}).}
-   \item{defaults}{A named \code{\link[base]{list}} of default arguments.}
+   \item{defaults}{A \code{\link[base]{character}} \code{\link[base]{vector}} or a named \code{\link[base]{list}} of default
+     arguments.  Any command-line or fixed arguments will override
+     default arguments with the same name.}
+   \item{fixed}{A \code{\link[base]{character}} \code{\link[base]{vector}} or a named \code{\link[base]{list}} of fixed
+     arguments.  These will override default and command-line
+     arguments with the same name.}
    \item{adhoc}{(ignored if \code{asValues=FALSE}) If \code{\link[base:logical]{TRUE}}, then
      additional ad hoc coercion of \code{\link[base]{character}} command line arguments
      is performed by trial and error, iff possible.}
@@ -53,6 +58,7 @@
       If \code{"current"}, the current platform is used. If \code{"ANY"} or
       \code{\link[base]{NULL}}, all three OSs are assumed for total cross-platform
       compatibility.}
+   \item{args}{A \code{\link[base]{character}} \code{\link[base]{vector}} of command-line arguments.}
    \item{...}{Passed to \code{\link[base]{commandArgs}}() of the \pkg{base} package.}
  }
 
@@ -82,8 +88,8 @@
    returned as a named \code{\link[base]{list}}.  By default, the values of these
    arguments are \code{\link[base]{character}} strings.
    However, any command-line argument that share name with one of
-   the default arguments in \code{defaults}, then its value is
-   coerced to the data type of that default value (via \code{\link[base]{as}}).
+   the fixed or default arguments, then its value is coerced to
+   the corresponding data type (via \code{\link[methods]{as}}).
    This provides a mechanism for specifying data types other than
    \code{\link[base]{character}} strings.
  
