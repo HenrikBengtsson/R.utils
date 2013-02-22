@@ -76,6 +76,10 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
     pathname <- ".";
   }
 
+  if (isUrl(pathname)) {
+    return(pathname);
+  }
+
   # If not an absolute path, assume it is a relative path already.
   pathname <- getAbsolutePath(pathname, expandTilde=TRUE);
 
@@ -149,6 +153,9 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
 ###########################################################################
 # HISTORY: 
+# 2013-02-21
+# o For conveniency, getAbsolutePath() and getRelativePath() returns 
+#   the same pathname if it is a URL.
 # 2009-12-30
 # o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
 #   returns a (character) NA if the input is NA.

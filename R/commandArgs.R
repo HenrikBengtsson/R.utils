@@ -1,9 +1,13 @@
 #########################################################################/**
 # @RdocFunction commandArgs
+# @alias cmdArgs
 #
 # @title "Extract Command Line Arguments"
 #
-# \usage{commandArgs(@eval "t<-formals(R.utils::commandArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")}
+# \usage{
+#   commandArgs(@eval "t<-formals(R.utils::commandArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
+#   cmdArgs(@eval "t<-formals(R.utils::cmdArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
+# }
 #
 # \description{
 #  Provides access to a copy of the command line arguments supplied when 
@@ -20,6 +24,13 @@
 #     In addition, if \code{-foo value} is given, this is interpreted
 #     as \code{-foo=value}, as long as \code{value} does not start with
 #     a double dash (\code{--}).}
+#   \item{defaults}{A named @list of default arguments.}
+#   \item{adhoc}{(ignored if \code{asValues=FALSE}) If @TRUE, then
+#     additional ad hoc coercion of @character command line arguments
+#     is performed by trial and error, iff possible.}
+#   \item{unique}{If @TRUE, the returned set of arguments contains only
+#     unique arguments such that no two arguments have the same name.
+#     If duplicates exists, it is only the last one that is kept.}
 #   \item{excludeReserved}{If @TRUE, arguments reserved by \R are excluded,
 #     otherwise not. Which the reserved arguments are depends on operating
 #     system. For details, see Appendix B on "Invoking R" in 
@@ -44,18 +55,38 @@
 #   If \code{asValue} is @TRUE, a named @list containing is returned, which
 #   contains the the executable and the parsed user-supplied arguments.
 #
-#   The first element is the name of the executable by which \R was invoked.
-#   As far as I am aware, the
-#   exact form of this element is platform dependent. It may be the fully
-#   qualified name, or simply the last component (or basename) of the
-#   application. The attribute \code{isReserved} is a @logical @vector
-#   specifying if the corresponding command line argument is a reserved
-#   \R argument or not.
+#   The first returned element is the name of the executable by which 
+#   \R was invoked.  As far as I am aware, the exact form of this element
+#   is platform dependent. It may be the fully qualified name, or simply
+#   the last component (or basename) of the application.  The returned
+#   attribute \code{isReserved} is a @logical @vector specifying if the
+#   corresponding command line argument is a reserved \R argument or not.
 # }
 #
-# \details{
+# \section{Backward compatibility}{
 #  This function should be fully backward compatible with the same 
-#  function in the base package.
+#  function in the \pkg{base} package.
+# }
+#
+# \section{Coercing to non-character data types}{
+#   When \code{asValues} is @TRUE, the command-line arguments are 
+#   returned as a named @list.  By default, the values of these
+#   arguments are @character strings.
+#   However, any command-line argument that share name with one of
+#   the default arguments in \code{defaults}, then its value is
+#   coerced to the data type of that default value (via @see "base::as").
+#   This provides a mechanism for specifying data types other than
+#   @character strings.
+#   
+#   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE,
+#   any remaining character string arguments are coerced to @numerics
+#   (via @see "base::as.numeric"), unless the coerced value becomes @NA.
+# }
+#
+# \section{cmdArgs()}{
+#   The \code{cmdArgs(...)} function is short for calling
+#   \code{R.utils::commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, 
+#         excludeReserved=TRUE, ...)[-1L]}.
 # }
 #
 # @author
@@ -68,15 +99,47 @@
 #
 # @keyword "programming"
 #*/#########################################################################
-commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, ...) {
-  # Process argument 'os'
-  if (is.null(os) || toupper(os) == "ANY")
-    os <- c("unix", "mac", "windows")
-  else if (tolower(os) == "current")
+commandArgs <- function(asValues=FALSE, defaults=list(), adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  assertNamedList <- function(x, .name=as.character(substitute(x))) {
+    # Nothing todo?
+    if (length(x) == 0L) return(x);
+
+    keys <- names(x);
+    if (is.null(keys)) {
+      throw(sprintf("None of the elements in '%s' are named.", .name));
+    }
+  
+    if (any(nchar(keys) == 0L)) {
+      throw(sprintf("Detected one or more non-named arguments in '%s' after parsing.", .name));
+    }
+
+    x;
+  } # assertNamedList()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'defaults':
+  if (asValues) {
+    defaults <- as.list(defaults);
+    defaults <- assertNamedList(defaults);
+  }
+
+  # Argument 'os':
+  if (is.null(os) || toupper(os) == "ANY") {
+    os <- c("unix", "mac", "windows");
+  } else if (tolower(os) == "current") {
     os <- .Platform$OS.type;
+  }
   os <- tolower(os);
-  if (any(is.na(match(os, c("unix", "mac", "windows")))))
+  if (any(is.na(match(os, c("unix", "mac", "windows"))))) {
     stop("Argument 'os' contains unknown values.");
+  }
+
 
   # Reserved R command line options according to paragraph
   # 'R accepts the following command-line options' in
@@ -113,7 +176,7 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   # Create regular expression patterns out of the reserved arguments
   reservedArgs <- paste("^", reservedArgs, "$", sep="");
   
-  # Flag reserved arguments
+  # Retrieve the command-line arguments
   args <- base::commandArgs(...);
 
   # Temporarily patch any '-<key> <value>' and '--<key> <value>' arguments
@@ -236,13 +299,82 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
  
     names(values) <- keys;
     args <- values;
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Corce arguments to known data types of the defaults?
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (length(args) > 0L && length(defaults) > 0L) {
+      types <- sapply(defaults, FUN=storage.mode);
+      idxs <- which(is.element(names(args), names(types)));
+      if (length(idxs) > 0L) {
+        argsT <- args[idxs];
+        typesT <- types[names(argsT)];
+        for (jj in seq_along(argsT)) {
+          argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj]);
+        }
+        args[idxs] <- argsT;
+      }
+    }
+
+    # Ad hoc corcion of numerics?
+    if (adhoc && length(args) > 0L) {
+      modes <- sapply(args, FUN=storage.mode);
+      idxs <- which(modes == "character");
+      if (length(idxs) > 0L) {
+        argsT <- args[idxs];
+        # Try to coerce to numeric
+        for (kk in seq_along(argsT)) {
+          arg <- argsT[[kk]];
+          tryCatch({
+            value <- as.numeric(arg);
+            if (!is.na(value)) {
+              argsT[[kk]] <- value;
+            }
+          }, error = function(ex) {});
+        }
+        args[idxs] <- argsT;
+      }
+    } # if (adhoc)
+
+    # Append defaults, if not already specified
+    if (length(defaults) > 0L) {
+      # Any missing?
+      idxs <- which(!is.element(names(defaults), names(args)));
+      if (length(idxs) > 0L) {
+        args <- c(args, defaults[idxs]);
+      }
+    }
+  } else {
+    # Append defaults, if not already specified
+    if (length(defaults) > 0L) {
+      # Any missing?
+      idxs <- which(!is.element(defaults, args));
+      if (length(idxs) > 0L) {
+        args <- c(args, defaults[idxs]);
+      }
+    }
+  } # if (asValues)
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Keep unique arguments?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (unique && length(args) > 0L) {
+    keep <- !duplicated(names(args), fromLast=TRUE);
+    args <- args[keep];
   }
   
   args;
-}
+} # commandArgs()
+
+cmdArgs <- function(...) {
+  commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L];
+} # cmdArgs()
 
 ############################################################################
 # HISTORY:
+# 2013-02-21
+# o Added arguments 'default', 'adhoc' and 'unique' to commandArgs().
 # 2011-09-14
 # o BUG FIX: commandArgs() would not handle '-<key> <value>' and
 #   '--<key> <value>' properly in all cases.

@@ -71,7 +71,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  if (length(pathname) > 1) {
+  if (length(pathname) > 1L) {
     throw("Argument 'pathname' must be a single character string: ", 
                                            paste(pathname, collapse=", "));
   }
@@ -85,8 +85,12 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     pathname <- ".";
   }
 
+  if (isUrl(pathname)) {
+    return(pathname);
+  }
+
   if (!isAbsolutePath(pathname)) {
-    workDirectory <- strsplit(workDirectory, split="[/\\]")[[1]];
+    workDirectory <- strsplit(workDirectory, split="[/\\]")[[1L]];
 
     name <- getName(pathname);
     if (name == "" || name == ".")
@@ -94,7 +98,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
     pathname <- strsplit(pathname, split="[/\\]")[[1]];
     len <- length(pathname);
-    if (len != 0) {
+    if (len != 0L) {
       pathname <- pathname[-len];
     }
 
@@ -112,7 +116,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Replace all replicated slashes ('/') with single ones, except
   # if they are at the beginning of the path, because then they
   # are Microsoft Windows UNC paths.
-  isWindowsUNC <- (regexpr("^//", pathname) != -1);
+  isWindowsUNC <- (regexpr("^//", pathname) != -1L);
   pathname <- gsub("//*", "/", pathname);
   if (isWindowsUNC) {
     # Make sure WindowsUNC starts with "//".
@@ -124,7 +128,10 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
+# 2013-02-21
+# o For conveniency, getAbsolutePath() and getRelativePath() returns 
+#   the same pathname if it is a URL.
 # 2010-06-23
 # o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
 #   the initial double-slashes ('//') and return "/server/dir/".

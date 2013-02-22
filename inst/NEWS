@@ -2,7 +2,16 @@
 Package: R.utils
 ================
 
-Version: 1.20.0 [2013-02-18]
+Version: 1.20.0 [2013-02-21]
+o Added cmdArgs() which is short for R.utils::commandArgs(asValues=TRUE,
+  adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L].
+o Now it is possible to specify default arguments in commandArgs().
+  In addition, if asValues=TRUE, then the values of the parsed 
+  command-line arguments will be coerced to the data type of the
+  default ones if they share names.  If adhoc=TRUE, arguments will
+  be coerced to numerics unless the result is NA.
+o For conveniency, getAbsolutePath() and getRelativePath() returns 
+  the same pathname if it is a URL.
 o Added gstring() and gcat().
 o Now it is possible to escape the sed-like search replace format
   for GString:s via quoting, e.g. ${'R.rsp/HttpDaemon/RspVersion'} .
