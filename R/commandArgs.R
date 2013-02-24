@@ -85,8 +85,9 @@
 #   @character strings.
 #   
 #   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE,
-#   any remaining character string arguments are coerced to @numerics
-#   (via @see "base::as.numeric"), unless the coerced value becomes @NA.
+#   any remaining character string command-line arguments are coerced 
+#   to @numerics (via @see "base::as.numeric"), unless the coerced 
+#   value becomes @NA.
 # }
 #
 # \section{cmdArgs()}{
@@ -360,16 +361,9 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     args <- values;
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (b) Override by/append fixed arguments?
+    # (a) Corce arguments to known data types?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (length(fixed) > 0L) {
-      args <- c(args, fixed);
-    }
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (c) Corce arguments to known data types?
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (length(defaults) + length(fixed) > 0L) {
+    if (length(args) > 0L && length(defaults) + length(fixed) > 0L) {
       # First to the 'fixed', then remaining to the 'defaults'.
       types <- sapply(c(defaults, fixed), FUN=storage.mode);
       keep <- !duplicated(names(types), fromLast=TRUE);
@@ -378,9 +372,9 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (d) Ad hoc corcion of numerics?
+    # (b) Ad hoc corcion of numerics?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (adhoc && length(args) > 0L) {
+    if (length(args) > 0L && adhoc) {
       modes <- sapply(args, FUN=storage.mode);
       idxs <- which(modes == "character");
       if (length(idxs) > 0L) {
@@ -400,7 +394,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     } # if (adhoc)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (e) Prepend defaults, if not already specified
+    # (d) Prepend defaults, if not already specified
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
@@ -409,16 +403,15 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
         args <- c(defaults[idxs], args);
       }
     }
-  } else {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Append fixed argument, if not already specified
+    # (e) Override by/append fixed arguments?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(fixed) > 0L) {
-      args <- c(args, setdiff(fixed, args));
+      args <- c(args, fixed);
     }
-
+  } else {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Prepend defaults, if not already specified
+    # (a) Prepend defaults, if not already specified
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
@@ -427,6 +420,14 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
         args <- c(defaults[idxs], args);
       }
     }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (b) Append fixed argument, if not already specified
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (length(fixed) > 0L) {
+      args <- c(args, setdiff(fixed, args));
+    }
+
   } # if (asValues)
 
 
@@ -499,6 +500,10 @@ cmdArgs <- function(args=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-02-23
+# o BUG FIX: In commandArgs(), it is now only 'args' that are coerced
+#   to the types of 'defaults' and 'fixed', and no longer arguments
+#   specified by the latter two.
 # 2013-02-21
 # o Added arguments 'default', 'fixed', 'adhoc' and 'unique' to commandArgs().
 # 2011-09-14

@@ -94,8 +94,9 @@
    \code{\link[base]{character}} strings.
  
    Furthermore, when \code{asValues} and \code{adhoc} are \code{\link[base:logical]{TRUE}},
-   any remaining character string arguments are coerced to \code{\link[base]{numeric}}s
-   (via \code{\link[base]{as.numeric}}()), unless the coerced value becomes \code{\link[base]{NA}}.
+   any remaining character string command-line arguments are coerced
+   to \code{\link[base]{numeric}}s (via \code{\link[base]{as.numeric}}()), unless the coerced
+   value becomes \code{\link[base]{NA}}.
  }
 
  \section{cmdArgs()}{
