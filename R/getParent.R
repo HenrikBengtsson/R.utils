@@ -34,12 +34,23 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
+
   getParentLocal <- function(pathname) {
     if (length(pathname) == 0)
       return(NULL);
 
+    # Windows drive letters
     # Treat C:/, C:\\, ... special, that is, not at all.
-    if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
+    pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
+    if (regexpr(pattern, pathname) != -1)
       return(paste(gsub("[\\/]$", "", pathname), fsep=fsep, sep=""));
   
     # Split by '/' or '\\'
@@ -49,12 +60,14 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
   
     if (len == 2) {
       # Treat C:/, C:\\, ... special, that is, not at all.
-      if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:$", components[1]) != -1)
+      pattern <- getWindowsDrivePattern("^[%s]:$");
+      if (regexpr(pattern, components[1]) != -1)
         return(paste(components[1], fsep, sep=""));
     }
   
     name <- components[len];
-    reg <- regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:", name);
+    pattern <- getWindowsDrivePattern("^[%s]:");
+    reg <- regexpr(pattern, name);
     if (reg != -1) {
       components[len] <- substring(name, first=1, last=attr(reg, "match.length"));
       if (len == 1)
@@ -112,6 +125,10 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
 
 ###########################################################################
 # HISTORY: 
+# 2013-02-24
+# o BUG FIX: Now getParent() also recognizes Windows drive letters in
+#   lower case, which we have at least one report from Windows 7 that
+#   getwd() can return 'c:/path/' instead of 'C:/path/'.
 # 2009-12-30
 # o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
 #   returns a (character) NA if the input is NA.

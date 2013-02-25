@@ -697,13 +697,21 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
     (regexpr("^(//|\\\\)", path) != -1);
   } # isWindowsUncPath()
 
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'drive':
   drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
-  pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
+  pattern <- getWindowsDrivePattern("[%s]:");
   if (regexpr(pattern, toupper(drive)) == -1) {
     drive0 <- drive;
     # Add a colon, in case user forgot
@@ -778,13 +786,21 @@ setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
     (regexpr("^(//|\\\\)", path) != -1);
   } # isWindowsUncPath()
 
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'drive':
   drive <- Arguments$getCharacter(drive, length=c(1,1), nchar=2);
-  pattern <- "[ABCDEFGHIJKLMOPQRSTUVWXYZ]:";
+  pattern <- getWindowsDrivePattern("[%s]:");
   if (regexpr(pattern, toupper(drive)) == -1) {
     drive0 <- drive;
     # Add a colon, in case user forgot

@@ -77,6 +77,15 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
+
   removeEmptyDirs <- function(pathname) {
     # Check if it is a pathname on a Windows network 
     isOnNetworkBwd <- (regexpr("^\\\\\\\\", pathname) != -1);
@@ -100,7 +109,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   removeUpsFromPathname <- function(pathname, split=FALSE) {
     # Treat C:/, C:\\, ... special
-    if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
+    pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
+    if (regexpr(pattern, pathname) != -1)
       return(gsub("\\\\", "/", pathname));
   
     components <- strsplit(pathname, split="[/\\]")[[1]];
@@ -173,7 +183,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   }
 
   # Treat C:/, C:\\, ... special
-  if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
+  pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
+  if (regexpr(pattern, pathname) != -1)
     return(gsub("\\\\", "/", pathname));
 
   # Requires that the 'pathname' is a absolute pathname.

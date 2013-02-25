@@ -59,6 +59,18 @@
 #*/###########################################################################
 setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(), caseSensitive=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
@@ -97,7 +109,8 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   # Argument 'caseSensitive':
   if (is.null(caseSensitive)) {
-    isWindows <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]:", relativeTo) != -1);
+    pattern <- getWindowsDrivePattern("^[%s]:");
+    isWindows <- (regexpr(pattern, relativeTo) != -1);
     caseSensitive <- !isWindows;
   } else {
     caseSensitive <- as.logical(caseSensitive);

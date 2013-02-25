@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.20.0 [2013-02-23]
+Version: 1.20.0 [2013-02-24]
 o Added cmdArgs() which is short for R.utils::commandArgs(asValues=TRUE,
   adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L].
 o Now it is possible to specify default arguments in commandArgs().
@@ -15,6 +15,11 @@ o For conveniency, getAbsolutePath() and getRelativePath() returns
 o Added gstring() and gcat().
 o Now it is possible to escape the sed-like search replace format
   for GString:s via quoting, e.g. ${'R.rsp/HttpDaemon/RspVersion'} .
+o BUG FIX: getParent() and filePath() as well as System$mapDriveOnWindows()
+  and System$unmapDriveOnWindows() did not handle paths with a lower case
+  Windows drive letter.  Oddly, it is only now that we have received
+  an single report (on a Windows 7 system) that such getwd() may return
+  such drive letters, e.g. 'c:/path/' instead of 'C:/path/'.
 o BUG FIX: evaluate(..., where="parent") for GString would result
   in an endless loop.
 o BUG FIX: displayCode(code) incorrectly processed 'code' as GString:s.
