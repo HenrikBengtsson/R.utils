@@ -19,7 +19,9 @@
    Parses one single smart comment.
  }
 
- \usage{\method{parse}{SmartComments}(this, lines, currLine, ..., letter=this$letter, pattern=NULL)}
+ \usage{
+\method{parse}{SmartComments}(this, lines, currLine, ..., letter=this$letter, pattern=NULL)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code containing smart

@@ -39,7 +39,9 @@ extends \link[R.utils]{VComments}\cr
  constructor has different defaults.
 }
 
-\usage{LComments(letter="L", verboseName="log", ...)}
+\usage{
+LComments(letter="L", verboseName="log", ...)
+}
 
 \arguments{
   \item{letter}{The smart letter.}

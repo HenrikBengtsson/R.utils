@@ -19,7 +19,9 @@
  Gets the message of the exception.
 }
 
-\usage{\method{getMessage}{TimeoutException}(this, ...)}
+\usage{
+\method{getMessage}{TimeoutException}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

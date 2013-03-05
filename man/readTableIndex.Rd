@@ -12,7 +12,9 @@
 
  \title{Reads a single column from file in table format}
 
- \usage{\method{readTableIndex}{default}(..., indexColumn=1, colClass="character", verbose=FALSE)}
+ \usage{
+\method{readTableIndex}{default}(..., indexColumn=1, colClass="character", verbose=FALSE)
+}
 
  \description{
   Reads a single column from file in table format, which can then be used as a index-to-row (look-up) map

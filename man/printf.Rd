@@ -16,7 +16,9 @@
   C-style formatted output.
 }
 
-\usage{\method{printf}{default}(fmt, ..., sep="", file="")}
+\usage{
+\method{printf}{default}(fmt, ..., sep="", file="")
+}
 
 \arguments{
  \item{fmt}{A \code{\link[base]{character}} vector of format strings.

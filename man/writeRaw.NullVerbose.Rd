@@ -64,7 +64,9 @@
    nothing.
  }
 
- \usage{\method{writeRaw}{NullVerbose}(...)}
+ \usage{
+\method{writeRaw}{NullVerbose}(...)
+}
 
  \arguments{
   \item{...}{Ignored.}

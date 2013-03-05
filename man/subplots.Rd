@@ -24,7 +24,9 @@
   should be rowwise (\code{byrow=TRUE}) or columnwise.
 }
 
-\usage{\method{subplots}{default}(n=1, nrow=NULL, ncol=NULL, byrow=TRUE, ...)}
+\usage{
+\method{subplots}{default}(n=1, nrow=NULL, ncol=NULL, byrow=TRUE, ...)
+}
 
 \arguments{
   \item{n}{If given, the minimum number of subplots.}

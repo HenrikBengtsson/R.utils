@@ -19,8 +19,13 @@
    Static method asserting that an object inherits from of a certain class.
  }
 
- \synopsis{inherits.Assert(static, object, class, ...)}
-\usage{Assert$inherits(object, class, ...)}
+ \usage{
+## Static method (use this):
+## Assert$inherits(object, class, ...)
+
+## Don't use the below:
+\method{inherits}{Assert}(static, object, class, ...)
+}
 
  \arguments{
   \item{object}{Object to be checked.}

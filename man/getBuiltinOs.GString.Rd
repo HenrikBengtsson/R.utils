@@ -19,8 +19,13 @@
   Gets the operating system of the running machine.
 }
 
-\synopsis{getBuiltinOs.GString(static, ...)}
-\usage{GString$getBuiltinOs(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinOs(...)
+
+## Don't use the below:
+\method{getBuiltinOs}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

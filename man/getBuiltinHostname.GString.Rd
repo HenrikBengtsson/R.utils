@@ -19,8 +19,13 @@
   Gets the hostname of the system running R.
 }
 
-\synopsis{getBuiltinHostname.GString(static, ...)}
-\usage{GString$getBuiltinHostname(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinHostname(...)
+
+## Don't use the below:
+\method{getBuiltinHostname}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

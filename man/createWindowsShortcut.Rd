@@ -12,7 +12,9 @@
 
  \title{Creates a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)}
+ \usage{
+\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)
+}
 
  \description{
    Creates a Microsoft Windows Shortcut (.lnk file).

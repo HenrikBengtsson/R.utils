@@ -19,8 +19,13 @@
   Converts a numeric to a Java long.
 }
 
-\synopsis{asLong.Java(static, x, ...)}
-\usage{Java$asLong(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asLong(x, ...)
+
+## Don't use the below:
+\method{asLong}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}

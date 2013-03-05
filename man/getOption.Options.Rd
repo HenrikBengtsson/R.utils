@@ -19,7 +19,9 @@
   Gets an option in the options tree structure or return a default value.
  }
 
- \usage{\method{getOption}{Options}(this, pathname=NULL, defaultValue=NULL, ...)}
+ \usage{
+\method{getOption}{Options}(this, pathname=NULL, defaultValue=NULL, ...)
+}
 
  \arguments{
    \item{pathname}{A single or a \code{\link[base]{vector}} of \code{\link[base]{character}} strings specifying

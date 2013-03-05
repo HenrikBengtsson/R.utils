@@ -16,7 +16,9 @@
  Checks the permission of a file or a directory.
 }
 
-\usage{\method{fileAccess}{default}(pathname, mode=0, safe=TRUE, ...)}
+\usage{
+\method{fileAccess}{default}(pathname, mode=0, safe=TRUE, ...)
+}
 
 \arguments{
   \item{pathname}{A \code{\link[base]{character}} string of the file or the directory

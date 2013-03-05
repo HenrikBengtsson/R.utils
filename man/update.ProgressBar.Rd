@@ -19,7 +19,9 @@
    Updates progress bar.
  }
 
- \usage{\method{update}{ProgressBar}(object, visual=TRUE, ...)}
+ \usage{
+\method{update}{ProgressBar}(object, visual=TRUE, ...)
+}
 
  \arguments{
   \item{visual}{If \code{\link[base:logical]{TRUE}}, the progress bar is redrawn, otherwise not.}

@@ -24,7 +24,9 @@
    are no missing values.
  }
 
- \usage{\method{whichVector}{logical}(x, na.rm=TRUE, use.names=TRUE, ...)}
+ \usage{
+\method{whichVector}{logical}(x, na.rm=TRUE, use.names=TRUE, ...)
+}
 
  \arguments{
    \item{x}{A \code{\link[base]{logical}} \code{\link[base]{vector}} of length N.}

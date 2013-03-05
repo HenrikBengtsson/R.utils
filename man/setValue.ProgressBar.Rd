@@ -20,7 +20,9 @@
    Note that this method does \emph{not} update the bar visually.
  }
 
- \usage{\method{setValue}{ProgressBar}(this, value, ...)}
+ \usage{
+\method{setValue}{ProgressBar}(this, value, ...)
+}
 
  \arguments{
   \item{value}{A \code{\link[base]{numeric}} in [0,maxValue].}

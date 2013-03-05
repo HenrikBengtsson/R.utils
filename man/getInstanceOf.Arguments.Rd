@@ -19,8 +19,13 @@
  Gets an instance of the object that is of a particular class.
 }
 
-\synopsis{getInstanceOf.Arguments(static, object, class, coerce=FALSE, ..., .name=NULL)}
-\usage{Arguments$getInstanceOf(object, class, coerce=FALSE, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getInstanceOf(object, class, coerce=FALSE, ..., .name=NULL)
+
+## Don't use the below:
+\method{getInstanceOf}{Arguments}(static, object, class, coerce=FALSE, ..., .name=NULL)
+}
 
 \arguments{
   \item{object}{The object that should be returned as an instance of

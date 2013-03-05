@@ -19,7 +19,9 @@
   Checks if this object is equal to another Options object.
  }
 
- \usage{\method{equals}{Options}(this, other, ...)}
+ \usage{
+\method{equals}{Options}(this, other, ...)
+}
 
  \arguments{
    \item{other}{Another Options object.}

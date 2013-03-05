@@ -23,7 +23,9 @@
   Turns automatic timestamping on and off.
 }
 
-\usage{\method{timestampOn}{Verbose}(this, ...)}
+\usage{
+\method{timestampOn}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

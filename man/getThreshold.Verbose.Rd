@@ -19,7 +19,9 @@
   Gets current verbose threshold.
 }
 
-\usage{\method{getThreshold}{Verbose}(this, ...)}
+\usage{
+\method{getThreshold}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

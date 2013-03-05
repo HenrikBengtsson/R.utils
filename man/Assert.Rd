@@ -30,7 +30,9 @@ extends \link[R.oo]{Object}\cr
 
  }
 
- \usage{Assert(...)}
+ \usage{
+Assert(...)
+}
 
  \arguments{
    \item{...}{Not used.}

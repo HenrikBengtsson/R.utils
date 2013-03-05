@@ -19,8 +19,13 @@
   Gets a variable value given a name and attributes.
 }
 
-\synopsis{getVariableValue.GString(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)}
-\usage{GString$getVariableValue(name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)}
+\usage{
+## Static method (use this):
+## GString$getVariableValue(name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+
+## Don't use the below:
+\method{getVariableValue}{GString}(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+}
 
 \arguments{
  \item{name}{The name of the variable or function to be queried.}

@@ -19,7 +19,9 @@
    Checks if settings has been modified compared to whats on file.
  }
 
- \usage{\method{isModified}{Settings}(this, ...)}
+ \usage{
+\method{isModified}{Settings}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

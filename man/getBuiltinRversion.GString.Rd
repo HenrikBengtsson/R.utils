@@ -19,8 +19,13 @@
   Gets the current R version.
 }
 
-\synopsis{getBuiltinRversion.GString(static, ...)}
-\usage{GString$getBuiltinRversion(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinRversion(...)
+
+## Don't use the below:
+\method{getBuiltinRversion}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

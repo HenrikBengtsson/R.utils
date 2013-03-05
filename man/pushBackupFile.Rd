@@ -12,7 +12,9 @@
 
  \title{Appends a backup suffix to the pathname}
 
- \usage{\method{pushBackupFile}{default}(filename, path=NULL, suffix=".bak", isFile=TRUE, onMissing=c("ignore", "error"), copy=FALSE, overwrite=TRUE, ..., verbose=FALSE)}
+ \usage{
+\method{pushBackupFile}{default}(filename, path=NULL, suffix=".bak", isFile=TRUE, onMissing=c("ignore", "error"), copy=FALSE, overwrite=TRUE, ..., verbose=FALSE)
+}
 
  \description{
   Appends a backup suffix to the pathname and, optionally, renames an existing file accordingly.

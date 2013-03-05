@@ -19,8 +19,13 @@
   Retrieves the name of the user running R.
  }
 
- \synopsis{getUsername.System(static, ...)}
-\usage{System$getUsername(...)}
+ \usage{
+## Static method (use this):
+## System$getUsername(...)
+
+## Don't use the below:
+\method{getUsername}{System}(static, ...)
+}
 
  \value{
   Returns a \code{\link[base]{character}} string.

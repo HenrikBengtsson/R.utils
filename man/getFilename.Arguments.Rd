@@ -19,8 +19,13 @@
  Gets and validates a filename.
 }
 
-\synopsis{getFilename.Arguments(static, filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)}
-\usage{Arguments$getFilename(filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)}
+\usage{
+## Static method (use this):
+## Arguments$getFilename(filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)
+
+## Don't use the below:
+\method{getFilename}{Arguments}(static, filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)
+}
 
 \arguments{
   \item{filename}{A \code{\link[base]{character}} string.}

@@ -34,7 +34,9 @@ extends \emph{\link[R.utils]{SmartComments}}\cr
  The VComments class.
 }
 
-\usage{VComments(letter="V", verboseName="verbose", ...)}
+\usage{
+VComments(letter="V", verboseName="verbose", ...)
+}
 
 \arguments{
   \item{letter}{The smart letter.}

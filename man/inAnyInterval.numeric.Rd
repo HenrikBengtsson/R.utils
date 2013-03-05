@@ -14,7 +14,9 @@
 
  \title{Checks if a set of values are inside one or more intervals}
 
- \usage{\method{inAnyInterval}{numeric}(...)}
+ \usage{
+\method{inAnyInterval}{numeric}(...)
+}
 
  \description{
   Checks if a set of values are inside one or more intervals.

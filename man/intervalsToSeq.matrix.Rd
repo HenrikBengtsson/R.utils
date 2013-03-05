@@ -18,7 +18,9 @@
  Generates a vector of indices from a matrix of intervals.
 }
 
-\usage{\method{intervalsToSeq}{matrix}(fromTo, sort=FALSE, unique=FALSE, ...)}
+\usage{
+\method{intervalsToSeq}{matrix}(fromTo, sort=FALSE, unique=FALSE, ...)
+}
 
 \arguments{
   \item{fromTo}{An Nx2 \code{\link[base]{integer}} \code{\link[base]{matrix}}.}

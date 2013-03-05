@@ -19,7 +19,9 @@
    Converts a verbose comment to R code.
  }
 
- \usage{\method{convertComment}{VComments}(this, vcomment, .currLine=NA, .line=NA, ...)}
+ \usage{
+\method{convertComment}{VComments}(this, vcomment, .currLine=NA, .line=NA, ...)
+}
 
  \arguments{
   \item{vcomment}{A vcomment \code{\link[base]{list}} structure.}

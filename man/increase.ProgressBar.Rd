@@ -19,7 +19,9 @@
    Increases (steps) progress bar.
  }
 
- \usage{\method{increase}{ProgressBar}(this, stepLength=this$stepLength, visual=TRUE, ...)}
+ \usage{
+\method{increase}{ProgressBar}(this, stepLength=this$stepLength, visual=TRUE, ...)
+}
 
  \arguments{
   \item{stepLength}{Positive or negative step length.}

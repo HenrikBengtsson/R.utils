@@ -23,8 +23,13 @@
   will automatically be truncated without a warning.
 }
 
-\synopsis{writeShort.Java(static, con, s, ...)}
-\usage{Java$writeShort(con, s, ...)}
+\usage{
+## Static method (use this):
+## Java$writeShort(con, s, ...)
+
+## Don't use the below:
+\method{writeShort}{Java}(static, con, s, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}

@@ -21,8 +21,13 @@
   there is a short integer telling how many bytes (characters?) follows.
 }
 
-\synopsis{writeUTF.Java(static, con, str, ...)}
-\usage{Java$writeUTF(con, str, ...)}
+\usage{
+## Static method (use this):
+## Java$writeUTF(con, str, ...)
+
+## Don't use the below:
+\method{writeUTF}{Java}(static, con, str, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}

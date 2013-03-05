@@ -16,7 +16,9 @@
   Checks if a package is installed or not.
 }
 
-\usage{\method{isPackageInstalled}{default}(package, ...)}
+\usage{
+\method{isPackageInstalled}{default}(package, ...)
+}
 
 \arguments{
  \item{package}{The name of the package.}

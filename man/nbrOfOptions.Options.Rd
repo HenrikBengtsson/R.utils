@@ -19,7 +19,9 @@
   Gets the number of options set.
  }
 
- \usage{\method{nbrOfOptions}{Options}(this, ...)}
+ \usage{
+\method{nbrOfOptions}{Options}(this, ...)
+}
 
  \arguments{
    \item{...}{Not used.}

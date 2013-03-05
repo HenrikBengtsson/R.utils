@@ -26,7 +26,9 @@
   set regardless of if the functions returned naturally or via an error.
 }
 
-\usage{\method{pushState}{Verbose}(this, ...)}
+\usage{
+\method{pushState}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

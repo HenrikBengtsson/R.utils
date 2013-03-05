@@ -16,7 +16,9 @@
  Converts a pathname into a URL starting with \code{file://}.
 }
 
-\usage{\method{toUrl}{default}(pathname, safe=TRUE, ...)}
+\usage{
+\method{toUrl}{default}(pathname, safe=TRUE, ...)
+}
 
 \arguments{
   \item{pathname}{A \code{\link[base]{character}} string of the pathname to be made into a URL.}

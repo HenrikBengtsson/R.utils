@@ -24,7 +24,9 @@
    \code{write.table()}.
  }
 
- \usage{\method{wrap}{array}(x, map=list(NA), sep=".", ...)}
+ \usage{
+\method{wrap}{array}(x, map=list(NA), sep=".", ...)
+}
 
  \arguments{
   \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}

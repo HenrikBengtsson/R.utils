@@ -18,7 +18,9 @@
   Draws a density curve along one of the sides of the current plotting region.
  }
 
- \usage{\method{draw}{density}(object, side=1, height=0.2, offset=0, scale=c("absolute", "relative"), xpd=TRUE, ...)}
+ \usage{
+\method{draw}{density}(object, side=1, height=0.2, offset=0, scale=c("absolute", "relative"), xpd=TRUE, ...)
+}
 
  \arguments{
   \item{side}{An \code{\link[base]{integer}} specifying which side to draw along.

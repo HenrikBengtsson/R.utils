@@ -16,7 +16,9 @@
   Re-assigns a new value to an existing object in a loaded package.
  }
 
- \usage{\method{reassignInPackage}{default}(name, pkgName, value, keepOld=TRUE, ...)}
+ \usage{
+\method{reassignInPackage}{default}(name, pkgName, value, keepOld=TRUE, ...)
+}
 
  \arguments{
    \item{name}{The name of the object to be replaced."}

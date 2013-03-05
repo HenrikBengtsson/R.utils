@@ -19,7 +19,9 @@
   Checks if this object is equal to another.
  }
 
- \usage{\method{equals}{Verbose}(this, other, ...)}
+ \usage{
+\method{equals}{Verbose}(this, other, ...)
+}
 
  \arguments{
    \item{other}{Another Object.}

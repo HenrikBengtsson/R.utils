@@ -19,7 +19,9 @@
    Converts a single smart comment to R code.
  }
 
- \usage{\method{convertComment}{SmartComments}(...)}
+ \usage{
+\method{convertComment}{SmartComments}(...)
+}
 
  \arguments{
   \item{...}{Not used.}

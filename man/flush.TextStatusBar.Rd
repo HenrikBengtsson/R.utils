@@ -19,7 +19,9 @@
    Flushes the output.
  }
 
- \usage{\method{flush}{TextStatusBar}(con, ...)}
+ \usage{
+\method{flush}{TextStatusBar}(con, ...)
+}
 
  \arguments{
   \item{...}{Arguments passed to \code{\link[base]{cat}}().}

@@ -12,7 +12,9 @@
 
 \title{Converts vector indices to array indices}
 
-\usage{\method{arrayIndex}{default}(i, dim, ...)}
+\usage{
+\method{arrayIndex}{default}(i, dim, ...)
+}
 
 \description{
  Converts vector indices to array indices assuming last array dimension to "move fastest", e.g.

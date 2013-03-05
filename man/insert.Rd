@@ -16,7 +16,9 @@
  Insert values to a vector at certain positions.
 }
 
-\usage{\method{insert}{default}(x, ats, values=NA, useNames=TRUE, ...)}
+\usage{
+\method{insert}{default}(x, ats, values=NA, useNames=TRUE, ...)
+}
 
 \arguments{
   \item{x}{The \code{\link[base]{vector}} of data values.}

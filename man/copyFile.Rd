@@ -17,7 +17,9 @@
   file.
  }
 
- \usage{\method{copyFile}{default}(srcPathname, destPathname, overwrite=FALSE, ..., verbose=FALSE)}
+ \usage{
+\method{copyFile}{default}(srcPathname, destPathname, overwrite=FALSE, ..., verbose=FALSE)
+}
 
  \arguments{
    \item{srcPathname}{The source file to be copied.}

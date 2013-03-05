@@ -19,7 +19,9 @@
    Checks if a certain verbose level will be shown or not.
  }
 
- \usage{\method{isVisible}{NullVerbose}(this, ...)}
+ \usage{
+\method{isVisible}{NullVerbose}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

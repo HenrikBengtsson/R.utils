@@ -19,8 +19,13 @@
   Gets the path where R is installed.
 }
 
-\synopsis{getBuiltinRhome.GString(static, ...)}
-\usage{GString$getBuiltinRhome(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinRhome(...)
+
+## Don't use the below:
+\method{getBuiltinRhome}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

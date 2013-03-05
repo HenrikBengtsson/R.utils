@@ -21,8 +21,13 @@
    Currently only Windows and Unix is supported.
  }
 
- \synopsis{findGhostscript.System(static, updateRGSCMD=TRUE, ...)}
-\usage{System$findGhostscript(updateRGSCMD=TRUE, ...)}
+ \usage{
+## Static method (use this):
+## System$findGhostscript(updateRGSCMD=TRUE, ...)
+
+## Don't use the below:
+\method{findGhostscript}{System}(static, updateRGSCMD=TRUE, ...)
+}
 
  \arguments{
    \item{updateRGSCMD}{If \code{\link[base:logical]{TRUE}} and ghostscript is found, then the system

@@ -14,7 +14,9 @@
 
  \title{Maps values to intervals}
 
- \usage{\method{mapToIntervals}{numeric}(x, intervals, includeLower=TRUE, includeUpper=TRUE, ...)}
+ \usage{
+\method{mapToIntervals}{numeric}(x, intervals, includeLower=TRUE, includeUpper=TRUE, ...)
+}
 
  \description{
   Maps values to intervals by returning an index \code{\link[base]{vector}} specifying the (first)

@@ -36,7 +36,9 @@ extends \link[R.utils]{Verbose}\cr
  \emph{This is a trial class}.
 }
 
-\usage{MultiVerbose(verboseList=NULL, ...)}
+\usage{
+MultiVerbose(verboseList=NULL, ...)
+}
 
 \arguments{
   \item{verboseList}{A \code{\link[base]{list}} of \code{\link{Verbose}} objects.}

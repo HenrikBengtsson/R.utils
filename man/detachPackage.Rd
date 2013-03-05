@@ -16,7 +16,9 @@
   Detaches a packages by name, if loaded.
 }
 
-\usage{\method{detachPackage}{default}(pkgname, ...)}
+\usage{
+\method{detachPackage}{default}(pkgname, ...)
+}
 
 \arguments{
  \item{pkgname}{A \code{\link[base]{character}} string of the package name to be detached.}

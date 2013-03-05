@@ -19,7 +19,9 @@
    Gets the current value of a label address either by its index or its names.
  }
 
- \usage{\method{getLabel}{TextStatusBar}(this, label, ...)}
+ \usage{
+\method{getLabel}{TextStatusBar}(this, label, ...)
+}
 
  \arguments{
   \item{label}{The index or the name of the label.}

@@ -33,8 +33,13 @@
   \code{png()} device.
  }
 
- \synopsis{findGraphicsDevice.System(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
-\usage{System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
+ \usage{
+## Static method (use this):
+## System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+
+## Don't use the below:
+\method{findGraphicsDevice}{System}(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+}
 
  \arguments{
    \item{devices}{A \code{\link[base]{list}} of graphics device driver \code{\link[base]{function}}s to be

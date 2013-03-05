@@ -12,7 +12,9 @@
 
  \title{Reads a file in table format}
 
- \usage{\method{readTable}{default}(file, colClasses=NULL, isPatterns=FALSE, defColClass=NA, header=FALSE, skip=0, nrows=-1, rows=NULL, col.names=NULL, check.names=FALSE, path=NULL, ..., stripQuotes=TRUE, method=c("readLines", "intervals"), verbose=FALSE)}
+ \usage{
+\method{readTable}{default}(file, colClasses=NULL, isPatterns=FALSE, defColClass=NA, header=FALSE, skip=0, nrows=-1, rows=NULL, col.names=NULL, check.names=FALSE, path=NULL, ..., stripQuotes=TRUE, method=c("readLines", "intervals"), verbose=FALSE)
+}
 
  \description{
   Reads a file in table format and creates a data frame from it, with cases corresponding

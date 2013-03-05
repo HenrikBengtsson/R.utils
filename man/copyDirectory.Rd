@@ -16,7 +16,9 @@
  Copies a directory.
 }
 
-\usage{\method{copyDirectory}{default}(from, to=".", ..., private=TRUE, recursive=TRUE)}
+\usage{
+\method{copyDirectory}{default}(from, to=".", ..., private=TRUE, recursive=TRUE)
+}
 
 \arguments{
   \item{from}{The pathname of the source directory to be copied.}

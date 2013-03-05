@@ -19,7 +19,9 @@
    Prints the structure of the options.
  }
 
- \usage{\method{str}{Options}(object, header=paste(class(this)[1], ":\n", sep = ""), ...)}
+ \usage{
+\method{str}{Options}(object, header=paste(class(this)[1], ":\n", sep = ""), ...)
+}
 
  \arguments{
   \item{header}{A \code{\link[base]{character}} string header to be printed at the top.}

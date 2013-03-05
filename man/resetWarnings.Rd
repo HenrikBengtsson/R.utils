@@ -16,7 +16,9 @@
   Resets recorded warnings.
  }
 
- \usage{\method{resetWarnings}{default}(...)}
+ \usage{
+\method{resetWarnings}{default}(...)
+}
 
  \arguments{
    \item{...}{Not used.}

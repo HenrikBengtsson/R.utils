@@ -19,8 +19,13 @@
   Gets the current date and time.
 }
 
-\synopsis{getBuiltinDatetime.GString(static, format=NULL, ...)}
-\usage{GString$getBuiltinDatetime(format=NULL, ...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinDatetime(format=NULL, ...)
+
+## Don't use the below:
+\method{getBuiltinDatetime}{GString}(static, format=NULL, ...)
+}
 
 \arguments{
  \item{format}{A \code{\link[base]{character}} format string.}

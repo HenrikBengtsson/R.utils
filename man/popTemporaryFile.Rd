@@ -12,7 +12,9 @@
 
  \title{Drops a temporary suffix from the temporary pathname}
 
- \usage{\method{popTemporaryFile}{default}(filename, path=NULL, suffix=".tmp", isFile=TRUE, ..., verbose=FALSE)}
+ \usage{
+\method{popTemporaryFile}{default}(filename, path=NULL, suffix=".tmp", isFile=TRUE, ..., verbose=FALSE)
+}
 
  \description{
   Drops a temporary suffix from the temporary pathname and, by default, renames an existing temporary file

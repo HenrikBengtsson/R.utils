@@ -19,7 +19,9 @@
    Sets current progress.
  }
 
- \usage{\method{setProgress}{ProgressBar}(this, progress, visual=TRUE, ...)}
+ \usage{
+\method{setProgress}{ProgressBar}(this, progress, visual=TRUE, ...)
+}
 
  \arguments{
   \item{progress}{A \code{\link[base]{double}} in [0,1] specifying the relative progress.}

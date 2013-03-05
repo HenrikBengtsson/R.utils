@@ -16,7 +16,9 @@
   Creates a directory including any necessary but nonexistent parent directories.
  }
 
- \usage{\method{mkdirs}{default}(pathname, ...)}
+ \usage{
+\method{mkdirs}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}

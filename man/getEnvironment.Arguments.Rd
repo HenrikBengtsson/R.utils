@@ -19,8 +19,13 @@
  Gets an existing environment.
 }
 
-\synopsis{getEnvironment.Arguments(static, envir=NULL, .name=NULL, ...)}
-\usage{Arguments$getEnvironment(envir=NULL, .name=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getEnvironment(envir=NULL, .name=NULL, ...)
+
+## Don't use the below:
+\method{getEnvironment}{Arguments}(static, envir=NULL, .name=NULL, ...)
+}
 
 \arguments{
   \item{envir}{An \code{\link[base]{environment}}, the name of a loaded package, or \code{\link[base]{NULL}}.

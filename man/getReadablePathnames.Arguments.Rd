@@ -19,8 +19,13 @@
  Gets a readable pathname.
 }
 
-\synopsis{getReadablePathnames.Arguments(static, files=NULL, paths=NULL, ...)}
-\usage{Arguments$getReadablePathnames(files=NULL, paths=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getReadablePathnames(files=NULL, paths=NULL, ...)
+
+## Don't use the below:
+\method{getReadablePathnames}{Arguments}(static, files=NULL, paths=NULL, ...)
+}
 
 \arguments{
   \item{files}{A \code{\link[base]{character}} \code{\link[base]{vector}} of filenames.}

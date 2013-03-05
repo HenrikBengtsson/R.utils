@@ -19,8 +19,13 @@
   Converts a numeric to a Java byte.
 }
 
-\synopsis{asByte.Java(static, x, ...)}
-\usage{Java$asByte(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asByte(x, ...)
+
+## Don't use the below:
+\method{asByte}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}

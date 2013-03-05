@@ -16,7 +16,9 @@
   Checks if the file specification is a file.
  }
 
- \usage{\method{isFile}{default}(pathname, ...)}
+ \usage{
+\method{isFile}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}

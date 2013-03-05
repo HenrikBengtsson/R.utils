@@ -19,7 +19,9 @@
    Reset progress bar by setting the value to zero and updating the display.
  }
 
- \usage{\method{reset}{ProgressBar}(this, visual=TRUE, ...)}
+ \usage{
+\method{reset}{ProgressBar}(this, visual=TRUE, ...)
+}
 
  \arguments{
   \item{visual}{If \code{\link[base:logical]{TRUE}}, the progress bar is redraw, otherwise not.}

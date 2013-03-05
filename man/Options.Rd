@@ -13,7 +13,9 @@
 
  \title{The Options class}
 
- \usage{Options(options=list(), ...)}
+ \usage{
+Options(options=list(), ...)
+}
 
  \arguments{
    \item{options}{A tree \code{\link[base]{list}} structure of options.}

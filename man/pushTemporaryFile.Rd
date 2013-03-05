@@ -12,7 +12,9 @@
 
  \title{Appends a temporary suffix to the pathname}
 
- \usage{\method{pushTemporaryFile}{default}(filename, path=NULL, suffix=".tmp", isFile=FALSE, ..., verbose=FALSE)}
+ \usage{
+\method{pushTemporaryFile}{default}(filename, path=NULL, suffix=".tmp", isFile=FALSE, ..., verbose=FALSE)
+}
 
  \description{
   Appends a temporary suffix to the pathname and, optionally, renames an existing file accordingly.

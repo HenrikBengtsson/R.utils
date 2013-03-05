@@ -19,7 +19,9 @@
    Gets the pathname of the settings file loaded.
  }
 
- \usage{\method{getLoadedPathname}{Settings}(this, ...)}
+ \usage{
+\method{getLoadedPathname}{Settings}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

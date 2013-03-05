@@ -19,7 +19,9 @@
    Sets new values of given labels.
  }
 
- \usage{\method{setLabels}{TextStatusBar}(this, ...)}
+ \usage{
+\method{setLabels}{TextStatusBar}(this, ...)
+}
 
  \arguments{
   \item{...}{A set of named arguments.}

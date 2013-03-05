@@ -19,7 +19,9 @@
   Prints the processed GString.
 }
 
-\usage{\method{print}{GString}(x, ...)}
+\usage{
+\method{print}{GString}(x, ...)
+}
 
 \arguments{
  \item{...}{Arguments passed to \code{\link[base]{print}}().}

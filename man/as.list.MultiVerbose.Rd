@@ -19,7 +19,9 @@
    Gets a list of Verbose objects.
  }
 
- \usage{\method{as.list}{MultiVerbose}(x, ...)}
+ \usage{
+\method{as.list}{MultiVerbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

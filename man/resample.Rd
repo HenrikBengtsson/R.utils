@@ -20,7 +20,9 @@
  as of R v2.12.0.
 }
 
-\usage{\method{resample}{default}(x, ...)}
+\usage{
+\method{resample}{default}(x, ...)
+}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}} of any length and data type.}

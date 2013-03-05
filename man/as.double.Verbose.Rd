@@ -19,7 +19,9 @@
    Gets a numeric value of this object.  Returns what \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} returns.
  }
 
- \usage{\method{as.double}{Verbose}(x, ...)}
+ \usage{
+\method{as.double}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

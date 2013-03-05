@@ -16,7 +16,9 @@
   Executes a function call with option to ignore unused arguments.
 }
 
-\usage{\method{doCall}{default}(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=.fcn, .ignoreUnusedArgs=TRUE)}
+\usage{
+\method{doCall}{default}(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=.fcn, .ignoreUnusedArgs=TRUE)
+}
 
 \arguments{
  \item{.fcn}{A \code{\link[base]{character}} string naming the function to be called.}

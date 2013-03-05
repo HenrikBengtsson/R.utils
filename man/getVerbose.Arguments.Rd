@@ -19,8 +19,13 @@
  Coerces to Verbose object.
 }
 
-\synopsis{getVerbose.Arguments(static, verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)}
-\usage{Arguments$getVerbose(verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getVerbose(verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)
+
+## Don't use the below:
+\method{getVerbose}{Arguments}(static, verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)
+}
 
 \arguments{
   \item{verbose}{A single object. If a \code{\link{Verbose}}, it is immediately

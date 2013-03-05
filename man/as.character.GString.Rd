@@ -19,7 +19,9 @@
   Gets the processed character string.
 }
 
-\usage{\method{as.character}{GString}(x, envir=parent.frame(), ...)}
+\usage{
+\method{as.character}{GString}(x, envir=parent.frame(), ...)
+}
 
 \arguments{
  \item{...}{Not used.}

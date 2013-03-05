@@ -22,7 +22,9 @@
   Note that this function is called when the R.utils package is loaded.
 }
 
-\usage{\method{addFinalizerToLast}{default}(...)}
+\usage{
+\method{addFinalizerToLast}{default}(...)
+}
 
 \arguments{
  \item{...}{Not used.}

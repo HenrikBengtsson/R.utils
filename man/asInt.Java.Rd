@@ -19,8 +19,13 @@
   Converts an numeric to a Java integer.
 }
 
-\synopsis{asInt.Java(static, x, ...)}
-\usage{Java$asInt(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asInt(x, ...)
+
+## Don't use the below:
+\method{asInt}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}

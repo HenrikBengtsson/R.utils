@@ -19,7 +19,9 @@
   Checks if the output is on.
 }
 
-\usage{\method{isOn}{Verbose}(this, ...)}
+\usage{
+\method{isOn}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

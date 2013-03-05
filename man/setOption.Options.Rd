@@ -19,7 +19,9 @@
   Sets an option in the options tree structure.
  }
 
- \usage{\method{setOption}{Options}(this, pathname, value, overwrite=TRUE, ...)}
+ \usage{
+\method{setOption}{Options}(this, pathname, value, overwrite=TRUE, ...)
+}
 
  \arguments{
    \item{pathname}{A single \code{\link[base]{character}} string specifying the path to the

@@ -19,8 +19,13 @@
   Retrieves the computer name of the current host.
  }
 
- \synopsis{getHostname.System(static, ...)}
-\usage{System$getHostname(...)}
+ \usage{
+## Static method (use this):
+## System$getHostname(...)
+
+## Don't use the below:
+\method{getHostname}{System}(static, ...)
+}
 
  \value{
   Returns a \code{\link[base]{character}} string.

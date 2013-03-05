@@ -23,8 +23,13 @@
  Coerces to a logical vector and validates.
 }
 
-\synopsis{getLogicals.Arguments(static, x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)}
-\usage{Arguments$getLogicals(x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getLogicals(x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)
+
+## Don't use the below:
+\method{getLogicals}{Arguments}(static, x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)
+}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}}.}

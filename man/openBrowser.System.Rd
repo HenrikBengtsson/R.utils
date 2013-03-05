@@ -15,8 +15,13 @@
 
 \title{Opens an HTML document using the OS default HTML browser}
 
-\synopsis{openBrowser.System(this, query, ...)}
-\usage{System$openBrowser(query, ...)}
+\usage{
+## Static method (use this):
+## System$openBrowser(query, ...)
+
+## Don't use the below:
+\method{openBrowser}{System}(this, query, ...)
+}
 
 \arguments{
   \item{query}{The path to document to be opened by the browser.}

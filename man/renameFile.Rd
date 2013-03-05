@@ -17,7 +17,9 @@
   side effects.
  }
 
- \usage{\method{renameFile}{default}(pathname, newPathname, overwrite=FALSE, ..., verbose=FALSE)}
+ \usage{
+\method{renameFile}{default}(pathname, newPathname, overwrite=FALSE, ..., verbose=FALSE)
+}
 
  \arguments{
    \item{pathname}{The pathname of the file to be renamed.}

@@ -19,8 +19,13 @@
   Gets the current time.
 }
 
-\synopsis{getBuiltinTime.GString(static, format="\%H:\%M:\%S", ...)}
-\usage{GString$getBuiltinTime(format="\%H:\%M:\%S", ...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinTime(format="\%H:\%M:\%S", ...)
+
+## Don't use the below:
+\method{getBuiltinTime}{GString}(static, format="\%H:\%M:\%S", ...)
+}
 
 \arguments{
  \item{format}{A \code{\link[base]{character}} format string.}

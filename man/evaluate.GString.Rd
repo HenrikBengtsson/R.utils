@@ -19,7 +19,9 @@
   Parses and evaluates a GString.
 }
 
-\usage{\method{evaluate}{GString}(object, envir=parent.frame(), ...)}
+\usage{
+\method{evaluate}{GString}(object, envir=parent.frame(), ...)
+}
 
 \arguments{
  \item{envir}{The \code{\link[base]{environment}} in which the \code{\link{GString}} is evaluated.}

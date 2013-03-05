@@ -19,7 +19,9 @@
   Writes a ruler.
 }
 
-\usage{\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos, level=this$defaultLevel, ...)}
+\usage{
+\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos, level=this$defaultLevel, ...)
+}
 
 \arguments{
  \item{char}{A \code{\link[base]{character}} string to make up the ruler.}

@@ -15,8 +15,13 @@
 
 \title{Parses a string, file or connection for Debian formatted parameters}
 
-\synopsis{parseDebian.System(this, text=NULL, file=NULL, keys=NULL, ...)}
-\usage{System$parseDebian(text=NULL, file=NULL, keys=NULL, ...)}
+\usage{
+## Static method (use this):
+## System$parseDebian(text=NULL, file=NULL, keys=NULL, ...)
+
+## Don't use the below:
+\method{parseDebian}{System}(this, text=NULL, file=NULL, keys=NULL, ...)
+}
 
 \arguments{
   \item{text}{The text to be parsed. Default value is \code{\link[base]{NULL}}.}

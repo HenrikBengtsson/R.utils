@@ -19,7 +19,9 @@
    Gets the progress bar string to be displayed.
  }
 
- \usage{\method{getBarString}{ProgressBar}(this, ...)}
+ \usage{
+\method{getBarString}{ProgressBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

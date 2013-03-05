@@ -32,7 +32,9 @@ extends \link[R.oo]{Object}\cr
  Abstract class SmartComments.
 }
 
-\usage{SmartComments(letter=NA, ...)}
+\usage{
+SmartComments(letter=NA, ...)
+}
 
 \arguments{
   \item{letter}{A single \code{\link[base]{character}}.}

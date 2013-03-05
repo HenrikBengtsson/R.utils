@@ -16,7 +16,9 @@
   Method to load objects to a new environment for objects previously stored by \code{\link[base]{save}}().
 }
 
-\usage{\method{loadToEnv}{default}(..., envir=new.env())}
+\usage{
+\method{loadToEnv}{default}(..., envir=new.env())
+}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[base]{load}}().}

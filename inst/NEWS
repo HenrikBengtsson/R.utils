@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.20.1 [2013-03-04]
+o DOCUMENTATION: Updated the help usage section for all static methods.
+
+
 Version: 1.20.0 [2013-02-24]
 o Added cmdArgs() which is short for R.utils::commandArgs(asValues=TRUE,
   adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L].

@@ -18,7 +18,9 @@
  Checks if the current file position for a connection is at the 'End of File'.
 }
 
-\usage{\method{isEof}{connection}(con, ...)}
+\usage{
+\method{isEof}{connection}(con, ...)
+}
 
 \arguments{
  \item{con}{A \code{\link[base:connections]{connection}}.}

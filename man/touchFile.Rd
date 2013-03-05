@@ -18,7 +18,9 @@
   the file was last modified, and time can only be set to the current time.
 }
 
-\usage{\method{touchFile}{default}(pathname, ...)}
+\usage{
+\method{touchFile}{default}(pathname, ...)
+}
 
 \arguments{
  \item{pathname}{A \code{\link[base]{character}} specifying the file to be updated.}

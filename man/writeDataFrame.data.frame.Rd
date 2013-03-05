@@ -14,7 +14,9 @@
 
  \title{Writes a data.frame to tabular text file}
 
- \usage{\method{writeDataFrame}{data.frame}(data, file, path=NULL, sep="	", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format = "\%Y-\%m-\%d \%H:\%M:\%S \%Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE)}
+ \usage{
+\method{writeDataFrame}{data.frame}(data, file, path=NULL, sep="	", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format = "\%Y-\%m-\%d \%H:\%M:\%S \%Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE)
+}
 
  \description{
   Writes a data.frame to tabular text file with an optional header.

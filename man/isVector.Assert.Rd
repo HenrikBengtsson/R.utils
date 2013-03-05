@@ -19,8 +19,13 @@
    Static method asserting thatan object is a vector.
  }
 
- \synopsis{isVector.Assert(static, x, length=NULL, ...)}
-\usage{Assert$isVector(x, length=NULL, ...)}
+ \usage{
+## Static method (use this):
+## Assert$isVector(x, length=NULL, ...)
+
+## Don't use the below:
+\method{isVector}{Assert}(static, x, length=NULL, ...)
+}
 
  \arguments{
   \item{x}{Object to be checked.}

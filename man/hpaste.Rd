@@ -16,7 +16,9 @@
   Concatenating vectors into human-readable strings such as "1, 2, 3, ..., 10".
  }
 
- \usage{\method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")}
+ \usage{
+\method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")
+}
 
  \arguments{
   \item{...}{Arguments to be pasted.}

@@ -19,7 +19,9 @@
   Gets a list representation of the options.
  }
 
- \usage{\method{as.list}{Options}(x, ...)}
+ \usage{
+\method{as.list}{Options}(x, ...)
+}
 
  \arguments{
    \item{...}{Not used.}

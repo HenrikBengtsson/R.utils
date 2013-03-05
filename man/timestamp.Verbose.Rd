@@ -19,7 +19,9 @@
   Writes a timestamp with default format [2005-06-23 21:20:03].
 }
 
-\usage{\method{timestamp}{Verbose}(this, format=getTimestampFormat(this), ...)}
+\usage{
+\method{timestamp}{Verbose}(this, format=getTimestampFormat(this), ...)
+}
 
 \arguments{
  \item{stamp}{A timestamp \code{\link[base]{character}} to be written.}

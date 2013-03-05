@@ -19,7 +19,9 @@
   Downloads a file.
 }
 
-\usage{\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)}
+\usage{
+\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)
+}
 
 \arguments{
  \item{url}{A \code{\link[base]{character}} string specifying the URL to be downloaded.}

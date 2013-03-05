@@ -22,7 +22,9 @@
   dimension based on the names of that dimension.
 }
 
-\usage{\method{unwrap}{array}(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...)}
+\usage{
+\method{unwrap}{array}(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...)
+}
 
 \arguments{
  \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}

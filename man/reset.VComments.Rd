@@ -19,7 +19,9 @@
    Resets a VComments compiler.
  }
 
- \usage{\method{reset}{VComments}(this, ...)}
+ \usage{
+\method{reset}{VComments}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

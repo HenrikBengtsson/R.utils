@@ -20,7 +20,9 @@
    Evaluates its arguments with the output being verbosed.
  }
 
- \usage{\method{capture}{Verbose}(this, ..., level=this$defaultLevel)}
+ \usage{
+\method{capture}{Verbose}(this, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Arguments to be captured.}

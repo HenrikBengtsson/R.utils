@@ -19,7 +19,9 @@
    Checks if progress bar is completed.
  }
 
- \usage{\method{isDone}{ProgressBar}(this, ...)}
+ \usage{
+\method{isDone}{ProgressBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

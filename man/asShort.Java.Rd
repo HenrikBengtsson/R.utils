@@ -19,8 +19,13 @@
   Converts a numeric to a Java short.
 }
 
-\synopsis{asShort.Java(static, x, ...)}
-\usage{Java$asShort(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asShort(x, ...)
+
+## Don't use the below:
+\method{asShort}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}

@@ -16,7 +16,9 @@
   Call hook functions by hook name.
 }
 
-\usage{\method{callHooks}{default}(hookName, ..., removeCalledHooks=FALSE)}
+\usage{
+\method{callHooks}{default}(hookName, ..., removeCalledHooks=FALSE)
+}
 
 \arguments{
  \item{hookName}{A \code{\link[base]{character}} string of the hook name.}

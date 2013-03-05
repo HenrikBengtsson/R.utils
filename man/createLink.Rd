@@ -12,7 +12,9 @@
 
  \title{Creates a link to a file or a directory}
 
- \usage{\method{createLink}{default}(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...)}
+ \usage{
+\method{createLink}{default}(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...)
+}
 
  \description{
    Creates a link to a file or a directory.

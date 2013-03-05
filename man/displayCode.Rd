@@ -16,7 +16,9 @@
  Displays the contents of a text file with line numbers and more.
 }
 
-\usage{\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL, pager=getOption("pager"), ...)}
+\usage{
+\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL, pager=getOption("pager"), ...)
+}
 
 \arguments{
   \item{con}{A \code{\link[base:connections]{connection}} or a \code{\link[base]{character}} string filename.

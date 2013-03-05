@@ -15,7 +15,9 @@
 
  \title{Updates file progress bar}
 
- \usage{\method{update}{FileProgressBar}(object, visual=TRUE, ...)}
+ \usage{
+\method{update}{FileProgressBar}(object, visual=TRUE, ...)
+}
 
  \description{
    Updates file progress bar.

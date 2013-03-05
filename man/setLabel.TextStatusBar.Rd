@@ -19,7 +19,9 @@
    Sets the value of a label address either by its index or its names.
  }
 
- \usage{\method{setLabel}{TextStatusBar}(this, label, value, ...)}
+ \usage{
+\method{setLabel}{TextStatusBar}(this, label, value, ...)
+}
 
  \arguments{
   \item{label}{The index or the name of the label.}

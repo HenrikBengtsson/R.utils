@@ -16,7 +16,9 @@
   Writes text in the margin along the sides of a plot.
 }
 
-\usage{\method{stext}{default}(text, side=1, line=0, pos=0.5, margin=c(0.2, 0.2), charDim=c(strwidth("M", cex = cex), strheight("M", cex = cex)), cex=par("cex"), ...)}
+\usage{
+\method{stext}{default}(text, side=1, line=0, pos=0.5, margin=c(0.2, 0.2), charDim=c(strwidth("M", cex = cex), strheight("M", cex = cex)), cex=par("cex"), ...)
+}
 
 \arguments{
  \item{text}{The text to be written. See \code{\link[graphics]{mtext}} for details.}

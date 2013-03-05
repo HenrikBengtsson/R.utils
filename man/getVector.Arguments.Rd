@@ -19,8 +19,13 @@
  Validates a vector by checking its length (number of elements).
 }
 
-\synopsis{getVector.Arguments(static, x, length=NULL, .name=NULL, ...)}
-\usage{Arguments$getVector(x, length=NULL, .name=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getVector(x, length=NULL, .name=NULL, ...)
+
+## Don't use the below:
+\method{getVector}{Arguments}(static, x, length=NULL, .name=NULL, ...)
+}
 
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.}

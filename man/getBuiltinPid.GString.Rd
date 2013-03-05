@@ -19,8 +19,13 @@
   Gets the process id of the current R session.
 }
 
-\synopsis{getBuiltinPid.GString(static, ...)}
-\usage{GString$getBuiltinPid(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinPid(...)
+
+## Don't use the below:
+\method{getBuiltinPid}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

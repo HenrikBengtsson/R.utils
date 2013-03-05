@@ -20,7 +20,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{str}{Verbose}(object, ...)}
+ \usage{
+\method{str}{Verbose}(object, ...)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[utils]{str}}.}

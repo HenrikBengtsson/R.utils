@@ -19,7 +19,9 @@
   Gets the unprocessed GString.
 }
 
-\usage{\method{getRaw}{GString}(object, ...)}
+\usage{
+\method{getRaw}{GString}(object, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

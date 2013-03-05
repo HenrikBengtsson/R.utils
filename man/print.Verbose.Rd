@@ -20,7 +20,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{print}{Verbose}(x, ..., level=this$defaultLevel)}
+ \usage{
+\method{print}{Verbose}(x, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{print}}().}

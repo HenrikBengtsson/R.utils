@@ -21,7 +21,9 @@
   to the settings file in the home directory of the current user.
  }
 
- \usage{\method{saveAnywhere}{Settings}(this, file=NULL, path="~", ...)}
+ \usage{
+\method{saveAnywhere}{Settings}(this, file=NULL, path="~", ...)
+}
 
  \arguments{
    \item{file}{A \code{\link[base]{character}} string or a \code{\link[base:connections]{connection}} where to write too.

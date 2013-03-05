@@ -19,7 +19,9 @@
    Creates a cloned instance with a lower threshold.
  }
 
- \usage{\method{more}{Verbose}(this, dThreshold=1, ...)}
+ \usage{
+\method{more}{Verbose}(this, dThreshold=1, ...)
+}
 
  \arguments{
   \item{dThreshold}{The amount the threshold should be lowered.}

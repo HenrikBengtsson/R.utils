@@ -19,8 +19,13 @@
    Static method asserting that a generic condition is true.
  }
 
- \synopsis{check.Assert(static, condition, message=NULL, ...)}
-\usage{Assert$check(condition, message=NULL, ...)}
+ \usage{
+## Static method (use this):
+## Assert$check(condition, message=NULL, ...)
+
+## Don't use the below:
+\method{check}{Assert}(static, condition, message=NULL, ...)
+}
 
  \arguments{
   \item{condition}{A condition that should return \code{\link[base:logical]{TRUE}} if ok, or something

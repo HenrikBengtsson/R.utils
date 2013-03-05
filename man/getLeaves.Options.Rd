@@ -19,7 +19,9 @@
   Gets all (non-list) options in a flat list.
  }
 
- \usage{\method{getLeaves}{Options}(this, ...)}
+ \usage{
+\method{getLeaves}{Options}(this, ...)
+}
 
  \arguments{
    \item{...}{Not used.}

@@ -12,7 +12,9 @@
 
 \title{Gets the relative pathname relative to a directory}
 
-\usage{\method{getRelativePath}{default}(pathname, relativeTo=getwd(), caseSensitive=NULL, ...)}
+\usage{
+\method{getRelativePath}{default}(pathname, relativeTo=getwd(), caseSensitive=NULL, ...)
+}
 
 \description{
   Gets the relative pathname relative to a directory.

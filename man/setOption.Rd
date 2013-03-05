@@ -16,7 +16,9 @@
  Sets a option in R by specifying its name as a \code{\link[base]{character}} string.
 }
 
-\usage{\method{setOption}{default}(x, value, ...)}
+\usage{
+\method{setOption}{default}(x, value, ...)
+}
 
 \arguments{
   \item{x}{The name of the option to be set.}

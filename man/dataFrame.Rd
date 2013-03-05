@@ -12,7 +12,9 @@
 
 \title{Allocates a data frame with given column classes}
 
-\usage{\method{dataFrame}{default}(colClasses, nrow=1, ...)}
+\usage{
+\method{dataFrame}{default}(colClasses, nrow=1, ...)
+}
 
 \description{
  Allocates a data frame with given column classes.

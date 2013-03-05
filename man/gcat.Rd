@@ -17,7 +17,9 @@
   Parses, evaluates and outputs a GString.
 }
 
-\usage{\method{gcat}{default}(..., file="", append=FALSE, envir=parent.frame())}
+\usage{
+\method{gcat}{default}(..., file="", append=FALSE, envir=parent.frame())
+}
 
 \arguments{
  \item{...}{\code{\link[base]{character}} strings passed to \code{\link{gstring}}().}

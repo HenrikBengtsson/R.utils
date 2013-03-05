@@ -32,7 +32,9 @@ extends \link[R.utils]{ProgressBar}\cr
 
  }
 
- \usage{FileProgressBar(pathname=NULL, ...)}
+ \usage{
+FileProgressBar(pathname=NULL, ...)
+}
 
  \arguments{
    \item{pathname}{The pathname of the output file.}

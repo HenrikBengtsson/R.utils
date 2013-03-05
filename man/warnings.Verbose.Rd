@@ -21,7 +21,9 @@
   calls.
 }
 
-\usage{\method{warnings}{Verbose}(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel)}
+\usage{
+\method{warnings}{Verbose}(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel)
+}
 
 \arguments{
  \item{title}{A \code{\link[base]{character}} string to be outputted before the warnings, if

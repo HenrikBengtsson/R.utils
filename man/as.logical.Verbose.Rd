@@ -19,7 +19,9 @@
    Gets a logical value of this object.  Returns \code{isVisible(this, level=this$defaultLevel)}.
  }
 
- \usage{\method{as.logical}{Verbose}(x, ...)}
+ \usage{
+\method{as.logical}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

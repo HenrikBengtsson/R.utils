@@ -19,8 +19,13 @@
    Searches for the settings file in one or several directories.
  }
 
- \synopsis{findSettings.Settings(static, basename, paths=c(".", "~"), ...)}
-\usage{Settings$findSettings(basename, paths=c(".", "~"), ...)}
+ \usage{
+## Static method (use this):
+## Settings$findSettings(basename, paths=c(".", "~"), ...)
+
+## Don't use the below:
+\method{findSettings}{Settings}(static, basename, paths=c(".", "~"), ...)
+}
 
  \arguments{
   \item{basename}{A \code{\link[base]{character}} string of the basename of the settings file.}

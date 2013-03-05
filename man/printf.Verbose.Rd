@@ -21,7 +21,9 @@
    calls.
  }
 
- \usage{\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp)}
+ \usage{
+\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{sprintf}}().}

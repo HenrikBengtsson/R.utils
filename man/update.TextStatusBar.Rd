@@ -19,7 +19,9 @@
    Updates the status bar (visually).
  }
 
- \usage{\method{update}{TextStatusBar}(object, ...)}
+ \usage{
+\method{update}{TextStatusBar}(object, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

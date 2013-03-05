@@ -16,7 +16,9 @@
   Reads one or more Rd help files in a certain format.
  }
 
- \usage{\method{readRdHelp}{default}(..., format=c("text", "html", "latex", "rd"), drop=TRUE)}
+ \usage{
+\method{readRdHelp}{default}(..., format=c("text", "html", "latex", "rd"), drop=TRUE)
+}
 
  \arguments{
    \item{...}{Arguments passed to \code{\link[utils]{help}}.}

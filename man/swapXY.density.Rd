@@ -18,7 +18,9 @@
   Swaps x and y coordinates of a density object returned by \code{\link[stats]{density}}.
  }
 
- \usage{\method{swapXY}{density}(object, ...)}
+ \usage{
+\method{swapXY}{density}(object, ...)
+}
 
  \arguments{
    \item{...}{Not used.}

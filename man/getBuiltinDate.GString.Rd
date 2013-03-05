@@ -19,8 +19,13 @@
   Gets the current date.
 }
 
-\synopsis{getBuiltinDate.GString(static, format="\%Y-\%m-\%d", ...)}
-\usage{GString$getBuiltinDate(format="\%Y-\%m-\%d", ...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinDate(format="\%Y-\%m-\%d", ...)
+
+## Don't use the below:
+\method{getBuiltinDate}{GString}(static, format="\%Y-\%m-\%d", ...)
+}
 
 \arguments{
  \item{format}{A \code{\link[base]{character}} format string.}

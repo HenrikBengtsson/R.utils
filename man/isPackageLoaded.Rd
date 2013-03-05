@@ -18,7 +18,9 @@
   this function does not load the package if not loaded.
 }
 
-\usage{\method{isPackageLoaded}{default}(package, version=NULL, ...)}
+\usage{
+\method{isPackageLoaded}{default}(package, version=NULL, ...)
+}
 
 \arguments{
  \item{package}{The name of the package.}

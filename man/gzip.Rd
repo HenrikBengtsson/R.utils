@@ -13,7 +13,9 @@
 
 \title{Gzip/Gunzip a file}
 
-\usage{\method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)}
+\usage{
+\method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
+}
 
 \description{
  Gzip/Gunzip a file.

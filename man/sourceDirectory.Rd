@@ -16,7 +16,9 @@
  Sources files recursively to either local or global environment.
 }
 
-\usage{\method{sourceDirectory}{default}(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...)}
+\usage{
+\method{sourceDirectory}{default}(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...)
+}
 
 \arguments{
  \item{path}{A path to a directory to be sourced.}

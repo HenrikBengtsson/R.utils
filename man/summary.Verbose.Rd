@@ -20,7 +20,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{summary}{Verbose}(object, ...)}
+ \usage{
+\method{summary}{Verbose}(object, ...)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{summary}}().}

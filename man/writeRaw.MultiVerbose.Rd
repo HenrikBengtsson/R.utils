@@ -19,7 +19,9 @@
    Writes to each of the Verbose objects.
  }
 
- \usage{\method{writeRaw}{MultiVerbose}(this, ...)}
+ \usage{
+\method{writeRaw}{MultiVerbose}(this, ...)
+}
 
  \arguments{
   \item{...}{Additiona objects to be passed to \code{writeRaw()} for

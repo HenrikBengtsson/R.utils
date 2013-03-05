@@ -12,7 +12,9 @@
 
  \title{Drops a backup suffix from the backup pathname}
 
- \usage{\method{popBackupFile}{default}(filename, path=NULL, suffix=".bak", isFile=TRUE, onMissing=c("ignore", "error"), drop=TRUE, ..., verbose=FALSE)}
+ \usage{
+\method{popBackupFile}{default}(filename, path=NULL, suffix=".bak", isFile=TRUE, onMissing=c("ignore", "error"), drop=TRUE, ..., verbose=FALSE)
+}
 
  \description{
   Drops a backup suffix from the backup pathname and, by default, restores an existing backup file

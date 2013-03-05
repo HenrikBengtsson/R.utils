@@ -16,7 +16,9 @@
   Checks if the file specification is a directory.
  }
 
- \usage{\method{isDirectory}{default}(pathname, ...)}
+ \usage{
+\method{isDirectory}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}

@@ -19,8 +19,13 @@
   Gets the username of the user running R.
 }
 
-\synopsis{getBuiltinUsername.GString(static, ...)}
-\usage{GString$getBuiltinUsername(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinUsername(...)
+
+## Don't use the below:
+\method{getBuiltinUsername}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

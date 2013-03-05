@@ -12,7 +12,9 @@
 
 \title{Checks if a value is (close to) zero or not}
 
-\usage{\method{isZero}{default}(x, neps=1, eps=.Machine$double.eps, ...)}
+\usage{
+\method{isZero}{default}(x, neps=1, eps=.Machine$double.eps, ...)
+}
 
 \description{
   Checks if a value (or a vector of values) is (close to) zero or not

@@ -16,7 +16,9 @@
  Creates a vector of column classes used for tabular reading based on a compact format string.
 }
 
-\usage{\method{colClasses}{default}(fmt, ...)}
+\usage{
+\method{colClasses}{default}(fmt, ...)
+}
 
 \arguments{
   \item{fmt}{A \code{\link[base]{character}} string specifying the column-class format.

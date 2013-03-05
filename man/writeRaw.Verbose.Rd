@@ -20,7 +20,9 @@
    This method is used by all other methods of this class for output.
  }
 
- \usage{\method{writeRaw}{Verbose}(this, ..., sep="", level=this$defaultLevel)}
+ \usage{
+\method{writeRaw}{Verbose}(this, ..., sep="", level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{paste}}().}

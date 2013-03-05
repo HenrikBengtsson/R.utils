@@ -23,8 +23,13 @@
   this range will automatically be truncated without a warning.
 }
 
-\synopsis{writeInt.Java(static, con, i, ...)}
-\usage{Java$writeInt(con, i, ...)}
+\usage{
+## Static method (use this):
+## Java$writeInt(con, i, ...)
+
+## Don't use the below:
+\method{writeInt}{Java}(static, con, i, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}

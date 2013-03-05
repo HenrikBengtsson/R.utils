@@ -31,7 +31,9 @@ extends character\cr
 
 }
 
-\usage{GString(..., sep="")}
+\usage{
+GString(..., sep="")
+}
 
 \arguments{
   \item{...}{one or more objects, to be coerced to \code{\link[base]{character}} vectors.}

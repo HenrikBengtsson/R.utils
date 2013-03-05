@@ -18,7 +18,9 @@
   An empty file has zero lines.
  }
 
- \usage{\method{countLines}{default}(file, chunkSize=5e+07, ...)}
+ \usage{
+\method{countLines}{default}(file, chunkSize=5e+07, ...)
+}
 
  \arguments{
    \item{file}{A \code{\link[base:connections]{connection}} or a pathname.}

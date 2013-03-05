@@ -19,7 +19,9 @@
    Sets default step length.
  }
 
- \usage{\method{setStepLength}{ProgressBar}(this, stepLength, ...)}
+ \usage{
+\method{setStepLength}{ProgressBar}(this, stepLength, ...)
+}
 
  \arguments{
   \item{stepLength}{New default step length.}

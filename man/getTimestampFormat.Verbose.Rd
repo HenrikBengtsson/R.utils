@@ -19,7 +19,9 @@
   Gets the default timestamp format.
 }
 
-\usage{\method{getTimestampFormat}{Verbose}(this, ...)}
+\usage{
+\method{getTimestampFormat}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

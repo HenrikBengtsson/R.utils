@@ -19,7 +19,9 @@
    Preprocess a vector of code lines.
  }
 
- \usage{\method{compile}{SmartComments}(this, lines, trim=TRUE, excludeComments=FALSE, ...)}
+ \usage{
+\method{compile}{SmartComments}(this, lines, trim=TRUE, excludeComments=FALSE, ...)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code to be preprocessed.}

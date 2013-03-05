@@ -17,7 +17,9 @@
   Parses and evaluates a GString into a regular string.
 }
 
-\usage{\method{gstring}{default}(..., file=NULL, path=NULL, envir=parent.frame())}
+\usage{
+\method{gstring}{default}(..., file=NULL, path=NULL, envir=parent.frame())
+}
 
 \arguments{
   \item{...}{\code{\link[base]{character}} strings.}

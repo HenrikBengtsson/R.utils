@@ -20,7 +20,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{evaluate}{Verbose}(this, fun, ..., level=this$defaultLevel)}
+ \usage{
+\method{evaluate}{Verbose}(this, fun, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{fun}{A \code{\link[base]{function}} to be evaluated (only if above threshold).}

@@ -19,7 +19,9 @@
   Turn on the output.
 }
 
-\usage{\method{on}{Verbose}(this, ...)}
+\usage{
+\method{on}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

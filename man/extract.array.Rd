@@ -23,7 +23,9 @@
   of the object your wish to extract values from, cf. example.
 }
 
-\usage{\method{extract}{array}(x, ..., indices=list(...), dims=names(indices), drop=FALSE)}
+\usage{
+\method{extract}{array}(x, ..., indices=list(...), dims=names(indices), drop=FALSE)
+}
 
 \arguments{
  \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}

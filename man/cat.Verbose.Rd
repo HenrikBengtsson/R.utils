@@ -21,7 +21,9 @@
    calls.
  }
 
- \usage{\method{cat}{Verbose}(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp)}
+ \usage{
+\method{cat}{Verbose}(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{cat}}().}

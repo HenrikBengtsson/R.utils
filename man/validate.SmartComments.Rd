@@ -19,7 +19,9 @@
    Validates the compiled lines
  }
 
- \usage{\method{validate}{SmartComments}(this, lines, ...)}
+ \usage{
+\method{validate}{SmartComments}(this, lines, ...)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code to validated.}

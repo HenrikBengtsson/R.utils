@@ -16,8 +16,10 @@
  Evaluates an expression and captures the code and/or the output.
 }
 
-\usage{evalCapture(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="
-", envir=parent.frame())}
+\usage{
+evalCapture(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="
+", envir=parent.frame())
+}
 
 \arguments{
   \item{expr}{The \code{\link[base]{expression}} to be evaluated.}

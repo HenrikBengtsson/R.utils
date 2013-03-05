@@ -22,7 +22,9 @@
  error is thrown.
 }
 
-\usage{\method{dimNA}{default}(x) <- value}
+\usage{
+\method{dimNA}{default}(x) <- value
+}
 
 \arguments{
   \item{x}{An R object.}

@@ -12,7 +12,9 @@
 
 \title{Gets the absolute pathname string}
 
-\usage{\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), expandTilde=FALSE, ...)}
+\usage{
+\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), expandTilde=FALSE, ...)
+}
 
 \description{
   Gets the absolute pathname string.

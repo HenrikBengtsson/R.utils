@@ -19,7 +19,9 @@
   Gets the full pathname of all (non-list) options.
  }
 
- \usage{\method{names}{Options}(x, ...)}
+ \usage{
+\method{names}{Options}(x, ...)
+}
 
  \arguments{
    \item{...}{Not used.}

@@ -16,7 +16,9 @@
   Registers a function to be called when the R session finishes.
 }
 
-\usage{\method{onSessionExit}{default}(fcn, action=c("prepend", "append", "replace"), ...)}
+\usage{
+\method{onSessionExit}{default}(fcn, action=c("prepend", "append", "replace"), ...)
+}
 
 \arguments{
  \item{fcn}{A \code{\link[base]{function}} to be called without argument.}

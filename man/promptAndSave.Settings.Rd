@@ -19,7 +19,9 @@
   Prompt user to save modified settings.
  }
 
- \usage{\method{promptAndSave}{Settings}(this, saveOption="saveSettings", settingsName=NULL, ...)}
+ \usage{
+\method{promptAndSave}{Settings}(this, saveOption="saveSettings", settingsName=NULL, ...)
+}
 
  \arguments{
    \item{saveOption}{A \code{\link[base]{character}} string of the option used to set

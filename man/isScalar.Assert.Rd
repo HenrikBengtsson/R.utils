@@ -19,8 +19,13 @@
    Static method asserting thatan object is a single value.
  }
 
- \synopsis{isScalar.Assert(static, x, ...)}
-\usage{Assert$isScalar(x, ...)}
+ \usage{
+## Static method (use this):
+## Assert$isScalar(x, ...)
+
+## Don't use the below:
+\method{isScalar}{Assert}(static, x, ...)
+}
 
  \arguments{
   \item{x}{Object to be checked.}

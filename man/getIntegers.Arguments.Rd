@@ -23,8 +23,13 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIntegers.Arguments(static, ..., disallow=c("NA", "NaN"))}
-\usage{Arguments$getIntegers(..., disallow=c("NA", "NaN"))}
+\usage{
+## Static method (use this):
+## Arguments$getIntegers(..., disallow=c("NA", "NaN"))
+
+## Don't use the below:
+\method{getIntegers}{Arguments}(static, ..., disallow=c("NA", "NaN"))
+}
 
 \arguments{
   \item{...}{Arguments passed to @method "getNumeric".}

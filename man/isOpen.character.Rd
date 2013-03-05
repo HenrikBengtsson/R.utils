@@ -14,7 +14,9 @@
 
  \title{Checks if there is an open connection to a file}
 
- \usage{\method{isOpen}{character}(pathname, rw=c("read", "write"), ...)}
+ \usage{
+\method{isOpen}{character}(pathname, rw=c("read", "write"), ...)
+}
 
  \description{
   Checks if there is an open connection to a file.

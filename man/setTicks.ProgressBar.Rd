@@ -19,7 +19,9 @@
    Sets values for which ticks should be visible.
  }
 
- \usage{\method{setTicks}{ProgressBar}(this, ticks=10, ...)}
+ \usage{
+\method{setTicks}{ProgressBar}(this, ticks=10, ...)
+}
 
  \arguments{
   \item{ticks}{Tick positions (values).}

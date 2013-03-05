@@ -34,7 +34,9 @@ extends \link[R.utils]{Verbose}\cr
  A Verbose class ignoring everything.
 }
 
-\usage{NullVerbose(...)}
+\usage{
+NullVerbose(...)
+}
 
 \arguments{
   \item{...}{Ignored.}

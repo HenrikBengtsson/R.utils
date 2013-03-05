@@ -15,7 +15,9 @@
 
  \title{Removes the progress file for a file progress bar}
 
- \usage{\method{cleanup}{FileProgressBar}(object, ...)}
+ \usage{
+\method{cleanup}{FileProgressBar}(object, ...)
+}
 
  \description{
    Removes the progress file for a file progress bar.

@@ -19,7 +19,9 @@
   Sets the current default verbose level.
 }
 
-\usage{\method{setDefaultLevel}{Verbose}(this, level, ...)}
+\usage{
+\method{setDefaultLevel}{Verbose}(this, level, ...)
+}
 
 \arguments{
  \item{level}{A \code{\link[base]{numeric}} value.}

@@ -19,7 +19,9 @@
    Returns a character string version of this object.
  }
 
- \usage{\method{as.character}{Verbose}(x, ...)}
+ \usage{
+\method{as.character}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

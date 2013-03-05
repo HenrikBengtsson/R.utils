@@ -19,7 +19,9 @@
   Checks if an option exists.
  }
 
- \usage{\method{hasOption}{Options}(this, pathname, ...)}
+ \usage{
+\method{hasOption}{Options}(this, pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A single or a \code{\link[base]{vector}} of \code{\link[base]{character}} strings specifying

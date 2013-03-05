@@ -16,7 +16,9 @@
   Saves an object to a file or a connection.
 }
 
-\usage{\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)}
+\usage{
+\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)
+}
 
 \arguments{
  \item{object}{The object to be saved.}

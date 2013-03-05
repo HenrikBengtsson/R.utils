@@ -19,7 +19,9 @@
    Sets maximum value.
  }
 
- \usage{\method{setMaxValue}{ProgressBar}(this, maxValue, ...)}
+ \usage{
+\method{setMaxValue}{ProgressBar}(this, maxValue, ...)
+}
 
  \arguments{
   \item{maxValue}{New maximum value.}

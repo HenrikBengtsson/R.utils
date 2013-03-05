@@ -23,8 +23,13 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIndices.Arguments(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
-\usage{Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+
+## Don't use the below:
+\method{getIndices}{Arguments}(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+}
 
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.  If \code{\link[base]{logical}}, \code{\link[base]{which}}() is used.}

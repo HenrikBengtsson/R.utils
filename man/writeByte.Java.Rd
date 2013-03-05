@@ -23,8 +23,13 @@
   will automatically be truncated without a warning.
 }
 
-\synopsis{writeByte.Java(static, con, b, ...)}
-\usage{Java$writeByte(con, b, ...)}
+\usage{
+## Static method (use this):
+## Java$writeByte(con, b, ...)
+
+## Don't use the below:
+\method{writeByte}{Java}(static, con, b, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}

@@ -19,7 +19,9 @@
   Sets the default timestamp format.
 }
 
-\usage{\method{setTimestampFormat}{Verbose}(this, format="\%Y\%m\%d \%H:\%M:\%S|", ...)}
+\usage{
+\method{setTimestampFormat}{Verbose}(this, format="\%Y\%m\%d \%H:\%M:\%S|", ...)
+}
 
 \arguments{
  \item{format}{If a \code{\link[base]{function}}, this function is called (without arguments)

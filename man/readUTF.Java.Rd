@@ -19,8 +19,13 @@
   Reads a Java (UTF-8) formatted string from a connection.
 }
 
-\synopsis{readUTF.Java(static, con, as.character=TRUE, ...)}
-\usage{Java$readUTF(con, as.character=TRUE, ...)}
+\usage{
+## Static method (use this):
+## Java$readUTF(con, as.character=TRUE, ...)
+
+## Don't use the below:
+\method{readUTF}{Java}(static, con, as.character=TRUE, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}

@@ -19,7 +19,9 @@
    Resets a SmartComments compiler.
  }
 
- \usage{\method{reset}{SmartComments}(this, ...)}
+ \usage{
+\method{reset}{SmartComments}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

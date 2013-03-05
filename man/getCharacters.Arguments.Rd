@@ -23,8 +23,13 @@
  Coerces to a character vector and validates.
 }
 
-\synopsis{getCharacters.Arguments(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)}
-\usage{Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)
+
+## Don't use the below:
+\method{getCharacters}{Arguments}(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)
+}
 
 \arguments{
   \item{s}{A \code{\link[base]{vector}}.}

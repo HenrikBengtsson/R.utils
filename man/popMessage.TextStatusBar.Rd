@@ -19,7 +19,9 @@
    Adds a message above the status bar by scrolling up previous messages popped.
  }
 
- \usage{\method{popMessage}{TextStatusBar}(this, ..., collapse="", sep="")}
+ \usage{
+\method{popMessage}{TextStatusBar}(this, ..., collapse="", sep="")
+}
 
  \arguments{
   \item{...}{Arguments passed to \code{\link[base]{cat}}().}

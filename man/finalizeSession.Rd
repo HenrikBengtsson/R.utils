@@ -20,7 +20,9 @@
   This method should not be used by the user.
 }
 
-\usage{\method{finalizeSession}{default}(...)}
+\usage{
+\method{finalizeSession}{default}(...)
+}
 
 \arguments{
  \item{...}{Not used.}

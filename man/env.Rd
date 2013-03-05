@@ -16,7 +16,9 @@
   Creates a new environment, evaluates an expression therein, and returns the environment.
  }
 
- \usage{env(..., hash=FALSE, parent=parent.frame(), size=29)}
+ \usage{
+env(..., hash=FALSE, parent=parent.frame(), size=29)
+}
 
  \arguments{
    \item{...}{Arguments passed to \code{\link[base]{evalq}}(), particularly a

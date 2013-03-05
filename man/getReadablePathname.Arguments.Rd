@@ -19,8 +19,13 @@
  Gets a readable pathname.
 }
 
-\synopsis{getReadablePathname.Arguments(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
-\usage{Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+
+## Don't use the below:
+\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+}
 
 \arguments{
   \item{file}{A \code{\link[base]{character}} string specifying the file.}

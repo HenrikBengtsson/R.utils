@@ -15,8 +15,13 @@
 
 \title{Get the current time in milliseconds}
 
-\synopsis{currentTimeMillis.System(this, ...)}
-\usage{System$currentTimeMillis(...)}
+\usage{
+## Static method (use this):
+## System$currentTimeMillis(...)
+
+## Don't use the below:
+\method{currentTimeMillis}{System}(this, ...)
+}
 
 \description{
   Get the current time in milliseconds.

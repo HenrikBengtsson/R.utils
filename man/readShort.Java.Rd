@@ -21,8 +21,13 @@
   the range [-32768,32767].
 }
 
-\synopsis{readShort.Java(static, con, n=1, ...)}
-\usage{Java$readShort(con, n=1, ...)}
+\usage{
+## Static method (use this):
+## Java$readShort(con, n=1, ...)
+
+## Don't use the below:
+\method{readShort}{Java}(static, con, n=1, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}

@@ -21,7 +21,9 @@
   calls.
 }
 
-\usage{\method{header}{Verbose}(this, ..., char="-", padding=0, prefix=paste(char, paste(rep(" ", max(padding, 1)), collapse = ""), sep = ""), level=this$defaultLevel)}
+\usage{
+\method{header}{Verbose}(this, ..., char="-", padding=0, prefix=paste(char, paste(rep(" ", max(padding, 1)), collapse = ""), sep = ""), level=this$defaultLevel)
+}
 
 \arguments{
  \item{...}{The title.}

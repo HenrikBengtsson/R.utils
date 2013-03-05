@@ -19,8 +19,13 @@
    Static method asserting thatan object is a matrix.
  }
 
- \synopsis{isMatrix.Assert(static, x, nrow=NULL, ncol=NULL, ...)}
-\usage{Assert$isMatrix(x, nrow=NULL, ncol=NULL, ...)}
+ \usage{
+## Static method (use this):
+## Assert$isMatrix(x, nrow=NULL, ncol=NULL, ...)
+
+## Don't use the below:
+\method{isMatrix}{Assert}(static, x, nrow=NULL, ncol=NULL, ...)
+}
 
  \arguments{
   \item{x}{Object to be checked.}

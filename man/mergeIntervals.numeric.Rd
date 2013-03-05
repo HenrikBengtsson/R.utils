@@ -14,7 +14,9 @@
 
  \title{Merges intervals}
 
- \usage{\method{mergeIntervals}{numeric}(intervals, ...)}
+ \usage{
+\method{mergeIntervals}{numeric}(intervals, ...)
+}
 
  \description{
   Merges intervals by returning an index \code{\link[base]{vector}} specifying the (first)

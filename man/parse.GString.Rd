@@ -19,7 +19,9 @@
   Parses a GString.
 }
 
-\usage{\method{parse}{GString}(object, ...)}
+\usage{
+\method{parse}{GString}(object, ...)
+}
 
 \arguments{
  \item{...}{Not used.}

@@ -16,7 +16,9 @@
   Method to load object from a file or a connection, which previously have been saved using \code{\link{saveObject}}().
 }
 
-\usage{\method{loadObject}{default}(file, path=NULL, ...)}
+\usage{
+\method{loadObject}{default}(file, path=NULL, ...)
+}
 
 \arguments{
  \item{file}{A filename or \code{\link[base:connections]{connection}} to read the object from.}

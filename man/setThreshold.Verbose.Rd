@@ -19,7 +19,9 @@
   Sets verbose threshold. Output requests below this threshold will be ignored.
 }
 
-\usage{\method{setThreshold}{Verbose}(this, threshold, ...)}
+\usage{
+\method{setThreshold}{Verbose}(this, threshold, ...)
+}
 
 \arguments{
  \item{threshold}{A \code{\link[base]{numeric}} threshold.}

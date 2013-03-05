@@ -18,7 +18,9 @@
   of the absolute pathname.
  }
 
- \usage{\method{getParent}{default}(pathname, depth=1, fsep=.Platform$file.sep, ...)}
+ \usage{
+\method{getParent}{default}(pathname, depth=1, fsep=.Platform$file.sep, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}

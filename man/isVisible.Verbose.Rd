@@ -19,7 +19,9 @@
    Checks if a certain verbose level will be shown or not.
  }
 
- \usage{\method{isVisible}{Verbose}(this, level=this$defaultLevel, ...)}
+ \usage{
+\method{isVisible}{Verbose}(this, level=this$defaultLevel, ...)
+}
 
  \arguments{
   \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}

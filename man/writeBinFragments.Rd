@@ -12,7 +12,9 @@
 
  \title{Writes binary data to disjoint sections of a connection or a file}
 
- \usage{\method{writeBinFragments}{default}(con, object, idxs, size=NA, ...)}
+ \usage{
+\method{writeBinFragments}{default}(con, object, idxs, size=NA, ...)
+}
 
  \description{
   Writes binary data to disjoint sections of a connection or a file.

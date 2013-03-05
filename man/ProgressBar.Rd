@@ -30,7 +30,9 @@ extends \link[R.oo]{Object}\cr
 
  }
 
- \usage{ProgressBar(max=100, ticks=10, stepLength=1, newlineWhenDone=TRUE)}
+ \usage{
+ProgressBar(max=100, ticks=10, stepLength=1, newlineWhenDone=TRUE)
+}
 
  \arguments{
    \item{max}{The maximum number of steps.}

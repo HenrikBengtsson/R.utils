@@ -16,7 +16,9 @@
   Gets the  on R CMD check if the current R session was launched by it.
 }
 
-\usage{queryRCmdCheck(...)}
+\usage{
+queryRCmdCheck(...)
+}
 
 \arguments{
  \item{...}{Not used.}

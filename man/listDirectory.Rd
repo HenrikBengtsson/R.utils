@@ -20,7 +20,9 @@
  directory names are also returned.
 }
 
-\usage{\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE, ...)}
+\usage{
+\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE, ...)
+}
 
 \arguments{
   \item{pathname}{A pathname to be listed.}

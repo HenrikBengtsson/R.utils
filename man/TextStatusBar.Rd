@@ -32,7 +32,9 @@ extends \link[R.oo]{Object}\cr
  A status bar at the R prompt that can be updated.
 }
 
-\usage{TextStatusBar(fmt=paste("\%-", getOption("width") - 1, "s", sep = ""), ...)}
+\usage{
+TextStatusBar(fmt=paste("\%-", getOption("width") - 1, "s", sep = ""), ...)
+}
 
 \arguments{
   \item{fmt}{A \code{\link[base]{character}} format string to be used by \code{\link[base]{sprintf}}().

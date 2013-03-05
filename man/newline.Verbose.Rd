@@ -19,7 +19,9 @@
   Writes one or several empty lines.
 }
 
-\usage{\method{newline}{Verbose}(this, n=1, ..., level=this$defaultLevel)}
+\usage{
+\method{newline}{Verbose}(this, n=1, ..., level=this$defaultLevel)
+}
 
 \arguments{
  \item{n}{The number of empty lines to write.}

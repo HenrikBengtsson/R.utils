@@ -19,7 +19,9 @@
    Writes a newline.
  }
 
- \usage{\method{newline}{TextStatusBar}(this, ...)}
+ \usage{
+\method{newline}{TextStatusBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}

@@ -12,7 +12,9 @@
 
  \title{Reads a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{\method{readWindowsShellLink}{default}(con, clean=TRUE, verbose=FALSE, ...)}
+ \usage{
+\method{readWindowsShellLink}{default}(con, clean=TRUE, verbose=FALSE, ...)
+}
 
  \description{
    Reads a Microsoft Windows Shortcut (.lnk file).

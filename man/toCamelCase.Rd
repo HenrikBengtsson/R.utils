@@ -16,7 +16,9 @@
   Converts a string of words into a merged camel-cased word, e.g. "a single espresso" is converted to "aSingleEspresso".
 }
 
-\usage{\method{toCamelCase}{default}(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ 	]+", ...)}
+\usage{
+\method{toCamelCase}{default}(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ 	]+", ...)
+}
 
 \arguments{
  \item{s}{A \code{\link[base]{character}} string.}

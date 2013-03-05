@@ -19,7 +19,9 @@
   Call hook functions.
 }
 
-\usage{\method{callHooks}{function}(hooks, ...)}
+\usage{
+\method{callHooks}{function}(hooks, ...)
+}
 
 \arguments{
  \item{hooks}{A \code{\link[base]{function}} or a \code{\link[base]{list}} of hook \code{\link[base]{function}}s or names of such.}

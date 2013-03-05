@@ -32,7 +32,9 @@ extends \link[R.oo]{Object}\cr
  Class to writing verbose messages to a connection or file.
 }
 
-\usage{Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...)}
+\usage{
+Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...)
+}
 
 \arguments{
   \item{con}{A \code{\link[base:connections]{connection}} or a \code{\link[base]{character}} string filename.}

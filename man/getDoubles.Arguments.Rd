@@ -23,8 +23,13 @@
  Coerces to a double vector and validates.
 }
 
-\synopsis{getDoubles.Arguments(static, ..., disallow=c("NA", "NaN"))}
-\usage{Arguments$getDoubles(..., disallow=c("NA", "NaN"))}
+\usage{
+## Static method (use this):
+## Arguments$getDoubles(..., disallow=c("NA", "NaN"))
+
+## Don't use the below:
+\method{getDoubles}{Arguments}(static, ..., disallow=c("NA", "NaN"))
+}
 
 \arguments{
   \item{...}{Arguments passed to @method "getNumeric".}

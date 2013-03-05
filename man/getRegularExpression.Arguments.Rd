@@ -19,8 +19,13 @@
  Gets a valid regular expression pattern.
 }
 
-\synopsis{getRegularExpression.Arguments(static, pattern=NULL, ..., .name=NULL)}
-\usage{Arguments$getRegularExpression(pattern=NULL, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getRegularExpression(pattern=NULL, ..., .name=NULL)
+
+## Don't use the below:
+\method{getRegularExpression}{Arguments}(static, pattern=NULL, ..., .name=NULL)
+}
 
 \arguments{
   \item{pattern}{A \code{\link[base]{character}} string to be validated.}

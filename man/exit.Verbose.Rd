@@ -21,7 +21,9 @@
    calls.
  }
 
- \usage{\method{exit}{Verbose}(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL)}
+ \usage{
+\method{exit}{Verbose}(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[R.utils:cat.Verbose]{*cat}()}. If not specified
