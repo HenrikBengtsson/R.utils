@@ -9,9 +9,7 @@
  \name{writeRaw.MultiVerbose}
 \alias{writeRaw.MultiVerbose}
 \alias{MultiVerbose.writeRaw}
-\alias{writeRaw.MultiVerbose}
 \alias{writeRaw,MultiVerbose-method}
-
 
  \title{Writes to each of the Verbose objects}
 

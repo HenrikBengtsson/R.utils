@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getDoubles.Arguments}
+\name{Arguments$getDoubles}
+\alias{Arguments$getDoubles}
 \alias{getDoubles.Arguments}
 \alias{Arguments.getDoubles}
-\alias{getDoubles.Arguments}
 \alias{getDoubles,Arguments-method}
-
 \alias{Arguments.getDouble}
 \alias{getDouble.Arguments}
 \alias{getDouble,Arguments-method}

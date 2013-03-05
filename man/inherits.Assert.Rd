@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{inherits.Assert}
+ \name{Assert$inherits}
+\alias{Assert$inherits}
 \alias{inherits.Assert}
 \alias{Assert.inherits}
-\alias{inherits.Assert}
 \alias{inherits,Assert-method}
-
 
  \title{Static method asserting that an object inherits from of a certain class}
 

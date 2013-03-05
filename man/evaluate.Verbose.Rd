@@ -9,9 +9,7 @@
  \name{evaluate.Verbose}
 \alias{evaluate.Verbose}
 \alias{Verbose.evaluate}
-\alias{evaluate.Verbose}
 \alias{evaluate,Verbose-method}
-
 
  \title{Evaluates a function and prints its results if above threshold}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asByte.Java}
+\name{Java$asByte}
+\alias{Java$asByte}
 \alias{asByte.Java}
 \alias{Java.asByte}
-\alias{asByte.Java}
 \alias{asByte,Java-method}
-
 
 \title{Converts a numeric to a Java byte}
 

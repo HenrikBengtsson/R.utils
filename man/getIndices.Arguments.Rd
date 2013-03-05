@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getIndices.Arguments}
+\name{Arguments$getIndices}
+\alias{Arguments$getIndices}
 \alias{getIndices.Arguments}
 \alias{Arguments.getIndices}
-\alias{getIndices.Arguments}
 \alias{getIndices,Arguments-method}
-
 \alias{Arguments.getIndex}
 \alias{getIndex.Arguments}
 \alias{getIndex,Arguments-method}

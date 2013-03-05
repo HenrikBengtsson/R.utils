@@ -9,9 +9,7 @@
  \name{getLabel.TextStatusBar}
 \alias{getLabel.TextStatusBar}
 \alias{TextStatusBar.getLabel}
-\alias{getLabel.TextStatusBar}
 \alias{getLabel,TextStatusBar-method}
-
 
  \title{Gets the current value of a label}
 

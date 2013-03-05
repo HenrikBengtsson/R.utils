@@ -9,9 +9,7 @@
  \name{increase.ProgressBar}
 \alias{increase.ProgressBar}
 \alias{ProgressBar.increase}
-\alias{increase.ProgressBar}
 \alias{increase,ProgressBar-method}
-
 
  \title{Increases (steps) progress bar}
 

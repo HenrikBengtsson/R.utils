@@ -9,9 +9,7 @@
  \name{exit.Verbose}
 \alias{exit.Verbose}
 \alias{Verbose.exit}
-\alias{exit.Verbose}
 \alias{exit,Verbose-method}
-
 
  \title{Writes a message and unindents the following output}
 

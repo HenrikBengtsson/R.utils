@@ -9,9 +9,7 @@
  \name{reset.SmartComments}
 \alias{reset.SmartComments}
 \alias{SmartComments.reset}
-\alias{reset.SmartComments}
 \alias{reset,SmartComments-method}
-
 
  \title{Resets a SmartComments compiler}
 

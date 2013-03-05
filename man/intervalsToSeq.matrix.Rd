@@ -9,8 +9,6 @@
 
 \name{intervalsToSeq.matrix}
 \alias{intervalsToSeq.matrix}
-\alias{intervalsToSeq.matrix}
-
 
 \title{Generates a vector of indices from a matrix of intervals}
 

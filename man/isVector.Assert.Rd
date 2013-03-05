@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{isVector.Assert}
+ \name{Assert$isVector}
+\alias{Assert$isVector}
 \alias{isVector.Assert}
 \alias{Assert.isVector}
-\alias{isVector.Assert}
 \alias{isVector,Assert-method}
-
 
  \title{Static method asserting thatan object is a vector}
 

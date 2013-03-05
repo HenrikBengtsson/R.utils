@@ -9,9 +9,7 @@
 \name{setThreshold.Verbose}
 \alias{setThreshold.Verbose}
 \alias{Verbose.setThreshold}
-\alias{setThreshold.Verbose}
 \alias{setThreshold,Verbose-method}
-
 
 \title{Sets verbose threshold}
 

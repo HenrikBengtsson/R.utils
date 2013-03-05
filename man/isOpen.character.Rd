@@ -9,8 +9,6 @@
 
  \name{isOpen.character}
 \alias{isOpen.character}
-\alias{isOpen.character}
-
 
  \title{Checks if there is an open connection to a file}
 

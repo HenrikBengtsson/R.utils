@@ -9,9 +9,7 @@
 \name{pushState.Verbose}
 \alias{pushState.Verbose}
 \alias{Verbose.pushState}
-\alias{pushState.Verbose}
 \alias{pushState,Verbose-method}
-
 \alias{Verbose.popState}
 \alias{popState.Verbose}
 \alias{popState,Verbose-method}

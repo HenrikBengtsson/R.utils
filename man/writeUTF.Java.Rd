@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeUTF.Java}
+\name{Java$writeUTF}
+\alias{Java$writeUTF}
 \alias{writeUTF.Java}
 \alias{Java.writeUTF}
-\alias{writeUTF.Java}
 \alias{writeUTF,Java-method}
-
 
 \title{Writes a string to a connection in Java format (UTF-8)}
 

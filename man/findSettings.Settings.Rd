@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findSettings.Settings}
+ \name{Settings$findSettings}
+\alias{Settings$findSettings}
 \alias{findSettings.Settings}
 \alias{Settings.findSettings}
-\alias{findSettings.Settings}
 \alias{findSettings,Settings-method}
-
 
  \title{Searches for the settings file in one or several directories}
 

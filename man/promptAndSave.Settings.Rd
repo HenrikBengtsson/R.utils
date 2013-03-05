@@ -9,9 +9,7 @@
  \name{promptAndSave.Settings}
 \alias{promptAndSave.Settings}
 \alias{Settings.promptAndSave}
-\alias{promptAndSave.Settings}
 \alias{promptAndSave,Settings-method}
-
 
  \title{Prompt user to save modified settings}
 

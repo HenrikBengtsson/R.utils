@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asInt.Java}
+\name{Java$asInt}
+\alias{Java$asInt}
 \alias{asInt.Java}
 \alias{Java.asInt}
-\alias{asInt.Java}
 \alias{asInt,Java-method}
-
 
 \title{Converts an numeric to a Java integer}
 

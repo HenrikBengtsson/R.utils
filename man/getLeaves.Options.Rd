@@ -9,9 +9,7 @@
  \name{getLeaves.Options}
 \alias{getLeaves.Options}
 \alias{Options.getLeaves}
-\alias{getLeaves.Options}
 \alias{getLeaves,Options-method}
-
 
  \title{Gets all (non-list) options in a flat list}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinRversion.GString}
+\name{GString$getBuiltinRversion}
+\alias{GString$getBuiltinRversion}
 \alias{getBuiltinRversion.GString}
 \alias{GString.getBuiltinRversion}
-\alias{getBuiltinRversion.GString}
 \alias{getBuiltinRversion,GString-method}
-
 
 \title{Gets the current R version}
 

@@ -9,9 +9,7 @@
  \name{isVisible.NullVerbose}
 \alias{isVisible.NullVerbose}
 \alias{NullVerbose.isVisible}
-\alias{isVisible.NullVerbose}
 \alias{isVisible,NullVerbose-method}
-
 
  \title{Checks if a certain verbose level will be shown or not}
 

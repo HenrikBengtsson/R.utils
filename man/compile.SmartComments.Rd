@@ -9,9 +9,7 @@
  \name{compile.SmartComments}
 \alias{compile.SmartComments}
 \alias{SmartComments.compile}
-\alias{compile.SmartComments}
 \alias{compile,SmartComments-method}
-
 
  \title{Preprocess a vector of code lines}
 

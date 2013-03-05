@@ -9,8 +9,6 @@
 
  \name{mergeIntervals.numeric}
 \alias{mergeIntervals.numeric}
-\alias{mergeIntervals.numeric}
-
 
  \title{Merges intervals}
 

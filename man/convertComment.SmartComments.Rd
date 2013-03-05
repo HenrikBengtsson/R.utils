@@ -9,9 +9,7 @@
  \name{convertComment.SmartComments}
 \alias{convertComment.SmartComments}
 \alias{SmartComments.convertComment}
-\alias{convertComment.SmartComments}
 \alias{convertComment,SmartComments-method}
-
 
  \title{Converts a single smart comment to R code}
 

@@ -9,8 +9,6 @@
 
  \name{whichVector.logical}
 \alias{whichVector.logical}
-\alias{whichVector.logical}
-
  \alias{whichVector.matrix}
 
  \title{Identifies TRUE elements in a logical vector}

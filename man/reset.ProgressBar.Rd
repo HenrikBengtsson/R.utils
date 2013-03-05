@@ -9,9 +9,7 @@
  \name{reset.ProgressBar}
 \alias{reset.ProgressBar}
 \alias{ProgressBar.reset}
-\alias{reset.ProgressBar}
 \alias{reset,ProgressBar-method}
-
 
  \title{Reset progress bar}
 

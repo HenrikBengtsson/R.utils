@@ -9,9 +9,7 @@
  \name{capture.Verbose}
 \alias{capture.Verbose}
 \alias{Verbose.capture}
-\alias{capture.Verbose}
 \alias{capture,Verbose-method}
-
 
  \title{Captures output of a function}
 

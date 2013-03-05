@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinPid.GString}
+\name{GString$getBuiltinPid}
+\alias{GString$getBuiltinPid}
 \alias{getBuiltinPid.GString}
 \alias{GString.getBuiltinPid}
-\alias{getBuiltinPid.GString}
 \alias{getBuiltinPid,GString-method}
-
 
 \title{Gets the process id of the current R session}
 

@@ -9,9 +9,7 @@
  \name{validate.SmartComments}
 \alias{validate.SmartComments}
 \alias{SmartComments.validate}
-\alias{validate.SmartComments}
 \alias{validate,SmartComments-method}
-
 
  \title{Validates the compiled lines}
 

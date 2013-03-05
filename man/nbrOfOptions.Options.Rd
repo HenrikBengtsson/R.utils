@@ -9,9 +9,7 @@
  \name{nbrOfOptions.Options}
 \alias{nbrOfOptions.Options}
 \alias{Options.nbrOfOptions}
-\alias{nbrOfOptions.Options}
 \alias{nbrOfOptions,Options-method}
-
 
  \title{Gets the number of options set}
 

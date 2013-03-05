@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getInstanceOf.Arguments}
+\name{Arguments$getInstanceOf}
+\alias{Arguments$getInstanceOf}
 \alias{getInstanceOf.Arguments}
 \alias{Arguments.getInstanceOf}
-\alias{getInstanceOf.Arguments}
 \alias{getInstanceOf,Arguments-method}
-
 
 \title{Gets an instance of the object that is of a particular class}
 

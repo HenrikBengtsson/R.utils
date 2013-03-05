@@ -9,9 +9,7 @@
 \name{getMessage.TimeoutException}
 \alias{getMessage.TimeoutException}
 \alias{TimeoutException.getMessage}
-\alias{getMessage.TimeoutException}
 \alias{getMessage,TimeoutException-method}
-
 
 \title{Gets the message of the exception}
 

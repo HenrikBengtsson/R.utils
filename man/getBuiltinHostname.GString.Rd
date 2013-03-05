@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinHostname.GString}
+\name{GString$getBuiltinHostname}
+\alias{GString$getBuiltinHostname}
 \alias{getBuiltinHostname.GString}
 \alias{GString.getBuiltinHostname}
-\alias{getBuiltinHostname.GString}
 \alias{getBuiltinHostname,GString-method}
-
 
 \title{Gets the hostname of the system running R}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeByte.Java}
+\name{Java$writeByte}
+\alias{Java$writeByte}
 \alias{writeByte.Java}
 \alias{Java.writeByte}
-\alias{writeByte.Java}
 \alias{writeByte,Java-method}
-
 
 \title{Writes a byte (8 bits) to a connection in Java format}
 

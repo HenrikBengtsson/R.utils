@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{check.Assert}
+ \name{Assert$check}
+\alias{Assert$check}
 \alias{check.Assert}
 \alias{Assert.check}
-\alias{check.Assert}
 \alias{check,Assert-method}
-
 
  \title{Static method asserting that a generic condition is true}
 

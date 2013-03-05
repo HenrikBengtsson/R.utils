@@ -9,9 +9,7 @@
  \name{getBarString.ProgressBar}
 \alias{getBarString.ProgressBar}
 \alias{ProgressBar.getBarString}
-\alias{getBarString.ProgressBar}
 \alias{getBarString,ProgressBar-method}
-
 
  \title{Gets the progress bar string to be displayed}
 

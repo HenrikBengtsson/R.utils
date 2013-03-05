@@ -9,9 +9,7 @@
 \name{getThreshold.Verbose}
 \alias{getThreshold.Verbose}
 \alias{Verbose.getThreshold}
-\alias{getThreshold.Verbose}
 \alias{getThreshold,Verbose-method}
-
 
 \title{Gets current verbose threshold}
 

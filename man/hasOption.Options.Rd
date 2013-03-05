@@ -9,9 +9,7 @@
  \name{hasOption.Options}
 \alias{hasOption.Options}
 \alias{Options.hasOption}
-\alias{hasOption.Options}
 \alias{hasOption,Options-method}
-
 
  \title{Checks if an option exists}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getRegularExpression.Arguments}
+\name{Arguments$getRegularExpression}
+\alias{Arguments$getRegularExpression}
 \alias{getRegularExpression.Arguments}
 \alias{Arguments.getRegularExpression}
-\alias{getRegularExpression.Arguments}
 \alias{getRegularExpression,Arguments-method}
-
 
 \title{Gets a valid regular expression pattern}
 

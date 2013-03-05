@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeInt.Java}
+\name{Java$writeInt}
+\alias{Java$writeInt}
 \alias{writeInt.Java}
 \alias{Java.writeInt}
-\alias{writeInt.Java}
 \alias{writeInt,Java-method}
-
 
 \title{Writes a integer (32 bits) to a connection in Java format}
 

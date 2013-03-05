@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getVariableValue.GString}
+\name{GString$getVariableValue}
+\alias{GString$getVariableValue}
 \alias{getVariableValue.GString}
 \alias{GString.getVariableValue}
-\alias{getVariableValue.GString}
 \alias{getVariableValue,GString-method}
-
 
 \title{Gets a variable value given a name and attributes}
 

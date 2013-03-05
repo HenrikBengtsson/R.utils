@@ -9,9 +9,7 @@
  \name{equals.Verbose}
 \alias{equals.Verbose}
 \alias{Verbose.equals}
-\alias{equals.Verbose}
 \alias{equals,Verbose-method}
-
 
  \title{Checks if this object is equal to another}
 

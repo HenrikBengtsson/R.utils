@@ -9,9 +9,7 @@
  \name{saveAnywhere.Settings}
 \alias{saveAnywhere.Settings}
 \alias{Settings.saveAnywhere}
-\alias{saveAnywhere.Settings}
 \alias{saveAnywhere,Settings-method}
-
 
  \title{Saves settings to file}
 

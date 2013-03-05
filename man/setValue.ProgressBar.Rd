@@ -9,9 +9,7 @@
  \name{setValue.ProgressBar}
 \alias{setValue.ProgressBar}
 \alias{ProgressBar.setValue}
-\alias{setValue.ProgressBar}
 \alias{setValue,ProgressBar-method}
-
 
  \title{Sets current value}
 

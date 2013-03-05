@@ -9,9 +9,7 @@
  \name{summary.Verbose}
 \alias{summary.Verbose}
 \alias{Verbose.summary}
-\alias{summary.Verbose}
 \alias{summary,Verbose-method}
-
 
  \title{Generates a summary of an object if above threshold}
 

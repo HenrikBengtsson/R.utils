@@ -9,9 +9,7 @@
  \name{setOption.Options}
 \alias{setOption.Options}
 \alias{Options.setOption}
-\alias{setOption.Options}
 \alias{setOption,Options-method}
-
 
  \title{Sets an option}
 

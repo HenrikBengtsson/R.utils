@@ -9,8 +9,6 @@
 
  \name{inAnyInterval.numeric}
 \alias{inAnyInterval.numeric}
-\alias{inAnyInterval.numeric}
-
 
  \title{Checks if a set of values are inside one or more intervals}
 

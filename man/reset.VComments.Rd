@@ -9,9 +9,7 @@
  \name{reset.VComments}
 \alias{reset.VComments}
 \alias{VComments.reset}
-\alias{reset.VComments}
 \alias{reset,VComments-method}
-
 
  \title{Resets a VComments compiler}
 

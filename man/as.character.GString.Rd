@@ -9,9 +9,7 @@
 \name{as.character.GString}
 \alias{as.character.GString}
 \alias{GString.as.character}
-\alias{as.character.GString}
 \alias{as.character,GString-method}
-
 
 \title{Gets the processed character string}
 

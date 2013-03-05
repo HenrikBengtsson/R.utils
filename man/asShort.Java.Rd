@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asShort.Java}
+\name{Java$asShort}
+\alias{Java$asShort}
 \alias{asShort.Java}
 \alias{Java.asShort}
-\alias{asShort.Java}
 \alias{asShort,Java-method}
-
 
 \title{Converts a numeric to a Java short}
 

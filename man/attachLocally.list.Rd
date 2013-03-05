@@ -9,8 +9,6 @@
 
  \name{attachLocally.list}
 \alias{attachLocally.list}
-\alias{attachLocally.list}
-
  \alias{attachLocally.data.frame}
  \alias{attachLocally.environment}
  \alias{attachLocally}

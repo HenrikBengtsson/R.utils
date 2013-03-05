@@ -9,9 +9,7 @@
 \name{ruler.Verbose}
 \alias{ruler.Verbose}
 \alias{Verbose.ruler}
-\alias{ruler.Verbose}
 \alias{ruler,Verbose-method}
-
 
 \title{Writes a ruler}
 

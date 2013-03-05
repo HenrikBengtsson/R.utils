@@ -9,9 +9,7 @@
 \name{print.GString}
 \alias{print.GString}
 \alias{GString.print}
-\alias{print.GString}
 \alias{print,GString-method}
-
 
 \title{Prints the processed GString}
 

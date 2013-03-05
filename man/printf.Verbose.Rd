@@ -9,9 +9,7 @@
  \name{printf.Verbose}
 \alias{printf.Verbose}
 \alias{Verbose.printf}
-\alias{printf.Verbose}
 \alias{printf,Verbose-method}
-
 
  \title{Formats and prints object if above threshold}
 

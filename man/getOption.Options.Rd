@@ -9,9 +9,7 @@
  \name{getOption.Options}
 \alias{getOption.Options}
 \alias{Options.getOption}
-\alias{getOption.Options}
 \alias{getOption,Options-method}
-
 
  \title{Gets an option}
 

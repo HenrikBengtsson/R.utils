@@ -9,9 +9,7 @@
  \name{str.Options}
 \alias{str.Options}
 \alias{Options.str}
-\alias{str.Options}
 \alias{str,Options-method}
-
 
  \title{Prints the structure of the options}
 

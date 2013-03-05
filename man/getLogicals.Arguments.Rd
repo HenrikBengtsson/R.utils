@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getLogicals.Arguments}
+\name{Arguments$getLogicals}
+\alias{Arguments$getLogicals}
 \alias{getLogicals.Arguments}
 \alias{Arguments.getLogicals}
-\alias{getLogicals.Arguments}
 \alias{getLogicals,Arguments-method}
-
 \alias{Arguments.getLogical}
 \alias{getLogical.Arguments}
 \alias{getLogical,Arguments-method}

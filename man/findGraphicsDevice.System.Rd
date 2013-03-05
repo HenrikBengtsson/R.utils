@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findGraphicsDevice.System}
+ \name{System$findGraphicsDevice}
+\alias{System$findGraphicsDevice}
 \alias{findGraphicsDevice.System}
 \alias{System.findGraphicsDevice}
-\alias{findGraphicsDevice.System}
 \alias{findGraphicsDevice,System-method}
-
 
  \title{Searches for a working PNG device}
 

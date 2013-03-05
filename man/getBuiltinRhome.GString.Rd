@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinRhome.GString}
+\name{GString$getBuiltinRhome}
+\alias{GString$getBuiltinRhome}
 \alias{getBuiltinRhome.GString}
 \alias{GString.getBuiltinRhome}
-\alias{getBuiltinRhome.GString}
 \alias{getBuiltinRhome,GString-method}
-
 
 \title{Gets the path where R is installed}
 

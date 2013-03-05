@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readShort.Java}
+\name{Java$readShort}
+\alias{Java$readShort}
 \alias{readShort.Java}
 \alias{Java.readShort}
-\alias{readShort.Java}
 \alias{readShort,Java-method}
-
 
 \title{Reads a Java formatted short (16 bits) from a connection}
 

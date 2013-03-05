@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{isScalar.Assert}
+ \name{Assert$isScalar}
+\alias{Assert$isScalar}
 \alias{isScalar.Assert}
 \alias{Assert.isScalar}
-\alias{isScalar.Assert}
 \alias{isScalar,Assert-method}
-
 
  \title{Static method asserting thatan object is a single value}
 

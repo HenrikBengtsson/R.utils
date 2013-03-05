@@ -9,9 +9,7 @@
  \name{popMessage.TextStatusBar}
 \alias{popMessage.TextStatusBar}
 \alias{TextStatusBar.popMessage}
-\alias{popMessage.TextStatusBar}
 \alias{popMessage,TextStatusBar-method}
-
 
  \title{Adds a message above the status bar}
 

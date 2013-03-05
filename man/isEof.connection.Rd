@@ -9,8 +9,6 @@
 
 \name{isEof.connection}
 \alias{isEof.connection}
-\alias{isEof.connection}
-
 
 \title{Checks if the current file position for a connection is at the 'End of File'}
 

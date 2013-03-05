@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readByte.Java}
+\name{Java$readByte}
+\alias{Java$readByte}
 \alias{readByte.Java}
 \alias{Java.readByte}
-\alias{readByte.Java}
 \alias{readByte,Java-method}
-
 
 \title{Reads a Java formatted byte (8 bits) from a connection}
 

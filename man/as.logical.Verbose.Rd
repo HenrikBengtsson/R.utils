@@ -9,9 +9,7 @@
  \name{as.logical.Verbose}
 \alias{as.logical.Verbose}
 \alias{Verbose.as.logical}
-\alias{as.logical.Verbose}
 \alias{as.logical,Verbose-method}
-
 
  \title{Gets a logical value of this object}
 

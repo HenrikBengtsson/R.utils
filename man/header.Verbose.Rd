@@ -9,9 +9,7 @@
 \name{header.Verbose}
 \alias{header.Verbose}
 \alias{Verbose.header}
-\alias{header.Verbose}
 \alias{header,Verbose-method}
-
 
 \title{Writes a header}
 

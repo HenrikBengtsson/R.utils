@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{getUsername.System}
+ \name{System$getUsername}
+\alias{System$getUsername}
 \alias{getUsername.System}
 \alias{System.getUsername}
-\alias{getUsername.System}
 \alias{getUsername,System-method}
-
 
  \title{Retrieves the name of the user running R}
 

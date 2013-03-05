@@ -9,9 +9,7 @@
  \name{update.FileProgressBar}
 \alias{update.FileProgressBar}
 \alias{FileProgressBar.update}
-\alias{update.FileProgressBar}
 \alias{update,FileProgressBar-method}
-
 
  \title{Updates file progress bar}
 

@@ -9,9 +9,7 @@
  \name{as.character.ProgressBar}
 \alias{as.character.ProgressBar}
 \alias{ProgressBar.as.character}
-\alias{as.character.ProgressBar}
 \alias{as.character,ProgressBar-method}
-
 
  \title{Gets a string description of the progress bar}
 

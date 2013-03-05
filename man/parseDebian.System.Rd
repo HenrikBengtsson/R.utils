@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{parseDebian.System}
+\name{System$parseDebian}
+\alias{System$parseDebian}
 \alias{parseDebian.System}
 \alias{System.parseDebian}
-\alias{parseDebian.System}
 \alias{parseDebian,System-method}
-
 
 \title{Parses a string, file or connection for Debian formatted parameters}
 

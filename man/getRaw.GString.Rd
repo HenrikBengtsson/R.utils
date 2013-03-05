@@ -9,9 +9,7 @@
 \name{getRaw.GString}
 \alias{getRaw.GString}
 \alias{GString.getRaw}
-\alias{getRaw.GString}
 \alias{getRaw,GString-method}
-
 
 \title{Gets the unprocessed GString}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getFilename.Arguments}
+\name{Arguments$getFilename}
+\alias{Arguments$getFilename}
 \alias{getFilename.Arguments}
 \alias{Arguments.getFilename}
-\alias{getFilename.Arguments}
 \alias{getFilename,Arguments-method}
-
 
 \title{Gets and validates a filename}
 

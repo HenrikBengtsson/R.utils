@@ -9,9 +9,7 @@
 \name{setTimestampFormat.Verbose}
 \alias{setTimestampFormat.Verbose}
 \alias{Verbose.setTimestampFormat}
-\alias{setTimestampFormat.Verbose}
 \alias{setTimestampFormat,Verbose-method}
-
 
 \title{Sets the default timestamp format}
 

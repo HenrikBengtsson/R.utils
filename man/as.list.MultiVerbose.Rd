@@ -9,9 +9,7 @@
  \name{as.list.MultiVerbose}
 \alias{as.list.MultiVerbose}
 \alias{MultiVerbose.as.list}
-\alias{as.list.MultiVerbose}
 \alias{as.list,MultiVerbose-method}
-
 
  \title{Gets a list of Verbose objects}
 

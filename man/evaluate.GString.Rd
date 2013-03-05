@@ -9,9 +9,7 @@
 \name{evaluate.GString}
 \alias{evaluate.GString}
 \alias{GString.evaluate}
-\alias{evaluate.GString}
 \alias{evaluate,GString-method}
-
 
 \title{Parses and evaluates a GString}
 

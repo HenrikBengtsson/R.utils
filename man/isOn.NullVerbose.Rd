@@ -9,9 +9,7 @@
 \name{isOn.NullVerbose}
 \alias{isOn.NullVerbose}
 \alias{NullVerbose.isOn}
-\alias{isOn.NullVerbose}
 \alias{isOn,NullVerbose-method}
-
 
 \title{Checks if the output is on}
 

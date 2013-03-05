@@ -9,9 +9,7 @@
 \name{setDefaultLevel.Verbose}
 \alias{setDefaultLevel.Verbose}
 \alias{Verbose.setDefaultLevel}
-\alias{setDefaultLevel.Verbose}
 \alias{setDefaultLevel,Verbose-method}
-
 
 \title{Sets the current default verbose level}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{openBrowser.System}
+\name{System$openBrowser}
+\alias{System$openBrowser}
 \alias{openBrowser.System}
 \alias{System.openBrowser}
-\alias{openBrowser.System}
 \alias{openBrowser,System-method}
-
 
 \title{Opens an HTML document using the OS default HTML browser}
 

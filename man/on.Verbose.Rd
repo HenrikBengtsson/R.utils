@@ -9,9 +9,7 @@
 \name{on.Verbose}
 \alias{on.Verbose}
 \alias{Verbose.on}
-\alias{on.Verbose}
 \alias{on,Verbose-method}
-
 
 \title{Turn on the output}
 

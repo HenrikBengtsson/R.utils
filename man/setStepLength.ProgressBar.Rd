@@ -9,9 +9,7 @@
  \name{setStepLength.ProgressBar}
 \alias{setStepLength.ProgressBar}
 \alias{ProgressBar.setStepLength}
-\alias{setStepLength.ProgressBar}
 \alias{setStepLength,ProgressBar-method}
-
 
  \title{Sets default step length}
 

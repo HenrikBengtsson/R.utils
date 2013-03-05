@@ -9,9 +9,7 @@
  \name{isDone.ProgressBar}
 \alias{isDone.ProgressBar}
 \alias{ProgressBar.isDone}
-\alias{isDone.ProgressBar}
 \alias{isDone,ProgressBar-method}
-
 
  \title{Checks if progress bar is completed}
 

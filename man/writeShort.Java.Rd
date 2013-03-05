@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeShort.Java}
+\name{Java$writeShort}
+\alias{Java$writeShort}
 \alias{writeShort.Java}
 \alias{Java.writeShort}
-\alias{writeShort.Java}
 \alias{writeShort,Java-method}
-
 
 \title{Writes a short (16 bits) to a connection in Java format}
 

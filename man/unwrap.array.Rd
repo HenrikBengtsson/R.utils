@@ -9,8 +9,6 @@
 
 \name{unwrap.array}
 \alias{unwrap.array}
-\alias{unwrap.array}
-
 \alias{unwrap.matrix}
 \alias{unwrap.data.frame}
 \alias{unwrap.default}

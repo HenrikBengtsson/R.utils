@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinUsername.GString}
+\name{GString$getBuiltinUsername}
+\alias{GString$getBuiltinUsername}
 \alias{getBuiltinUsername.GString}
 \alias{GString.getBuiltinUsername}
-\alias{getBuiltinUsername.GString}
 \alias{getBuiltinUsername,GString-method}
-
 
 \title{Gets the username of the user running R}
 

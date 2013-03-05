@@ -9,8 +9,6 @@
 
 \name{downloadFile.character}
 \alias{downloadFile.character}
-\alias{downloadFile.character}
-
 \alias{downloadFile}
 
 \title{Downloads a file}

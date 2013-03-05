@@ -9,9 +9,7 @@
 \name{timestamp.Verbose}
 \alias{timestamp.Verbose}
 \alias{Verbose.timestamp}
-\alias{timestamp.Verbose}
 \alias{timestamp,Verbose-method}
-
 
 \title{Writes a timestamp}
 

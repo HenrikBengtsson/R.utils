@@ -9,9 +9,7 @@
 \name{isOn.Verbose}
 \alias{isOn.Verbose}
 \alias{Verbose.isOn}
-\alias{isOn.Verbose}
 \alias{isOn,Verbose-method}
-
 
 \title{Checks if the output is on}
 

@@ -9,9 +9,7 @@
 \name{getTimestampFormat.Verbose}
 \alias{getTimestampFormat.Verbose}
 \alias{Verbose.getTimestampFormat}
-\alias{getTimestampFormat.Verbose}
 \alias{getTimestampFormat,Verbose-method}
-
 
 \title{Gets the default timestamp format}
 

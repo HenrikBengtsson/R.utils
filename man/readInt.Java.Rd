@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readInt.Java}
+\name{Java$readInt}
+\alias{Java$readInt}
 \alias{readInt.Java}
 \alias{Java.readInt}
-\alias{readInt.Java}
 \alias{readInt,Java-method}
-
 
 \title{Reads a Java formatted int (32 bits) from a connection}
 

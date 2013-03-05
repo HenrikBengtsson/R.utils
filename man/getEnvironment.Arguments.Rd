@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getEnvironment.Arguments}
+\name{Arguments$getEnvironment}
+\alias{Arguments$getEnvironment}
 \alias{getEnvironment.Arguments}
 \alias{Arguments.getEnvironment}
-\alias{getEnvironment.Arguments}
 \alias{getEnvironment,Arguments-method}
-
 
 \title{Gets an existing environment}
 

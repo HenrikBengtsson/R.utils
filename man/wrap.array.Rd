@@ -9,8 +9,6 @@
 
  \name{wrap.array}
 \alias{wrap.array}
-\alias{wrap.array}
-
  \alias{wrap.matrix}
  \alias{wrap.data.frame}
 

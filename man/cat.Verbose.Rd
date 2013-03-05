@@ -9,9 +9,7 @@
  \name{cat.Verbose}
 \alias{cat.Verbose}
 \alias{Verbose.cat}
-\alias{cat.Verbose}
 \alias{cat,Verbose-method}
-
 
  \title{Concatenates and prints objects if above threshold}
 

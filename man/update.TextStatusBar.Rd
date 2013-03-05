@@ -9,9 +9,7 @@
  \name{update.TextStatusBar}
 \alias{update.TextStatusBar}
 \alias{TextStatusBar.update}
-\alias{update.TextStatusBar}
 \alias{update,TextStatusBar-method}
-
 
  \title{Updates the status bar (visually)}
 

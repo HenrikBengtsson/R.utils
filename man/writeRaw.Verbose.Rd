@@ -9,9 +9,7 @@
  \name{writeRaw.Verbose}
 \alias{writeRaw.Verbose}
 \alias{Verbose.writeRaw}
-\alias{writeRaw.Verbose}
 \alias{writeRaw,Verbose-method}
-
 
  \title{Writes objects if above threshold}
 

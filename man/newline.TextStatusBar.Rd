@@ -9,9 +9,7 @@
  \name{newline.TextStatusBar}
 \alias{newline.TextStatusBar}
 \alias{TextStatusBar.newline}
-\alias{newline.TextStatusBar}
 \alias{newline,TextStatusBar-method}
-
 
  \title{Writes a newline}
 

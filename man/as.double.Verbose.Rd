@@ -9,9 +9,7 @@
  \name{as.double.Verbose}
 \alias{as.double.Verbose}
 \alias{Verbose.as.double}
-\alias{as.double.Verbose}
 \alias{as.double,Verbose-method}
-
 
  \title{Gets a numeric value of this object}
 

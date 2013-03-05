@@ -9,9 +9,7 @@
  \name{setLabel.TextStatusBar}
 \alias{setLabel.TextStatusBar}
 \alias{TextStatusBar.setLabel}
-\alias{setLabel.TextStatusBar}
 \alias{setLabel,TextStatusBar-method}
-
 
  \title{Sets the value of a label}
 

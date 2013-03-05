@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findGhostscript.System}
+ \name{System$findGhostscript}
+\alias{System$findGhostscript}
 \alias{findGhostscript.System}
 \alias{System.findGhostscript}
-\alias{findGhostscript.System}
 \alias{findGhostscript,System-method}
-
 
  \title{Searches for the ghostview binary on the current system}
 

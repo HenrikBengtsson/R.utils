@@ -9,9 +9,7 @@
  \name{more.Verbose}
 \alias{more.Verbose}
 \alias{Verbose.more}
-\alias{more.Verbose}
 \alias{more,Verbose-method}
-
 
  \title{Creates a cloned instance with a lower threshold}
 

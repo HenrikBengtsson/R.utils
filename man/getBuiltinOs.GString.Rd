@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinOs.GString}
+\name{GString$getBuiltinOs}
+\alias{GString$getBuiltinOs}
 \alias{getBuiltinOs.GString}
 \alias{GString.getBuiltinOs}
-\alias{getBuiltinOs.GString}
 \alias{getBuiltinOs,GString-method}
-
 
 \title{Gets the operating system of the running machine}
 

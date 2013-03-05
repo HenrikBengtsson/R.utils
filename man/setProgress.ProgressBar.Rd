@@ -9,9 +9,7 @@
  \name{setProgress.ProgressBar}
 \alias{setProgress.ProgressBar}
 \alias{ProgressBar.setProgress}
-\alias{setProgress.ProgressBar}
 \alias{setProgress,ProgressBar-method}
-
 
  \title{Sets current progress}
 

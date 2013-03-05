@@ -9,9 +9,7 @@
 \name{warnings.Verbose}
 \alias{warnings.Verbose}
 \alias{Verbose.warnings}
-\alias{warnings.Verbose}
 \alias{warnings,Verbose-method}
-
 
 \title{Outputs any warnings recorded}
 

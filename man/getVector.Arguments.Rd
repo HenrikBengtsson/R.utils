@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getVector.Arguments}
+\name{Arguments$getVector}
+\alias{Arguments$getVector}
 \alias{getVector.Arguments}
 \alias{Arguments.getVector}
-\alias{getVector.Arguments}
 \alias{getVector,Arguments-method}
-
 
 \title{Validates a vector}
 

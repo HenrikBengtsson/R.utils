@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asLong.Java}
+\name{Java$asLong}
+\alias{Java$asLong}
 \alias{asLong.Java}
 \alias{Java.asLong}
-\alias{asLong.Java}
 \alias{asLong,Java-method}
-
 
 \title{Converts a numeric to a Java long}
 

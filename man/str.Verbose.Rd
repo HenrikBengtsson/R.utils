@@ -9,9 +9,7 @@
  \name{str.Verbose}
 \alias{str.Verbose}
 \alias{Verbose.str}
-\alias{str.Verbose}
 \alias{str,Verbose-method}
-
 
  \title{Prints the structure of an object if above threshold}
 

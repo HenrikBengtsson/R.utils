@@ -9,9 +9,7 @@
  \name{writeRaw.NullVerbose}
 \alias{writeRaw.NullVerbose}
 \alias{NullVerbose.writeRaw}
-\alias{writeRaw.NullVerbose}
 \alias{writeRaw,NullVerbose-method}
-
  \alias{NullVerbose.cat}
 \alias{cat.NullVerbose}
 \alias{cat,NullVerbose-method}

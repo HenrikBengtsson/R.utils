@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getReadablePathnames.Arguments}
+\name{Arguments$getReadablePathnames}
+\alias{Arguments$getReadablePathnames}
 \alias{getReadablePathnames.Arguments}
 \alias{Arguments.getReadablePathnames}
-\alias{getReadablePathnames.Arguments}
 \alias{getReadablePathnames,Arguments-method}
-
 
 \title{Gets a readable pathname}
 

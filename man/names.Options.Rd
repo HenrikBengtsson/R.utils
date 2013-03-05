@@ -9,9 +9,7 @@
  \name{names.Options}
 \alias{names.Options}
 \alias{Options.names}
-\alias{names.Options}
 \alias{names,Options-method}
-
 
  \title{Gets the full pathname of all (non-list) options}
 

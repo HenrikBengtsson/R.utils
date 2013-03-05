@@ -9,8 +9,6 @@
 
  \name{swapXY.density}
 \alias{swapXY.density}
-\alias{swapXY.density}
-
 
  \title{Swaps x and y coordinates of a density object}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readUTF.Java}
+\name{Java$readUTF}
+\alias{Java$readUTF}
 \alias{readUTF.Java}
 \alias{Java.readUTF}
-\alias{readUTF.Java}
 \alias{readUTF,Java-method}
-
 
 \title{Reads a Java (UTF-8) formatted string from a connection}
 

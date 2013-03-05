@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getVerbose.Arguments}
+\name{Arguments$getVerbose}
+\alias{Arguments$getVerbose}
 \alias{getVerbose.Arguments}
 \alias{Arguments.getVerbose}
-\alias{getVerbose.Arguments}
 \alias{getVerbose,Arguments-method}
-
 
 \title{Coerces to Verbose object}
 

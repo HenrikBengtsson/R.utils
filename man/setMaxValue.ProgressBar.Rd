@@ -9,9 +9,7 @@
  \name{setMaxValue.ProgressBar}
 \alias{setMaxValue.ProgressBar}
 \alias{ProgressBar.setMaxValue}
-\alias{setMaxValue.ProgressBar}
 \alias{setMaxValue,ProgressBar-method}
-
 
  \title{Sets maximum value}
 

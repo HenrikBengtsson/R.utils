@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getCharacters.Arguments}
+\name{Arguments$getCharacters}
+\alias{Arguments$getCharacters}
 \alias{getCharacters.Arguments}
 \alias{Arguments.getCharacters}
-\alias{getCharacters.Arguments}
 \alias{getCharacters,Arguments-method}
-
 \alias{Arguments.getCharacter}
 \alias{getCharacter.Arguments}
 \alias{getCharacter,Arguments-method}

@@ -9,8 +9,6 @@
 
  \name{mapToIntervals.numeric}
 \alias{mapToIntervals.numeric}
-\alias{mapToIntervals.numeric}
-
 
  \title{Maps values to intervals}
 

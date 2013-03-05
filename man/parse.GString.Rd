@@ -9,9 +9,7 @@
 \name{parse.GString}
 \alias{parse.GString}
 \alias{GString.parse}
-\alias{parse.GString}
 \alias{parse,GString-method}
-
 
 \title{Parses a GString}
 

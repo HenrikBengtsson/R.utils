@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{isMatrix.Assert}
+ \name{Assert$isMatrix}
+\alias{Assert$isMatrix}
 \alias{isMatrix.Assert}
 \alias{Assert.isMatrix}
-\alias{isMatrix.Assert}
 \alias{isMatrix,Assert-method}
-
 
  \title{Static method asserting thatan object is a matrix}
 

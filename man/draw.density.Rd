@@ -9,8 +9,6 @@
 
  \name{draw.density}
 \alias{draw.density}
-\alias{draw.density}
-
 
  \title{Draws a density curve}
 

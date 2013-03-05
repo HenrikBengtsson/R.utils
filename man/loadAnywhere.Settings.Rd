@@ -9,9 +9,7 @@
  \name{loadAnywhere.Settings}
 \alias{loadAnywhere.Settings}
 \alias{Settings.loadAnywhere}
-\alias{loadAnywhere.Settings}
 \alias{loadAnywhere,Settings-method}
-
 
  \title{Loads settings from file}
 

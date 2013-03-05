@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinDate.GString}
+\name{GString$getBuiltinDate}
+\alias{GString$getBuiltinDate}
 \alias{getBuiltinDate.GString}
 \alias{GString.getBuiltinDate}
-\alias{getBuiltinDate.GString}
 \alias{getBuiltinDate,GString-method}
-
 
 \title{Gets the current date}
 

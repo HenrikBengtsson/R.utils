@@ -9,9 +9,7 @@
  \name{as.character.Verbose}
 \alias{as.character.Verbose}
 \alias{Verbose.as.character}
-\alias{as.character.Verbose}
 \alias{as.character,Verbose-method}
-
 
  \title{Returns a character string version of this object}
 

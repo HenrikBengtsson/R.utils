@@ -9,9 +9,7 @@
  \name{as.character.Options}
 \alias{as.character.Options}
 \alias{Options.as.character}
-\alias{as.character.Options}
 \alias{as.character,Options-method}
-
 
  \title{Returns a character string version of this object}
 

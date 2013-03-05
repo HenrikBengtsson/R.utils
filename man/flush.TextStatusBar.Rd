@@ -9,9 +9,7 @@
  \name{flush.TextStatusBar}
 \alias{flush.TextStatusBar}
 \alias{TextStatusBar.flush}
-\alias{flush.TextStatusBar}
 \alias{flush,TextStatusBar-method}
-
 
  \title{Flushes the output}
 

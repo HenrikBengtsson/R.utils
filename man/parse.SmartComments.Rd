@@ -9,9 +9,7 @@
  \name{parse.SmartComments}
 \alias{parse.SmartComments}
 \alias{SmartComments.parse}
-\alias{parse.SmartComments}
 \alias{parse,SmartComments-method}
-
 
  \title{Parses one single smart comment}
 

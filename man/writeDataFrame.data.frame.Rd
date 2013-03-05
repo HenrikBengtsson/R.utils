@@ -9,8 +9,6 @@
 
  \name{writeDataFrame.data.frame}
 \alias{writeDataFrame.data.frame}
-\alias{writeDataFrame.data.frame}
-
 
  \title{Writes a data.frame to tabular text file}
 

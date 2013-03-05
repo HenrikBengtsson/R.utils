@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getIntegers.Arguments}
+\name{Arguments$getIntegers}
+\alias{Arguments$getIntegers}
 \alias{getIntegers.Arguments}
 \alias{Arguments.getIntegers}
-\alias{getIntegers.Arguments}
 \alias{getIntegers,Arguments-method}
-
 \alias{Arguments.getInteger}
 \alias{getInteger.Arguments}
 \alias{getInteger,Arguments-method}

@@ -9,9 +9,7 @@
  \name{isModified.Settings}
 \alias{isModified.Settings}
 \alias{Settings.isModified}
-\alias{isModified.Settings}
 \alias{isModified,Settings-method}
-
 
  \title{Checks if settings has been modified compared to whats on file}
 

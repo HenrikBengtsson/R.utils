@@ -9,9 +9,7 @@
  \name{convertComment.VComments}
 \alias{convertComment.VComments}
 \alias{VComments.convertComment}
-\alias{convertComment.VComments}
 \alias{convertComment,VComments-method}
-
 
  \title{Converts a verbose comment to R code}
 

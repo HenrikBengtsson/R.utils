@@ -9,8 +9,6 @@
 
 \name{callHooks.function}
 \alias{callHooks.function}
-\alias{callHooks.function}
-
 \alias{callHooks.list}
 
 \title{Call hook functions}

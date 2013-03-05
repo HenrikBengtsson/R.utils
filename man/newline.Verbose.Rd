@@ -9,9 +9,7 @@
 \name{newline.Verbose}
 \alias{newline.Verbose}
 \alias{Verbose.newline}
-\alias{newline.Verbose}
 \alias{newline,Verbose-method}
-
 
 \title{Writes one or several empty lines}
 

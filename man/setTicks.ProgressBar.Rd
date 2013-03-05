@@ -9,9 +9,7 @@
  \name{setTicks.ProgressBar}
 \alias{setTicks.ProgressBar}
 \alias{ProgressBar.setTicks}
-\alias{setTicks.ProgressBar}
 \alias{setTicks,ProgressBar-method}
-
 
  \title{Sets values for which ticks should be visible}
 

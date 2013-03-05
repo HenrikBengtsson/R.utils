@@ -9,9 +9,7 @@
  \name{print.Verbose}
 \alias{print.Verbose}
 \alias{Verbose.print}
-\alias{print.Verbose}
 \alias{print,Verbose-method}
-
 
  \title{Prints objects if above threshold}
 

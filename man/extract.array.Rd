@@ -9,8 +9,6 @@
 
 \name{extract.array}
 \alias{extract.array}
-\alias{extract.array}
-
 \alias{extract.matrix}
 \alias{extract.default}
 

@@ -9,9 +9,7 @@
  \name{as.list.Options}
 \alias{as.list.Options}
 \alias{Options.as.list}
-\alias{as.list.Options}
 \alias{as.list,Options-method}
-
 
  \title{Gets a list representation of the options}
 

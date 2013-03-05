@@ -9,9 +9,7 @@
 \name{timestampOn.Verbose}
 \alias{timestampOn.Verbose}
 \alias{Verbose.timestampOn}
-\alias{timestampOn.Verbose}
 \alias{timestampOn,Verbose-method}
-
 \alias{Verbose.timestampOff}
 \alias{timestampOff.Verbose}
 \alias{timestampOff,Verbose-method}

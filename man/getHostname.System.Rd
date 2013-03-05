@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{getHostname.System}
+ \name{System$getHostname}
+\alias{System$getHostname}
 \alias{getHostname.System}
 \alias{System.getHostname}
-\alias{getHostname.System}
 \alias{getHostname,System-method}
-
 
  \title{Retrieves the computer name of the current host}
 

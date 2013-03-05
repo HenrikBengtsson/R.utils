@@ -9,9 +9,7 @@
 \name{off.Verbose}
 \alias{off.Verbose}
 \alias{Verbose.off}
-\alias{off.Verbose}
 \alias{off,Verbose-method}
-
 
 \title{Turn off the output}
 

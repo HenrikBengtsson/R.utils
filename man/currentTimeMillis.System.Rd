@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{currentTimeMillis.System}
+\name{System$currentTimeMillis}
+\alias{System$currentTimeMillis}
 \alias{currentTimeMillis.System}
 \alias{System.currentTimeMillis}
-\alias{currentTimeMillis.System}
 \alias{currentTimeMillis,System-method}
-
 
 \title{Get the current time in milliseconds}
 

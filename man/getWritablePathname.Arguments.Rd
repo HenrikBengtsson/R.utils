@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getWritablePathname.Arguments}
+\name{Arguments$getWritablePathname}
+\alias{Arguments$getWritablePathname}
 \alias{getWritablePathname.Arguments}
 \alias{Arguments.getWritablePathname}
-\alias{getWritablePathname.Arguments}
 \alias{getWritablePathname,Arguments-method}
-
 
 \title{Gets a writable pathname}
 

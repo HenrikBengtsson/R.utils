@@ -9,9 +9,7 @@
  \name{updateLabels.TextStatusBar}
 \alias{updateLabels.TextStatusBar}
 \alias{TextStatusBar.updateLabels}
-\alias{updateLabels.TextStatusBar}
 \alias{updateLabels,TextStatusBar-method}
-
 
  \title{Sets the new values of given labels and updates the status bar}
 

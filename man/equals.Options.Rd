@@ -9,9 +9,7 @@
  \name{equals.Options}
 \alias{equals.Options}
 \alias{Options.equals}
-\alias{equals.Options}
 \alias{equals,Options-method}
-
 
  \title{Checks if this object is equal to another Options object}
 

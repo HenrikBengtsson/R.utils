@@ -9,9 +9,7 @@
  \name{enter.Verbose}
 \alias{enter.Verbose}
 \alias{Verbose.enter}
-\alias{enter.Verbose}
 \alias{enter,Verbose-method}
-
 
  \title{Writes a message and indents the following output}
 

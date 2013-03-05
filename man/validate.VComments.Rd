@@ -9,9 +9,7 @@
  \name{validate.VComments}
 \alias{validate.VComments}
 \alias{VComments.validate}
-\alias{validate.VComments}
 \alias{validate,VComments-method}
-
 
  \title{Validates the compiled lines}
 
