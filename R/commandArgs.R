@@ -132,13 +132,54 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     if (length(idxs) > 0L) {
       argsT <- args[idxs];
       typesT <- types[names(argsT)];
-      for (jj in seq_along(argsT)) {
-        argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj]);
-      }
+      suppressWarnings({
+        for (jj in seq_along(argsT)) {
+          argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj]);
+        }
+      });
       args[idxs] <- argsT;
     }
     args;
   } # coerceAs()
+
+
+  getReserved <- function(os) {
+    rVer <- getRversion();
+  
+    # General arguments
+    if (rVer >= "2.13.0") {
+      # According to R v2.13.1:
+      reservedArgs <- c("--help", "-h", "--version", "--encoding[= ].*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
+    } else if (rVer >= "2.7.0") {
+      # According to R v2.7.1:
+      reservedArgs <- c("--help", "-h", "--version", "--encoding=.*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
+    } else {
+      # According to R v2.0.1:
+      reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
+    }
+
+    # a) Unix (and OSX?!? /HB 2011-09-14)
+    if ("unix" %in% os) {
+      reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=.*", "-d", "--gui=.*", "-g", "--interactive", "--arch=.*")
+    }
+    
+    # b) Macintosh
+    if ("mac" %in% os) {
+      # Nothing special here.
+    }
+    
+    # c) Windows
+    if ("windows" %in% os) {
+      reservedArgs <- c(reservedArgs, "--no-Rconsole", "--ess", "--max-mem-size=.*");
+      # Additional command-line options for RGui.exe
+      reservedArgs <- c(reservedArgs, "--mdi", "--sdi", "--no-mdi", "--debug");
+    }
+  
+    # If duplicates where created, remove them
+    reservedArgs <- unique(reservedArgs);
+  
+    reservedArgs;
+  } # getReserved()
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -190,38 +231,20 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
   # Reserved R command line options according to paragraph
   # 'R accepts the following command-line options' in
   # "An Introduction to R" for R v 2.7.1 (was v2.0.1):
-
-  # General arguments
-  # According to R v2.0.1:
-## reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
-  # According to R v2.7.1:
-##  reservedArgs <- c("--help", "-h", "--version", "--encoding=.*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
-  # According to R v2.13.1:
-  reservedArgs <- c("--help", "-h", "--version", "--encoding[= ].*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f .*", "--file=.*", "-e .*", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
-
-  # a) Unix (and OSX?!? /HB 2011-09-14)
-  if ("unix" %in% os) {
-    reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=.*", "-d", "--gui=.*", "-g", "--interactive", "--arch=.*")
-  }
-  
-  # b) Macintosh
-  if ("mac" %in% os) {
-    # Nothing special here.
-  }
-  
-  # c) Windows
-  if ("windows" %in% os) {
-    reservedArgs <- c(reservedArgs, "--no-Rconsole", "--ess", "--max-mem-size=.*");
-    # Additional command-line options for RGui.exe
-    reservedArgs <- c(reservedArgs, "--mdi", "--sdi", "--no-mdi", "--debug");
-  }
-
-  # If duplicates where created, remove them
-  reservedArgs <- unique(reservedArgs);
+  reservedArgs <- getReserved(os);
 
   # Create regular expression patterns out of the reserved arguments
   reservedArgs <- paste("^", reservedArgs, "$", sep="");
 
+  # Identify arguments after optional '--args'
+  nargs <- length(args);
+  isUserArgs <- logical(nargs);
+  if (nargs > 0L) {
+    idx <- which(args == "--args")[1L];
+    if (!is.na(idx) && idx < nargs) {
+      isUserArgs[(idx+1L):nargs] <- TRUE;
+    }
+  }
 
   # Temporarily patch any '-<key> <value>' and '--<key> <value>' arguments
   args0 <- args;
@@ -238,10 +261,11 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     args[idxs+1L] <- args[idxs];
   }
 
-  isReserved <- logical(length(args));
+  isReserved <- logical(nargs);
   for (rarg in reservedArgs) {
     isReserved <- isReserved | (regexpr(rarg, args) != -1L);
   }
+  isReserved[isUserArgs] <- FALSE;
 
   # Undo any patching
   args <- args0;
@@ -256,12 +280,13 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   pattern <- "^([^=-]*)(=)(.*)$";
   isEnvVars <- (regexpr(pattern, args) != -1L);
+  isEnvVars[isUserArgs] <- FALSE;
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Exclude non-wanted elements
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  keep <- rep(TRUE, times=length(args));
+  keep <- rep(TRUE, times=nargs);
   if (excludeReserved) {
     keep <- keep & !isReserved;
   }
@@ -269,7 +294,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
     keep <- keep & !isEnvVars;
   }
 
-  attrs <- list(isReserved=isReserved, isEnvVars=isEnvVars);
+  attrs <- list(isReserved=isReserved, isEnvVars=isEnvVars, isUserArgs=isUserArgs);
   attrs <- c(attributes(args), attrs);
   args <- args[keep];
   attributes(args) <- attrs;
@@ -383,11 +408,13 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, 
         for (kk in seq_along(argsT)) {
           arg <- argsT[[kk]];
           tryCatch({
-            value <- as.numeric(arg);
+            suppressWarnings({
+               value <- as.numeric(arg);
+            });
             if (!is.na(value)) {
               argsT[[kk]] <- value;
             }
-          }, error = function(ex) {});
+          }, error=function(ex) {});
         }
         args[idxs] <- argsT;
       }
@@ -500,6 +527,10 @@ cmdArgs <- function(args=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-03-08
+# o Now commandArgs(excludeReserved=TRUE) no longer drops arguments
+#   specified after '--args', which are considered user specific
+#   arguments.  Same for excludeEnvVars=TRUE.
 # 2013-02-23
 # o BUG FIX: In commandArgs(), it is now only 'args' that are coerced
 #   to the types of 'defaults' and 'fixed', and no longer arguments
