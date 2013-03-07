@@ -43,6 +43,15 @@
 # @keyword "logic"
 #*/#########################################################################
 setMethodS3("isZero", "default", function(x, neps=1, eps=.Machine$double.eps, ...) {
+  if (is.character(eps)) {
+    eps <- match.arg(eps, choices=c("double.eps", "float.eps"));
+    if (eps == "double.eps") {
+      eps <- .Machine$double.eps;
+    } else if (eps == "float.eps") {
+      eps <- sqrt(.Machine$double.eps);
+    }
+  }
+
   (abs(x) < neps*eps);
 })
 
