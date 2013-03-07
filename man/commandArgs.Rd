@@ -14,7 +14,7 @@
  \title{Extract Command Line Arguments}
 
  \usage{
-   commandArgs(asValues=FALSE, defaults=NULL, fixed=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, args=base::commandArgs(...), ...)
+   commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, args=base::commandArgs(...), ...)
    cmdArgs(args=NULL, ...)
  }
 
@@ -36,7 +36,7 @@
    \item{defaults}{A \code{\link[base]{character}} \code{\link[base]{vector}} or a named \code{\link[base]{list}} of default
      arguments.  Any command-line or fixed arguments will override
      default arguments with the same name.}
-   \item{fixed}{A \code{\link[base]{character}} \code{\link[base]{vector}} or a named \code{\link[base]{list}} of fixed
+   \item{always}{A \code{\link[base]{character}} \code{\link[base]{vector}} or a named \code{\link[base]{list}} of fixed
      arguments.  These will override default and command-line
      arguments with the same name.}
    \item{adhoc}{(ignored if \code{asValues=FALSE}) If \code{\link[base:logical]{TRUE}}, then
@@ -73,9 +73,10 @@
    The first returned element is the name of the executable by which
    \R was invoked.  As far as I am aware, the exact form of this element
    is platform dependent. It may be the fully qualified name, or simply
-   the last component (or basename) of the application.  The returned
-   attribute \code{isReserved} is a \code{\link[base]{logical}} \code{\link[base]{vector}} specifying if the
-   corresponding command line argument is a reserved \R argument or not.
+   the last component (or basename) of the application.
+   The returned attribute \code{isReserved} is a \code{\link[base]{logical}} \code{\link[base]{vector}}
+   specifying if the corresponding command line argument is a reserved
+   \R argument or not.
  }
 
  \section{Backward compatibility}{
@@ -88,7 +89,7 @@
    returned as a named \code{\link[base]{list}}.  By default, the values of these
    arguments are \code{\link[base]{character}} strings.
    However, any command-line argument that share name with one of
-   the fixed or default arguments, then its value is coerced to
+   the 'always' or 'default' arguments, then its value is coerced to
    the corresponding data type (via \code{\link[methods]{as}}).
    This provides a mechanism for specifying data types other than
    \code{\link[base]{character}} strings.
