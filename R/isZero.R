@@ -44,10 +44,10 @@
 #*/#########################################################################
 setMethodS3("isZero", "default", function(x, neps=1, eps=.Machine$double.eps, ...) {
   if (is.character(eps)) {
-    eps <- match.arg(eps, choices=c("double.eps", "float.eps"));
+    eps <- match.arg(eps, choices=c("double.eps", "single.eps"));
     if (eps == "double.eps") {
       eps <- .Machine$double.eps;
-    } else if (eps == "float.eps") {
+    } else if (eps == "single.eps") {
       eps <- sqrt(.Machine$double.eps);
     }
   }
