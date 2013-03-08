@@ -278,12 +278,12 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
   # (1) Parse into user, paired, reserved arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   argsT <- parseReservedArgs(args, os=os);
-
+str(argsT);
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (2) Identify which arguments not to drop
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  keep <- !unlist(lapply(argsT, FUN=function(arg) {
-     (excludeReserved && arg$reserved) || (excludeEnvVars && arg$envvar);
+  keep <- unlist(lapply(argsT, FUN=function(arg) {
+     !(excludeReserved && arg$reserved) && !(excludeEnvVars && arg$envvar);
   }))
   argsT <- argsT[keep];
 
@@ -399,7 +399,9 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
     args <- lapply(argsT, FUN=function(x) x$value);
     names(args) <- keys;
 
+    # Not needed anymore
     rm(argsT, keys);
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (b) Corce arguments to known data types?
@@ -447,6 +449,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
         args <- c(args[1L], defaults[idxs], args[-1L]);
       }
     }
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (e) Override by/append 'always' arguments?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -455,7 +458,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
     }
 
     # Keep only unique arguments?
-    if (unique && length(args) > 0L) {
+    if (unique && length(args) > 1L) {
       keep <- !duplicated(names(args), fromLast=TRUE);
       args <- args[keep];
     }
@@ -540,7 +543,12 @@ cmdArgs <- function(args=NULL, .args=NULL, ...) {
     args <- .args;
   }
 
-  commandArgs(asValues=TRUE, defaults=defaults, always=always, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, .args=args, ...)[-1L];
+  res <- commandArgs(asValues=TRUE, defaults=defaults, always=always, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, .args=args, ...);
+  if (is.null(args)) {
+    res <- res[-1L];
+  }
+
+  res;
 } # cmdArgs()
 
 
