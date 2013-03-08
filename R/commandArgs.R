@@ -278,7 +278,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
   # (1) Parse into user, paired, reserved arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   argsT <- parseReservedArgs(args, os=os);
-str(argsT);
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (2) Identify which arguments not to drop
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
