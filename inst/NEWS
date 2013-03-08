@@ -2,11 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.21.0 [2013-03-07]
+o Major improvement of commandArgs().  For instance, now it never
+  consider arguments after '--args' to be reserved or environment
+  variable arguments; they are always user arguments.  It is also
+  doing a better job on interpreting -*<key>=<value> arguments;
+  previously it could happen that it would split the <value>.
+  Added systems test for commandArgs() and cmdArgs().
+
+
 Version: 1.20.2 [2013-03-07]
-o Now commandArgs(excludeReserved=TRUE) no longer drops arguments
-  specified after '--args', which are considered user specific
-  arguments.  Same for excludeEnvVars=TRUE.  Also, commandArgs()
-  no longer returns attributes.
 o Now argument 'eps' for isZero() may also be a character string
   specifying either "double.eps" or "single.eps".
 

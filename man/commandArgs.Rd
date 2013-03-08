@@ -14,8 +14,8 @@
  \title{Extract Command Line Arguments}
 
  \usage{
-   commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, args=base::commandArgs(...), ...)
-   cmdArgs(args=NULL, ...)
+   commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...)
+   cmdArgs(args=NULL, .args=NULL, ...)
  }
 
  \description{
@@ -58,7 +58,8 @@
       If \code{"current"}, the current platform is used. If \code{"ANY"} or
       \code{\link[base]{NULL}}, all three OSs are assumed for total cross-platform
       compatibility.}
-   \item{args}{A \code{\link[base]{character}} \code{\link[base]{vector}} of command-line arguments.}
+   \item{args}{A named \code{\link[base]{list}} of arguments.}
+   \item{.args}{A \code{\link[base]{character}} \code{\link[base]{vector}} of command-line arguments.}
    \item{...}{Passed to \code{\link[base]{commandArgs}}() of the \pkg{base} package.}
  }
 
