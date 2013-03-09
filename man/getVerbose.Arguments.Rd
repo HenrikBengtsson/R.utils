@@ -43,7 +43,7 @@
  Returns a \code{\link{Verbose}} (or a \code{\link{NullVerbose}}) object.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

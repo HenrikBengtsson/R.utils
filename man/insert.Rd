@@ -91,7 +91,7 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 \keyword{manip}

@@ -50,7 +50,7 @@
 
 \examples{\dontrun{See ?wrap.array for an example}}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:wrap.array]{*wrap}()}.

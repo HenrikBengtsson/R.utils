@@ -33,7 +33,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Internally \code{\link[base:files]{dir.create}}() is used.

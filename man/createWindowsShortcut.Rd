@@ -78,7 +78,7 @@ for (kk in seq(along=targets)) {
 }
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{readWindowsShortcut}}()

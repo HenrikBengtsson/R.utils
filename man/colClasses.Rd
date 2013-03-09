@@ -30,7 +30,7 @@
   Returns a \code{\link[base]{vector}} of \code{\link[base]{character}} strings.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 # All predefined types

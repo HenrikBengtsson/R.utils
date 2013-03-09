@@ -45,7 +45,7 @@
   then (character) \code{\link[base]{NA}} is returned, otherwise an exception is thrown.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getWritablePathname.Arguments]{*getWritablePathname}()}

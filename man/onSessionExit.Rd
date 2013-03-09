@@ -41,7 +41,7 @@
   Moreover, when \R is run in batch mode, \code{.Last()} is never called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{\dontrun{
   onSessionExit(function(...) {

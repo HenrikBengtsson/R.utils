@@ -90,5 +90,5 @@ cat("\n")
 
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 \keyword{classes}

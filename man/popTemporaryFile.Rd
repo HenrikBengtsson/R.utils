@@ -44,7 +44,7 @@
    renamed, an exception is thrown.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   See \code{\link{pushTemporaryFile}}() for more details and an example.

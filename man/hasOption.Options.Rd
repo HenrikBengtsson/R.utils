@@ -29,7 +29,7 @@
 
  \value{Returns a \code{\link[base]{logical}} (\code{\link[base]{vector}}).}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:getOption.Options]{*getOption}()}.

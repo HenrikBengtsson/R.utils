@@ -69,7 +69,7 @@ print(evalCapture({
 ## [1] "horse"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 \keyword{utilities}

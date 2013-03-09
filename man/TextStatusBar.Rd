@@ -124,7 +124,7 @@ for (kk in seq(length=nfiles)) {
 cat("\n")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

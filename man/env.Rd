@@ -53,7 +53,7 @@ x <- lapply(x, FUN=as.list);
 str(x);
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Internally \code{\link[base]{new.env}}() and \code{\link[base]{evalq}}() are used.

@@ -32,7 +32,7 @@
 
  \value{Returns (invisibly) the old option value.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.

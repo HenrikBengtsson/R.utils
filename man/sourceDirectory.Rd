@@ -51,7 +51,7 @@
   \code{\link{sourceTo}}() and compare to \code{\link[base]{source}}().
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

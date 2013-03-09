@@ -97,7 +97,7 @@ cat(bfr3, sep="\n")
 file.remove("foobar.txt.tmp")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   Internally,

@@ -39,7 +39,7 @@
    Values that do not map to any interval have return value \code{\link[base]{NA}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{inAnyInterval}}().

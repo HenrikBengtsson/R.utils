@@ -31,7 +31,7 @@
    Returns a \code{\link[base]{vector}} of \code{\link[base]{character}} string.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

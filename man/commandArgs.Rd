@@ -107,7 +107,7 @@
          excludeReserved=TRUE, ...)[-1L]}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \examples{
 

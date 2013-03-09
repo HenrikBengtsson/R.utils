@@ -56,7 +56,7 @@
  print(pathname)
 }}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[utils]{download.file}} is used.

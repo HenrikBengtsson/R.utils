@@ -34,7 +34,7 @@
    flushes the output to the console.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[utils]{flush.console}}.

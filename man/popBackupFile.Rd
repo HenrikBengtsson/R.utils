@@ -40,7 +40,7 @@
    Returns the pathname with the backup suffix dropped.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   See \code{\link{pushBackupFile}}() for more details and an example.

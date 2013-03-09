@@ -41,7 +41,7 @@ cat(rspCode, "\n")
 print(rspParts)
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Compare to \code{\link[base]{strsplit}}().

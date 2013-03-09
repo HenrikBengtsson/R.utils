@@ -42,7 +42,7 @@
   stopifnot(dim(x) == as.integer(c(2,2,3)))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  \code{\link[base]{dim}}().

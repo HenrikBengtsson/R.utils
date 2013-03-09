@@ -33,7 +33,7 @@
    Returns (invisibly) the new object.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    See \code{assignInNamespace()} in \code{\link[utils]{getFromNamespace}}.

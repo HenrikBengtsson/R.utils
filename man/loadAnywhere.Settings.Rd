@@ -35,7 +35,7 @@
  \value{Returns a \link{Settings} object if file was successfully read,
    otherwise \code{\link[base]{NULL}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:saveAnywhere.Settings]{*saveAnywhere}()}.

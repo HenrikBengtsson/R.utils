@@ -79,7 +79,7 @@ verbose <- NullVerbose()
 cat(verbose, "A verbose messages")   # Ignored
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

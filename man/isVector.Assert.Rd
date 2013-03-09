@@ -36,7 +36,7 @@
    Returns (invisibly) \code{\link[base:logical]{TRUE}}, or throws an exception.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Assert}}.

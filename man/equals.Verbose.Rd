@@ -28,7 +28,7 @@
 
  \value{Returns \code{\link[base:logical]{TRUE}} if they are equal, otherwise \code{\link[base:logical]{FALSE}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

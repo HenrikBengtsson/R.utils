@@ -32,7 +32,7 @@
   Returns (invisibly) the old timestamp format.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getTimestampFormat.Verbose]{*getTimestampFormat}()}.

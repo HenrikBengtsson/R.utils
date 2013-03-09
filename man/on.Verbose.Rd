@@ -29,7 +29,7 @@
   Returns (invisibly) \code{\link[base:logical]{TRUE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:off.Verbose]{*off}()} and \code{\link[R.utils:isOn.Verbose]{*isOn}()}.

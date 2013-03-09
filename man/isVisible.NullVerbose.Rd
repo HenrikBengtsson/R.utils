@@ -29,7 +29,7 @@
    Returns always \code{\link[base:logical]{FALSE}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{NullVerbose}}.

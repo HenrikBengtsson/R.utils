@@ -38,7 +38,7 @@
 
  \examples{\dontrun{# See example(readBinFragments.connection)}}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{readBinFragments}}().

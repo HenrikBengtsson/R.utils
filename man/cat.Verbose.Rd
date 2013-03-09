@@ -36,7 +36,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:timestampOn.Verbose]{*timestampOn}()} and \code{timestampOff}().

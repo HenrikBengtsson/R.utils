@@ -35,9 +35,7 @@
 #   @see "base::do.call".
 # }
 #
-# \author{
-#   @get "author".
-# }
+# @author
 #
 # @keyword programming
 #*/#########################################################################

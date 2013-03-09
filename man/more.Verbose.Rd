@@ -30,7 +30,7 @@
    Returns a cloned \code{\link{Verbose}} object.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:less.Verbose]{*less}()}

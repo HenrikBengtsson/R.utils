@@ -56,7 +56,7 @@ evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout
  the user completes the prompt (i.e. after pressing ENTER).
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 # - - - - - - - - - - - - - - - - - - - - - - - - -

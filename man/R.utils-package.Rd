@@ -103,7 +103,7 @@
  already implemented by downloading the latest "devel" version!
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \section{License}{
   The releases of this package is licensed under

@@ -50,7 +50,7 @@
    these intervals to integer interval [0,3] == \{0,1,2,3\}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{inAnyInterval}}().

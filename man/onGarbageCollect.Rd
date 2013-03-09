@@ -33,7 +33,7 @@
   Returns (invisibly) the hooks successfully called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{\dontrun{
   onGarbageCollect(function(...) {

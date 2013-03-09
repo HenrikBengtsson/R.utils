@@ -35,7 +35,7 @@
   Returns (invisibly) a \code{\link[base]{character}} \code{\link[base]{vector}} of pathnames copied.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 \keyword{file}

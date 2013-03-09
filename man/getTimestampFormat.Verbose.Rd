@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{character}} string or a \code{\link[base]{function}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:setTimestampFormat.Verbose]{*setTimestampFormat}()}.

@@ -37,7 +37,7 @@
   This makes it possible to load objects back using any variable name.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{saveObject}}() to save an object to file.

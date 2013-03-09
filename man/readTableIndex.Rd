@@ -47,7 +47,7 @@
     df <- readTable(filename, rows=match(keys, index))
  }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{readTable}}().

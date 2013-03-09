@@ -37,7 +37,7 @@
    Returns a \code{\link[base]{list}} structure.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

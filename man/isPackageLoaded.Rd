@@ -33,7 +33,7 @@
   Returns a \code{\link[base]{logical}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To check if a package is installed or not, see \code{\link{isPackageInstalled}}().

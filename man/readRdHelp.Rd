@@ -31,7 +31,7 @@
    Returns a \code{\link[base]{list}} of \code{\link[base]{character}} strings or a single \code{\link[base]{character}} string.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 
 \keyword{programming}

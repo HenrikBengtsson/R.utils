@@ -173,7 +173,7 @@ cat(as.character(GString("$[n=runif(n=1,min=1,max=5), format='f']{runif}")))
 cat("\n")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For conveniency, see functions \code{\link{gstring}}() and \code{\link{gcat}}().

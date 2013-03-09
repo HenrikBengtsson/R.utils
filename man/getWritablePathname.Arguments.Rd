@@ -61,7 +61,7 @@
   waiting a short period of time between each round) before giving up.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}.

@@ -30,7 +30,7 @@
    Otherwise, \code{\link[base:logical]{FALSE}} is returned.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{FileProgressBar}}.

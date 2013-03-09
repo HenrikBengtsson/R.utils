@@ -45,7 +45,7 @@
    Returns (invisibly) the path or pathname to the destination.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{createWindowsShortcut}}() and

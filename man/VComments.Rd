@@ -126,7 +126,7 @@ cat("Code after preprocessing:\n")
 displayCode(code=lines, pager="console")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

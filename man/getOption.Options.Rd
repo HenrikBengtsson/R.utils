@@ -35,7 +35,7 @@
    If a \code{\link[base]{vector}} of options are queried, a \code{\link[base]{list}} of values are returned.
    For non-existing options, the default value is returned.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.

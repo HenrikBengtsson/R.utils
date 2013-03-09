@@ -90,7 +90,7 @@ bfr <- readLines(pathname);
 cat(bfr, sep="\n");
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{popTemporaryFile}}().

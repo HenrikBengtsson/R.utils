@@ -110,7 +110,7 @@ stopifnot(identical(idxs1, idxs2));
 
  }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{which}}()

@@ -32,7 +32,7 @@
  indicating whether the value is unique or not.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  Internally \code{\link{isReplicated}}() is used.

@@ -39,7 +39,7 @@
  Returns a \code{\link[base]{vector}} of file names.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{list.files}}() is used.

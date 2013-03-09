@@ -61,7 +61,7 @@ cat(file=pathnameB, code);
 source(pathnameA, echo=TRUE);
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    See also \code{\link[utils]{sourceutils}}.

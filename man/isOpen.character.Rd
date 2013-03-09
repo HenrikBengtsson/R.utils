@@ -37,7 +37,7 @@
    otherwise \code{\link[base:logical]{FALSE}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    See \code{isOpen()} in \code{\link[base]{connections}}.

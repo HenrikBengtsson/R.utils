@@ -91,7 +91,7 @@ print(t/t0)
 stopifnot(all(s == s0))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  Internally \code{\link[base]{duplicated}}() is used.

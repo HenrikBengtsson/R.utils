@@ -40,7 +40,7 @@
    For prompting the user, use "prompt".
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:isModified.Settings]{*isModified}()}.

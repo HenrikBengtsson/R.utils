@@ -41,7 +41,7 @@
 
 \value{Returns a \code{\link[base]{logical}} \code{\link[base]{vector}} indicating if the elments are zero or not.}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{all.equal}}().

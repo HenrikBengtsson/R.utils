@@ -48,7 +48,7 @@
   For more details, see \code{\link{filePath}}().
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

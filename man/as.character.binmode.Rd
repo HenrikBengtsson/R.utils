@@ -29,7 +29,7 @@
  Returns a \code{\link[base]{character}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{as.character.octmode()}, cf. \code{\link[base]{octmode}}.

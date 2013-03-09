@@ -150,7 +150,7 @@ print(z2)
 stopifnot(identical(z2,x2))
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:unwrap.array]{*unwrap}()}.

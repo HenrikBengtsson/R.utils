@@ -43,7 +43,7 @@
    (or the \code{\link[base:connections]{connection}} written to).
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link[utils]{write.table}}.

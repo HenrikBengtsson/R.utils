@@ -42,7 +42,7 @@
   This method is included for consistency reasons only.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{readBin}}().

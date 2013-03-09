@@ -29,7 +29,7 @@
  Returns \code{\link[base]{environment}} \code{envir} containing all loaded objects.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{load}}() is used.

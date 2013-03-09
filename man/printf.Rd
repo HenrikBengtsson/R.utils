@@ -46,7 +46,7 @@
   printf(c("x=\%.2f\n", "y=\%.2f\n"), c(x,y))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
    For C-style formatting of \code{\link[base]{character}} strings, see \code{\link[base]{sprintf}}().

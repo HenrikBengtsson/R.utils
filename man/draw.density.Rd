@@ -37,7 +37,7 @@
    (with the 'x' and 'y' coordinates as plotted).
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    See \code{\link[stats]{density}} for estimating densities.

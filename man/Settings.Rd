@@ -138,7 +138,7 @@ stopifnot(equals(settings, settings2))
 
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 
 

@@ -30,7 +30,7 @@
   Returns (invisibly) the previous value of the option.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  See \code{\link[base]{getOption}}() and "base::options".

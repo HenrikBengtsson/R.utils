@@ -58,7 +58,7 @@
   getRelativePath("C:/foo/bar/", "D:/bar/")           # "C:/foo/bar"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{getAbsolutePath}}().

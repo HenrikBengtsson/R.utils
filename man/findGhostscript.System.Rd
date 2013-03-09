@@ -44,7 +44,7 @@
    print(System$findGhostscript())
  }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{Sys.getenv}}().

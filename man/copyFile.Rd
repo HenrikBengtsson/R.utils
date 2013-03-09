@@ -33,7 +33,7 @@
    Returns \code{\link[base:logical]{TRUE}} if the file was copied succesfully.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base:files]{file.copy}()}.

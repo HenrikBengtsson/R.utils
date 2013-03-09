@@ -49,7 +49,7 @@ print(toCamelCase(s, capitalize=TRUE, preserveSameCase=TRUE))  # GEOAccession
 stopifnot(toCamelCase(s) == toCamelCase(toCamelCase(s)))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils]{capitalize}}.

@@ -42,7 +42,7 @@
   current class, this does nothing, but can be overridden in subclasses.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

@@ -30,7 +30,7 @@
    Returns the value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:setLabel.TextStatusBar]{*setLabel}()} and \code{\link[R.utils:setLabels.TextStatusBar]{*setLabels}()}.

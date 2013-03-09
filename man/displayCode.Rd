@@ -54,7 +54,7 @@ cat("Displaying: ", file, ":\n", sep="")
 displayCode(file, lines=100:110, wrap=65, highlight=c(101,104:108))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  \code{\link[base]{file.show}}().

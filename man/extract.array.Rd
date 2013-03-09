@@ -82,7 +82,7 @@ yB <- extract(y, indices=list(2:3,2), dims=c(2,3), drop=TRUE)
 stopifnot(identical(yB, yA))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{slice.index}}()

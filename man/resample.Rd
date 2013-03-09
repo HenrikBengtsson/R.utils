@@ -33,7 +33,7 @@
  Returns a sampled \code{\link[base]{vector}} of the same data types as argument \code{x}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{sample}}() is used.

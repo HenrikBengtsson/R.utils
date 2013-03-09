@@ -36,7 +36,7 @@
  Returns (invisibly) the pathname or the \code{\link[base:connections]{connection}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{loadObject}}() to load an object from file.

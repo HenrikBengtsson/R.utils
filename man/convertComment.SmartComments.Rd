@@ -29,7 +29,7 @@
    Should return single \code{\link[base]{character}} of valid \R code.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

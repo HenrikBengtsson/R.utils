@@ -201,7 +201,7 @@ ruler(verbose)
 newline(verbose)
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{NullVerbose}}.

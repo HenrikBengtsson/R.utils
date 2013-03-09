@@ -50,7 +50,7 @@ history <- filePath(pathname, expandLinks="relative")
   \code{application/x-ms-shortcut}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{createWindowsShortcut}}()

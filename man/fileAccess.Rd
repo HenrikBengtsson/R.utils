@@ -33,7 +33,7 @@
  Returns an \code{\link[base]{integer}}; 0 if the permission exists, -1 if not.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \details{
   In \R there is \code{\link[base]{file.access}}() for checking whether the

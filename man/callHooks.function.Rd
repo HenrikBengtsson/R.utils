@@ -33,7 +33,7 @@
   value, and \code{exception} is the exception caught or \code{\link[base]{NULL}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{\link{callHooks}}() to call hook function by name.

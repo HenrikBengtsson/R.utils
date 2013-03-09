@@ -57,7 +57,7 @@
   Returns a \code{\link[base]{function}} that generates images, or \code{\link[base]{NULL}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \examples{
    fcn <- System$findGraphicsDevice();

@@ -31,7 +31,7 @@
    threshold, otherwise \code{\link[base:logical]{FALSE}} is returned.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} and \code{\link[R.utils:setThreshold.Verbose]{*setThreshold}()}.

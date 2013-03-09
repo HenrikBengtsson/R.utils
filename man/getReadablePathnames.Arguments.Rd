@@ -36,7 +36,7 @@
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of the pathnames for the files.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}

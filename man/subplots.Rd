@@ -41,7 +41,7 @@
 
 \value{Returns the \code{\link[base]{matrix}} containing the order of plots.}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
    subplots(nrow=2, ncol=3)  # 2-by-3 grid of subplots

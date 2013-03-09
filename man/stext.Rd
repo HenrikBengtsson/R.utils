@@ -37,7 +37,7 @@
  Returns what \code{\link[graphics]{mtext}} returns.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[graphics]{mtext}} is used.

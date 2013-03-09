@@ -116,7 +116,7 @@ sourceTo(fh)
 setHook("sourceTo/onPreprocess", oldHooks, action="replace")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{sourceDirectory}}().

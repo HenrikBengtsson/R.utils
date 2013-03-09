@@ -33,7 +33,7 @@
   Returns (invisibly) the old timestamp status.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:setTimestampFormat.Verbose]{*setTimestampFormat}()}.

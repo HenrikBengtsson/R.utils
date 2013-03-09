@@ -25,7 +25,7 @@
   \item{...}{Not used.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 x <- 1:10

@@ -78,7 +78,7 @@ cat("Erroneous hooks: ", sum(isErroneous), "\n");
 
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally, after retriving hook functions, \code{\link{callHooks.list}}() is

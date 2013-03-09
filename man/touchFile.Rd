@@ -55,7 +55,7 @@ md5b <- digest::digest(pathname, file=TRUE)
 stopifnot(identical(md5a, md5b))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{file.info}}().

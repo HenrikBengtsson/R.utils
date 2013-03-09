@@ -62,7 +62,7 @@ foo(l)
 print(a)
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link[R.oo:attachLocally.Object]{attachLocally}()} of class Object.

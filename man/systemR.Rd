@@ -41,7 +41,7 @@ res <- systemR("--slave -e cat(runif(1))", intern=TRUE)
 cat("A random number: ", res, "\n", sep="")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \references{
   [1] R-devel thread 'Best way to locate R executable from within R?',

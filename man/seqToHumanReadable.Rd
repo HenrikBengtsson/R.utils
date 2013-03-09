@@ -27,7 +27,7 @@
   \item{...}{Not used.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
   print(seqToHumanReadable(1:10))  # "1-10"

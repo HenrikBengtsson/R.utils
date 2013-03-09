@@ -32,7 +32,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    To check if it is a directory see \code{\link{isDirectory}}().
