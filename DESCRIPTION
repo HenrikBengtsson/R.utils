@@ -5,7 +5,8 @@ Imports: utils, methods, R.methodsS3 (>= 1.4.2), R.oo (>= 1.11.7)
 Suggests: digest (>= 0.6.2)
 Date: 2013-03-08
 Title: Various programming utilities
-Authors@R: c(person("Henrik", "Bengtsson", email = "henrikb@braju.com", role = c("aut", "cre", "cph")))
+Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
+                                          email = "henrikb@braju.com"))
 Author: Henrik Bengtsson
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: This package provides utility methods useful when programming and developing R packages.
