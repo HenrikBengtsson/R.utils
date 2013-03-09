@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.21.1 [2013-03-08]
+o Added an Authors@R field to the DESCRIPTION.
+
+
 Version: 1.21.0 [2013-03-07]
 o Major improvement of commandArgs().  For instance, now it never
   consider arguments after '--args' to be reserved or environment
