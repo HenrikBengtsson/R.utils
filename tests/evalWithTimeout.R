@@ -23,7 +23,7 @@ tryCatch({
     foo();
   }, timeout=1.08);
 }, TimeoutException=function(ex) {
-  cat("Timeout. Skipping.\n");
+  cat("Timeout (", getMessage(ex), "). Skipping.\n", sep="");
 })
 
 
