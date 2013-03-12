@@ -87,7 +87,7 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
     msg <- ex$message;
     # Was it a timeout?
     pattern <- gettext("reached elapsed time limit");
-    if (regexpr(pattern, msg) != -1) {
+    if (regexpr(pattern, msg) != -1L) {
       ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed);
       if (onTimeout == "error") {
         throw(ex);
