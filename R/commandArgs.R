@@ -1,16 +1,12 @@
 #########################################################################/**
 # @RdocFunction commandArgs
-# @alias cmdArgs
 #
-# @title "Extract Command Line Arguments"
+# @title "Extract command-line arguments"
 #
-# \usage{
-#   commandArgs(@eval "t<-formals(R.utils::commandArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
-#   cmdArgs(@eval "t<-formals(R.utils::cmdArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
-# }
+# @synopsis
 #
 # \description{
-#  Provides access to a copy of the command line arguments supplied when 
+#  Provides access to a copy of the command-line arguments supplied when 
 #  this \R session was invoked.  This function is backward compatible with
 #  @see "base::commandArgs" of the \pkg{base} package, but adds more
 #  features.
@@ -31,7 +27,7 @@
 #     arguments.  These will override default and command-line
 #     arguments with the same name.}
 #   \item{adhoc}{(ignored if \code{asValues=FALSE}) If @TRUE, then
-#     additional ad hoc coercion of @character command line arguments
+#     additional ad hoc coercion of @character command-line arguments
 #     is performed by trial and error, iff possible.}
 #   \item{unique}{If @TRUE, the returned set of arguments contains only
 #     unique arguments such that no two arguments have the same name.
@@ -67,7 +63,7 @@
 #   is platform dependent. It may be the fully qualified name, or simply
 #   the last component (or basename) of the application.
 #   The returned attribute \code{isReserved} is a @logical @vector 
-#   specifying if the corresponding command line argument is a reserved
+#   specifying if the corresponding command-line argument is a reserved
 #   \R argument or not.
 # }
 #
@@ -92,21 +88,17 @@
 #   value becomes @NA.
 # }
 #
-# \section{cmdArgs()}{
-#   The \code{cmdArgs(...)} function is short for calling
-#   \code{R.utils::commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, 
-#         excludeReserved=TRUE, ...)[-1L]}.
-# }
-#
 # @author
 #
 # @examples "../incl/commandArgs.Rex"
 #
 # \seealso{
-#   @see "base::commandArgs", @see "base::Platform"
+#   For a more user friendly solution, see @see "cmdArgs".
+#   Internally @see "base::commandArgs" is used.
 # }
 #
 # @keyword "programming"
+# @keyword "internal"
 #*/#########################################################################
 commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -496,62 +488,6 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
 
 
 
-cmdArgs <- function(args=NULL, .args=NULL, ...) {
-  # Argument 'args':
-  if (identical(args, "*")) args <- list("*");
-  if (!is.null(args)) {
-    if (!is.list(args)) {
-      throw("Argument 'args' must be a character vector, a list or NULL: ", class(args)[1L]);
-    }
-  }
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Default call?
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.null(args)) {
-    return(commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ..., .args=.args)[-1L]);
-  }
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Split 'args' into 'defaults', 'args', and 'always'
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Find the asterisk ('*')
-  if (length(args) == 0L) {
-    idxA <- integer(0L);
-  } else {
-    idxA <- which(sapply(args, FUN=identical, "*"));
-    # Use only first asterisk if more than one is used
-    if (length(idxA) > 1L) {
-      excl <- idxA[-1L];
-      args <- args[excl];
-      idxA <- idxA[1L];
-    }
-  }
-
-  # None?
-  if (length(idxA) == 0L) {
-    defaults <- NULL;
-    always <- args;
-    args <- character(0L);
-  } else {
-    n <- length(args); # Here n >= 1
-    idxsD <- if (idxA == 1L) integer(0L) else 1:(idxA-1L);
-    idxsF <- if (idxA == n)  integer(0L) else (idxA+1L):n;
-    defaults <- args[idxsD];
-    always <- args[idxsF];
-    args <- .args;
-  }
-
-  res <- commandArgs(asValues=TRUE, defaults=defaults, always=always, adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, .args=args, ...);
-  if (is.null(args)) {
-    res <- res[-1L];
-  }
-
-  res;
-} # cmdArgs()
-
-
 ############################################################################
 # HISTORY:
 # 2013-03-07
@@ -580,7 +516,7 @@ cmdArgs <- function(args=NULL, .args=NULL, ...) {
 # 2008-08-04
 # o Now commandArgs(...) pass '...' to base::commandArgs() making it
 #   fully backward compatible.
-# o Updated to recognize all command line options as of R v2.7.1 and 
+# o Updated to recognize all command-line options as of R v2.7.1 and 
 #   R v2.8.0 devel.
 # 2005-06-19
 # o Added argument 'excludeEnvVars'. 

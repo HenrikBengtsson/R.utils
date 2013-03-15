@@ -9,17 +9,15 @@
  \name{commandArgs}
 \alias{commandArgs}
 
- \alias{cmdArgs}
 
- \title{Extract Command Line Arguments}
+ \title{Extract command-line arguments}
 
  \usage{
-   commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...)
-   cmdArgs(args=NULL, .args=NULL, ...)
- }
+commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...)
+}
 
  \description{
-  Provides access to a copy of the command line arguments supplied when
+  Provides access to a copy of the command-line arguments supplied when
   this \R session was invoked.  This function is backward compatible with
   \code{\link[base]{commandArgs}}() of the \pkg{base} package, but adds more
   features.
@@ -40,7 +38,7 @@
      arguments.  These will override default and command-line
      arguments with the same name.}
    \item{adhoc}{(ignored if \code{asValues=FALSE}) If \code{\link[base:logical]{TRUE}}, then
-     additional ad hoc coercion of \code{\link[base]{character}} command line arguments
+     additional ad hoc coercion of \code{\link[base]{character}} command-line arguments
      is performed by trial and error, iff possible.}
    \item{unique}{If \code{\link[base:logical]{TRUE}}, the returned set of arguments contains only
      unique arguments such that no two arguments have the same name.
@@ -76,7 +74,7 @@
    is platform dependent. It may be the fully qualified name, or simply
    the last component (or basename) of the application.
    The returned attribute \code{isReserved} is a \code{\link[base]{logical}} \code{\link[base]{vector}}
-   specifying if the corresponding command line argument is a reserved
+   specifying if the corresponding command-line argument is a reserved
    \R argument or not.
  }
 
@@ -99,12 +97,6 @@
    any remaining character string command-line arguments are coerced
    to \code{\link[base]{numeric}}s (via \code{\link[base]{as.numeric}}()), unless the coerced
    value becomes \code{\link[base]{NA}}.
- }
-
- \section{cmdArgs()}{
-   The \code{cmdArgs(...)} function is short for calling
-   \code{R.utils::commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE,
-         excludeReserved=TRUE, ...)[-1L]}.
  }
 
  \author{Henrik Bengtsson}
@@ -156,8 +148,11 @@ str(mget(keys, envir=globalenv()))
 }
 
  \seealso{
-   \code{\link[base]{commandArgs}}(), \code{\link[base]{Platform}}
+   For a more user friendly solution, see \code{\link{cmdArgs}}().
+   Internally \code{\link[base]{commandArgs}}() is used.
  }
 
 
+
 \keyword{programming}
+\keyword{internal}

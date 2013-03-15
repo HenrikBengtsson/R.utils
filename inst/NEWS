@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.22.0 [2013-03-14]
+o Added cmdArg() for retrieving a single command line argument
+  with a default value and type, e.g. n <- cmdArg("n", 42L).
+
+
 Version: 1.21.2 [2013-03-11]
 o Bumped up package dependencies.
 
