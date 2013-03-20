@@ -12,7 +12,9 @@ print(value) # 1L
 
 # Get variable 'n', which defaults to command-line argument
 # 'n' ('-n' or '--n'), which in turn defaults to 42L.
-n <- eget(n=cmdArg(n=42L))
-print(n)
+value <- eget(n=cmdArg(n=42L))
+print(value)
 
-
+# Equivalently.
+value <- ecget(n=42L)
+print(value)

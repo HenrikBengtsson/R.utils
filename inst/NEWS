@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.23.0 [2013-03-20]
+o Added ecget() which is like eget() with the default value
+  corresponding to the command-line argument.
 o Added eget() for retrieving a single variable, with a 
   fallback to a default value, e.g. n <- eget(n=42).
 o Added support for cmdArg(n=42) as an alias to cmdArg("n", 42).

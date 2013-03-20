@@ -1,5 +1,6 @@
 ###########################################################################/**
 # @RdocFunction eget
+# @alias ecget
 #
 # @title "Gets a variable by name"
 #
@@ -23,10 +24,16 @@
 #     of the environment should be searched or not.}
 #   \item{mode}{A @character string specifying the mode of the object to
 #     retrieve.  Only if \code{envir} is an @environment.}
+#   \item{cmdArg}{If @TRUE, the corresponding command-line argument
+#     is used as the default value.}
 # }
 #
 # \value{
 #   Returns an object.
+# }
+#
+# \details{
+#   \code{ecget(...)} is short for \code{eget(..., cmdArg=TRUE)}.
 # }
 #
 # @examples "../incl/eget.Rex"
@@ -42,7 +49,7 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="any") {
+eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="any", cmdArg=FALSE) {
   # Argument '...' => (name, default, ...)
   pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
 
@@ -54,7 +61,15 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="an
       stop("Argument 'name' is missing (or NULL).");
     }
     args$name <- names(argsT)[1L];
-    args$default <- argsT[[1L]];
+    if (cmdArg) {
+      default <- cmdArg(...);
+      if (is.null(cmdArg)) {
+        default <- argsT[[1L]];
+      }
+    } else {
+      default <- argsT[[1L]];
+    }
+    args$default <- default;
     argsT <- argsT[-1L];
     pargs$args <- args;
     pargs$namedArgs <- argsT;
@@ -95,6 +110,11 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="an
 
   value
 } # eget()
+
+
+ecget <- function(..., envir=parent.frame()) {
+  eget(..., envir=envir, cmdArg=TRUE);
+} # ecget()
 
 
 ############################################################################
