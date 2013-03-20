@@ -30,6 +30,7 @@
 # \seealso{
 #   @see "loadObject" to load an object from file.
 #   @see "digest::digest" for how hash codes are calculated from an object.
+#   See also @see "base::saveRDS".
 # }
 #
 # @keyword programming

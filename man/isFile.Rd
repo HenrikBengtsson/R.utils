@@ -37,6 +37,7 @@
  \seealso{
    To check if it is a directory see \code{\link{isDirectory}}().
    Internally \code{\link[base]{file.info}}() is used.
+   See also \code{\link[utils]{file_test}}.
  }
 
 

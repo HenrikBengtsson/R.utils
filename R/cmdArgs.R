@@ -17,13 +17,16 @@
 #   \item{args}{A named @list of arguments.}
 #   \item{names}{A @character @vector specifying the arguments to be 
 #     returned.  If @NULL, all arguments are returned.}
-#   \item{...}{Additional arguments passed to @see "commandArgs", 
-#     e.g. \code{defaults} and \code{always}.}
+#   \item{...}{
+#     For \code{cmdArgs()}, additional arguments passed to 
+#     @see "commandArgs", e.g. \code{defaults} and \code{always}.
+#     For \code{cmdArg()}, named arguments \code{name} and 
+#     \code{default}, where \code{name} must be a @character string 
+#     and \code{default} is an optional default value (if not given, 
+#     it's @NULL). Alternatively, \code{name} and \code{default} can 
+#     be given as a named argument (e.g. \code{n=42}).}
 #   \item{.args}{(advanced/internal) A named @list of parsed 
 #     command-line arguments.}
-#   \item{name}{The name of an argument to retrive.}
-#   \item{default}{The default value to return if command-line argument
-#     does not exist.}
 # }
 #
 # \value{
@@ -116,15 +119,40 @@ cmdArgs <- function(args=NULL, names=NULL, ..., .args=NULL) {
   res;
 } # cmdArgs()
 
-cmdArg <- function(name, default=NULL, ...) {
+
+
+cmdArg <- function(...) {
+  # Argument '...' => (name, default, ...)
+  pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
+
+  # Special short format, e.g. cmdArg(n=42)?
+  args <- pargs$args;
+  if (!is.element("name", names(args))) {
+    argsT <- pargs$namedArgs;
+    if (length(argsT) == 0L) {
+      stop("Argument 'name' is missing (or NULL).");
+    }
+    args$name <- names(argsT)[1L];
+    args$default <- argsT[[1L]];
+    argsT <- argsT[-1L];
+    pargs$args <- args;
+    pargs$namedArgs <- argsT;
+  }
+  args <- Reduce(c, pargs);
+
   # Argument 'name':
-  name <- as.character(name);
+  name <- as.character(args$name);
   stopifnot(length(name) == 1L);
 
-  defaults <- list(default);
-  names(defaults) <- name;
 
-  res <- cmdArgs(..., names=name, defaults=defaults);
+  # Call cmdArgs(names=name, defaults=list(<name>=default), ...)
+  args$names <- name;
+  args$name <- NULL;
+  args$defaults <- list(args$default);
+  names(args$defaults) <- args$names;
+  args$default <- NULL;
+
+  res <- do.call(cmdArgs, args=args);
 
   res[[1]];
 } # cmdArg()
@@ -132,6 +160,8 @@ cmdArg <- function(name, default=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-03-20
+# o Added support for cmdArg(a=42) as an alias to cmdArg("a", default=42).
 # 2013-03-14
 # o Added cmdArg().
 # o Added argument 'names' to cmdArgs().

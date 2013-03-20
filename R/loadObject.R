@@ -32,6 +32,7 @@
 #   @see "saveObject" to save an object to file.
 #   Internally @see "base::load" is used.
 #   See also @see "loadToEnv".
+#   See also @see "base::saveRDS".
 # }
 #
 # @keyword programming

@@ -2,9 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.23.0 [2013-03-20]
+o Added eget() for retrieving a single variable, with a 
+  fallback to a default value, e.g. n <- eget(n=42).
+o Added support for cmdArg(n=42) as an alias to cmdArg("n", 42).
+
+
 Version: 1.22.0 [2013-03-14]
 o Added cmdArg() for retrieving a single command line argument
-  with a default value and type, e.g. n <- cmdArg("n", 42L).
+  with a default value and type, e.g. n <- cmdArg("n", 42).
 
 
 Version: 1.21.2 [2013-03-11]

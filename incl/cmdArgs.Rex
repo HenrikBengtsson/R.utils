@@ -6,3 +6,7 @@ str(args)
 n <- cmdArg("n", 42L)
 printf("Argument n=%d\n", n)
 
+# Short version doing the same
+n <- cmdArg(n=42L)
+printf("Argument n=%d\n", n)
+

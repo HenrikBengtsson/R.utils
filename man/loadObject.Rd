@@ -43,6 +43,7 @@
   \code{\link{saveObject}}() to save an object to file.
   Internally \code{\link[base]{load}}() is used.
   See also \code{\link{loadToEnv}}().
+  See also \code{\link[base]{saveRDS}}().
 }
 
 

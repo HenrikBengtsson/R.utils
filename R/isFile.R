@@ -26,6 +26,7 @@
 # \seealso{
 #   To check if it is a directory see @see "isDirectory".
 #   Internally @see "base::file.info" is used.
+#   See also @see "utils::file_test".
 # }
 #
 # @keyword IO

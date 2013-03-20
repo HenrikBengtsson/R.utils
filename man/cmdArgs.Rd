@@ -15,7 +15,7 @@
 
 \usage{
   cmdArgs(args=NULL, names=NULL, ..., .args=NULL)
-  cmdArg(name, default=NULL, ...)
+  cmdArg(...)
 }
 
 \description{
@@ -26,13 +26,16 @@
   \item{args}{A named \code{\link[base]{list}} of arguments.}
   \item{names}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying the arguments to be
     returned.  If \code{\link[base]{NULL}}, all arguments are returned.}
-  \item{...}{Additional arguments passed to \code{\link{commandArgs}}(),
-    e.g. \code{defaults} and \code{always}.}
+  \item{...}{
+    For \code{cmdArgs()}, additional arguments passed to
+    \code{\link{commandArgs}}(), e.g. \code{defaults} and \code{always}.
+    For \code{cmdArg()}, named arguments \code{name} and
+    \code{default}, where \code{name} must be a \code{\link[base]{character}} string
+    and \code{default} is an optional default value (if not given,
+    it's \code{\link[base]{NULL}}). Alternatively, \code{name} and \code{default} can
+    be given as a named argument (e.g. \code{n=42}).}
   \item{.args}{(advanced/internal) A named \code{\link[base]{list}} of parsed
     command-line arguments.}
-  \item{name}{The name of an argument to retrive.}
-  \item{default}{The default value to return if command-line argument
-    does not exist.}
 }
 
 \value{
@@ -59,6 +62,10 @@ str(args)
 
 # Retrieve command line argument 'n', e.g. '-n 13' or '--n=13'
 n <- cmdArg("n", 42L)
+printf("Argument n=\%d\n", n)
+
+# Short version doing the same
+n <- cmdArg(n=42L)
 printf("Argument n=\%d\n", n)
 
 }

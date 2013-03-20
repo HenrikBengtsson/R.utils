@@ -41,6 +41,7 @@
 \seealso{
   \code{\link{loadObject}}() to load an object from file.
   \code{\link[digest]{digest}} for how hash codes are calculated from an object.
+  See also \code{\link[base]{saveRDS}}().
 }
 
 
