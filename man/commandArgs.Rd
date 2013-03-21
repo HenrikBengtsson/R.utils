@@ -40,8 +40,8 @@ commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adho
      arguments.  These will override default and command-line
      arguments with the same name.}
    \item{adhoc}{(ignored if \code{asValues=FALSE}) If \code{\link[base:logical]{TRUE}}, then
-     additional ad hoc coercion of \code{\link[base]{character}} command-line arguments
-     is performed by trial and error, iff possible.}
+     additional coercion of \code{\link[base]{character}} command-line arguments to
+     more specific data types is performed, iff possible.}
    \item{unique}{If \code{\link[base:logical]{TRUE}}, the returned set of arguments contains only
      unique arguments such that no two arguments have the same name.
      If duplicates exists, it is only the last one that is kept.}
@@ -95,10 +95,9 @@ commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adho
    This provides a mechanism for specifying data types other than
    \code{\link[base]{character}} strings.
  
-   Furthermore, when \code{asValues} and \code{adhoc} are \code{\link[base:logical]{TRUE}},
-   any remaining character string command-line arguments are coerced
-   to \code{\link[base]{numeric}}s (via \code{\link[base]{as.numeric}}()), unless the coerced
-   value becomes \code{\link[base]{NA}}.
+   Furthermore, when \code{asValues} and \code{adhoc} are \code{\link[base:logical]{TRUE}}, any
+   remaining character string command-line arguments are coerced to more
+   specific data types (via \code{\link[@"utils]{type.convert"),}} if possible.
  }
 
  \author{Henrik Bengtsson}

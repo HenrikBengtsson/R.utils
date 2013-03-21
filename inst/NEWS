@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.23.1 [2013-03-21]
+o Now commandArgs(..., adhoc=TRUE) utilizes utils::type.convert().
+
+
 Version: 1.23.0 [2013-03-20]
 o Added ecget() which is like eget() with the default value
   corresponding to the command-line argument.

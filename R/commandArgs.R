@@ -29,8 +29,8 @@
 #     arguments.  These will override default and command-line
 #     arguments with the same name.}
 #   \item{adhoc}{(ignored if \code{asValues=FALSE}) If @TRUE, then
-#     additional ad hoc coercion of @character command-line arguments
-#     is performed by trial and error, iff possible.}
+#     additional coercion of @character command-line arguments to
+#     more specific data types is performed, iff possible.}
 #   \item{unique}{If @TRUE, the returned set of arguments contains only
 #     unique arguments such that no two arguments have the same name.
 #     If duplicates exists, it is only the last one that is kept.}
@@ -84,10 +84,9 @@
 #   This provides a mechanism for specifying data types other than
 #   @character strings.
 #   
-#   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE,
-#   any remaining character string command-line arguments are coerced 
-#   to @numerics (via @see "base::as.numeric"), unless the coerced 
-#   value becomes @NA.
+#   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE, any
+#   remaining character string command-line arguments are coerced to more
+#   specific data types (via @see @"utils::type.convert"), if possible.
 # }
 #
 # @author
@@ -420,12 +419,8 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         for (kk in seq_along(argsT)) {
           arg <- argsT[[kk]];
           tryCatch({
-            suppressWarnings({
-               value <- as.numeric(arg);
-            });
-            if (!is.na(value)) {
-              argsT[[kk]] <- value;
-            }
+            value <- type.convert(arg, as.is=TRUE);
+            argsT[[kk]] <- value;
           }, error=function(ex) {});
         }
         args[idxs] <- argsT;
