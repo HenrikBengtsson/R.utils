@@ -13,6 +13,8 @@
 # }
 #
 # \arguments{
+#   \item{trailingOnly}{If @TRUE, only arguments after \code{--args}
+#     are returned.}
 #   \item{asValues}{If @TRUE, a named @list is returned, where command
 #     line arguments of type \code{--foo} will be returned as @TRUE with 
 #     name \code{foo}, and arguments of type \code{-foo=value} will be
@@ -100,7 +102,7 @@
 # @keyword "programming"
 # @keyword "internal"
 #*/#########################################################################
-commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...) {
+commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(trailingOnly=trailingOnly), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -258,7 +260,7 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
 
   # Argument '.args':
   if (is.null(.args)) {
-    .args <- base::commandArgs(...);
+    .args <- base::commandArgs(trailingOnly=trailingOnly);
   } else if (!is.character(.args)) {
     throw("Argument '.args' must be a character vector: ", class(.args)[1L]);
   }
@@ -490,6 +492,8 @@ commandArgs <- function(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
 
 ############################################################################
 # HISTORY:
+# 2013-03-20
+# o Added argument 'trailingOnly' to commandArgs().
 # 2013-03-07
 # o BUG FIX: commandArgs(asValues=TRUE) failed for reserved arguments
 #   that takes a second value when the value contained an equal sign,

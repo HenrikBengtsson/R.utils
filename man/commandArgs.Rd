@@ -13,7 +13,7 @@
  \title{Extract command-line arguments}
 
  \usage{
-commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(...), ...)
+commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(trailingOnly = trailingOnly), ...)
 }
 
  \description{
@@ -24,6 +24,8 @@ commandArgs(asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALS
  }
 
  \arguments{
+   \item{trailingOnly}{If \code{\link[base:logical]{TRUE}}, only arguments after \code{--args}
+     are returned.}
    \item{asValues}{If \code{\link[base:logical]{TRUE}}, a named \code{\link[base]{list}} is returned, where command
      line arguments of type \code{--foo} will be returned as \code{\link[base:logical]{TRUE}} with
      name \code{foo}, and arguments of type \code{-foo=value} will be
