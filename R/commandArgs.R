@@ -86,7 +86,7 @@
 #   
 #   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE, any
 #   remaining character string command-line arguments are coerced to more
-#   specific data types (via @see @"utils::type.convert"), if possible.
+#   specific data types (via @see "utils::type.convert"), if possible.
 # }
 #
 # @author

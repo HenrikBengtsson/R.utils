@@ -97,7 +97,7 @@ commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adho
  
    Furthermore, when \code{asValues} and \code{adhoc} are \code{\link[base:logical]{TRUE}}, any
    remaining character string command-line arguments are coerced to more
-   specific data types (via \code{\link[@"utils]{type.convert"),}} if possible.
+   specific data types (via \code{\link[utils]{type.convert}}), if possible.
  }
 
  \author{Henrik Bengtsson}
