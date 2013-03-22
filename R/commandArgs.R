@@ -418,6 +418,8 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         # Try to coerce to numeric
         for (kk in seq_along(argsT)) {
           arg <- argsT[[kk]];
+          # Don't coerce 'T' and 'F' to logical
+          if (is.element(arg, c("T", "F"))) next;
           tryCatch({
             value <- type.convert(arg, as.is=TRUE);
             argsT[[kk]] <- value;

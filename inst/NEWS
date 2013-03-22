@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.23.2 [2013-03-22]
+o BUG FIX: Previous update caused commandArgs(..., adhoc=TRUE) 
+  to coerce 'T' and 'F' to logicals TRUE and FALSE.  They are
+  now preserved as character string.
+
+
 Version: 1.23.1 [2013-03-21]
 o Now commandArgs(..., adhoc=TRUE) utilizes utils::type.convert().
 
