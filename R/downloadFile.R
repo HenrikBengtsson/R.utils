@@ -13,7 +13,7 @@
 #
 # \arguments{
 #  \item{url}{A @character string specifying the URL to be downloaded.}
-#  \item{filename, path}{(optional) @character strings specifying the 
+#  \item{filename, path}{(optional) @character strings specifying the
 #    local filename and the path of the downloaded file.}
 #  \item{skip}{If @TRUE, an already downloaded file is skipped.}
 #  \item{overwrite}{If @TRUE, an already downloaded file is overwritten,
@@ -135,7 +135,7 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
     if (isFile(pathnameT)) {
       file.remove(pathnameT);
     }
-  }, add=TRUE); 
+  }, add=TRUE);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -143,17 +143,44 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   verbose && enter(verbose, "Downloading");
   if (is.element(protocol, c("https"))) {
-    verbose && cat(verbose, "Username: ", username);
-    verbose && cat(verbose, "Password: ", password);
-    opts <- sprintf("--http-user=%s --http-passwd=%s", username, password);
-    fmtstr <- "wget --output-document=\"%s\" --no-check-certificate %s %s";
-    cmd <- sprintf(fmtstr, pathnameT, opts, url);
-    verbose && cat(verbose, "Command: ", cmd);
-    res <- system(cmd);
+    verbose && enter(verbose, "Locating 'wget'");
+    bin <- Sys.which("wget");
+    verbose && cat(verbose, "Executable: ", bin);
+    verbose && exit(verbose);
+
+    verbose && enter(verbose, "Setting up command-line options");
+    # Command-line options
+    args <- NULL;
+
+    if (!is.null(username)) {
+      arg <- sprintf("--http-user=%s", username);
+      args <- c(args, arg);
+    }
+
+    if (!is.null(password)) {
+      arg <- sprintf("--http-passwd=%s", password);
+      args <- c(args, arg);
+    }
+
+    # Output file
+    arg <- sprintf("--output-document=\"%s\"", pathnameT);
+    args <- c(args, arg);
+
+    # Less strict (=more likely to succeed)
+    arg <- "--no-check-certificate";
+    args <- c(args, arg);
+
+    # URL to download
+    args <- c(args, url);
+
+    verbose && print(verbose, args);
+    verbose && exit(verbose);
+
+    res <- system2(bin, args=args);
   } else {
     mode <- ifelse(binary, "wb", "w");
     verbose && cat(verbose, "Download mode: ", mode);
-    res <- download.file(url, destfile=pathnameT, mode=mode, 
+    res <- download.file(url, destfile=pathnameT, mode=mode,
                                              quiet=!isVisible(verbose), ...);
   }
   verbose && cat(verbose, "Downloading finished\n");
@@ -178,7 +205,7 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   if (!is.null(pathnameT)) {
     file.rename(pathnameT, pathname);
     if (!isFile(pathname)) {
-      throw("Failed to rename temporary filename: ", 
+      throw("Failed to rename temporary filename: ",
                                                pathnameT, " -> ", pathname);
     }
     if (isFile(pathnameT)) {
@@ -194,6 +221,9 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
 ############################################################################
 # HISTORY:
+# 2013-03-29
+# o BUG FIX: downloadFile('https://...') did not work if 'username' or
+#   'password' was NULL.
 # 2010-08-23
 # o Added support for https authentication via wget.
 # 2010-05-27

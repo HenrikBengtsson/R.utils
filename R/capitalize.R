@@ -36,22 +36,84 @@
 # @keyword "programming"
 #*/#########################################################################
 setMethodS3("capitalize", "default", function(str, ...) {
-  first <- substring(str,1,1);
-  tail  <- substring(str,2);
-  first <- toupper(first);
-  paste(first, tail, sep="");
+  # Nothing to do?
+  n <- length(str);
+  if (n == 0L) {
+    return(str);
+  }
+
+  # Missing values?
+  nas <- is.na(str);
+  idxs <- which(nas);
+  # All missing values? => nothing to do.
+  if (length(idxs) == n) {
+    return(str);
+  }
+
+  # Allocate result
+  res <- character(length=n);
+
+  # Preserve missing values
+  if (length(idxs) > 0L) {
+    res[idxs] <- NA_character_;
+  }
+
+  # Capitilize
+  idxs <- which(!nas);
+  if (length(idxs) > 0L) {
+    t <- str[idxs];
+    first <- substring(t, first=1L, last=1L);
+    tail  <- substring(t, first=2L);
+    first <- toupper(first);
+    res[idxs] <- paste(first, tail, sep="");
+  }
+
+  res;
 })
 
 setMethodS3("decapitalize", "default", function(str, ...) {
-  first <- substring(str,1,1);
-  tail  <- substring(str,2);
-  first <- tolower(first);
-  paste(first, tail, sep="");
+  # Nothing to do?
+  n <- length(str);
+  if (n == 0L) {
+    return(str);
+  }
+
+  # Missing values?
+  nas <- is.na(str);
+  idxs <- which(nas);
+  # All missing values? => nothing to do.
+  if (length(idxs) == n) {
+    return(str);
+  }
+
+  # Allocate result
+  res <- character(length=n);
+
+  # Preserve missing values
+  if (length(idxs) > 0L) {
+    res[idxs] <- NA_character_;
+  }
+
+
+  # Decapitilize
+  idxs <- which(!nas);
+  if (length(idxs) > 0L) {
+    t <- str[idxs];
+    first <- substring(t, first=1L, last=1L);
+    tail  <- substring(t, first=2L);
+    first <- tolower(first);
+    res[idxs] <- paste(first, tail, sep="");
+  }
+
+  res;
 })
 
 
 ############################################################################
 # HISTORY:
+# 2013-04-15
+# o BUG FIX: capitalize()/decapitalize() would return "NANA" for missing
+#   values.
 # 2005-02-20
 # o Now using setMethodS3() and added '...' to please R CMD check.
 # 2003-01-07
