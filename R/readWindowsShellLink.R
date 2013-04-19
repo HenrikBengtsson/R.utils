@@ -16,17 +16,17 @@
 #   \item{verbose}{If @TRUE, extra information is written while reading.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
 #   Returns a @list structure.
 # }
-# 
+#
 # @examples "../incl/readWindowsShellLink.Rex"
 #
 # \details{
 #  This function is implemented based on the official file format
 #  specification [1].
-#  It is intended to replace @see "readWindowsShortcut", which was 
+#  It is intended to replace @see "readWindowsShortcut", which was
 #  written based on reverse engineering (before [1] was made available).
 # }
 #
@@ -36,7 +36,7 @@
 #   @see "readWindowsShortcut"
 #   \code{\link{filePath}}
 # }
-# 
+#
 # \references{
 #   [1] [MS-SHLLINK]: Shell Link (.LNK) Binary File Format, Microsoft Inc.,
 #       September 25, 2009. \cr
@@ -106,25 +106,25 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
   # byte - An 1-byte unsigned integer
   readByte <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=1L, n=n, 
+    readBin(con=con, what=integer(), size=1L, n=n,
                                             signed=FALSE, endian="little");
   }
 
-  # word - A 2-byte unsigned integer 
+  # word - A 2-byte unsigned integer
   readWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=2L, n=n, 
+    readBin(con=con, what=integer(), size=2L, n=n,
                                             signed=FALSE, endian="little");
   }
 
   # qword - A 4-byte unsigned integer (actually as signed integer)
   readDWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=4L, n=n, 
+    readBin(con=con, what=integer(), size=4L, n=n,
                                             signed=TRUE, endian="little");
   }
 
   # qword - An 8-byte unsigned integer (actually as signed integer)
   readQWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=4L, n=2*n, 
+    readBin(con=con, what=integer(), size=4L, n=2*n,
                                             signed=TRUE, endian="little");
   }
 
@@ -154,62 +154,62 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
   # The Shell Link Binary File Format consists of a sequence of structures
   # that conform to the following ABNF rules [RFC5234]:
   #
-  # SHELL_LINK = SHELL_LINK_HEADER [LINKTARGET_IDLIST] [LINKINFO] 
-  #             [STRING_DATA] *EXTRA_DATA 
+  # SHELL_LINK = SHELL_LINK_HEADER [LINKTARGET_IDLIST] [LINKINFO]
+  #             [STRING_DATA] *EXTRA_DATA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # The ShellLinkHeader structure contains identification information,
   # timestamps, and flags that specify the presence of optional structures,
-  # including LinkTargetIdList (section 2.2), LinkInfo (section 2.3), 
-  # and StringData (section 2.4). 
+  # including LinkTargetIdList (section 2.2), LinkInfo (section 2.3),
+  # and StringData (section 2.4).
   #
-  # [SHELL_LINK_HEADER] = 
+  # [SHELL_LINK_HEADER] =
   #   HeaderSize (4 bytes):
   #     The size, in bytes, of this structure. MUST be 0x0000004C.
   #   LinkCLSID (16 bytes):
-  #     A class identifier (CLSID). MUST be 00021401-0000-0000-C000-000000000046. 
+  #     A class identifier (CLSID). MUST be 00021401-0000-0000-C000-000000000046.
   #   LinkFlags (4 bytes):
   #     A LinkFlags structure (section 2.1.1) that specifies information about
   #     the shell link and the presence of optional portions of the structure.
   #   FileAttributes (4 bytes):
-  #     A FileAttributesFlags structure (section 2.1.2) that specifies 
+  #     A FileAttributesFlags structure (section 2.1.2) that specifies
   #     information about the link target.
   #   CreationTime (8 bytes):
-  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the 
+  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the
   #     creation time of the link target in UTC (Coordinated Universal Time).
   #     If the value is zero, there is no creation time set on the link target.
   #   AccessTime (8 bytes):
-  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the 
+  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the
   #     access time of the link target in UTC (Coordinated Universal Time).
-  #     If the value is zero, there is no access time set on the link target. 
+  #     If the value is zero, there is no access time set on the link target.
   #   WriteTime (8 bytes):
-  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the 
+  #     A FILETIME structure ([MS-DTYP] section 2.3.1) that specifies the
   #     write time of the link target in UTC (Coordinated Universal Time).
   #     If the value is zero, there is no write time set on the link target.
   #   FileSize (4 bytes):
-  #     A 32-bit unsigned integer that specifies the size, in bytes, 
-  #     of the link target.  If the link target file is larger than 
-  #     0xFFFFFFFF, this value specifies the least significant 32 bits 
-  #     of the link target file size. 
+  #     A 32-bit unsigned integer that specifies the size, in bytes,
+  #     of the link target.  If the link target file is larger than
+  #     0xFFFFFFFF, this value specifies the least significant 32 bits
+  #     of the link target file size.
   #   IconIndex (4 bytes);
   #     A 32-bit signed integer that specifies the index of an icon
   #     within a given icon location.
   #   ShowCommand (4 bytes):
-  #     A 32-bit unsigned integer that specifies the expected window state 
+  #     A 32-bit unsigned integer that specifies the expected window state
   #     of an application launched by the link. This value SHOULD be one
   #     of the following.
-  #      SW_SHOWNORMAL = 0x00000001 
-  #       The application is open and its window is open in a normal fashion. 
-  #      SW_SHOWMAXIMIZED = 0x00000003 
+  #      SW_SHOWNORMAL = 0x00000001
+  #       The application is open and its window is open in a normal fashion.
+  #      SW_SHOWMAXIMIZED = 0x00000003
   #       The application is open, and keyboard focus is given to the
-  #       application, but its window is not shown. 
-  #      SW_SHOWMINNOACTIVE = 0x00000007 
-  #       The application is open, but its window is not shown. It is not 
-  #       given the keyboard focus. 
+  #       application, but its window is not shown.
+  #      SW_SHOWMINNOACTIVE = 0x00000007
+  #       The application is open, but its window is not shown. It is not
+  #       given the keyboard focus.
   #   HotKey (2 bytes):
   #     A HotKeyFlags structure (section 2.1.3) that specifies the keystrokes
-  #     used to launch the application referenced by the shortcut key. This 
+  #     used to launch the application referenced by the shortcut key. This
   #     value is assigned to the application after it is launched, so that
   #     pressing the key activates that application.
   #   Reserved1 (2 bytes):  A value that MUST be zero.
@@ -855,7 +855,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     if (!isOpen(con)) {
       open(con, open="rb");
       on.exit({
-        if (inherits(con, "connection") && isOpen(con)) 
+        if (inherits(con, "connection") && isOpen(con))
           close(con);
       })
     }
@@ -881,8 +881,8 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
   lnk$header <- readShellLinkHeader(con);
   if (verbose) {
-    cat("File header read:\n");
-    print(lnk$header);
+    message("File header read:");
+    message(paste(capture.output(lnk$header), collapse="\n"));
   }
 
   if (lnk$header$linkFlags["HasLinkTargetIdList"]) {
@@ -944,7 +944,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
 
 #############################################################################
-# HISTORY: 
+# HISTORY:
 # 2012-10-29
 # o Updated Rdoc help.
 # 2012-10-28

@@ -6,35 +6,35 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{getLoadedPathname.Settings}
+\name{getLoadedPathname.Settings}
 \alias{getLoadedPathname.Settings}
 \alias{Settings.getLoadedPathname}
 \alias{getLoadedPathname,Settings-method}
 
- \title{Gets the pathname of the settings file loaded}
+\title{Gets the pathname of the settings file loaded}
 
- \description{
-   Gets the pathname of the settings file loaded.
- }
+\description{
+  Gets the pathname of the settings file loaded.
+}
 
- \usage{
+\usage{
 \method{getLoadedPathname}{Settings}(this, ...)
 }
 
- \arguments{
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns the absolute pathname (\code{\link[base]{character}} string) of the settings file
-   loaded. If no file was read, \code{\link[base]{NULL}} is returned.
- }
+\value{
+  Returns the absolute pathname (\code{\link[base]{character}} string) of the settings file
+  loaded. If no file was read, \code{\link[base]{NULL}} is returned.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{Settings}}.
- }
+\seealso{
+  For more information see \code{\link{Settings}}.
+}
 
 
 \keyword{internal}

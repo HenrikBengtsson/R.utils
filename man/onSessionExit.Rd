@@ -45,7 +45,7 @@
 
 \examples{\dontrun{
   onSessionExit(function(...) {
-    cat("Bye bye world!\n");
+    message("Bye bye world!");
   })
 
   quit()

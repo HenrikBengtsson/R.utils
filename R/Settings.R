@@ -6,7 +6,7 @@
 # \description{
 #  @classhierarchy
 #
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -18,15 +18,15 @@
 #
 # \section{Fields and Methods}{
 #  @allmethods
-# } 
+# }
 #
 # \section{Load settings with package and save on exit}{
 #  Here is a generic \code{.First.lib()} function for loading settings
 #  with package. It also (almost) assures that the package is detached
 #  when R finishes. See @see "onSessionExit" why it is not guaranteed!
-# 
+#
 #  The almost generic \code{.Last.lib()} function, which will prompt
-#  user to save settings, is called when a package is detached. 
+#  user to save settings, is called when a package is detached.
 #
 #  It is custom to put these functions in a file named \code{zzz.R}.
 #
@@ -36,7 +36,7 @@
 #     # Write a welcome message when package is loaded
 #     pkg <- Package(pkgname);
 #     assign(pkgname, pkg, pos=getPosition(pkg));
-#   
+#
 #     # Read settings file ".<pkgname>Settings" and store it in package
 #     # variable '<pkgname>Settings'.
 #     varname <- paste(pkgname, "Settings");
@@ -49,10 +49,10 @@
 #     # Detach package when R finishes, which will save package settings too.
 #     onSessionExit(function(...) detachPackage(pkgname));
 #
-#     packageStartupMessage(getName(pkg), " v", getVersion(pkg), 
+#     packageStartupMessage(getName(pkg), " v", getVersion(pkg),
 #         " (", getDate(pkg), ") successfully loaded. See ?", pkgname,
 #         " for help.\n", sep="");
-#   } # .First.lib() 
+#   } # .First.lib()
 #  }
 #
 #  \bold{.Last.lib():}
@@ -79,9 +79,9 @@
 # @keyword IO
 #*/###########################################################################
 setConstructorS3("Settings", function(basename=NULL, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'basename':
   if (!is.null(basename)) {
     basename <- as.character(basename);
@@ -104,7 +104,7 @@ setConstructorS3("Settings", function(basename=NULL, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -138,7 +138,7 @@ setMethodS3("getLoadedPathname", "Settings", function(this, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -177,7 +177,7 @@ setMethodS3("isModified", "Settings", function(this, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -217,7 +217,7 @@ setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", 
 # @RdocMethod saveAnywhere
 #
 # @title "Saves settings to file"
-# 
+#
 # \description{
 #  @get "title". If the settings was read from file, they are by default
 #  written back to the same file. If this was not the case, it defaults
@@ -232,7 +232,7 @@ setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", 
 #      this was not the case, argument \code{path} is used.}
 #   \item{path}{The default path, if no settings files are specified.
 #      This defaults to the current user's home directory.}
-#   \item{...}{Arguments passed to 
+#   \item{...}{Arguments passed to
 #      \code{\link[R.oo:save.Object]{save}()} in superclass Object.}
 # }
 #
@@ -250,9 +250,9 @@ setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", 
 # @keyword programming
 #*/#########################################################################
 setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'path':
   path <- as.character(path);
   if (!isDirectory(path))
@@ -276,7 +276,7 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
 # @RdocMethod loadAnywhere
 #
 # @title "Loads settings from file"
-# 
+#
 # \description{
 #  @get "title". If the settings was read from file, they are by default
 #  written back to the same file. If this was not the case, it defaults
@@ -286,15 +286,15 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
 # @synopsis
 #
 # \arguments{
-#   \item{file}{A @character string or a @connection from which settings 
-#      should be read. If @NULL, the settings file is searched for by 
+#   \item{file}{A @character string or a @connection from which settings
+#      should be read. If @NULL, the settings file is searched for by
 #      @seemethod "findSettings".}
 #   \item{...}{Arguments passed to @seemethod "findSettings".}
 #   \item{verbose}{If @TRUE, verbose information is written while reading,
 #      otherwise not.}
 # }
 #
-# \value{Returns a \link{Settings} object if file was successfully read, 
+# \value{Returns a \link{Settings} object if file was successfully read,
 #   otherwise @NULL.}
 #
 # @author
@@ -307,9 +307,9 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
 # @keyword programming
 #*/#########################################################################
 setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose=FALSE) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (is.null(file)) {
     file <- static$.basename;
@@ -330,12 +330,12 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
     settings <- Settings$load(file=file);
     settings$.loadedPathname <- getAbsolutePath(file);
     if (verbose) {
-      cat("Loaded settings: ", file, " (", 
-            format(lastModified(file), "%Y-%m-%d %H:%M:%S"), ")\n", sep="");
+      message("Loaded settings: ", file, " (",
+               format(lastModified(file), "%Y-%m-%d %H:%M:%S"), ")");
     }
   }, error = function(ex) {
     if (verbose)
-      cat("Failed to load settings: ", file, "\n", sep="");
+      message("Failed to load settings: ", file);
   })
 
   settings;
@@ -346,9 +346,9 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
 # @RdocMethod promptAndSave
 #
 # @title "Prompt user to save modified settings"
-# 
+#
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -360,18 +360,18 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
 # }
 #
 # \value{
-#   Returns @TRUE if settings were successfully written to file, 
+#   Returns @TRUE if settings were successfully written to file,
 #   otherwise @FALSE is returned. An exception may also be thrown.
 # }
 #
 # \details{
-#   If settings has been modified since loaded, the user is by default 
+#   If settings has been modified since loaded, the user is by default
 #   prompted to save the settings (if \R runs interactively).
-#   To save or not save without asking or when \R runs non-interactively, 
-#   set option \code{"saveSettings"} to "yes" or "no", respectively. 
+#   To save or not save without asking or when \R runs non-interactively,
+#   set option \code{"saveSettings"} to "yes" or "no", respectively.
 #   For prompting the user, use "prompt".
 # }
-# 
+#
 # @author
 #
 # \seealso{
@@ -383,13 +383,13 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
 # @keyword programming
 #*/#########################################################################
 setMethodS3("promptAndSave", "Settings", function(this, saveOption="saveSettings", settingsName=NULL, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'saveOption':
   saveOption <- as.character(saveOption);
   if (length(saveOption) != 1) {
-    throw("Argument 'saveOption' should be a single character string: ", 
+    throw("Argument 'saveOption' should be a single character string: ",
                                        paste(saveOption, collapse=", "));
   }
 
@@ -432,6 +432,9 @@ setMethodS3("promptAndSave", "Settings", function(this, saveOption="saveSettings
 
 ############################################################################
 # HISTORY:
+# 2013-04-18
+# o Now the verbose output of loadAnywhere() for Settings is sent
+#   to standard error (was standard output).
 # 2006-02-22
 # o saveAnywhere() now returns the pathname where the settings were saved.
 # o Rdoc: Fixed a missing link in saveAnywhere().

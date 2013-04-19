@@ -1,7 +1,7 @@
 ###########################################################################/**
 # @RdocDefault onGarbageCollect
 #
-# @title "Registers a function to be called when the R garbage collector 
+# @title "Registers a function to be called when the R garbage collector
 #   is (detected to be) running"
 #
 # \description{
@@ -12,7 +12,7 @@
 #
 # \arguments{
 #  \item{fcn}{A @function to be called without argument.}
-#  \item{action}{A @character string specifying how the hook function is 
+#  \item{action}{A @character string specifying how the hook function is
 #    added to list of hooks.}
 #  \item{...}{Not used.}
 # }
@@ -25,7 +25,7 @@
 #
 # \examples{\dontrun{
 #   onGarbageCollect(function(...) {
-#     cat("The R garbage collector is running!\n");
+#     message("The R garbage collector is running!");
 #   })
 # }}
 #

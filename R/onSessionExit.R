@@ -11,7 +11,7 @@
 #
 # \arguments{
 #  \item{fcn}{A @function to be called without argument.}
-#  \item{action}{A @character string specifying how the hook function is 
+#  \item{action}{A @character string specifying how the hook function is
 #    added to list of hooks.}
 #  \item{...}{Not used.}
 # }
@@ -22,10 +22,10 @@
 #
 # \details{
 #   Functions registered this way are called when @see "finalizeSession" is
-#   called.  Moreover, when this package is loaded, the \code{.Last()} 
+#   called.  Moreover, when this package is loaded, the \code{.Last()}
 #   function is modified such that \code{finalizeSession()} is called.
-#   However, note that \code{.Last()} is \emph{not} guaranteed to be called 
-#   when the \R session finished.  For instance, the user may quit \R by 
+#   However, note that \code{.Last()} is \emph{not} guaranteed to be called
+#   when the \R session finished.  For instance, the user may quit \R by
 #   calling \code{quit(callLast=FALSE)}.
 #   Moreover, when \R is run in batch mode, \code{.Last()} is never called.
 # }
@@ -34,7 +34,7 @@
 #
 # \examples{\dontrun{
 #   onSessionExit(function(...) {
-#     cat("Bye bye world!\n");
+#     message("Bye bye world!");
 #   })
 #
 #   quit()

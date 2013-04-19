@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.24.0 [2013-04-18]
+o Several methods are now output messages and verbose output
+  to standard error (instead of standard output), including
+  addFinalizerToLast(), filePath(), patchCode(), readWindowsShellLink(),
+  readWindowsShortcut(), and loadAnywhere() for Settings.
+
+
 Version: 1.23.4 [2013-04-15]
 o BUG FIX: capitalize()/decapitalize() would return "NANA" for
   missing values.  Reported by Liviu Andronic.

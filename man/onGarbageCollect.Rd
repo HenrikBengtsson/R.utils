@@ -37,7 +37,7 @@
 
 \examples{\dontrun{
   onGarbageCollect(function(...) {
-    cat("The R garbage collector is running!\n");
+    message("The R garbage collector is running!");
   })
 }}
 

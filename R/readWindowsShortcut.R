@@ -14,15 +14,15 @@
 #   \item{verbose}{If @TRUE, extra information is written while reading.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
 #   Returns a @list structure.
 # }
-# 
+#
 # @examples "../incl/readWindowsShortcut.Rex"
 #
 # \details{
-#  The MIME type for a Windows Shortcut file is 
+#  The MIME type for a Windows Shortcut file is
 #  \code{application/x-ms-shortcut}.
 # }
 #
@@ -32,7 +32,7 @@
 #   @see "createWindowsShortcut"
 #   \code{\link{filePath}}
 # }
-# 
+#
 # \references{
 #   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.\cr
 #   [2] Hager J, \emph{The Windows Shortcut File Format}
@@ -44,7 +44,7 @@
 #       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
 #   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
 #       April 2008. \url{http://wiki.tcl.tk/1844} \cr
-#   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com, 
+#   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com,
 #       April 24, 2009. \cr
 #       \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
 #   [7] [MS-SHLLINK]: Shell Link (.LNK) Binary File Format, Microsoft Inc.,
@@ -62,32 +62,32 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # dword - An 4-byte unsigned integer 
+  # dword - An 4-byte unsigned integer
   readByte <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=1, n=n, 
+    readBin(con=con, what=integer(), size=1, n=n,
                                             signed=FALSE, endian="little");
- 
+
   }
 
-  # word - A 2-byte unsigned integer 
+  # word - A 2-byte unsigned integer
   readWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=2, n=n, 
+    readBin(con=con, what=integer(), size=2, n=n,
                                             signed=FALSE, endian="little");
- 
+
   }
 
   # qword - A 4-byte unsigned integer (actually as signed integer)
   readDWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=4, n=n, 
+    readBin(con=con, what=integer(), size=4, n=n,
                                             signed=TRUE, endian="little");
- 
+
   }
 
   # qword - An 8-byte unsigned integer (actually as signed integer)
   readQWord <- function(con, n=1) {
-    readBin(con=con, what=integer(), size=8, n=n, 
+    readBin(con=con, what=integer(), size=8, n=n,
                                             signed=TRUE, endian="little");
- 
+
   }
 
   readString <- function(con, nchars=-1, unicoded=FALSE) {
@@ -124,7 +124,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     if (!isOpen(con)) {
       open(con, open="rb");
       on.exit({
-        if (inherits(con, "connection") && isOpen(con)) 
+        if (inherits(con, "connection") && isOpen(con))
           close(con);
       })
     }
@@ -165,7 +165,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   #    40h  1 dword  Hot key
   #    44h  2 dwords Unknown, always zero
   #
-  # The first 4 bytes of the file form a long integer that is always set 
+  # The first 4 bytes of the file form a long integer that is always set
   # to 4Ch this it the ASCII value for the uppercase letter L. This is used
   # to identify a valid shell link file.
   #
@@ -189,8 +189,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   );
 
   if (verbose) {
-    cat("File header read:\n");
-    print(header);
+    message("File header read:");
+    message(paste(capture.output(header), collapse="\n"));
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -233,7 +233,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     names(fileAttributes) <- c("isReadOnly", "isHidden", "isSystemFile", "isVolumeLabel", "isDirectory", "isModifiedSinceLastBackup", "isEncrypted", "isNormal", "isTemporary", "isSparseFile", "hasReparsePointData", "isCompressed", "isOffline");
     header$fileAttributes <- fileAttributes;
   } else {
-    # "If the target is not a file (see flags bit 1), then this is set 
+    # "If the target is not a file (see flags bit 1), then this is set
     #  to zero."
     if (!all(header$fileAttributes == 0)) {
       stop("File format error: When shortcut is not pointing to a file or a directory all file attributes should be zero.");
@@ -269,15 +269,17 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header$flags["hasShellItemIdList"]) {
     bytesToRead <- readWord(con);
-    if (verbose)
-      cat("bytesToRead=", bytesToRead, "\n", sep="");
+    if (verbose) {
+      message("bytesToRead=", bytesToRead);
+    }
     dummy <- readByte(con, n=bytesToRead);
     bytesToRead <- 0;
 
     while(bytesToRead > 0) {
       itemLength <- readWord(con);
-      if (verbose)
-        cat("itemLength=", itemLength, "\n", sep="");
+      if (verbose) {
+        message("itemLength=", itemLength);
+      }
       bytesToRead <- bytesToRead-2;
       item <- readByte(con, n=itemLength-2);
       print(paste(intToChar(item), collapse=""));
@@ -292,7 +294,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   #  Offset Size    Contents
   #   0h    1 dword This is the total length of this structure and all
   #                 following data
-  #   4h    1 dword This is a pointer to first offset after this 
+  #   4h    1 dword This is a pointer to first offset after this
   #                 structure. 1Ch
   #   8h    1 dword Flags
   #   Ch    1 dword Offset of local volume info
@@ -300,8 +302,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   #  14h    1 dword Offset of network volume info
   #  18h    1 dword Offset of remaining pathname
   #
-  #  Notes: The first length value includes all the assorted pathnames and 
-  #  other data structures. All offsets are relative to the start of this 
+  #  Notes: The first length value includes all the assorted pathnames and
+  #  other data structures. All offsets are relative to the start of this
   #  structure.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header$flags["pointsToFileOrDirectory"]) {
@@ -349,8 +351,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     }
 
     if (verbose) {
-      cat("File location info:\n");
-      print(fileLocationInfo);
+      message("File location info:");
+      message(paste(capture.output(fileLocationInfo), collapse="\n"));
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -364,8 +366,10 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     #  10h    ASCIZ   Volume label
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnLocalVolume"]) {
-      if (verbose)
-        cat("availableOnLocalVolume...\n");
+      if (verbose) {
+        message("availableOnLocalVolume...");
+      }
+
       # Skip to local volume table
       skip <- fileLocationInfo$offsetLocalVolumeInfo-fileLocationInfo$.offset;
       readBin(con, what=integer(), size=1, n=skip);
@@ -385,7 +389,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       } else {
         stop("File format error: Unknown type of volume: ", table$typeOfVolume);
       }
-  
+
       if (table$offsetName != table$.offset) {
         warning("File format warning: Offset to volume name in Local Volume Table is not 0x10 (16): ", table$offsetName);
         # Skip to volume label
@@ -396,7 +400,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
       table$volumeLabel <- readString(con);
       table$.offset <- table$.offset + nchar(table$volumeLabel) + 1;
-  
+
       if (table$.offset != table$length) {
         stop("File format error: Length of structure did not match the number of bytes read.");
       }
@@ -408,19 +412,19 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       table$length <- NULL;
       table$offsetName <- NULL;
       table$.offset <- NULL;
-  
+
       fileLocationInfo$localVolumeTable <- table;
       rm(table);
 
       if (verbose) {
-        cat("File location info / Local Volume Table:\n");
-        print(fileLocationInfo$localVolumeTable);
+        message("File location info / Local Volume Table:");
+        message(paste(capture.output(fileLocationInfo$localVolumeTable), collapse="\n"));
       }
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # The base pathname on local system
       #
-      # "To find the filename of the file on the local volume, combine the 
+      # "To find the filename of the file on the local volume, combine the
       #  base path string and the final path string." [1]
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Skip to base pathname
@@ -428,15 +432,15 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       readBin(con, what=integer(), size=1, n=skip);
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
       fileLocationInfo$basePathname <- readString(con);
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + 
+      fileLocationInfo$.offset <- fileLocationInfo$.offset +
                                     nchar(fileLocationInfo$basePathname) + 1;
-  
-      if (verbose)
-        cat("basePathname='", fileLocationInfo$basePathname, "'\n", sep="");
-      if (verbose)
-        cat("availableOnLocalVolume...done\n");
+
+      if (verbose) {
+        message("basePathname='", fileLocationInfo$basePathname, "'");
+        message("availableOnLocalVolume...done");
+      }
     }
-        
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # The network volume table
@@ -449,14 +453,15 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     #   10h   1 dword Unknown, always 20000h?
     #   14h   ASCIZ   Network share name
     #
-    #   Note 1: The above unknown values are the same for a printer or file 
+    #   Note 1: The above unknown values are the same for a printer or file
     #           share.
     #   Note 2: The above values are for Microsoft Networks, I don't have a
     #           NetWare server to test.
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnNetworkShare"]) {
-      if (verbose)
-        cat("availableOnNetworkShare...\n");
+      if (verbose) {
+        message("availableOnNetworkShare...");
+      }
 
       # Skip to local volume table
       skip <- fileLocationInfo$offsetNetworkVolumeInfo-fileLocationInfo$.offset;
@@ -472,19 +477,19 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         networkShareName   = "",                                 # To be read
         .offset            = 5*4
       );
-  
+
       if (table$offsetName != table$.offset) {
         warning("File format warning: Offset to network share name in Network Volume Table is not 0x14 (20): ", table$offsetName);
         # Skip to volume label
         readBin(con, what=integer(), size=1, n=table$offsetName-table$.offset);
       }
-  
+
       table$networkShareName <- readString(con);
       table$.offset <- table$.offset + nchar(table$networkShareName) + 1;
 
       if (verbose) {
-        cat("File location info / Network Volume Table:\n");
-        print(table);
+        message("File location info / Network Volume Table:");
+        message(paste(capture.output(table), collapse="\n"));
       }
 
 #      if (table$.offset != table$length) {
@@ -505,12 +510,10 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       rm(table);
 
       if (verbose) {
-        cat("File location info / Network Volume Table:\n");
-        print(fileLocationInfo$networkVolumeTable)
+        message("File location info / Network Volume Table:");
+        message(paste(capture.output(fileLocationInfo$networkVolumeTable), collapse="\n"));
+        message("availableOnNetworkShare...done");
       }
-
-      if (verbose)
-        cat("availableOnNetworkShare...done\n");
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -567,7 +570,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     nchars <- readWord(con);
     lnk$commandLineArguments <- readString(con, nchars=nchars, unicoded=unicoded);
   }
-  
+
   if (header$flags["hasCustomIcon"]) {
     nbytes <- readWord(con);
     lnk$iconFilename <- readString(con, nchars=nchars, unicoded=unicoded);
@@ -584,13 +587,13 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
   if (header$flags["pointsToFileOrDirectory"]) {
     if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
-      lnk$pathname <- paste(lnk$fileLocationInfo$basePathname, 
+      lnk$pathname <- paste(lnk$fileLocationInfo$basePathname,
                            lnk$fileLocationInfo$remainingPathname, sep="");
     }
 
     if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
-      lnk$networkPathname <- 
-            paste(lnk$fileLocationInfo$networkVolumeTable$networkShareName, 
+      lnk$networkPathname <-
+            paste(lnk$fileLocationInfo$networkVolumeTable$networkShareName,
                      "\\", lnk$fileLocationInfo$remainingPathname, sep="");
     }
   } # if (header$flags["pointsToFileOrDirectory"])
@@ -601,7 +604,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 
 #############################################################################
-# HISTORY: 
+# HISTORY:
 # 2012-10-29
 # o Now readWindowsShortcut() returns list element 'relativePathname',
 #   which is identical to 'relativePath'.  This is just to be consistent

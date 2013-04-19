@@ -6,7 +6,7 @@
 # @synopsis
 #
 # \description{
-#   @get "title".  This function is backward compatible with 
+#   @get "title".  This function is backward compatible with
 #   @see "base::file.path" when argument \code{removeUps=FALSE} and
 #   \code{expandLinks="none"}, except that a (character) @NA is
 #   return if any argument is NA.
@@ -16,17 +16,17 @@
 #
 # \arguments{
 #   \item{...}{Arguments to be pasted together to a file path and then be
-#      parsed from the root to the leaf where Windows shortcut files are 
+#      parsed from the root to the leaf where Windows shortcut files are
 #      recognized and expanded according to argument \code{which} in each
 #      step.}
 #   \item{fsep}{the path separator to use.}
 #   \item{removeUps}{If @TRUE, relative paths, for instance "foo/bar/../"
-#      are shortend into "foo/", but also "./" are removed from the final 
+#      are shortend into "foo/", but also "./" are removed from the final
 #      pathname, if possible.}
-#   \item{expandLinks}{A @character string. If \code{"none"}, Windows 
-#      Shortcut files are ignored.  If \code{"local"}, the absolute target 
-#      on the local file system is used. If \code{"relative"}, the relative 
-#      target is used. If \code{"network"}, the network target is used. If 
+#   \item{expandLinks}{A @character string. If \code{"none"}, Windows
+#      Shortcut files are ignored.  If \code{"local"}, the absolute target
+#      on the local file system is used. If \code{"relative"}, the relative
+#      target is used. If \code{"network"}, the network target is used. If
 #      \code{"any"}, first the local, then the relative and finally the
 #      network target is searched for.}
 #   \item{mustExist}{If @TRUE and if the target does not exist, the original
@@ -34,16 +34,16 @@
 #      cases the target is returned.}
 #   \item{verbose}{If @TRUE, extra information is written while reading.}
 # }
-# 
+#
 # \value{
 #   Returns a @character string.
 # }
-# 
+#
 # \details{
-#   If \code{expandLinks != "none"}, each component, call it \emph{parent}, 
+#   If \code{expandLinks != "none"}, each component, call it \emph{parent},
 #   in the absolute path is processed from the left to the right as follows:
 #   1. If a "real" directory of name \emph{parent} exists, it is followed.
-#   2. Otherwise, if Microsoft Windows Shortcut file with name 
+#   2. Otherwise, if Microsoft Windows Shortcut file with name
 #      \emph{parent.lnk} exists, it is read. If its local target exists, that
 #      is followed, otherwise its network target is followed.
 #   3. If no valid existing directory was found in (1) or (2), the expanded
@@ -54,9 +54,9 @@
 #
 # \section{On speed}{
 #   Internal \code{file.exists()} is call while expanding the pathname.
-#   This is used to check if there exists a Windows shortcut file named 
+#   This is used to check if there exists a Windows shortcut file named
 #   'foo.lnk' in 'path/foo/bar'. If it does, 'foo.lnk' has to be followed,
-#   and in other cases 'foo' is ordinary directory. 
+#   and in other cases 'foo' is ordinary directory.
 #   The \code{file.exists()} is unfortunately a bit slow, which is why
 #   this function appears slow if called many times.
 # }
@@ -70,7 +70,7 @@
 #   @see "readWindowsShortcut".
 #   @see "base::file.path".
 # }
-# 
+#
 # @keyword IO
 #*/###########################################################################
 setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, removeUps=TRUE, expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE, verbose=FALSE) {
@@ -87,7 +87,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 
   removeEmptyDirs <- function(pathname) {
-    # Check if it is a pathname on a Windows network 
+    # Check if it is a pathname on a Windows network
     isOnNetworkBwd <- (regexpr("^\\\\\\\\", pathname) != -1);
     isOnNetworkFwd <- (regexpr("^//", pathname) != -1);
 
@@ -112,22 +112,21 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
     if (regexpr(pattern, pathname) != -1)
       return(gsub("\\\\", "/", pathname));
-  
+
     components <- strsplit(pathname, split="[/\\]")[[1]];
 
     # Remove all "." parts, because they are non-informative
     if (length(components) > 1) {
       components <- components[components != "."];
     }
-  
+
     # Remove ".." and its parent by reading from the left(!)
     pos <- 2;
     while (pos <= length(components)) {
       if (components[pos] == ".." && components[pos-1] != "..") {
         # Remove the ".." and its parent
         if (verbose) {
-          cat("Removing: ", paste(components[c(pos-1,pos)], collapse=", "),
-                                                             "\n", sep="");
+          message("Removing: ", paste(components[c(pos-1,pos)], collapse=", "));
         }
         components <- components[-c(pos-1,pos)];
         pos <- pos - 1;
@@ -142,7 +141,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       paste(components, collapse=fsep);
     }
   } # removeUpsFromPathname()
-  
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -150,7 +149,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # Arguments '...':
   args <- list(...);
 
-  # First, remove NULL and other empty arguments 
+  # First, remove NULL and other empty arguments
   isEmpty <- unlist(lapply(args, FUN=function(x) (length(x) == 0)));
   args <- args[!isEmpty];
 
@@ -218,7 +217,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # b. Is it an explicit Windows Shortcut?  
+    # b. Is it an explicit Windows Shortcut?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     isWindowsShortcut <- (regexpr("[.](lnk|LNK)$", pathname) != -1);
     if (isWindowsShortcut) {
@@ -231,7 +230,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
         isFirst <- FALSE;
         next;
       }
-  
+
       if (isFirst) {
         isFirst <- FALSE;
         if (file.exists(paste(pathname, "", sep=fsep))) {
@@ -245,8 +244,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       lnkFile <- lnkFile[file.exists(lnkFile)];
       if (length(lnkFile) == 0) {
         if (verbose) {
-          msg <- paste("Failed to expand pathname '", pathname0, "'. No target found for: ", pathname, sep="");
-          cat(msg, "\n");
+          message("Failed to expand pathname '", pathname0, "'. No target found for: ", pathname);
         }
         break;
       }
@@ -266,8 +264,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
         readWindowsShortcut(lnkFile);
       }, error=function(ex) {
         if (verbose) {
-          msg <- paste("Invalid Windows shortcut found when expanding pathname '", pathname0, "': ", lnkFile, sep="");
-          cat(msg, "\n");
+          message("Invalid Windows shortcut found when expanding pathname '", pathname0, "': ", lnkFile);
           print(ex);
         }
         return(NULL);
@@ -307,8 +304,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
     if (is.null(pathname)) {
       if (verbose) {
-        msg <- paste("No target found in Windows shortcut when expanding pathname '", pathname0, "': ", lnkFile, sep="");
-        cat(msg, "\n");
+        message("No target found in Windows shortcut when expanding pathname '", pathname0, "': ", lnkFile);
       }
       break;
     }
@@ -342,17 +338,17 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 
 #############################################################################
-# HISTORY: 
+# HISTORY:
 # 2012-10-29
 # o ROBUSTNESS: Now filePath(.., expandLinks, mustExist=FALSE) gives an
 #   informative error if path could not be expanded.
 # o GENERALIZATION: Now filePath() does a better job reading Windows
 #   Shell Links/Windows Shortcut (*.lnk) files.
-# o GENERALIZATION/CLEANUP: Now filePath() needs to know less about the 
+# o GENERALIZATION/CLEANUP: Now filePath() needs to know less about the
 #   Windows Shell Link file format, when expanding *.lnk files.
 # 2009-12-30
-# o ROBUSTNESS: Any NA arguments in '...' to filePath(...) would be parsed 
-#   as "NA" resulting in paths such as "NA/foo/NA" (just as file.path() 
+# o ROBUSTNESS: Any NA arguments in '...' to filePath(...) would be parsed
+#   as "NA" resulting in paths such as "NA/foo/NA" (just as file.path()
 #   does it).  Now a (character) NA is returned.
 # 2008-12-03
 # o BUG FIX: filePath("\\\\shared/foo") would return "\\shared/foo".
@@ -368,13 +364,13 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 # 2005-08-12
 # o If no arguments or only NULL arguments are passed, NULL is returned.
 # 2005-06-15
-# o BUG FIX: filePath("../foo/bar/") would incorrectly remove initial "../" 
-#   and give an error. 
+# o BUG FIX: filePath("../foo/bar/") would incorrectly remove initial "../"
+#   and give an error.
 # 2005-05-31
 # o Now also "./" are removed as "foo/../" are removed.
 # 2005-05-27
 # o Added argument 'removeUps' and 'expandLinks'.
 # o Cleaned up so it is not dependent of the File class.
-# o Created (again?). Used to be a local function of getAbsolutePath() in 
+# o Created (again?). Used to be a local function of getAbsolutePath() in
 #   the File class of the R.io package.
 #############################################################################
