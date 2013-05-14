@@ -4,7 +4,7 @@
 # @title "Checks if the file specification is a directory"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -19,7 +19,7 @@
 #  @FALSE is returned.
 # }
 #
-# 
+#
 #
 # @author
 #
@@ -51,7 +51,7 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
   if (identical(isdir, TRUE))
     return(TRUE);
 
-  # It may be that we do not have the file rights to access the 
+  # It may be that we do not have the file rights to access the
   # information on the directory. In such cases, we can at least check
   # if it is equal to the current working directory, which must exists
   # since R is running in it.
@@ -71,13 +71,16 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
     return(FALSE);
 
   # 2a. WORKAROUND: file.info("C:/") gives NA; use "C:/." instead.
-  pathnameD <- paste(pathname, "/.", sep="");
-  isdir <- file.info(pathnameD)$isdir;
-  if (identical(isdir, TRUE))
-    return(TRUE);
-  if (identical(isdir, FALSE))
-    return(FALSE);
-
+  #     See R problem #15302, cf.
+  #     https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15302
+  if (getRversion() < "3.0.2") {
+    pathnameD <- paste(pathname, "/.", sep="");
+    isdir <- file.info(pathnameD)$isdir;
+    if (identical(isdir, TRUE))
+      return(TRUE);
+    if (identical(isdir, FALSE))
+      return(FALSE);
+  }
 
   # Is it the same as working directory?
   wd <- gsub("[/\\\\]$", "", getwd());            # Remove trailing '/'.
@@ -90,13 +93,13 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
     return(FALSE);
 
   # 3. Try the relative pathname, because on some file systems we do not
-  #    have the permission to access file information via absolute 
+  #    have the permission to access file information via absolute
   #    pathnames (file.info() returns NAs), but via relative pathnames.
   #    [This is actually true on the BASE file system. /HB Summer 2005]
   relPathname <- getRelativePath(pathname);
 
-  # Avoid infinite recursive loops; check if succeeded in getting a 
-  # relative pathname? 
+  # Avoid infinite recursive loops; check if succeeded in getting a
+  # relative pathname?
   if (!identical(relPathname, pathname)) {
     isDirectory(relPathname);
   } else {
@@ -106,12 +109,14 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
+# 2013-05-13
+# o The workaround for isDirectory("C:/") is only needed for R (< 3.0.2).
 # 2011-09-19
 # o WORKAROUND: isDirectory("C:/") would not return TRUE due to a
 #   bug in file.info("C:/") causing it to return NAs.
 # 2009-12-30
-# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
+# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.
 #   Before it gave an unexpected error.
 # 2005-10-28
 # o BUG FIX: isDirectory() on a file would result in an infinite recursive

@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.24.1 [2013-05-13]
+o The workaround needed by isDirectory() due to a bug in 
+  file.info() is now applied only for R (< 3.0.2), since the
+  bug was been fixed in R 3.0.1 patched (PR#15302).
+
+
 Version: 1.24.0 [2013-04-18]
 o Several methods are now output messages and verbose output
   to standard error (instead of standard output), including
