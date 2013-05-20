@@ -3,8 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.24.2 [2013-05-20]
-o Now all Rd \usage{} lines are at most 90 characters long.
-o Now all Rd example lines are at most 100 characters long.
+o CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
+o CRAN POLICY: Now all Rd example lines are at most 100 characters long.
 
 
 Version: 1.24.1 [2013-05-13]
