@@ -84,7 +84,9 @@ s <- -32768:32767
 Java$writeShort(out, s)
 i <- c(-2147483648, -2147483647, -1, 0, +1, 2147483646, 2147483647);
 Java$writeInt(out, i)
-str <- "This R string was written (using the UTF-8 format) using\nthe static methods of the Java class in the R.io package."
+str <- c("This R string was written (using the UTF-8 format) using",
+         "the static methods of the Java class in the R.io package.")
+str <- paste(str, collapse="\n")
 Java$writeUTF(out, str)
 close(out)
 

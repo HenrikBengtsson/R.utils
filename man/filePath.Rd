@@ -13,7 +13,9 @@
 \title{Construct the path to a file from components and expands Windows Shortcuts along the pathname from root to leaf}
 
 \usage{
-\method{filePath}{default}(..., fsep=.Platform$file.sep, removeUps=TRUE, expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE, verbose=FALSE)
+\method{filePath}{default}(..., fsep=.Platform$file.sep, removeUps=TRUE,
+  expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE,
+  verbose=FALSE)
 }
 
 \description{

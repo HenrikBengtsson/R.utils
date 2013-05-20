@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.24.2 [2013-05-20]
+o Now all Rd \usage{} lines are at most 90 characters long.
+o Now all Rd example lines are at most 100 characters long.
+
+
 Version: 1.24.1 [2013-05-13]
 o The workaround needed by isDirectory() due to a bug in 
   file.info() is now applied only for R (< 3.0.2), since the

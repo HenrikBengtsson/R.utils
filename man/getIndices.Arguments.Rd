@@ -24,10 +24,10 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+## Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0L), max), .name=NULL)
 
 ## Don't use the below:
-\method{getIndices}{Arguments}(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+\method{getIndices}{Arguments}(static, x, ..., max=Inf, range=c(1 * (max > 0L), max), .name=NULL)
 }
 
 \arguments{

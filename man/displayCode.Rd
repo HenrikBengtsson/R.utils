@@ -17,7 +17,8 @@
 }
 
 \usage{
-\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL, pager=getOption("pager"), ...)
+\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL,
+  pager=getOption("pager"), ...)
 }
 
 \arguments{

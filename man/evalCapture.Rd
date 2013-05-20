@@ -17,8 +17,8 @@
 }
 
 \usage{
-evalCapture(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="
-", envir=parent.frame())
+evalCapture(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="\n",
+  envir=parent.frame())
 }
 
 \arguments{

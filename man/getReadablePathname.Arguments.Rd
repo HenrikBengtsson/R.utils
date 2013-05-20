@@ -20,10 +20,12 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE,
+##   absolutePath=FALSE, ...)
 
 ## Don't use the below:
-\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE,
+  ...)
 }
 
 \arguments{

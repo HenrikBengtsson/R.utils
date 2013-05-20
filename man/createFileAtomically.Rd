@@ -13,7 +13,8 @@
  \title{Creates a file atomically}
 
  \usage{
-\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE)
+\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE,
+  backup=TRUE, verbose=FALSE)
 }
 
  \description{

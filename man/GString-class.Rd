@@ -100,7 +100,8 @@ cat("\n")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Predefined ("builtin") variables
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat(as.character(GString("Hello ${username} on host ${hostname} running R v${rversion} in process #${pid} on ${os}. R is installed in ${rhome}.")))
+cat(as.character(GString("Hello ${username} on host ${hostname} running ",
+"R v${rversion} in process #${pid} on ${os}. R is installed in ${rhome}.")))
 
 
 # Other built-in variables/functions...

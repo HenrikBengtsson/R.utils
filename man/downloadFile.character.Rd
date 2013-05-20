@@ -18,7 +18,8 @@
 }
 
 \usage{
-\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)
+\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ...,
+  username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)
 }
 
 \arguments{

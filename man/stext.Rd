@@ -17,7 +17,8 @@
 }
 
 \usage{
-\method{stext}{default}(text, side=1, line=0, pos=0.5, margin=c(0.2, 0.2), charDim=c(strwidth("M", cex = cex), strheight("M", cex = cex)), cex=par("cex"), ...)
+\method{stext}{default}(text, side=1, line=0, pos=0.5, margin=c(0.2, 0.2),
+  charDim=c(strwidth("M", cex = cex), strheight("M", cex = cex)), cex=par("cex"), ...)
 }
 
 \arguments{

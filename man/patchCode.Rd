@@ -13,7 +13,8 @@
 \title{Patches installed and loaded packages and more}
 
 \usage{
-\method{patchCode}{default}(paths=NULL, recursive=TRUE, suppressWarnings=TRUE, knownExtensions=c("R", "r", "S", "s"), verbose=FALSE, ...)
+\method{patchCode}{default}(paths=NULL, recursive=TRUE, suppressWarnings=TRUE,
+  knownExtensions=c("R", "r", "S", "s"), verbose=FALSE, ...)
 }
 
 \description{

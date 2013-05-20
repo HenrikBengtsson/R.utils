@@ -20,7 +20,8 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getVerbose(verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)
+## Arguments$getVerbose(verbose, defaultThreshold=-1, useNullVerbose=TRUE, ...,
+##   .name=NULL)
 
 ## Don't use the below:
 \method{getVerbose}{Arguments}(static, verbose, defaultThreshold=-1, useNullVerbose=TRUE, ..., .name=NULL)

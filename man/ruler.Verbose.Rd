@@ -18,7 +18,8 @@
 }
 
 \usage{
-\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos, level=this$defaultLevel, ...)
+\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos,
+  level=this$defaultLevel, ...)
 }
 
 \arguments{

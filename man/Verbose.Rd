@@ -33,7 +33,8 @@ extends \link[R.oo]{Object}\cr
 }
 
 \usage{
-Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...)
+Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE,
+  removeFile=TRUE, core=TRUE, ...)
 }
 
 \arguments{

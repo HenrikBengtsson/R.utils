@@ -20,10 +20,12 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)
+## Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE,
+##   maxTries=5L)
 
 ## Don't use the below:
-\method{getWritablePathname}{Arguments}(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)
+\method{getWritablePathname}{Arguments}(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE,
+  maxTries=5L)
 }
 
 \arguments{

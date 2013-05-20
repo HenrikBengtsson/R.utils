@@ -17,7 +17,8 @@
  }
 
  \usage{
-\method{draw}{density}(object, side=1, height=0.2, offset=0, scale=c("absolute", "relative"), xpd=TRUE, ...)
+\method{draw}{density}(object, side=1, height=0.2, offset=0, scale=c("absolute", "relative"), xpd=TRUE,
+  ...)
 }
 
  \arguments{

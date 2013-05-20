@@ -17,7 +17,7 @@
 }
 
 \usage{
-\method{toCamelCase}{default}(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ 	]+", ...)
+\method{toCamelCase}{default}(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ \t]+", ...)
 }
 
 \arguments{

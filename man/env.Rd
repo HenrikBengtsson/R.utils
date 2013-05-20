@@ -17,7 +17,7 @@
  }
 
  \usage{
-env(..., hash=FALSE, parent=parent.frame(), size=29)
+env(..., hash=FALSE, parent=parent.frame(), size=29L)
 }
 
  \arguments{

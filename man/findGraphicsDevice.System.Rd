@@ -34,10 +34,12 @@
 
  \usage{
 ## Static method (use this):
-## System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+## System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1,
+##   findGhostscript=TRUE, ...)
 
 ## Don't use the below:
-\method{findGraphicsDevice}{System}(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+\method{findGraphicsDevice}{System}(static, devices=list(png), maxCount=100, sleepInterval=0.1,
+  findGhostscript=TRUE, ...)
 }
 
  \arguments{

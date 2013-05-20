@@ -13,7 +13,9 @@
  \title{Extract command-line arguments}
 
  \usage{
-commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE, unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=base::commandArgs(trailingOnly = trailingOnly), ...)
+commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
+  unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL,
+  .args=base::commandArgs(trailingOnly = trailingOnly), ...)
 }
 
  \description{

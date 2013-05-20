@@ -16,7 +16,8 @@
  \title{Assigns an objects elements locally}
 
  \usage{
-\method{attachLocally}{list}(object, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...)
+\method{attachLocally}{list}(object, fields=NULL, excludeFields=NULL, overwrite=TRUE,
+  envir=parent.frame(), ...)
 }
 
  \description{

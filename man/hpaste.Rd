@@ -17,7 +17,9 @@
  }
 
  \usage{
-\method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")
+\method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL,
+  maxHead=if (missing(lastCollapse)) 3 else Inf,
+  maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")
 }
 
  \arguments{

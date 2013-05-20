@@ -13,7 +13,8 @@
 \title{Bunzip a file}
 
 \usage{
-\method{bunzip2}{default}(filename, destname=gsub("[.]bz2$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
+\method{bunzip2}{default}(filename, destname=gsub("[.]bz2$", "", filename), overwrite=FALSE, remove=TRUE,
+  BFR.SIZE=1e+07, ...)
 }
 
 \description{

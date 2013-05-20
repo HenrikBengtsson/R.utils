@@ -21,7 +21,8 @@
 }
 
 \usage{
-\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE, ...)
+\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE,
+  ...)
 }
 
 \arguments{

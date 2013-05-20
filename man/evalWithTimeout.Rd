@@ -17,7 +17,8 @@
 }
 
 \usage{
-evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"))
+evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
+  onTimeout=c("error", "warning", "silent"))
 }
 
 \arguments{
