@@ -6,70 +6,70 @@
 # @synopsis
 #
 # \description{
-#  @get "title" and creates a data frame from it, with cases corresponding 
+#  @get "title" and creates a data frame from it, with cases corresponding
 #  to lines and variables to fields in the file.
 #
-#  \emph{WARNING: This method is very much in an alpha stage. 
+#  \emph{WARNING: This method is very much in an alpha stage.
 #  Expect it to change.}
 #
-#  This method is an extension to the default @see "utils::read.table" 
+#  This method is an extension to the default @see "utils::read.table"
 #  function in \R.  It is possible to specify a column name to column class
 #  map such that the column classes are automatically assigned from the
-#  column header in the file. 
+#  column header in the file.
 #
-#  In addition, it is possible to read any subset of rows.  
-#  The method is optimized such that only columns and rows that are of 
+#  In addition, it is possible to read any subset of rows.
+#  The method is optimized such that only columns and rows that are of
 #  interest are parsed and read into \R's memory.  This minimizes memory
 #  usage at the same time as it speeds up the reading.
 # }
 #
 # \arguments{
-#   \item{file}{A @connection or a filename.  If a filename, the path 
-#      specified by \code{path} is added to the front of the 
+#   \item{file}{A @connection or a filename.  If a filename, the path
+#      specified by \code{path} is added to the front of the
 #      filename.  Unopened files are opened and closed at the end.}
-#   \item{colClasses}{Either a named or an unnamed @character @vector. 
+#   \item{colClasses}{Either a named or an unnamed @character @vector.
 #      If unnamed, it specified the column classes just as used by
-#      @see "utils::read.table".  
-#      If it is a named vector, \code{names(colClasses)} are used to match 
-#      the column names read (this requires that \code{header=TRUE}) and 
+#      @see "utils::read.table".
+#      If it is a named vector, \code{names(colClasses)} are used to match
+#      the column names read (this requires that \code{header=TRUE}) and
 #      the column classes are set to the corresponding values.
 #   }
 #   \item{isPatterns}{If @TRUE, the matching of \code{names(colClasses)} to
 #      the read column names is done by regular expressions matching.}
-#   \item{defColClass}{If the column class map specified by a named 
-#      \code{colClasses} argument does not match some of the read column 
+#   \item{defColClass}{If the column class map specified by a named
+#      \code{colClasses} argument does not match some of the read column
 #      names, the column class is by default set to this class. The
 #      default is to read the columns in an "as is" way.}
 #   \item{header}{If @TRUE, column names are read from the file.}
-#   \item{skip}{The number of lines (commented or non-commented) to skip 
+#   \item{skip}{The number of lines (commented or non-commented) to skip
 #      before trying to read the header or alternatively the data table.}
 #   \item{nrows}{The number of rows to read of the data table.
 #      Ignored if \code{rows} is specified.}
 #   \item{rows}{An row index @vector specifying which rows of the table
-#      to read, e.g. row one is the row following the header. 
+#      to read, e.g. row one is the row following the header.
 #      Non-existing rows are ignored.  Note that rows are returned in
 #      the same order they are requested and duplicated rows are also
 #      returned.}
 #   \item{col.names}{Same as in \code{read.table()}.}
 #   \item{check.names}{Same as in \code{read.table()}, but default value
 #      is @FALSE here.}
-#   \item{path}{If \code{file} is a filename, this path is added to it, 
+#   \item{path}{If \code{file} is a filename, this path is added to it,
 #     otherwise ignored.}
 #   \item{...}{Arguments passed to @see "utils::read.table" used internally.}
 #   \item{stripQuotes}{If @TRUE, quotes are stripped from values before
-#     being parse. 
+#     being parse.
 #     This argument is only effective when \code{method=="readLines"}.
 #   }
 #   \item{method}{If \code{"readLines"}, \code{(readLines())} is used
 #     internally to first only read rows of interest, which is then
-#     passed to \code{read.table()}. 
+#     passed to \code{read.table()}.
 #     If \code{"intervals"}, contigous intervals are first identified in
 #     the rows of interest.  These intervals are the read one by one
-#     using \code{read.table()}.  
+#     using \code{read.table()}.
 #     The latter methods is faster and especially more memory efficient
 #     if the intervals are not too many, where as the former is prefered
 #     if many "scattered" rows are to be read.}
-#   \item{verbose}{A @logical or a @see "Verbose" object.} 
+#   \item{verbose}{A @logical or a @see "Verbose" object.}
 # }
 #
 # \value{
@@ -77,7 +77,7 @@
 # }
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "readTableIndex".
 #  @see "utils::read.table".
@@ -85,14 +85,13 @@
 # }
 #
 # @keyword IO
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=FALSE, defColClass=NA, header=FALSE, skip=0, nrows=-1, rows=NULL, col.names=NULL, check.names=FALSE, path=NULL, ..., stripQuotes=TRUE, method=c("readLines", "intervals"), verbose=FALSE) {
   # Argument 'file' and 'path':
   if (inherits(file, "connection")) {
   } else if (is.character(file)) {
     pathname <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE);
     file <- file(pathname);
-    rm(pathname);
   } else {
     throw("Unknown data type of argument 'file': ", mode(file));
   }
@@ -151,7 +150,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Get the formals of read.table()  
+  # Get the formals of read.table()
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (compareVersion(as.character(getRversion()), "2.5.0") < 0) {
     formals <- formals(base::read.table);
@@ -180,7 +179,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 #    }
 
     names <- paste("'", colnames, "'", sep="");
-    verbose && cat(verbose, "Read ", length(colnames), " column names: ", 
+    verbose && cat(verbose, "Read ", length(colnames), " column names: ",
                                               paste(names, collapse=", "));
   }
 
@@ -192,20 +191,19 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   isMap <- !is.null(names(colClasses));
   if (!is.null(colClasses) && isMap) {
-    # Should colClasses be found using regular expression 
+    # Should colClasses be found using regular expression
     # patterns or as is?
     if (isPatterns) {
       colClasses2 <- rep(NA, length=length(colnames));
       for (kk in seq(length=length(colClasses))) {
         pattern <- names(colClasses)[kk];
         colClass <- colClasses[kk];
-        # Find matching column names and assign the current column 
+        # Find matching column names and assign the current column
         # class to those columns.
         incl <- (regexpr(pattern, colnames) != -1);
         colClasses2[incl] <- colClass;
       }
       colClasses <- colClasses2;
-      rm(colClasses2);
     } else {
       colClasses <- colClasses[colnames];
     }
@@ -222,8 +220,8 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(rows)) {
     verbose && enter(verbose, "Reading the complete data table");
-    df <- read.table(file, colClasses=colClasses, header=FALSE, 
-                     skip=0, nrows=nrows, check.names=check.names, 
+    df <- read.table(file, colClasses=colClasses, header=FALSE,
+                     skip=0, nrows=nrows, check.names=check.names,
                      col.names=colnames, ...);
     verbose && str(verbose, df);
     verbose && exit(verbose);
@@ -256,10 +254,10 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     if (verbose && any(!keep)) {
       verbose && cat(verbose, "Skipped ", sum(!keep), " non-existing rows.");
     }
-    rm(keep); gc();
+    keep <- NULL; # Not needed anymore
 
     # Keep only those of interest
-    lines <- lines[rows];  gc();
+    lines <- lines[rows];
 
     verbose && cat(verbose, "Kept ", length(lines), " lines.");
     verbose && exit(verbose);
@@ -281,16 +279,15 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     con <- textConnection(lines);
     tryCatch({
       t <- system.time(
-        df <- read.table(con, colClasses=colClasses, header=FALSE, 
-                         skip=skip, nrows=nrows, check.names=check.names, 
+        df <- read.table(con, colClasses=colClasses, header=FALSE,
+                         skip=skip, nrows=nrows, check.names=check.names,
                          col.names=colnames, ...)
       );
       verbose && printf(verbose, "Read a %dx%d table in %.2f seconds.\n", nrow(df), ncol(df), t[3]);
     }, finally = {
       close(con);
-      rm(lines);
-      gc();
     })
+    lines <- NULL; # Not needed anymore
     verbose && exit(verbose);
 
   } else if (method == "intervals") {
@@ -302,9 +299,9 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
         remap <- FALSE;
     }
 
-    # Get contiguos intervals of rows indices.
+    # Get contiguous intervals of rows indices.
     intervals <- seqToIntervals(rows2);
-    rm(rows2); gc();
+    rows2 <- NULL; # Not needed anymore
 
     verbose && cat(verbose, "Reading row intervals: ");
     verbose && print(verbose, intervals);
@@ -326,8 +323,8 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
       # Read 'nrows' from there on.
       nrows <- (to-from+1);
       tryCatch({
-        dfI <- read.table(file, colClasses=colClasses, header=FALSE, 
-                          skip=skip, nrows=nrows, check.names=check.names, 
+        dfI <- read.table(file, colClasses=colClasses, header=FALSE,
+                          skip=skip, nrows=nrows, check.names=check.names,
                                                    col.names=colnames, ...);
       }, error = function(ex) {
         # Ignore non-existing rows => we're done.
@@ -352,7 +349,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
         df <- rbind(df, dfI);
       }
 
-      rm(dfI); gc();
+      dfI <- NULL; # Not needed anymore
 
       nextRow <- to+1;
     }
@@ -364,7 +361,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
       idx <- idx[!is.na(idx)];
       df <- df[idx,];
       rownames <- rownames[idx];
-      rm(idx); gc();
+      idx <- NULL; # Not needed anymore
     }
   }
 
@@ -372,7 +369,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
   # Return table
   df;
-}) 
+})
 
 
 ############################################################################
@@ -383,7 +380,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 # 2006-07-28
 # o Added more verbose output.
 # 2005-11-21
-# o BUG FIX: Tried to read the header with a 'sep' set to a regular 
+# o BUG FIX: Tried to read the header with a 'sep' set to a regular
 #   expression, but only accepts single characters.
 # 2005-11-15
 # o Now using scan() instead of readLines() to parse header.  This way the
@@ -402,4 +399,4 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 # o Added support for regular expression matching too.
 # 2005-10-31
 # o Created.
-############################################################################  
+############################################################################

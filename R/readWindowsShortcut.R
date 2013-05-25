@@ -221,7 +221,6 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     }
   }
   header$flags <- flags;
-  rm(flags);
 
   if (header$flags["pointsToFileOrDirectory"]) {
     fileAttributes <- intToBin(header$fileAttributes);
@@ -414,7 +413,6 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       table$.offset <- NULL;
 
       fileLocationInfo$localVolumeTable <- table;
-      rm(table);
 
       if (verbose) {
         message("File location info / Local Volume Table:");
@@ -507,7 +505,6 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       table$.offset <- NULL;
 
       fileLocationInfo$networkVolumeTable <- table;
-      rm(table);
 
       if (verbose) {
         message("File location info / Network Volume Table:");
@@ -543,8 +540,6 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     fileLocationInfo$.offset <- NULL;
 
     lnk$fileLocationInfo <- fileLocationInfo;
-    rm(fileLocationInfo);
-
   } else {
     lnk$fileLocationInfo <- NA;
   } # if (header$flags["pointsToFileOrDirectory"])

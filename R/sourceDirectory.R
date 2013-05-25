@@ -11,9 +11,9 @@
 #
 # \arguments{
 #  \item{path}{A path to a directory to be sourced.}
-#  \item{pattern}{A regular expression file name pattern to identify 
+#  \item{pattern}{A regular expression file name pattern to identify
 #        source code files.}
-#  \item{recursive}{If @TRUE, subdirectories are recursively sourced 
+#  \item{recursive}{If @TRUE, subdirectories are recursively sourced
 #        first, otherwise not.}
 #  \item{envir}{An @environment in which the code should be evaluated.}
 #  \item{onError}{If an error occures, the error may stop the job,
@@ -32,7 +32,7 @@
 # }
 #
 # \section{Hooks}{
-#  This method does not provide hooks, but the internally used 
+#  This method does not provide hooks, but the internally used
 #  @see "sourceTo" does.
 # }
 #
@@ -83,11 +83,11 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
       pathname <- filePath(dir);
       if (isDirectory(pathname)) {
         verbose && cat(verbose, "Entering: ", pathname);
-        sourcedFiles <- c(sourcedFiles, 
-          sourceDirectory(pathname, pattern=pattern, recursive=recursive, 
+        sourcedFiles <- c(sourcedFiles,
+          sourceDirectory(pathname, pattern=pattern, recursive=recursive,
                        envir=envir, onError=onError, verbose=verbose, ...)
         );
-       
+
       }
     } # for (dir ...)
   } else {
@@ -107,10 +107,11 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
       cat(verbose, "Found *.R scripts:");
       readable <- (sapply(files, FUN=file.access, mode=4) == 0);
       bytes <- sapply(files, FUN=function(x) file.info(x)$size);
-      df <- data.frame(filename=basename(files), bytes=bytes, 
+      df <- data.frame(filename=basename(files), bytes=bytes,
                                         readable=readable, row.names=NULL);
       print(verbose, df);
-      rm(df,bytes,readable);
+      # Not needed anymore
+      df <- bytes <- readable <- NULL;
     } else {
       cat(verbose, "Found no *.R scripts.");
     }
@@ -126,7 +127,7 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
       type <- ifelse(local, "local", "global");
 
       tryCatch({
-        verbose && enter(verbose, "Loading (", type, ") source file: ", 
+        verbose && enter(verbose, "Loading (", type, ") source file: ",
                                                         basename(pathname));
 #        output <- capture.output({
           sourceTo(pathname, ..., local=local, chdir=FALSE, envir=envir);
@@ -142,14 +143,14 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
           print(verbose, ex);
           tryCatch({
             # Display source code with erroneous line highlighted.
-            cat(verbose, displayCode(pathname, highlight=ex$message, 
+            cat(verbose, displayCode(pathname, highlight=ex$message,
                                                              pager="none"));
           }, error = function(ex) {})
         }
         verbose && exit(verbose, suffix="...failed");
 
         # An error was detected, but always log it.
-        verbose && cat(verbose, "Error when sourcing file ", pathname, ": ", 
+        verbose && cat(verbose, "Error when sourcing file ", pathname, ": ",
                                                                 ex$message);
 
         if (onError == "skip") {
@@ -180,7 +181,7 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
 # o Now sourceDirectory() also searches for source files with extensions
 #   *.r, *.q, *.s, and *.S, cf. R manual 'Writing R Extensions'.
 # 2008-07-24
-# o Now sourceDirectory() is guaranteed to source directories and files 
+# o Now sourceDirectory() is guaranteed to source directories and files
 #   in lexicographic order.
 # 2007-06-09
 # o BUG FIX: Replaced non-existing 'scriptFile' with 'pathname'.

@@ -6,7 +6,7 @@
 # \description{
 #  @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -23,7 +23,7 @@
 # @author
 #
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "latex", "rd"), drop=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -87,10 +87,10 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
     } else {
       throw("Unsupported format: ", format);
     }
-  
+
     # Translate
     # To please R CMD check
-    bfr <- NULL; rm(bfr);
+    bfr <- NULL; rm(list="bfr");
     res <- lapply(rdList, FUN=function(rd) {
       con <- textConnection("bfr", open="w", local=TRUE);
       on.exit(close(con));

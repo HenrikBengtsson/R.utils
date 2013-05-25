@@ -16,13 +16,13 @@
 #
 # \arguments{
 #  \item{x}{An @array or a @matrix.}
-#  \item{split}{A @list or a @character @vector. 
-#    If a @list, it should contain @functions that takes a @character 
-#    @vector as the first argument and optional \code{...} arguments.  
-#    Each function should split the @vector into a @list of same length 
-#    and where all elements contains the same number of parts.  
+#  \item{split}{A @list or a @character @vector.
+#    If a @list, it should contain @functions that takes a @character
+#    @vector as the first argument and optional \code{...} arguments.
+#    Each function should split the @vector into a @list of same length
+#    and where all elements contains the same number of parts.
 #    If a @character @vector, each element \code{split[i]} is replaced by
-#    a @function call 
+#    a @function call
 #    \code{function(names, ...) strsplit(names, split=split[i])}.
 #  }
 #  \item{drop}{If @TRUE, dimensions of of length one are dropped, otherwise not.}
@@ -47,7 +47,7 @@
 # }
 #
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -152,7 +152,8 @@ setMethodS3("unwrap", "default", function(x, ...) {
     dimnames <- list(names(x), "dummy");
     dim(x) <- dim;
     dimnames(x) <- dimnames;
-    rm(dim, dimnames);
+    # Not needed anymore
+    dim <- dimnames <- NULL;
     unwrap(x, ...);
   } else {
     throw("Do not know how to unwrap object: ", class(x)[1]);
@@ -169,4 +170,4 @@ setMethodS3("unwrap", "default", function(x, ...) {
 # o Added a default unwrap() to unwrap vector too.
 # 2005-11-12
 # o Created.
-############################################################################  
+############################################################################

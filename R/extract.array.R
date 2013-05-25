@@ -17,13 +17,13 @@
 #
 # \arguments{
 #  \item{x}{An @array or a @matrix.}
-#  \item{...}{These arguments are by default put into the 
+#  \item{...}{These arguments are by default put into the
 #     \code{indices} @list.}
 #  \item{indices}{A @list of index @vectors to be extracted.}
 #  \item{dims}{An @vector of dimensions - one per element
 #     in \code{indices} - which will be coerced to @integers.
 #     If @NULL, it will default to \code{seq(along=indices)}.}
-#  \item{drop}{If @TRUE, dimensions of length one are dropped, 
+#  \item{drop}{If @TRUE, dimensions of length one are dropped,
 #     otherwise not.}
 # }
 #
@@ -40,8 +40,8 @@
 # }
 #
 # @keyword programming
-#*/########################################################################### 
-setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(indices), drop=FALSE) { 
+#*/###########################################################################
+setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(indices), drop=FALSE) {
   nindices <- length(indices);
   if (nindices == 0) {
     throw("Argument 'indices' is empty.");
@@ -55,7 +55,7 @@ setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(i
 
   ndim <- length(dim(x));
   if (any(dims < 1 | dims > ndim)) {
-    throw("Argument 'dims' is out of bounds [1,", ndim, "]: ", 
+    throw("Argument 'dims' is out of bounds [1,", ndim, "]: ",
                                                 paste(dims, collapse=", "));
   }
 
@@ -87,7 +87,8 @@ setMethodS3("extract", "default", function(x, ...) {
     dimnames <- list(names(x), "");
     dim(x) <- dim;
     dimnames(x) <- dimnames;
-    rm(dim, dimnames);
+    # Not needed anymore
+    dim <- dimnames <- NULL;
     x <- extract(x, ...);
     names <- dimnames(x)[[1]];
     x <- as.vector(x);
@@ -107,4 +108,4 @@ setMethodS3("extract", "default", function(x, ...) {
 # o Moved argument 'drop' to the end/.
 # 2005-11-23
 # o Created.
-############################################################################  
+############################################################################

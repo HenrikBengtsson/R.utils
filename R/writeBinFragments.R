@@ -17,7 +17,7 @@
 #     Positions are always relative to the start of the file/connection.}
 #   \item{size}{The size of the data type to be read. If @NA, the natural
 #    size of the data type is used.}
-#   \item{...}{Additional arguments passed to 
+#   \item{...}{Additional arguments passed to
 #    \code{\link[base:readBin]{writeBin}()}.}
 # }
 #
@@ -28,13 +28,13 @@
 # \examples{\dontrun{# See example(readBinFragments.connection)}}
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "readBinFragments".
 # }
 #
 # @keyword IO
-#*/#########################################################################   
+#*/#########################################################################
 setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -98,22 +98,23 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   } else {
     # Number of elements to be written
     nAll <- length(idxs);
-  
+
     # Order the indices
     o <- order(idxs);
     oIdxs <- as.integer(idxs)[o];
-    
+
     # Reorder the input vector accordingly
     object <- object[o];
-    rm(o);
-  
+    # Not needed anymore
+    o <- NULL;
+
     # Identify contiguous fragments
     oSeqs <- seqToIntervals(oIdxs);
 
     # Calculate their lengths
     ns <- oSeqs[,2] - oSeqs[,1] + as.integer(1);
 
-    # Sanity check  
+    # Sanity check
     if (nAll != sum(ns)) {
       stop("Argument 'idxs' does most likely contain replicated indices, which is currently not supported.");
     }
@@ -129,7 +130,8 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   offset <- seek(con=con, origin="start", rw="write"); # Get current file offset
   froms <- as.double(oSeqs[,1])*size + (offset - size);
 
-  rm(oSeqs); # Not needed anymore
+  # Not needed anymore
+  oSeqs <- NULL;
 
   outOffset <- 0;
   for (kk in seq(length=length(froms))) {
@@ -155,4 +157,4 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
 # o Added Rdoc comments.
 # 2007-08-22
 # o Created.
-############################################################################ 
+############################################################################

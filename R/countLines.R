@@ -4,11 +4,11 @@
 # @title "Counts the number of lines in a text file"
 #
 # \description{
-#  @get "title" by counting the number of occurances of platform-independent 
+#  @get "title" by counting the number of occurances of platform-independent
 #  newlines (CR, LF, and CR+LF [1]), including a last line with neither.
 #  An empty file has zero lines.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -26,12 +26,12 @@
 # @examples "../incl/countLines.Rex"
 #
 # \references{
-#   [1] Page \emph{Newline}, Wikipedia, July 2008. 
+#   [1] Page \emph{Newline}, Wikipedia, July 2008.
 #       \url{http://en.wikipedia.org/wiki/Newline}
 # }
 #
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
   # Argument 'file':
   if (inherits(file, "connection")) {
@@ -66,7 +66,7 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
       idxsCRLF <- idxsCR[(bfr[idxsCR+as.integer(1)] == LF)];
       bfr <- bfr[-idxsCRLF];
       n <- length(bfr);
-      rm(idxsCRLF);
+      idxsCRLF <- NULL; # Not needed anymore
       nCR <- length(which(bfr == CR));
     }
 
@@ -79,7 +79,7 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
     isLastCR <- (bfr[n] == CR);
   } # while()
 
-  nbrOfLines;  
+  nbrOfLines;
 })
 
 

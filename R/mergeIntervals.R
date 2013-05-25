@@ -12,8 +12,8 @@
 # }
 #
 # \arguments{
-#   \item{intervals}{The N intervals to be merged.  
-#      If an Nx2 @numeric @matrix, the first column should be the lower 
+#   \item{intervals}{The N intervals to be merged.
+#      If an Nx2 @numeric @matrix, the first column should be the lower
 #      bounds and the second column the upper bounds of each interval.
 #      If a @numeric @vector of length 2N, each consecutive pair should
 #      be the lower and upper bounds of an interval.
@@ -34,26 +34,26 @@
 #   There is currently no way to specify intervals with open bounds,
 #   e.g. (a,b].
 #
-#   Furthermore, the bounds are currently treated as real values.  
+#   Furthermore, the bounds are currently treated as real values.
 #   For instance, merging [0,1] and [2,3] will return the same intervals.
 #   Note, if integer intervals were treated specially, we would merge
 #   these intervals to integer interval [0,3] == \{0,1,2,3\}.
 # }
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "inAnyInterval".
 #  @see "base::match".
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'intervals':
   if (length(intervals) %% 2 != 0) {
     throw("Argument 'intervals' does not contain an even number of values: ",
@@ -63,7 +63,7 @@ setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
   if (!asMatrix) {
     intervals <- matrix(intervals, ncol=2, byrow=TRUE);
   } else if (ncol(intervals) != 2) {
-    throw("Argument 'intervals' is not a matrix with two columns: ", 
+    throw("Argument 'intervals' is not a matrix with two columns: ",
                                                         ncol(intervals));
   }
 
@@ -72,7 +72,8 @@ setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
   o <- order(intervals[,1]);
   intervals <- intervals[o,,drop=FALSE];
   rownames(intervals) <- NULL;
-  rm(o);
+  # Not needed anymore
+  o <- NULL;
 
   # Merge intervals (assuming already ordered)
   intervals2 <- matrix(as.integer(0), nrow=0, ncol=2);
@@ -89,7 +90,7 @@ setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
         currInterval[2] <- nextInterval[2];
         nextInterval <- NULL;
       } else {
-        # Drop the next interval because it is fully 
+        # Drop the next interval because it is fully
         # included in the current one.
         nextInterval <- NULL;
       }

@@ -11,7 +11,7 @@
 #
 # \arguments{
 #   \item{con}{A @connection or the pathname of an existing file.}
-#   \item{what}{A @character string or an object specifying the the 
+#   \item{what}{A @character string or an object specifying the the
 #     data type (@see "base::mode") to be read.}
 #   \item{idxs}{A @vector of (non-duplicated) indices or a Nx2 @matrix
 #     of N from-to index intervals specifying the elements to be read.
@@ -33,13 +33,13 @@
 # @examples "../incl/readBinFragments.Rex"
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "writeBinFragments".
 # }
 #
 # @keyword IO
-#*/#########################################################################   
+#*/#########################################################################
 setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c("current", "start"), size=NA, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -163,20 +163,23 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c(
     keep <- match(idxs, 1:n);
     keep <- keep[is.finite(keep)];
     bfr <- bfr[keep];
-    rm(keep);
+    # Not needed anymore
+    keep <- NULL;
 
     # Store the results
     n <- length(bfr);
     idx <- 1:n;
     res[destOffset+idx] <- bfr;
     destOffset <- destOffset + n;
-    rm(bfr);
+    # Not needed anymore
+    bfr <- NULL;
 
     # Next chunk of elements
     idxs <- idxs[-idx];
     idxs <- idxs - srcOffset;
-    rm(idx);
-  }
+    # Not needed anymore
+    idx <- NULL;
+  } # while (length(idxs) > 0)
 
   if (!is.null(o)) {
     # order(o) can be optimized, cf. affxparser::invertMap(). /HB 2007-08-22
@@ -203,4 +206,4 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c(
 # o Added Rdoc comments.
 # 2007-08-22
 # o Created.
-############################################################################ 
+############################################################################

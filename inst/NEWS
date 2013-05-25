@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.24.3 [2013-05-25]
+o Minor speedups by replacing rm() calls with NULL assignments.
+o SPEEDUP: readTable() no longer calls gc().
+
+
 Version: 1.24.2 [2013-05-20]
 o CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
 o CRAN POLICY: Now all Rd example lines are at most 100 characters long.

@@ -5,7 +5,7 @@
 # @title "Generates a vector of indices from a matrix of intervals"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -26,7 +26,7 @@
 # }
 #
 # @keyword "attribute"
-#*/#########################################################################t 
+#*/#########################################################################t
 setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALSE, ...) {
   # Argument 'fromTo':
   if (ncol(fromTo) != 2) {
@@ -35,7 +35,7 @@ setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALS
   if (!is.numeric(fromTo)) {
     throw("Argument 'fromTo' is not a numeric matrix: ", mode(fromTo));
   }
- 
+
 
   # Pre-allocate result vector
   ns <- fromTo[,2] - fromTo[,1] + as.integer(1);
@@ -47,7 +47,8 @@ setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALS
     # Sequence for current interval
     idxs <- offset + 1:ns[rr];
     res[idxs] <- fromTo[rr,1]:fromTo[rr,2];
-    rm(idxs);
+    # Not needed anymore
+    idxs <- NULL;
 
     # Next interval
     offset <- offset + ns[rr];
@@ -68,7 +69,7 @@ setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALS
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2008-07-01
 # o Created.
 ###########################################################################

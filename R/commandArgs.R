@@ -6,7 +6,7 @@
 # @synopsis
 #
 # \description{
-#  Provides access to a copy of the command-line arguments supplied when 
+#  Provides access to a copy of the command-line arguments supplied when
 #  this \R session was invoked.  This function is backward compatible with
 #  @see "base::commandArgs" of the \pkg{base} package, but adds more
 #  features.
@@ -16,13 +16,13 @@
 #   \item{trailingOnly}{If @TRUE, only arguments after \code{--args}
 #     are returned.}
 #   \item{asValues}{If @TRUE, a named @list is returned, where command
-#     line arguments of type \code{--foo} will be returned as @TRUE with 
+#     line arguments of type \code{--foo} will be returned as @TRUE with
 #     name \code{foo}, and arguments of type \code{-foo=value} will be
 #     returned as @character string \code{value} with name \code{foo}.
 #     In addition, if \code{-foo value} is given, this is interpreted
 #     as \code{-foo=value}, as long as \code{value} does not start with
 #     a double dash (\code{--}).}
-#   \item{defaults}{A @character @vector or a named @list of default 
+#   \item{defaults}{A @character @vector or a named @list of default
 #     arguments.  Any command-line or fixed arguments will override
 #     default arguments with the same name.}
 #   \item{always}{A @character @vector or a named @list of fixed
@@ -36,14 +36,14 @@
 #     If duplicates exists, it is only the last one that is kept.}
 #   \item{excludeReserved}{If @TRUE, arguments reserved by \R are excluded,
 #     otherwise not. Which the reserved arguments are depends on operating
-#     system. For details, see Appendix B on "Invoking R" in 
+#     system. For details, see Appendix B on "Invoking R" in
 #     \emph{An Introduction to R}.}
-#   \item{excludeEnvVars}{If @TRUE, arguments that assigns environment 
+#   \item{excludeEnvVars}{If @TRUE, arguments that assigns environment
 #     variable are excluded, otherwise not. As described in \code{R --help},
 #     these are arguments of format <key>=<value>.}
 #   \item{os}{A @vector of @character strings specifying which set of
 #      reserved arguments to be used. Possible values are \code{"unix"},
-#      \code{"mac"}, \code{"windows"}, \code{"ANY"} or \code{"current"}. 
+#      \code{"mac"}, \code{"windows"}, \code{"ANY"} or \code{"current"}.
 #      If \code{"current"}, the current platform is used. If \code{"ANY"} or
 #      @NULL, all three OSs are assumed for total cross-platform
 #      compatibility.}
@@ -54,28 +54,28 @@
 #
 # \value{
 #   If \code{asValue} is @FALSE, a @character @vector is returned, which
-#   contains the name of the executable and the non-parsed user-supplied 
+#   contains the name of the executable and the non-parsed user-supplied
 #   arguments.
 #
 #   If \code{asValue} is @TRUE, a named @list containing is returned, which
 #   contains the the executable and the parsed user-supplied arguments.
 #
-#   The first returned element is the name of the executable by which 
+#   The first returned element is the name of the executable by which
 #   \R was invoked.  As far as I am aware, the exact form of this element
 #   is platform dependent. It may be the fully qualified name, or simply
 #   the last component (or basename) of the application.
-#   The returned attribute \code{isReserved} is a @logical @vector 
+#   The returned attribute \code{isReserved} is a @logical @vector
 #   specifying if the corresponding command-line argument is a reserved
 #   \R argument or not.
 # }
 #
 # \section{Backward compatibility}{
-#  This function should be fully backward compatible with the same 
+#  This function should be fully backward compatible with the same
 #  function in the \pkg{base} package.
 # }
 #
 # \section{Coercing to non-character data types}{
-#   When \code{asValues} is @TRUE, the command-line arguments are 
+#   When \code{asValues} is @TRUE, the command-line arguments are
 #   returned as a named @list.  By default, the values of these
 #   arguments are @character strings.
 #   However, any command-line argument that share name with one of
@@ -83,7 +83,7 @@
 #   the corresponding data type (via @see "methods::as").
 #   This provides a mechanism for specifying data types other than
 #   @character strings.
-#   
+#
 #   Furthermore, when \code{asValues} and \code{adhoc} are @TRUE, any
 #   remaining character string command-line arguments are coerced to more
 #   specific data types (via @see "utils::type.convert"), if possible.
@@ -107,7 +107,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getReserved <- function(os, patterns=FALSE) {
     rVer <- getRversion();
-  
+
     # General arguments
     if (rVer >= "2.13.0") {
       # According to R v2.13.1:
@@ -124,22 +124,22 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     if ("unix" %in% os) {
       reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=(.*)", "-d", "--gui=(.*)", "-g", "--interactive", "--arch=(.*)")
     }
-    
+
     # b) Macintosh
     if ("mac" %in% os) {
       # Nothing special here.
     }
-    
+
     # c) Windows
     if ("windows" %in% os) {
       reservedArgs <- c(reservedArgs, "--no-Rconsole", "--ess", "--max-mem-size=(.*)");
       # Additional command-line options for RGui.exe
       reservedArgs <- c(reservedArgs, "--mdi", "--sdi", "--no-mdi", "--debug");
     }
-  
+
     # If duplicates where created, remove them
     reservedArgs <- unique(reservedArgs);
-  
+
     if (patterns) {
       # Create regular expression patterns out of the reserved arguments
       reservedArgs <- paste("^", reservedArgs, "$", sep="");
@@ -197,7 +197,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     if (is.null(keys)) {
       throw(sprintf("None of the elements in '%s' are named.", .name));
     }
-  
+
     if (any(nchar(keys) == 0L)) {
       throw(sprintf("Detected one or more non-named arguments in '%s' after parsing.", .name));
     }
@@ -309,7 +309,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         argsT[[ii]]$key <- key;
         argsT[[ii]]$value <- value;
         next;
-      } 
+      }
 
       # --<key>
       pattern <- "^--([[:alnum:]]+)$";
@@ -327,7 +327,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         argsT[[ii]]$key <- key;
         argsT[[ii]]$value <- value;
         next;
-      } 
+      }
 
       # -<key>
       pattern <- "^-([[:alnum:]]+)$";
@@ -355,7 +355,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       for (ii in 1:(nargsT-1L)) {
         if (length(argsT[[ii]]) == 0L)
           next;
-       
+
         key <- argsT[[ii]]$key;
         value <- argsT[[ii]]$value;
 
@@ -392,8 +392,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     args <- lapply(argsT, FUN=function(x) x$value);
     names(args) <- keys;
 
-    # Not needed anymore
-    rm(argsT, keys);
+    argsT <- NULL; # Not needed anymore
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -455,7 +454,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     }
   } else {
     args <- unlist(lapply(argsT, FUN=function(x) x$arg));
-    rm(argsT);
+    argsT <- NULL; # Not needed anymore
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (a) Prepend defaults, if not already specified
@@ -511,24 +510,24 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 #   '--<key> <value>' properly in all cases.
 # o Added a bit meat to example(commandArgs).
 # 2008-10-17
-# o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") : 
+# o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") :
 #   invalid argument type' if both arguments excludeReserved=TRUE and
 #   excludeEnvVars=TRUE were used.
 # 2008-08-04
 # o Now commandArgs(...) pass '...' to base::commandArgs() making it
 #   fully backward compatible.
-# o Updated to recognize all command-line options as of R v2.7.1 and 
+# o Updated to recognize all command-line options as of R v2.7.1 and
 #   R v2.8.0 devel.
 # 2005-06-19
-# o Added argument 'excludeEnvVars'. 
+# o Added argument 'excludeEnvVars'.
 # o Now commandArgs(asValue=FALSE) also returns attribute 'isEnvVars'.
-# o BUG FIX: commandArgs(asValue=TRUE) would give "Internal error of 
-#   commandArgs(). Contact author." if R was called with R <key>=<value>, 
+# o BUG FIX: commandArgs(asValue=TRUE) would give "Internal error of
+#   commandArgs(). Contact author." if R was called with R <key>=<value>,
 #   e.g. when environment variables are set when calling R.
 # 2005-02-25
 # o Updated the list of reserved arguments according to R v2.0.1.
 # 2005-02-23
-# o Added argument 'asValues'. Both '--key=value' and '--key value' are 
+# o Added argument 'asValues'. Both '--key=value' and '--key value' are
 #   recognized.
 # 2002-06-27
 # o Created.

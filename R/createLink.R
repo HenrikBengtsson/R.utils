@@ -10,7 +10,7 @@
 #   This method tries to create a link to a file/directory on the
 #   file system, e.g. a symbolic link and Windows Shortcut links.
 #   It depends on operating and file system (and argument settings),
-#   which type of link is finally created, but all this is hidden 
+#   which type of link is finally created, but all this is hidden
 #   internally so that links can be created the same way regardless
 #   of system.
 # }
@@ -21,19 +21,19 @@
 #     \code{target} argument, if possible.}
 #   \item{target}{The target file or directory to which the shortcut should
 #     point to.}
-#   \item{skip}{If @TRUE and a file with the same name as argument 
+#   \item{skip}{If @TRUE and a file with the same name as argument
 #     \code{link} already exists, then the nothing is done.}
-#   \item{overwrite}{If @TRUE, an existing link file is overwritten, 
+#   \item{overwrite}{If @TRUE, an existing link file is overwritten,
 #     otherwise not.}
 #   \item{methods}{A @character @vector specifying what methods (and in
 #     what order) should be tried for creating links.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
 #   Returns (invisibly) the path or pathname to the destination.
 # }
-# 
+#
 # @author
 #
 # \seealso{
@@ -91,8 +91,6 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   path <- dirname(getAbsolutePath(link));
   path <- Arguments$getWritablePath(path);
-  rm(path);
-
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -131,7 +129,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       return(res);
     }
 
-    # Cleanup, in case something was created but the link is not 
+    # Cleanup, in case something was created but the link is not
     # working, which can happen on Windows.  If it worked, then
     # 'res' should be non-NULL above.
     if (file.exists(link)) {
@@ -183,7 +181,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     throw("Failed to create file link: ", link, "[.lnk] -> ", target);
   }
 
-  res;  
+  res;
 }) # createLink()
 
 
@@ -193,14 +191,14 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 # o Updated the Rd help.
 # 2012-09-26
 # o Added argument 'skip' to createLink().
-# o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 
+# o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo
 #   the overwrite, iff it failed to create the new link.
 # o BUG FIX: createLink(..., overwrite=TRUE) would give an error saying
 #   "file already exists" (iff that is true) when it tries to create
 #   a "unix-symlink" link.  Thanks Taku Tokuyasu at UCSF for the report.
 # 2012-09-07
 # o Now createLink() also supports targets with '~' in the path.
-# o ROBUSTNESS/BUG FIX: On Windows, it could happen that createLink() 
+# o ROBUSTNESS/BUG FIX: On Windows, it could happen that createLink()
 #   would generate a zero-size link file that did not link to the target
 #   as a result of a failed file.symlink().  This is now tested for such
 #   that if an invalid link file was created, it is removed again.
