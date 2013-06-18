@@ -20,6 +20,8 @@
 #   \item{filename}{The filename of the file.}
 #   \item{path}{The path of the file.}
 #   \item{suffix}{The suffix to be appended.}
+#   \item{onExists}{A @character string specifying the action if the
+#      (original) file already exists.}
 #   \item{isFile}{If @TRUE, the file must exist and will be renamed
 #      on the file system.  If @FALSE, it is only the pathname string
 #      that will be modified. For details, see below.}
@@ -38,19 +40,19 @@
 #   Then, if the file does not exists or it was not successfully
 #   renamed, an exception is thrown.
 # }
-# 
+#
 # @examples "../incl/pushTemporaryFile.Rex"
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "popTemporaryFile".
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
 # @keyword "IO"
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix=".tmp", isFile=FALSE, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -59,7 +61,7 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
   isFile <- Arguments$getLogical(isFile);
 
   # Argument 'filename' & 'path':
-  pathname <- Arguments$getWritablePathname(filename, path=path, 
+  pathname <- Arguments$getWritablePathname(filename, path=path,
                     mustExist=isFile, mustNotExist=!isFile);
 
   # Argument 'suffix':
@@ -77,7 +79,7 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
   verbose && cat(verbose, "Pathname: ", pathname);
   verbose && cat(verbose, "Suffix: ", suffix);
   verbose && cat(verbose, "Rename existing file?: ", isFile);
-  
+
   pathnameT <- sprintf("%s%s", pathname, suffix);
   verbose && cat(verbose, "Temporary pathname: ", pathnameT);
 

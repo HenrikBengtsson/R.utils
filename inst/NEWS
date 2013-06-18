@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.24.4 [2013-06-17]
+o Now argument 'dims' of extract() can also be dimension names.
+
+
 Version: 1.24.3 [2013-05-25]
 o Minor speedups by replacing rm() calls with NULL assignments.
 o SPEEDUP: readTable() no longer calls gc().
