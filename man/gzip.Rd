@@ -10,6 +10,7 @@
 \alias{gzip.default}
 \alias{gzip}
 \alias{gunzip}
+\alias{isGzipped}
 
 \title{Gzip/Gunzip a file}
 
@@ -35,7 +36,8 @@
 }
 
 \value{
-  Returns the number of (input) bytes read.
+  Returns the number of compress/decompressed bytes.
+  \code{isGzipped()} returns a \code{\link[base]{logical}}.
 }
 
 \details{
@@ -47,10 +49,17 @@
 
 \examples{
   cat(file="foo.txt", "Hello world!")
+  print(isGzipped("foo.txt"))
+  print(isGzipped("foo.txt.gz"))
+
   gzip("foo.txt")
   print(file.info("foo.txt.gz"))
+  print(isGzipped("foo.txt"))
+  print(isGzipped("foo.txt.gz"))
+
   gunzip("foo.txt.gz")
   print(file.info("foo.txt"))
+
   file.remove("foo.txt")
 }
 

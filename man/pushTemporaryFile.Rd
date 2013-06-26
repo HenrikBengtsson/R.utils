@@ -6,51 +6,51 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{pushTemporaryFile}
+\name{pushTemporaryFile}
 \alias{pushTemporaryFile.default}
 \alias{pushTemporaryFile}
 
- \title{Appends a temporary suffix to the pathname}
+\title{Appends a temporary suffix to the pathname}
 
- \usage{
+\usage{
 \method{pushTemporaryFile}{default}(filename, path=NULL, suffix=".tmp", isFile=FALSE, ..., verbose=FALSE)
 }
 
- \description{
-  Appends a temporary suffix to the pathname and, optionally, renames an existing file accordingly.
+\description{
+ Appends a temporary suffix to the pathname and, optionally, renames an existing file accordingly.
 
-  In combination with \code{\link{popTemporaryFile}}(), this method is useful
-  for creating a file/writing data to file \emph{atomically}, by
-  first writing to a temporary file which is the renamed.  If for
-  some reason the generation of the file was interrupted, for instance
-  by a user interrupt or a power failure, then it is only the temporary
-  file that is incomplete.
- }
+ In combination with \code{\link{popTemporaryFile}}(), this method is useful
+ for creating a file/writing data to file \emph{atomically}, by
+ first writing to a temporary file which is the renamed.  If for
+ some reason the generation of the file was interrupted, for instance
+ by a user interrupt or a power failure, then it is only the temporary
+ file that is incomplete.
+}
 
- \arguments{
-   \item{filename}{The filename of the file.}
-   \item{path}{The path of the file.}
-   \item{suffix}{The suffix to be appended.}
-   \item{isFile}{If \code{\link[base:logical]{TRUE}}, the file must exist and will be renamed
-      on the file system.  If \code{\link[base:logical]{FALSE}}, it is only the pathname string
-      that will be modified. For details, see below.}
-   \item{...}{Not used.}
-   \item{verbose}{A \code{\link[base]{logical}} or \code{\link{Verbose}}.}
- }
+\arguments{
+  \item{filename}{The filename of the file.}
+  \item{path}{The path of the file.}
+  \item{suffix}{The suffix to be appended.}
+  \item{isFile}{If \code{\link[base:logical]{TRUE}}, the file must exist and will be renamed
+     on the file system.  If \code{\link[base:logical]{FALSE}}, it is only the pathname string
+     that will be modified. For details, see below.}
+  \item{...}{Not used.}
+  \item{verbose}{A \code{\link[base]{logical}} or \code{\link{Verbose}}.}
+}
 
- \value{
-   Returns the pathname with the suffix appended.
- }
+\value{
+  Returns the pathname with the suffix appended.
+}
 
- \details{
-   If \code{isFile} is \code{\link[base:logical]{FALSE}}, the pathname where the suffix of the
-   temporary pathname has been added is returned.
-   If \code{isFile} is \code{\link[base:logical]{TRUE}}, the file is also renamed.
-   Then, if the file does not exists or it was not successfully
-   renamed, an exception is thrown.
- }
+\details{
+  If \code{isFile} is \code{\link[base:logical]{FALSE}}, the pathname where the suffix of the
+  temporary pathname has been added is returned.
+  If \code{isFile} is \code{\link[base:logical]{TRUE}}, the file is also renamed.
+  Then, if the file does not exists or it was not successfully
+  renamed, an exception is thrown.
+}
 
- \examples{
+\examples{
 
 createAtomically <- function(pathname, ...) {
   cat("Pathname: ", pathname, "\n", sep="");
@@ -90,11 +90,11 @@ bfr <- readLines(pathname);
 cat(bfr, sep="\n");
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-  \code{\link{popTemporaryFile}}().
- }
+\seealso{
+ \code{\link{popTemporaryFile}}().
+}
 
 
 

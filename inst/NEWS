@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.25.0 [2013-06-26]
+o Added isGzipped() for testing whether a file is gzipped or not.
+
+
 Version: 1.24.4 [2013-06-17]
 o Now argument 'dims' of extract() can also be dimension names.
 
@@ -17,7 +21,7 @@ o CRAN POLICY: Now all Rd example lines are at most 100 characters long.
 
 
 Version: 1.24.1 [2013-05-13]
-o The workaround needed by isDirectory() due to a bug in 
+o The workaround needed by isDirectory() due to a bug in
   file.info() is now applied only for R (< 3.0.2), since the
   bug was been fixed in R 3.0.1 patched (PR#15302).
 

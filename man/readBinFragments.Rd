@@ -6,43 +6,43 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{readBinFragments}
+\name{readBinFragments}
 \alias{readBinFragments.default}
 \alias{readBinFragments}
 
- \title{Reads binary data from disjoint sections of a connection or a file}
+\title{Reads binary data from disjoint sections of a connection or a file}
 
- \usage{
+\usage{
 \method{readBinFragments}{default}(con, what, idxs=1, origin=c("current", "start"), size=NA, ...,
   verbose=FALSE)
 }
 
- \description{
-  Reads binary data from disjoint sections of a connection or a file.
- }
+\description{
+ Reads binary data from disjoint sections of a connection or a file.
+}
 
- \arguments{
-   \item{con}{A \code{\link[base:connections]{connection}} or the pathname of an existing file.}
-   \item{what}{A \code{\link[base]{character}} string or an object specifying the the
-     data type (\code{\link[base]{mode}}()) to be read.}
-   \item{idxs}{A \code{\link[base]{vector}} of (non-duplicated) indices or a Nx2 \code{\link[base]{matrix}}
-     of N from-to index intervals specifying the elements to be read.
-     Positions are either relative to the start or the current location
-     of the file/connection as given by argument \code{origin}.}
-   \item{origin}{A \code{\link[base]{character}} string specify whether the indices
-    in argument \code{idxs} are relative to the \code{"start"} or
-    the \code{"current"} position of the file/connection.}
-   \item{size}{The size of the data type to be read. If \code{\link[base]{NA}}, the natural
-    size of the data type is used.}
-   \item{...}{Additional arguments passed to \code{\link[base]{readBin}}().}
-   \item{verbose}{A \code{\link[base]{logical}} or a \code{\link{Verbose}} object.}
- }
+\arguments{
+  \item{con}{A \code{\link[base:connections]{connection}} or the pathname of an existing file.}
+  \item{what}{A \code{\link[base]{character}} string or an object specifying the the
+    data type (\code{\link[base]{mode}}()) to be read.}
+  \item{idxs}{A \code{\link[base]{vector}} of (non-duplicated) indices or a Nx2 \code{\link[base]{matrix}}
+    of N from-to index intervals specifying the elements to be read.
+    Positions are either relative to the start or the current location
+    of the file/connection as given by argument \code{origin}.}
+  \item{origin}{A \code{\link[base]{character}} string specify whether the indices
+   in argument \code{idxs} are relative to the \code{"start"} or
+   the \code{"current"} position of the file/connection.}
+  \item{size}{The size of the data type to be read. If \code{\link[base]{NA}}, the natural
+   size of the data type is used.}
+  \item{...}{Additional arguments passed to \code{\link[base]{readBin}}().}
+  \item{verbose}{A \code{\link[base]{logical}} or a \code{\link{Verbose}} object.}
+}
 
- \value{
-   Returns a \code{\link[base]{vector}} of the requested \code{\link[base]{mode}}().
- }
+\value{
+  Returns a \code{\link[base]{vector}} of the requested \code{\link[base]{mode}}().
+}
 
- \examples{
+\examples{
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Create a data file
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -143,11 +143,11 @@ cat("Write connection...done\n")
 file.remove(pathname)
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-  \code{\link{writeBinFragments}}().
- }
+\seealso{
+ \code{\link{writeBinFragments}}().
+}
 
 
 \keyword{IO}

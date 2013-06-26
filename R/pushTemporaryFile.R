@@ -20,8 +20,6 @@
 #   \item{filename}{The filename of the file.}
 #   \item{path}{The path of the file.}
 #   \item{suffix}{The suffix to be appended.}
-#   \item{onExists}{A @character string specifying the action if the
-#      (original) file already exists.}
 #   \item{isFile}{If @TRUE, the file must exist and will be renamed
 #      on the file system.  If @FALSE, it is only the pathname string
 #      that will be modified. For details, see below.}

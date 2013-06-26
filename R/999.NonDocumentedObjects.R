@@ -90,7 +90,7 @@
 # @alias setProgress
 # @alias setStepLength
 # @alias setTicks
-# @alias setValue 
+# @alias setValue
 #
 # % The Settings class
 # @alias findSettings
@@ -144,12 +144,12 @@
 # @alias on
 # @alias off
 # @alias ruler
-# @alias setDefaultLevel 
+# @alias setDefaultLevel
 # @alias setThreshold
 # @alias warnings
 # @alias warnings.default
 # @alias writeRaw
-# @alias timestamp 
+# @alias timestamp
 # @alias getTimestampFormat
 # @alias setTimestampFormat
 # @alias timestamp.default
@@ -173,6 +173,7 @@
 # % Misc.
 # @alias extract
 # @alias gunzip.default
+# @alias isGzipped.default
 # @alias isOpen
 # @alias isOpen.default
 # @alias remove.default
@@ -188,7 +189,7 @@
 # @alias toFileListTree.character
 # @alias pasteTree
 # @alias pasteTree.FileListTree
-# @alias cat.FileListTree 
+# @alias cat.FileListTree
 # @alias toAsciiRegExprPattern
 # @alias toAsciiRegExprPattern.character
 # @alias getCommonPrefix
@@ -198,15 +199,15 @@
 # @alias installPackages
 # @alias installPackages.default
 # @alias print.CapturedEvaluation
-# 
+#
 #
 # \description{
-#   This page contains aliases for all "non-documented" objects that 
-#   \code{R CMD check} detects in this package. 
+#   This page contains aliases for all "non-documented" objects that
+#   \code{R CMD check} detects in this package.
 #
-#   Almost all of them are \emph{generic} functions that have specific 
-#   document for the corresponding method coupled to a specific class. 
-#   Other functions are re-defined by \code{setMethodS3()} to 
+#   Almost all of them are \emph{generic} functions that have specific
+#   document for the corresponding method coupled to a specific class.
+#   Other functions are re-defined by \code{setMethodS3()} to
 #   \emph{default} methods. Neither of these two classes are non-documented
 #   in reality.
 #   The rest are deprecated methods.
