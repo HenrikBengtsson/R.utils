@@ -36,7 +36,8 @@
 }
 
 \value{
-  Returns the number of compress/decompressed bytes.
+  Returns the pathname of the output file.
+  The number of output bytes processed is returned as an attribute.
   \code{isGzipped()} returns a \code{\link[base]{logical}}.
 }
 

@@ -7,7 +7,7 @@
 #  @get "title" based on a compact format string.
 # }
 #
-# @usage
+# @synopsis
 #
 # \arguments{
 #   \item{fmt}{A @character string specifying the column-class format.
@@ -49,7 +49,7 @@ setMethodS3("colClasses", "default", function(fmt, ...) {
   # First, translate the format string with sprintf().
   fmt <- sprintf(fmt, ...);
 
-  # Parse format  
+  # Parse format
   fmt <- unlist(strsplit(fmt, split=""));
   predefinedTypes <- names(typesMap);
 

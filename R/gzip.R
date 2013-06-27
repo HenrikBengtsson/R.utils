@@ -24,7 +24,8 @@
 # }
 #
 # \value{
-#   Returns the number of compress/decompressed bytes.
+#   Returns the pathname of the output file.
+#   The number of output bytes processed is returned as an attribute.
 #   \code{isGzipped()} returns a @logical.
 # }
 #
@@ -57,19 +58,22 @@
 # @keyword "programming"
 #*/#########################################################################
 setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+  # Argument 'filename' & 'destname':
   if (filename == destname)
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
+  # Create output directory, iff missing
   destpath <- dirname(destname);
   if (!isDirectory(destpath)) mkdirs(destpath);
 
-  inn <- file(filename, "rb");
+  # Setup input and output connections
+  inn <- file(filename, open="rb");
   on.exit(if (!is.null(inn)) close(inn));
 
   outComplete <- FALSE;
-  out <- gzfile(destname, "wb");
+  out <- gzfile(destname, open="wb", ...);
   on.exit({
     close(out);
     # Was the compression incomplete?
@@ -79,6 +83,7 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
     }
   }, add=TRUE);
 
+  # Compress
   nbytes <- 0L;
   repeat {
     bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE);
@@ -87,34 +92,42 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
       break;
     nbytes <- nbytes + n;
     writeBin(bfr, con=out, size=1L);
+    bfr <- NULL;  # Not needed anymore
   };
   outComplete <- TRUE;
 
+  # Cleanup
   if (remove) {
     close(inn);
     inn <- NULL;
     file.remove(filename);
   }
 
-  invisible(nbytes);
+  # Return the output file
+  attr(destname, "nbrOfBytes") <- nbytes;
+
+  invisible(destname);
 })
 
 
 
 setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+  # Argument 'filename' & 'destname':
   if (filename == destname)
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
+  # Create output directory, iff missing
   destpath <- dirname(destname);
   if (!isDirectory(destpath)) mkdirs(destpath);
 
-  inn <- gzfile(filename, "rb");
+  # Setup input and output connections
+  inn <- gzfile(filename, open="rb");
   on.exit(if (!is.null(inn)) close(inn));
 
   outComplete <- FALSE;
-  out <- file(destname, "wb");
+  out <- file(destname, open="wb");
   on.exit({
     close(out);
     # Was the decompression incomplete?
@@ -124,6 +137,7 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
     }
   }, add=TRUE);
 
+  # Decompress
   nbytes <- 0L;
   repeat {
     bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE);
@@ -132,16 +146,21 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
       break;
     nbytes <- nbytes + n;
     writeBin(bfr, con=out, size=1L);
+    bfr <- NULL;  # Not needed anymore
   };
   outComplete <- TRUE;
 
+  # Cleanup
   if (remove) {
     close(inn);
     inn <- NULL;
     file.remove(filename);
   }
 
-  invisible(nbytes);
+  # Return the output file
+  attr(destname, "nbrOfBytes") <- nbytes;
+
+  invisible(destname);
 })
 
 
@@ -168,6 +187,10 @@ setMethodS3("isGzipped", "default", function(filename, method=c("extension", "co
 
 ############################################################################
 # HISTORY:
+# 2013-06-27
+# o Now gzip() passes '...' to gzfile().
+# o UPDATE: Now gzip()/gunzip() returns the output file (was number of
+#   output bytes processed which are now returned as an attribute).
 # 2013-06-26
 # o Added isGzipped() for testing whether a file is gzipped or not.
 # 2012-11-01
