@@ -16,10 +16,10 @@
 \title{Gzip/Gunzip a file}
 
 \usage{
- \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE,
-  BFR.SIZE=1e+07, ...)
+ \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), temporary=FALSE, overwrite=FALSE,
+  remove=TRUE, BFR.SIZE=1e+07, ...)
  \method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename, ignore.case = TRUE),
-  overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
+  temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
 }
 
 \description{
@@ -29,6 +29,8 @@
 \arguments{
  \item{filename}{Pathname of input file.}
  \item{destname}{Pathname of output file.}
+ \item{temporary}{If \code{\link[base:logical]{TRUE}}, the output file is created in a
+   temporary directory.}
  \item{overwrite}{If the output file already exists, then if
    \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting,
    otherwise an exception is thrown.}

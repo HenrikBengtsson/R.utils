@@ -18,6 +18,8 @@
 # \arguments{
 #  \item{filename}{Pathname of input file.}
 #  \item{destname}{Pathname of output file.}
+#  \item{temporary}{If @TRUE, the output file is created in a
+#    temporary directory.}
 #  \item{overwrite}{If the output file already exists, then if
 #    \code{overwrite} is @TRUE the file is silently overwritting,
 #    otherwise an exception is thrown.}
@@ -61,7 +63,17 @@
 # @keyword "file"
 # @keyword "programming"
 #*/#########################################################################
-setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+  # Argument 'filename':
+  if (!file.exists(filename)) {
+    stop("No such file: ", filename);
+  }
+
+  # Argument 'temporary':
+  if (temporary) {
+    destname <- file.path(tempdir(), basename(destname));
+  }
+
   # Argument 'filename' & 'destname':
   if (filename == destname)
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
@@ -109,18 +121,28 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
 
   # Return the output file
   attr(destname, "nbrOfBytes") <- nbytes;
+  attr(destname, "temporary") <- temporary;
 
   invisible(destname);
 })
 
 
 
-setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename, ignore.case=TRUE), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename, ignore.case=TRUE), temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+  # Argument 'filename':
+  if (!file.exists(filename)) {
+    stop("No such file: ", filename);
+  }
+
+  # Argument 'temporary':
+  if (temporary) {
+    destname <- file.path(tempdir(), basename(destname));
+  }
+
   # Argument 'filename' & 'destname':
-  if (filename == destname)
+  if (filename == destname) {
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
-  if (!overwrite && file.exists(destname))
-    stop(sprintf("File already exists: %s", destname));
+  }
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
@@ -163,6 +185,7 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
   # Return the output file
   attr(destname, "nbrOfBytes") <- nbytes;
+  attr(destname, "temporary") <- temporary;
 
   invisible(destname);
 })
@@ -192,6 +215,7 @@ setMethodS3("isGzipped", "default", function(filename, method=c("extension", "co
 ############################################################################
 # HISTORY:
 # 2013-06-27
+# o Added argument 'temporary' to gunzip().
 # o Now gzip() passes '...' to gzfile().
 # o UPDATE: Now gzip()/gunzip() returns the output file (was number of
 #   output bytes processed which are now returned as an attribute).

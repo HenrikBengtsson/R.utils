@@ -5,6 +5,7 @@ Package: R.utils
 Version: 1.25.0 [2013-06-27]
 o UPDATE: Now gzip()/gunzip() returns the output file (was number
   of output bytes processed which are now returned as an attribute).
+o Added argument 'temporary' to gzip()/gunzip().
 o Added isGzipped() for testing whether a file is gzipped or not.
 
 
