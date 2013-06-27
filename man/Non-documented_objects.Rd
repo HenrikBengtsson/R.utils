@@ -182,7 +182,6 @@
 
 % Misc.
 \alias{extract}
-\alias{gunzip.default}
 \alias{isGzipped.default}
 \alias{isOpen}
 \alias{isOpen.default}

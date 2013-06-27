@@ -1,11 +1,15 @@
 #########################################################################/**
 # @RdocDefault gzip
 # @alias gunzip
+# @alias gunzip.default
 # @alias isGzipped
 #
 # @title "Gzip/Gunzip a file"
 #
-# @synopsis
+# \usage{
+#  @usage gzip,default
+#  @usage gunzip,default
+# }
 #
 # \description{
 #  @get "title".
@@ -111,7 +115,7 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
 
 
 
-setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename, ignore.case=TRUE), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
   # Argument 'filename' & 'destname':
   if (filename == destname)
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));

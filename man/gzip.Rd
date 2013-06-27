@@ -10,13 +10,16 @@
 \alias{gzip.default}
 \alias{gzip}
 \alias{gunzip}
+\alias{gunzip.default}
 \alias{isGzipped}
 
 \title{Gzip/Gunzip a file}
 
 \usage{
-\method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE,
+ \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE,
   BFR.SIZE=1e+07, ...)
+ \method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename, ignore.case = TRUE),
+  overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
 }
 
 \description{
