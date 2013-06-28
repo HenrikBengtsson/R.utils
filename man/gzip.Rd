@@ -42,7 +42,7 @@
 
 \value{
   Returns the pathname of the output file.
-  The number of output bytes processed is returned as an attribute.
+  The number of bytes processed is returned as an attribute.
   \code{isGzipped()} returns a \code{\link[base]{logical}}.
 }
 
