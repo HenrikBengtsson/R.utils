@@ -11,19 +11,19 @@
 #
 # \arguments{
 #   \item{path}{A @character string specifying the directory to be removed.}
-#   \item{recursive}{If @TRUE, subdirectories and files are also removed.  
+#   \item{recursive}{If @TRUE, subdirectories and files are also removed.
 #     If @FALSE, and directory is non-empty, an exception is thrown.}
-#   \item{mustExist}{If @TRUE, and the directory does not exist, 
+#   \item{mustExist}{If @TRUE, and the directory does not exist,
 #     an exception is thrown.}
 #   \item{...}{Not used.}
 # }
 #
 # \value{
-#  Returns (invisibly) @TRUE, the directory was successfully removed, 
+#  Returns (invisibly) @TRUE, the directory was successfully removed,
 #  otherwise @FALSE, unless an exception is thrown.
 # }
 #
-# 
+#
 #
 # @author
 #
@@ -33,8 +33,10 @@
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustExist=TRUE, ...) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -67,7 +69,7 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2010-11-17
 # o BUG FIX: Now removeDirectory() also works for paths starting with
 #   a tilde (~).  The reason was/is that base::unlink() used internally

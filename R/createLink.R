@@ -50,6 +50,11 @@
 # @keyword IO
 #*/###########################################################################
 setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'skip':
   skip <- Arguments$getLogical(skip);
 

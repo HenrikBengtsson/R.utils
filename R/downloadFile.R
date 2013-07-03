@@ -57,6 +57,8 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("downloadFile", "character", function(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

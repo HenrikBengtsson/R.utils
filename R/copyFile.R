@@ -7,8 +7,8 @@
 #  @get "title" by first copying to a temporary file and then renaming that
 #  file.
 # }
-# 
-# @synopsis 
+#
+# @synopsis
 #
 # \arguments{
 #   \item{srcPathname}{The source file to be copied.}
@@ -60,7 +60,7 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, overwrite
   }
 
   if (srcPathname == destPathname) {
-    throw("Failed to copy file. Source and destination are identical: ", 
+    throw("Failed to copy file. Source and destination are identical: ",
                                                            srcPathname);
   }
 
@@ -81,7 +81,7 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, overwrite
     throw("Failed to copy file: ", srcPathname, " -> ", tmpPathname);
   }
   verbose && exit(verbose);
-  
+
   # 2. Overwrite?
   if (isFile(destPathname)) {
     verbose && enter(verbose, "Removing existing destination file");
@@ -95,7 +95,7 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, overwrite
   verbose && enter(verbose, "Renaming temporary file to destination name");
   res <- file.rename(tmpPathname, destPathname);
   if (!res) {
-    throw("Failed to rename temporary file: ", 
+    throw("Failed to rename temporary file: ",
                                         tmpPathname, " -> ", destPathname);
   }
   verbose && exit(verbose);
@@ -110,7 +110,7 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, overwrite
   srcSize <- file.info(srcPathname)$size;
   destSize <- file.info(destPathname)$size;
   if (!identical(srcSize, destSize)) {
-    throw("File copy got a different size than the source file: ", 
+    throw("File copy got a different size than the source file: ",
                                                   destSize, " !=", srcSize);
   }
   verbose && exit(verbose);

@@ -48,6 +48,8 @@
 # Create a filename pattern for R files and Windows shortcuts too such.
 # sourceTo() will automatically recognize those too.
 setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

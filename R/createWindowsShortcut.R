@@ -10,19 +10,19 @@
 # }
 #
 # \arguments{
-#   \item{pathname}{The pathname (with file extension *.lnk) of the link 
+#   \item{pathname}{The pathname (with file extension *.lnk) of the link
 #     file to be created.}
 #   \item{target}{The target file or directory to which the shortcut should
 #     point to.}
-#   \item{overwrite}{If @TRUE, an existing link file is overwritten, 
+#   \item{overwrite}{If @TRUE, an existing link file is overwritten,
 #     otherwise not.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
 #   Returns (invisibly) the pathname.
 # }
-# 
+#
 # @examples "../incl/createWindowsShortcut.Rex"
 #
 # @author
@@ -40,9 +40,11 @@
 # @keyword IO
 #*/###########################################################################
 setMethodS3("createWindowsShortcut", "default", function(pathname, target, overwrite=FALSE, ...) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Reference: http://ss64.com/nt/shortcut.html
   makeVBScript <- function(target, link, description=basename(target), ...) {
     # Arguments 'target':
@@ -113,7 +115,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
   # Argument 'pathname':
   if (!overwrite && isFile(pathname)) {
-    throw("Cannot create Windows Shortcut link. File already exists: ", 
+    throw("Cannot create Windows Shortcut link. File already exists: ",
                                                                  pathname);
   }
 
@@ -147,7 +149,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
   # AD HOC: It may happen that the case of the drive letters differ.
   if (tolower(target1) != tolower(target0)) {
-    throw("Failed to create a valid Windows Shortcut link. The link does not point the expected file: ", target1, " != ", target0); 
+    throw("Failed to create a valid Windows Shortcut link. The link does not point the expected file: ", target1, " != ", target0);
   }
 
   # Return the LNK file

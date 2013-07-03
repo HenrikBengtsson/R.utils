@@ -12,7 +12,7 @@
 # \arguments{
 #   \item{from}{The pathname of the source directory to be copied.}
 #   \item{to}{The pathname of the destination directory.}
-#   \item{...}{Additional arguments passed to 
+#   \item{...}{Additional arguments passed to
 #     \code{\link[base:files]{file.copy}}(), e.g. \code{overwrite}.}
 #   \item{private}{If @TRUE, files (and directories) starting with
 #         a period is also copied, otherwise not.}
@@ -29,6 +29,11 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE, recursive=TRUE) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'from':
   if (!isDirectory(from))
     throw("Argument 'from' is not a directory: ", from);
@@ -56,7 +61,7 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
       }
     } else if (isDirectory(file)) {
       if (recursive) {
-        copiedFiles <- c(copiedFiles, 
+        copiedFiles <- c(copiedFiles,
          copyDirectory(file, to=filePath(to, basename), ..., recursive=TRUE));
       }
     }

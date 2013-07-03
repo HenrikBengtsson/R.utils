@@ -38,6 +38,8 @@
 # @author
 ###############################################################################
 setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"), types="auto", ..., destPath=".", cleanup=TRUE) {
+  require("R.utils") || throw("Package  not loaded: R.utils");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -111,7 +113,7 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
       }
 
       install.packages(pathname, repos=NULL, type=types[kk], ...);
- 
+
       if (cleanup) {
         file.remove(pathname);
         if (isFile(pathname)) {
@@ -124,14 +126,14 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
   } # for (kk ...)
 
   invisible();
-}) # installPackages() 
+}) # installPackages()
 
 
 
 ###############################################################################
 # HISTORY:
 # 2011-09-30
-# o Added installPackages(url, ..., types="auto") for auto-setting of 
+# o Added installPackages(url, ..., types="auto") for auto-setting of
 #   the file type given the file extension of the URL.
 # o Created from hbLite.R script.  Moved to R.utils.  The idea is that
 #   hbLite() will install/update R.utils and then utilize this method.
