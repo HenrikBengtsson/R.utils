@@ -8,6 +8,7 @@ o Now more methods can be used without attaching ("loading") the
   package: copyFile(), copyDirectory(), removeDirectory(), createLink(),
   createWindowsShortcut(), downloadFile(), sourceDirectory(), and
   installPackages(), e.g. R.utils::downloadFile().
+o Now touchFile() utilizes base::Sys.setFileTime(), iff available.
 
 
 Version: 1.25.1 [2013-07-01]

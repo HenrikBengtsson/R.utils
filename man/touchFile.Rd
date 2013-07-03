@@ -58,14 +58,15 @@ stopifnot(identical(md5a, md5b))
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{\link[base]{file.info}}().
+  Internally, \code{\link[base]{Sys.setFileTime}}() (iff available) and
+  \code{\link[base]{file.info}}() are utilized.
 }
 
 \references{
   [1] R-devel mailing list thread
       \emph{Unix-like touch to update modification timestamp of file?},
       started on 2008-02-26.
-      \url{http://tolstoy.newcastle.edu.au/R/e4/devel/08/02/0654.html}\cr
+      \url{http://stat.ethz.ch/pipermail/r-devel/2008-February/048542.html}\cr
 }
 
 

@@ -4,7 +4,7 @@
 # @title "Updates the timestamp of a file"
 #
 # \description{
-#   @get "title".  
+#   @get "title".
 #   Currently, it is only possible to change the timestamp specifying when
 #   the file was last modified, and time can only be set to the current time.
 # }
@@ -25,14 +25,15 @@
 # @author
 #
 # \seealso{
-#   @see "base::file.info".
+#   Internally, @see "base::Sys.setFileTime" (iff available) and
+#   @see "base::file.info" are utilized.
 # }
 #
 # \references{
-#   [1] R-devel mailing list thread 
+#   [1] R-devel mailing list thread
 #       \emph{Unix-like touch to update modification timestamp of file?},
 #       started on 2008-02-26.
-#       \url{http://tolstoy.newcastle.edu.au/R/e4/devel/08/02/0654.html}\cr
+#       \url{http://stat.ethz.ch/pipermail/r-devel/2008-February/048542.html}\cr
 # }
 #
 # @keyword programming
@@ -40,38 +41,61 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("touchFile", "default", function(pathname, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!exists("Sys.setFileTime", mode="function")) {
+    Sys.setFileTime <- function(path, ...) {
+      info <- file.info(pathname);
+      if (info$isdir) {
+        stop(sprintf("In R v%s, it is not possible to change the timestamp of a directory: %s", getRversion(), pathname));
+      }
+
+      con <- NULL;
+      on.exit({
+        if (!is.null(con))
+          close(con);
+      });
+
+      # Zero-sized files have to be treated specially
+      if (info$size == 0) {
+        con <- file(pathname, open="w");
+      } else {
+        con <- file(pathname, open="r+b");
+        seek(con=con, where=0, origin="start", rw="read");
+        bfr <- readBin(con=con, what=raw(), n=1);
+        seek(con=con, where=0, origin="start", rw="write");
+        writeBin(con=con, bfr);
+      }
+
+      invisible(TRUE);
+    } # Sys.setFileTime()
+  } # if (!exists("Sys.setFileTime", ...))
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
   if (!file.exists(pathname))
     stop("No such file: ", pathname);
 
-  info <- file.info(pathname);
-  if (info$isdir)
-    stop("Cannot change the timestamp of a directory: ", pathname);
 
+  info <- file.info(pathname);
   oldTimestamp <- info$mtime;
 
-  con <- NULL;
-  on.exit({
-    if (!is.null(con))
-      close(con);
-  });
-
-  # Zero-sized files have to be treated specially
-  if (info$size == 0) {
-    con <- file(pathname, open="w");
-  } else {
-    con <- file(pathname, open="r+b");
-    seek(con=con, where=0, origin="start", rw="read");
-    bfr <- readBin(con=con, what=raw(), n=1);
-    seek(con=con, where=0, origin="start", rw="write");
-    writeBin(con=con, bfr);
+  if (!Sys.setFileTime(pathname, time=Sys.time())) {
+    stop("Failed to set timestamp: ", pathname);
   }
 
   invisible(oldTimestamp);
 })
 
+
 ############################################################################
 # HISTORY:
+# 2013-07-03
+# o Now touchFile() utilizes base::Sys.setFileTime(), iff available.
 # 2008-02-27
 # o NOTE: From r-devel thread 'Unix-like touch to update modification
 #   timestamp of file?' on 2008-02-26, we learn that on Windows one can do
