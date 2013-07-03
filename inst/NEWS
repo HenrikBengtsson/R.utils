@@ -3,9 +3,10 @@ Package: R.utils
 ================
 
 Version: 1.25.2 [2013-07-03]
+o Now installPackages() may also install from https URLs.
 o Now more methods can be used without attaching ("loading") the
-  package: copyFile(), copyDirectory(), removeDirectory(), createLink(), 
-  createWindowsShortcut(), downloadFile(), sourceDirectory(), and 
+  package: copyFile(), copyDirectory(), removeDirectory(), createLink(),
+  createWindowsShortcut(), downloadFile(), sourceDirectory(), and
   installPackages(), e.g. R.utils::downloadFile().
 
 

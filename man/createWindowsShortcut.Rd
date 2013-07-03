@@ -6,35 +6,35 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{createWindowsShortcut}
+\name{createWindowsShortcut}
 \alias{createWindowsShortcut.default}
 \alias{createWindowsShortcut}
 
- \title{Creates a Microsoft Windows Shortcut (.lnk file)}
+\title{Creates a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{
+\usage{
 \method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)
 }
 
- \description{
-   Creates a Microsoft Windows Shortcut (.lnk file).
- }
+\description{
+  Creates a Microsoft Windows Shortcut (.lnk file).
+}
 
- \arguments{
-   \item{pathname}{The pathname (with file extension *.lnk) of the link
-     file to be created.}
-   \item{target}{The target file or directory to which the shortcut should
-     point to.}
-   \item{overwrite}{If \code{\link[base:logical]{TRUE}}, an existing link file is overwritten,
-     otherwise not.}
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{pathname}{The pathname (with file extension *.lnk) of the link
+    file to be created.}
+  \item{target}{The target file or directory to which the shortcut should
+    point to.}
+  \item{overwrite}{If \code{\link[base:logical]{TRUE}}, an existing link file is overwritten,
+    otherwise not.}
+  \item{...}{Not used.}
+}
 
- \value{
-   Returns (invisibly) the pathname.
- }
+\value{
+  Returns (invisibly) the pathname.
+}
 
- \examples{
+\examples{
 # Create Windows Shortcut links to a directory and a file
 targets <- list(
   system.file(package="R.utils"),
@@ -78,16 +78,16 @@ for (kk in seq(along=targets)) {
 }
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link{readWindowsShortcut}}()
- }
+\seealso{
+  \code{\link{readWindowsShortcut}}()
+}
 
- \references{
-   [1] Create a windows shortcut (.LNK file), SS64.com,
-       http://ss64.com/nt/shortcut.html \cr
- }
+\references{
+  [1] Create a windows shortcut (.LNK file), SS64.com,
+      http://ss64.com/nt/shortcut.html \cr
+}
 
 
 
