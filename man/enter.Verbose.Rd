@@ -10,7 +10,10 @@
 \alias{enter.Verbose}
 \alias{Verbose.enter}
 \alias{enter,Verbose-method}
-\alias{metod} enterf
+\alias{Verbose.enterf}
+\alias{enterf.Verbose}
+\alias{enterf,Verbose-method}
+
 
 \title{Writes a message and indents the following output}
 

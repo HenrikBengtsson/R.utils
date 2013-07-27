@@ -140,6 +140,7 @@
 \alias{cat.default}
 \alias{evaluate}
 \alias{enter}
+\alias{enterf}
 \alias{exit}
 \alias{popState}
 \alias{pushState}

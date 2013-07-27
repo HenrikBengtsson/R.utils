@@ -728,7 +728,7 @@ setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultL
 
 ###########################################################################/**
 # @RdocMethod enter
-# @aliasmetod enterf
+# @aliasmethod enterf
 #
 # @title "Writes a message and indents the following output"
 #
