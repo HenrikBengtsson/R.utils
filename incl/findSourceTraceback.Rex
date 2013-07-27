@@ -14,7 +14,8 @@ code <- paste(code, collapse="\n");
 cat(file=pathnameA, code);
 
 code <- 'cat("BEGIN bar.R\n")';
-code <- c(code, 'print(findSourceTraceback());');
+code <- c(code, 'x <- findSourceTraceback();');
+code <- c(code, 'print(x);');
 code <- c(code, 'cat("END bar.R\n")');
 code <- paste(code, collapse="\n");
 cat(file=pathnameB, code);
