@@ -4,6 +4,7 @@ Package: R.utils
 
 Version: 1.26.0 [2013-07-27]
 o Added tempvar() for creating non-existing temporary variables.
+o Added enterf() to Verbose, which is an sprintf-like enter().
 o Now System$findGhostscript() returns system variable 'R_GSCMD' if
   set and it refers to an existing executable (and unless force=TRUE).
   It then checks with Sys.which().  On Windows, it finally searches
@@ -11,6 +12,8 @@ o Now System$findGhostscript() returns system variable 'R_GSCMD' if
   arguments 'firstOnly' and 'force'.
 o Now getAbsolutePath() shortens paths if possible, e.g. "C:/foo/.."
   becomes "C:/".
+o Added argument 'skip' to gzip() and gunzip().
+o BUG FIX: gunzip() would ignore argument 'overwrite'.
 o BUG FIX: filePath("C:/foo/..") returned "C:", which should be "C:/".
 
 

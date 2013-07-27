@@ -6,36 +6,36 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{evaluate.Verbose}
+\name{evaluate.Verbose}
 \alias{evaluate.Verbose}
 \alias{Verbose.evaluate}
 \alias{evaluate,Verbose-method}
 
- \title{Evaluates a function and prints its results if above threshold}
+\title{Evaluates a function and prints its results if above threshold}
 
- \description{
-   Evaluates a function and prints its results if above threshold.
-   The output is \emph{not} indented.
- }
+\description{
+  Evaluates a function and prints its results if above threshold.
+  The output is \emph{not} indented.
+}
 
- \usage{
+\usage{
 \method{evaluate}{Verbose}(this, fun, ..., level=this$defaultLevel)
 }
 
- \arguments{
-  \item{fun}{A \code{\link[base]{function}} to be evaluated (only if above threshold).}
-  \item{...}{Additional arguments passed to the function.}
-  \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
- }
+\arguments{
+ \item{fun}{A \code{\link[base]{function}} to be evaluated (only if above threshold).}
+ \item{...}{Additional arguments passed to the function.}
+ \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{Verbose}}.
- }
+\seealso{
+  For more information see \code{\link{Verbose}}.
+}
 \keyword{internal}
 \keyword{methods}

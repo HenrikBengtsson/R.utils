@@ -20,9 +20,11 @@
 #  \item{destname}{Pathname of output file.}
 #  \item{temporary}{If @TRUE, the output file is created in a
 #    temporary directory.}
-#  \item{overwrite}{If the output file already exists, then if
-#    \code{overwrite} is @TRUE the file is silently overwritting,
-#    otherwise an exception is thrown.}
+#  \item{skip}{If @TRUE and the output file already exists,
+#    the output file is returned as is.}
+#  \item{overwrite}{If @TRUE and the output file already exists,
+#    the file is silently overwritting, otherwise an exception is
+#    thrown (unless \code{skip} is @TRUE).}
 #  \item{remove}{If @TRUE, the input file is removed afterward,
 #    otherwise not.}
 #  \item{BFR.SIZE}{The number of bytes read in each chunk.}
@@ -63,7 +65,7 @@
 # @keyword "file"
 # @keyword "programming"
 #*/#########################################################################
-setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), temporary=FALSE, skip=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
   # Argument 'filename':
   if (!file.exists(filename)) {
     stop("No such file: ", filename);
@@ -73,12 +75,20 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
   if (temporary) {
     destname <- file.path(tempdir(), basename(destname));
   }
+  attr(destname, "temporary") <- temporary;
 
   # Argument 'filename' & 'destname':
   if (filename == destname)
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
-  if (!overwrite && file.exists(destname))
-    stop(sprintf("File already exists: %s", destname));
+
+  # Already done?
+  if (file.exists(destname)) {
+    if (skip) {
+      return(destname);
+    } else if (!overwrite) {
+      stop(sprintf("File already exists: %s", destname));
+    }
+  }
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
@@ -121,14 +131,13 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
 
   # Return the output file
   attr(destname, "nbrOfBytes") <- nbytes;
-  attr(destname, "temporary") <- temporary;
 
   invisible(destname);
 })
 
 
 
-setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename, ignore.case=TRUE), temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename, ignore.case=TRUE), temporary=FALSE, skip=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
   # Argument 'filename':
   if (!file.exists(filename)) {
     stop("No such file: ", filename);
@@ -138,10 +147,20 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
   if (temporary) {
     destname <- file.path(tempdir(), basename(destname));
   }
+  attr(destname, "temporary") <- temporary;
 
   # Argument 'filename' & 'destname':
   if (filename == destname) {
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
+  }
+
+  # Already done?
+  if (file.exists(destname)) {
+    if (skip) {
+      return(destname);
+    } else if (!overwrite) {
+      stop(sprintf("File already exists: %s", destname));
+    }
   }
 
   # Create output directory, iff missing
@@ -185,7 +204,6 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
   # Return the output file
   attr(destname, "nbrOfBytes") <- nbytes;
-  attr(destname, "temporary") <- temporary;
 
   invisible(destname);
 })
@@ -214,8 +232,11 @@ setMethodS3("isGzipped", "default", function(filename, method=c("extension", "co
 
 ############################################################################
 # HISTORY:
+# 2013-07-27
+# o Added argument 'skip' to gzip() and gunzip().
+# o BUG FIX: gunzip() would ignore argument 'overwrite'.
 # 2013-06-27
-# o Added argument 'temporary' to gunzip().
+# o Added argument 'temporary' to gzip() and gunzip().
 # o Now gzip() passes '...' to gzfile().
 # o UPDATE: Now gzip()/gunzip() returns the output file (was number of
 #   output bytes processed which are now returned as an attribute).

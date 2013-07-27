@@ -62,6 +62,7 @@ Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE,
  \tab \code{\link[R.utils:capture.Verbose]{capture}} \tab Captures output of a function.\cr
  \tab \code{\link[R.utils:cat.Verbose]{cat}} \tab Concatenates and prints objects if above threshold.\cr
  \tab \code{\link[R.utils:enter.Verbose]{enter}} \tab Writes a message and indents the following output.\cr
+ \tab \code{enterf} \tab  -\cr
  \tab \code{\link[R.utils:equals.Verbose]{equals}} \tab Checks if this object is equal to another.\cr
  \tab \code{\link[R.utils:evaluate.Verbose]{evaluate}} \tab Evaluates a function and prints its results if above threshold.\cr
  \tab \code{\link[R.utils:exit.Verbose]{exit}} \tab Writes a message and unindents the following output.\cr
@@ -181,7 +182,7 @@ for (kk in 1:10) {
   }
 
   if (kk \%in\% c(5,8)) {
-    enter(verbose, "Sub analysis ", kk)
+    enterf(verbose, "Sub analysis #\%d", kk)
     for (jj in c("i", "ii", "iii")) {
       cat(verbose, "part ", jj)
     }

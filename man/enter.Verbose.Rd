@@ -6,40 +6,46 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{enter.Verbose}
+\name{enter.Verbose}
 \alias{enter.Verbose}
 \alias{Verbose.enter}
 \alias{enter,Verbose-method}
+\alias{metod} enterf
 
- \title{Writes a message and indents the following output}
+\title{Writes a message and indents the following output}
 
- \description{
-   Writes a message and indents the following output.
-   The output is indented according to \code{\link[R.utils:enter.Verbose]{*enter}()}/\code{\link[R.utils:exit.Verbose]{*exit}()}
-   calls.
- }
-
- \usage{
-\method{enter}{Verbose}(this, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel)
+\description{
+  Writes a message and indents the following output.
+  The output is indented according to \code{\link[R.utils:enter.Verbose]{*enter}()}/\code{\link[R.utils:exit.Verbose]{*exit}()}
+  calls.
 }
 
- \arguments{
-  \item{...}{Objects to be passed to \code{\link[R.utils:cat.Verbose]{*cat}()}.}
-  \item{indent}{The number of characters to add to the indentation.}
-  \item{sep}{The default separator \code{\link[base]{character}} string.}
-  \item{suffix}{A \code{\link[base]{character}} string to be appended to the end of the message.}
-  \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
- }
+\usage{
+  \method{enter}{Verbose}(this, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel)
+  \method{enterf}{Verbose}(this, fmtstr, ..., indent=this$indentStep, sep="", suffix="...",
+  level=this$defaultLevel)
+}
 
- \value{
-   Returns nothing.
- }
+\arguments{
+ \item{fmtstr}{An \code{\link[base]{sprintf}}() format string, which together with
+   \code{...} constructs the message.}
+ \item{...}{Objects to be passed to \code{\link[R.utils:cat.Verbose]{*cat}()}
+            (or \code{\link[base]{sprintf}}()).}
+ \item{indent}{The number of characters to add to the indentation.}
+ \item{sep}{The default separator \code{\link[base]{character}} string.}
+ \item{suffix}{A \code{\link[base]{character}} string to be appended to the end of the message.}
+ \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
+}
 
- \author{Henrik Bengtsson}
+\value{
+  Returns nothing.
+}
 
- \seealso{
-   For more information see \code{\link{Verbose}}.
- }
+\author{Henrik Bengtsson}
+
+\seealso{
+  For more information see \code{\link{Verbose}}.
+}
 
 
 \keyword{internal}

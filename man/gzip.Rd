@@ -16,10 +16,10 @@
 \title{Gzip/Gunzip a file}
 
 \usage{
- \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), temporary=FALSE, overwrite=FALSE,
-  remove=TRUE, BFR.SIZE=1e+07, ...)
+ \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), temporary=FALSE, skip=FALSE,
+  overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
  \method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename, ignore.case = TRUE),
-  temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
+  temporary=FALSE, skip=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
 }
 
 \description{
@@ -31,9 +31,11 @@
  \item{destname}{Pathname of output file.}
  \item{temporary}{If \code{\link[base:logical]{TRUE}}, the output file is created in a
    temporary directory.}
- \item{overwrite}{If the output file already exists, then if
-   \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting,
-   otherwise an exception is thrown.}
+ \item{skip}{If \code{\link[base:logical]{TRUE}} and the output file already exists,
+   the output file is returned as is.}
+ \item{overwrite}{If \code{\link[base:logical]{TRUE}} and the output file already exists,
+   the file is silently overwritting, otherwise an exception is
+   thrown (unless \code{skip} is \code{\link[base:logical]{TRUE}}).}
  \item{remove}{If \code{\link[base:logical]{TRUE}}, the input file is removed afterward,
    otherwise not.}
  \item{BFR.SIZE}{The number of bytes read in each chunk.}

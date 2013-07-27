@@ -6,36 +6,36 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{str.Verbose}
+\name{str.Verbose}
 \alias{str.Verbose}
 \alias{Verbose.str}
 \alias{str,Verbose-method}
 
- \title{Prints the structure of an object if above threshold}
+\title{Prints the structure of an object if above threshold}
 
- \description{
-   Prints the structure of an object if above threshold.
-   The output is \emph{not} indented.
- }
+\description{
+  Prints the structure of an object if above threshold.
+  The output is \emph{not} indented.
+}
 
- \usage{
+\usage{
 \method{str}{Verbose}(object, ...)
 }
 
- \arguments{
-  \item{...}{Objects to be passed to \code{\link[utils]{str}}.}
-  \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
- }
+\arguments{
+ \item{...}{Objects to be passed to \code{\link[utils]{str}}.}
+ \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{Verbose}}.
- }
+\seealso{
+  For more information see \code{\link{Verbose}}.
+}
 
 
 \keyword{internal}

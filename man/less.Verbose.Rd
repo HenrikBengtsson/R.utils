@@ -6,36 +6,36 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{less.Verbose}
+\name{less.Verbose}
 \alias{less.Verbose}
 \alias{Verbose.less}
 \alias{less,Verbose-method}
 
- \title{Creates a cloned instance with a higher threshold}
+\title{Creates a cloned instance with a higher threshold}
 
- \description{
-   Creates a cloned instance with a higher threshold.
- }
+\description{
+  Creates a cloned instance with a higher threshold.
+}
 
- \usage{
+\usage{
 \method{less}{Verbose}(this, dThreshold=1, ...)
 }
 
- \arguments{
-  \item{dThreshold}{The amount the threshold should be raised.}
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{dThreshold}{The amount the threshold should be raised.}
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns a cloned \code{\link{Verbose}} object.
- }
+\value{
+  Returns a cloned \code{\link{Verbose}} object.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[R.utils:more.Verbose]{*more}()}
-   For more information see \code{\link{Verbose}}.
- }
+\seealso{
+  \code{\link[R.utils:more.Verbose]{*more}()}
+  For more information see \code{\link{Verbose}}.
+}
 
 
 \keyword{internal}

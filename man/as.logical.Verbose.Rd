@@ -6,35 +6,35 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{as.logical.Verbose}
+\name{as.logical.Verbose}
 \alias{as.logical.Verbose}
 \alias{Verbose.as.logical}
 \alias{as.logical,Verbose-method}
 
- \title{Gets a logical value of this object}
+\title{Gets a logical value of this object}
 
- \description{
-   Gets a logical value of this object.  Returns \code{isVisible(this, level=this$defaultLevel)}.
- }
+\description{
+  Gets a logical value of this object.  Returns \code{isVisible(this, level=this$defaultLevel)}.
+}
 
- \usage{
+\usage{
 \method{as.logical}{Verbose}(x, ...)
 }
 
- \arguments{
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns a \code{\link[base]{logical}} value.
- }
+\value{
+  Returns a \code{\link[base]{logical}} value.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.
-   For more information see \code{\link{Verbose}}.
- }
+\seealso{
+  \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.
+  For more information see \code{\link{Verbose}}.
+}
 
 
 \keyword{internal}

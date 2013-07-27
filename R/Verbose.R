@@ -6,7 +6,7 @@
 # \description{
 #  @classhierarchy
 #
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -15,20 +15,20 @@
 #   \item{con}{A @connection or a @character string filename.}
 #   \item{on}{A @logical indicating if the writer is on or off.}
 #   \item{threshold}{A @numeric threshold that the \code{level} argument
-#     of any write method has to be equal to or larger than in order to the 
-#     message being written. Thus, the lower the threshold is the more and 
+#     of any write method has to be equal to or larger than in order to the
+#     message being written. Thus, the lower the threshold is the more and
 #     more details will be outputted.}
 #   \item{timestamp}{If @TRUE, each output is preceded with a timestamp.}
 #   \item{removeFile}{If @TRUE and \code{con} is a filename, the file is
 #     first deleted, if it exists.}
-#   \item{asGString}{If @TRUE, all messages are interpreted as 
+#   \item{asGString}{If @TRUE, all messages are interpreted as
 #     @see "GString" before being output, otherwise not.}
 #   \item{core}{Internal use only.}
 #   \item{...}{Not used.}
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # \section{Output levels}{
@@ -39,21 +39,21 @@
 #
 #   \itemize{
 #    \item{<= -100}{Only for debug messages, i.e. messages containing all
-#      necessary information for debugging purposes and to find bugs in 
+#      necessary information for debugging purposes and to find bugs in
 #      the code. Normally these messages are so detailed so they will be
 #      a pain for the regular user, but very useful for bug reporting and
 #      bug tracking by the developer.}
-#    \item{-99 -- -11}{Detailed verbose messages. These will typically be 
+#    \item{-99 -- -11}{Detailed verbose messages. These will typically be
 #      useful for the user to understand what is going on and do some simple
-#      debugging fixing problems typically due to themselves and not due to 
+#      debugging fixing problems typically due to themselves and not due to
 #      bugs in the code.}
-#    \item{-10 -- -1}{Verbose messages. For example, these will typically 
+#    \item{-10 -- -1}{Verbose messages. For example, these will typically
 #      report the name of the file to be read, the current step in a sequence
-#      of analysis steps and so on. These message are not very useful for 
+#      of analysis steps and so on. These message are not very useful for
 #      debugging.}
 #    \item{0}{Default level in all output methods and default threshold.
 #      Thus, by default, messages at level 0 are not shown.}
-#    \item{>= +1}{Message that are always outputted (if threshold is 
+#    \item{>= +1}{Message that are always outputted (if threshold is
 #      kept at 0).  We recommend not to output message at this level, because
 #      methods should be quiet by default (at the default threshold 0).}
 #   }
@@ -62,10 +62,10 @@
 # \section{A compatibility trick and a speed-up trick}{
 #   If you want to include calls to Verbose in a package of yours in order
 #   to debug code, but not use it otherwise, you might not want to load
-#   R.utils all the time, but only for debugging.  
+#   R.utils all the time, but only for debugging.
 #   To achieve this, the value of a reference variable to a Verbose class
 #   is always set to @TRUE, cf. typically an Object reference has value @NA.
-#   This makes it possible to use the reference variable as a first test 
+#   This makes it possible to use the reference variable as a first test
 #   before calling Verbose methods. Example:
 #   \preformatted{
 #     foo <- function(..., verbose=FALSE) {
@@ -83,11 +83,11 @@
 # }
 #
 # \section{Extending the Verbose class}{
-#   If extending this class, make sure to output messages via 
+#   If extending this class, make sure to output messages via
 #   @seemethod "writeRaw" or one of the other output methods (which in
 #   turn all call the former).
 #   This guarantees that @seemethod "writeRaw" has full control of the
-#   output, e.g. this makes it possible to split output to standard 
+#   output, e.g. this makes it possible to split output to standard
 #   output and to file.
 # }
 #
@@ -130,7 +130,7 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGStri
   # Argument 'on':
   on <- as.logical(on);
 
-  extend(Object(core), "Verbose", 
+  extend(Object(core), "Verbose",
     .timestamp       = timestamp,
     .timestampFormat = "%Y%m%d %H:%M:%S|",
     indentPos        = 0,
@@ -156,7 +156,7 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGStri
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -179,7 +179,7 @@ setMethodS3("as.character", "Verbose", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  s <- paste(class(this)[1], ": isOn()=", isOn(this), ", 
+  s <- paste(class(this)[1], ": isOn()=", isOn(this), ",
                                          threshold=", this$threshold, sep="");
   s <- paste(s, ", timestamp=", this$.timestamp, sep="");
   s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="");
@@ -192,7 +192,7 @@ setMethodS3("as.character", "Verbose", function(x, ...) {
 # @RdocMethod equals
 #
 # @title "Checks if this object is equal to another"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -353,7 +353,7 @@ setMethodS3("getThreshold", "Verbose", function(this, ...) {
   if (!is.null(validRange)) {
     validRange <- Arguments$getDoubles(validRange, length=c(2,2));
     if (threshold < validRange[1] || threshold > validRange[2]) {
-      throw(sprintf("The threshold is out of the valid range [%s,%s]: %s", 
+      throw(sprintf("The threshold is out of the valid range [%s,%s]: %s",
                                     validRange[1], validRange[2], threshold));
     }
   }
@@ -370,7 +370,7 @@ setMethodS3("getThreshold", "Verbose", function(this, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -406,7 +406,7 @@ setMethodS3("isVisible", "Verbose", function(this, level=this$defaultLevel, ...)
 # \description{
 #   @get "title".  Returns \code{isVisible(this, level=this$defaultLevel)}.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -443,7 +443,7 @@ setMethodS3("as.logical", "Verbose", function(x, ...) {
 # \description{
 #   @get "title".  Returns what @seemethod "getThreshold" returns.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -478,7 +478,7 @@ setMethodS3("as.double", "Verbose", function(x, ...) {
 # @title "Turn on the output"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # @synopsis
@@ -512,7 +512,7 @@ setMethodS3("on", "Verbose", function(this, ...) {
 # @title "Turn off the output"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # @synopsis
@@ -546,7 +546,7 @@ setMethodS3("off", "Verbose", function(this, ...) {
 # @title "Checks if the output is on"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # @synopsis
@@ -584,7 +584,7 @@ setMethodS3("isOn", "Verbose", function(this, ...) {
 #   @get "title".
 #   This method is used by all other methods of this class for output.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -634,11 +634,11 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
 # @title "Concatenates and prints objects if above threshold"
 #
 # \description{
-#   @get "title". 
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   @get "title".
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -694,10 +694,10 @@ setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=th
 #
 # \description{
 #   @get "title".
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -726,22 +726,28 @@ setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultL
 })
 
 
-
 ###########################################################################/**
 # @RdocMethod enter
+# @aliasmetod enterf
 #
 # @title "Writes a message and indents the following output"
 #
 # \description{
-#   @get "title". 
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   @get "title".
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
-# 
-# @synopsis
+#
+# \usage{
+#   @usage "enter,Verbose"
+#   @usage "enterf,Verbose"
+# }
 #
 # \arguments{
-#  \item{...}{Objects to be passed to @seemethod "cat".}
+#  \item{fmtstr}{An @see "base::sprintf" format string, which together with
+#    \code{...} constructs the message.}
+#  \item{...}{Objects to be passed to @seemethod "cat"
+#             (or @see "base::sprintf").}
 #  \item{indent}{The number of characters to add to the indentation.}
 #  \item{sep}{The default separator @character string.}
 #  \item{suffix}{A @character string to be appended to the end of the message.}
@@ -771,6 +777,11 @@ setMethodS3("enter", "Verbose", function(this, ..., indent=this$indentStep, sep=
 })
 
 
+setMethodS3("enterf", "Verbose", function(this, fmtstr, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel) {
+  enter(this, sprintf(fmtstr, ...), indent=indent, sep=sep, suffix=suffix, level=level);
+})
+
+
 
 ###########################################################################/**
 # @RdocMethod exit
@@ -778,11 +789,11 @@ setMethodS3("enter", "Verbose", function(this, ..., indent=this$indentStep, sep=
 # @title "Writes a message and unindents the following output"
 #
 # \description{
-#   @get "title". 
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   @get "title".
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -809,7 +820,7 @@ setMethodS3("enter", "Verbose", function(this, ..., indent=this$indentStep, sep=
 setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL) {
   args <- list(...);
 
-  # Argument 'indent' 
+  # Argument 'indent'
   if (this$indentPos + indent < 0) {
     throw("Cannot exit(): Argument 'indent' makes 'indentPos' negative: ",
                                                     this$indentPos + indent);
@@ -853,7 +864,7 @@ setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep=
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -894,7 +905,7 @@ setMethodS3("more", "Verbose", function(this, dThreshold=1, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -936,7 +947,7 @@ setMethodS3("less", "Verbose", function(this, dThreshold=1, ...) {
 #   @get "title".
 #   The output is \emph{not} indented.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -982,7 +993,7 @@ setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
 #   @get "title".
 #   The output is \emph{not} indented.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -1019,7 +1030,7 @@ setMethodS3("str", "Verbose", function(object, ...) {
 #   @get "title".
 #   The output is \emph{not} indented.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -1056,7 +1067,7 @@ setMethodS3("summary", "Verbose", function(object, ...) {
 #   @get "title".
 #   The output is \emph{not} indented.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -1093,7 +1104,7 @@ setMethodS3("evaluate", "Verbose", function(this, fun, ..., level=this$defaultLe
 #   @get "title".
 #   Evaluates its arguments with the output being verbosed.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -1161,7 +1172,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 # @title "Writes one or several empty lines"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # @synopsis
@@ -1202,7 +1213,7 @@ setMethodS3("newline", "Verbose", function(this, n=1, ..., level=this$defaultLev
 # @title "Writes a ruler"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # @synopsis
@@ -1247,7 +1258,7 @@ setMethodS3("ruler", "Verbose", function(this, char="-", toColumn=this$rightMarg
 #
 # \description{
 #   @get "title" surrounded by a frame.
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
 #
@@ -1256,7 +1267,7 @@ setMethodS3("ruler", "Verbose", function(this, char="-", toColumn=this$rightMarg
 # \arguments{
 #  \item{...}{The title.}
 #  \item{char}{The @character string to make up the frame.}
-#  \item{padding}{The number of rows and character to pad the title above, 
+#  \item{padding}{The number of rows and character to pad the title above,
 #                 below, and to the left.}
 #  \item{prefix}{The prefix of all padded lines and the title line.}
 #  \item{level}{A @numeric value to be compared to the threshold.}
@@ -1330,7 +1341,7 @@ setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(thi
   cat(this, stamp, ...);
 })
 
- 
+
 ###########################################################################/**
 # @RdocMethod getTimestampFormat
 #
@@ -1459,7 +1470,7 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 #
 # \description{
 #   @get "title".
-#   The output is indented according to @seemethod "enter"/@seemethod "exit" 
+#   The output is indented according to @seemethod "enter"/@seemethod "exit"
 #   calls.
 # }
 #
@@ -1509,7 +1520,7 @@ setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", re
 # @title "Pushes the current indentation state of the Verbose object"
 #
 # \description{
-#   @get "title", which is controlled by @seemethod "enter" and 
+#   @get "title", which is controlled by @seemethod "enter" and
 #   @seemethod "exit".  By pushing the state when entering a function and
 #   using @see "base::on.exit" to pop the state, the correct state will
 #   set regardless of if the functions returned naturally or via an error.
@@ -1574,12 +1585,14 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 
 ############################################################################
-# HISTORY: 
+# HISTORY:
+# 2012-07-27
+# o Added enterf() to Verbose, which is an sprintf-like enter().
 # 2012-02-29
 # o CLEANUP: Now capture() for Verbose uses withVisible() instead of
 #   an .Internal(eval.with.vis()) call.
 # 2012-01-11
-# o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce 
+# o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce
 #   more than one character string to a GString, which is not supported."
 #   iff passing a vector of strings.
 # 2011-09-18
@@ -1596,12 +1609,12 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 # 2007-05-26
 # o Made equals() of Verbose protected.
 # 2007-03-28
-# o BUG FIX: Argument 'format' of timestamp() defaulted to 
+# o BUG FIX: Argument 'format' of timestamp() defaulted to
 #   getTimestampFormat(thos) - 'thos' not 'this'.
 # 2006-09-19
 # o Added Rdoc comments for the less() and the more() methods.
 # 2006-09-14
-# o Added trial versions of less() and more().  Have not though about 
+# o Added trial versions of less() and more().  Have not though about
 #   side-effects of cloning the Verbose object, e.g. writing to file etc.
 # 2006-09-12
 # o Created a list with an empty list() in pushState().  This generated
@@ -1614,7 +1627,7 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 # o Removed auxillary argument 'obj' which was added two days ago.  It was
 #   a bug in a recent revision of R v2.3.0 devel that caused it.
 # 2006-03-28
-# o Had to add auxillary argument 'obj' to print(), str() and summary(), 
+# o Had to add auxillary argument 'obj' to print(), str() and summary(),
 #   otherwise errors like "Error in str.default() : argument "object" is
 #   missing, with no default" was generated.
 # 2006-03-27
@@ -1626,7 +1639,7 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 # o Added option 'asGString' to Verbose constructor.
 # 2005-07-06
 # o BUG FIX: print() did not pass argument 'level' to capture().
-# o Calling GString() in enter() to immediately evaluate GStrings. 
+# o Calling GString() in enter() to immediately evaluate GStrings.
 #   Otherwise these will not be correct when calling exit().
 # o Added resetWarnings() and warnings().
 # 2005-06-28
@@ -1636,7 +1649,7 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 # 2005-06-22
 # o Added timestamp().
 # o Added setDefaultLevel().
-# o Now argument 'level' defaults to 'level=this$defaultLevel' and not 
+# o Now argument 'level' defaults to 'level=this$defaultLevel' and not
 #   'level=0'.
 # 2005-06-18
 # o Added push- and popState() to push and pop current indent depth etc

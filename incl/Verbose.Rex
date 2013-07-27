@@ -19,7 +19,7 @@ for (kk in 1:10) {
   }
 
   if (kk %in% c(5,8)) {
-    enter(verbose, "Sub analysis ", kk)
+    enterf(verbose, "Sub analysis #%d", kk)
     for (jj in c("i", "ii", "iii")) {
       cat(verbose, "part ", jj)
     }

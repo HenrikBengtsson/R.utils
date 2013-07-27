@@ -6,34 +6,34 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{as.character.Verbose}
+\name{as.character.Verbose}
 \alias{as.character.Verbose}
 \alias{Verbose.as.character}
 \alias{as.character,Verbose-method}
 
- \title{Returns a character string version of this object}
+\title{Returns a character string version of this object}
 
- \description{
-   Returns a character string version of this object.
- }
+\description{
+  Returns a character string version of this object.
+}
 
- \usage{
+\usage{
 \method{as.character}{Verbose}(x, ...)
 }
 
- \arguments{
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns a \code{\link[base]{character}} string.
- }
+\value{
+  Returns a \code{\link[base]{character}} string.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{Verbose}}.
- }
+\seealso{
+  For more information see \code{\link{Verbose}}.
+}
 
 
 \keyword{internal}
