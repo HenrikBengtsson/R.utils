@@ -9,6 +9,9 @@ o Now System$findGhostscript() returns system variable 'R_GSCMD' if
   It then checks with Sys.which().  On Windows, it finally searches
   for 'gswin64c.exe' and 'gswin32c.exe' on known locations.  Added
   arguments 'firstOnly' and 'force'.
+o Now getAbsolutePath() shortens paths if possible, e.g. "C:/foo/.."
+  becomes "C:/".
+o BUG FIX: filePath("C:/foo/..") returned "C:", which should be "C:/".
 
 
 Version: 1.25.3 [2013-07-27]

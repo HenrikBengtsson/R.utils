@@ -88,8 +88,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   removeEmptyDirs <- function(pathname) {
     # Check if it is a pathname on a Windows network
-    isOnNetworkBwd <- (regexpr("^\\\\\\\\", pathname) != -1);
-    isOnNetworkFwd <- (regexpr("^//", pathname) != -1);
+    isOnNetworkBwd <- (regexpr("^\\\\\\\\", pathname) != -1L);
+    isOnNetworkFwd <- (regexpr("^//", pathname) != -1L);
 
     # Remove empty directories
     pathname <- gsub("///*", "/", pathname);
@@ -108,38 +108,48 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   } # removeEmptyDirs()
 
   removeUpsFromPathname <- function(pathname, split=FALSE) {
+    # Treat C:, ... special
+    pattern <- getWindowsDrivePattern("^[%s]:$");
+    if (regexpr(pattern, pathname) != -1L)
+      return(pathname);
+
     # Treat C:/, C:\\, ... special
     pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
-    if (regexpr(pattern, pathname) != -1)
+    if (regexpr(pattern, pathname) != -1L)
       return(gsub("\\\\", "/", pathname));
 
-    components <- strsplit(pathname, split="[/\\]")[[1]];
+    components <- strsplit(pathname, split="[/\\]")[[1L]];
 
     # Remove all "." parts, because they are non-informative
-    if (length(components) > 1) {
+    if (length(components) > 1L) {
       components <- components[components != "."];
     }
 
     # Remove ".." and its parent by reading from the left(!)
-    pos <- 2;
+    pos <- 2L;
     while (pos <= length(components)) {
-      if (components[pos] == ".." && components[pos-1] != "..") {
+      if (components[pos] == ".." && components[pos-1L] != "..") {
         # Remove the ".." and its parent
         if (verbose) {
-          message("Removing: ", paste(components[c(pos-1,pos)], collapse=", "));
+          message("Removing: ", paste(components[c(pos-1L,pos)], collapse=", "));
         }
-        components <- components[-c(pos-1,pos)];
-        pos <- pos - 1;
+        components <- components[-c(pos-1L,pos)];
+        pos <- pos - 1L;
       } else {
-        pos <- pos + 1;
+        pos <- pos + 1L;
       }
     }
 
-    if (split) {
-      components;
-    } else {
-      paste(components, collapse=fsep);
+    pathname <- components;
+    if (!split) {
+      pathname <- paste(pathname, collapse=fsep);
+      pattern <- getWindowsDrivePattern("^[%s]:$");
+      if (regexpr(pattern, pathname) != -1L) {
+        pathname <- sprintf("%s/", pathname);
+      }
     }
+
+    pathname;
   } # removeUpsFromPathname()
 
 
@@ -150,7 +160,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   args <- list(...);
 
   # First, remove NULL and other empty arguments
-  isEmpty <- unlist(lapply(args, FUN=function(x) (length(x) == 0)));
+  isEmpty <- unlist(lapply(args, FUN=function(x) (length(x) == 0L)));
   args <- args[!isEmpty];
 
   # Second, convert the into character strings
@@ -162,7 +172,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create pathname
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (length(args) == 0) {
+  if (length(args) == 0L) {
     return(NULL);
   }
 
@@ -176,14 +186,15 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   pathname <- removeEmptyDirs(pathname);
 
   if (expandLinks == "none") {
-    if (removeUps)
+    if (removeUps) {
       pathname <- removeUpsFromPathname(pathname);
+    }
     return(pathname);
   }
 
   # Treat C:/, C:\\, ... special
   pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
-  if (regexpr(pattern, pathname) != -1)
+  if (regexpr(pattern, pathname) != -1L)
     return(gsub("\\\\", "/", pathname));
 
   # Requires that the 'pathname' is a absolute pathname.
@@ -200,8 +211,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   while(length(components) > 0L) {
     # Get next component
-    component <- components[1];
-    components <- components[-1];
+    component <- components[1L];
+    components <- components[-1L];
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # a. Create the pathname to check
@@ -219,7 +230,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # b. Is it an explicit Windows Shortcut?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    isWindowsShortcut <- (regexpr("[.](lnk|LNK)$", pathname) != -1);
+    isWindowsShortcut <- (regexpr("[.](lnk|LNK)$", pathname) != -1L);
     if (isWindowsShortcut) {
       # i. ...then follow it.
       lnkFile <- pathname;
@@ -242,13 +253,13 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       # iii. If not, assert that a Windows shortcut exists
       lnkFile <- paste(pathname, c("lnk", "LNK"), sep=".");
       lnkFile <- lnkFile[file.exists(lnkFile)];
-      if (length(lnkFile) == 0) {
+      if (length(lnkFile) == 0L) {
         if (verbose) {
           message("Failed to expand pathname '", pathname0, "'. No target found for: ", pathname);
         }
         break;
       }
-      lnkFile <- lnkFile[1];
+      lnkFile <- lnkFile[1L];
     } # if (isWindowsShortcut)
 
 
@@ -313,7 +324,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   } # while(...)
 
   # Are there any remaining components.
-  if (length(components) > 0) {
+  if (length(components) > 0L) {
     if (mustExist) {
       pathname <- pathname0;
     } else {
@@ -339,6 +350,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 #############################################################################
 # HISTORY:
+# 2013-07-27
+# o BUG FIX: filePath("C:/foo/..") would return "C:", which should be "C:/".
 # 2012-10-29
 # o ROBUSTNESS: Now filePath(.., expandLinks, mustExist=FALSE) gives an
 #   informative error if path could not be expanded.

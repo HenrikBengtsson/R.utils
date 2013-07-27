@@ -13,7 +13,7 @@
 #  \item{pathname}{A @character string of the pathname to be converted into
 #    an absolute pathname.}
 #  \item{workDirectory}{A @character string of the current working directory.}
-#  \item{expandTilde}{If @TRUE, tilde (\code{~}) is expanded to the 
+#  \item{expandTilde}{If @TRUE, tilde (\code{~}) is expanded to the
 #    corresponding directory, otherwise not.}
 #  \item{...}{Not used.}
 # }
@@ -63,7 +63,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
       name <- gsub("[.][^.]*$", "", name); # Remove the suffix.
     }
 
-    name; 
+    name;
   } # getName()
 
 
@@ -72,7 +72,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
   if (length(pathname) > 1L) {
-    throw("Argument 'pathname' must be a single character string: ", 
+    throw("Argument 'pathname' must be a single character string: ",
                                            paste(pathname, collapse=", "));
   }
 
@@ -104,9 +104,8 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
     pathname <- c(workDirectory, pathname, name);
     pathname <- paste(pathname, sep="", collapse=.Platform$file.sep);
-
-    pathname <- filePath(pathname, removeUps=TRUE);
   }
+  pathname <- filePath(pathname, removeUps=TRUE);
 
   if (expandTilde) {
     pathname <- file.path(dirname(pathname), basename(pathname));
@@ -124,13 +123,16 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   }
 
   pathname;
-})  
+})
 
 
 ###########################################################################
 # HISTORY:
+# 2013-07-27
+# o Now getAbsolutePath() shortens paths if possible, e.g. "C:/foo/.."
+#   becomes "C:/".
 # 2013-02-21
-# o For conveniency, getAbsolutePath() and getRelativePath() returns 
+# o For conveniency, getAbsolutePath() and getRelativePath() returns
 #   the same pathname if it is a URL.
 # 2010-06-23
 # o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
