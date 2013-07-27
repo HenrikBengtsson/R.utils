@@ -37,7 +37,7 @@ extends \link[R.oo]{Object}\cr
  \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.utils:currentTimeMillis.System]{currentTimeMillis}} \tab Get the current time in milliseconds.\cr
- \tab \code{\link[R.utils:findGhostscript.System]{findGhostscript}} \tab Searches for the ghostview binary on the current system.\cr
+ \tab \code{\link[R.utils:findGhostscript.System]{findGhostscript}} \tab Searches for a Ghostview executable on the current system.\cr
  \tab \code{\link[R.utils:findGraphicsDevice.System]{findGraphicsDevice}} \tab Searches for a working PNG device.\cr
  \tab \code{\link[R.utils:getHostname.System]{getHostname}} \tab Retrieves the computer name of the current host.\cr
  \tab \code{getMappedDrivesOnWindows} \tab  -\cr

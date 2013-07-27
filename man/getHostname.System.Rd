@@ -6,19 +6,19 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{System$getHostname}
+\name{System$getHostname}
 \alias{System$getHostname}
 \alias{getHostname.System}
 \alias{System.getHostname}
 \alias{getHostname,System-method}
 
- \title{Retrieves the computer name of the current host}
+\title{Retrieves the computer name of the current host}
 
- \description{
-  Retrieves the computer name of the current host.
- }
+\description{
+ Retrieves the computer name of the current host.
+}
 
- \usage{
+\usage{
 ## Static method (use this):
 ## System$getHostname(...)
 
@@ -26,19 +26,19 @@
 \method{getHostname}{System}(static, ...)
 }
 
- \value{
-  Returns a \code{\link[base]{character}} string.
- }
+\value{
+ Returns a \code{\link[base]{character}} string.
+}
 
- \details{
-  First, this function checks the system environment variables \code{HOST},
-  \code{HOSTNAME}, and \code{COMPUTERNAME}.
-  Second, it checks \code{Sys.info()["nodename"]} for host name details.
-  Finally, it tries to query the system command \code{uname -n}.
- }
+\details{
+ First, this function checks the system environment variables \code{HOST},
+ \code{HOSTNAME}, and \code{COMPUTERNAME}.
+ Second, it checks \code{Sys.info()["nodename"]} for host name details.
+ Finally, it tries to query the system command \code{uname -n}.
+}
 
- \seealso{
-   \code{\link[R.utils:getUsername.System]{*getUsername}()}.
- }
+\seealso{
+  \code{\link[R.utils:getUsername.System]{*getUsername}()}.
+}
 \keyword{internal}
 \keyword{methods}

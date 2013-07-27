@@ -4,6 +4,11 @@ Package: R.utils
 
 Version: 1.26.0 [2013-07-27]
 o Added tempvar() for creating non-existing temporary variables.
+o Now System$findGhostscript() returns system variable 'R_GSCMD' if
+  set and it refers to an existing executable (and unless force=TRUE).
+  It then checks with Sys.which().  On Windows, it finally searches
+  for 'gswin64c.exe' and 'gswin32c.exe' on known locations.  Added
+  arguments 'firstOnly' and 'force'.
 
 
 Version: 1.25.3 [2013-07-27]
