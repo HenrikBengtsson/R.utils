@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.26.0 [2013-06-27]
+o Added tempvar() for creating non-existing temporary variables.
+
+
 Version: 1.25.3 [2013-07-27]
 o BUG FIX: findSourceTraceback() would give an error "Unknown class of
   'srcfile': character" for source(..., keep.source=FALSE) in recent
