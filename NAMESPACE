@@ -1,6 +1,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "throw")
 
@@ -8,7 +8,6 @@ import("R.oo")
 
 # utils:
 import("utils")
-## importFrom("utils", download.file)
 ## importFrom("utils", download.file)
 ## importFrom("utils", str)
 ## importFrom("utils", write.table)
@@ -28,7 +27,7 @@ exportPattern("^[^\\.]")
 export(.Last.lib)
 
 # Object that must exported explicitly
-export(.conflicts.OK) 
+export(.conflicts.OK)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
