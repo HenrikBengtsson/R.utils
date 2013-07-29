@@ -495,7 +495,9 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
     # First, search executable on the system PATH
     pathname <- Sys.which(c("gswin64c", "gswin32c"));
     pathname <- pathname[nchar(pathname) > 0L];
-    pathname <- pathname[sapply(pathname, FUN=isFile)];
+    if (length(pathname) > 0L) {
+      pathname <- pathname[sapply(pathname, FUN=isFile)];
+    }
 
     # Second, search known locations
     if (length(pathname) == 0L) {
@@ -527,16 +529,20 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
       for (path in paths) {
         pathname <- list.files(pattern=pattern, path=path, recursive=TRUE,
                                                           full.names=TRUE);
-        pathname <- pathname[sapply(pathname, FUN=isFile)];
         if (length(pathname) > 0L) {
-          break;
+          pathname <- pathname[sapply(pathname, FUN=isFile)];
+          if (length(pathname) > 0L) {
+            break;
+          }
         }
       } # for (path ...)
     }
   } else {
     pathname <- Sys.which("gs");
     pathname <- pathname[nchar(pathname) > 0L];
-    pathname <- pathname[sapply(pathname, FUN=isFile)];
+    if (length(pathname) > 0L) {
+      pathname <- pathname[sapply(pathname, FUN=isFile)];
+    }
   }
 
   if (length(pathname) > 0L) {
@@ -903,6 +909,10 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-07-29
+# o BUG FIX: System$findGraphicsDevice() would give "Error in
+#   pathname[sapply(pathname, FUN = isFile)]: invalid subscript type 'list'"
+#   if no device was found.
 # 2013-07-27
 # o On Windows, System$findGhostscript() sets R_GSCMD as shortPathName().
 # o Added arguments 'firstOnly' and 'force' to System$findGhostscript().

@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.26.1 [2013-07-29]
+o BUG FIX: System$findGraphicsDevice() would give "Error in pathname
+  [sapply(pathname, FUN = isFile)]: invalid subscript type 'list'"
+  if no device was found.
+
+
 Version: 1.26.0 [2013-07-27]
 o Added tempvar() for creating non-existing temporary variables.
 o Added enterf() to Verbose, which is an sprintf-like enter().
