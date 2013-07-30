@@ -4,7 +4,7 @@
 # @title "Checks if the file specification is a file"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -19,7 +19,7 @@
 #  @FALSE is returned.
 # }
 #
-# 
+#
 #
 # @author
 #
@@ -31,10 +31,14 @@
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("isFile", "default", function(pathname, ...) {
+  # Special cases
+  if (is.null(pathname))
+    return(FALSE);
   if (length(pathname) == 0)
     return(FALSE);
+
   if (is.na(pathname))
     return(FALSE);
 
@@ -51,8 +55,8 @@ setMethodS3("isFile", "default", function(pathname, ...) {
     # Try the relative pathname
     relPathname <- getRelativePath(pathname);
 
-    # Avoid infinite recursive loops; check if succeeded in getting a 
-    # relative pathname? 
+    # Avoid infinite recursive loops; check if succeeded in getting a
+    # relative pathname?
     if (!identical(relPathname, pathname)) {
       return(isFile(relPathname));
     } else {
@@ -65,12 +69,12 @@ setMethodS3("isFile", "default", function(pathname, ...) {
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2009-12-30
-# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.  
+# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.
 #   Before it gave an unexpected error.
 # 2005-11-29
-# o BUG FIX: Added protection against infinite loops where relative path 
+# o BUG FIX: Added protection against infinite loops where relative path
 #   is the same as the absolute path.
 # 2005-05-29
 # o Created by copying code in the File class of the R.io package.

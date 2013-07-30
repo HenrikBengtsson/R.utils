@@ -33,6 +33,9 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isDirectory", "default", function(pathname, ...) {
+  # Special cases
+  if (is.null(pathname))
+    return(FALSE);
   pathname <- as.character(pathname);
   if (length(pathname) == 0)
     return(TRUE);

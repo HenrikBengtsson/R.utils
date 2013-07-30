@@ -447,25 +447,24 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #
 # \description{
 #   @get "title".
-#
-#   Currently only Windows and Unix is supported.
 # }
 #
 # @synopsis
 #
 # \arguments{
 #   \item{updateRGSCMD}{If @TRUE and Ghostscript is found, then the system
-#     environment variable \code{R_GSCMD} is set to the (first) path found.
-#     This variable is used by the \code{bitmap()} device.}
+#     environment variable @see "base::R_GSCMD" is set to the (first) path
+#     found.}
 #   \item{firstOnly}{If @TRUE, only the first executable is returned.}
-#   \item{force}{If @TRUE, existing \code{R_GSCMD} is ignored, otherwise not.}
+#   \item{force}{If @TRUE, existing @see "base::R_GSCMD" is ignored,
+#     otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
 #
 # \value{
-#   Returns a @character @vector of full pathnames where Ghostscript
-#   executable are found.
+#   Returns a @character @vector of full and normalized pathnames
+#   where Ghostscript executables are found.
 # }
 #
 # \examples{\dontrun{
@@ -474,100 +473,137 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #
 # @author
 #
+# \references{
+#  [1] \emph{How to use Ghostscript}, Ghostscript, 2013
+#      \url{http://ghostscript.com/doc/current/Use.htm}
+#  [2] \emph{Environment variable}, Wikipedia, 2013.
+#      \url{http://www.wikipedia.org/wiki/Environment_variable}\cr
+#  [3] \emph{Environment.SpecialFolder Enumeration},
+#      Microsoft Developer Network, 2013.
+#      \url{http://msdn.microsoft.com/en-us/library/system.environment.specialfolder.aspx}\cr
+# }
+#
 # \seealso{
-#   @see "base::Sys.getenv".
-#   @see "grDevices::dev2bitmap".
 #   @seeclass
 # }
 #*/#########################################################################
 setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, firstOnly=TRUE, force=FALSE, ...) {
-  pathname <- Sys.getenv("R_GSCMD", "");
-  if (pathname == "") pathname <- NULL;
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  isFileX <- function(pathname, ...) {
+    if (length(pathname) == 0L) return(logical(0L));
+    (nchar(pathname) > 0L) & sapply(pathname, FUN=isFile);
+  } # isFileX()
 
-  if (!force && isFile(pathname)) {
-    return(pathname);
+  isDirectoryX <- function(path, ...) {
+    if (length(path) == 0L) return(logical(0L));
+    (nchar(path) > 0L) & sapply(path, FUN=isDirectory);
+  } # isDirectoryX()
+
+  findGSBySysEnv <- function(names=c("R_GSCMD"), ...) {
+    pathnames <- Sys.getenv(names, "");
+    pathnames <- pathnames[isFileX(pathnames)];
+    pathnames;
+  } # findGSBySysEnv()
+
+  findGSByWhich <- function(names=c("gswin64c", "gswin32c", "gs"), ...) {
+    pathnames <- Sys.which(names);
+    pathnames <- pathnames[isFileX(pathnames)];
+    pathnames;
+  } # findGSByWhich()
+
+  findGSOnWindows <- function(patterns=c("^gswin64c.exe$", "^gswin32c.exe$"), ...) {
+    # (a) Look in "Program Files" directories
+    paths <- Sys.getenv(c("ProgramFiles(X86)", "ProgramFiles", "Programs"));
+
+    # (b) Look also in C:\ and %SystemDrive%
+    paths <- c(paths, "C:", Sys.getenv("SystemDrive"))
+
+    # (c) Drop non-existing directories
+    paths <- unique(paths);
+    paths <- paths[isDirectoryX(paths)];
+    if (length(paths) == 0L) return(NULL);
+
+    # Assume Ghostscript is installed under <path>\gs\
+    paths <- file.path(paths, "gs");
+    paths <- paths[isDirectoryX(paths)];
+    if (length(paths) == 0L) return(NULL);
+
+    # Now search each of the directories for Ghostscript executables
+    pathnames <- NULL;
+    for (pattern in patterns) {
+      for (path in paths) {
+        pathnamesT <- list.files(pattern=pattern, ignore.case=TRUE,
+                                 path=path, recursive=TRUE, full.names=TRUE);
+        pathnamesT <- pathnamesT[isFileX(pathnamesT)];
+        pathnames <- c(pathnames, pathnamesT);
+      } # for (path ...)
+    } # for (pattern ...)
+
+    pathnames;
+  } # findGSOnWindows()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Check environment variable 'R_GSCMD'
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  pathnames <- findGSBySysEnv("R_GSCMD");
+  if (!force && firstOnly && length(pathnames) > 0L) {
+    return(pathnames[1L]);
   }
 
-  paths0 <- NULL;
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Search for Ghostscript
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   OST <- .Platform$OS.type;
   if (OST == "windows") {
-    # First, search executable on the system PATH
-    pathname <- Sys.which(c("gswin64c", "gswin32c"));
-    pathname <- pathname[nchar(pathname) > 0L];
-    if (length(pathname) > 0L) {
-      pathname <- pathname[sapply(pathname, FUN=isFile)];
-    }
-
-    # Second, search known locations
-    if (length(pathname) == 0L) {
-      # Default installation is "C:\gs\gs{<ver>}\bin\gswin{32|64}c.exe";
-
-      # Look for GS in <some path>/gs/, where <some path> is:
-      # ...C:/ and/or whatever the system drive is...
-      systemDrives <- unique(c("C:", Sys.getenv("SystemDrive")));
-      systemDrives <- systemDrives[nchar(systemDrives) > 0L];
-
-      # ...or some of the 'Program Files' directories...
-      pfDirs <- Sys.getenv(c("ProgramFiles", "PROGRAMFILES_SHORT",
-                                                   "CommonProgramFiles"));
-
-      # Get all possible paths
-      paths0 <- sapply(systemDrives, FUN=function(systemDrive) {
-        file.path(c(systemDrive, pfDirs), "gs");
-      });
-      paths0 <- unlist(paths0, use.names=FALSE);
-
-      # Keep only those that are directories
-      paths <- paths0[file.exists(paths0)];  # Avoids warnings
-      if (length(paths) > 0L) {
-        paths <- paths[sapply(paths, FUN=isDirectory)];
-      }
-
-      # Now search each of them for an Ghostscript executable
-      pattern <- "gswin(32|64)c.exe$";
-      for (path in paths) {
-        pathname <- list.files(pattern=pattern, path=path, recursive=TRUE,
-                                                          full.names=TRUE);
-        if (length(pathname) > 0L) {
-          pathname <- pathname[sapply(pathname, FUN=isFile)];
-          if (length(pathname) > 0L) {
-            break;
-          }
-        }
-      } # for (path ...)
-    }
+    # (1) Check environment variable 'GSC'
+    pathnames <- findGSBySysEnv("GSC");
+    # (2) Search executable on the system PATH
+    pathnames <- c(pathnames, findGSByWhich(c("gswin64c", "gswin32c")));
+    # (3) Search known Windows locations
+    pathnames <- c(pathnames, findGSOnWindows());
   } else {
-    pathname <- Sys.which("gs");
-    pathname <- pathname[nchar(pathname) > 0L];
-    if (length(pathname) > 0L) {
-      pathname <- pathname[sapply(pathname, FUN=isFile)];
-    }
+    # Search executable on the system PATH
+    pathnames <- c(pathnames, findGSByWhich("gs"));
   }
 
-  if (length(pathname) > 0L) {
-    if (firstOnly) {
-      pathname <- pathname[1L];
-    }
-    if (updateRGSCMD) {
-      pathnameT <- pathname[1L];
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Found Ghostscript?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Cleanup and normalize paths
+  if (length(pathnames) > 0L) {
+    pathnames <- unique(pathnames);
+    pathnames <- normalizePath(pathnames);
+  }
+
+  # Return only first one found?
+  if (firstOnly && length(pathnames) > 0L) {
+    pathnames <- pathnames[1L];
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Update environment variable R_GSCMD?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (updateRGSCMD) {
+    if (length(pathnames) > 0L) {
+      pathnameT <- pathnames[1L];
       if (OST == "windows" && exists("shortPathName", mode="function")) {
         # To please R CMD check
         shortPathName <- NULL; rm(list="shortPathName");
         pathnameT <- shortPathName(pathnameT);
       }
       Sys.setenv("R_GSCMD"=pathnameT);
-    }
-  } else if (updateRGSCMD) {
-    if (!is.null(paths0)) {
-      warning("Ghostscript not found. Searched directories: ",
-                                             paste(paths0, collapse=", "));
     } else {
-      warning("Ghostscript not found.");
+      warning("R_GSCMD not set, because Ghostscript was not found.");
     }
   }
 
-  pathname;
+  pathnames;
 }, static=TRUE)
 
 
@@ -909,6 +945,11 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-07-30
+# o ROBUSTNESS/BUG FIX: System$findGraphicsDevice() could still give
+#   errors.  Completely rewrote how Ghostscripts is searched.  On Windows,
+#   environment variable 'GSC' is now also searched.
+#   Thanks to Brian Ripley for the feedback.
 # 2013-07-29
 # o BUG FIX: System$findGraphicsDevice() would give "Error in
 #   pathname[sapply(pathname, FUN = isFile)]: invalid subscript type 'list'"
