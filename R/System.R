@@ -475,7 +475,7 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #
 # \references{
 #  [1] \emph{How to use Ghostscript}, Ghostscript, 2013
-#      \url{http://ghostscript.com/doc/current/Use.htm}
+#      \url{http://ghostscript.com/doc/current/Use.htm}\cr
 #  [2] \emph{Environment variable}, Wikipedia, 2013.
 #      \url{http://www.wikipedia.org/wiki/Environment_variable}\cr
 #  [3] \emph{Environment.SpecialFolder Enumeration},
