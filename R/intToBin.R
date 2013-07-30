@@ -8,7 +8,7 @@
 # }
 #
 # \usage{
-#  \method{as.character}{binmode}(x, ...)
+#  @usage as.character,binmode
 # }
 #
 # \arguments{

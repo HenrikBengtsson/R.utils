@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#   \method{capitalize}{default}(str, ...)
-#   \method{decapitalize}{default}(str, ...)
+#   @usage capitalize,default
+#   @usage decapitalize,default
 # }
 #
 # \arguments{
