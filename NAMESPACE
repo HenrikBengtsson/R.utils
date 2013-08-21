@@ -47,6 +47,7 @@ S3method("createLink", "default")
 S3method("createWindowsShortcut", "default")
 S3method("readWindowsShellLink", "default")
 S3method("readWindowsShortcut", "default")
+S3method("inherits", "default")
 
 # ACID methods for manipulating files
 S3method("createFileAtomically", "default")
