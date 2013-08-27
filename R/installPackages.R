@@ -1,4 +1,4 @@
-###############################################################################
+#########################################################################/**
 # @RdocDefault installPackages
 #
 # @title "Install R packages by name or URL"
@@ -31,12 +31,14 @@
 #
 # \examples{\dontrun{
 #  installPackages("R.rsp")
-#  installPackages("http://cran.r-project.org/src/contrib/Archive/R.rsp/R.rsp_0.7.5.tar.gz")
-#  installPackages("http://cran.r-project.org/bin/windows/contrib/r-release/R.rsp_0.8.2.zip")
+#  installPackages("http://cran.r-project.org/src/contrib/Archive/R.rsp/R.rsp_0.8.2.tar.gz")
+#  installPackages("http://cran.r-project.org/bin/windows/contrib/r-release/R.rsp_0.9.17.zip")
 # }}
 #
 # @author
-###############################################################################
+#
+# @keyword file
+#*/#########################################################################
 setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"), types="auto", ..., destPath=".", cleanup=TRUE) {
   require("R.utils") || throw("Package  not loaded: R.utils");
 

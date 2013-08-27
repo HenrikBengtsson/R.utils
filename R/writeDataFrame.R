@@ -1,6 +1,7 @@
 ########################################################################/**
 # @set "class=data.frame"
 # @RdocMethod writeDataFrame
+# @alias writeDataFrame
 #
 # @title "Writes a data.frame to tabular text file"
 #
@@ -14,13 +15,13 @@
 #   \item{data}{A @data.frame.}
 #   \item{file}{A @connection or a filename to write to.}
 #   \item{path}{The directory where the file will be written.}
-#   \item{sep, quote, row.names, col.names, ...}{Additional arguments 
+#   \item{sep, quote, row.names, col.names, ...}{Additional arguments
 #     passed to @see "utils::write.table".}
 #   \item{header}{An optional named @list of header rows to be written
 #     at the beginning of the file.  If @NULL, no header will be written.}
 #   \item{createdBy, createdOn, nbrOfRows}{If non-@NULL, common header
 #     rows to be added to the header.}
-#   \item{headerPrefix}{A @character string specifying the prefix of each 
+#   \item{headerPrefix}{A @character string specifying the prefix of each
 #     header row.}
 #   \item{headerSep}{A @character string specifying the character
 #     separating the header name and header values.}
@@ -34,23 +35,23 @@
 # }
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "utils::write.table".
 #  @see "readTable".
 # }
 #
 # @keyword IO
-#*/#########################################################################    
+#*/#########################################################################
 setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep="\t", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format="%Y-%m-%d %H:%M:%S %Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file' & 'path':
   if (inherits(file, "connection")) {
     con <- file;
   } else {
-    pathname <- Arguments$getWritablePathname(file, path=path, 
+    pathname <- Arguments$getWritablePathname(file, path=path,
                                        mustNotExist=(!append && !overwrite));
     con <- NULL;
   }
@@ -83,10 +84,10 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
     nbrOfRows <- Arguments$getInteger(nbrOfRows);
   }
 
-  
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Build header
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is.null(header)) {
     if (!is.null(createdBy)) {
       header$createdBy <- createdBy;
@@ -94,16 +95,16 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
     if (!is.null(createdOn)) {
       header$createdOn <- createdOn;
     }
-    header$nbrOfRows <- nbrOfRows;  
-    header$nbrOfColumns <- ncol(data);  
+    header$nbrOfRows <- nbrOfRows;
+    header$nbrOfColumns <- ncol(data);
     header$columnNames <- colnames(data);
     header$columnClasses <- sapply(data, FUN=function(x) class(x)[1L]);
     header <- lapply(header, FUN=paste, collapse=sep);
   }
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Write to file
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(con)) {
     # Remove existing file?
     if (!append && overwrite && isFile(pathname)) {
