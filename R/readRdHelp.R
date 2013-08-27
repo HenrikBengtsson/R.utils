@@ -37,6 +37,9 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
     });
   } # readRdHelpTextPreR210()
 
+  getHelpFile <- get(".getHelpFile", mode="function",
+                                              envir=getNamespace("utils"));
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -71,9 +74,7 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
 
   # Read the Rd file(s)
   paths <- as.character(x);
-  rdList <- lapply(paths, FUN=function(pathname) {
-    utils:::.getHelpFile(pathname);
-  });
+  rdList <- lapply(paths, FUN=getHelpFile);
 
   if (format == "rd") {
     res <- rdList;
@@ -110,6 +111,8 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
 
 ############################################################################
 # HISTORY:
+# 2013-08-27
+# o Added internal getHelpFile() to readRdHelp().
 # 2010-09-15
 # o Added some support for readRdHelp(..., format="text") on R < 2.10.0.
 # 2010-08-28

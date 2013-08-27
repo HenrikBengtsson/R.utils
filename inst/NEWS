@@ -6,7 +6,8 @@ Version: 1.26.4 [2013-08-27]
 o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
   warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
   the result will be NULL" if length(files) > 0.
-o DOCUMENTATION: Help for installPackages() was missing.  Thanks 
+o CLEANUP: Package no longer utilizes ':::'.
+o DOCUMENTATION: Help for installPackages() was missing.  Thanks
   Gabor Grothendieck for reporting on this.
 
 
