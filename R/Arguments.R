@@ -8,13 +8,13 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # @author
 #
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setConstructorS3("Arguments", function(...) {
   extend(Object(), "Arguments");
 })
@@ -43,7 +43,7 @@ setConstructorS3("Arguments", function(...) {
 # }
 #
 # \value{
-#  Returns a @character string if filename is valid, 
+#  Returns a @character string if filename is valid,
 #  otherwise an exception is thrown.
 # }
 #
@@ -55,8 +55,8 @@ setConstructorS3("Arguments", function(...) {
 #     @ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_  (31)
 #     `abcdefghijklmnopqrstuvwxyz{|}~  (31)
 #   }
-#   This class of filenames has been extensively tested on for 
-#   cross-platform support on Microsoft Windows, OSX and various 
+#   This class of filenames has been extensively tested on for
+#   cross-platform support on Microsoft Windows, OSX and various
 #   Unix flavors.
 # }
 #
@@ -69,22 +69,22 @@ setConstructorS3("Arguments", function(...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128), class=c("safe"), .name=NULL, .type="filename", ...) {
 ##
 ## OLD NOTES:
 ##   Valid filename characters:
 ## * The FTP RFCs require (7-bit) ASCII characters (and presumably not control
-##   characters either). The 95 printable ASCII characters are (note initial 
+##   characters either). The 95 printable ASCII characters are (note initial
 ##   space):
-## 
+##
 ##    !"#$%&'()*+,-./0123456789:;<=>?  (32)
 ##   @ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_  (32)
 ##   `abcdefghijklmnopqrstuvwxyz{|}~   (31)
-## 
-## * On Windows the following 9 characters aren't allowed: \ / : * ? " < > !.  
+##
+## * On Windows the following 9 characters aren't allowed: \ / : * ? " < > !.
 ##   This leaves us with:
-## 
+##
 ##    #$%&'()+,-.0123456789;=          (24)
 ##   @ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_   (31)
 ##   `abcdefghijklmnopqrstuvwxyz{|}~   (31)
@@ -153,7 +153,7 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
 #   \item{file}{A @character string specifying the file.}
 #   \item{path}{A @character string specifying the path.}
 #   \item{mustExist}{If @TRUE, the pathname must exists and be readable,
-#     otherwise an exception is thrown. If @FALSE, no such test is 
+#     otherwise an exception is thrown. If @FALSE, no such test is
 #     performed.}
 #   \item{absolutePath}{If @TRUE, the absolute pathname is returned.}
 #   \item{...}{Not used.}
@@ -261,7 +261,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
       throw("Pathname exists, but there is no permission to read file: ", pathname);
     }
   } # if (mustExist)
-    
+
   pathname;
 }, static=TRUE)
 
@@ -315,16 +315,18 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
   nbrOfFiles <- length(files);
   # Argument 'paths':
   if (length(paths) > nbrOfFiles) {
-    throw("Argument 'paths' is longer than argument 'files': ", 
+    throw("Argument 'paths' is longer than argument 'files': ",
                                           length(paths), " > ", nbrOfFiles);
   }
 
   # Expand argument 'paths' to be of same length as 'files'
-  paths <- rep(paths, length.out=nbrOfFiles);
+  if (!is.null(paths)) {
+    paths <- rep(paths, length.out=nbrOfFiles);
+  }
 
   pathnames <- list();
   for (kk in seq(length=nbrOfFiles)) {
-    pathnames[[kk]] <- Arguments$getReadablePathname(files[kk], 
+    pathnames[[kk]] <- Arguments$getReadablePathname(files[kk],
                                                        path=paths[kk], ...);
   }
 
@@ -348,8 +350,8 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #   \item{mustExist}{If @TRUE and the pathname does not exists,
 #     an Exception is thrown, otherwise not.}
 #   \item{mustNotExist}{If the file exists, and \code{mustNotExist} is
-#     @TRUE, an Exception is thrown. If the file exists, and 
-#     \code{mustNotExist} is @FALSE, or the file does not exists, the 
+#     @TRUE, an Exception is thrown. If the file exists, and
+#     \code{mustNotExist} is @FALSE, or the file does not exists, the
 #     pathname is accepted.}
 #   \item{mkdirs}{If @TRUE, \code{mustNotExist} is @FALSE, and the path to
 #     the file does not exist, it is (recursively) created.}
@@ -367,8 +369,8 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 # }
 #
 # \section{Slow file systems}{
-#   On very rare occassions, we have observed on a large shared file 
-#   system that if one tests for the existance of a directory immediately 
+#   On very rare occassions, we have observed on a large shared file
+#   system that if one tests for the existance of a directory immediately
 #   after creating it with @see "base::dir.create", it may appear not
 #   to be created.  We believe this is due to the fact that there is a
 #   short delay between creating a directory and that information being
@@ -458,7 +460,7 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
         } else {
           reason <- " for unknown reasons"
         }
-        
+
         throw(sprintf("Failed not create file path (tried %d time(s))%s (%s %s but nothing beyond; current directory is '%s'): %s", maxTries, reason, pathP, ifelse(createParent, "was created", "exists"), getwd(), path));
       }
     }
@@ -470,7 +472,7 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
       if (fileAccess(pathT, mode=2) == -1) {
         throw("No write permission for directory: ", path);
       }
-  
+
       # Try to create a file
       filenameT <- basename(tempfile());
       pathnameT <- filePath(path, filenameT);
@@ -550,14 +552,14 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
 # \arguments{
 #   \item{x}{A single @vector.}
 #   \item{length}{A @numeric @vector of length two or more. If two, it
-#     is the minimum and maximum length of \code{x}. Elsewise it is the 
+#     is the minimum and maximum length of \code{x}. Elsewise it is the
 #     set of possible lengths of \code{x}.}
 #   \item{.name}{A @character string for name used in error messages.}
 #   \item{...}{Not used.}
 # }
 #
 # \value{
-#  Returns the same @vector, if it is valid. Otherwise an exception is 
+#  Returns the same @vector, if it is valid. Otherwise an exception is
 #  thrown.
 # }
 #
@@ -601,7 +603,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
     }
   } else {
     if (!is.element(xlen, length)) {
-      throw(sprintf("Number of elements in argument '%s' is not in {%s}: %d", 
+      throw(sprintf("Number of elements in argument '%s' is not in {%s}: %d",
                                  .name, seqToHumanReadable(length), xlen, ));
     }
   }
@@ -629,7 +631,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 # \arguments{
 #   \item{s}{A @vector.}
 #   \item{nchar}{A @numeric @vector of length one or two. If one,
-#     the maximum number of characters ("length") in \code{s}. If two, 
+#     the maximum number of characters ("length") in \code{s}. If two,
 #     the minimum and maximum length of \code{s}.}
 #   \item{useNames}{If @TRUE, the 'names' attribute is preserved, otherwise
 #     it is dropped.}
@@ -639,7 +641,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 # }
 #
 # \value{
-#  Returns a @character @vector, if it is valid. Otherwise an exception is 
+#  Returns a @character @vector, if it is valid. Otherwise an exception is
 #  thrown.
 # }
 #
@@ -690,10 +692,10 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   # Nothing to check?
   if (is.null(nchar))
     return(s);
- 
+
   if (length(nchar) == 1)
     nchar <- c(1, nchar);
-  
+
   # Check the string length of each character string
   for (kk in seq(length=length(s))) {
     slen <- nchar(s[kk]);
@@ -775,18 +777,18 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
 
   if (!is.null(disallow)) {
     if (is.element("NaN", disallow) && any(is.nan(x))) {
-      throw(sprintf("Argument '%s' contains %d NaN value(s).", 
+      throw(sprintf("Argument '%s' contains %d NaN value(s).",
                                                    .name, sum(is.nan(x))));
     }
 
     if (is.element("NA", disallow) && any(is.na(x) & !is.nan(x))) {
-      throw(sprintf("Argument '%s' contains %d NA value(s).", 
+      throw(sprintf("Argument '%s' contains %d NA value(s).",
                                                     .name, sum(is.na(x))));
     }
 
     # For conveniency, disallow 'Inf' here too; other range takes care of it.
     if (is.element("Inf", disallow) && any(is.infinite(x))) {
-      throw(sprintf("Argument '%s' contains %d (-/+)Inf value(s).", 
+      throw(sprintf("Argument '%s' contains %d (-/+)Inf value(s).",
                                              .name, sum(is.infinite(x))));
     }
   }
@@ -810,10 +812,10 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
     xrange <- as.character(xrange);
     range <- as.character(range);
     if (length(x) == 1) {
-      throw(sprintf("Argument '%s' is out of range [%s,%s]: %s", 
+      throw(sprintf("Argument '%s' is out of range [%s,%s]: %s",
                           .name, range[1], range[2], x));
     } else {
-      throw(sprintf("Range of argument '%s' is out of range [%s,%s]: [%s,%s]", 
+      throw(sprintf("Range of argument '%s' is out of range [%s,%s]: [%s,%s]",
                           .name, range[1], range[2], xrange[1], xrange[2]));
     }
   }
@@ -1035,7 +1037,7 @@ setMethodS3("getLogicals", "Arguments", function(static, x, ..., disallow=c("NA"
 
   if (!is.null(disallow)) {
     if (is.element("NA", disallow) && any(is.na(x))) {
-      throw(sprintf("Argument '%s' contains %d NA value(s).", 
+      throw(sprintf("Argument '%s' contains %d NA value(s).",
                                                     .name, sum(is.na(x))));
     }
   }
@@ -1071,7 +1073,7 @@ setMethodS3("getLogical", "Arguments", function(static, ..., length=1) {
 #      the threshold is \code{defaultThreshold}.}
 #   \item{defaultThreshold}{A @numeric value for the default threshold, if
 #       \code{verbose} was interpreted as a @logical value.}
-#   \item{useNullVerbose}{If \code{verbose} can be interpreted as @FALSE, 
+#   \item{useNullVerbose}{If \code{verbose} can be interpreted as @FALSE,
 #       return a @see NullVerbose object if @TRUE.}
 #   \item{...}{Passed to the constructor of @see "Verbose".}
 #   \item{.name}{A @character string for name used in error messages.}
@@ -1149,7 +1151,7 @@ setMethodS3("getRegularExpression", "Arguments", function(static, pattern=NULL, 
   }
 
   if (is.null(pattern)) {
-    throw(sprintf("Argument '%s' is not a valid regular expression: NULL", 
+    throw(sprintf("Argument '%s' is not a valid regular expression: NULL",
                                                                    .name));
   }
 
@@ -1215,7 +1217,7 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
   }
 
   if (!is.environment(envir)) {
-    throw(sprintf("Argument '%s' is not an environment: %s", 
+    throw(sprintf("Argument '%s' is not an environment: %s",
                                                    .name, class(envir)[1]));
   }
 }, static=TRUE)
@@ -1279,7 +1281,7 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
     if (coerce) {
       object <- as(object, class, ...);
     } else {
-      throw(sprintf("Argument '%s' is neither of nor inherits class %s: %s", 
+      throw(sprintf("Argument '%s' is neither of nor inherits class %s: %s",
                      .name, class[1], paste(class(object), collapse=", ")));
     }
   }
@@ -1292,6 +1294,10 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2013-08-26
+# o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
+#   warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
+#   the result will be NULL" if length(files) > 0.
 # 2012-12-01
 # o BUG FIX: Arguments$getIndices(NA_integer_, max=0, disallow="NaN")
 #   would give "Exception: Argument 'x' is of length 1 although the range
@@ -1330,7 +1336,7 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 # o Now Arguments$getWritablePath() and Arguments$getWritablePathname()
 #   throws an error is an NA file/directory is specified.
 # o Now Arguments$getReadablePath() and Arguments$getReadablePathname()
-#   throws an error is an NA file/directory is specified, unless 
+#   throws an error is an NA file/directory is specified, unless
 #   'mustExist' is FALSE.
 # o Added Arguments$getInstanceOf(...).
 # o BUG FIX: Arguments$getCharacters(s) would return a *logical* instead
@@ -1347,14 +1353,14 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 # 2009-05-18
 # o UPDATE: Now getWritablePathname() gives a more precise error message
 #   if the file exists but the rights to modifies it does not.
-# o UPDATE: Now getEnvironment(), getRegularExpression(), and 
+# o UPDATE: Now getEnvironment(), getRegularExpression(), and
 #   getReadablePathname() give clearer error messages if more the input
 #   contains more than one element.
 # 2009-05-15
 # o Changed argument 'asMode' for Arguments$getNumerics() to default to
 #   NULL instead of "numeric".  This will case the method to return integer
 #   if the input is integer, and double if the input is double.  The
-#   previous default was alway returning doubles, cf. notes on common 
+#   previous default was alway returning doubles, cf. notes on common
 #   misconception of how as.numeric() works.  In the case when the input
 #   is neither integer or double, the default is to coerce to doubles.
 #   Also, the method is now using storage.mode() instead of mode().
@@ -1362,12 +1368,12 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 # o Now getReadablePathname(..., mustExist=TRUE) of Arguments reports also
 #   the working directory if the a relative pathname is missing.
 # o BUG FIX: getReadablePathname(..., mustExist=TRUE) of Arguments gave an
-#   internal error if the pathname was in the current directory and did 
+#   internal error if the pathname was in the current directory and did
 #   not exist.
 # 2008-12-27
-# o Now getReadablePathname(..., mustExist=TRUE) and 
+# o Now getReadablePathname(..., mustExist=TRUE) and
 #   getWritablePathname(..., mkdirs=FALSE) of Arguments report which
-#   of the parent directories exists when the requested pathname is not 
+#   of the parent directories exists when the requested pathname is not
 #   found.  This will help troubleshooting missing pathnames.
 # 2008-12-01
 # o Now getReadablePathname() and getWritablePathname() use the more
@@ -1377,7 +1383,7 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 #   constructor of Verbose.  This allows the construct of
 #   Arguments$getVerbose(-10, timestamp=TRUE).
 # 2005-12-05
-# o getNumerics(Inf, range=c(0,Inf)) would give a warning "no finite 
+# o getNumerics(Inf, range=c(0,Inf)) would give a warning "no finite
 #   arguments to min; returning Inf". Fixed with a withCallingHandlers().
 # 2005-11-22
 # o Added Rdoc comments for getReadablePathnames().
@@ -1395,11 +1401,11 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 #   Verbose class.
 # o Now Arguments$getReadablePathname() follows Windows shortcut files.
 # 2005-08-01
-# o getReadablePathname() no longer returns the absolute pathname by 
+# o getReadablePathname() no longer returns the absolute pathname by
 #   default. This is because on some systems the relative pathname can
 #   be queried wheras the absolute one may not be access due to missing
 #   file permissions.
-# o Added getEnvironment(), getRegularExpression(), 
+# o Added getEnvironment(), getRegularExpression(),
 #   getReadablePath(), getWritablePath().
 # 2005-07-19
 # o BUG FIX: getCharacters() would not coerce Object:s correctly.
@@ -1408,11 +1414,11 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 # 2005-06-20
 # o Added argument 'absolutePath' to getReadablePathname().
 # 2005-06-18
-# o Added static methods getVector(), getNumeric/s(), getDouble/s(), 
+# o Added static methods getVector(), getNumeric/s(), getDouble/s(),
 #   getInteger/s(), getIndices/getIndex(), and getLogical/s(). These should
 #   be very handy. Also added getVector().
 #   Not sure if getVector() should be renamed to checkLength(), and even
-#   be moved to the Assert class.  Not sure where the assert class is 
+#   be moved to the Assert class.  Not sure where the assert class is
 #   heading.
 # 2005-05-31
 # o Created from former File$validateFileAndPath().
