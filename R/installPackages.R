@@ -12,9 +12,10 @@
 # \arguments{
 #   \item{pkgs}{A @character @vector specifying the names and/or the URLs
 #     of the R packages to be installed.}
-#   \item{repos}{...}
-#   \item{types}{...}
+#   \item{types}{A @character @vector of corresponding package types.}
+#   \item{repos}{A @character @vector of package repository URLs.}
 #   \item{...}{Additional arguments passed to @see "base::install.packages".}
+#   \item{destPath}{Path where any downloaded files are saved.}
 #   \item{cleanup}{If @TRUE, downloaded and successfully installed package
 #     files are removed, otherwise not.}
 # }
@@ -39,8 +40,8 @@
 #
 # @keyword file
 #*/#########################################################################
-setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"), types="auto", ..., destPath=".", cleanup=TRUE) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
+setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=getOption("repos"), ..., destPath=".", cleanup=TRUE) {
+  require("R.utils") || throw("Package not loaded: R.utils");
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -48,13 +49,13 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
   # Argument 'pkgs':
   pkgs <- Arguments$getCharacters(pkgs);
 
+  # Argument 'types':
+  types <- Arguments$getCharacters(types);
+
   # Argument 'repos':
   if (!is.null(repos)) {
     repos <- Arguments$getCharacters(repos);
   }
-
-  # Argument 'types':
-  types <- Arguments$getCharacters(types);
 
   # Argument 'destPath':
   destPath <- Arguments$getWritablePath(destPath);
@@ -82,7 +83,7 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
         } else if (ext == "zip") {
           types[kk] <- "win.binary";
         } else {
-          throw("Cannot install R package. Unknown filename extension: ", url);
+          throw("Cannot install R package. Unknown filename extension: ", pkg);
         }
       } else {
         types[kk] <- defType;
@@ -125,6 +126,10 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
 
 ###############################################################################
 # HISTORY:
+# 2013-08-27
+# o BUG FIX: The exception thrown by installPackages() for unknown
+#   filename extensions would itself generate an error.
+# o DOCUMENTATION: Rdoc comments were not recognized.
 # 2013-07-03
 # o Now installPackages() may also install from https URLs.  This was
 #   achieved but using the package isUrl() rather than a local one.

@@ -17,16 +17,17 @@
 }
 
 \usage{
-\method{installPackages}{default}(pkgs, repos=getOption("repos"), types="auto", ..., destPath=".",
+\method{installPackages}{default}(pkgs, types="auto", repos=getOption("repos"), ..., destPath=".",
   cleanup=TRUE)
 }
 
 \arguments{
   \item{pkgs}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying the names and/or the URLs
     of the R packages to be installed.}
-  \item{repos}{...}
-  \item{types}{...}
+  \item{types}{A \code{\link[base]{character}} \code{\link[base]{vector}} of corresponding package types.}
+  \item{repos}{A \code{\link[base]{character}} \code{\link[base]{vector}} of package repository URLs.}
   \item{...}{Additional arguments passed to \code{\link[base]{install.packages}}.}
+  \item{destPath}{Path where any downloaded files are saved.}
   \item{cleanup}{If \code{\link[base:logical]{TRUE}}, downloaded and successfully installed package
     files are removed, otherwise not.}
 }
