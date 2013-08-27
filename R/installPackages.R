@@ -14,7 +14,7 @@
 #     of the R packages to be installed.}
 #   \item{types}{A @character @vector of corresponding package types.}
 #   \item{repos}{A @character @vector of package repository URLs.}
-#   \item{...}{Additional arguments passed to @see "base::install.packages".}
+#   \item{...}{Additional arguments passed to @see "utils::install.packages".}
 #   \item{destPath}{Path where any downloaded files are saved.}
 #   \item{cleanup}{If @TRUE, downloaded and successfully installed package
 #     files are removed, otherwise not.}

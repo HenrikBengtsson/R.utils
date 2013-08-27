@@ -26,7 +26,7 @@
     of the R packages to be installed.}
   \item{types}{A \code{\link[base]{character}} \code{\link[base]{vector}} of corresponding package types.}
   \item{repos}{A \code{\link[base]{character}} \code{\link[base]{vector}} of package repository URLs.}
-  \item{...}{Additional arguments passed to \code{\link[base]{install.packages}}.}
+  \item{...}{Additional arguments passed to \code{\link[utils]{install.packages}}.}
   \item{destPath}{Path where any downloaded files are saved.}
   \item{cleanup}{If \code{\link[base:logical]{TRUE}}, downloaded and successfully installed package
     files are removed, otherwise not.}
