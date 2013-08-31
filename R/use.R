@@ -439,6 +439,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 ############################################################################
 # HISTORY:
 # 2013-08-31
+# o Now use() handles newlines and TABs in package strings.
 # 2013-08-30
 # o Added .parseVersion() and .parseRepos(), which are used by use().
 # o Created use() from .usePackage().
