@@ -1,23 +1,24 @@
 ###########################################################################/**
 # @RdocDefault use
 #
-# @title "Attaches or loads a package"
+# @title "Attaches or loads packages"
 #
 # \description{
 #  @get "title".
-#  If not installed, it will be installed from one of the package repositories.
+#  If a package is not installed, it will be installed from one of the
+#  repositories.
 # }
 #
 # @synopsis
 #
 # \arguments{
-#  \item{pkg}{A @character string specifying the package to be used.}
+#  \item{pkg}{A @character @vector specifying the package(s) to be used.}
+#  \item{version}{(optional) Version constraint(s) on requested package(s).}
 #  \item{how}{A @character string specifying whether the package should be attached or loaded.}
 #  \item{quietly}{If @TRUE, minimial or no messages are reported.}
 #  \item{warn.conflicts}{If @TRUE, warnings on namespace conflicts are reported, otherwise not.}
-#  \item{version}{(optional) Requested package version constraint.}
-#  \item{repos}{(optional) A @character @vector specifying where to install the package from if not already installed.}
 #  \item{install}{If @TRUE and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
+#  \item{repos}{(optional) A @character @vector specifying where to install the package from if not already installed.}
 #  \item{...}{Additional arguments passed to @see "base::require" or
 #    @see "base::requireNamespace".}
 #  \item{verbose}{If @TRUE, verbose output is generated (regardless
@@ -25,9 +26,10 @@
 # }
 #
 # \value{
-#  Returns the @see "base::package_version" of the package attached/loaded.
-#  If requested package/package version is not available and could not
-#  be installed, an error is thrown.
+#  Returns a @vector of @see "base::package_version" for each package
+#  attached/loaded.
+#  If one of the requested packages/package versions is not available
+#  and could not be installed, an error is thrown.
 # }
 #
 # \seealso{
@@ -35,10 +37,11 @@
 # }
 #
 # \examples{\dontrun{
-#   use("R.devices")
-#   use("R.devices (>= 2.5.0)")
-#   use("R.devices (>= 2.6.0)", repos=c("CRAN", "R-Forge"))
-#   use("(CRAN|R-Forge)::R.devices (>= 2.6.0)")
+#   use("digest")
+#   use("digest (>= 0.6.3)")
+#   use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
+#   use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+#   use("digest, R.rsp (>= 0.9.17)")
 # }}
 #
 # @keyword programming
@@ -178,7 +181,19 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkg':
-  pkg <- Arguments$getCharacter(pkg);
+  pkg <- Arguments$getCharacters(pkg);
+  pkg <- unlist(strsplit(pkg, split=",", fixed=TRUE));
+  pkg <- gsub("^[ ]*", "", pkg);
+  pkg <- gsub("[ ]*$", "", pkg);
+  npkgs <- length(pkg);
+
+  # Argument 'version':
+  if (!is.null(version)) {
+    version <- Arguments$getCharacters(version);
+    if (length(version) != npkgs) {
+      throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs);
+    }
+  }
 
   # Argument 'repos':
   if (is.null(repos)) {
@@ -191,12 +206,6 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # Argument 'quietly':
   quietly <- Arguments$getLogical(quietly);
 
-  # Argument 'version':
-  if (!is.null(version)) {
-    version <- Arguments$getCharacter(version);
-    version <- .parseVersion(version);
-  }
-
   # Argument 'install':
   install <- Arguments$getLogical(install);
 
@@ -208,7 +217,23 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
 
+  if (npkgs > 1L) {
+    res <- NULL;
+    for (ii in seq(length=npkgs)) {
+      resII <- use(pkg[ii], version=version[ii], repos=repos, how=how, quietly=quietly, install=install, ..., verbose=verbose);
+      if (ii == 1L) {
+        res <- resII
+      } else {
+        res <- c(res, resII);
+      }
+    }
+    return(invisible(res));
+  }
+
   verbose && enter(verbose, "Attaching/loading package");
+  if (!is.null(version)) {
+    version <- .parseVersion(version);
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Parse package and repository names
@@ -335,6 +360,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
   verbose && exit(verbose);
 
+  names(ver) <- pkg;
   invisible(ver);
 }) # use()
 

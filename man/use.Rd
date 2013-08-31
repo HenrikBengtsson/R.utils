@@ -10,11 +10,12 @@
 \alias{use.default}
 \alias{use}
 
-\title{Attaches or loads a package}
+\title{Attaches or loads packages}
 
 \description{
- Attaches or loads a package.
- If not installed, it will be installed from one of the package repositories.
+ Attaches or loads packages.
+ If a package is not installed, it will be installed from one of the
+ repositories.
 }
 
 \usage{
@@ -23,13 +24,13 @@
 }
 
 \arguments{
- \item{pkg}{A \code{\link[base]{character}} string specifying the package to be used.}
+ \item{pkg}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying the package(s) to be used.}
+ \item{version}{(optional) Version constraint(s) on requested package(s).}
  \item{how}{A \code{\link[base]{character}} string specifying whether the package should be attached or loaded.}
  \item{quietly}{If \code{\link[base:logical]{TRUE}}, minimial or no messages are reported.}
  \item{warn.conflicts}{If \code{\link[base:logical]{TRUE}}, warnings on namespace conflicts are reported, otherwise not.}
- \item{version}{(optional) Requested package version constraint.}
- \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying where to install the package from if not already installed.}
  \item{install}{If \code{\link[base:logical]{TRUE}} and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
+ \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying where to install the package from if not already installed.}
  \item{...}{Additional arguments passed to \code{\link[base]{require}}() or
    \code{\link[base]{requireNamespace}}().}
  \item{verbose}{If \code{\link[base:logical]{TRUE}}, verbose output is generated (regardless
@@ -37,9 +38,10 @@
 }
 
 \value{
- Returns the \code{\link[base]{package_version}}() of the package attached/loaded.
- If requested package/package version is not available and could not
- be installed, an error is thrown.
+ Returns a \code{\link[base]{vector}} of \code{\link[base]{package_version}}() for each package
+ attached/loaded.
+ If one of the requested packages/package versions is not available
+ and could not be installed, an error is thrown.
 }
 
 \seealso{
@@ -47,10 +49,11 @@
 }
 
 \examples{\dontrun{
-  use("R.devices")
-  use("R.devices (>= 2.5.0)")
-  use("R.devices (>= 2.6.0)", repos=c("CRAN", "R-Forge"))
-  use("(CRAN|R-Forge)::R.devices (>= 2.6.0)")
+  use("digest")
+  use("digest (>= 0.6.3)")
+  use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
+  use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+  use("digest, R.rsp (>= 0.9.17)")
 }}
 
 
