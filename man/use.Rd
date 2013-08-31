@@ -37,12 +37,21 @@
 }
 
 \value{
- Returns the version of the attached/loaded package.
+ Returns the \code{\link[base]{package_version}}() of the package attached/loaded.
+ If requested package/package version is not available and could not
+ be installed, an error is thrown.
 }
 
 \seealso{
   \code{\link[base]{library}}() and "base::install.packages".
 }
+
+\examples{\dontrun{
+  use("R.devices")
+  use("R.devices (>= 2.5.0)")
+  use("R.devices (>= 2.6.0)", repos=c("CRAN", "R-Forge"))
+  use("(CRAN|R-Forge)::R.devices (>= 2.6.0)")
+}}
 
 
 

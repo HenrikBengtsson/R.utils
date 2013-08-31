@@ -25,12 +25,21 @@
 # }
 #
 # \value{
-#  Returns the version of the attached/loaded package.
+#  Returns the @see "base::package_version" of the package attached/loaded.
+#  If requested package/package version is not available and could not
+#  be installed, an error is thrown.
 # }
 #
 # \seealso{
 #   @see "base::library" and "base::install.packages".
 # }
+#
+# \examples{\dontrun{
+#   use("R.devices")
+#   use("R.devices (>= 2.5.0)")
+#   use("R.devices (>= 2.6.0)", repos=c("CRAN", "R-Forge"))
+#   use("(CRAN|R-Forge)::R.devices (>= 2.6.0)")
+# }}
 #
 # @keyword programming
 # @keyword utilities
@@ -71,7 +80,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
         verbose && print(verbose, avail[,c("Package", "Version")]);
         if (!is.null(version)) {
           vers <- avail[,"Version", drop=TRUE];
-          keep <- (vers >= version);
+          keep <- sapply(vers, FUN=function(ver) version$test(ver));
           avail <- avail[keep,,drop=FALSE];
         }
         if (length(avail) > 0L) {
@@ -85,7 +94,17 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     } # for (kk ...)
 
     if (is.null(contriburl)) {
-      throw("Package not available for installation: ", pkg);
+      msg <- "";
+      if (isPackageInstalled(pkg)) {
+        ver <- packageVersion(pkg);
+        msg <- sprintf("Package %s v%s is already installed. ", sQuote(pkg), ver);
+      }
+      if (is.list(version)) {
+        msg <- sprintf("%sFailed to install requested version %s (%s)", msg, sQuote(pkg), version$label);
+      } else {
+        msg <- sprintf("%sFailed to install package %s", msg, sQuote(pkg));
+      }
+      throw(msg);
     }
 
     verbose && enter(verbose, "Installing package");
@@ -113,6 +132,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     }
     verbose && exit(verbose);
 
+    # Assert installed package version (TO DO)
     ver <- packageVersion(pkg);
 
     verbose && exit(verbose);
@@ -173,12 +193,8 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
   # Argument 'version':
   if (!is.null(version)) {
-    if (inherits(version, "numeric_version")) {
-    } else {
-      version <- Arguments$getCharacter(version);
-      version <- package_version(version);
-      if (is.na(version)) version <- NULL;
-    }
+    version <- Arguments$getCharacter(version);
+    version <- .parseVersion(version);
   }
 
   # Argument 'install':
@@ -197,25 +213,65 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Parse package and repository names
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  verbose && enter(verbose, "Parsing package and repository names");
-
-  pkgPattern <- "[a-zA-Z0-9.]+";
-  reposPattern <- "[(]{0,1}([-a-zA-Z0-9.|]+)[)]{0,1}";
-  pattern <- sprintf("^(%s)::(%s)$", reposPattern, pkgPattern);
-  if (regexpr(pattern, pkg) != -1L) {
+  verbose && enter(verbose, "Parsing package, version and repositories");
+  pkgOrg <- pkg;
+  parts <- unlist(strsplit(pkg, split="::"), use.names=FALSE);
+  nparts <- length(parts);
+  # Sanity check
+  if (nparts == 0L || nparts > 2L) {
+    throw("Syntax error (in usage of '::'): ", pkgOrg);
+  } else if (nparts == 1L) {
+  } else if (nparts == 2L) {
     if (!is.null(repos)) {
       throw(sprintf("Argument 'repos' (%s) must not be given if argument 'pkg' specifies a repository as well: %s", repos, pkg));
     }
-    repos <- gsub(pattern, "\\2", pkg);
-    repos <- unlist(strsplit(repos, split="|", fixed=TRUE), use.names=FALSE);
-    pkg <- gsub(pattern, "\\3", pkg);
-  } else if (is.null(repos)) {
+    repos <- parts[1L];
+    pkg <- parts[2L];
+  }
+
+  patternO <- "<|<=|==|>=|>";
+  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*";
+  pattern <- sprintf("^([^ ]+)[ ]*(|[(]((|%s)[ ]*%s)[)])", patternO, patternV);
+  if (regexpr(pattern, pkg) == -1L) {
+    throw("Syntax error (in usage after '::'): ", pkgOrg);
+  }
+  versionT <- gsub(pattern, "\\2", pkg);
+  hasVersion <- nzchar(versionT);
+  if (hasVersion) {
+    if (!is.null(version)) {
+      throw(sprintf("Argument 'version' (%s) must not be given if argument 'pkg' specifies a version constraint as well: %s", version, pkg));
+    }
+    version <- versionT;
+    version <- .parseVersion(version);
+  }
+  stopifnot(is.null(version) || is.list(version));
+
+  pkg <- gsub(pattern, "\\1", pkg);
+
+  # Parse 'repos'
+  if (!is.null(repos)) {
+    if (length(repos) > 1L) {
+      repos <- paste(repos, collapse="|");
+    }
+    repos <- .parseRepos(repos);
+    repos <- unique(repos);
+  }
+  if (is.null(repos)) {
     repos <- getOption("repos");
   }
 
   if (verbose) {
     cat(verbose, "Package: ", sQuote(pkg));
-    cat(verbose, "Repository: ", paste(sQuote(repos), collapse=", "));
+    if (is.null(version)) {
+      cat(verbose, "Version constraint: <none>");
+    } else {
+      cat(verbose, "Version constraint: ", version$label);
+    }
+    if (length(repos) == 0L) {
+      cat(verbose, "Repositories: <all registered>");
+    } else {
+      cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
+    }
   }
 
   verbose && exit(verbose);
@@ -243,17 +299,19 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   if (!is.null(version)) {
     ver <- packageVersion(pkg);
     cat(verbose, "Package version: ", ver);
-    cat(verbose, "Requested version: ", version);
+    cat(verbose, "Requested version: ", version$label);
+    res <- version$test(ver);
+    printf(verbose, "Result of test (%s %s): %s\n", ver, version$label, res);
 
     # Need to install a newer version?
-    if (ver < version) {
-      verbose && printf(verbose, "Installed version is too old: %s < %s\n", ver, version);
+    if (!res) {
+      verbose && printf(verbose, "Installed version ('%s') does meet the version requirements (%s)\n", ver, version$label);
       if (install) {
         ver <- installPkg(pkg, version=version, repos=repos, ..., quietly=quietly, verbose=verbose);
         verbose && printf(verbose, "Installed %s v%s\n", pkg, ver);
         verbose && exit(verbose);
       } else {
-        throw(sprintf("%s v%s or newer is not installed: %s", pkg, version, ver));
+        throw(sprintf("%s (%s) is not installed: %s", sQuote(pkg), version$label, ver));
       }
     }
   }
@@ -281,9 +339,72 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 }) # use()
 
 
+.parseVersion <- function(version, defaultOp="==", ...) {
+  versionOrg <- version;
+
+  # Trim
+  version <- gsub("^[ ]+", "", version);
+  version <- gsub("[ ]+$", "", version);
+
+  # Drop optional parenthesis
+  pattern <- "^[(]([^)]*)[)]$";
+  if (regexpr(pattern, version) != -1L) {
+    version <- gsub(pattern, "\\1", version);
+  }
+
+  # (a) Just a version number?
+  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*";
+  pattern <- sprintf("^%s$", patternV);
+  if (regexpr(pattern, version) != -1L) {
+    version <- sprintf("%s %s", defaultOp, version);
+  }
+
+  patternO <- "<|<=|==|>=|>";
+  pattern <- sprintf("^(%s)[ ]*(%s)$", patternO, patternV);
+  if (regexpr(pattern, version) == -1L) {
+    throw("Syntax error in specification of version constraint: ", versionOrg);
+  }
+
+  # Parse operation, version number
+  op <- gsub(pattern, "\\1", version);
+  version <- gsub(pattern, "\\2", version);
+  version <- package_version(version);
+  label <- sprintf("%s %s", op, version);
+
+  # Create test function
+  test <- function(other) {
+    do.call(op, list(other, version));
+  }
+
+  list(label=label, op=op, version=version, test=test);
+} # .parseVersion()
+
+
+
+.parseRepos <- function(repos, ...) {
+  reposOrg <- repos;
+
+  # Trim
+  repos <- gsub("^[ ]+", "", repos);
+  repos <- gsub("[ ]+$", "", repos);
+
+  # Drop optional parenthesis
+  pattern <- "^[(]([^)]*)[)]$";
+  if (regexpr(pattern, repos) != -1L) {
+    repos <- gsub(pattern, "\\1", repos);
+  }
+
+  # Split
+  repos <- unlist(strsplit(repos, split="|", fixed=TRUE), use.names=FALSE);
+
+  repos;
+} # .parseRepos()
+
+
 ############################################################################
 # HISTORY:
 # 2013-08-30
+# o Added .parseVersion() and .parseRepos(), which are used by use().
 # o Created use() from .usePackage().
 # 2013-08-26
 # o Added .usePackage().
