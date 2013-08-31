@@ -127,7 +127,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     }
 
     captureAll({
-      install.packages(pkg, contriburl=contriburl, available=avail, type=type, ..., quiet=quietly);
+      install.packages(pkg, contriburl=contriburl, available=avail, type=type, quiet=quietly, ...);
     }, echo=!quietly);
     installed <- isPackageInstalled(pkg);
     if (!installed) {
@@ -225,7 +225,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   if (npkgs > 1L) {
     res <- NULL;
     for (ii in seq(length=npkgs)) {
-      resII <- use(pkg[ii], version=version[ii], repos=repos, how=how, quietly=quietly, install=install, ..., verbose=verbose);
+      resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=repos, ..., verbose=verbose);
       if (ii == 1L) {
         res <- resII
       } else {
@@ -354,11 +354,15 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   cat(verbose, "How: ", how);
   if (how == "attach") {
     captureAll({
-      require(pkg, character.only=TRUE, quietly=quietly, warn.conflicts=warn.conflicts, ...) || throw("Package not attached: ", pkg);
+      ## NB: do.call() is needed to avoid 'R CMD check' NOTE on
+      ## "... may be used in an incorrect context". /HB 2013-08-31
+      res <- do.call(require, list(pkg, ..., quietly=quietly, warn.conflicts=warn.conflicts, character.only=TRUE));
+      if (!res) throw("Package not attached: ", pkg);
     }, echo=!quietly);
   } else if (how == "load") {
     captureAll({
-      requireNamespace(pkg, quietly=quietly, ...) || throw("Package not loaded: ", pkg);
+      res <- requireNamespace(pkg, ..., quietly=quietly);
+      if (!res) throw("Package not loaded: ", pkg);
     }, echo=!quietly);
   }
   verbose && exit(verbose);
