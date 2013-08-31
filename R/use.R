@@ -41,7 +41,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   installPkg <- function(pkg, version=NULL, repos=NULL, type=getOption("pkgType"), ..., quietly=FALSE, verbose=FALSE) {
-    verbose && enter(verbose, "Trying to install package...");
+    verbose && enter(verbose, "Trying to install package");
 
     cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
 
@@ -88,9 +88,9 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       throw("Package not available for installation: ", pkg);
     }
 
-    verbose && enter(verbose, "Installing package...");
-    verbose && enter(verbose, "Contrib URL: ", contriburl);
-    verbose && enter(verbose, "Type: ", type);
+    verbose && enter(verbose, "Installing package");
+    verbose && cat(verbose, "Contrib URL: ", contriburl);
+    verbose && cat(verbose, "Type: ", type);
     res <- suppressWarnings({capture.output({
       install.packages(pkg, contriburl=contriburl, available=avail, type=type, ..., quiet=quietly);
     })});
@@ -149,12 +149,12 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
 
-  verbose && enter(verbose, "Attaching/loading package...");
+  verbose && enter(verbose, "Attaching/loading package");
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Parse package and repository names
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  verbose && enter(verbose, "Parsing package and repository names...");
+  verbose && enter(verbose, "Parsing package and repository names");
 
   pkgPattern <- "[a-zA-Z0-9.]+";
   reposPattern <- "[(]{0,1}([-a-zA-Z0-9.|]+)[)]{0,1}";
@@ -178,7 +178,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   verbose && exit(verbose);
 
 
-  verbose && enter(verbose, "Checking package installing...");
+  verbose && enter(verbose, "Checking package installing");
   cat(verbose, "Package: ", sQuote(pkg));
   installed <- isPackageInstalled(pkg);
   if (!installed && install) {
@@ -196,7 +196,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   verbose && exit(verbose);
 
 
-  verbose && enter(verbose, "Checking requested package version...");
+  verbose && enter(verbose, "Checking requested package version");
   if (!is.null(version)) {
     ver <- packageVersion(pkg);
     cat(verbose, "Package version: ", ver);
@@ -216,15 +216,20 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
   verbose && exit(verbose);
 
-  verbose && enter(verbose, "Attaching/loading package...");
+  verbose && enter(verbose, "Attaching/loading package");
   ver <- packageVersion(pkg);
   cat(verbose, "Package: ", sQuote(pkg));
   cat(verbose, "Package version: ", ver);
   cat(verbose, "How: ", how);
-  if (how == "attach") {
-    require(pkg, character.only=TRUE, quietly=quietly, warn.conflicts=warn.conflicts, ...) || throw("Package not attached: ", pkg);
-  } else if (how == "load") {
-    requireNamespace(pkg, quietly=quietly, ...) || throw("Package not loaded: ", pkg);
+  res <- suppressMessages({
+    if (how == "attach") {
+      require(pkg, character.only=TRUE, quietly=quietly, warn.conflicts=warn.conflicts, ...) || throw("Package not attached: ", pkg);
+    } else if (how == "load") {
+      requireNamespace(pkg, quietly=quietly, ...) || throw("Package not loaded: ", pkg);
+    }
+  });
+  if (!quietly) {
+    print(res);
   }
   verbose && exit(verbose);
 
