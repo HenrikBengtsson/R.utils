@@ -160,6 +160,8 @@ S3method("toAsciiRegExprPattern", "character")
 S3method("stext", "default")
 S3method("subplots", "default")
 
+S3method("use", "default")
+
 
 # Methods on vectors, matrices, arrays and data frames
 S3method("dataFrame", "default")

@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.27.0 [2013-08-30]
+o Added use() for easy attaching/loading and automatic installation
+  of packages.
+
+
 Version: 1.26.4 [2013-08-27]
 o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
   warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
