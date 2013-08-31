@@ -5,6 +5,7 @@ Package: R.utils
 Version: 1.27.0 [2013-08-30]
 o Added use() for easy attaching/loading and automatic installation
   of packages.
+o Now isPackageInstalled() suppresses warnings.
 
 
 Version: 1.26.4 [2013-08-27]

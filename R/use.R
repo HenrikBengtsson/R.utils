@@ -62,9 +62,9 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       contriburl <- contrib.url(repos[kk], type);
       verbose && cat(verbose, "Contrib URL: ", contriburl);
 
-      res <- suppressWarnings({
+      captureAll({
         avail <- available.packages(contriburl=contriburl, type=type);
-      });
+      }, echo=!quietly);
       keep <- na.omit(match(pkg, rownames(avail)));
       avail <- avail[keep,, drop=FALSE];
       if (length(avail) > 0L) {
@@ -91,12 +91,22 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     verbose && enter(verbose, "Installing package");
     verbose && cat(verbose, "Contrib URL: ", contriburl);
     verbose && cat(verbose, "Type: ", type);
-    res <- suppressWarnings({capture.output({
-      install.packages(pkg, contriburl=contriburl, available=avail, type=type, ..., quiet=quietly);
-    })});
-    if (!quietly) {
-      print(res);
+
+    # Detach/unload namespace first?
+    if (is.element(pkg, loadedNamespaces())) {
+      verbose && enter(verbose, "Unloading package namespace before installing");
+      captureAll({
+        unloadNamespace(pkg);
+      }, echo=!quietly);
+      if (is.element(pkg, loadedNamespaces())) {
+        throw("Cannot install package. Failed to unload namespace: ", pkg);
+      }
+      verbose && exit(verbose);
     }
+
+    captureAll({
+      install.packages(pkg, contriburl=contriburl, available=avail, type=type, ..., quiet=quietly);
+    }, echo=!quietly);
     installed <- isPackageInstalled(pkg);
     if (!installed) {
       throw("Failed to install package: ", pkg);
@@ -109,6 +119,39 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
     invisible(ver);
   } # installPkg()
+
+
+  # Sink standard output and standard error?
+  captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
+    bfr <- NULL; rm(list="bfr"); # To please R CMD check
+    out <- textConnection("bfr", open="w", local=TRUE);
+    sink(file=out, type="output");
+    sink(file=out, type="message");
+    on.exit({
+      if (!is.null(out)) {
+        sink(type="message");
+        sink(type="output");
+        close(out);
+      }
+
+      # Output?
+      if (echo && length(bfr) > 0L) {
+        cat(paste(c(bfr, ""), collapse="\n"));
+      }
+    });
+
+    # Evaluate
+    eval(expr, envir=envir);
+
+    # Close
+    sink(type="message");
+    sink(type="output");
+    close(out);
+    out <- NULL;
+
+    invisible(bfr);
+  } # captureAll()
+
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -221,15 +264,14 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   cat(verbose, "Package: ", sQuote(pkg));
   cat(verbose, "Package version: ", ver);
   cat(verbose, "How: ", how);
-  res <- suppressMessages({
-    if (how == "attach") {
+  if (how == "attach") {
+    captureAll({
       require(pkg, character.only=TRUE, quietly=quietly, warn.conflicts=warn.conflicts, ...) || throw("Package not attached: ", pkg);
-    } else if (how == "load") {
+    }, echo=!quietly);
+  } else if (how == "load") {
+    captureAll({
       requireNamespace(pkg, quietly=quietly, ...) || throw("Package not loaded: ", pkg);
-    }
-  });
-  if (!quietly) {
-    print(res);
+    }, echo=!quietly);
   }
   verbose && exit(verbose);
 
