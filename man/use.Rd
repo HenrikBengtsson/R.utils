@@ -31,8 +31,8 @@
  \item{warn.conflicts}{If \code{\link[base:logical]{TRUE}}, warnings on namespace conflicts are reported, otherwise not.}
  \item{install}{If \code{\link[base:logical]{TRUE}} and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
  \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying where to install the package from if not already installed.}
- \item{...}{Additional arguments passed to \code{\link[base]{require}}() or
-   \code{\link[base]{requireNamespace}}().}
+ \item{...}{Additional \emph{named} arguments passed to
+   \code{\link[base]{require}}() or \code{\link[base]{requireNamespace}}().}
  \item{verbose}{If \code{\link[base:logical]{TRUE}}, verbose output is generated (regardless
    of \code{quietly}).}
 }

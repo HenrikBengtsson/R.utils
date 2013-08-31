@@ -19,8 +19,8 @@
 #  \item{warn.conflicts}{If @TRUE, warnings on namespace conflicts are reported, otherwise not.}
 #  \item{install}{If @TRUE and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
 #  \item{repos}{(optional) A @character @vector specifying where to install the package from if not already installed.}
-#  \item{...}{Additional arguments passed to @see "base::require" or
-#    @see "base::requireNamespace".}
+#  \item{...}{Additional \emph{named} arguments passed to
+#    @see "base::require" or @see "base::requireNamespace".}
 #  \item{verbose}{If @TRUE, verbose output is generated (regardless
 #    of \code{quietly}).}
 # }
@@ -177,8 +177,8 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 
   trim <- function(s, ...) {
-    s <- gsub("^[ ]*", "", s);
-    s <- gsub("[ ]*$", "", s);
+    s <- gsub("^[ \t\n\r]*", "", s);
+    s <- gsub("[ \t\n\r]*$", "", s);
     s;
   } # trim()
 
@@ -188,13 +188,13 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkg':
   pkg <- Arguments$getCharacters(pkg);
-  pkg <- unlist(strsplit(trim(pkg), split=",", fixed=TRUE));
+  pkg <- trim(unlist(strsplit(trim(pkg), split=",", fixed=TRUE)));
   npkgs <- length(pkg);
 
   # Argument 'version':
   if (!is.null(version)) {
     version <- Arguments$getCharacters(version);
-    version <- unlist(strsplit(trim(version), split=",", fixed=TRUE));
+    version <- trim(unlist(strsplit(trim(version), split=",", fixed=TRUE)));
     if (length(version) != npkgs) {
       throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs);
     }
@@ -430,7 +430,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
   # Split
-  repos <- unlist(strsplit(repos, split="|", fixed=TRUE), use.names=FALSE);
+  repos <- trim(unlist(strsplit(repos, split="|", fixed=TRUE), use.names=FALSE));
 
   repos;
 } # .parseRepos()
@@ -438,6 +438,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 ############################################################################
 # HISTORY:
+# 2013-08-31
 # 2013-08-30
 # o Added .parseVersion() and .parseRepos(), which are used by use().
 # o Created use() from .usePackage().
