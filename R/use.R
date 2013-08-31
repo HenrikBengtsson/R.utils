@@ -176,20 +176,25 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   } # captureAll()
 
 
+  trim <- function(s, ...) {
+    s <- gsub("^[ ]*", "", s);
+    s <- gsub("[ ]*$", "", s);
+    s;
+  } # trim()
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkg':
   pkg <- Arguments$getCharacters(pkg);
-  pkg <- unlist(strsplit(pkg, split=",", fixed=TRUE));
-  pkg <- gsub("^[ ]*", "", pkg);
-  pkg <- gsub("[ ]*$", "", pkg);
+  pkg <- unlist(strsplit(trim(pkg), split=",", fixed=TRUE));
   npkgs <- length(pkg);
 
   # Argument 'version':
   if (!is.null(version)) {
     version <- Arguments$getCharacters(version);
+    version <- unlist(strsplit(trim(version), split=",", fixed=TRUE));
     if (length(version) != npkgs) {
       throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs);
     }
