@@ -52,6 +52,50 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Sink stdout and stderr, and rethrow errors.
+  captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
+    closeAll <- function(out) {
+      if (!is.null(out)) {
+        sink(type="message");
+        sink(type="output");
+        close(out);
+      }
+      NULL;
+    } # closeAll()
+
+    bfr <- NULL; rm(list="bfr"); # To please R CMD check
+    out <- textConnection("bfr", open="w", local=TRUE);
+    sink(file=out, type="output");
+    sink(file=out, type="message");
+    on.exit({
+      out <- closeAll(out);
+      # Output?
+      if (echo && length(bfr) > 0L) {
+        cat(paste(c(bfr, ""), collapse="\n"));
+      }
+    });
+
+    # Evaluate
+    tryCatch({
+      eval(expr, envir=envir);
+    }, error = function(ex) {
+      out <<- closeAll(out);
+      # If error, output all messages...
+      if (length(bfr) > 0L) {
+        echo <<- FALSE;
+        message(bfr);
+      }
+      # ...and rethrow the error
+      throw(ex);
+    })
+
+    # Close
+    out <- closeAll(out);
+
+    invisible(bfr);
+  } # captureAll()
+
+
   installPkg <- function(pkg, version=NULL, repos=NULL, type=getOption("pkgType"), ..., quietly=FALSE, verbose=FALSE) {
     verbose && enter(verbose, "Trying to install package");
 
@@ -142,38 +186,6 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
     invisible(ver);
   } # installPkg()
-
-
-  # Sink standard output and standard error?
-  captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
-    bfr <- NULL; rm(list="bfr"); # To please R CMD check
-    out <- textConnection("bfr", open="w", local=TRUE);
-    sink(file=out, type="output");
-    sink(file=out, type="message");
-    on.exit({
-      if (!is.null(out)) {
-        sink(type="message");
-        sink(type="output");
-        close(out);
-      }
-
-      # Output?
-      if (echo && length(bfr) > 0L) {
-        cat(paste(c(bfr, ""), collapse="\n"));
-      }
-    });
-
-    # Evaluate
-    eval(expr, envir=envir);
-
-    # Close
-    sink(type="message");
-    sink(type="output");
-    close(out);
-    out <- NULL;
-
-    invisible(bfr);
-  } # captureAll()
 
 
   trim <- function(s, ...) {
@@ -439,6 +451,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 ############################################################################
 # HISTORY:
 # 2013-08-31
+# o ROBUSTNESS: Now use() rethrows exceptions "visibly", iff they occur.
 # o Now use() handles newlines and TABs in package strings.
 # 2013-08-30
 # o Added .parseVersion() and .parseRepos(), which are used by use().
