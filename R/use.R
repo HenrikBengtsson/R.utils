@@ -83,7 +83,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       # If error, output all messages...
       if (length(bfr) > 0L) {
         echo <<- FALSE;
-        message(bfr);
+        message(paste(c(bfr, ""), collapse="\n"));
       }
       # ...and rethrow the error
       throw(ex);
@@ -327,13 +327,15 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     installed <- isPackageInstalled(pkg);
   }
 
-  if (installed) {
-    ver <- packageVersion(pkg);
-    verbose && cat(verbose, "Package version: ", ver);
-  } else {
+  if (!installed) {
     cat(verbose, "Package version: <not installed>");
-    verbose && throw("Failed to attach/load package: ", pkg);
+    verbose && exit(verbose);
+    verbose && exit(verbose);
+    throw("Failed to attach/load package: ", pkg);
   }
+
+  ver <- packageVersion(pkg);
+  verbose && cat(verbose, "Package version: ", ver);
   verbose && exit(verbose);
 
 

@@ -16,3 +16,10 @@ use("tools (>= 2.5.0)")
 use(c("tools", "graphics"), version=c("(>= 2.5.0)", "(>= 2.5.0)"))
 use("tools, graphics", version="(>= 2.5.0), (>= 2.5.0)")
 use("tools (>= 2.5.0), graphics (>= 2.5.0)")
+
+# Exception should be visible
+tryCatch({
+  use("NonExistingPackage", install=FALSE)
+}, error = function(ex) {
+  print(ex);
+})
