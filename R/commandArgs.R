@@ -382,16 +382,16 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         argsT[[ii]]$value <- TRUE;
       } # for (ii ...)
 
+      # Special case: Rescue missing value in argsT[[<last>]]?
+      argT <- argsT[[nargsT]];
+      if (length(argT) > 0L && is.null(argT$value)) {
+        argsT[[nargsT]]$value <- TRUE;
+      }
+
       # Drop empty
       keep <- (sapply(argsT, FUN=length) > 0L);
       argsT <- argsT[keep];
       nargsT <- length(argsT);
-    }
-
-    # Special case: Rescue missing value in argsT[[<last>]]?
-    argT <- argsT[[nargsT]];
-    if (length(argT) > 0L && is.null(argT$value)) {
-      argsT[[nargsT]]$value <- TRUE;
     }
 
     keys <- unlist(lapply(argsT, FUN=function(x) x$key));

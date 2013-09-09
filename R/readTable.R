@@ -152,11 +152,8 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the formals of read.table()
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (compareVersion(as.character(getRversion()), "2.5.0") < 0) {
-    formals <- formals(base::read.table);
-  } else {
-    formals <- formals(utils::read.table);
-  }
+  formals <- formals(utils::read.table);
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Read the header
@@ -374,6 +371,10 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
 ############################################################################
 # HISTORY:
+# 2013-09-10
+# o CLEANUP: readTable() no longer looks for read.table() in the 'base'
+#   package, where it was in R < 2.5.0, because package now requires
+#   R >= 2.5.0.
 # 2007-05-10
 # o BUG FIX: readTable() tried to access base::read.table() but that was
 #   moved to 'utils' as of R v2.5.0.
