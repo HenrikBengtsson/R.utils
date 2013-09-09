@@ -388,6 +388,12 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       nargsT <- length(argsT);
     }
 
+    # Special case: Rescue missing value in argsT[[<last>]]?
+    argT <- argsT[[nargsT]];
+    if (length(argT) > 0L && is.null(argT$value)) {
+      argsT[[nargsT]]$value <- TRUE;
+    }
+
     keys <- unlist(lapply(argsT, FUN=function(x) x$key));
     args <- lapply(argsT, FUN=function(x) x$value);
     names(args) <- keys;
@@ -488,6 +494,11 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 ############################################################################
 # HISTORY:
+# 2013-09-10
+# o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
+#   the very last argument to TRUE if it was a flag, e.g.
+#   'R --args --bar'.  Thanks to Stijn van Dongen at EMBL-EBI in
+#   Cambridge/Hinxton, UK for reporting on this.
 # 2013-03-20
 # o Added argument 'trailingOnly' to commandArgs().
 # 2013-03-07

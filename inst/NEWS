@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.27.1 [2013-09-10]
+o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
+  the very last argument to TRUE if it was a flag, e.g.
+  'R --args --bar'.  Thanks to Stijn van Dongen at EMBL-EBI in
+  Cambridge/Hinxton, UK for reporting on this.
+
+
 Version: 1.27.0 [2013-08-30]
 o Added use() for easy attaching/loading and automatic installation
   of packages.
