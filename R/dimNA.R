@@ -47,7 +47,7 @@ if (!exists("dimNA<-", mode="function")) {
 #
 # @keyword file
 # @keyword IO
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("dimNA<-", "default", function(x, value) {
   # Argument 'x':
   n <- length(x);
@@ -65,10 +65,10 @@ setMethodS3("dimNA<-", "default", function(x, value) {
       }
       value[nas] <- as.integer(n / prod(value[-nas]));
     }
-  
+
     # Validate the new dimension is compatible with the number of elements
     if (prod(value) != n) {
-      stop("Argument 'dim' does not match the number of files: ",
+      stop("Argument 'dim' does not match the number of elements: ",
            "prod(", dimStr, ") == ", prod(value), " does not equal ", n);
     }
   }
@@ -82,6 +82,9 @@ setMethodS3("dimNA<-", "default", function(x, value) {
 
 ############################################################################
 # HISTORY:
+# 2013-09-15
+# o TYPO: An error message of dimNA<-() was referring to 'files' rather
+#   than to 'elements.
 # 2009-06-08
 # o Added Rdoc comments.
 # o The generic function automatically created for dimNA<-() has arguments

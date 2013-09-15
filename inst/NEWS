@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.27.2 [2013-09-15]
+o TYPO: An error message of dimNA<-() was referring to 'files'
+  rather than to 'elements'.
+
+
 Version: 1.27.1 [2013-09-10]
 o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
   the very last argument to TRUE if it was a flag, e.g.
