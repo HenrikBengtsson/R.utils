@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.17.3 [2013-09-20]
+o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
+
+
 Version: 1.27.2 [2013-09-15]
 o TYPO: An error message of dimNA<-() was referring to 'files'
   rather than to 'elements'.
