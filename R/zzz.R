@@ -3,13 +3,13 @@
 .conflicts.OK <- TRUE;
 
 .onLoad <- function(libname, pkgname) {
-  ns <- asNamespace(pkgname);
-  # This make print(R.utils::R.utils) work without loading the package
-  delayedAssign(pkgname, Package(pkgname), assign.env=ns);
+  ns <- getNamespace(pkgname);
+  pkg <- Package(pkgname);
+  assign(pkgname, pkg, envir=ns);
 } # .onLoad()
 
 
-.onAttach <- function(libname, pkgname) { 
+.onAttach <- function(libname, pkgname) {
   pos <- which(sprintf("package:%s", pkgname) == search());
 
   if (length(pos) == 1L) {
@@ -18,11 +18,11 @@
 
     # Patch for default parse() depending on R version
 #    env <- as.environment("package:R.utils");
-#    setMethodS3("parse", "default", appendVarArgs(base::parse), 
+#    setMethodS3("parse", "default", appendVarArgs(base::parse),
 #                                       conflict="quiet");
 #    assign("parse.default", parse.default, pos=pos);
 #    assignInNamespace("parse.default", parse.default, pos=pos);
-  
+
     # Make .Last() call finalizeSession() when R finishes.
     tryCatch({
       addFinalizerToLast();
@@ -31,13 +31,10 @@
       warning(msg, call.=FALSE, immediate.=TRUE);
     })
 
-    pkg <- Package(pkgname);
-    assign(pkgname, pkg, pos=pos);
-
     onSessionExit(function(...) detachPackage(pkgname));
-
-    startupMessage(pkg);
   } # if (length(pos) == 1L)
+
+  startupMessage(get(pkgname, envir=getNamespace(pkgname)));
 } # .onAttach()
 
 
@@ -51,8 +48,9 @@
   }
 } # .Last.lib()
 
+
 ############################################################################
-# HISTORY: 
+# HISTORY:
 # 2012-03-20
 # o BUG FIX: .onAttach() would try to call getMessage(ex) on an 'error'
 #   if there was a problem adding a finalizer, resulting in "no applicable
@@ -65,8 +63,8 @@
 # 2007-06-09
 # o Added "declaration" of '.LastOriginal' in .Last.lib().
 # 2006-05-09
-# o Added dynamic assignment of patch.default() since the .Internal() call 
-#   in base::parse() use different arguments in R v2.4.1 and R v2.5.0.  
+# o Added dynamic assignment of patch.default() since the .Internal() call
+#   in base::parse() use different arguments in R v2.4.1 and R v2.5.0.
 #   one depending on R version.
 # 2005-06-23
 # o Added default Verbose object 'verbose'.

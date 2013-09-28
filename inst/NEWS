@@ -2,7 +2,12 @@
 Package: R.utils
 ================
 
-Version: 1.17.3 [2013-09-20]
+Version: 1.27.4 [2013-09-28]
+o Now the 'R.utils' Package object is also available when the
+  package is only loaded (but not attached).
+
+
+Version: 1.27.3 [2013-09-20]
 o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
 
 
