@@ -79,17 +79,17 @@ setMethodS3("listDirectory", "default", function(path=".", pattern=NULL, recursi
   if (depth > 0L) {
     for (dir in dirs) {
       if (fullNames) {
-        path <- dir;
+        pathT <- dir;
       } else {
-        path <- filePath(relPath, dir);
+        pathT <- filePath(relPath, dir);
       }
-      if (isDirectory(path)) {
+      if (isDirectory(pathT)) {
         # Protect against inifinite loops/depth
-        if (identical(path, path) && is.infinite(depth)) {
+        if (identical(pathT, path) && is.infinite(depth)) {
           throw("Internal error: Detected infinite recursive call in listDirectory(): ", path);
         }
-        subfiles <- listDirectory(path, pattern=pattern, recursive=depth-1,
-                             allNames=allNames, fullNames=fullNames, ...);
+        subfiles <- listDirectory(pathT, pattern=pattern, recursive=depth-1,
+                               allNames=allNames, fullNames=fullNames, ...);
         if (!fullNames) {
           subfiles <- file.path(dir, subfiles);
         }
