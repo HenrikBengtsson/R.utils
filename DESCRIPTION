@@ -7,7 +7,7 @@ Date: 2013-09-28
 Title: Various programming utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
-Author: Henrik Bengtsson
+Author: Henrik Bengtsson [aut, cre, cph]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: This package provides utility methods useful when programming and developing R packages.
 License: LGPL (>= 2.1)

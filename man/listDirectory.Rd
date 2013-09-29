@@ -21,16 +21,18 @@
 }
 
 \usage{
-\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE,
+\method{listDirectory}{default}(path=".", pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE,
   ...)
 }
 
 \arguments{
-  \item{pathname}{A pathname to be listed.}
+  \item{path}{A path to be listed.}
   \item{pattern}{A \code{\link[base]{character}} string of the filename pattern passed. See
    \code{\link[base]{list.files}}() for more details.}
   \item{recursive}{If \code{\link[base:logical]{TRUE}}, subdirectories are recursively processed,
-   otherwise not.}
+   and not if \code{\link[base:logical]{FALSE}}.  Alternatively, the maximum recursive depth can
+   be specified as a non-negative @number, where \code{\link[base:logical]{FALSE}} corresponds to
+   \code{0L} depth and \code{\link[base:logical]{TRUE}} corresponds \code{+Inf} depth.}
   \item{allNames}{If \code{\link[base:logical]{TRUE}}, also files starting with a period are returned.}
   \item{fullNames}{If \code{\link[base:logical]{TRUE}}, the full path names are returned.}
   \item{...}{Not used.}

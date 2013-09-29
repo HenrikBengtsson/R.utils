@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.27.4 [2013-09-28]
+o Now argument 'recursive' of listDirectory() can also specify the
+  maximum recursive depth, e.g listDirectory(..., recursive=5L).
 o Now the 'R.utils' Package object is also available when the
   package is only loaded (but not attached).
 
