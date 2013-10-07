@@ -1,7 +1,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-importFrom("R.methodsS3", "appendVarArgs")
 importFrom("R.methodsS3", "throw")
 
 ## OO related
@@ -73,6 +72,7 @@ S3method("isOpen", "default")
 S3method("inherits", "default")
 S3method("parse", "default")
 S3method("cat", "default")
+S3method("getOption", "default")
 
 
 # Methods on manipulating files

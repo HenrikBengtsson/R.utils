@@ -5,6 +5,9 @@ Package: R.utils
 Version: 1.27.5 [2013-10-07]
 o CLEANUP: Now explicitly importing only what is needed in NAMESPACE.
 o CLEANUP: Dropped obsolete autoload():s.
+o ROBUSTNESS: The overriding of getOption() to become a generic 
+  function does now call base::getOption() in the default, instead
+  of copy the latter.
 o Bumped up package dependencies.
 
 

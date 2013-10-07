@@ -4,7 +4,11 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Methods in 'base'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-getOption <- appendVarArgs(getOption);
+# USED TO DO: getOption <- appendVarArgs(getOption);
+getOption <- function(...) UseMethod("getOption");
+setMethodS3("getOption", "default", function(...) {
+  base::getOption(...);
+})
 
 # USED TO DO: inherits <- appendVarArgs(inherits)
 inherits <- function(...) UseMethod("inherits");
