@@ -95,6 +95,8 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
   # Install each package requested
   for (kk in seq(along=pkgs)) {
     pkg <- pkgs[kk];
+    type <- types[kk];
+
     if (isUrl(pkg)) {
       url <- pkg;
       filename <- basename(url);
@@ -106,7 +108,7 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
         throw("Failed to download package file: ", url);
       }
 
-      install.packages(pathname, repos=NULL, type=types[kk], ...);
+      install.packages(pathname, repos=NULL, type=type, ...);
 
       if (cleanup) {
         file.remove(pathname);
@@ -115,7 +117,7 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
         }
       }
     } else {
-      install.packages(pkg, repos=repos, type=types[kk], ...);
+      install.packages(pkg, repos=repos, type=type, ...);
     }
   } # for (kk ...)
 

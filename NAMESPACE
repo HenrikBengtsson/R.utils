@@ -1,20 +1,57 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-importFrom("R.methodsS3", "setMethodS3")
-importFrom("R.methodsS3", "throw")
 importFrom("R.methodsS3", "appendVarArgs")
+importFrom("R.methodsS3", "throw")
 
-import("R.oo")
+## OO related
+importFrom("R.methodsS3", "setMethodS3")
+importFrom("R.oo", "setConstructorS3")
+importFrom("R.oo", "extend")
+importFrom("R.oo", "Object")
 
-# utils:
-import("utils")
-## importFrom("utils", download.file)
-## importFrom("utils", str)
-## importFrom("utils", write.table)
+## Importing generics
+importFrom("R.oo", "attachLocally")
+importFrom("R.oo", "check")
+importFrom("R.oo", "compile")
+importFrom("R.oo", "equals")
+importFrom("R.oo", "getEnvironment")
+importFrom("R.oo", "getMessage")
+importFrom("R.oo", "isVisible")
 
-# methods:
+## Importing functions
+importFrom("R.oo", "charToInt")
+importFrom("R.oo", "clone")
+importFrom("R.oo", "detach") ## Multi-sources: R.oo, base
+importFrom("R.oo", "Exception")
+importFrom("R.oo", "getFields")
+importFrom("R.oo", "intToChar")
+importFrom("R.oo", "Package")
+importFrom("R.oo", "save") ## Multi-sources: R.oo, base
+importFrom("R.oo", "startupMessage")
+importFrom("R.oo", "trim")
+
+## More functions
 importFrom("methods", "as")
+importFrom("utils", "str")
+importFrom("utils", "available.packages")
+importFrom("utils", "capture.output")
+importFrom("utils", "compareVersion")
+importFrom("utils", "contrib.url")
+importFrom("utils", "download.file")
+importFrom("utils", "flush.console")
+importFrom("utils", "head")
+importFrom("utils", "help")
+importFrom("utils", "install.packages")
+importFrom("utils", "object.size")
+importFrom("utils", "packageDescription")
+importFrom("utils", "packageVersion")
+importFrom("utils", "read.table")
+importFrom("utils", "type.convert")
+importFrom("utils", "write.table")
+
+# Manual fixes
+importFrom("R.oo", "load") ## Multi-sources: R.oo, base
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,9 +63,6 @@ exportPattern("^[^\\.]")
 
 # .Last.lib needs to be exported in order to be used.
 export(.Last.lib)
-
-# Object that must exported explicitly
-export(.conflicts.OK)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

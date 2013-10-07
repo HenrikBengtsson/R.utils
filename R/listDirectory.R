@@ -76,7 +76,7 @@ setMethodS3("listDirectory", "default", function(path=".", pattern=NULL, recursi
                                                full.names=fullNames, ...);
   }
 
-  if (depth > 0L) {
+  if (depth > 0) {
     for (dir in dirs) {
       if (fullNames) {
         pathT <- dir;

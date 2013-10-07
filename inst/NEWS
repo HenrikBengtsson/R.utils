@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.27.5 [2013-10-07]
+o CLEANUP: Now explicitly importing only what is needed in NAMESPACE.
+o CLEANUP: Dropped obsolete autoload():s.
+o Bumped up package dependencies.
+
+
 Version: 1.27.4 [2013-09-28]
 o Now argument 'recursive' of listDirectory() can also specify the
   maximum recursive depth, e.g listDirectory(..., recursive=5L).
