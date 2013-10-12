@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.27.6 [2013-10-12]
+o Bumped up package dependencies.
+
+
 Version: 1.27.5 [2013-10-07]
 o CLEANUP: Now explicitly importing only what is needed in NAMESPACE.
 o CLEANUP: Dropped obsolete autoload():s.
