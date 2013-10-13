@@ -72,10 +72,12 @@
 \section{How to cite this package}{
   Whenever using this package, please cite [1] as
 
-  \preformatted{Bengtsson, H. The R.oo package - Object-Oriented Programming with References Using
+  \preformatted{
+Bengtsson, H. The R.oo package - Object-Oriented Programming with References Using
 Standard R Code, Proceedings of the 3rd International Workshop on Distributed
 Statistical Computing (DSC 2003), ISSN 1609-395X, Hornik, K.; Leisch, F. & Zeileis,
-A. (ed.), 2003}
+A. (ed.), 2003
+}
 \emph{}
 
 }
