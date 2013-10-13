@@ -41,8 +41,6 @@
 # @keyword file
 #*/#########################################################################
 setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=getOption("repos"), ..., destPath=".", cleanup=TRUE) {
-  require("R.utils") || throw("Package not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -128,6 +126,8 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
 
 ###############################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: installPackages() no longer attaches 'R.utils'.
 # 2013-08-27
 # o BUG FIX: The exception thrown by installPackages() for unknown
 #   filename extensions would itself generate an error.

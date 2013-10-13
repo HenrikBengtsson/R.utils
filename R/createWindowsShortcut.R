@@ -40,8 +40,6 @@
 # @keyword IO
 #*/###########################################################################
 setMethodS3("createWindowsShortcut", "default", function(pathname, target, overwrite=FALSE, ...) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,6 +158,8 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
 #############################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: createWindowsShortcut() no longer attaches 'R.utils'.
 # 2012-10-29
 # o ROBUSTNESS: Now createWindowsShortcut() uses an improved validation
 #   strategy of the created *.lnk file.

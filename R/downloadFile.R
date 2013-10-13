@@ -57,8 +57,6 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("downloadFile", "character", function(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -223,6 +221,8 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
 ############################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: downloadFile() no longer attaches 'R.utils'.
 # 2013-03-29
 # o BUG FIX: downloadFile('https://...') did not work if 'username' or
 #   'password' was NULL.

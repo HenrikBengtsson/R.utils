@@ -50,8 +50,6 @@
 # @keyword IO
 #*/###########################################################################
 setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite, overwrite=FALSE, methods=getOption("createLink/args/methods", c("unix-symlink", "windows-ntfs-symlink", "windows-shortcut")), ...) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -192,6 +190,8 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: createLink() no longer attaches 'R.utils'.
 # 2012-11-01
 # o Updated the Rd help.
 # 2012-09-26

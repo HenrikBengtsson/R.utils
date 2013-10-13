@@ -29,8 +29,6 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE, recursive=TRUE) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -73,6 +71,8 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
 
 ##############################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: copyDirectory() no longer attaches 'R.utils'.
 # 2005-09-06
 # o Using relative paths instead of absolute; sometimes you have permission
 #   to read the relative but not the absolute pathname of the same file.

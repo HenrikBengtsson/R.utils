@@ -35,8 +35,6 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustExist=TRUE, ...) {
-  require("R.utils") || throw("Package  not loaded: R.utils");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -70,6 +68,8 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
 ###########################################################################
 # HISTORY:
+# 2013-10-13
+# o CLEANUP: removeDirectory() no longer attaches 'R.utils'.
 # 2010-11-17
 # o BUG FIX: Now removeDirectory() also works for paths starting with
 #   a tilde (~).  The reason was/is that base::unlink() used internally
