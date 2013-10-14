@@ -5,7 +5,7 @@
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
   pkg <- Package(pkgname);
-  assign(pkgname, pkg, envir=ns);
+  assign(pkgname, pkg, envir=ns, inherits=FALSE);
 } # .onLoad()
 
 
@@ -34,7 +34,8 @@
     onSessionExit(function(...) detachPackage(pkgname));
   } # if (length(pos) == 1L)
 
-  startupMessage(get(pkgname, envir=getNamespace(pkgname)));
+  pkg <- get(pkgname, envir=getNamespace(pkgname), inherits=FALSE);
+  startupMessage(pkg);
 } # .onAttach()
 
 
