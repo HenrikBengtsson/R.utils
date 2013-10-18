@@ -1,7 +1,3 @@
-# Allows conflicts. For more information, see library() and
-# conflicts() in [R] base.
-.conflicts.OK <- TRUE;
-
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
   pkg <- Package(pkgname);

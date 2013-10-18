@@ -1,13 +1,14 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-importFrom("R.methodsS3", "throw")
-
-## OO related
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.oo", "setConstructorS3")
 importFrom("R.oo", "extend")
+importFrom("R.methodsS3", "throw")
+
+## Importing Class:es
 importFrom("R.oo", "Object")
+importFrom("R.oo", "Package")
 
 ## Importing generics
 importFrom("R.oo", "attachLocally")
@@ -25,7 +26,6 @@ importFrom("R.oo", "detach") ## Multi-sources: R.oo, base
 importFrom("R.oo", "Exception")
 importFrom("R.oo", "getFields")
 importFrom("R.oo", "intToChar")
-importFrom("R.oo", "Package")
 importFrom("R.oo", "save") ## Multi-sources: R.oo, base
 importFrom("R.oo", "startupMessage")
 importFrom("R.oo", "trim")

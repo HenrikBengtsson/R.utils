@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.28.0 [2013-10-18]
+o CLEANUP: Removed a few non-used internal objects.
+
+
 Version: 1.27.6 [2013-10-13]
 o CLEANUP: Some methods had to attach 'R.utils' in the past in order
   to work properly.  These are no longer attaching 'R.utils':
