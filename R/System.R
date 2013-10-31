@@ -916,15 +916,17 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
   pattern <- "^(.:).*[ ]*=>[ ]*(.*)[ ]*";
   drives <- gsub(pattern, "\\1", mounts);
   paths <- gsub(pattern, "\\2", mounts);
+  paths <- trim(paths);
   names(paths) <- drives;
   paths1 <- paths;
 
   # (1) By 'net use'
   mounts <- system("net use", intern=TRUE);
-  pattern <- "^(.*)[ ]+(.:)[ ]+([^ ]*)[ ]+(.*)$";
+  pattern <- "^(.*)[ ]+(.:)[ ]+(.*)[ ]+(.*)$";
   mounts <- grep(pattern, mounts, value=TRUE);
   drives <- gsub(pattern, "\\2", mounts);
   paths <- gsub(pattern, "\\3", mounts);
+  paths <- trim(paths);
   names(paths) <- drives;
   paths2 <- paths;
 
@@ -945,6 +947,10 @@ setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-10-30
+# o BUG FIX: System$getMappedDrivesOnWindows() failed to return the
+#   proper path for 'net use' mounted drives, iff the path contained
+#   spaces.
 # 2013-07-30
 # o ROBUSTNESS/BUG FIX: System$findGraphicsDevice() could still give
 #   errors.  Completely rewrote how Ghostscripts is searched.  On Windows,

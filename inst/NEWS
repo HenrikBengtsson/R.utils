@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.28.1 [2013-10-30]
+o BUG FIX: System$getMappedDrivesOnWindows() failed to return the
+  proper path for 'net use' mounted drives, iff the path contained
+  spaces.
+
+
 Version: 1.28.0 [2013-10-20]
 o CLEANUP: Removed a few non-used internal objects.
 o Forgot to declare enterf() for Verbose as an S3 method.
