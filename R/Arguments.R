@@ -805,9 +805,13 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
     throw(sprintf("Argument 'range' is not ordered: c(%s,%s)", range[1], range[2]));
   }
 
-  withCallingHandlers({
-    xrange <- range(x, na.rm=TRUE);
-  }, warnings=function(warn) {})
+  # Get range(x, na.rm=TRUE) without warnings
+  x <- x[!is.na(x)];
+  if (length(x) == 0L) {
+    xrange <- c(Inf, -Inf);
+  } else {
+    xrange <- range(x);
+  }
   if (xrange[1] < range[1] || xrange[2] > range[2]) {
     xrange <- as.character(xrange);
     range <- as.character(range);
@@ -1294,6 +1298,9 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2013-11-15
+# o CLEANUP: Arguments$getNumerics(NA, range=c(0,1)) no longer gives
+#   warnings on "no non-missing arguments to min()" etc.
 # 2013-08-26
 # o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
 #   warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
