@@ -1,7 +1,7 @@
 setConstructorS3("GenericSummary", function(s="", ...) {
   class(s) <- "GenericSummary";
   s;
-}, private=TRUE)
+}, protected=TRUE)
 
 setMethodS3("print", "GenericSummary", function(x, ..., collapse="\n") {
   # To please R CMD check
@@ -10,14 +10,21 @@ setMethodS3("print", "GenericSummary", function(x, ..., collapse="\n") {
   s <- as.character(this);
   s <- paste(s, collapse=collapse);
   cat(s, collapse, sep="");
-}, private=TRUE)
+}, protected=TRUE)
+
+setMethodS3("c", "GenericSummary", function(x, ...) {
+  s <- NextMethod("c");
+  class(s) <- class(x);
+  s;
+}, protected=TRUE)
+
 
 # setMethodS3("as.character", "GenericSummary", function(this, ..., indent="  ") {
 #    toString <- function(s, currIndent="") {
 #      if (is.list(s)) {
 #        s <- sapply(s, FUN=function(x) {
-#          paste(currIndent, 
-#                toString(x, currIndent=paste(currIndent, indent, sep="")), 
+#          paste(currIndent,
+#                toString(x, currIndent=paste(currIndent, indent, sep="")),
 #                sep="");
 #        })
 #        unlist(s, use.names=FALSE);
@@ -25,13 +32,15 @@ setMethodS3("print", "GenericSummary", function(x, ..., collapse="\n") {
 #        s;
 #      }
 #    }
-# 
+#
 #    toString(this);
 # })
 
 
 ############################################################################
 # HISTORY:
+# 2013-11-16
+# o Added c() for GenericSummary.
 # 2009-12-30
 # o Moved from aroma.core to R.utils.
 # 2007-01-13

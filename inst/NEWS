@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.28.3 [2013-11-15]
+o Added method c() for GenericSummary.
+
+
 Version: 1.28.2 [2013-11-15]
 o CLEANUP: Arguments$getNumerics(NA, range=c(0,1)) no longer gives
   warnings on "no non-missing arguments to min()" etc.

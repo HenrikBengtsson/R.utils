@@ -260,6 +260,7 @@ S3method("check", "Assert")
 
 
 # GenericSummary
+S3method("c", "GenericSummary")
 S3method("print", "GenericSummary")
 
 
