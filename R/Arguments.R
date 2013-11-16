@@ -805,14 +805,10 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
     throw(sprintf("Argument 'range' is not ordered: c(%s,%s)", range[1], range[2]));
   }
 
-  # Get range(x, na.rm=TRUE) without warnings
-  xT <- x[!is.na(x)];
-  if (length(xT) == 0L) {
-    xrange <- c(Inf, -Inf);
-  } else {
-    xrange <- range(xT);
-  }
-  xT <- NULL; # Not needed anymore
+  # Suppress warnings when there are no finite values in x.
+  suppressWarnings({
+    xrange <- range(x, na.rm=TRUE);
+  })
 
   if (xrange[1] < range[1] || xrange[2] > range[2]) {
     xrange <- as.character(xrange);
