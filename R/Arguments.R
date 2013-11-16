@@ -806,12 +806,14 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=N
   }
 
   # Get range(x, na.rm=TRUE) without warnings
-  x <- x[!is.na(x)];
-  if (length(x) == 0L) {
+  xT <- x[!is.na(x)];
+  if (length(xT) == 0L) {
     xrange <- c(Inf, -Inf);
   } else {
-    xrange <- range(x);
+    xrange <- range(xT);
   }
+  xT <- NULL; # Not needed anymore
+
   if (xrange[1] < range[1] || xrange[2] > range[2]) {
     xrange <- as.character(xrange);
     range <- as.character(range);
