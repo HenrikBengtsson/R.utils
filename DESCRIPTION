@@ -1,9 +1,9 @@
 Package: R.utils
-Version: 1.28.3
+Version: 1.28.4
 Depends: R (>= 2.5.0), R.oo (>= 1.15.8)
 Imports: utils, methods, R.methodsS3 (>= 1.5.2)
 Suggests: digest (>= 0.6.3)
-Date: 2013-11-16
+Date: 2013-11-20
 Title: Various programming utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))

@@ -11,6 +11,7 @@ MAKE=make
 MV=mv
 RM=rm -f
 MKDIR=mkdir -p
+RMDIR=$(RM) -r
 
 # PACKAGE MACROS
 PKG_VERSION := $(shell grep -i ^version DESCRIPTION | cut -d : -d \  -f 2)
@@ -220,6 +221,7 @@ vignettes: ../$(R_OUTDIR)/vigns
 
 # Run package tests
 ../$(R_OUTDIR)/tests/%.R: $(FILES_TESTS)
+	$(RMDIR) ../$(R_OUTDIR)/tests
 	$(MKDIR) ../$(R_OUTDIR)/tests
 	$(CP) $? ../$(R_OUTDIR)/tests
 
