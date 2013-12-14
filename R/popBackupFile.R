@@ -14,7 +14,7 @@
 #   \item{filename}{The filename of the backup file.}
 #   \item{path}{The path of the file.}
 #   \item{suffix}{The suffix of the filename to be dropped.}
-#   \item{isFile}{If @TRUE, the backup file must exist and 
+#   \item{isFile}{If @TRUE, the backup file must exist and
 #      will be renamed.  If @FALSE, it is only the pathname string
 #      that will be modified. For details, see below.}
 #   \item{onMissing}{A @character string specifying what to do if the
@@ -30,15 +30,15 @@
 # }
 #
 # @author
-# 
+#
 # \seealso{
 #  See @see "pushBackupFile" for more details and an example.
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
 # @keyword "IO"
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".bak", isFile=TRUE, onMissing=c("ignore", "error"), drop=TRUE, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -51,7 +51,7 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
 
   # Argument 'filename' & 'path':
   if (!is.null(filename)) {
-    pathnameB <- Arguments$getWritablePathname(filename, path=path, 
+    pathnameB <- Arguments$getWritablePathname(filename, path=path,
                                 mustExist=(isFile && (onMissing == "error")));
   } else {
     pathnameB <- NULL;
@@ -80,7 +80,7 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
 
   verbose && cat(verbose, "Backup pathname: ", pathnameB);
   verbose && cat(verbose, "Suffix: ", suffix);
-  
+
   # Drop suffix from backup pathname
   pattern <- sprintf("%s$", suffix);
   pattern <- gsub(".", "\\.", pattern, fixed=TRUE);
@@ -105,7 +105,7 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
     verbose && exit(verbose);
 
     verbose && exit(verbose);
-    return(pathname);    
+    return(pathname);
   }
 
   pathname <- Arguments$getWritablePathname(pathname, mustNotExist=TRUE);
