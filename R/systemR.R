@@ -16,11 +16,11 @@
 #         call.  If a @vector, then the strings are concatenated separated
 #         with a space.}
 #   \item{...}{Additional arguments passed to @see "base::system".}
-#   \item{Rcommand}{A @character string specifying the basename of 
+#   \item{Rcommand}{A @character string specifying the basename of
 #    the R executable.}
 #   \item{verbose}{A @logical or a @see "Verbose" object.}
 # }
-# 
+#
 # \value{
 #   Returns what @see "base::system" returns.
 # }
@@ -28,7 +28,7 @@
 # @examples "../incl/systemR.Rex"
 #
 # @author
-# 
+#
 # \references{
 #  [1] R-devel thread 'Best way to locate R executable from within R?',
 #      May 22, 2012.
@@ -64,7 +64,7 @@ setMethodS3("systemR", "default", function(command="", ..., Rcommand="R", verbos
   }
 
 
-  # Setup the full system command 
+  # Setup the full system command
   Rbin <- file.path(Rpath, Rcommand);
   command <- paste(command, collapse=" ");
   command <- paste(command, sep=" ");
