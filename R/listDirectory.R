@@ -19,7 +19,7 @@
 #    @see "base::list.files" for more details.}
 #   \item{recursive}{If @TRUE, subdirectories are recursively processed,
 #    and not if @FALSE.  Alternatively, the maximum recursive depth can
-#    be specified as a non-negative @number, where @FALSE corresponds to
+#    be specified as a non-negative @numeric, where @FALSE corresponds to
 #    \code{0L} depth and @TRUE corresponds \code{+Inf} depth.}
 #   \item{allNames}{If @TRUE, also files starting with a period are returned.}
 #   \item{fullNames}{If @TRUE, the full path names are returned.}
