@@ -31,7 +31,7 @@
    \code{\link[base]{list.files}}() for more details.}
   \item{recursive}{If \code{\link[base:logical]{TRUE}}, subdirectories are recursively processed,
    and not if \code{\link[base:logical]{FALSE}}.  Alternatively, the maximum recursive depth can
-   be specified as a non-negative @number, where \code{\link[base:logical]{FALSE}} corresponds to
+   be specified as a non-negative \code{\link[base]{numeric}}, where \code{\link[base:logical]{FALSE}} corresponds to
    \code{0L} depth and \code{\link[base:logical]{TRUE}} corresponds \code{+Inf} depth.}
   \item{allNames}{If \code{\link[base:logical]{TRUE}}, also files starting with a period are returned.}
   \item{fullNames}{If \code{\link[base:logical]{TRUE}}, the full path names are returned.}

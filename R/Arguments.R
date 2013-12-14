@@ -40,6 +40,7 @@ setConstructorS3("Arguments", function(...) {
 #     filenames.}
 #   \item{.name}{The name of the argument validated.}
 #   \item{.type}{Not used.}
+#   \item{...}{Not used.}
 # }
 #
 # \value{
@@ -326,7 +327,7 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 
   pathnames <- list();
   for (kk in seq(length=nbrOfFiles)) {
-    pathnames[[kk]] <- Arguments$getReadablePathname(files[kk],
+    pathnames[[kk]] <- getReadablePathname(static, files[kk],
                                                        path=paths[kk], ...);
   }
 
@@ -653,7 +654,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...) {
+setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=getOption("R.utils::Arguments$getCharacters", TRUE), .name=NULL, ...) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(s)));
 
@@ -1273,10 +1274,10 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'class':
-  class <- Arguments$getCharacter(class);
+  class <- getCharacter(static, class);
 
   # Argument 'coerce':
-  coerce <- Arguments$getLogical(coerce);
+  coerce <- getLogical(static, coerce);
 
   # Argument 'object':
   if (!inherits(object, class)) {
@@ -1296,6 +1297,12 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2013-12-13
+# o Now argument 'asGString' for Arguments$getCharacters() defaults to
+#   getOption("R.utils::Arguments$getCharacters", TRUE).  This makes it
+#   possible to disable this feature, even when it is not possible to
+#   directly pass that argument.  This will also make it possible to
+#   set the default to FALSE in the future (instead of TRUE as today).
 # 2013-11-15
 # o CLEANUP: Arguments$getNumerics(NA, range=c(0,1)) no longer gives
 #   warnings on "no non-missing arguments to min()" etc.

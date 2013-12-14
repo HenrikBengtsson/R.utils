@@ -36,6 +36,7 @@
     filenames.}
   \item{.name}{The name of the argument validated.}
   \item{.type}{Not used.}
+  \item{...}{Not used.}
 }
 
 \value{
