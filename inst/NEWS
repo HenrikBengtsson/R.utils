@@ -4,8 +4,8 @@ Package: R.utils
 
 Version: 1.28.5 [2013-12-13]
 o Now argument 'asGString' for Arguments$getCharacters() defaults to
-  getOption("R.utils::Arguments$getCharacters", TRUE).  This makes it
-  possible to disable this feature, even when it is not possible to
+  getOption("Arguments$getCharacters/args/asGString", TRUE).  This makes 
+  it possible to disable this feature, even when it is not possible to
   directly pass that argument.  This will also make it possible to
   set the default to FALSE in the future (instead of TRUE as today).
 

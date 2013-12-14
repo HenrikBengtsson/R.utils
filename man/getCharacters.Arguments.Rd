@@ -25,11 +25,12 @@
 \usage{
 ## Static method (use this):
 ## Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE,
-##   asGString=getOption("R.utils::Arguments$getCharacters", TRUE), .name=NULL, ...)
+##   asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL,
+##   ...)
 
 ## Don't use the below:
 \method{getCharacters}{Arguments}(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE,
-  asGString=getOption("R.utils::Arguments$getCharacters", TRUE), .name=NULL, ...)
+  asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL, ...)
 }
 
 \arguments{

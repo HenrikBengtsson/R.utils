@@ -654,7 +654,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=getOption("R.utils::Arguments$getCharacters", TRUE), .name=NULL, ...) {
+setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL, ...) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(s)));
 
@@ -1299,8 +1299,8 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 # HISTORY:
 # 2013-12-13
 # o Now argument 'asGString' for Arguments$getCharacters() defaults to
-#   getOption("R.utils::Arguments$getCharacters", TRUE).  This makes it
-#   possible to disable this feature, even when it is not possible to
+#   getOption("Arguments$getCharacters/args/asGString", TRUE).  This makes
+#   it possible to disable this feature, even when it is not possible to
 #   directly pass that argument.  This will also make it possible to
 #   set the default to FALSE in the future (instead of TRUE as today).
 # 2013-11-15
