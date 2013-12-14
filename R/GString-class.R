@@ -16,7 +16,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # @examples "../incl/GString.Rex"
@@ -436,6 +436,8 @@ setMethodS3("getBuiltinOs", "GString", function(static, ...) {
 #  \item{attributes}{A @character string of the attributes.}
 #  \item{where}{A @character @vector of where to search for the variable
 #     or function.}
+#  \item{envir}{An @environment.}
+#  \item{inherits}{A @logical.}
 #  \item{missingValue}{The value returned if not found.}
 #  \item{...}{Not used.}
 # }
@@ -450,10 +452,10 @@ setMethodS3("getBuiltinOs", "GString", function(static, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("getVariableValue", "GString", function(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+setMethodS3("getVariableValue", "GString", function(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), inherits=TRUE, missingValue=NA, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'name':
   if (is.null(name)) {
     throw("Argument 'name' is NULL.");
@@ -465,9 +467,9 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
   stopifnot(is.environment(envir));
 
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Process attributes
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   attrs <- strsplit(attributes, split=", ")[[1L]];
   if (length(attrs) > 0L) {
     isSimpleAttr <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9._]+=.*$", attrs) == -1L);
@@ -498,8 +500,8 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
     } else if (ww == "getOption") {
       value <- getOption(name);
     } else if (ww == "envir") {
-      if (exists(name, envir=envir, inherits=TRUE)) {
-        value <- get(name, envir=envir, inherits=TRUE);
+      if (exists(name, envir=envir, inherits=inherits)) {
+        value <- get(name, envir=envir, inherits=inherits);
         break;
       }
     } else if (ww == "parent") {
@@ -541,8 +543,8 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
       # Apply simple attributes
       for (attr in simpleAttrs) {
         if (attr == "capitalize") {
-          value <- paste(toupper(substring(value, first=1L, last=1L)), 
-                                 substring(value, first=2L), sep=""); 
+          value <- paste(toupper(substring(value, first=1L, last=1L)),
+                                 substring(value, first=2L), sep="");
         } else {
           tryCatch({
             fcn <- get(attr, mode="function");
@@ -556,8 +558,9 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
     }
   } # for (ww in ...)
 
-  if (is.null(value))
+  if (is.null(value)) {
     value <- missingValue;
+  }
 
   value;
 }, static=TRUE, private=TRUE)
@@ -661,7 +664,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     if (isExpression) {
       call <- gsub(pattern, "\\1", name);
       part <- list(expression=list(call=call));
-    } else { 
+    } else {
       part <- list(variable=list(name=name));
     }
     part[[1L]]$attributes <- attributes;
@@ -723,10 +726,10 @@ setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
   isVariable <- (keys == "variable");
   for (kk in which(isVariable)) {
     part <- parts[[kk]];
-    value <- getVariableValue(object, name=part$name, 
+    value <- getVariableValue(object, name=part$name,
                               attributes=part$attributes, envir=envir, ...);
     if (!is.null(part$searchReplace))
-      value <- gsub(part$searchReplace$search, 
+      value <- gsub(part$searchReplace$search,
                     part$searchReplace$replace, value);
     parts[[kk]] <- value;
   }
@@ -737,7 +740,7 @@ setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
     expr <- parse(text=part$call);
     value <- eval(expr);
     if (!is.null(part$searchReplace))
-      value <- gsub(part$searchReplace$search, 
+      value <- gsub(part$searchReplace$search,
                     part$searchReplace$replace, value);
     parts[[kk]] <- value;
   }
@@ -786,6 +789,9 @@ setMethodS3("as.character", "GString", function(x, envir=parent.frame(), ...) {
 
 ######################################################################
 # HISTORY:
+# 2013-12-13
+# o Added argument 'inherits' to evaluate() for GString.  Default
+#   is TRUE for backward compatibility.
 # 2013-02-18
 # o BUG FIX: evaluate(..., where="parent") for GString would result
 #   in an endless loop.

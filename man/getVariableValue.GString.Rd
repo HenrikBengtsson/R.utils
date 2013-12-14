@@ -21,11 +21,13 @@
 \usage{
 ## Static method (use this):
 ## GString$getVariableValue(name, attributes="", where=c("builtin", "envir",
-##   "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+##   "parent", "Sys.getenv", "getOption"), envir=parent.frame(), inherits=TRUE,
+##   missingValue=NA, ...)
 
 ## Don't use the below:
 \method{getVariableValue}{GString}(static, name, attributes="", where=c("builtin", "envir",
-  "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+  "parent", "Sys.getenv", "getOption"), envir=parent.frame(), inherits=TRUE,
+  missingValue=NA, ...)
 }
 
 \arguments{
@@ -33,6 +35,8 @@
  \item{attributes}{A \code{\link[base]{character}} string of the attributes.}
  \item{where}{A \code{\link[base]{character}} \code{\link[base]{vector}} of where to search for the variable
     or function.}
+ \item{envir}{An \code{\link[base]{environment}}.}
+ \item{inherits}{A \code{\link[base]{logical}}.}
  \item{missingValue}{The value returned if not found.}
  \item{...}{Not used.}
 }
