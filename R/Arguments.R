@@ -1294,9 +1294,19 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 }, static=TRUE, protected=TRUE)
 
 
+withoutGString <- function(..., envir=parent.frame()) {
+  # Temporarily disable 'asGString' for Arguments$getCharacters()
+  oopts <- options("Arguments$getCharacters/args/asGString"=FALSE);
+  on.exit(options(oopts));
+  eval(..., envir=envir);
+} # withoutGString()
+
+
 
 ############################################################################
 # HISTORY:
+# 2013-12-15
+# o Added withoutGString().
 # 2013-12-13
 # o Now argument 'asGString' for Arguments$getCharacters() defaults to
 #   getOption("Arguments$getCharacters/args/asGString", TRUE).  This makes

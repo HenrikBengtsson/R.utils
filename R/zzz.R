@@ -2,6 +2,16 @@
   ns <- getNamespace(pkgname);
   pkg <- Package(pkgname);
   assign(pkgname, pkg, envir=ns, inherits=FALSE);
+
+  # Set 'asGString' option via system environment variable
+  value <- getOption("Arguments$getCharacters/args/asGString")
+  if (is.null(value)) {
+    value <- Sys.getenv("R.utils_asGString")
+    if (nzchar(value)) {
+      value <- isTRUE(as.logical(value));
+      options("Arguments$getCharacters/args/asGString"=value)
+    }
+  }
 } # .onLoad()
 
 

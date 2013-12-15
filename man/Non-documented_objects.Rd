@@ -190,6 +190,7 @@
 \alias{remove.default}
 \alias{unwrap}
 \alias{verbose}
+\alias{withoutGString}
 \alias{wrap}
 \alias{whichVector}
 \alias{draw}
