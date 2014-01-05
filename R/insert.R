@@ -23,7 +23,7 @@
 # @examples "../incl/insert.Rex"
 #
 # \seealso{
-#   @see "base:append".
+#   @see "base::append".
 # }
 #
 # @author
