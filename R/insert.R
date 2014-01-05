@@ -15,21 +15,25 @@
 #   \item{values}{A @list or a @vector of the values to be inserted.
 #      Should be of same length as \code{ats}, unless if a single value
 #      when it is automatically extended without a warning.}
-#   \item{useNames}{If @FALSE, the names attribute is dropped/ignored, 
+#   \item{useNames}{If @FALSE, the names attribute is dropped/ignored,
 #      otherwise not.  Only applied if argument \code{x} is named.}
 #   \item{...}{Not used.}
 # }
 #
 # @examples "../incl/insert.Rex"
 #
+# \seealso{
+#   @see "base:append".
+# }
+#
 # @author
 #
 # @keyword "manip"
 #*/#########################################################################t
 setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For debug only!
   printFromTo <- function(from, to, x) {
     fromto <- matrix(c(from, to), ncol=2);
@@ -39,9 +43,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
     print(data.frame(from=from, to=to, idx=idx, x.=xidx))
   }
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is.vector(x))
     throw("Argument 'x' is not a vector: ", class(x));
 
@@ -76,14 +80,14 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
     if (length(values) == 1) {
       values <- rep(values, length.out=length(ats));
     } else {
-      throw("Argument 'ats' and argument 'values' has different lengths: ", 
+      throw("Argument 'ats' and argument 'values' has different lengths: ",
                                        length(ats), " != ", length(values));
     }
   }
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Setup
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Sort the 'ats' indicies
   o <- order(ats);
   ats <- ats[o];
@@ -102,9 +106,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   n <- length(ats);
   ats2 <- ats + c(0, cumsum(nvalues[-n]));
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Assign inserted values
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   for (kk in 1:length(ats2)) {
     idx2 <- ats2[kk] + 0:(nvalues[kk]-1);
     valuesKK <- values[[kk]];
@@ -117,9 +121,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
     }
   }
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Assign original values
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   froms <- c(1, ats);
   tos <- c(ats-1, length(x));
   froms2 <- c(1, ats2+nvalues);
@@ -161,7 +165,7 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
 ############################################################################
 # HISTORY:
 # 2012-09-21
-# o Now insert() silently expands 'values' to be of the same length 
+# o Now insert() silently expands 'values' to be of the same length
 #   as 'ats', iff length(values) == 1.
 # 2008-12-27
 # o Added argument 'useNames' to insert(), which is now aware of names
@@ -170,7 +174,7 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
 # o BUG FIX: If 'x' in insert(x, ...) was zero length, an "Error in from:to
 #   : NA/NaN argument" was thrown.
 # 2008-02-21
-# o BUG FIX: When 'values' was a non-list its values were placed in a 
+# o BUG FIX: When 'values' was a non-list its values were placed in a
 #   single-element list.  Should have been as.list().
 # 2005-06-12
 # o Updated a lot! Wrote a rather large example.

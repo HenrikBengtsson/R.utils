@@ -91,6 +91,10 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 
 }
 
+\seealso{
+  \code{\link{base:append}}.
+}
+
 \author{Henrik Bengtsson}
 
 
