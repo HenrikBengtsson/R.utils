@@ -24,6 +24,11 @@
 #   Returns (invisibly) a @character @vector of pathnames copied.
 # }
 #
+# \details{
+#   Note that this method does \emph{not} use @see "copyFile" to
+#   copy the files, but @see "base::file.copy".
+# }
+#
 # @author
 #
 # @keyword file

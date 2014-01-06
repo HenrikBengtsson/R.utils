@@ -35,6 +35,11 @@
   Returns (invisibly) a \code{\link[base]{character}} \code{\link[base]{vector}} of pathnames copied.
 }
 
+\details{
+  Note that this method does \emph{not} use \code{\link{copyFile}}() to
+  copy the files, but \code{\link[base]{file.copy}}().
+}
+
 \author{Henrik Bengtsson}
 
 

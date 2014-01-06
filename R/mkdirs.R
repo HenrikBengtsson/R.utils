@@ -4,7 +4,7 @@
 # @title "Creates a directory including any necessary but nonexistent parent directories"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -20,7 +20,7 @@
 #  Note that if the directory already exists, @FALSE is returned.
 # }
 #
-# 
+#
 #
 # @author
 #
@@ -30,7 +30,7 @@
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("mkdirs", "default", function(pathname, ...) {
   if (length(pathname) == 0)
     return(TRUE);
@@ -44,7 +44,7 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
   # Get the parent and make sure to delete it afterwards.
   parent <- getParent(pathname);
 
-  if (identical(parent, pathname)) 
+  if (identical(parent, pathname))
     throw("Could not get parent directory: ", pathname);
 
   # If the parent is a file, we can not create a directory!
@@ -71,10 +71,10 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2012-10-19
 # o mkdirs(path) could generate a warning if the path was created
-#   by another process as a race condition.  Now it always checks to 
+#   by another process as a race condition.  Now it always checks to
 #   see if the directory already exists just before trying to create
 #   the directory.
 # 2005-08-01
