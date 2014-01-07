@@ -188,7 +188,7 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   verbose && exit(verbose);
 
   # Remove failed or "empty" downloads
-  fi <- file.info(pathnameT);
+  fi <- file.info2(pathnameT);
   verbose && cat(verbose, "Downloaded file:");
   verbose && str(verbose, fi);
   if (res != 0 || is.na(fi$size) || (dropEmpty && fi$size == 0)) {

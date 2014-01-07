@@ -19,7 +19,10 @@
 #  If the file does not exist or it is a directory, \code{0} is returned.
 # }
 #
-# 
+# \section{Symbolic links}{
+#  This function follows symbolic links (also on Windows) and returns a
+#  value based on the link target (rather than the link itself).
+# }
 #
 # @author
 #
@@ -29,17 +32,17 @@
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("lastModified", "default", function(pathname, ...) {
   pathname <- as.character(pathname);
   if (!file.exists(pathname))
     return(0);
-  info <- file.info(pathname);
+  info <- file.info2(pathname);
   info$mtime;
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2005-05-29
 # o Created by copying code in the File class of the R.io package.
 ###########################################################################

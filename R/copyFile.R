@@ -161,8 +161,8 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=!ove
   if (validate) {
     verbose && enter(verbose, "Validating destination file");
     # 5. Validate file size
-    srcSize <- file.info(srcPathname)$size;
-    destSize <- file.info(destPathname)$size;
+    srcSize <- file.info2(srcPathname)$size;
+    destSize <- file.info2(destPathname)$size;
     if (!identical(srcSize, destSize)) {
       throw("File copy got a different size than the source file: ",
                                                  destSize, " !=", srcSize);

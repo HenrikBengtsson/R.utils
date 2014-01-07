@@ -34,7 +34,12 @@
  otherwise \code{\link[base:logical]{FALSE}}, unless an exception is thrown.
 }
 
-
+\section{Symbolic links}{
+ This function can also be used to remove symbolic links to directories
+ without removing the target.
+ Note that neither \code{\link[base]{file.remove}}() nor \code{\link[base]{unlink}}()
+ is capable of remove symbolic \emph{directory} links on Windows.
+}
 
 \author{Henrik Bengtsson}
 

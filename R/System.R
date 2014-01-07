@@ -741,7 +741,7 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png), 
       count <- 0L;
       while (count < maxCount) {
         if (file.exists(file)) {
-          size <- file.info(file)$size;
+          size <- file.info2(file)$size;
           if (!is.na(size) && size > 0L) {
             return(device);
           }

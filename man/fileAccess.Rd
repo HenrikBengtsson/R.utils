@@ -33,13 +33,16 @@
  Returns an \code{\link[base]{integer}}; 0 if the permission exists, -1 if not.
 }
 
-\author{Henrik Bengtsson}
-
 \details{
   In \R there is \code{\link[base]{file.access}}() for checking whether the
   permission of a file.
   Unfortunately, that function cannot be 100\% trusted depending on
   platform used and file system queried, cf. [1].
+}
+
+\section{Symbolic links}{
+ This function follows symbolic links (also on Windows) and returns a
+ value based on the link target (rather than the link itself).
 }
 
 \examples{
@@ -117,6 +120,8 @@ print(fileAccess(pathname, mode=4))
  [2] Filesystem permissions, Wikipedia, 2010.
      \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 }
+
+\author{Henrik Bengtsson}
 
 
 

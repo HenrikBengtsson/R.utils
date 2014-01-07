@@ -44,6 +44,7 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Sys.setFileTime() exists in R (>= 2.14.0)
   if (!exists("Sys.setFileTime", mode="function")) {
     Sys.setFileTime <- function(path, ...) {
       info <- file.info(pathname);

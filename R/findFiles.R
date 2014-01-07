@@ -59,7 +59,7 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
     paths;
   } # splitPaths()
 
- 
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

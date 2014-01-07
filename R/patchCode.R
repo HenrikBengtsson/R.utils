@@ -121,8 +121,7 @@ setMethodS3("patchCode", "default", function(paths=NULL, recursive=TRUE, suppres
 
     # For each file or directory...
     for (pathname in pathnames) {
-      finfo <- file.info(pathname);
-      isDirectory <- finfo$isdir;
+      isDirectory <- isDirectory(pathname);
       isSourceCodeFile <- (regexpr(pattern, pathname) != -1);
 
       if (!isDirectory && isSourceCodeFile) {
@@ -166,6 +165,8 @@ setMethodS3("patchCode", "default", function(paths=NULL, recursive=TRUE, suppres
 
 ###########################################################################
 # HISTORY:
+# 2014-01-06
+# o CLEANUP: Now patchCode() uses isDirectory() instead of file.info().
 # 2005-02-20
 # o Added '...' to please R CMD check.
 # 2005-01-22

@@ -19,7 +19,10 @@
 #  @FALSE is returned.
 # }
 #
-#
+# \section{Symbolic links}{
+#  This function follows symbolic links (also on Windows) and returns a
+#  value based on the link target (rather than the link itself).
+# }
 #
 # @author
 #

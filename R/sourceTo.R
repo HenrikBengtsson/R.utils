@@ -6,7 +6,7 @@
 # @synopsis
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 #   This has the same effect as if \code{source(..., local=TRUE)} would have
 #   been called from within the given environment.
 #   This is useful when setting up a new local working environment.
@@ -17,12 +17,12 @@
 #         of the file or URL to read from.}
 #   \item{path}{An optional @character string giving the path to the file.
 #         Ignored if \code{file} is a connection.}
-#   \item{chdir}{If @TRUE and \code{file} is a pathname, the \R 
-#         working directory is temporarily changed to the directory 
+#   \item{chdir}{If @TRUE and \code{file} is a pathname, the \R
+#         working directory is temporarily changed to the directory
 #         containing \code{file} for evaluating.}
 #   \item{...}{Arguments to @see "base::source". If argument \code{file} is
-#      not explicitly given, the first argument is assumed to be the 
-#      \code{file} argument. This argument is converted into a string by 
+#      not explicitly given, the first argument is assumed to be the
+#      \code{file} argument. This argument is converted into a string by
 #      \code{as.character()}.
 #   }
 #   \item{local}{If @FALSE, evaluation is done in the global environment,
@@ -32,16 +32,16 @@
 #   \item{modifiedOnly}{If @TRUE, the file is sourced only if modified
 #      since the last time it was sourced, otherwise regardless.}
 # }
-# 
+#
 # \value{
 #   Return the result of @see "base::source".
 # }
 #
 # \section{Hooks}{
-#  This methods recognizes the hook \code{sourceTo/onPreprocess}, which 
-#  is called after the lines in file has been read, but before they have 
-#  been parsed by the \R parser, cf. @see "base::parse". 
-#  An \code{onPreprocess} hook function should take a @character @vector 
+#  This methods recognizes the hook \code{sourceTo/onPreprocess}, which
+#  is called after the lines in file has been read, but before they have
+#  been parsed by the \R parser, cf. @see "base::parse".
+#  An \code{onPreprocess} hook function should take a @character @vector
 #  of code lines and return a @character @vector of code lines.
 #  This can for instance be used to pre-process R source code with special
 #  directives such as @see "VComments".
@@ -53,7 +53,7 @@
 # @examples "../incl/sourceTo.Rex"
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "sourceDirectory".
 #  @see "base::sys.source" and @see "base::source".
@@ -89,9 +89,8 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
       absPathname <- getAbsolutePath(file);
       if (modifiedOnly) {
         # Check if file has been modified since last time.
-        lastModified <- file.info(file)$mtime;
         lastSrcd <- lastSourced[[absPathname]];
-        if (!is.null(lastSrcd) && (lastSrcd > lastModified)) {
+        if (!is.null(lastSrcd) && (lastSrcd > lastModified(file))) {
           return(invisible(NULL));
         }
       }
@@ -140,7 +139,7 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
 
   if (length(lines) == 0) {
     # Nothing more to do.
-    return(NULL);  
+    return(NULL);
   }
 
   if (!is.null(fh)) {
@@ -149,7 +148,7 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
     fh <- textConnection(lines, open="r");
   }
 
-  # Wrap up the arguments to source 
+  # Wrap up the arguments to source
   args <- list(file=fh, ...);
 
   # Override any 'local' argument
@@ -173,12 +172,14 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
 
 
 #############################################################################
-# HISTORY: 
+# HISTORY:
+# 2014-01-06
+# o CLEANUP Now sourceTo() uses lastModified() instead of file.info().
 # 2011-03-09
 # o BUG FIX: sourceTo() would not work for URLs.
 # o Added argument 'path' to sourceTo().
 # 2010-01-09
-# o Now sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(..., 
+# o Now sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(...,
 #   modifiedOnly=TRUE) will work as expected.  Before you had to do at
 #   least one modifiedOnly=TRUE call for it to work.
 # o Now sourceTo() no longer gives a warning if there is a missing EOL.
@@ -189,7 +190,7 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
 # 2007-01-11
 # o Added Rdoc link to sys.source().
 # 2006-10-04
-# o Added argument 'modifiedOnly' to sourceTo() so that a file is only 
+# o Added argument 'modifiedOnly' to sourceTo() so that a file is only
 #   sourced if it has been modified since the last call.
 # 2005-07-18
 # o BUG FIX: Since the function now reads the lines itself and only pass

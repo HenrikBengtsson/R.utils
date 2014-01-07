@@ -23,7 +23,12 @@
 #  otherwise @FALSE, unless an exception is thrown.
 # }
 #
-#
+# \section{Symbolic links}{
+#  This function can also be used to remove symbolic links to directories
+#  without removing the target.
+#  Note that neither @see "base::file.remove" nor @see "base::unlink"
+#  is capable of remove symbolic \emph{directory} links on Windows.
+# }
 #
 # @author
 #
@@ -50,6 +55,17 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
   recursive <- Arguments$getLogical(recursive);
 
 
+  # Check if a symbolic link on Windows
+  pathT <- Sys.readlink2(path);
+  isSymlink <- (!is.na(pathT) && nchar(pathT) > 0L);
+  if (isSymlink) {
+    if (.Platform$OS == "windows") {
+      cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)));
+      shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE);
+      return(invisible(!isDirectory(path)));
+    }
+  }
+
   # Check if directory is empty
   pathnames <- list.files(path=path, all.files=TRUE, full.names=FALSE);
   pathnames <- setdiff(pathnames, c(".", ".."));
@@ -68,6 +84,8 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
 ###########################################################################
 # HISTORY:
+# 2014-01-06
+# o Now removeDirectory() can remove symbol links on Windows.
 # 2013-10-13
 # o CLEANUP: removeDirectory() no longer attaches 'R.utils'.
 # 2010-11-17

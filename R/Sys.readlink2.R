@@ -33,33 +33,38 @@ Sys.readlink2 <- function(paths) {
 
   # Workaround for Windows
   readlink <- function(path) {
-    path <- normalizePath(path, mustWork=FALSE);
     if (!file.exists(path)) return(NA_character_);
 
+    # Only files with zero size are candidates for symbolic file links
+    info <- file.info(path);
+    if (is.na(info$size) || info$size > 0) return("");
+
     # Temporarily change working directory
+    path <- normalizePath(path, mustWork=FALSE);
     dir <- dirname(path);
     opwd <- setwd(dir);
     on.exit(setwd(opwd));
     path <- basename(path);
-    bfr <- shell(sprintf("dir %s", path), intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"));
-    bfr <- grep(path, bfr, value=TRUE);
+
+    # List all files
+    bfr <- shell("dir", shell=Sys.getenv("COMSPEC"),
+                        mustWork=TRUE, intern=TRUE);
+
     setwd(opwd);
 
-    # Sanity check
-    stopifnot(length(bfr) == 1L);
-
-    # Parse file information
-    pattern <- sprintf(".*[ ]+<SYMLINK>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path);
+    # Search for symbolic file or directory links
+    pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path);
+    bfr <- grep(pattern, bfr, value=TRUE);
 
     # Not a symbolic link?
-    if (regexpr(pattern, bfr) == -1L) return("");
+    if (length(bfr) == 0L) return("");
 
     # Sanity check
-    link <- gsub(pattern, "\\1", bfr);
+    link <- gsub(pattern, "\\2", bfr);
     stopifnot(identical(link, path));
 
     # Extract the target
-    target <- gsub(pattern, "\\2", bfr);
+    target <- gsub(pattern, "\\3", bfr);
 
     # Relative path?
     if (!isAbsolutePath(target)) {
@@ -121,8 +126,8 @@ file.info2 <- function(...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Workaround for symbolic file links on Windows
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Non-directory files with zero size are candidates for symbolic links
-  idxs <- which(info$size == 0 & !info$isdir);
+  # Only files with zero size are candidates for symbolic links
+  idxs <- which(!is.na(info$size) & info$size == 0);
 
   # Nothing todo?
   if (length(idxs) == 0L) return(info);
@@ -134,7 +139,7 @@ file.info2 <- function(...) {
   pathnames <- sapply(pathnames, FUN=Sys.readlink2);
 
   # Drop non-symbolic links
-  keep <- (!is.na(pathnames) & nchar(pathnames) > 0);
+  keep <- (!is.na(pathnames) & nchar(pathnames) > 0L);
   pathnames <- pathnames[keep];
   idxs <- idxs[keep];
 
