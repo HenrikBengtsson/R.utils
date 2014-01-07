@@ -18,7 +18,8 @@
 }
 
 \usage{
-\method{copyFile}{default}(srcPathname, destPathname, skip=!overwrite, overwrite=FALSE, ..., verbose=FALSE)
+\method{copyFile}{default}(srcPathname, destPathname, skip=!overwrite, overwrite=FALSE, ..., validate=TRUE,
+  verbose=FALSE)
 }
 
 \arguments{
@@ -36,6 +37,8 @@
    file permissions, an informative exception is thrown.}
   \item{...}{Additional \emph{named} arguments passed to \code{\link[base]{file.copy}}().
    Non-named or unknown arguments are ignored.}
+  \item{validate}{If \code{\link[base:logical]{TRUE}}, validation of the copied file is applied,
+   otherwise not.}
   \item{verbose}{See \code{\link[R.utils]{Verbose}}.}
 }
 
@@ -48,7 +51,7 @@
   the temporary file will remain in the destination directory.
 }
 
-\section{Assertions}{
+\details{
   If the source file does not exists (or is not a file), then an
   informative exception is thrown.
 
@@ -56,9 +59,10 @@
   to copy (which can lead to either corrupt or lost files) and an
   informative exception is thrown.
 
-  If (and only if) the file is successfully copied, then this method
-  also asserts that the file size of the destination matches that of
-  the source, otherwise an informative exception is thrown.
+  If (and only if) the file is successfully copied and argument
+  \code{validate} is \code{\link[base:logical]{TRUE}}, then this method also asserts that the
+  file size of the destination matches that of the source, otherwise
+  an informative exception is thrown.
 }
 
 \author{Henrik Bengtsson}

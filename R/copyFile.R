@@ -25,6 +25,8 @@
 #    file permissions, an informative exception is thrown.}
 #   \item{...}{Additional \emph{named} arguments passed to @see "base::file.copy".
 #    Non-named or unknown arguments are ignored.}
+#   \item{validate}{If @TRUE, validation of the copied file is applied,
+#    otherwise not.}
 #   \item{verbose}{See @see "R.utils::Verbose".}
 # }
 #
@@ -37,7 +39,7 @@
 #   the temporary file will remain in the destination directory.
 # }
 #
-# \section{Assertions}{
+# \details{
 #   If the source file does not exists (or is not a file), then an
 #   informative exception is thrown.
 #
@@ -45,9 +47,10 @@
 #   to copy (which can lead to either corrupt or lost files) and an
 #   informative exception is thrown.
 #
-#   If (and only if) the file is successfully copied, then this method
-#   also asserts that the file size of the destination matches that of
-#   the source, otherwise an informative exception is thrown.
+#   If (and only if) the file is successfully copied and argument
+#   \code{validate} is @TRUE, then this method also asserts that the
+#   file size of the destination matches that of the source, otherwise
+#   an informative exception is thrown.
 # }
 #
 # @author
@@ -58,7 +61,7 @@
 #
 # @keyword internal
 #*/###########################################################################
-setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=!overwrite, overwrite=FALSE, ..., verbose=FALSE) {
+setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=!overwrite, overwrite=FALSE, ..., validate=TRUE, verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -150,20 +153,22 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=!ove
   }
   verbose && exit(verbose);
 
-  verbose && enter(verbose, "Validating destination file");
-  # 4a. Make sure it is file
+  # 4. Make sure it is file
   if (!isFile(destPathname)) {
     throw("Failed to copy file: ", destPathname);
   }
 
-  # 4b. Validate file size
-  srcSize <- file.info(srcPathname)$size;
-  destSize <- file.info(destPathname)$size;
-  if (!identical(srcSize, destSize)) {
-    throw("File copy got a different size than the source file: ",
-                                                  destSize, " !=", srcSize);
-  }
-  verbose && exit(verbose);
+  if (validate) {
+    verbose && enter(verbose, "Validating destination file");
+    # 5. Validate file size
+    srcSize <- file.info(srcPathname)$size;
+    destSize <- file.info(destPathname)$size;
+    if (!identical(srcSize, destSize)) {
+      throw("File copy got a different size than the source file: ",
+                                                 destSize, " !=", srcSize);
+    }
+    verbose && exit(verbose);
+  } # if (validate)
 
   verbose && exit(verbose);
 
@@ -174,6 +179,7 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=!ove
 ############################################################################
 # HISTORY:
 # 2014-01-06
+# o Added argument 'validate' to fileCopy().
 # o Added argument 'skip' to fileCopy() and added more documentation.
 # o fileCopy() now passes arguments '...' to base::file.copy().  Thanks
 #   Taku Tokuyasu (UCSF) for reporting on this.

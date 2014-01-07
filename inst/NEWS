@@ -2,10 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.29.0 [2014-01-06]
+o Added file.info2() for retrieving file information such that symbolic
+  file links are also acknowledged on Windows.
+o Added Sys.readlink2() for reading symbolic file links also on Windows.
+
+
 Version: 1.28.6 [2014-01-06]
 o Added argument 'skip' (in addition to existing 'overwrite') to fileCopy()
   to allow for better control on how to handle existing destination files.
-  Now the method also passes (known) arguments '...' to base::file.copy() 
+  Now the method also passes (known) arguments '...' to base::file.copy()
   making it possible to copy with or without file permissions etc.
   Thanks Taku Tokuyasu (UCSF) for reporting on this.
 
