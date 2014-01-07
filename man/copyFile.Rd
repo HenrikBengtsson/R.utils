@@ -18,7 +18,7 @@
 }
 
 \usage{
-\method{copyFile}{default}(srcPathname, destPathname, skip=!overwrite, overwrite=FALSE, ..., validate=TRUE,
+\method{copyFile}{default}(srcPathname, destPathname, skip=FALSE, overwrite=FALSE, ..., validate=TRUE,
   verbose=FALSE)
 }
 

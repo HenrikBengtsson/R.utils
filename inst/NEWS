@@ -21,11 +21,13 @@ o ROBUSTNESS: Updated a shell() calls that assume the Windows command
 
 
 Version: 1.28.6 [2014-01-06]
-o Added argument 'skip' (in addition to existing 'overwrite') to fileCopy()
+o Added argument 'skip' (in addition to existing 'overwrite') to copyFile()
   to allow for better control on how to handle existing destination files.
-  Now the method also passes (known) arguments '...' to base::file.copy()
-  making it possible to copy with or without file permissions etc.
-  Thanks Taku Tokuyasu (UCSF) for reporting on this.
+  For backward compatibilities, it defaults to FALSE, but may be changed
+  to skip=!overwrite in a future version.  Furthermore, copyFile() now
+  passes (known) arguments '...' to base::file.copy() making it possible
+  to copy with or without file permissions etc.  Thanks Taku Tokuyasu (UCSF)
+  for reporting on this.
 
 
 Version: 1.28.5 [2013-12-15]
