@@ -60,10 +60,14 @@ Sys.readlink2 <- function(paths) {
 
     # Extract the target
     target <- gsub(pattern, "\\2", bfr);
-    target <- file.path(dir, target);
 
-    # Return the relative pathname, iff possible
-    target <- getRelativePath(target);
+    # Relative path?
+    if (!isAbsolutePath(target)) {
+      # Prepend working directory
+      target <- file.path(dir, target);
+      # Return the relative pathname, iff possible
+      target <- getRelativePath(target);
+    }
 
     target;
   } # readlink()
