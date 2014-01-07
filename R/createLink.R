@@ -89,6 +89,12 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   methods <- match.arg(methods, several.ok=TRUE);
 
 
+  # Keep only 'methods' that are supported on the current platform
+  if (.Platform$OS != "windows") {
+    methods <- grep("windows-", methods, value=TRUE, invert=TRUE);
+  }
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create directory where link should be, if missing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -153,7 +159,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     }
     res <- NULL;
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE);
+      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"));
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
     }, error = function(ex) {
     });
@@ -190,6 +196,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-01-06
+# o ROBUSTNESS: createLink() will no longer try to create Windows file
+#   links on non-Windows platforms.
 # 2013-10-13
 # o CLEANUP: createLink() no longer attaches 'R.utils'.
 # 2012-11-01

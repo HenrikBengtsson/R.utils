@@ -92,7 +92,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
     cat(file=pathnameT, code);
     cmd <- sprintf("cscript \"%s\"", pathnameT);
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE);
+      shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"));
     }, error = function(ex) {
     })
 

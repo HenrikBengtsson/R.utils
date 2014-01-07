@@ -6,6 +6,10 @@ Version: 1.29.0 [2014-01-06]
 o Added file.info2() for retrieving file information such that symbolic
   file links are also acknowledged on Windows.
 o Added Sys.readlink2() for reading symbolic file links also on Windows.
+o ROBUSTNESS: createLink() will no longer try to create Windows file
+  links on non-Windows platforms.
+o ROBUSTNESS: Updated a shell() calls that assume the Windows command
+  interpreter to explicitly specify shell=Sys.getenv("COMSPEC").
 
 
 Version: 1.28.6 [2014-01-06]
