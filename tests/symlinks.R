@@ -1,6 +1,12 @@
 library("R.utils")
 verbose <- Arguments$getVerbose(TRUE)
 
+# Run only tests if this platform/client supports symbolic file links
+canSymlink <- tryCatch({
+  file.symlink(".", "test-symlink-dir")
+}, error = function(ex) FALSE)
+if (canSymlink) {
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Symbolic links to files
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -183,3 +189,5 @@ faL <- fileAccessT(pathL)
 stopifnot(identical(faL, fa))
 # Reset
 Sys.chmod(path, mode="0777")
+
+} # if (canSymlink)
