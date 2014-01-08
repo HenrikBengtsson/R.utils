@@ -64,7 +64,7 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
       cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)));
       shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE);
     } else {
-      file.remove(pathT);
+      file.remove(path);
     }
     return(invisible(!isDirectory(path)));
   }
