@@ -19,7 +19,7 @@ for (path in paths) {
   verbose && enter(verbose, "Symbolic links to files")
   verbose && cat(verbose, "Path: ", path)
 
-  pathname <- file.path(path, filename)
+  pathnameS <- pathname <- file.path(path, filename)
 
   # WORKAROUND: On Windows, file.symlink() does not translate forward
   # slashes for you!
