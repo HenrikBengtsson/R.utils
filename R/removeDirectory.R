@@ -55,15 +55,18 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
   recursive <- Arguments$getLogical(recursive);
 
 
-  # Check if a symbolic link on Windows
+  # Check if a symbolic link
   pathT <- Sys.readlink2(path);
   isSymlink <- (!is.na(pathT) && nchar(pathT) > 0L);
   if (isSymlink) {
+    # Special case: Windows
     if (.Platform$OS == "windows") {
       cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)));
       shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE);
-      return(invisible(!isDirectory(path)));
+    } else {
+      file.remove(pathT);
     }
+    return(invisible(!isDirectory(path)));
   }
 
   # Check if directory is empty
@@ -84,6 +87,8 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
 ###########################################################################
 # HISTORY:
+# 2014-01-07
+# o ...and also on non-Windows platforms.
 # 2014-01-06
 # o Now removeDirectory() can remove symbol links on Windows.
 # 2013-10-13

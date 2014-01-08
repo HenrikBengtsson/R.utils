@@ -3,7 +3,9 @@ verbose <- Arguments$getVerbose(TRUE)
 
 # Run only tests if this platform/client supports symbolic file links
 canSymlink <- tryCatch({
-  file.symlink(".", "test-symlink-dir")
+  res <- file.symlink(".", "test-symlink-dir")
+  if (isDirectory("test-symlink-dir")) removeDirectory("test-symlink-dir")
+  res
 }, error = function(ex) FALSE)
 if (canSymlink) {
 

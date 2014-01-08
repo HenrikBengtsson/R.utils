@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.29.0 [2014-01-06]
+Version: 1.29.0 [2014-01-07]
 o The following file I/O methods follows symbolic links (also on Windows)
   and returns information based on the target file/directory (rather than
   the link itself): fileAccess(), file.info2(), isDirectory(), isFile()
@@ -11,8 +11,8 @@ o Added file.info2() for retrieving file information such that symbolic
   file links are also acknowledged on Windows.
 o Added Sys.readlink2() for reading symbolic file links also on Windows.
 o removeDirectory() can now be used to remove symbolic directory links
-  on Windows, which neither file.remove() nor unlink() can do.  The
-  target directory will never be removed.
+  (also on Windows where neither file.remove() nor unlink() work).
+  The target directory will never be removed.
 o BUG FIX: fileRename() would give an error on directories.
 o ROBUSTNESS: createLink() will no longer try to create Windows file
   links on non-Windows platforms.
