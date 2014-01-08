@@ -18,8 +18,12 @@ for (path in paths) {
   verbose && cat(verbose, "Path: ", path)
 
   pathname <- file.path(path, filename)
-  # WORKAROUND: file.symlink() does not translate forward slashes for you!
-  pathnameS <- gsub("/", "\\", pathname, fixed=TRUE)
+
+  # WORKAROUND: On Windows, file.symlink() does not translate forward
+  # slashes for you!
+  if (.Platform$OS == "windows") {
+    pathnameS <- gsub("/", "\\", pathname, fixed=TRUE)
+  }
 
   # Create a target file
   cat("Hello", file=pathname)
