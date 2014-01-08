@@ -10,11 +10,19 @@ canSymlink <- tryCatch({
 if (canSymlink) {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Symbolic links to files
+# Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+fileAccessT <- function(pathname, modes=c(exist=0, exec=1, write=2, read=4)) {
+  sapply(modes, FUN=function(mode) fileAccess(pathname, mode=mode))
+}
+
+
 filename <- "foo.txt"
 paths <- list(".", tempdir())
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# FILES
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (path in paths) {
   verbose && enter(verbose, "Symbolic links to files")
   verbose && cat(verbose, "Path: ", path)
@@ -77,16 +85,66 @@ for (path in paths) {
     res <- all.equal(fiLx, fi, check.attributes=FALSE)
   }
 
+  # Renaming
+  verbose && enter(verbose, "Renaming file link")
+  pathnameL2 <- sprintf("%s-new", pathnameL)
+  renameFile(pathnameL, pathnameL2)
+  stopifnot(isFile(pathnameL2))
+  stopifnot(!isFile(pathnameL))
+  renameFile(pathnameL2, pathnameL)
+  stopifnot(isFile(pathnameL))
+  stopifnot(!isFile(pathnameL2))
+  verbose && exit(verbose)
+
+  # File access
+  verbose && enter(verbose, "Testing file permissions & access information")
+  fa <- fileAccessT(pathname)
+  faL <- fileAccessT(pathnameL)
+  stopifnot(identical(faL, fa))
+
+  # Disable write permission on target
+  Sys.chmod(pathname, mode="0077")
+  fa <- fileAccessT(pathname)
+  faL <- fileAccessT(pathnameL)
+  stopifnot(identical(faL, fa))
+  # Reset
+  Sys.chmod(pathname, mode="0777")
+  verbose && exit(verbose)
+
+
+  # Removing & cleanup
+  verbose && enter(verbose, "Cleanup")
+
+  verbose && enter(verbose, "Removing file link")
+  verbose && cat(verbose, "Link: ", pathnameL)
+  verbose && cat(verbose, "Target: ", pathname)
+  file.remove(pathnameL)  # unlink() cannot remove symbolic links
+  stopifnot(!file.exists(pathnameL))
+  stopifnot(isFile(pathname))
+  verbose && exit(verbose)
+
+  verbose && enter(verbose, "Removing target")
+  file.remove(pathname)
+  stopifnot(!file.exists(pathname))
+  verbose && exit(verbose)
+
+  verbose && exit(verbose)
+
   verbose && exit(verbose)
 } # for (path in ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Symbolic links to directories
+# DIRECTORIES
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-verbose && enter(verbose, "Symbolic links to files")
+verbose && enter(verbose, "Symbolic links to directories")
 
-path <- tempdir()
+# Create a target
+path <- file.path(tempdir(), "foo")
+mkdirs(path)
+stopifnot(isDirectory(path))
+
+# Create a symbolic link
 pathL <- "link-to-tempdir"
 file.symlink(path, pathL)
 stopifnot(isDirectory(pathL))
@@ -104,90 +162,24 @@ cat("Hello", file=pathnameL)
 pathname <- file.path(path, "target2.txt")
 stopifnot(isFile(pathname))
 
-verbose && exit(verbose)
+# Remove file (via direct pathname)
+file.remove(pathname)
+stopifnot(!isFile(pathname))
+stopifnot(!isFile(pathnameL))
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Renaming
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 verbose && enter(verbose, "Renaming")
-
-# Files
-pathnameL2 <- sprintf("%s-new", pathnameL)
-renameFile(pathnameL, pathnameL2)
-stopifnot(isFile(pathnameL2))
-renameFile(pathnameL2, pathnameL)
-stopifnot(isFile(pathnameL))
-
-# Directories
 pathL2 <- sprintf("%s-new", pathL)
 renameFile(pathL, pathL2)
 stopifnot(isDirectory(pathL2))
 renameFile(pathL2, pathL)
 stopifnot(isDirectory(pathL))
-
 verbose && exit(verbose)
 
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Removing
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-verbose && enter(verbose, "Removing")
-
-verbose && enter(verbose, "Removing file links")
-# File (the link)
-pathnameL <- file.path(path, sprintf("link-to-%s", filename))
-verbose && cat(verbose, "Link: ", pathnameL)
-verbose && cat(verbose, "Target: ", pathname)
-file.remove(pathnameL)  # unlink() cannot remove symbolic links
-stopifnot(isFile(pathname))
-# Add it back
-file.symlink(pathnameS, pathnameL)
-stopifnot(isFile(pathnameL))
-verbose && exit(verbose)
-
-
-verbose && enter(verbose, "Removing directory links")
-# Directory (the link)
-removeDirectory(pathL)  # Neither file.remove() nor unlink() can
-                        # remove symbolic links to directories
-stopifnot(isDirectory(path))
-# Add it back
-file.symlink(path, pathL)
-stopifnot(isDirectory(pathL))
-verbose && exit(verbose)
-
-
-verbose && exit(verbose)
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # File access
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-fileAccessT <- function(pathname, modes=c(exist=0, exec=1, write=2, read=4)) {
-  sapply(modes, FUN=function(mode) fileAccess(pathname, mode=mode))
-}
-
-# (a) Files
-pathname <- file.path(path, filename)
-pathnameL <- file.path(path, sprintf("link-to-%s", filename))
-fa <- fileAccessT(pathname)
-faL <- fileAccessT(pathnameL)
-stopifnot(identical(faL, fa))
-
-# Disable write permission on target
-Sys.chmod(pathname, mode="0077")
-fa <- fileAccessT(pathname)
-faL <- fileAccessT(pathnameL)
-stopifnot(identical(faL, fa))
-# Reset
-Sys.chmod(pathname, mode="0777")
-
-
-# (b) Directories
+verbose && enter(verbose, "Testing file permissions & access information")
 fa <- fileAccessT(path)
 faL <- fileAccessT(pathL)
 stopifnot(identical(faL, fa))
-
 # Disable write permission on target
 Sys.chmod(path, mode="0077")
 fa <- fileAccessT(path)
@@ -195,5 +187,18 @@ faL <- fileAccessT(pathL)
 stopifnot(identical(faL, fa))
 # Reset
 Sys.chmod(path, mode="0777")
+verbose && exit(verbose)
+
+# Removing & cleanup
+verbose && enter(verbose, "Cleanup")
+# (Neither file.remove() nor unlink() can remove symbolic directory links)
+removeDirectory(pathL)
+stopifnot(!isDirectory(pathL))
+stopifnot(isDirectory(path))
+removeDirectory(path)
+stopifnot(!isDirectory(path))
+verbose && exit(verbose)
+
+verbose && exit(verbose)
 
 } # if (canSymlink)
