@@ -30,7 +30,7 @@ for (path in paths) {
   pathnameS <- pathname <- file.path(path, filename)
 
   # WORKAROUND: On Windows, file.symlink() does not translate forward
-  # slashes for you!
+  # slashes for you! Fixed (PR#15631) in r64711 2014-01-09.
   if (.Platform$OS == "windows") {
     pathnameS <- gsub("/", "\\", pathname, fixed=TRUE)
   }
