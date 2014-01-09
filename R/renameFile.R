@@ -1,11 +1,13 @@
 ###########################################################################/**
 # @RdocDefault renameFile
 #
-# @title "Renames a file safely"
+# @title "Renames a file (or a directory) atomically/safely"
 #
 # \description{
-#  @get "title" by also asserting that it was correctly renamed without
-#  side effects.
+#  @get "title",
+#  by also asserting that it was successfully renamed without side effects.
+#  If failing to rename and overwrite an existing file, the original file
+#  is kept.
 # }
 #
 # @synopsis

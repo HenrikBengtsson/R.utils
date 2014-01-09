@@ -13,7 +13,8 @@ o Added Sys.readlink2() for reading symbolic file links also on Windows.
 o removeDirectory() can now be used to remove symbolic directory links
   (also on Windows where neither file.remove() nor unlink() work).
   The target directory will never be removed.
-o BUG FIX: fileRename() would give an error on directories.
+o BUG FIX: renameFile() would give an error on directories.
+o Added package system tests for copyFile() and renameFile().
 o ROBUSTNESS: createLink() will no longer try to create Windows file
   links on non-Windows platforms.
 o ROBUSTNESS: Updated a shell() calls that assume the Windows command
