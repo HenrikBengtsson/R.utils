@@ -28,10 +28,9 @@
 # @keyword internal
 #**/#######################################################################
 Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
-  # Argument 'return':
-  what <- match.arg(what);
-
-  # Workaround for Windows
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   readlink <- function(path) {
     if (!file.exists(path)) return(NA_character_);
 
@@ -77,6 +76,15 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
     target;
   } # readlink()
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'return':
+  what <- match.arg(what);
+
+
+  # Workaround for Windows?
   if (.Platform$OS.type == "windows") {
     pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE);
   } else {
@@ -92,7 +100,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
     }
   }
 
-  pathsR:
+  pathsR;
 } # Sys.readlink2()
 
 
