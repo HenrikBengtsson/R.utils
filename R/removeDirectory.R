@@ -56,7 +56,7 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
 
   # Check if a symbolic link
-  pathT <- Sys.readlink2(path);
+  pathT <- Sys.readlink2(path, what="corrected");
   isSymlink <- (!is.na(pathT) && nchar(pathT) > 0L);
   if (isSymlink) {
     # Special case: Windows

@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.29.1 [2014-01-10]
+o Added argument 'what' to Sys.readlink2(), where what="corrected"
+  makes sure to return the proper target path (not just the one
+  relative to where the link lives).
+
+
 Version: 1.29.0 [2014-01-07]
 o The following file I/O methods follows symbolic links (also on Windows)
   and returns information based on the target file/directory (rather than

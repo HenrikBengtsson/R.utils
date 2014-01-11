@@ -14,6 +14,7 @@
 # \arguments{
 #  \item{paths}{A @character @vector of file paths.
 #   Tilde expansion is done: see @see "base::path.expand".}
+#  \item{what}{A @character string specifying what to return.}
 # }
 #
 # \value{
@@ -26,10 +27,9 @@
 # @keyword IO
 # @keyword internal
 #**/#######################################################################
-Sys.readlink2 <- function(paths) {
-  if (.Platform$OS.type != "windows") {
-    return(base::Sys.readlink(paths));
-  }
+Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
+  # Argument 'return':
+  what <- match.arg(what);
 
   # Workaround for Windows
   readlink <- function(path) {
@@ -77,7 +77,22 @@ Sys.readlink2 <- function(paths) {
     target;
   } # readlink()
 
-  sapply(paths, FUN=readlink, USE.NAMES=FALSE);
+  if (.Platform$OS.type == "windows") {
+    pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE);
+  } else {
+    pathsR <- base::Sys.readlink(paths);
+  }
+
+  # If target specify a filename without a path, append path
+  if (what == "corrected") {
+    isRel <- !sapply(pathsR, FUN=isAbsolutePath);
+    if (any(isRel)) {
+      dirs <- dirname(paths[isRel]);
+      pathsR[isRel] <- file.path(dirs, pathsR[isRel]);
+    }
+  }
+
+  pathsR:
 } # Sys.readlink2()
 
 
@@ -155,6 +170,10 @@ file.info2 <- function(...) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-10
+# o Added argument 'what' to Sys.readlink2(), where what="corrected"
+#   makes sure to return the proper target path (not just the one
+#   relative to where the link lives).
 # 2014-01-06
 # o Added file.info2().
 # o Added Sys.readlink2().
