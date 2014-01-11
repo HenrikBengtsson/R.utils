@@ -19,12 +19,13 @@
 }
 
 \usage{
-Sys.readlink2(paths)
+Sys.readlink2(paths, what=c("asis", "corrected"))
 }
 
 \arguments{
  \item{paths}{A \code{\link[base]{character}} \code{\link[base]{vector}} of file paths.
   Tilde expansion is done: see \code{\link[base]{path.expand}}().}
+ \item{what}{A \code{\link[base]{character}} string specifying what to return.}
 }
 
 \value{

@@ -10,11 +10,13 @@
 \alias{renameFile.default}
 \alias{renameFile}
 
-\title{Renames a file safely}
+\title{Renames a file (or a directory) atomically/safely}
 
 \description{
- Renames a file safely by also asserting that it was correctly renamed without
- side effects.
+ Renames a file (or a directory) atomically/safely,
+ by also asserting that it was successfully renamed without side effects.
+ If failing to rename and overwrite an existing file, the original file
+ is kept.
 }
 
 \usage{
