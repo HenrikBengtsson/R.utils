@@ -93,7 +93,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
 
   # If target specify a filename without a path, append path
   if (what == "corrected") {
-    isRel <- !sapply(pathsR, FUN=isAbsolutePath);
+    isRel <- !is.na(pathsR) & (pathsR != "") & !sapply(pathsR, FUN=isAbsolutePath);
     if (any(isRel)) {
       dirs <- dirname(paths[isRel]);
       pathsR[isRel] <- file.path(dirs, pathsR[isRel]);
