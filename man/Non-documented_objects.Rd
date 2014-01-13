@@ -52,6 +52,7 @@
 
 % The GenericSummary class
 \alias{GenericSummary}
+\alias{[.GenericSummary}
 \alias{c.GenericSummary}
 \alias{print.GenericSummary}
 
