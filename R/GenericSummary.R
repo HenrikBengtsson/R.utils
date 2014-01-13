@@ -18,6 +18,12 @@ setMethodS3("c", "GenericSummary", function(x, ...) {
   s;
 }, protected=TRUE)
 
+setMethodS3("[", "GenericSummary", function(x, i, ...) {
+  s <- NextMethod("[");
+  class(s) <- class(x);
+  s;
+}, protected=TRUE)
+
 
 # setMethodS3("as.character", "GenericSummary", function(this, ..., indent="  ") {
 #    toString <- function(s, currIndent="") {
@@ -39,6 +45,8 @@ setMethodS3("c", "GenericSummary", function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-12
+# o Added [() for GenericSummary.
 # 2013-11-16
 # o Added c() for GenericSummary.
 # 2009-12-30

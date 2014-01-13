@@ -234,6 +234,11 @@ test: ../$(R_OUTDIR)/tests/%.R
 	$(CD) ../$(R_OUTDIR)/tests;\
 	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { source(f, echo=TRUE) }"
 
+test_full: ../$(R_OUTDIR)/tests/%.R
+	$(CD) ../$(R_OUTDIR)/tests;\
+	export _R_CHECK_FULL_=TRUE;\
+	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { source(f, echo=TRUE) }"
+
 
 
 # Run extensive CRAN submission checks

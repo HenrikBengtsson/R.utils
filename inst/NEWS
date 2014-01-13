@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.29.2 [2014-01-12]
+o Now Arguments$getCharacters() preserves attributes.  Also, made
+  argument 'useNames' default to TRUE.
+o Added [() for GenericSummary.
+
+
 Version: 1.29.1 [2014-01-10]
 o Added argument 'what' to Sys.readlink2(), where what="corrected"
   makes sure to return the proper target path (not just the one

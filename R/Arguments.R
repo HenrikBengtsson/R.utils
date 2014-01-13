@@ -654,14 +654,14 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL, ...) {
+setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=TRUE, asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL, ...) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(s)));
 
   s <- getVector(static, s, length=length, .name=.name);
 
   # Nothing to check?
-  if (length(s) == 0)
+  if (length(s) == 0L)
     return(s);
 
   # Coerce GString:s to character strings?
@@ -677,14 +677,14 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   }
 
   if (trim) {
-    # Trim the strings.
-    s <- unlist(lapply(s, FUN=trim));
+    # Trim the strings
+    # (using s[] to preserve attributes)
+    s[] <- unlist(lapply(s, FUN=trim), use.names=FALSE);
   }
 
   # Coerce to character strings
-  s <- unlist(lapply(s, FUN=function(x) {
-    as.character(x);
-  }));
+  # (using s[] to preserve attributes)
+  s[] <- unlist(lapply(s, FUN=as.character), use.names=FALSE);
 
   if (!useNames) {
     names(s) <- NULL;
@@ -694,18 +694,18 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   if (is.null(nchar))
     return(s);
 
-  if (length(nchar) == 1)
-    nchar <- c(1, nchar);
+  if (length(nchar) == 1L)
+    nchar <- c(1L, nchar);
 
   # Check the string length of each character string
   for (kk in seq(length=length(s))) {
     slen <- nchar(s[kk]);
-    if (slen < nchar[1] || slen > nchar[2]) {
-      throw(sprintf("String length of elements #%d in '%s' is out of range [%d,%d]: %d '%s'", kk, .name, nchar[1], nchar[2], slen, s[kk]));
+    if (slen < nchar[1L] || slen > nchar[2L]) {
+      throw(sprintf("String length of elements #%d in '%s' is out of range [%d,%d]: %d '%s'", kk, .name, nchar[1L], nchar[2L], slen, s[kk]));
     }
   }
 
-  unlist(s);
+  s;
 }, static=TRUE)
 
 setMethodS3("getCharacter", "Arguments", function(static, ..., length=c(0,1)) {
@@ -1305,6 +1305,9 @@ withoutGString <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-12
+# o Made argument 'useNames' to getCharacters() default to TRUE.
+# o Now Arguments$getCharacters() preserves attributes.
 # 2013-12-15
 # o Added withoutGString().
 # 2013-12-13
