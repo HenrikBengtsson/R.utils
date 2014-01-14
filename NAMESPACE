@@ -52,7 +52,6 @@ importFrom("utils", "write.table")
 # Manual fixes
 importFrom("R.oo", "load") ## Multi-sources: R.oo, base
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
