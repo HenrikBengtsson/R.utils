@@ -2,7 +2,11 @@
 Package: R.utils
 ================
 
-Version: 1.29.3 [2014-01-18]
+Version: 1.29.3 [2014-01-19]
+o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
+  the path/pathname to the link (and not the target) just like it does
+  for the other types of file links.  By link we here mean the
+  path/pathname without the *.lnk extension.
 o ROBUSTNESS: Added package system tests for createLink().
 
 

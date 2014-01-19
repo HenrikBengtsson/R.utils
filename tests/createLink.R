@@ -14,6 +14,9 @@ for (method in methods) {
   tryCatch({
     linkR <- createLink(link=link, target=pathname, method=method)
     verbose && cat(verbose, "Link returned: ", linkR)
+    if (linkR != link) {
+      throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link));
+    }
   }, error = function(ex) {
     verbose && cat(verbose, "Failed to create link: ", ex$message)
   })

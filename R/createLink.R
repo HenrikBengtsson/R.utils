@@ -31,7 +31,7 @@
 # }
 #
 # \value{
-#   Returns (invisibly) the path or pathname to the destination.
+#   Returns (invisibly) the path or pathname to the link.
 # }
 #
 # @author
@@ -178,6 +178,8 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       pathname <- sprintf("%s.LNK", link);
       createWindowsShortcut(pathname, target=target, overwrite=overwrite);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      # Make sure to return the link and not the target
+      res <- link;
     }, error = function(ex) {
     });
     if (!is.null(res)) {
@@ -196,6 +198,11 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-01-19
+# o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
+#   the path/pathname to the link (and not the target) just like it does
+#   for the other types of file links.  By link we here mean the
+#   path/pathname without the *.lnk extension.
 # 2014-01-06
 # o ROBUSTNESS: createLink() will no longer try to create Windows file
 #   links on non-Windows platforms.

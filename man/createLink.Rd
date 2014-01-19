@@ -44,7 +44,7 @@
 }
 
 \value{
-  Returns (invisibly) the path or pathname to the destination.
+  Returns (invisibly) the path or pathname to the link.
 }
 
 \author{Henrik Bengtsson}
