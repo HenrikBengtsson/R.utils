@@ -78,6 +78,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     if (skip) {
       warning("Link was not create. Link file already exists: ", link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      # FIX ME: Here the target will be returned if a *.lnk file. /2014-01-22
       return(res);
     }
     if (!overwrite) {
@@ -131,6 +132,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     tryCatch({
       file.symlink(from=targetF, to=link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      attr(res, "linkType") <- "unix-symlink";
     }, warning = function(ex) {
     });
     if (!is.null(res)) {
@@ -161,6 +163,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     tryCatch({
       shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"));
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      attr(res, "linkType") <- "windows-ntfs-symlink";
     }, error = function(ex) {
     });
     if (!is.null(res)) {
@@ -180,6 +183,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
       # Make sure to return the link and not the target
       res <- link;
+      attr(res, "linkType") <- "windows-shortcut";
     }, error = function(ex) {
     });
     if (!is.null(res)) {
@@ -198,6 +202,10 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-01-22
+# o Now the pathname returned by createLink() has attribute 'linkType'
+#   set specifying what type of link was created.  For now, this attribute
+#   will not be set if returning an already existing link (skip=TRUE).
 # 2014-01-19
 # o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
 #   the path/pathname to the link (and not the target) just like it does
