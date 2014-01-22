@@ -12,7 +12,7 @@ o ROBUSTNESS: Added package system tests for createLink().
 
 Version: 1.29.2 [2014-01-12]
 o Now Arguments$getCharacters() preserves attributes.  Also, made
-  argument 'useNames' default to TRUE.
+  argument 'useNames' defaults to TRUE.
 o Added [() for GenericSummary.
 
 
