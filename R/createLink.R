@@ -78,7 +78,13 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     if (skip) {
       warning("Link was not create. Link file already exists: ", link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
-      # FIX ME: Here the target will be returned if a *.lnk file. /2014-01-22
+
+      # If a Windows Shortcut, avoid returning the target.
+      if (file.exists(links[2L]) && !file.exists(link)) {
+        res <- link;
+        attr(res, "linkType") <- "windows-shortcut";
+      }
+
       return(res);
     }
     if (!overwrite) {
@@ -203,6 +209,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 ############################################################################
 # HISTORY:
 # 2014-01-22
+# o CONSISTENCY: Now createLink(..., skip=TRUE) returns the Windows
+#   Shortcut link if it already exists (instead of the target as before).
+#   In this case, we can also set attribute 'linkType'.
 # o Now the pathname returned by createLink() has attribute 'linkType'
 #   set specifying what type of link was created.  For now, this attribute
 #   will not be set if returning an already existing link (skip=TRUE).
