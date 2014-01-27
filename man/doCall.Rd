@@ -17,23 +17,23 @@
 }
 
 \usage{
-\method{doCall}{default}(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=.fcn, .ignoreUnusedArgs=TRUE)
+\method{doCall}{default}(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=list(.fcn),
+  .ignoreUnusedArgs=TRUE, envir=parent.frame())
 }
 
 \arguments{
- \item{.fcn}{A \code{\link[base]{character}} string naming the function to be called.}
+ \item{.fcn}{A \code{\link[base]{function}} or a \code{\link[base]{character}} string specifying the name
+   of a \code{\link[base]{function}} to be called.}
  \item{...}{Named arguments to be passed to the function.}
  \item{args}{A \code{\link[base]{list}} of additional named arguments that will be appended
    to the above arguments.}
  \item{alwaysArgs}{A \code{\link[base]{list}} of additional named arguments that will be
-   appended to the above arguments and that will \emph{never} be ignore.
-   This is useful if you want to pass arguments to a function that accepts
-   arguments via \code{...}.}
- \item{.functions}{A \code{\link[base]{character}} \code{\link[base]{vector}} of function names whos arguments
-   should be kept. This is useful when one function passes \code{...} to
-   another, e.g. \code{\link[stats]{loess}}.}
+   appended to the above arguments and that will \emph{never} be ignore.}
+ \item{.functions}{A \code{\link[base]{list}} of \code{\link[base]{function}}:s or names of functions.  This
+   can be used to control which arguments are passed.}
  \item{.ignoreUnusedArgs}{If \code{\link[base:logical]{TRUE}}, arguments that are not accepted by the
    function, will not be passed to it. Otherwise, all arguments are passed.}
+ \item{envir}{An \code{\link[base]{environment}} in which to evaluate the call.}
 }
 
 \examples{
