@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.29.7 [2014-01-27]
+o Added trial version of the CmdArgsFunction class.
+
+
 Version: 1.29.6 [2014-01-27]
 o Added cmdArgsCall() for easy calling of functions from the command
   line, e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.

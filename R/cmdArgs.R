@@ -172,10 +172,11 @@ cmdArg <- function(...) {
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Arguments passed to @see "doCall", including the function
-#    to be called.}
-#   \item{args}{A @list of arguments to be passed to the function
-#    being called.}
+#  \item{...}{Arguments passed to @see "doCall", including the function
+#   to be called.}
+#  \item{args}{A @list of arguments to be passed to the function
+#   being called.}
+#  \item{.ignoreUnusedArgs}{Passed to @see "doCall".}
 #  \item{envir}{An @environment in which to evaluate the call.}
 # }
 #
@@ -196,8 +197,8 @@ cmdArg <- function(...) {
 # @keyword programming
 # @keyword internal
 #*/#########################################################################
-cmdArgsCall <- function(..., args=cmdArgs(unique=FALSE), envir=parent.frame()) {
-  doCall(..., args=args, envir=envir);
+cmdArgsCall <- function(..., args=cmdArgs(unique=FALSE), .ignoreUnusedArgs=FALSE, envir=parent.frame()) {
+  doCall(..., args=args, .ignoreUnusedArgs=.ignoreUnusedArgs, envir=envir);
 } # cmdArgsCall()
 
 

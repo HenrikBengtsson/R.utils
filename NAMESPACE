@@ -123,6 +123,9 @@ S3method("isOpen", "character")
 S3method("toAsciiRegExprPattern", "character")
 S3method("toFileListTree", "character")
 
+# CmdArgsFunction
+S3method("print", "CmdArgsFunction")
+
 # connection
 S3method("isEof", "connection")
 
