@@ -2,6 +2,18 @@
 Package: R.utils
 ================
 
+Version: 1.29.6 [2014-01-27]
+o Added cmdArgsCall() for easy calling of functions from the command
+  line, e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.
+
+
+Version: 1.29.5 [2014-01-27]
+o doCall() gained argument 'envir', which also means that the new
+  behavior is to evaluate the call within the calling frame.  Also,
+  doCall() now accepts call a function object in addition to a name
+  of a function.
+
+
 Version: 1.29.4 [2014-01-26]
 o Added argument 'unique' to cmdArgs().
 o Now commandArgs(asValues=TRUE) returns no-named arguments as a

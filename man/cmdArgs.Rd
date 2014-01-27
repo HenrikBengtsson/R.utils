@@ -13,13 +13,13 @@
 
 \title{Simple access to parsed command-line arguments}
 
+\description{
+  Simple access to parsed command-line arguments.
+}
+
 \usage{
   cmdArgs(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL)
   cmdArg(...)
-}
-
-\description{
- Retrives
 }
 
 \arguments{

@@ -4,13 +4,13 @@
 #
 # @title "Simple access to parsed command-line arguments"
 #
+# \description{
+#   @get "title".
+# }
+#
 # \usage{
 #   cmdArgs(@eval "t<-formals(R.utils::cmdArgs);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
 #   cmdArg(@eval "t<-formals(R.utils::cmdArg);paste(gsub('=$', '', paste(names(t), t, sep='=')), collapse=', ')")
-# }
-#
-# \description{
-#  Retrives
 # }
 #
 # \arguments{
@@ -158,8 +158,55 @@ cmdArg <- function(...) {
   res[[1]];
 } # cmdArg()
 
+
+
+#########################################################################/**
+# @RdocFunction cmdArgsCall
+#
+# @title "Calls an R function passing command-line arguments"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{...}{Arguments passed to @see "doCall", including the function
+#    to be called.}
+#   \item{args}{A @list of arguments to be passed to the function
+#    being called.}
+#  \item{envir}{An @environment in which to evaluate the call.}
+# }
+#
+# \value{
+#   Returns whatever the called function returns.
+# }
+#
+# @author
+#
+# \examples{\dontrun{
+#   Rscript -e R.utils::cmdArgsCall(rnorm) n=4
+# }}
+#
+# \seealso{
+#   Internally, @see "cmdArgs" and @see "doCall" is used.
+# }
+#
+# @keyword programming
+# @keyword internal
+#*/#########################################################################
+cmdArgsCall <- function(..., args=cmdArgs(unique=FALSE), envir=parent.frame()) {
+  doCall(..., args=args, envir=envir);
+} # cmdArgsCall()
+
+
+
 ############################################################################
 # HISTORY:
+# 2014-01-27
+# o Added cmdArgsCall() for convenient calling of R functions from the
+#   command line, e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.
 # 2013-03-20
 # o Added support for cmdArg(a=42) as an alias to cmdArg("a", default=42).
 # 2013-03-14
@@ -168,3 +215,4 @@ cmdArg <- function(...) {
 # 2013-02-24
 # o Created.
 ############################################################################
+
