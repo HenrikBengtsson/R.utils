@@ -22,7 +22,6 @@ stopifnot(all.equal(args, args0))
 
 
 
-
 ######################################################################
 # Parsed command-line arguments
 ######################################################################
@@ -37,20 +36,6 @@ args <- commandArgs(asValue=TRUE, .args=argsC)
 str(args)
 stopifnot(all.equal(args, args0))
 
-
-######################################################################
-# Parsed command-line arguments
-######################################################################
-# Call:
-argsC <- c("R", "DATAPATH=../data", "--args", "--root=do da", "--foo", "bar", "--details", "--a=2")
-print(argsC)
-
-# Truth:
-args0 <- list(R=NA, DATAPATH="../data", args=TRUE, root="do da", foo="bar", details=TRUE, a="2")
-
-args <- commandArgs(asValue=TRUE, .args=argsC)
-str(args)
-stopifnot(all.equal(args, args0))
 
 # Exclude reserved
 args <- commandArgs(asValue=TRUE, excludeReserved=TRUE, excludeEnvVars=TRUE, .args=argsC)[-1L]
