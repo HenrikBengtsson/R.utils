@@ -292,6 +292,9 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     for (ii in seq(length=nargsT)) {
       argI <- argsT[[ii]];
       arg <- argI$arg;
+
+##      printf("Argument #%d: '%s' [n=%d]\n", ii, arg, length(arg));
+
       if (length(arg) == 2L) {
         argsT[[ii]]$key <- arg[1L];
         argsT[[ii]]$value <- arg[2L];
@@ -350,6 +353,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       argsT[[ii]]$value <- arg;
     } # for (ii ...)
 
+
     # Rescue missing values
     if (nargsT > 1L) {
       for (ii in 1:(nargsT-1L)) {
@@ -361,9 +365,10 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
         # No missing value?
         if (!is.null(value)) {
+           ## This is what makes "R" into R=NA. Is that what we want? /HB 2014-01-26
            if (is.null(key)) {
               argsT[[ii]]$key <- value;
-              argsT[[ii]]$value <- NA;
+              argsT[[ii]]$value <- NA_character_;
            }
            next;
         }
@@ -394,6 +399,28 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       nargsT <- length(argsT);
     }
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (b) Revert list(a="1", key=NA) to list(a="1", "key")
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    for (ii in seq_along(argsT)) {
+      if (identical(argsT[[ii]]$value, NA_character_)) {
+        argsT[[ii]]$value <- argsT[[ii]]$key;
+        argsT[[ii]]$key <- "";
+      }
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (c) Make sure everything has a key
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    for (ii in seq_along(argsT)) {
+      if (is.null(argsT[[ii]]$key)) {
+        argsT[[ii]]$key <- "";
+      }
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (d) Coerce to key=value list
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     keys <- unlist(lapply(argsT, FUN=function(x) x$key));
     args <- lapply(argsT, FUN=function(x) x$value);
     names(args) <- keys;
@@ -402,7 +429,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (b) Corce arguments to known data types?
+    # (e) Corce arguments to known data types?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(args) > 0L && length(defaults) + length(always) > 0L) {
       # First to the 'always', then remaining to the 'defaults'.
@@ -413,7 +440,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (c) Ad hoc corcion of numerics?
+    # (f) Ad hoc corcion of numerics?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(args) > 0L && adhoc) {
       modes <- sapply(args, FUN=storage.mode);
@@ -436,7 +463,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (d) Prepend defaults, if not already specified
+    # (g) Prepend defaults, if not already specified
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
@@ -447,7 +474,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (e) Override by/append 'always' arguments?
+    # (h) Override by/append 'always' arguments?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(always) > 0L) {
       args <- c(args, always);
@@ -458,7 +485,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       keep <- !duplicated(names(args), fromLast=TRUE);
       args <- args[keep];
     }
-  } else {
+  } else { # if (asValue)
     args <- unlist(lapply(argsT, FUN=function(x) x$arg));
     argsT <- NULL; # Not needed anymore
 
@@ -494,6 +521,9 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 ############################################################################
 # HISTORY:
+# 2014-01-26
+# o Now commandArgs(asValues=TRUE) returns no-named arguments as a
+#   list element with the argument as the value and with a "" name.
 # 2013-09-10
 # o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
 #   the very last argument to TRUE if it was a flag, e.g.

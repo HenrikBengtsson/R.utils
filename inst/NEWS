@@ -2,6 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.29.4 [2014-01-26]
+o Now commandArgs(asValues=TRUE) returns no-named arguments as a
+  list element with the argument as the value and with a "" name.
+  For instance, in the past one would get list(R=NA, a="1", noname=NA)
+  whereas now one gets list("R", a="1", "noname").
+o BUG FIX: Now attachLocally() no longer tries to attach elements with
+  an empty name, e.g. list(a=1, 2).  Previously it gave an error.
+  Added a package system test for attachLocally().
+
+
 Version: 1.29.3 [2014-01-19]
 o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
   the path/pathname to the link (and not the target) just like it does

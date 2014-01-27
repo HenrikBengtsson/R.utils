@@ -7,41 +7,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
- \name{attachLocally.list}
+\name{attachLocally.list}
 \alias{attachLocally.list}
- \alias{attachLocally.data.frame}
- \alias{attachLocally.environment}
- \alias{attachLocally}
+\alias{attachLocally.data.frame}
+\alias{attachLocally.environment}
+\alias{attachLocally}
 
- \title{Assigns an objects elements locally}
+\title{Assigns an objects elements locally}
 
- \usage{
+\usage{
 \method{attachLocally}{list}(object, fields=NULL, excludeFields=NULL, overwrite=TRUE,
   envir=parent.frame(), ...)
 }
 
- \description{
-  Assigns an objects elements locally.
- }
+\description{
+ Assigns an objects elements locally.
+}
 
- \arguments{
-   \item{object}{An object with named elements such as an \code{\link[base]{environment}},
-     a \code{\link[base]{list}}, or a \code{\link[base]{data.frame}}.}
-   \item{fields}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying elements to be copied.
-      If \code{\link[base]{NULL}}, all elements are considered.}
-   \item{excludeFields}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying elements not to
-      be copied.  This has higher priority than \code{fields}.}
-   \item{overwrite}{If \code{\link[base:logical]{FALSE}}, fields that already exists will not be
-      copied.}
-   \item{envir}{The \code{\link[base]{environment}} where elements are copied to.}
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{object}{An object with named elements such as an \code{\link[base]{environment}},
+    a \code{\link[base]{list}}, or a \code{\link[base]{data.frame}}.}
+  \item{fields}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying elements to be copied.
+     If \code{\link[base]{NULL}}, all elements are considered.}
+  \item{excludeFields}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying elements not to
+     be copied.  This has higher priority than \code{fields}.}
+  \item{overwrite}{If \code{\link[base:logical]{FALSE}}, fields that already exists will not be
+     copied.}
+  \item{envir}{The \code{\link[base]{environment}} where elements are copied to.}
+  \item{...}{Not used.}
+}
 
- \value{
-   Returns (invisibly) a \code{\link[base]{character}} \code{\link[base]{vector}} of the fields copied.
- }
+\value{
+  Returns (invisibly) a \code{\link[base]{character}} \code{\link[base]{vector}} of the fields copied.
+}
 
- \examples{
+\examples{
 foo <- function(object) {
   cat("Local objects in foo():\n")
   print(ls())
@@ -63,12 +63,12 @@ foo(l)
 print(a)
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-  \code{\link[R.oo:attachLocally.Object]{attachLocally}()} of class Object.
-  \code{\link[base]{attach}}().
- }
+\seealso{
+ \code{\link[R.oo:attachLocally.Object]{attachLocally}()} of class Object.
+ \code{\link[base]{attach}}().
+}
 
 
 
