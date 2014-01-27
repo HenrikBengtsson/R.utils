@@ -482,7 +482,10 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
     # Keep only unique arguments?
     if (unique && length(args) > 1L) {
+      # Keep only those with unique names
       keep <- !duplicated(names(args), fromLast=TRUE);
+      # ...and those without names
+      keep <- keep | !nzchar(names(args));
       args <- args[keep];
     }
   } else { # if (asValue)
