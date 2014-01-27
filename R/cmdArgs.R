@@ -15,17 +15,17 @@
 #
 # \arguments{
 #   \item{args}{A named @list of arguments.}
-#   \item{names}{A @character @vector specifying the arguments to be 
+#   \item{names}{A @character @vector specifying the arguments to be
 #     returned.  If @NULL, all arguments are returned.}
 #   \item{...}{
-#     For \code{cmdArgs()}, additional arguments passed to 
+#     For \code{cmdArgs()}, additional arguments passed to
 #     @see "commandArgs", e.g. \code{defaults} and \code{always}.
-#     For \code{cmdArg()}, named arguments \code{name} and 
-#     \code{default}, where \code{name} must be a @character string 
-#     and \code{default} is an optional default value (if not given, 
-#     it's @NULL). Alternatively, \code{name} and \code{default} can 
+#     For \code{cmdArg()}, named arguments \code{name} and
+#     \code{default}, where \code{name} must be a @character string
+#     and \code{default} is an optional default value (if not given,
+#     it's @NULL). Alternatively, \code{name} and \code{default} can
 #     be given as a named argument (e.g. \code{n=42}).}
-#   \item{.args}{(advanced/internal) A named @list of parsed 
+#   \item{.args}{(advanced/internal) A named @list of parsed
 #     command-line arguments.}
 # }
 #
@@ -37,9 +37,9 @@
 # \section{Coercing to non-character data types}{
 #   The value of each command-line argument is returned as a @character
 #   string, unless an argument share name with ditto in the (optional)
-#   arguments \code{always} and \code{default} in case the retrieved 
+#   arguments \code{always} and \code{default} in case the retrieved
 #   value is coerced to that of the latter.
-#   Finally, remaining character string command-line arguments are 
+#   Finally, remaining character string command-line arguments are
 #   coerced to @numerics (via @see "base::as.numeric"), if possible,
 #   that is unless the coerced value becomes @NA.
 # }
@@ -68,7 +68,7 @@ cmdArgs <- function(args=NULL, names=NULL, ..., .args=NULL) {
   # Default call?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(args)) {
-    res <- commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE, 
+    res <- commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE,
                        excludeReserved=TRUE, ..., .args=.args);
     res <- res[-1L];
     if (!is.null(names)) {
