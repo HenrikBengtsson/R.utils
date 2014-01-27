@@ -3,6 +3,7 @@ Package: R.utils
 ================
 
 Version: 1.29.4 [2014-01-26]
+o Added argument 'unique' to cmdArgs().
 o Now commandArgs(asValues=TRUE) returns no-named arguments as a
   list element with the argument as the value and with a "" name.
   For instance, in the past one would get list(R=NA, a="1", noname=NA)

@@ -17,6 +17,7 @@
 #   \item{args}{A named @list of arguments.}
 #   \item{names}{A @character @vector specifying the arguments to be
 #     returned.  If @NULL, all arguments are returned.}
+#   \item{unique}{If @TRUE, only unique arguments are returned.}
 #   \item{...}{
 #     For \code{cmdArgs()}, additional arguments passed to
 #     @see "commandArgs", e.g. \code{defaults} and \code{always}.
@@ -54,7 +55,7 @@
 #
 # @keyword "programming"
 #*/#########################################################################
-cmdArgs <- function(args=NULL, names=NULL, ..., .args=NULL) {
+cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
   # Argument 'args':
   if (identical(args, "*")) args <- list("*");
   if (!is.null(args)) {
@@ -68,7 +69,7 @@ cmdArgs <- function(args=NULL, names=NULL, ..., .args=NULL) {
   # Default call?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(args)) {
-    res <- commandArgs(asValues=TRUE, adhoc=TRUE, unique=TRUE,
+    res <- commandArgs(asValues=TRUE, adhoc=TRUE, unique=unique,
                        excludeReserved=TRUE, ..., .args=.args);
     res <- res[-1L];
     if (!is.null(names)) {
@@ -108,7 +109,7 @@ cmdArgs <- function(args=NULL, names=NULL, ..., .args=NULL) {
   }
 
   res <- commandArgs(asValues=TRUE, defaults=defaults, always=always,
-      adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, .args=args, ...);
+      adhoc=TRUE, unique=unique, excludeReserved=TRUE, .args=args, ...);
   if (is.null(args)) {
     res <- res[-1L];
   }
