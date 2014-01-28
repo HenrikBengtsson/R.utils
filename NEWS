@@ -3,9 +3,9 @@ Package: R.utils
 ================
 
 Version: 1.29.8 [2014-01-27]
-o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
-  'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)
-  would not.
+o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would use command-line
+  argument 'K=1' as the default (instead of K=2), calling
+  eget("K", 2, cmdArgs=TRUE) would not.
 o BUG FIX: commandArgs(excludeReserved=TRUE) failed to drop reserved
   arguments of type --<key>=<value>, e.g. --encoding=ASCII.
 
