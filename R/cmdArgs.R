@@ -110,6 +110,7 @@ cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
 
   res <- commandArgs(asValues=TRUE, defaults=defaults, always=always,
       adhoc=TRUE, unique=unique, excludeReserved=TRUE, .args=args, ...);
+
   if (is.null(args)) {
     res <- res[-1L];
   }

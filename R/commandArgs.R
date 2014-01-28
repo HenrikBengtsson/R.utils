@@ -111,7 +111,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     # General arguments
     if (rVer >= "2.13.0") {
       # According to R v2.13.1:
-      reservedArgs <- c("--help", "-h", "--version", "--encoding[= ](.*)", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f (.*)", "--file=(.*)", "-e (.*)", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
+      reservedArgs <- c("--help", "-h", "--version", "--encoding=(.*)", "--encoding (.*)", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f (.*)", "--file=(.*)", "-e (.*)", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
     } else if (rVer >= "2.7.0") {
       # According to R v2.7.1:
       reservedArgs <- c("--help", "-h", "--version", "--encoding=(.*)", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f (.*)", "--file=(.*)", "-e (.*)", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
@@ -142,7 +142,22 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
     if (patterns) {
       # Create regular expression patterns out of the reserved arguments
-      reservedArgs <- paste("^", reservedArgs, "$", sep="");
+      args <- gsub("^(-*)([-a-zA-Z]+)", "\\1(\\2)", reservedArgs);
+      args <- sprintf("^%s$", args);
+
+      reservedArgs <- list();
+      # Identify the ones that has an equal sign
+      idxs <- grep("=(.*)", args, fixed=TRUE);
+      reservedArgs$equals <- args[idxs];
+      args <- args[-idxs];
+
+      # Identify the ones that has an extra argument
+      idxs <- grep(" (.*)", args, fixed=TRUE);
+      reservedArgs$pairs <- gsub(" .*", "$", args[idxs]);
+      args <- args[-idxs];
+
+      # The rest are flags
+      reservedArgs$flags <- args;
     }
 
     reservedArgs;
@@ -154,35 +169,63 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
   parseReservedArgs <- function(args, os) {
     nargs <- length(args);
 
-    reservedArgs <- getReserved(os=os, pattern=FALSE);
+    reservedArgs <- getReserved(os=os, pattern=TRUE);
 
-    # Identify the reserved arguments that takes a 2nd argument
-    pairArgs <- grep(".*", reservedArgs, fixed=TRUE, value=TRUE);
-    keys <- strsplit(pairArgs, split="([ =]|\\[= \\])", fixed=FALSE);
-    keys <- unlist(lapply(keys, FUN=function(x) x[1L]));
-    idxs <- which(is.element(args, keys));
-
-    idxU <- which(args == "--args")[1L];
+    # Set user arguments to start after '--args', otherwise
+    # all arguments are considered user arguments
+    user <- FALSE;
+    startU <- which(args == "--args")[1L];
+    if (is.na(startU)) user <- TRUE;
 
     argsT <- list();
-    user <- FALSE;
     idx <- 1L;
     while (idx <= nargs) {
-       user <- !user && (!is.na(idxU) && idx > idxU);
-       if (!user && is.element(idx, idxs)) {
-         arg <- c(args[idx], args[idx+1L]);
+       # A user argument?
+       user <- !user && isTRUE(idx > startU);
+
+       # Argument to be investigates
+       arg <- args[idx];
+
+       # A flag argument?
+       idxT <- unlist(sapply(reservedArgs$flags, FUN=grep, arg));
+       if (length(idxT) == 1L) {
+         argsT[[idx]] <- list(arg=arg, user=user, reserved=!user, merged=FALSE, envvar=FALSE);
          idx <- idx + 1L;
-         reserved <- TRUE;
-         merged <- TRUE;
-       } else {
-         arg <- args[idx];
-         reserved <- !user && is.element(arg, reservedArgs);
-         merged <- FALSE;
-         envvar <- !user && (regexpr("^([^=-]*)(=)(.*)$", arg) != -1L);
+         next;
        }
-       argsT[[idx]] <- list(arg=arg, user=user, reserved=reserved, merged=merged, envvar=envvar);
+
+       # A '--<key> <value>' argument?
+       idxT <- unlist(sapply(reservedArgs$pairs, FUN=grep, arg));
+       if (length(idxT) == 1L) {
+         arg <- c(args[idx], args[idx+1L]);
+         argsT[[idx]] <- list(arg=arg, user=user, reserved=!user, merged=TRUE, envvar=FALSE);
+         idx <- idx + 2L;
+         next;
+       }
+
+       # A '--<key>=<value>' argument?
+       idxT <- unlist(sapply(reservedArgs$equals, FUN=grep, arg));
+       if (length(idxT) == 1L) {
+         pattern <- reservedArgs$equals[idxT];
+         argsT[[idx]] <- list(arg=arg, user=user, reserved=!user, merged=FALSE, envvar=FALSE);
+         idx <- idx + 1L;
+         next;
+       }
+
+       # An environment variable?
+       envvar <- !user && (regexpr("^([^=-]*)(=)(.*)$", arg) != -1L);
+       if (envvar) {
+         argsT[[idx]] <- list(arg=arg, user=FALSE, reserved=FALSE, merged=FALSE, envvar=TRUE);
+         idx <- idx + 1L;
+         next;
+       }
+
+       # Otherwise a non-reserved argument
+       argsT[[idx]] <- list(arg=arg, user=user, reserved=FALSE, merged=FALSE, envvar=FALSE);
+
        idx <- idx + 1L;
-    }
+    } # while (idx <= nargs)
+
     argsT <- argsT[!sapply(argsT, FUN=is.null)];
 
     argsT;
@@ -296,7 +339,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 ##      printf("Argument #%d: '%s' [n=%d]\n", ii, arg, length(arg));
 
       if (length(arg) == 2L) {
-        argsT[[ii]]$key <- arg[1L];
+        argsT[[ii]]$key <- gsub("^[-]*", "", arg[1L]);
         argsT[[ii]]$value <- arg[2L];
         next;
       }
@@ -524,6 +567,9 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 ############################################################################
 # HISTORY:
+# 2014-01-27
+# o BUG FIX: commandArgs(excludeReserved=TRUE) failed to drop reserved
+#   arguments of type --<key>=<value>, e.g. --encoding=ASCII.
 # 2014-01-26
 # o Now commandArgs(asValues=TRUE) returns no-named arguments as a
 #   list element with the argument as the value and with a "" name.
