@@ -17,14 +17,16 @@
 }
 
 \usage{
-cmdArgsCall(..., args=cmdArgs(unique = FALSE), envir=parent.frame())
+cmdArgsCall(..., args=cmdArgs(unique = FALSE), .ignoreUnusedArgs=FALSE,
+  envir=parent.frame())
 }
 
 \arguments{
-  \item{...}{Arguments passed to \code{\link{doCall}}(), including the function
-   to be called.}
-  \item{args}{A \code{\link[base]{list}} of arguments to be passed to the function
-   being called.}
+ \item{...}{Arguments passed to \code{\link{doCall}}(), including the function
+  to be called.}
+ \item{args}{A \code{\link[base]{list}} of arguments to be passed to the function
+  being called.}
+ \item{.ignoreUnusedArgs}{Passed to \code{\link{doCall}}().}
  \item{envir}{An \code{\link[base]{environment}} in which to evaluate the call.}
 }
 

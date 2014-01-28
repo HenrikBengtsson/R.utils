@@ -37,6 +37,10 @@
 # @alias isScalar
 # @alias isVector
 #
+# % The CmdArgsFunction class
+# @alias CmdArgsFunction
+# @alias print.CmdArgsFunction
+#
 # % The connection class
 # @alias isEof
 #
