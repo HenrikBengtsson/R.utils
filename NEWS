@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.29.8 [2014-01-27]
+o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
+  'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)
+  would not.
+
+
 Version: 1.29.7 [2014-01-27]
 o Added trial version of the CmdArgsFunction class.
 

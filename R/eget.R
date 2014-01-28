@@ -55,20 +55,14 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="an
 
   # Special short format, e.g. eget(n=42)?
   args <- pargs$args;
+
   if (!is.element("name", names(args))) {
     argsT <- pargs$namedArgs;
     if (length(argsT) == 0L) {
       stop("Argument 'name' is missing (or NULL).");
     }
     args$name <- names(argsT)[1L];
-    if (cmdArg) {
-      default <- cmdArg(...);
-      if (is.null(cmdArg)) {
-        default <- argsT[[1L]];
-      }
-    } else {
-      default <- argsT[[1L]];
-    }
+    default <- argsT[[1L]];
     args$default <- default;
     argsT <- argsT[-1L];
     pargs$args <- args;
@@ -82,6 +76,12 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="an
 
   # Argument 'default':
   default <- args$default;
+
+  # Set default according to corresponding command-line argument?
+  if (cmdArg) {
+    defaultT <- cmdArg(...);
+    if (!is.null(defaultT)) default <- defaultT;
+  }
 
   # Argument 'envir':
   if (is.list(envir)) {
@@ -119,6 +119,10 @@ ecget <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-27
+# o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
+#   'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)
+#   would not.
 # 2013-03-20
 # o Created.
 ############################################################################
