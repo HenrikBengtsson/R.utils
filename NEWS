@@ -2,6 +2,18 @@
 Package: R.utils
 ================
 
+Version: 1.29.9 [2014-02-24]
+o ROBUSTNESS: Added a package redundancy test for a bug occurring in 
+  R.oo (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT() 
+  can only be applied to a 'list', not a 'integer'") or gives an error 
+  (with "Error: not a weak reference") under certain conditions when a
+  registered finalizer tried to reload R.oo if it was unloaded.  This
+  occurred only on R prior to R 3.0.2 patched (2014-02-21 r65057).  Also,
+  the 'methods' package needs to be attached, so it is still not clear
+  what is the true cause of the bug.  In R.oo (>= 1.18.0) this bug is
+  avoided.
+
+
 Version: 1.29.8 [2014-01-27]
 o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would use command-line
   argument 'K=1' as the default (instead of K=2), calling
