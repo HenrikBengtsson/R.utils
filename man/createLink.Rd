@@ -47,6 +47,16 @@
   Returns (invisibly) the path or pathname to the link.
 }
 
+\section{Required privileges on Windows}{
+  In order for \code{method="unix-symlink"} (utilizing
+  \code{\link[base:files]{file.symlink}()}),
+  \code{method="windows-ntfs-symlink"} (utilizing executable \code{mklink}),
+  and/or \code{method="windows-shortcut"} (utilizing
+  \code{\link{createWindowsShortcut}}()) to succeed on Windows,
+  the client/R session must run with sufficient privileges
+  (it has been reported that Administrative rights are necessary).
+}
+
 \author{Henrik Bengtsson}
 
 \seealso{

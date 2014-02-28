@@ -2,10 +2,15 @@
 Package: R.utils
 ================
 
+Version: 1.29.10 [2014-02-28]
+o DOCUMENTATION: Added a help section on privileges required on Windows
+  in order for createLink() to work.
+
+
 Version: 1.29.9 [2014-02-24]
-o ROBUSTNESS: Added a package redundancy test for a bug occurring in 
-  R.oo (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT() 
-  can only be applied to a 'list', not a 'integer'") or gives an error 
+o ROBUSTNESS: Added a package redundancy test for a bug occurring in
+  R.oo (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT()
+  can only be applied to a 'list', not a 'integer'") or gives an error
   (with "Error: not a weak reference") under certain conditions when a
   registered finalizer tried to reload R.oo if it was unloaded.  This
   occurred only on R prior to R 3.0.2 patched (2014-02-21 r65057).  Also,

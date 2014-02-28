@@ -34,6 +34,16 @@
 #   Returns (invisibly) the path or pathname to the link.
 # }
 #
+# \section{Required privileges on Windows}{
+#   In order for \code{method="unix-symlink"} (utilizing
+#   \code{\link[base:files]{file.symlink}()}),
+#   \code{method="windows-ntfs-symlink"} (utilizing executable \code{mklink}),
+#   and/or \code{method="windows-shortcut"} (utilizing
+#   @see "createWindowsShortcut") to succeed on Windows,
+#   the client/R session must run with sufficient privileges
+#   (it has been reported that Administrative rights are necessary).
+# }
+#
 # @author
 #
 # \seealso{
@@ -208,6 +218,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-02-28
+# o DOCUMENTATION: Added an Rd section on privileges required on Windows
+#   for createLink() to work.
 # 2014-01-22
 # o CONSISTENCY: Now createLink(..., skip=TRUE) returns the Windows
 #   Shortcut link if it already exists (instead of the target as before).

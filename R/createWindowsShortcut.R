@@ -23,6 +23,12 @@
 #   Returns (invisibly) the pathname.
 # }
 #
+# \section{Required privileges on Windows}{
+#   In order for this method, which utilizes Windows Script Host a VBScript,
+#   to succeed on Windows, the client/R session must run with sufficient
+#   privileges (it has been reported that Administrative rights are necessary).
+# }
+#
 # @examples "../incl/createWindowsShortcut.Rex"
 #
 # @author
@@ -158,6 +164,9 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
 
 #############################################################################
 # HISTORY:
+# 2014-02-28
+# o DOCUMENTATION: Added an Rd section on privileges required on Windows
+#   for createLink() to work.
 # 2013-10-13
 # o CLEANUP: createWindowsShortcut() no longer attaches 'R.utils'.
 # 2012-10-29

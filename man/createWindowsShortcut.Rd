@@ -34,6 +34,12 @@
   Returns (invisibly) the pathname.
 }
 
+\section{Required privileges on Windows}{
+  In order for this method, which utilizes Windows Script Host a VBScript,
+  to succeed on Windows, the client/R session must run with sufficient
+  privileges (it has been reported that Administrative rights are necessary).
+}
+
 \examples{
 # Create Windows Shortcut links to a directory and a file
 targets <- list(
