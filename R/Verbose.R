@@ -1013,9 +1013,12 @@ setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("str", "Verbose", function(object, ...) {
+setMethodS3("str", "Verbose", function(object, ..., level=this$defaultLevel) {
   # To please R CMD check
   this <- object;
+
+  if (!isVisible(this, level))
+    return(invisible(FALSE));
 
   capture(this, str(...));
 })
@@ -1050,9 +1053,12 @@ setMethodS3("str", "Verbose", function(object, ...) {
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("summary", "Verbose", function(object, ...) {
+setMethodS3("summary", "Verbose", function(object, ..., level=this$defaultLevel) {
   # To please R CMD check
   this <- object;
+
+  if (!isVisible(this, level))
+    return(invisible(FALSE));
 
   capture(this, print(summary(...)));
 })
@@ -1586,6 +1592,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-04-02
+# o BUG FIX: str() and summary() for Verbose did not acknowledge
+#   argument 'level'.
 # 2012-07-27
 # o Added enterf() to Verbose, which is an sprintf-like enter().
 # 2012-02-29

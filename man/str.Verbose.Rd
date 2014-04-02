@@ -19,7 +19,7 @@
 }
 
 \usage{
-\method{str}{Verbose}(object, ...)
+\method{str}{Verbose}(object, ..., level=this$defaultLevel)
 }
 
 \arguments{

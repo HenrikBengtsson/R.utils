@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.29.11 [2014-04-02]
+o BUG FIX: str() and summary() for Verbose did not acknowledge
+  argument 'level'.
+
+
 Version: 1.29.10 [2014-02-28]
 o DOCUMENTATION: Added a help section on privileges required on Windows
   in order for createLink() to work.
