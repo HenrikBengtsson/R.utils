@@ -223,8 +223,6 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
 # o Turned findFiles() into a "default" method.
 # o Now code assumes availability of needed R.utils methods.
 # o Copied from affxparser package to R.utils.
-# 2008-02-21 [HB]
-# o Added an internal generic isPackageLoaded() function.
 # 2008-02-20 [KH]
 # o Replaced require("R.utils") with a "isLoaded()" feature.
 # 2008-02-14

@@ -5,8 +5,11 @@ stopifnot(identical(getAbsolutePath("."), getwd()))
 stopifnot(identical(getRelativePath("."), "."))
 
 # Tilde expansion
-stopifnot(identical(getAbsolutePath("~", expandTilde=TRUE), getAbsolutePath(normalizePath("~"))))
-stopifnot(identical(getRelativePath("~"), getAbsolutePath(normalizePath("~"))))
+pathH <- getAbsolutePath(normalizePath("~"))
+pathA <- getAbsolutePath("~", expandTilde=TRUE)
+pathR <- getRelativePath("~")
+stopifnot(identical(tolower(pathA), tolower(pathH)))
+stopifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 
 # Microsoft Windows UNC paths
 stopifnot(identical(getAbsolutePath("//vinata/biomed"), "//vinata/biomed"))
@@ -24,7 +27,6 @@ stopifnot(all(isAbsolutePath(pathsA)))
 stopifnot(all(!isAbsolutePath(pathsR)))
 stopifnot(all(pathsRA == pathsA))
 stopifnot(all(pathsAR == pathsR))
-
 
 # Paths relative to give directories
 stopifnot(getRelativePath("foo", "foo") == ".")
