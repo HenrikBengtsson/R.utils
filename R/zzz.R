@@ -1,3 +1,31 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Special case: Treat zero-length paths/pathnames specially?
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.getPathIfEmpty <- function(pathname, where=NULL) {
+  # Nothing to do?
+  if (length(pathname) > 0L) return(pathname);
+
+  onEmptyPath <- getOption("R.utils::onEmptyPath", ".");
+
+  # Treat as the current working directory?  (Backward compatibility)
+  if (onEmptyPath == ".")
+    return(".");
+
+  # Warning or error?
+  if (is.element(onEmptyPath, c("warning", "error"))) {
+    if (is.null(where)) {
+      msg <- "Argument 'pathname' is NULL.";
+    } else {
+      msg <- sprintf("Argument 'pathname' of %s is NULL.", where);
+    }
+    if (onEmptyPath == "error") throw(msg);
+    warning(msg);
+  }
+
+  pathname;
+} # .getPathIfEmpty()
+
+
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
   pkg <- Package(pkgname);
@@ -12,6 +40,16 @@
       options("Arguments$getCharacters/args/asGString"=value)
     }
   }
+
+  # Set 'R.utils::onEmptyPath' option via system environment variable
+  value <- getOption("R.utils::onEmptyPath")
+  if (is.null(value)) {
+    value <- Sys.getenv("R.utils_onEmptyPath")
+    if (nzchar(value)) {
+      options("R.utils::onEmptyPath"=value)
+    }
+  }
+
 } # .onLoad()
 
 

@@ -74,43 +74,43 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  if (length(pathname) > 1) {
-    throw("Argument 'pathname' must be a single character string: ", 
-                                             paste(pathname, collapse=", "));
+  pathname <- as.character(pathname);
+  # BACKWARD COMPATIBILITY: Treat empty path specially?
+  pathname <- .getPathIfEmpty(pathname, where="getRelativePath")
+
+  nPathnames <- length(pathname);
+
+  # Nothing to do?
+  if (nPathnames == 0L) return(logical(0L));
+
+  # Multiple pathnames to be checked?
+  if (nPathnames > 1L) {
+    res <- sapply(pathname, FUN=getRelativePath, relativeTo=relativeTo, caseSensitive=caseSensitive, ...);
+    return(res);
   }
 
-  if (is.na(pathname)) {
-    naValue <- as.character(NA);
-    return(naValue);
-  }
+  # A missing pathname?
+  if (is.na(pathname)) return(NA_character_);
 
-  if (is.null(pathname)) {
-    pathname <- ".";
-  }
-
-  if (isUrl(pathname)) {
-    return(pathname);
-  }
+  # A URL?
+  if (isUrl(pathname)) return(pathname);
 
   # If not an absolute path, assume it is a relative path already.
   pathname <- getAbsolutePath(pathname, expandTilde=TRUE);
-
-  if (!isAbsolutePath(pathname))
-    return(pathname);
+  if (!isAbsolutePath(pathname)) return(pathname);
 
   # Argument 'relativeTo':
   if (is.null(relativeTo))
     relativeTo <- ".";
 
-  if (length(relativeTo) > 1) {
-    throw("Argument 'relativeTo' must be a single character string: ", 
-                                           paste(relativeTo, collapse=", "));
+  if (length(relativeTo) > 1L) {
+    throw("Argument 'relativeTo' must be a single character string: ", hpaste(relativeTo));
   }
 
   # Argument 'caseSensitive':
   if (is.null(caseSensitive)) {
     pattern <- getWindowsDrivePattern("^[%s]:");
-    isWindows <- (regexpr(pattern, relativeTo) != -1);
+    isWindows <- (regexpr(pattern, relativeTo) != -1L);
     caseSensitive <- !isWindows;
   } else {
     caseSensitive <- as.logical(caseSensitive);
@@ -132,7 +132,7 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   }
 
   # 1. Check that the pathnames are "compatible".
-  if (!identical(relativeTo[1], pathnameC[1])) {
+  if (!identical(relativeTo[1L], pathnameC[1L])) {
     pathname <- paste(pathname, collapse="/");
     # warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device (will use absolute pathname instead): ", paste(relativeTo, collapse="/"), " != ", pathname);
     return(pathname);
@@ -146,9 +146,9 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
     if (!identical(aPart, bPart))
       break;
 
-    relativeTo <- relativeTo[-1];
-    pathname <- pathname[-1];
-    pathnameC <- pathnameC[-1];
+    relativeTo <- relativeTo[-1L];
+    pathname <- pathname[-1L];
+    pathnameC <- pathnameC[-1L];
   }
 
   # 3. If there are more components in 'relativeTo', this means that the
@@ -162,12 +162,17 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
     pathname <- ".";
 
   pathname;
-})  
+})
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
+# 2014-04-06
+# o Vectorized getRelativePath().
+# o Preparing to vectorize getRelativePath() by introducing option to
+#   generate a warning or an error if a zero-length path is given.  This
+#   way we can detect packages making this error, without breaking them.
 # 2013-02-21
-# o For conveniency, getAbsolutePath() and getRelativePath() returns 
+# o For conveniency, getAbsolutePath() and getRelativePath() returns
 #   the same pathname if it is a URL.
 # 2009-12-30
 # o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
@@ -179,7 +184,7 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 # o The warning message on "cannot refer relative pathname" didn't paste
 #   the path resulting in a funny looking warning.
 # 2005-12-05
-# o Now getRelativePath() also recognizes tildes.  
+# o Now getRelativePath() also recognizes tildes.
 # 2005-08-02
 # o Relative path "" is not returned as ".".
 # o If path is not absolute, assume it is already relative.

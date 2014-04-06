@@ -36,16 +36,28 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isDirectory", "default", function(pathname, ...) {
-  # Special cases
-  if (is.null(pathname))
-    return(TRUE);
+  # Argument 'pathname':
   pathname <- as.character(pathname);
-  if (length(pathname) == 0)
-    return(TRUE);
+  # BACKWARD COMPATIBILITY: Treat empty path specially?
+  pathname <- .getPathIfEmpty(pathname, where="isDirectory")
+
+  nPaths <- length(pathname);
+
+  # Nothing to do?
+  if (nPaths == 0L) return(logical(0L));
+
+  # Multiple paths to be checked?
+  if (nPaths > 1L) {
+    res <- sapply(pathname, FUN=isDirectory, ...);
+    return(res);
+  }
+
+  # A missing path?
+  if (is.na(pathname)) return(FALSE);
+
+  # Consider an empty path ("") as ".".
   if (identical(pathname, ""))
     pathname <- "."; # As in Java.
-  if (is.na(pathname))
-    return(FALSE);
 
   # Current working directory is a directory.
   if (pathname == ".")
@@ -112,10 +124,15 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
     # At this point, we can only return FALSE.
     FALSE;
   }
-})
+}) # isDirectory()
 
 ###########################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized isDirectory().
+# o Preparing to vectorize isDirectory() by introducing option to generate
+#   a warning or an error if a zero-length path is given.  This way we can
+#   detect packages making this error, without breaking them.
 # 2013-05-13
 # o The workaround for isDirectory("C:/") is only needed for R (< 3.0.2).
 # 2011-09-19

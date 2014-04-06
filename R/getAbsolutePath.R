@@ -71,23 +71,27 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  if (length(pathname) > 1L) {
-    throw("Argument 'pathname' must be a single character string: ",
-                                           paste(pathname, collapse=", "));
+  pathname <- as.character(pathname);
+
+  # BACKWARD COMPATIBILITY: Treat empty path specially?
+  pathname <- .getPathIfEmpty(pathname, where="getAbsolutePath")
+
+  nPathnames <- length(pathname);
+
+  # Nothing to do?
+  if (nPathnames == 0L) return(logical(0L));
+
+  # Multiple pathnames to be checked?
+  if (nPathnames > 1L) {
+    res <- sapply(pathname, FUN=getAbsolutePath, workDirectory=workDirectory, expandTilde=expandTilde, ...);
+    return(res);
   }
 
-  if (is.na(pathname)) {
-    naValue <- as.character(NA);
-    return(naValue);
-  }
+  # Missing path?
+  if (is.na(pathname)) return(NA_character_);
 
-  if (is.null(pathname)) {
-    pathname <- ".";
-  }
-
-  if (isUrl(pathname)) {
-    return(pathname);
-  }
+  # A URL?
+  if (isUrl(pathname)) return(pathname);
 
   if (!isAbsolutePath(pathname)) {
     workDirectory <- strsplit(workDirectory, split="[/\\]")[[1L]];
@@ -96,7 +100,7 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     if (name == "" || name == ".")
       name <- NULL;                        # Only, details, but as in Java!
 
-    pathname <- strsplit(pathname, split="[/\\]")[[1]];
+    pathname <- strsplit(pathname, split="[/\\]")[[1L]];
     len <- length(pathname);
     if (len != 0L) {
       pathname <- pathname[-len];
@@ -128,6 +132,11 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
 ###########################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized getAbsolutePath().
+# o Preparing to vectorize getAbsolutePath() by introducing option to
+#   generate a warning or an error if a zero-length path is given.  This
+#   way we can detect packages making this error, without breaking them.
 # 2013-07-27
 # o Now getAbsolutePath() shortens paths if possible, e.g. "C:/foo/.."
 #   becomes "C:/".

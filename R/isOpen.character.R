@@ -11,7 +11,7 @@
 # }
 #
 # \arguments{
-#   \item{pathname}{An @character string.}
+#   \item{pathname}{An @character @vector.}
 #   \item{rw}{A @character @vector.
 #     If \code{"read"}, a file is considered to be open if there exist an
 #     open connection that can read from that file.
@@ -23,29 +23,44 @@
 # }
 #
 # \value{
-#   Returns @TRUE if there exists a file @connection that is open,
-#   otherwise @FALSE.
+#   Returns a @logical @vector indicating for each file whether there
+#   exists an open file @connection or not.
 # }
-# 
+#
 # @author
-# 
+#
 # \seealso{
 #   See \code{isOpen()} in @see "base::connections".
 #   @see "base::showConnections".
 # }
 #
 # @keyword "IO"
-# @keyword "utilities" 
-#*/######################################################################### 
+# @keyword "utilities"
+#*/#########################################################################
 setMethodS3("isOpen", "character", function(pathname, rw=c("read", "write"), ...) {
   # Arguments 'pathname':
-  pathname <- getAbsolutePath(pathname);
+  pathname <- as.character(pathname);
+  nPathnames <- length(pathname);
 
   # Arguments 'rw':
   if (!all(rw %in% c("read", "write"))) {
     throw("Argument 'rw' contains unknown values: ", paste(rw, collapse=", "));
   }
-  
+
+  # Nothing to do?
+  if (nPathnames == 0L) return(logical(0L));
+
+  # Multiple pathnames?
+  if (nPathnames > 1L) {
+    res <- sapply(pathname, FUN=isOpen, rw=rw, ...);
+##    names(res) <- pathname;
+    return(res);
+  }
+
+
+  # Check single pathname
+  pathname <- getAbsolutePath(pathname);
+
   # Get all (user) connections
   cons <- getAllConnections();
   cons <- cons[cons > 2];
@@ -77,6 +92,8 @@ setMethodS3("isOpen", "character", function(pathname, rw=c("read", "write"), ...
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized isOpen().
 # 2006-08-21
 # o Created.
-############################################################################ 
+############################################################################

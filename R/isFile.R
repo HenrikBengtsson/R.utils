@@ -36,16 +36,24 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isFile", "default", function(pathname, ...) {
-  # Special cases
-  if (is.null(pathname))
-    return(FALSE);
-  if (length(pathname) == 0)
-    return(FALSE);
-
-  if (is.na(pathname))
-    return(FALSE);
-
+  # Argument 'pathname':
   pathname <- as.character(pathname);
+  # BACKWARD COMPATIBILITY: Treat empty path specially?
+  pathname <- .getPathIfEmpty(pathname, where="isFile")
+
+  nPathnames <- length(pathname);
+
+  # Nothing to do?
+  if (nPathnames == 0L) return(logical(0L));
+
+  # Multiple pathnames to be checked?
+  if (nPathnames > 1L) {
+    res <- sapply(pathname, FUN=isFile, ...);
+    return(res);
+  }
+
+  # A missing pathname?
+  if (is.na(pathname)) return(FALSE);
 
   isdir <- file.info(pathname)$isdir;
   if (identical(isdir, FALSE))
@@ -73,6 +81,11 @@ setMethodS3("isFile", "default", function(pathname, ...) {
 
 ###########################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized isFile().
+# o Preparing to vectorize isFile() by introducing option to generate
+#   a warning or an error if a zero-length path is given.  This way we can
+#   detect packages making this error, without breaking them.
 # 2009-12-30
 # o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.
 #   Before it gave an unexpected error.

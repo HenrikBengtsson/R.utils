@@ -2,8 +2,14 @@
 Package: R.utils
 ================
 
-Version: 1.29.12 [2014-04-06]
-o Vectorized detachPackage() and isPackageInstalled().
+Version: 1.30.0 [2014-04-06]
+o Vectorized detachPackage(), getAbsolutePath(), getRelativePath(),
+  isAbsolutePath(), isDirectory(), isFile(), isOpen(),
+  isPackageInstalled() and touchFile(). Added package system tests
+  for several of them.  For backward compatibility, getAbsolutePath(), 
+  getRelativePath(), isAbsolutePath(), isFile() and isDirectory() 
+  treats an empty vector of path/pathnames equal to ".".  However, 
+  in a future version, empty results will returned by these too.
 
 
 Version: 1.29.11 [2014-04-02]

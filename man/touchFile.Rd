@@ -23,12 +23,12 @@
 }
 
 \arguments{
- \item{pathname}{A \code{\link[base]{character}} specifying the file to be updated.}
+ \item{pathname}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying files to be updated.}
  \item{...}{Not used.}
 }
 
 \value{
- Returns (invisibly) the old timestamp.
+ Returns (invisibly) a \code{\link[base]{vector}} of the old timestamps.
 }
 
 \examples{

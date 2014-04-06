@@ -12,12 +12,12 @@
 # @synopsis
 #
 # \arguments{
-#  \item{pathname}{A @character specifying the file to be updated.}
+#  \item{pathname}{A @character @vector specifying files to be updated.}
 #  \item{...}{Not used.}
 # }
 #
 # \value{
-#  Returns (invisibly) the old timestamp.
+#  Returns (invisibly) a @vector of the old timestamps.
 # }
 #
 # @examples "../incl/touchFile.Rex"
@@ -78,9 +78,22 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
+  pathname <- as.character(pathname);
+  nPathnames <- length(pathname);
+
+  # Nothing to do?
+  if (nPathnames == 0L) return(invisible(NULL));
+
+  # Multiple files?
+  if (nPathnames > 1L) {
+    res <- lapply(pathname, FUN=touchFile, ...);
+    res <- Reduce(c, res);
+    return(invisible(res));
+  }
+
+  # Sanity check
   if (!file.exists(pathname))
     stop("No such file: ", pathname);
-
 
   info <- file.info(pathname);
   oldTimestamp <- info$mtime;
@@ -95,6 +108,8 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized touchFile().
 # 2013-07-03
 # o Now touchFile() utilizes base::Sys.setFileTime(), iff available.
 # 2008-02-27
