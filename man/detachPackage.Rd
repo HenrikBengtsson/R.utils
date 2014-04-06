@@ -10,10 +10,10 @@
 \alias{detachPackage.default}
 \alias{detachPackage}
 
-\title{Detaches a packages by name}
+\title{Detaches packages by name}
 
 \description{
-  Detaches a packages by name, if loaded.
+  Detaches packages by name, if loaded.
 }
 
 \usage{
@@ -21,12 +21,13 @@
 }
 
 \arguments{
- \item{pkgname}{A \code{\link[base]{character}} string of the package name to be detached.}
+ \item{pkgname}{A \code{\link[base]{character}} \code{\link[base]{vector}} of package names to be detached.}
  \item{...}{Not used.}
 }
 
 \value{
-  Returns (invisibly) \code{\link[base:logical]{TRUE}} if package was detached, otherwise \code{\link[base:logical]{FALSE}}.
+  Returns (invisibly) a named \code{\link[base]{logical}} \code{\link[base]{vector}} indicating whether
+  each package was detached or not.
 }
 
 \author{Henrik Bengtsson}

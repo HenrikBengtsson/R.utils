@@ -10,12 +10,12 @@
 # @synopsis
 #
 # \arguments{
-#  \item{package}{The name of the package.}
+#  \item{package}{A @character @vector of package names.}
 #  \item{...}{Not used.}
 # }
 #
 # \value{
-#   Returns a @logical.
+#   Returns a @logical @vector.
 # }
 #
 # @author
@@ -29,14 +29,16 @@
 #*/###########################################################################
 setMethodS3("isPackageInstalled", "default", function(package, ...) {
   suppressWarnings({
-    path <- system.file(package=package);
+    paths <- sapply(package, FUN=function(p) system.file(package=p));
   });
-  (path != "");
+  (paths != "");
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized isPackageInstalled().
 # 2013-08-30
 # o Now isPackageInstalled() suppresses warnings.
 # 2009-01-11

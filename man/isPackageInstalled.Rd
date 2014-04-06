@@ -21,12 +21,12 @@
 }
 
 \arguments{
- \item{package}{The name of the package.}
+ \item{package}{A \code{\link[base]{character}} \code{\link[base]{vector}} of package names.}
  \item{...}{Not used.}
 }
 
 \value{
-  Returns a \code{\link[base]{logical}}.
+  Returns a \code{\link[base]{logical}} \code{\link[base]{vector}}.
 }
 
 \author{Henrik Bengtsson}

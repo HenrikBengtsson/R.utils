@@ -1,7 +1,7 @@
 ###########################################################################/**
 # @RdocDefault detachPackage
 #
-# @title "Detaches a packages by name"
+# @title "Detaches packages by name"
 #
 # \description{
 #   @get "title", if loaded.
@@ -10,12 +10,13 @@
 # @synopsis
 #
 # \arguments{
-#  \item{pkgname}{A @character string of the package name to be detached.}
+#  \item{pkgname}{A @character @vector of package names to be detached.}
 #  \item{...}{Not used.}
 # }
 #
 # \value{
-#   Returns (invisibly) @TRUE if package was detached, otherwise @FALSE.
+#   Returns (invisibly) a named @logical @vector indicating whether
+#   each package was detached or not.
 # }
 #
 # @author
@@ -30,24 +31,40 @@ setMethodS3("detachPackage", "default", function(pkgname, ...) {
   # Argument 'pkgname';
   pkgname <- as.character(pkgname);
 
+  # Nothing to do?
+  npkgs <- length(pkgname);
+  if (npkgs == 0L) return(invisible(logical(0L)));
+
+  # Detach multiple packages?
+  if (npkgs > 1L) {
+    return(invisible(sapply(pkgname, FUN=detachPackage, ...)));
+  }
+
+  # Detach a single package
   searchName <- paste("package:", pkgname, sep="");
   pos <- match(searchName, search());
   if (is.na(pos)) {
     # Return FALSE if package is not loaded
-    return(invisible(FALSE));
-  } 
+    res <- FALSE;
+    names(res) <- pkgname;
+    return(invisible(res));
+  }
 
   # Detach package
   detach(pos=pos);
 
   # Return TRUE if package was detached, otherwise FALSE.
   pos <- match(searchName, search());
-  invisible(is.na(pos));
+  res <- is.na(pos);
+  names(res) <- pkgname;
+  invisible(res);
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o Vectorized detachPackage().
 # 2005-06-11
 # o Created.
 ############################################################################

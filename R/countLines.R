@@ -44,26 +44,27 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
 
   LF <- as.raw(0x0a);
   CR <- as.raw(0x0d);
+  SPC <- as.raw(32L);
 
   isLastCR <- FALSE;
-  nbrOfLines <- as.integer(0);
+  nbrOfLines <- 0L;
   while(TRUE) {
     bfr <- readBin(con=con, what=raw(), n=chunkSize);
     if (isLastCR) {
       # Don't count LF following a CR in previous chunk.
-      if (bfr[1] == LF)
-        bfr[1] <- as.raw(32);
+      if (bfr[1L] == LF)
+        bfr[1L] <- SPC;
     }
 
     n <- length(bfr);
-    if (n == 0)
+    if (n == 0L)
       break;
 
     # Replace all CRLF:s to become LF:s
     idxsCR <- which(bfr == CR);
     nCR <- length(idxsCR);
-    if (nCR > 0) {
-      idxsCRLF <- idxsCR[(bfr[idxsCR+as.integer(1)] == LF)];
+    if (nCR > 0L) {
+      idxsCRLF <- idxsCR[(bfr[idxsCR+1L] == LF)];
       bfr <- bfr[-idxsCRLF];
       n <- length(bfr);
       idxsCRLF <- NULL; # Not needed anymore

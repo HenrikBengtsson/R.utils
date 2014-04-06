@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.29.12 [2014-04-06]
+o Vectorized detachPackage() and isPackageInstalled().
+
+
 Version: 1.29.11 [2014-04-02]
 o BUG FIX: str() and summary() for Verbose did not acknowledge
   argument 'level'.
