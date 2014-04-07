@@ -1,5 +1,5 @@
 Package: R.utils
-Version: 1.30.0
+Version: 1.30.1
 Depends: R (>= 2.5.0), R.oo (>= 1.18.0)
 Imports: utils, methods, R.methodsS3 (>= 1.6.1)
 Suggests: digest (>= 0.6.4)
