@@ -21,13 +21,13 @@
 }
 
 \arguments{
-  \item{pathname}{A \code{\link[base]{character}} string of the pathname to be made into a URL.}
+  \item{pathname}{A \code{\link[base]{character}} \code{\link[base]{vector}} of pathnames to be made into URLs.}
   \item{safe}{If \code{\link[base:logical]{TRUE}}, certain "unsafe" characters are escaped.}
   \item{...}{Not used.}
 }
 
 \value{
- Returns a \code{\link[base]{character}} string.
+ Returns a \code{\link[base]{character}} \code{\link[base]{vector}}.
 }
 
 \author{Henrik Bengtsson}

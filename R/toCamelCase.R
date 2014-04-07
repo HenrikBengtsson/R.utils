@@ -10,7 +10,7 @@
 # @synopsis
 #
 # \arguments{
-#  \item{s}{A @character string.}
+#  \item{s}{A @character @vector.}
 #  \item{capitalize}{If @TRUE, the first letter will be in upper case,
 #    otherwise it will be in lower case.}
 #  \item{preserveSameCase}{If @TRUE, words that are in all upper case
@@ -21,7 +21,7 @@
 # }
 #
 # \value{
-#  Returns a @character string.
+#  Returns a @character @vector.
 # }
 #
 # @examples "../incl/toCamelCase.Rex"
@@ -38,6 +38,13 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ \t]+", ...) {
+  # Argument 's':
+  s <- as.character(s);
+
+  # Nothing to do?
+  if (length(s) == 0L) return(character(0L));
+
+  # Split a single string
   s <- strsplit(s, split=split);
 
   if (preserveSameCase) {
@@ -45,16 +52,16 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
       # (a) Don't change case on all-upper case words
       sU <- toupper(s);
       isAllUpperCase <- is.element(s, sU);
-  
+
       # (b) but for all others...
       s2 <- s[!isAllUpperCase];
       sL <- tolower(s2);
       isUpperCase <- (!is.element(s2, sL));
       s3 <- capitalize(sL);
       s3[isUpperCase] <- s2[isUpperCase];
-  
+
       s[!isAllUpperCase] <- s3;
-  
+
       if (!capitalize) {
         if (!isAllUpperCase[1]) {
           s[1] <- decapitalize(s[1]);
@@ -62,7 +69,7 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
           s[1] <- tolower(s[1]);
         }
       }
-  
+
       paste(s, collapse="");
     });
   } else {
@@ -72,9 +79,9 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
       s2 <- capitalize(s2);
       s2[isUpperCase] <- s[isUpperCase];
       paste(s2, collapse="");
-    }); 
+    });
     if (!capitalize) {
-      s <- decapitalize(s); 
+      s <- decapitalize(s);
     }
   }
 
@@ -85,6 +92,8 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o BUG FIX: toCamelCase(character(0L)) gave an error.
 # 2012-09-21
 # o Made the below 2011-12-05 modification available via argument
 #   'preserveSameCase'.

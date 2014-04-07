@@ -21,7 +21,7 @@
 }
 
 \arguments{
- \item{s}{A \code{\link[base]{character}} string.}
+ \item{s}{A \code{\link[base]{character}} \code{\link[base]{vector}}.}
  \item{capitalize}{If \code{\link[base:logical]{TRUE}}, the first letter will be in upper case,
    otherwise it will be in lower case.}
  \item{preserveSameCase}{If \code{\link[base:logical]{TRUE}}, words that are in all upper case
@@ -32,7 +32,7 @@
 }
 
 \value{
- Returns a \code{\link[base]{character}} string.
+ Returns a \code{\link[base]{character}} \code{\link[base]{vector}}.
 }
 
 \examples{
