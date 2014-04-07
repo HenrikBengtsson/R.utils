@@ -31,11 +31,14 @@
 # @author
 #
 # @keyword utilities
-#*/########################################################################### 
+#*/###########################################################################
 evalCapture <- function(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
-  sourceCode <- capture.output(print(expr2));
+
+  # WAS:
+  ## sourceCode <- capture.output(print(expr2));
+  sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
 
   # Trim of surrounding { ... }
   if (sourceCode[1] == "{") {
@@ -83,11 +86,15 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-04-06
+# o Now evalCapture() utilizes deparse() to get the source code and
+#   acknowledges options 'deparse.cutoff' to control the code wrapping.
+#   Previously capture.output(print()) was used.
 # 2011-11-23
 # o BUG FIX: evalCapture() with argument 'envir' defaulting to parent.frame()
 #   would not be evaluated in the parent frame as it should.  It appears
 #   that the internal capture.output() prevents this from happening, unless
-#   argument 'envir' is explictly evaluated within evalCapture(). 
+#   argument 'envir' is explictly evaluated within evalCapture().
 # 2011-11-05
 # o Added evalCapture(..., code=TRUE, output=TRUE), which is adopted from
 #   evalWithEcho() in R.rsp v0.6.5.
