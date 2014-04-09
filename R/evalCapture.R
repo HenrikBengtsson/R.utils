@@ -11,15 +11,17 @@
 #
 # \arguments{
 #   \item{expr}{The @expression to be evaluated.}
-#   \item{...}{Additional arguments passed to @see "R.utils::sourceTo"
-#      which in turn passes arguments to @see "base::source".}
 #   \item{code}{If @TRUE, the deparsed code of the expression is echoed.}
 #   \item{output}{If @TRUE, the output of each evaluated subexpression
 #      is echoed.}
-#   \item{envir}{The @enviroment in which the expression is evaluated.}
+#   \item{...}{Additional arguments passed to @see "R.utils::sourceTo"
+#      which in turn passes arguments to @see "base::source".}
+#   \item{max.deparse.length}{A positive @integer specifying the maximum
+#      length of a deparsed expression, before truncating it.}
 #   \item{trim}{If @TRUE, the captured rows are trimmed.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
+#   \item{envir}{The @enviroment in which the expression is evaluated.}
 # }
 #
 # \value{
@@ -32,7 +34,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-evalCapture <- function(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="\n", envir=parent.frame()) {
+evalCapture <- function(expr, code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
 
@@ -59,7 +61,7 @@ evalCapture <- function(expr, code=TRUE, output=code, ..., trim=TRUE, collapse="
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r");
   res <- capture.output({
-    sourceTo(file=con, echo=code, print.eval=output, ..., envir=envir);
+    sourceTo(file=con, echo=code, print.eval=output, max.deparse.length=max.deparse.length, ..., envir=envir);
   });
 
   # Drop empty lines
@@ -86,6 +88,8 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-04-09
+# o Added argument 'max.deparse.length' to evalCapture().
 # 2014-04-06
 # o Now evalCapture() utilizes deparse() to get the source code and
 #   acknowledges options 'deparse.cutoff' to control the code wrapping.
