@@ -14,8 +14,8 @@
 
 \description{
  Attaches or loads packages.
- If a package is not installed, it will be installed from one of the
- repositories.
+ If a package is not installed, it (and its dependencies) will be
+ installed from one of the (known) repositories.
 }
 
 \usage{
@@ -46,6 +46,9 @@
 
 \seealso{
   \code{\link[base]{library}}() and "base::install.packages".
+  To modify the set of known repositories, set option \code{repos}
+  (see \code{\link[base]{options}}()),
+  which can also be done via \code{\link[utils]{setRepositories}}.
 }
 
 \examples{\dontrun{

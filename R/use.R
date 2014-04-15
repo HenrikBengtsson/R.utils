@@ -5,8 +5,8 @@
 #
 # \description{
 #  @get "title".
-#  If a package is not installed, it will be installed from one of the
-#  repositories.
+#  If a package is not installed, it (and its dependencies) will be
+#  installed from one of the (known) repositories.
 # }
 #
 # @synopsis
@@ -34,6 +34,9 @@
 #
 # \seealso{
 #   @see "base::library" and "base::install.packages".
+#   To modify the set of known repositories, set option \code{repos}
+#   (see @see "base::options"),
+#   which can also be done via @see "utils::setRepositories".
 # }
 #
 # \examples{\dontrun{
@@ -118,21 +121,24 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       contriburl <- contrib.url(repos[kk], type);
       verbose && cat(verbose, "Contrib URL: ", contriburl);
 
+      # Identify all available packages of this repository
       captureAll({
         avail <- available.packages(contriburl=contriburl, type=type);
       }, echo=!quietly);
+
+      # Does the package of interest exists?
       keep <- na.omit(match(pkg, rownames(avail)));
-      avail <- avail[keep,, drop=FALSE];
-      if (length(avail) > 0L) {
-        verbose && print(verbose, avail[,c("Package", "Version")]);
+      availT <- avail[keep,, drop=FALSE];
+      if (length(availT) > 0L) {
+        verbose && print(verbose, availT[,c("Package", "Version")]);
         if (!is.null(version)) {
-          vers <- avail[,"Version", drop=TRUE];
+          vers <- availT[,"Version", drop=TRUE];
           keep <- sapply(vers, FUN=function(ver) version$test(ver));
-          avail <- avail[keep,,drop=FALSE];
+          availT <- availT[keep,,drop=FALSE];
         }
-        if (length(avail) > 0L) {
+        if (length(availT) > 0L) {
           verbose && cat(verbose, "Found required package version:");
-          verbose && print(verbose, avail[,c("Package", "Version")]);
+          verbose && print(verbose, availT[,c("Package", "Version")]);
           break;
         }
       }
@@ -157,6 +163,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     verbose && enter(verbose, "Installing package");
     verbose && cat(verbose, "Contrib URL: ", contriburl);
     verbose && cat(verbose, "Type: ", type);
+    verbose && cat(verbose, "Number of packages available: ", nrow(avail));
 
     # Detach/unload namespace first?
     if (is.element(pkg, loadedNamespaces())) {
@@ -170,9 +177,13 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       verbose && exit(verbose);
     }
 
+    verbose && enter(verbose, "install.packages()");
     captureAll({
-      install.packages(pkg, contriburl=contriburl, available=avail, type=type, quiet=quietly, ...);
+      install.packages(pkg, contriburl=contriburl, available=avail,
+                       type=type, quiet=quietly, ...);
     }, echo=!quietly);
+    verbose && exit(verbose);
+
     installed <- isPackageInstalled(pkg);
     if (!installed) {
       throw("Failed to install package: ", pkg);
@@ -452,6 +463,8 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 ############################################################################
 # HISTORY:
+# 2014-04-15
+# o BUG FIX: use() would not install package dependencies.
 # 2013-08-31
 # o ROBUSTNESS: Now use() rethrows exceptions "visibly", iff they occur.
 # o Now use() handles newlines and TABs in package strings.

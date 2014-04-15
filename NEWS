@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.30.3 [2014-04-15]
+o BUG FIX: use() would not install package dependencies.
+
+
 Version: 1.30.2 [2014-04-08]
 o Added argument 'max.deparse.length' to evalCapture().
 
