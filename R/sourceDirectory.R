@@ -49,7 +49,7 @@
 #**/#######################################################################
 # Create a filename pattern for R files and Windows shortcuts too such.
 # sourceTo() will automatically recognize those too.
-setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=FALSE, ..., verbose=FALSE) {
+setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=TRUE, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

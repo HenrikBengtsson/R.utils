@@ -18,7 +18,7 @@
 
 \usage{
 \method{sourceDirectory}{default}(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE,
-  envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=FALSE, ...,
+  envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=TRUE, ...,
   verbose=FALSE)
 }
 
