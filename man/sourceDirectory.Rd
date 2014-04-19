@@ -18,7 +18,8 @@
 
 \usage{
 \method{sourceDirectory}{default}(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE,
-  envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...)
+  envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=FALSE, ...,
+  verbose=FALSE)
 }
 
 \arguments{
@@ -30,8 +31,10 @@
  \item{envir}{An \code{\link[base]{environment}} in which the code should be evaluated.}
  \item{onError}{If an error occures, the error may stop the job,
        give a warning, or silently be skipped.}
- \item{verbose}{A \code{\link[base]{logical}} or a \code{\link{Verbose}} object.}
+ \item{modifiedOnly}{If \code{\link[base:logical]{TRUE}}, only files that are modified since the
+       last time they were sourced are sourced, otherwise regardless.}
  \item{...}{Additional arguments passed to \code{\link{sourceTo}}().}
+ \item{verbose}{A \code{\link[base]{logical}} or a \code{\link{Verbose}} object.}
 }
 
 \value{

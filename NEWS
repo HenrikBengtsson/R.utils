@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.30.4 [2014-04-18]
+o Added argument 'modifiedOnly' to sourceDirectory(), which was
+  previously passed via '...' to sourceTo(), and it now defaults
+  to TRUE.
+
+
 Version: 1.30.3 [2014-04-15]
 o BUG FIX: use() would not install package dependencies.
 

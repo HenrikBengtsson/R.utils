@@ -18,8 +18,10 @@
 #  \item{envir}{An @environment in which the code should be evaluated.}
 #  \item{onError}{If an error occures, the error may stop the job,
 #        give a warning, or silently be skipped.}
-#  \item{verbose}{A @logical or a @see "Verbose" object.}
+#  \item{modifiedOnly}{If @TRUE, only files that are modified since the
+#        last time they were sourced are sourced, otherwise regardless.}
 #  \item{...}{Additional arguments passed to @see "sourceTo".}
+#  \item{verbose}{A @logical or a @see "Verbose" object.}
 # }
 #
 # \value{
@@ -47,7 +49,7 @@
 #**/#######################################################################
 # Create a filename pattern for R files and Windows shortcuts too such.
 # sourceTo() will automatically recognize those too.
-setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...) {
+setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), modifiedOnly=FALSE, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -130,7 +132,7 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
         verbose && enter(verbose, "Loading (", type, ") source file: ",
                                                         basename(pathname));
 #        output <- capture.output({
-          sourceTo(pathname, ..., local=local, chdir=FALSE, envir=envir);
+          sourceTo(pathname, ..., local=local, chdir=FALSE, envir=envir, modifiedOnly=modifiedOnly);
 #        });
 
 #        print(ll(envir=envir));
@@ -175,6 +177,9 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
 
 ###########################################################################
 # HISTORY:
+# 2014-04-18
+# o Added argument 'modifiedOnly' to sourceDirectory() and it now
+#   defaults to TRUE.
 # 2013-10-13
 # o CLEANUP: sourceDirectory() no longer attaches 'R.utils'.
 # 2010-01-08
