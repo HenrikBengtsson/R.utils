@@ -17,13 +17,15 @@
 }
 
 \usage{
-evalCapture(expr, code=TRUE, output=code, ...,
+evalCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE, collapse="\n",
   envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The \code{\link[base]{expression}} to be evaluated.}
+  \item{substitute}{An optional named \code{\link[base]{list}} used for substituting
+     symbols with other strings.}
   \item{code}{If \code{\link[base:logical]{TRUE}}, the deparsed code of the expression is echoed.}
   \item{output}{If \code{\link[base:logical]{TRUE}}, the output of each evaluated subexpression
      is echoed.}

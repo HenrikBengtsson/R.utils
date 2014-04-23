@@ -11,6 +11,8 @@
 #
 # \arguments{
 #   \item{expr}{The @expression to be evaluated.}
+#   \item{substitute}{An optional named @list used for substituting
+#      symbols with other strings.}
 #   \item{code}{If @TRUE, the deparsed code of the expression is echoed.}
 #   \item{output}{If @TRUE, the output of each evaluated subexpression
 #      is echoed.}
@@ -34,9 +36,14 @@
 #
 # @keyword utilities
 #*/###########################################################################
-evalCapture <- function(expr, code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, collapse="\n", envir=parent.frame()) {
+evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
+
+  # Substitute symbols?
+  if (length(substitute) > 0L) {
+    expr2 <- do.call(substitute, args=list(expr2, substitute))
+  }
 
   # WAS:
   ## sourceCode <- capture.output(print(expr2));
@@ -88,6 +95,9 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-04-22
+# o Added argument 'substitute' to evalCapture() for substituting symbols
+#   "on the fly" in the expression before it is evaluated.
 # 2014-04-09
 # o Added argument 'max.deparse.length' to evalCapture().
 # 2014-04-06

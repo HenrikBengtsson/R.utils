@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.30.5 [2014-04-22]
+o Added argument 'substitute' to evalCapture() for substituting
+  symbols "on the fly" in the expression before it is evaluated.
+
+
 Version: 1.30.4 [2014-04-18]
 o Added argument 'modifiedOnly' to sourceDirectory(), which was
   previously passed via '...' to sourceTo(), and it now defaults
