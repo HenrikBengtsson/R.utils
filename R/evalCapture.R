@@ -42,7 +42,7 @@ evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
 
   # Substitute symbols?
   if (length(substitute) > 0L) {
-    expr2 <- do.call(substitute, args=list(expr2, substitute))
+    expr2 <- do.call(base::substitute, args=list(expr2, substitute))
   }
 
   # WAS:
