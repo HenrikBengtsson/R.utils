@@ -18,8 +18,8 @@
 
 \usage{
 evalCapture(expr, substitute=list(), code=TRUE, output=code, ...,
-  max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE, collapse="\n",
-  envir=parent.frame())
+  max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE, newline=TRUE,
+  collapse="\n", envir=parent.frame())
 }
 
 \arguments{
@@ -34,6 +34,8 @@ evalCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   \item{max.deparse.length}{A positive \code{\link[base]{integer}} specifying the maximum
      length of a deparsed expression, before truncating it.}
   \item{trim}{If \code{\link[base:logical]{TRUE}}, the captured rows are trimmed.}
+  \item{newline}{If \code{\link[base:logical]{TRUE}} and \code{collapse} is non-\code{\link[base]{NULL}}, a newline
+     is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
   \item{envir}{The @enviroment in which the expression is evaluated.}
