@@ -15,7 +15,7 @@ splitByCommonTails <- function(strs, ...) {
     suffix <- "";
   }
 
-  strs <- base::lapply(body, FUN=function(s) {
+  strs <- lapply(body, FUN=function(s) {
     c(prefix, s, suffix);
   })
 

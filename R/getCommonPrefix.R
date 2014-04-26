@@ -5,7 +5,7 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
 
   # Asked for the suffix?
   if (suffix) {
-    chars <- base::lapply(chars, FUN=rev);
+    chars <- lapply(chars, FUN=rev);
   }
 
   # Put the characters into a matrix
@@ -32,7 +32,7 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
   if (suffix) {
     prefix <- rev(prefix);
   }
- 
+
   # The common prefix as a character string
   prefix <- paste(prefix, collapse="");
 

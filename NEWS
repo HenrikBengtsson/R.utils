@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.30.7 [2014-04-26]
+o CLEANUP: Dropping '::' in calls where possible.
+
+
 Version: 1.30.6 [2014-04-24]
 o Added argument 'newline' to evalCapture().
 

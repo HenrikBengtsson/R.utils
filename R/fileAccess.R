@@ -73,8 +73,8 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     pathname <- pathnameT;
   }
 
-  # file.access()
-  fa <- base::file.access(pathname, mode=mode);
+  # base::file.access()
+  fa <- file.access(pathname, mode=mode);
   names(fa) <- NULL;
 
   if (!safe)

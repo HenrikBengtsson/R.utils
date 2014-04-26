@@ -88,7 +88,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
   if (.Platform$OS.type == "windows") {
     pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE);
   } else {
-    pathsR <- base::Sys.readlink(paths);
+    pathsR <- Sys.readlink(paths);
   }
 
   # If target specify a filename without a path, append path
@@ -139,7 +139,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
 # @keyword internal
 #**/#######################################################################
 file.info2 <- function(...) {
-  info <- base::file.info(...);
+  info <- file.info(...);
 
   # Nothing todo?
   if (.Platform$OS.type != "windows") {
@@ -170,7 +170,7 @@ file.info2 <- function(...) {
   if (length(idxs) == 0L) return(info);
 
   # Update file info for the targets (preserving the link names)
-  info[idxs,] <- base::file.info(pathnames);
+  info[idxs,] <- file.info(pathnames);
 
   info;
 } # file.info2()

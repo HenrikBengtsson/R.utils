@@ -152,7 +152,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the formals of read.table()
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  formals <- formals(utils::read.table);
+  formals <- formals(read.table);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
