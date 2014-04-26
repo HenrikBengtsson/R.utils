@@ -86,8 +86,12 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   links <- c(link, sprintf("%s.LNK", link));
   if (any(file.exists(links))) {
     if (skip) {
-      warning("Link was not create. Link file already exists: ", link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+
+      resA <- getAbsolutePath(Sys.readlink2(res))
+      if (!identical(resA, target)) {
+        warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)));
+      }
 
       # If a Windows Shortcut, avoid returning the target.
       if (file.exists(links[2L]) && !file.exists(link)) {
@@ -218,6 +222,10 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-04-26
+# o CLEANUP: createLink(..., skip=TRUE) no longer warns if the link file
+#   was skipped.  Now it only warns if the skipped link file links to a
+#   different file than the intended target file.
 # 2014-02-28
 # o DOCUMENTATION: Added an Rd section on privileges required on Windows
 #   for createLink() to work.

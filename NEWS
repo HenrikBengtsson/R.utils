@@ -4,6 +4,9 @@ Package: R.utils
 
 Version: 1.30.7 [2014-04-26]
 o Added argument 'xtrim' to draw() for density object.
+o CLEANUP: createLink(..., skip=TRUE) no longer warns if the link file
+  was skipped.  Now it only warns if the skipped link file links to a
+  different file than the intended target file.
 o CLEANUP: Dropping '::' in calls where possible.
 
 
