@@ -3,6 +3,7 @@ Package: R.utils
 ================
 
 Version: 1.30.7 [2014-04-26]
+o Added argument 'xtrim' to draw() for density object.
 o CLEANUP: Dropping '::' in calls where possible.
 
 
