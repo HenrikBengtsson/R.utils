@@ -21,6 +21,8 @@
 #   \item{max.deparse.length}{A positive @integer specifying the maximum
 #      length of a deparsed expression, before truncating it.}
 #   \item{trim}{If @TRUE, the captured rows are trimmed.}
+#   \item{newline}{If @TRUE and \code{collapse} is non-@NULL, a newline
+#      is appended at the end.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
 #   \item{envir}{The @enviroment in which the expression is evaluated.}
@@ -36,7 +38,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, collapse="\n", envir=parent.frame()) {
+evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=TRUE, collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
 
@@ -77,7 +79,7 @@ evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
   }
 
   if (!is.null(collapse)) {
-    res <- c(res, "");
+    if (newline) res <- c(res, "");
     res <- paste(res, collapse=collapse);
   }
 
@@ -95,6 +97,8 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-04-24
+# o Added argument 'newline' to evalCapture().
 # 2014-04-22
 # o Added argument 'substitute' to evalCapture() for substituting symbols
 #   "on the fly" in the expression before it is evaluated.

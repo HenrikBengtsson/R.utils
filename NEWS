@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.30.6 [2014-04-24]
+o Added argument 'newline' to evalCapture().
+
+
 Version: 1.30.5 [2014-04-22]
 o Added argument 'substitute' to evalCapture() for substituting
   symbols "on the fly" in the expression before it is evaluated.
