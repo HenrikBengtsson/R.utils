@@ -25,6 +25,8 @@
 #   meaniful to do \code{a \%<-\% b \%<-\% c \%<-\% 6}.
 # }
 #
+# @examples "../incl/OperatorDelayedAssign.Rex"
+#
 # @author
 #
 # \seealso{
