@@ -4,6 +4,7 @@ Package: R.utils
 
 Version: 1.31.0 [2014-04-26]
 o Added assignment operator %<-% for delayed assignments.
+o Added option "evalCapture/newline".
 
 
 Version: 1.30.7 [2014-04-26]

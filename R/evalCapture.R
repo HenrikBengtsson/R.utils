@@ -38,7 +38,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=TRUE, collapse="\n", envir=parent.frame()) {
+evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
 
@@ -97,6 +97,8 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-04-26
+# o Added option "evalCapture/newline".
 # 2014-04-24
 # o Added argument 'newline' to evalCapture().
 # 2014-04-22
