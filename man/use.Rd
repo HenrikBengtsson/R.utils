@@ -56,6 +56,7 @@
   use("digest (>= 0.6.3)")
   use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
   use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+  use("BioCsoft::ShortRead")
   use("digest, R.rsp (>= 0.9.17)")
 }}
 

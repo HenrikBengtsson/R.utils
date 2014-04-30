@@ -44,6 +44,7 @@
 #   use("digest (>= 0.6.3)")
 #   use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
 #   use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+#   use("BioCsoft::ShortRead")
 #   use("digest, R.rsp (>= 0.9.17)")
 # }}
 #
@@ -108,7 +109,27 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       isUrl <- sapply(repos, FUN=isUrl);
       if (!all(isUrl)) {
         reposT <- repos[!isUrl];
-        reposT <- getOption("repos")[reposT];
+        knownRepositories <- getOption("repos");
+        unknown <- setdiff(repos, names(knownRepositories));
+        if (length(unknown) > 0L) {
+          # Are none of the specified repositories known?
+          if (length(unknown) == length(reposT) && !any(isUrl)) {
+            msg <- sprintf("Cannot install package %s, because", sQuote(pkg));
+            if (length(unknown) == 1L) {
+              msg <- sprintf("%s the specified package repository (%s) is not", msg, sQuote(unknown));
+            } else {
+              msg <- sprintf("%s none of the specified package repositories (%s) are", msg, paste(sQuote(unknown), collapse=", "));
+            }
+            msg <- sprintf("%s among the known ones as given by option 'repos':", msg);
+            msg <- c(msg, sprintf(" - %s: %s", names(knownRepositories), knownRepositories));
+            msg <- c(msg, "Option 'repos' needs to be updated.  For widely used repositories, this can be one interactively using setRepositories().");
+            msg <- paste(msg, collapse="\n");
+            throw(msg);
+          } else {
+            warning("Detected unknown repositories. Update option 'repos' to be able to install from them: ", paste(sQuote(unknown), collapse=", "))
+          }
+        }
+        reposT <- knownRepositories[reposT];
         repos[!isUrl] <- reposT;
         cat(verbose, "Updated repositories: ", paste(sQuote(repos), collapse=", "));
       }
@@ -463,6 +484,10 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 ############################################################################
 # HISTORY:
+# 2014-04-29
+# o ROBUSTNESS: Now use("UnknownRepos::pkg") will detect that repository
+#   is unknown and give an informative error message on how to update
+#   option 'repos'.
 # 2014-04-15
 # o BUG FIX: use() would not install package dependencies.
 # 2013-08-31

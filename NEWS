@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.31.1 [2014-04-29]
+o ROBUSTNESS: Now use("<repos>::<pkg>") will detect when a repository
+  is unknown and give an informative error message on how to update
+  option 'repos'.
+
+
 Version: 1.31.0 [2014-04-26]
 o Added assignment operator %<-% for delayed assignments.
 o Added option "evalCapture/newline".
