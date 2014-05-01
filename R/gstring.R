@@ -12,7 +12,7 @@
 #
 # \arguments{
 #   \item{...}{@character strings.}
-#   \item{file, path}{Alternatively, a file, a URL or a @connection from 
+#   \item{file, path}{Alternatively, a file, a URL or a @connection from
 #      with the strings are read.
 #      If a file, the \code{path} is prepended to the file, iff given.}
 #  \item{envir}{The @environment in which the @see "GString" is evaluated.}
@@ -47,7 +47,7 @@ setMethodS3("gstring", "default", function(..., file=NULL, path=NULL, envir=pare
   if (is.null(file)) {
     s <- GString(...);
   } else {
-    s <- readLines(file);
+    s <- readLines(file, warn=FALSE);
     s <- GString(s);
   }
 

@@ -1,14 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  evalWithTimeout.R
+%  withTimeout.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{evalWithTimeout}
-\alias{evalWithTimeout}
+\name{withTimeout}
+\alias{withTimeout}
 
+\alias{evalWithTimeout}
 
 \title{Evaluate an R expression and interrupts it if it takes too long}
 
@@ -17,7 +18,7 @@
 }
 
 \usage{
-evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
+withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
   onTimeout=c("error", "warning", "silent"))
 }
 
@@ -79,7 +80,7 @@ foo <- function() {
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- NULL;
 tryCatch({
-  res <- evalWithTimeout({
+  res <- withTimeout({
     foo();
   }, timeout=1.08);
 }, TimeoutException=function(ex) {
@@ -91,7 +92,7 @@ tryCatch({
 # Evaluate code, if it takes too long, generate
 # a timeout returning NULL and generate a warning.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   foo();
 }, timeout=1.08, onTimeout="warning");
 
@@ -100,7 +101,7 @@ res <- evalWithTimeout({
 # Evaluate code, if it takes too long, generate
 # a timeout, and return silently NULL.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   foo();
 }, timeout=1.08, onTimeout="silent");
 }

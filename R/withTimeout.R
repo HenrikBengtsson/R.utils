@@ -1,5 +1,6 @@
 ###########################################################################/**
-# @RdocFunction evalWithTimeout
+# @RdocFunction withTimeout
+# @alias evalWithTimeout
 #
 # @title "Evaluate an R expression and interrupts it if it takes too long"
 #
@@ -15,7 +16,7 @@
 #   \item{envir}{The @environment in which the expression should
 #     be evaluated.}
 #   \item{timeout, cpu, elapsed}{A @numeric specifying the maximum number
-#     of seconds the expression is allowed to run before being 
+#     of seconds the expression is allowed to run before being
 #     interrupted by the timeout.  The \code{cpu} and \code{elapsed}
 #     arguments can be used to specify whether time should be measured
 #     in CPU time or in wall time.}
@@ -25,7 +26,7 @@
 #
 # \value{
 #  Returns the results of the expression evaluated.
-#  If timed out, @NULL is returned if \code{onTimeout} was 
+#  If timed out, @NULL is returned if \code{onTimeout} was
 #  \code{"warning"} or \code{"silent"}.
 #  If \code{"error"} a @see "TimeoutException" is thrown.
 # }
@@ -47,7 +48,7 @@
 #
 # @author
 #
-# @examples "../incl/evalWithTimeout.Rex"
+# @examples "../incl/withTimeout.Rex"
 #
 # \seealso{
 #   @see "base::setTimeLimit"
@@ -60,8 +61,8 @@
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
-evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent")) {
+#*/###########################################################################
+withTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent")) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -102,7 +103,10 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
   })
 
   res;
-} # evalWithTimeout()
+} # withTimeout()
+
+# BACKWARD COMPATIBILITY
+evalWithTimeout <- withTimeout
 
 
 ############################################################################

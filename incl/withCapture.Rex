@@ -1,4 +1,4 @@
-print(evalCapture({
+print(withCapture({
  n <- 3;
  n;
 

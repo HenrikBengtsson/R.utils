@@ -1,14 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  evalCapture.R
+%  withCapture.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{evalCapture}
-\alias{evalCapture}
+\name{withCapture}
+\alias{withCapture}
 
+\alias{evalCapture}
 
 \title{Evaluates an expression and captures the code and/or the output}
 
@@ -17,7 +18,7 @@
 }
 
 \usage{
-evalCapture(expr, substitute=list(), code=TRUE, output=code, ...,
+withCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
   newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame())
 }
@@ -46,7 +47,7 @@ evalCapture(expr, substitute=list(), code=TRUE, output=code, ...,
 }
 
 \examples{
-print(evalCapture({
+print(withCapture({
  n <- 3;
  n;
 

@@ -1,5 +1,6 @@
 ###########################################################################/**
-# @RdocFunction evalCapture
+# @RdocFunction withCapture
+# @alias evalCapture
 #
 # @title "Evaluates an expression and captures the code and/or the output"
 #
@@ -32,13 +33,13 @@
 #   Returns a @character string class 'CapturedEvaluation'.
 # }
 #
-# @examples "../incl/evalCapture.Rex"
+# @examples "../incl/withCapture.Rex"
 #
 # @author
 #
 # @keyword utilities
 #*/###########################################################################
-evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
 
@@ -86,7 +87,10 @@ evalCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
   class(res) <- c("CapturedEvaluation", class(res));
 
   res;
-} # evalCapture()
+} # withCapture()
+
+# BACKWARD COMPATIBIILTY
+evalCapture <- withCapture
 
 
 setMethodS3("print", "CapturedEvaluation", function(x, ...) {
@@ -97,6 +101,9 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-05-01
+# o Renamed evalCapture() to withCapture().  Old name kept for backward
+#   compatibility, but will eventually be deprecated.
 # 2014-04-26
 # o Added option "evalCapture/newline".
 # 2014-04-24

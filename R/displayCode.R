@@ -21,7 +21,7 @@
 #   \item{highlight}{A @vector of line number to be highlighted.}
 #   \item{pager}{If \code{"none"}, code is not displayed in a pager, but
 #     only returned. For other options, see @see "base::file.show".}
-#   \item{...}{Additional arguments passed to @see "base::file.show", 
+#   \item{...}{Additional arguments passed to @see "base::file.show",
 #     which is used to display the formatted code.}
 # }
 #
@@ -55,7 +55,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
       lines <- -1;
   } else if (length(lines) > 1) {
     if (any(lines <= 0)) {
-      throw("Argument 'lines' must be positive: [", 
+      throw("Argument 'lines' must be positive: [",
                                          min(lines), ",", max(lines), "]");
     }
   }
@@ -72,13 +72,13 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
   if (is.null(code)) {
     if (is.character(con)) {
       pathname <- Arguments$getReadablePathname(con, mustExist=TRUE);
-      code <- readLines(pathname, n=max(lines));
+      code <- readLines(pathname, n=max(lines), warn=FALSE);
     } else if (inherits(con, "connection")) {
       pathname <- summary(con)$description;
-      code <- readLines(con, n=max(lines));
+      code <- readLines(con, n=max(lines), warn=FALSE);
     } else {
-      throw("Argument 'con' must be a filename or a connection: ", 
-                                                             class(con)[1]); 
+      throw("Argument 'con' must be a filename or a connection: ",
+                                                             class(con)[1]);
     }
   }
 
@@ -88,7 +88,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 
   # Argument 'wrap':
   if (length(wrap) != 1) {
-    throw("Argument 'wrap' must be a single number: ", 
+    throw("Argument 'wrap' must be a single number: ",
                                                paste(wrap, collapse=", "));
   }
 
@@ -220,4 +220,4 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 # 2005-06-17
 # o Added Rdoc help and example.
 # o Created.
-############################################################################ 
+############################################################################
