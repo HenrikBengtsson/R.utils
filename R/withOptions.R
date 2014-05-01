@@ -10,10 +10,12 @@
 # @synopsis
 #
 # \arguments{
-#   \item{expr}{The R expression to be evaluated via @see "base::eval".}
+#   \item{expr}{The R expression to be evaluated.}
 #   \item{...}{Named options to be used.}
 #   \item{args}{(optional) Additional named options specified as a named @list.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
+#   \item{isParseTree}{If @TRUE, then argument \code{expr} is not parsed
+#      (via @see "base::substitute"), otherwise it is.}
 # }
 #
 # \value{
@@ -25,18 +27,16 @@
 # @examples "../incl/withOptions.Rex"
 #
 # \seealso{
-#   @see "base::options"
+#   Internally, @see "base::eval" is used to evaluate the expression.
+#   and @see "base::options" to set graphical parameters.
 # }
 #
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
+withOptions <- function(expr, ..., args=list(), envir=parent.frame(), isParseTree=FALSE) {
   # Argument '.expr':
-  expr <- substitute(expr)
-
-  # Arguments '...':
-  opts <- list(...)
+  if (!isParseTree) expr <- substitute(expr)
 
   # Argument 'args':
   if (!is.list(args)) {
@@ -49,12 +49,12 @@ withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
   }
 
   # All options specified
-  opts <- c(opts, args)
+  new <- c(list(...), args)
 
   # Set options temporarily
-  if (length(opts) > 0L) {
-    oopts <- options(opts)
-    on.exit(options(oopts))
+  if (length(new) > 0L) {
+    prev <- options(new)
+    on.exit(options(prev))
   }
 
   eval(expr, envir=envir)

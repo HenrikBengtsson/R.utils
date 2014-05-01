@@ -23,8 +23,7 @@ withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
 }
 
 \arguments{
-  \item{...}{The R expression to be evaluated as passed
-    to \code{\link[base]{eval}}().}
+  \item{...}{The R expression to be evaluated.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should
     be evaluated.}
   \item{timeout, cpu, elapsed}{A \code{\link[base]{numeric}} specifying the maximum number
@@ -107,6 +106,7 @@ res <- withTimeout({
 }
 
 \seealso{
+  Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
   \code{\link[base]{setTimeLimit}}()
 }
 

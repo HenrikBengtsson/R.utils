@@ -11,8 +11,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{...}{The R expression to be evaluated as passed
-#     to @see "base::eval".}
+#   \item{...}{The R expression to be evaluated.}
 #   \item{envir}{The @environment in which the expression should
 #     be evaluated.}
 #   \item{timeout, cpu, elapsed}{A @numeric specifying the maximum number
@@ -51,6 +50,7 @@
 # @examples "../incl/withTimeout.Rex"
 #
 # \seealso{
+#   Internally, @see "base::eval" is used to evaluate the expression.
 #   @see "base::setTimeLimit"
 # }
 #

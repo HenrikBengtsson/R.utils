@@ -11,7 +11,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{expr}{The @expression to be evaluated.}
+#   \item{expr}{The R expression to be evaluated.}
 #   \item{substitute}{An optional named @list used for substituting
 #      symbols with other strings.}
 #   \item{code}{If @TRUE, the deparsed code of the expression is echoed.}
@@ -27,6 +27,8 @@
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
 #   \item{envir}{The @enviroment in which the expression is evaluated.}
+#   \item{isParseTree}{If @TRUE, then argument \code{expr} is not parsed
+#      (via @see "base::substitute"), otherwise it is.}
 # }
 #
 # \value{
@@ -37,11 +39,19 @@
 #
 # @author
 #
+# \seealso{
+#   Internally, @see "base::eval" is used to evaluate the expression.
+# }
+#
 # @keyword utilities
 #*/###########################################################################
-withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame(), isParseTree=FALSE) {
   # Get code/expression without evaluating it
-  expr2 <- substitute(expr);
+  if (!isParseTree) {
+    expr2 <- substitute(expr)
+  } else {
+    expr2 <- expr
+  }
 
   # Substitute symbols?
   if (length(substitute) > 0L) {

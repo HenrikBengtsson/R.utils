@@ -20,11 +20,12 @@
 \usage{
 withCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
-  newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame())
+  newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame(),
+  isParseTree=FALSE)
 }
 
 \arguments{
-  \item{expr}{The \code{\link[base]{expression}} to be evaluated.}
+  \item{expr}{The R expression to be evaluated.}
   \item{substitute}{An optional named \code{\link[base]{list}} used for substituting
      symbols with other strings.}
   \item{code}{If \code{\link[base:logical]{TRUE}}, the deparsed code of the expression is echoed.}
@@ -40,6 +41,8 @@ withCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
   \item{envir}{The @enviroment in which the expression is evaluated.}
+  \item{isParseTree}{If \code{\link[base:logical]{TRUE}}, then argument \code{expr} is not parsed
+     (via \code{\link[base]{substitute}}()), otherwise it is.}
 }
 
 \value{
@@ -78,6 +81,10 @@ print(withCapture({
 }
 
 \author{Henrik Bengtsson}
+
+\seealso{
+  Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
+}
 
 
 \keyword{utilities}

@@ -6,8 +6,8 @@ Version: 1.32.0 [2014-05-01]
 o Added withOptions() for evaluating an expression with a set of
   options temporarily set.
 o Renamed evalCapture() to withCapture() and evalWithTimeout() and
-  withTimeout().  Old name kept for backward compatibility, but
-  will eventually be deprecated.
+  withTimeout().  The old name is kept for backward compatibility,
+  but will eventually be deprecated.
 
 
 Version: 1.31.1 [2014-04-29]

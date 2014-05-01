@@ -17,14 +17,16 @@
 }
 
 \usage{
-withOptions(expr, ..., args=list(), envir=parent.frame())
+withOptions(expr, ..., args=list(), envir=parent.frame(), isParseTree=FALSE)
 }
 
 \arguments{
-  \item{expr}{The R expression to be evaluated via \code{\link[base]{eval}}().}
+  \item{expr}{The R expression to be evaluated.}
   \item{...}{Named options to be used.}
   \item{args}{(optional) Additional named options specified as a named \code{\link[base]{list}}.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
+  \item{isParseTree}{If \code{\link[base:logical]{TRUE}}, then argument \code{expr} is not parsed
+     (via \code{\link[base]{substitute}}()), otherwise it is.}
 }
 
 \value{
@@ -34,25 +36,33 @@ withOptions(expr, ..., args=list(), envir=parent.frame())
 \author{Henrik Bengtsson}
 
 \examples{
+print(pi)
+
+# Same, i.e. using default
 withOptions({
   print(pi)
 })
 
+# Printing with two digits
 withOptions({
   print(pi)
 }, digits=2)
 
+# Printing with two digits then with three more
 withOptions({
-  print(letters)
-}, width=20)
+  print(pi)
+  withOptions({
+    print(pi)
+  }, digits=getOption("digits")+3)
+}, digits=2)
 
-withOptions({
-  print(letters)
-}, width=40)
+# Still printing with the default
+print(pi)
 }
 
 \seealso{
-  \code{\link[base]{options}}()
+  Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
+  and \code{\link[base]{options}}() to set graphical parameters.
 }
 
 

@@ -19,7 +19,7 @@ foo <- function() {
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- NULL;
 tryCatch({
-  res <- evalWithTimeout({
+  res <- withTimeout({
     foo();
   }, timeout=1.08);
 }, TimeoutException=function(ex) {
@@ -31,7 +31,7 @@ tryCatch({
 # Evaluate code, if it takes too long, generate
 # a timeout, and return silently NULL.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   foo();
 }, timeout=1.08, onTimeout="silent");
 
@@ -41,7 +41,7 @@ res <- evalWithTimeout({
 # evaluate code that takes long, but should not
 # timeout.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   cat("Hello world!\n")
 }, timeout=1.08);
 foo();
