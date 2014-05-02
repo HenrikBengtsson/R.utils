@@ -17,7 +17,7 @@
 }
 
 \usage{
-withOptions(expr, ..., args=list(), envir=parent.frame(), isParseTree=FALSE)
+withOptions(expr, ..., args=list(), envir=parent.frame())
 }
 
 \arguments{
@@ -25,8 +25,6 @@ withOptions(expr, ..., args=list(), envir=parent.frame(), isParseTree=FALSE)
   \item{...}{Named options to be used.}
   \item{args}{(optional) Additional named options specified as a named \code{\link[base]{list}}.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
-  \item{isParseTree}{If \code{\link[base:logical]{TRUE}}, then argument \code{expr} is not parsed
-     (via \code{\link[base]{substitute}}()), otherwise it is.}
 }
 
 \value{

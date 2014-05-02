@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.32.0 [2014-05-01]
+o Added captureOutput() which is much faster than capture.output()
+  for large outputs.
 o use() now installs missing packages from all set repositories (as before)
   and uses the mainstream (CRAN and BioC) ones as fall backs.
 o Added withRepos() for installing/updating packages using a set of

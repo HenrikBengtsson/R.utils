@@ -14,8 +14,6 @@
 #   \item{...}{Named options to be used.}
 #   \item{args}{(optional) Additional named options specified as a named @list.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
-#   \item{isParseTree}{If @TRUE, then argument \code{expr} is not parsed
-#      (via @see "base::substitute"), otherwise it is.}
 # }
 #
 # \value{
@@ -34,9 +32,9 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withOptions <- function(expr, ..., args=list(), envir=parent.frame(), isParseTree=FALSE) {
+withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
   # Argument '.expr':
-  if (!isParseTree) expr <- substitute(expr)
+  expr <- substitute(expr)
 
   # Argument 'args':
   if (!is.list(args)) {
