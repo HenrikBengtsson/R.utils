@@ -3,9 +3,11 @@ Package: R.utils
 ================
 
 Version: 1.32.0 [2014-05-01]
+o use() now installs missing packages from all set repositories (as before)
+  and uses the mainstream (CRAN and BioC) ones as fall backs.
 o Added withRepos() for installing/updating packages using a set of
   temporarily set repositories.  It is possible to specify repositories
-  by names, which are then selected from a set of known repositories, 
+  by names, which are then selected from a set of known repositories,
   e.g. withRepos(install.packages("edgeR"), repos="[[BioC]]").
 o Added withOptions() for evaluating an expression with a set of
   options temporarily set.

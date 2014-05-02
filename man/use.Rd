@@ -20,7 +20,8 @@
 
 \usage{
 \method{use}{default}(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly,
-  install=TRUE, repos=NULL, ..., verbose=FALSE)
+  install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ...,
+  verbose=FALSE)
 }
 
 \arguments{
@@ -30,7 +31,8 @@
  \item{quietly}{If \code{\link[base:logical]{TRUE}}, minimial or no messages are reported.}
  \item{warn.conflicts}{If \code{\link[base:logical]{TRUE}}, warnings on namespace conflicts are reported, otherwise not.}
  \item{install}{If \code{\link[base:logical]{TRUE}} and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
- \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying where to install the package from if not already installed.}
+ \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying from which repositories
+   to install the package from, iff a requested package is not already installed.}
  \item{...}{Additional \emph{named} arguments passed to
    \code{\link[base]{require}}() or \code{\link[base]{requireNamespace}}().}
  \item{verbose}{If \code{\link[base:logical]{TRUE}}, verbose output is generated (regardless
