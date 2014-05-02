@@ -44,7 +44,7 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withRepos <- function(expr, repos=NULL, ..., envir=parent.frame()) {
+withRepos <- function(expr, repos="[[mainstream]]", ..., envir=parent.frame()) {
   # Argument '.expr':
   expr <- substitute(expr)
 

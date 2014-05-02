@@ -11,7 +11,8 @@
 # @synopsis
 #
 # \arguments{
-#   \item{repos}{A @character @vector of repositories to use.}
+#   \item{repos}{A @character @vector of repositories to use.
+#    If @NULL, nothing is replaced.}
 #   \item{where}{A @character string specifying how to add them to the
 #    current set of repositories.}
 #   \item{unique}{If @TRUE, only unique repositories are set.}
@@ -19,7 +20,8 @@
 # }
 #
 # \value{
-#  Returns the results of the expression evaluated.
+#  Returns a @list with element 'repos' reflecting \code{options("repos")}
+#  as the options where prior to calling this function.
 # }
 #
 # @author
@@ -32,10 +34,13 @@
 # @keyword programming
 #*/###########################################################################
 useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., unique=TRUE) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Nothing to do?
+  if (is.null(repos)) {
+    return(options("repos"))
+  }
+
   # Reset to previous options?
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Example: old <- useRepos(), later useRepos(old).
+  # (Example: old <- useRepos(), later useRepos(old).)
   if (is.list(repos)) {
     old <- options(repos)
     return(old)
