@@ -17,11 +17,11 @@
 }
 
 \usage{
-captureOutput(..., file=NULL, append=FALSE, collapse=NULL, envir=parent.frame())
+captureOutput(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame())
 }
 
 \arguments{
-  \item{...}{The R expressions to be evaluated.}
+  \item{expr}{The R expression to be evaluated.}
   \item{file}{A file name or a \code{\link[base:connections]{connection}} to where the output is
      directed.  Alternatively, if \code{\link[base]{NULL}} the output is captured to
      and returned as a \code{\link[base]{character}} \code{\link[base]{vector}}.}
@@ -29,7 +29,7 @@ captureOutput(..., file=NULL, append=FALSE, collapse=NULL, envir=parent.frame())
      the (unopened) connection, otherwise it overwrites.}
   \item{collapse}{If \code{\link[base:logical]{TRUE}}, then argument \code{expr} is not parsed
      (via \code{\link[base]{substitute}}()), otherwise it is.}
-  \item{envir}{The \code{\link[base]{environment}} in which the expressions are evaluated.}
+  \item{envir}{The \code{\link[base]{environment}} in which the expression js evaluated.}
 }
 
 \value{

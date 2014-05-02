@@ -44,13 +44,33 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", "after"), ...) {
-  # Get the current search path
-  searchPath <- search();
-  nPath <- length(searchPath);
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Please R CMD check
+  attachX <- base::attach;
+
+  # WORKAROUND for R (<= 3.1.0)
+  if (getRversion() <= "3.1.0") {
+    # base::attach() sends messages about masked objects
+    # to stdout and not to stderr.  This redirects such messages.
+    # See R-devel thread 'attach() outputs messages to stdout - should
+    # it be stderr?' on 2014-04-06.
+    # This was patched in R v3.1.0 r65385 (2014-04-08)
+    attachX <- function(...) {
+      msg <- capture.output({ res <- base::attach(...) });
+      if (length(msg) > 0L) cat(msg, sep="\n", file=stderr());
+      invisible(res);
+    }
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Get the current search path
+  searchPath <- search();
+  nPath <- length(searchPath);
+
   # Argument 'from':
   if (is.character(from)) {
     name <- from;
@@ -92,19 +112,8 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   if (to > from)
     to <- to - 1;
 
-
   # Attach at new position
-  attachX <- base::attach;
-  msg <- capture.output({
-    attachX(env, pos=to, name=attr(env, "name"));
-  })
-  # WORKAROUND: base::attach() sends messages about masked objects
-  # to stdout and not to stderr.  This redirects such messages.
-  # See R-devel thread 'attach() outputs messages to stdout - should
-  # it be stderr?' on 2014-04-06.
-  if (length(msg) > 0L) {
-    cat(msg, sep="\n", file=stderr());
-  }
+  attachX(env, pos=to, name=attr(env, "name"));
 
   # Restore attributes (patch for bug in attach()? /HB 2007-09-17)
   attrs <- attributes(env);

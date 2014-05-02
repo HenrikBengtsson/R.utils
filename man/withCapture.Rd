@@ -20,7 +20,7 @@
 \usage{
 withCapture(expr, substitute=list(), code=TRUE, output=code, ...,
   max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
-  newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame())
+  newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame())
 }
 
 \arguments{

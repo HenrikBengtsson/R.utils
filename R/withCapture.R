@@ -43,7 +43,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("evalCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr)
 
@@ -74,7 +74,7 @@ withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
 
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r");
-  res <- capture.output({
+  res <- captureOutput({
     sourceTo(file=con, echo=code, print.eval=output, max.deparse.length=max.deparse.length, ..., envir=envir);
   });
 

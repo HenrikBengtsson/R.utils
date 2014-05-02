@@ -10,7 +10,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{...}{The R expressions to be evaluated.}
+#   \item{expr}{The R expression to be evaluated.}
 #   \item{file}{A file name or a @connection to where the output is
 #      directed.  Alternatively, if @NULL the output is captured to
 #      and returned as a @character @vector.}
@@ -18,7 +18,7 @@
 #      the (unopened) connection, otherwise it overwrites.}
 #   \item{collapse}{If @TRUE, then argument \code{expr} is not parsed
 #      (via @see "base::substitute"), otherwise it is.}
-#   \item{envir}{The @environment in which the expressions are evaluated.}
+#   \item{envir}{The @environment in which the expression js evaluated.}
 # }
 #
 # \value{
@@ -48,7 +48,7 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-captureOutput <- function(..., file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()) {
+captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()) {
   # Argument 'file':
   # Default is to capture via a raw connection
   if (is.null(file)) file <- raw(0L);
@@ -65,7 +65,7 @@ captureOutput <- function(..., file=NULL, append=FALSE, collapse=NULL, envir=par
         if (!is.null(file)) close(file);
       })
 
-      capture.output(..., file=file);
+      capture.output(expr, file=file);
 
       res <- rawConnectionValue(file);
       close(file);
@@ -75,12 +75,12 @@ captureOutput <- function(..., file=NULL, append=FALSE, collapse=NULL, envir=par
       res <- rawToChar(res);
 
       res
-    }, envir=envir, enclos=baseenv());
+    }, envir=envir, enclos=envir);
   } else {
     # As usual?
     res <- eval({
-      capture.output(..., file=file, append=append);
-    }, envir=envir, enclos=baseenv());
+      capture.output(expr, file=file, append=append);
+    }, envir=envir, enclos=envir);
   }
 
   # Return line by line or as one long string?
