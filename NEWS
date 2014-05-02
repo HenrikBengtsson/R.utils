@@ -3,6 +3,10 @@ Package: R.utils
 ================
 
 Version: 1.32.0 [2014-05-01]
+o Added withRepos() for installing/updating packages using a set of
+  temporarily set repositories.  It is possible to specify repositories
+  by names, which are then selected from a set of known repositories, 
+  e.g. withRepos(install.packages("edgeR"), repos="[[BioC]]").
 o Added withOptions() for evaluating an expression with a set of
   options temporarily set.
 o Renamed evalCapture() to withCapture() and evalWithTimeout() and

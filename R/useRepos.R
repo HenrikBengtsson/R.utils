@@ -1,0 +1,250 @@
+###########################################################################/**
+# @RdocFunction useRepos
+# @alias parseRepos
+#
+# @title "Sets package repositories"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{repos}{A @character @vector of repositories to use.}
+#   \item{where}{A @character string specifying how to add them to the
+#    current set of repositories.}
+#   \item{unique}{If @TRUE, only unique repositories are set.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#  Returns the results of the expression evaluated.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "withRepos".
+# }
+#
+# @keyword IO
+# @keyword programming
+#*/###########################################################################
+useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., unique=TRUE) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Reset to previous options?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Example: old <- useRepos(), later useRepos(old).
+  if (is.list(repos)) {
+    old <- options(repos)
+    return(old)
+  }
+
+  repos <- parseRepos(sets=repos, where=where, ...)
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Keep only unique ones?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (unique) {
+    names <- names(repos)
+    dups <- (nzchar(names) & duplicated(names))
+    repos <- repos[!dups]
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Repositories, except '@...@' ones, should all be specified as URLs,
+  # cf. help("install.packages").
+  reposT <- grep("^@[^@]+@$", repos, value=TRUE, invert=TRUE)
+  isUrl <- isUrl(reposT)
+  bad <- repos[!isUrl]
+  if (length(bad) > 0L) {
+    stop("Detected reposities that are not specified as URLs: ", bad)
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Apply
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  old <- options(repos=repos)
+
+  invisible(old)
+} # useRepos()
+
+
+parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  reposKnownToR <- function() {
+    p <- file.path(Sys.getenv("HOME"), ".R", "repositories")
+    if (!file.exists(p)) p <- file.path(R.home("etc"), "repositories")
+    ns <- getNamespace("tools")
+    .read_repositories <- get(".read_repositories", envir=ns)
+    a <- .read_repositories(p)
+    repos <- a$URL
+    names <- rownames(a)
+    names(repos) <- names
+    repos
+  } # reposKnownToR()
+
+  reposCustom <- function() {
+    c("AROMA"="http://braju.com/R")
+  } # reposCustom()
+
+  reposAll <- function() {
+    c(reposKnownToR(), reposCustom())
+  } # reposAll()
+
+  superPattern <- function(name="*") {
+    known <- list(
+      CRAN = "^(CRAN.*)$",
+      BioC = "^(BioC.*)$",
+      "*"  = ""
+    )
+    known$`mainstream` <- c(known$CRAN, known$BioC)
+    known$`AROMA`      <- c("^AROMA$", known$mainstream)
+    known$`R-Forge`    <- c("^R-Forge$", known$mainstream)
+
+    # Unknown?
+    if (!is.element(name, names(known)))
+      return(NULL);
+
+    known[[name]];
+  } # superPattern()
+
+  reposSubst <- function(repos, known=repos) {
+    pattern <- "^@[^@]+@$"
+    subs <- grep(pattern, repos)
+    if (length(subs) > 0L) {
+      # Borrow from repositories that does not require substitution
+      known <- grep(pattern, known, value=TRUE, invert=TRUE)
+
+      # Names of repositories that requires substitution
+      names <- names(repos)[subs]
+
+      # Look them up in among the known ones?
+      reposT <- known[names]
+      stopifnot(length(reposT) == length(subs))
+      # Which can use?
+      ok <- !is.na(reposT)
+      reposT <- reposT[ok]
+
+      # Patch
+      if (length(reposT) > 0L) {
+        idxs <- match(names(reposT), names)
+        subs <- subs[idxs]
+        repos[subs] <- reposT
+      }
+    }
+
+    repos
+  } # reposSubst()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'sets':
+  if (is.character(sets)) {
+    sets <- unlist(strsplit(sets, split=",", fixed=TRUE), use.names=FALSE)
+    sets <- sapply(sets, FUN=trim)
+  } else if (is.list(sets)) {
+    if (!is.element("repos", names(sets))) {
+      stop("Cannot (re)set option 'repos' based on list argument 'sets', because it does not contain element 'repos': ", paste(names(sets), collapse=", "))
+    }
+  }
+
+  # Argument 'where':
+  where <- match.arg(where)
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Nothing to do?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.null(sets)) {
+    return(getOption("repos"))
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # How the order relative to the existing set of repositories?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # All available/known repositories
+  repos00 <- c(getOption("repos"), reposAll())
+  if (where == "after") {
+    repos0 <- repos00
+  } else if (where == "before") {
+    repos0 <- c(reposAll(), getOption("repos"))
+  } else {
+    # Don't the use the existing ones
+    repos0 <- reposAll()
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Indentify new set of repositories
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Subset by name?
+  if (is.character(sets)) {
+    repos <- c()
+
+    patternS <- "^\\[(.*)\\]$"
+    for (set in sets) {
+      # Subset by regular expression?
+      if (regexpr(patternS, set) != -1L) {
+        # Identify the repository pattern used for scanning
+        pattern <- gsub(patternS, "\\1", set)
+
+        # A super set?
+        if (regexpr(patternS, pattern) != -1L) {
+          name <- gsub(patternS, "\\1", pattern)
+          pattern <- superPattern(name)
+          if (length(pattern) == 0L) {
+            stop("Unknown repository super set: ", name)
+          }
+        }
+
+        # All known repositories with names matching the pattern(s)
+        keep <- lapply(pattern, FUN=grep, names(repos0))
+        keep <- unique(unlist(keep))
+
+        repos <- c(repos, repos0[keep])
+      } else {
+        repos <- c(repos, repos0[set])
+      }
+    } # for (set ...)
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Try to substitute any @CRAN@ etc.
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # First among the selected set
+  repos <- reposSubst(repos)
+
+  # Then among the all known repositories
+  repos <- reposSubst(repos, known=repos00)
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Drop (name,value) duplicates
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  keys <- sprintf("%s:%s", names(repos), repos);
+  repos <- repos[!duplicated(keys)]
+
+
+  # Sanity check
+  stopifnot(is.character(repos))
+
+  # Return
+  repos
+} # parseRepos()
+
+
+############################################################################
+# HISTORY:
+# 2014-05-01
+# o Created.
+############################################################################
