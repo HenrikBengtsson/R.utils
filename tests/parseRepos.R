@@ -3,14 +3,14 @@ library("R.utils")
 message("CRAN:")
 str(as.list(parseRepos("CRAN")))
 
-message("AROMA:")
-str(as.list(parseRepos("AROMA")))
+message("braju.com:")
+str(as.list(parseRepos("braju.com")))
 
-message("CRAN + AROMA:")
-str(as.list(parseRepos(c("CRAN", "AROMA"))))
+message("CRAN + braju.com:")
+str(as.list(parseRepos(c("CRAN", "braju.com"))))
 
-message("AROMA + CRAN:")
-str(as.list(parseRepos(c("AROMA", "CRAN"))))
+message("braju.com + CRAN:")
+str(as.list(parseRepos(c("braju.com", "CRAN"))))
 
 message("All CRAN related repositories:")
 str(as.list(parseRepos("[[CRAN]]")))
@@ -18,11 +18,11 @@ str(as.list(parseRepos("[[CRAN]]")))
 message("All BioC related repositories:")
 str(as.list(parseRepos("[[BioC]]")))
 
-message("AROMA + all CRAN related repositories:")
-str(as.list(parseRepos(c("AROMA", "[[CRAN]]"))))
+message("braju.com + all CRAN related repositories:")
+str(as.list(parseRepos(c("braju.com", "[[CRAN]]"))))
 
-message("All CRAN related repositories + AROMA:")
-str(as.list(parseRepos(c("[[CRAN]]", "AROMA"))))
+message("All CRAN related repositories + braju.com:")
+str(as.list(parseRepos(c("[[CRAN]]", "braju.com"))))
 
 message("All CRAN related + BioC related repositories:")
 str(as.list(parseRepos(c("[[CRAN]]", "[[BioC]]"))))
@@ -32,3 +32,15 @@ str(as.list(parseRepos(c("[[BioC]]", "[[CRAN]]"))))
 
 message("Mainstream (CRAN and BioC related) repositories (only):")
 str(as.list(parseRepos("[[mainstream]]")))
+
+message("An explicit repository URL:")
+str(as.list(parseRepos("http://r-forge.r-project.org")))
+
+message("An explicit repository URL + mainstream:")
+str(as.list(parseRepos(c("http://r-forge.r-project.org", "[[mainstream]]"))))
+
+message("Repositories according to option 'repos':")
+str(as.list(parseRepos("[[current]]")))
+
+message("All repositories known to this system:")
+str(as.list(parseRepos("[[all]]")))

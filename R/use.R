@@ -246,7 +246,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
   # Argument 'repos':
   if (is.null(repos)) {
-    repos <- Arguments$getCharacter(repos);
+    repos <- Arguments$getCharacters(repos);
   }
 
   # Argument 'how':
@@ -265,6 +265,15 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     on.exit(popState(verbose));
   }
 
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Adjust repositories temporarily
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (length(repos) > 0L) {
+##    orepos <- useRepos(repos);
+##    on.exit(options(orepos), add=TRUE)
+  }
 
   if (npkgs > 1L) {
     res <- NULL;

@@ -6,13 +6,18 @@ orepos <- options(repos=c(
   EXAMPLE="http://example.org"
 ))
 
-message("Default repositories:")
+message("Current repositories:")
 str(as.list(getOption("repos")))
 
-message("All default repositories:")
+message("All current repositories:")
 withRepos({
   str(as.list(getOption("repos")))
 })
+
+message("All current repositories (explicit):")
+withRepos({
+  str(as.list(getOption("repos")))
+}, repos="[[current]]")
 
 message("CRAN (only):")
 withRepos({
@@ -20,20 +25,20 @@ withRepos({
 }, repos="CRAN")
 
 
-message("AROMA (only):")
+message("braju.com (only):")
 withRepos({
   str(as.list(getOption("repos")))
-}, repos="AROMA")
+}, repos="braju.com")
 
-message("CRAN and AROMA (only):")
+message("CRAN and braju.com (only):")
 withRepos({
   str(as.list(getOption("repos")))
-}, repos=c("CRAN", "AROMA"))
+}, repos=c("CRAN", "braju.com"))
 
-message("AROMA and CRAN (only):")
+message("braju.com and CRAN (only):")
 withRepos({
   str(as.list(getOption("repos")))
-}, repos=c("AROMA", "CRAN"))
+}, repos=c("braju.com", "CRAN"))
 
 
 message("All CRAN replated repositories (only):")
@@ -46,20 +51,31 @@ withRepos({
   str(as.list(getOption("repos")))
 }, repos="[[mainstream]]")
 
-message("AROMA and mainstream (only):")
+message("braju.com and mainstream (only):")
 withRepos({
   str(as.list(getOption("repos")))
-}, repos="[[AROMA]]")
+}, repos="[[braju.com]]")
 
 message("R-Forge and mainstream (only):")
 withRepos({
   str(as.list(getOption("repos")))
 }, repos="[[R-Forge]]")
 
+message("An explicit repository URL:")
+withRepos({
+  str(as.list(getOption("repos")))
+}, repos="http://r-forge.r-project.org")
+
+message("An explicit repository URL + mainstream:")
+withRepos({
+  str(as.list(getOption("repos")))
+}, repos=c("http://r-forge.r-project.org", "[[mainstream]]"))
+
 message("All known:")
 withRepos({
   str(as.list(getOption("repos")))
-}, repos="[*]")
+}, repos="[[all]]")
+
 
 # Undo
 options(orepos)

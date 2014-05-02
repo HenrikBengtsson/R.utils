@@ -53,9 +53,12 @@ useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., uni
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (unique) {
     names <- names(repos)
-    dups <- (nzchar(names) & duplicated(names))
-    repos <- repos[!dups]
+    if (length(names) > 0L) {
+      dups <- (nzchar(names) & duplicated(names))
+      repos <- repos[!dups]
+    }
   }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate
@@ -95,22 +98,24 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
   } # reposKnownToR()
 
   reposCustom <- function() {
-    c("AROMA"="http://braju.com/R")
+    c("braju.com"="http://braju.com/R")
   } # reposCustom()
 
   reposAll <- function() {
     c(reposKnownToR(), reposCustom())
   } # reposAll()
 
-  superPattern <- function(name="*") {
+  superPattern <- function(name="all") {
     known <- list(
-      CRAN = "^(CRAN.*)$",
-      BioC = "^(BioC.*)$",
-      "*"  = ""
+      CRAN    = "^(CRAN.*)$",
+      BioC    = "^(BioC.*)$",
+      all     = "",
+      current = "<current>"
     )
     known$`mainstream` <- c(known$CRAN, known$BioC)
-    known$`AROMA`      <- c("^AROMA$", known$mainstream)
+    known$`braju.com`  <- c("^braju[.]com$", known$mainstream)
     known$`R-Forge`    <- c("^R-Forge$", known$mainstream)
+    known$`rforge.net` <- c("^rforge[.]net$", known$mainstream)
 
     # Unknown?
     if (!is.element(name, names(known)))
@@ -152,25 +157,12 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'sets':
-  if (is.character(sets)) {
-    sets <- unlist(strsplit(sets, split=",", fixed=TRUE), use.names=FALSE)
-    sets <- sapply(sets, FUN=trim)
-  } else if (is.list(sets)) {
-    if (!is.element("repos", names(sets))) {
-      stop("Cannot (re)set option 'repos' based on list argument 'sets', because it does not contain element 'repos': ", paste(names(sets), collapse=", "))
-    }
-  }
+  # Nothing to do?
+  if (is.null(sets)) return(getOption("repos"))
+  stopifnot(is.character(sets))
 
   # Argument 'where':
   where <- match.arg(where)
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Nothing to do?
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.null(sets)) {
-    return(getOption("repos"))
-  }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -189,6 +181,14 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Preprocess sets
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  sets <- unlist(strsplit(sets, split=",", fixed=TRUE), use.names=FALSE)
+  names <- names(sets)
+  sets <- sapply(sets, FUN=trim)
+  names(sets) <- names
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Indentify new set of repositories
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Subset by name?
@@ -196,7 +196,10 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
     repos <- c()
 
     patternS <- "^\\[(.*)\\]$"
-    for (set in sets) {
+    for (kk in seq_along(sets)) {
+      # Subsetting here will keep the names attribute
+      set <- sets[kk]
+
       # Subset by regular expression?
       if (regexpr(patternS, set) != -1L) {
         # Identify the repository pattern used for scanning
@@ -211,17 +214,23 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
           }
         }
 
-        # All known repositories with names matching the pattern(s)
-        keep <- lapply(pattern, FUN=grep, names(repos0))
-        keep <- unique(unlist(keep))
+        # Current set or pattern?
+        if (identical(pattern, "<current>")) {
+          repos <- getOption("repos")
+        } else {
+          # All known repositories with names matching the pattern(s)
+          keep <- lapply(pattern, FUN=grep, names(repos0))
+          keep <- unique(unlist(keep))
 
-        repos <- c(repos, repos0[keep])
+          repos <- c(repos, repos0[keep])
+        }
+      } else if (isUrl(set)) {
+        repos <- c(repos, set)
       } else {
         repos <- c(repos, repos0[set])
       }
     } # for (set ...)
   }
-
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Try to substitute any @CRAN@ etc.
@@ -232,13 +241,11 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
   # Then among the all known repositories
   repos <- reposSubst(repos, known=repos00)
 
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop (name,value) duplicates
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  keys <- sprintf("%s:%s", names(repos), repos);
+  keys <- paste(names(repos), repos, sep=":");
   repos <- repos[!duplicated(keys)]
-
 
   # Sanity check
   stopifnot(is.character(repos))
