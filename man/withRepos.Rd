@@ -17,7 +17,7 @@
 }
 
 \usage{
-withRepos(expr, repos=NULL, ..., envir=parent.frame())
+withRepos(expr, repos="[[mainstream]]", ..., envir=parent.frame())
 }
 
 \arguments{
