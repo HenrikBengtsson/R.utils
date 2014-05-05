@@ -179,7 +179,7 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...) {
+setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, adjust=c("none", "url"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -206,6 +206,10 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # Argument 'absolutePath':
   absolutePath <- getLogical(static, absolutePath);
 
+  # Argument 'adjust':
+  adjust <- match.arg(adjust);
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Process arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -218,6 +222,41 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     }
   }
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Make sure <path>/<file> is properly split up
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.null(path)) {
+    pathname <- file;
+  } else if (is.null(file)) {
+    pathname <- path;
+  } else {
+    pathname <-  file.path(path, file);
+  }
+  path <- dirname(pathname);
+  file <- basename(pathname);
+  pathname <- NULL;
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Adjust filename?
+  # FIXME: Adjust also directory names. /HB 2014-05-04
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (adjust == "url") {
+    # Decode non-problematic filename characters, e.g. '%20' -> ' '
+    file <- URLdecode(file);
+
+    # But encode problematic ones, e.g. ':', '*'
+    file <- gsub(":", "%3A", file, fixed=TRUE)
+    file <- gsub("*", "%2A", file, fixed=TRUE)
+    file <- gsub("\\", "%5C", file, fixed=TRUE)
+
+    # Encode tilde (~) unless first character
+    # FIX ME: Needed or not? /HB 2014-05-04
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Expand links
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # NB: Here 'mustExist=TRUE' means that filePath() will always return
   # a pathname, not that it will give an error if file does not exist.
   pathname <- filePath(path, file, expandLinks="any", mustExist=TRUE);
@@ -1305,6 +1344,8 @@ withoutGString <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2014-05-04
+# o Added argument 'adjust' to Arguments$getReadablePathname().
 # 2014-01-12
 # o Made argument 'useNames' to getCharacters() default to TRUE.
 # o Now Arguments$getCharacters() preserves attributes.

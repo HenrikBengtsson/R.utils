@@ -21,11 +21,11 @@
 \usage{
 ## Static method (use this):
 ## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE,
-##   absolutePath=FALSE, ...)
+##   absolutePath=FALSE, adjust=c("none", "url"), ...)
 
 ## Don't use the below:
 \method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE,
-  ...)
+  adjust=c("none", "url"), ...)
 }
 
 \arguments{

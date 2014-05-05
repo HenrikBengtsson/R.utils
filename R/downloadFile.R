@@ -70,8 +70,10 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   overwrite <- Arguments$getLogical(overwrite);
 
   # Argument 'filename' & 'path':
+  filename <- Arguments$getReadablePathname(filename, adjust="url",
+                                            mustExist=FALSE);
   pathname <- Arguments$getWritablePathname(filename, path=path,
-                                         mustNotExist=(!overwrite && !skip));
+                   mustNotExist=(!overwrite && !skip));
 
   # Argument 'username':
   if (!is.null(username)) {
@@ -221,6 +223,11 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
 ############################################################################
 # HISTORY:
+# 2014-05-04
+# o Now downloadFile() "adjusts" the output filename by decoding URL
+#   encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
+#   Also, unsafe filename characters (':', '*', '\') are encoded, e.g.
+#   'How_to:_RSP.txt' becomes 'How_to%3A_RSP.txt'.
 # 2013-10-13
 # o CLEANUP: downloadFile() no longer attaches 'R.utils'.
 # 2013-03-29

@@ -2,6 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.32.1 [2014-05-04]
+o Now downloadFile() "adjusts" the output filename by decoding URL
+  encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
+  Also, unsafe filename characters (':', '*', '\') are encoded, e.g.
+  'How_to:_RSP.txt' becomes 'How_to%3A_RSP.txt'.
+o Added argument 'adjust' to Arguments$getReadablePathname().  When
+  adjust="url" it decodes and encodes the filename the same way as
+  downloadFile() now adjusts it (see above).
+
+
 Version: 1.32.0 [2014-05-01]
 o Added captureOutput() which is much faster than capture.output()
   for large outputs.  withCapture() utilizes this now.  Added package
