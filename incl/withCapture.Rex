@@ -26,3 +26,23 @@ print(withCapture({
 ## > type <- "horse"
 ## > type
 ## [1] "horse"
+
+
+# Automatic "variable" substitute
+# (disable with substitute=NULL)
+a <- 2
+b <- "Hello world!"
+
+print(withCapture({
+ x <- .a.
+ s <- ".b."
+ x
+ s
+}))
+
+## > x <- 2
+## > s <- "Hello world!"
+## > x
+## [1] 2
+## > s
+## [1] "Hello world!"

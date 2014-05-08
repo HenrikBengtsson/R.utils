@@ -18,8 +18,8 @@
 }
 
 \usage{
-withCapture(expr, substitute=list(), code=TRUE, output=code, ...,
-  max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
+withCapture(expr, substitute=getOption("withCapture/substitute", ".x."), code=TRUE,
+  output=code, ..., max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
   newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame())
 }
 
@@ -75,6 +75,26 @@ print(withCapture({
 ## > type <- "horse"
 ## > type
 ## [1] "horse"
+
+
+# Automatic "variable" substitute
+# (disable with substitute=NULL)
+a <- 2
+b <- "Hello world!"
+
+print(withCapture({
+ x <- .a.
+ s <- ".b."
+ x
+ s
+}))
+
+## > x <- 2
+## > s <- "Hello world!"
+## > x
+## [1] 2
+## > s
+## [1] "Hello world!"
 }
 
 \author{Henrik Bengtsson}

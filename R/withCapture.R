@@ -43,19 +43,72 @@
 #
 # @keyword utilities
 #*/###########################################################################
-withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
   # Get code/expression without evaluating it
-  expr2 <- substitute(expr)
+  expr2 <- substitute(expr);
 
-  # Substitute symbols?
-  if (length(substitute) > 0L) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Substitute "constant" symbols?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.list(substitute) && (length(substitute) > 0L)) {
+    names <- names(substitute);
+    if (is.null(names)) throw("Argument 'substitute' must be named.");
     expr2 <- do.call(base::substitute, args=list(expr2, substitute))
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Deparse
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # WAS:
   ## sourceCode <- capture.output(print(expr2));
   sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Substitute code by regular expressions?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.character(substitute) && (length(substitute) > 0L)) {
+    patterns <- names(substitute);
+    replacements <- substitute;
+
+    # Predefined rules?
+    if (is.null(patterns)) {
+      known <- c("[.](.*)[.]"="\\1");
+      patterns <- rep(NA_character_, times=length(replacements));
+      for (kk in seq_along(replacements)) {
+        replacement <- replacements[kk];
+        if (identical(replacement, ".x.")) {
+          patterns[kk] <- "[.](.+)[.]";
+          replacements[kk] <- "${\\1}";
+        }
+      }
+    }
+
+    if (is.null(patterns)) throw("Argument 'substitute' must be named.");
+
+    # (b) Substitute via regular expression
+
+    # Escape all existing ${...}, iff such exist
+    sourceCode <- gsub("$", "___MAGIC___DOLLAR___MAGIC___", sourceCode, fixed=TRUE)
+    # gsub() by regular expressions
+    for (kk in seq_along(replacements)) {
+      pattern <- patterns[kk];
+      replacement <- replacements[kk];
+      sourceCode <- gsub(pattern, replacement, sourceCode);
+    }
+
+    # Evaluate any added ${...} Gstring:s
+    sourceCode <- sapply(sourceCode, FUN=gstring, envir=envir);
+
+    # Unescape all existing ${...}
+    sourceCode <- gsub("___MAGIC___DOLLAR___MAGIC___", "$", sourceCode, fixed=TRUE)
+
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Trim code
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim of surrounding { ... }
   if (sourceCode[1] == "{") {
     sourceCode <- sourceCode[-c(1, length(sourceCode))];
@@ -67,6 +120,10 @@ withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Evalute code expression
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # WORKAROUND: The following will *not* evaluate in environment
   # 'envir' due to capture.output() *unless* we evaluate 'envir'
   # before.  This sanity check will do that. /HB 2011-11-23
@@ -78,7 +135,11 @@ withCapture <- function(expr, substitute=list(), code=TRUE, output=code, ..., ma
     sourceTo(file=con, echo=code, print.eval=output, max.deparse.length=max.deparse.length, ..., envir=envir);
   });
 
-  # Drop empty lines
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Cleanup captured output?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Drop empty lines?
   if (trim) {
     res <- res[nchar(res) > 0];
   }
@@ -105,6 +166,9 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-05-06
+# o Added support for expression substitution via regular expressions.
+#   The default is now to substitute any '.x.' with gstring("${x}").
 # 2014-05-01
 # o Renamed evalCapture() to withCapture().  Old name kept for backward
 #   compatibility, but will eventually be deprecated.
