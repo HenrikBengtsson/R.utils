@@ -100,7 +100,6 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
 
 
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim code
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
