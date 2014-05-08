@@ -74,14 +74,20 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
 
     # Predefined rules?
     if (is.null(patterns)) {
-      known <- c("[.](.*)[.]"="\\1");
       patterns <- rep(NA_character_, times=length(replacements));
       for (kk in seq_along(replacements)) {
         replacement <- replacements[kk];
         if (identical(replacement, ".x.")) {
-          patterns[kk] <- "[.](.+)[.]";
-          replacements[kk] <- "${\\1}";
+          patterns[kk] <- "(^|[^a-zA-Z0-9_.])[.]([a-zA-Z0-9_.]+)[.]([^a-zA-Z0-9_.]|$)";
+          replacements[kk] <- "\\1${\\2}\\3";
+        } else if (identical(replacement, "..x..")) {
+          patterns[kk] <- "(^|[^a-zA-Z0-9_.])[.][.]([a-zA-Z0-9_.]+)[.][.]([^a-zA-Z0-9_.]|$)";
+          replacements[kk] <- "\\1${\\2}\\3";
         }
+      }
+      unknown <- replacements[is.na(patterns)];
+      if (length(unknown) > 0L) {
+        throw("Unknown substitution rules: ", paste(sQuote(unknown), collapse=", "));
       }
     }
 
@@ -104,7 +110,14 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
     # Unescape all existing ${...}
     sourceCode <- gsub("___MAGIC___DOLLAR___MAGIC___", "$", sourceCode, fixed=TRUE)
 
+    # Validate
+    tryCatch({
+      parse(text=sourceCode);
+    }, error = function(ex) {
+      throw("SYNTAX ERROR: Code substitute results in invalid R code: ", hpaste(trim(sourceCode)));
+    })
   }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim code

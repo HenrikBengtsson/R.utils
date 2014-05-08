@@ -51,3 +51,18 @@ bfr <- withCapture({
 }, newline=TRUE)
 print(bfr)
 stopifnot(bfr == "> x <- 2\n> x\n[1] 2\n")
+
+
+# Make sure not to substitute parts of variable names
+# or expressions
+foo.bar.yaa <- function(x) x
+a <- 2
+b.c <- 3
+bfr <- withCapture({
+  res <- foo.bar.yaa(3.14)
+  R.utils::use("R.utils")
+  x <- .a.
+  y <- .b.c.
+})
+print(bfr)
+#stopifnot(bfr ==""> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- 3\n")
