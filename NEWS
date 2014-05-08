@@ -3,10 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.32.2 [2014-05-06]
-o Added support for expression substitution via regular expressions
-  in withCapture().  The default is now to substitute any code matching
-  '[.](.+)[.]' with gstring("${\\1}"), e.g. { x <- ".a." } where a <- 1
-  becomes { x <- "1" } before being evaluated.
+o Added support for substitution of expressions in withCapture()
+  based on regular expressions utilizing new egsub().
 o Added egsub(), which is gsub() for expressions with some bells 
   and whistles.
 

@@ -39,7 +39,7 @@ withCapture(expr, substitute=getOption("withCapture/substitute", ".x."), code=TR
      is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
-  \item{envir}{The @enviroment in which the expression is evaluated.}
+  \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 
 \value{
@@ -84,7 +84,7 @@ b <- "Hello world!"
 
 print(withCapture({
  x <- .a.
- s <- ".b."
+ s <- .b.
  x
  s
 }))

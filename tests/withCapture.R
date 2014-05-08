@@ -57,7 +57,7 @@ stopifnot(bfr == "> x <- 2\n> x\n[1] 2\n")
 # or expressions
 foo.bar.yaa <- function(x) x
 a <- 2
-b.c <- 3
+b.c <- "Hello world!"
 bfr <- withCapture({
   res <- foo.bar.yaa(3.14)
   R.utils::use("R.utils")
@@ -65,4 +65,4 @@ bfr <- withCapture({
   y <- .b.c.
 })
 print(bfr)
-#stopifnot(bfr ==""> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- 3\n")
+stopifnot(bfr =="> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- \"Hello world!\"\n")

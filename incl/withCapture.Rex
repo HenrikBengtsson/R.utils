@@ -35,7 +35,7 @@ b <- "Hello world!"
 
 print(withCapture({
  x <- .a.
- s <- ".b."
+ s <- .b.
  x
  s
 }))

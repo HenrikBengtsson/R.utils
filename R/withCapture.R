@@ -26,7 +26,7 @@
 #      is appended at the end.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
-#   \item{envir}{The @enviroment in which the expression is evaluated.}
+#   \item{envir}{The @environment in which the expression is evaluated.}
 # }
 #
 # \value{
@@ -48,26 +48,16 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   expr2 <- substitute(expr);
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Substitute "constant" symbols?
+  # Substitute?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # (a) Substitute by "constant" symbols?
   if (is.list(substitute) && (length(substitute) > 0L)) {
     names <- names(substitute);
     if (is.null(names)) throw("Argument 'substitute' must be named.");
     expr2 <- do.call(base::substitute, args=list(expr2, substitute))
   }
 
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Deparse
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # WAS:
-  ## sourceCode <- capture.output(print(expr2));
-  sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Substitute code by regular expressions?
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # (b) Substitute code by regular expressions?
   if (is.character(substitute) && (length(substitute) > 0L)) {
     patterns <- names(substitute);
     replacements <- substitute;
@@ -78,11 +68,11 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
       for (kk in seq_along(replacements)) {
         replacement <- replacements[kk];
         if (identical(replacement, ".x.")) {
-          patterns[kk] <- "(^|[^a-zA-Z0-9_.])[.]([a-zA-Z0-9_.]+)[.]([^a-zA-Z0-9_.]|$)";
-          replacements[kk] <- "\\1${\\2}\\3";
+          patterns[kk] <- "^[.]([a-zA-Z0-9_.]+)[.]$"
+          replacements[kk] <- "\\1";
         } else if (identical(replacement, "..x..")) {
-          patterns[kk] <- "(^|[^a-zA-Z0-9_.])[.][.]([a-zA-Z0-9_.]+)[.][.]([^a-zA-Z0-9_.]|$)";
-          replacements[kk] <- "\\1${\\2}\\3";
+          patterns[kk] <- "^[.][.]([a-zA-Z0-9_.]+)[.][.]$"
+          replacements[kk] <- "\\1";
         }
       }
       unknown <- replacements[is.na(patterns)];
@@ -94,29 +84,21 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
     if (is.null(patterns)) throw("Argument 'substitute' must be named.");
 
     # (b) Substitute via regular expression
-
-    # Escape all existing ${...}, iff such exist
-    sourceCode <- gsub("$", "___MAGIC___DOLLAR___MAGIC___", sourceCode, fixed=TRUE)
-    # gsub() by regular expressions
     for (kk in seq_along(replacements)) {
       pattern <- patterns[kk];
       replacement <- replacements[kk];
-      sourceCode <- gsub(pattern, replacement, sourceCode);
+      expr2 <- egsub(pattern, replacement, expr2, envir=envir);
     }
-
-    # Evaluate any added ${...} Gstring:s
-    sourceCode <- sapply(sourceCode, FUN=gstring, envir=envir);
-
-    # Unescape all existing ${...}
-    sourceCode <- gsub("___MAGIC___DOLLAR___MAGIC___", "$", sourceCode, fixed=TRUE)
-
-    # Validate
-    tryCatch({
-      parse(text=sourceCode);
-    }, error = function(ex) {
-      throw("SYNTAX ERROR: Code substitute results in invalid R code: ", hpaste(trim(sourceCode)));
-    })
   }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Deparse
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # WAS:
+  ## sourceCode <- capture.output(print(expr2));
+  sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
+
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
