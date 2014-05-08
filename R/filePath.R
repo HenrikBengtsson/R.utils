@@ -123,6 +123,9 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     # Remove all "." parts, because they are non-informative
     if (length(components) > 1L) {
       components <- components[components != "."];
+      # But if they're all dropped (e.g. ././././) then
+      # return '.'
+      if (length(components) == 0L) return(".");
     }
 
     # Remove ".." and its parent by reading from the left(!)
@@ -163,7 +166,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   isEmpty <- unlist(lapply(args, FUN=function(x) (length(x) == 0L)));
   args <- args[!isEmpty];
 
-  # Second, convert the into character strings
+  # Second, convert into character strings
   args <- lapply(args, FUN=as.character);
 
   # Argument 'expandLinks':
@@ -177,8 +180,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   }
 
   if (any(sapply(args, FUN=is.na))) {
-    naValue <- as.character(NA);
-    return(naValue);
+    return(NA_character_);
   }
 
   pathname <- paste(args, collapse=fsep);
@@ -350,6 +352,8 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 #############################################################################
 # HISTORY:
+# 2014-05-08
+# o filePath("./././././") now returns "." (was "").
 # 2013-07-27
 # o BUG FIX: filePath("C:/foo/..") would return "C:", which should be "C:/".
 # 2012-10-29

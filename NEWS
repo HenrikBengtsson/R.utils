@@ -2,10 +2,15 @@
 Package: R.utils
 ================
 
-Version: 1.32.2 [2014-05-06]
+Version: 1.32.3 [2014-05-08]
+o filePath("./././././") now returns "." (was "").  Added package
+  system tests for filePath().
+
+
+Version: 1.32.2 [2014-05-07]
 o Added support for substitution of expressions in withCapture()
   based on regular expressions utilizing new egsub().
-o Added egsub(), which is gsub() for expressions with some bells 
+o Added egsub(), which is gsub() for expressions with some bells
   and whistles.
 
 
@@ -372,7 +377,7 @@ o The workaround needed by isDirectory() due to a bug in
 
 
 Version: 1.24.0 [2013-04-18]
-o Several methods are now output messages and verbose output
+o Several methods now output messages and verbose output
   to standard error (instead of standard output), including
   addFinalizerToLast(), filePath(), patchCode(), readWindowsShellLink(),
   readWindowsShortcut(), and loadAnywhere() for Settings.
