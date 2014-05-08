@@ -7,6 +7,8 @@ o Added support for expression substitution via regular expressions
   in withCapture().  The default is now to substitute any code matching
   '[.](.+)[.]' with gstring("${\\1}"), e.g. { x <- ".a." } where a <- 1
   becomes { x <- "1" } before being evaluated.
+o Added egsub(), which is gsub() for expressions with some bells 
+  and whistles.
 
 
 Version: 1.32.1 [2014-05-04]

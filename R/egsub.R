@@ -35,7 +35,9 @@
 # @keyword utilities
 # @keyword programming
 #*/###########################################################################
-egsub <- function(pattern, replacement, expr, ..., value=TRUE, envir=parent.frame()) {
+egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame(), inherits=TRUE) {
+  expr <- x;
+
   # Substitute?
   if (is.symbol(expr)) {
     code <- as.character(expr);
@@ -44,7 +46,7 @@ egsub <- function(pattern, replacement, expr, ..., value=TRUE, envir=parent.fram
 
       # Substitute with the *value* of a variable, or a variable?
       if (value) {
-        expr <- get(name, envir=envir);
+        expr <- get(name, envir=envir, inherits=inherits);
       } else {
         expr <- as.symbol(name);
       }

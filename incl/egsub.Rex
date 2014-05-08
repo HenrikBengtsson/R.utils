@@ -12,7 +12,7 @@ a <- 2
 b <- a
 
 # Substitute with variable name
-expr2 <- egsub("^[.]([a-zA-Z0-9_.]+)[.]$", "\\1", expr, value=FALSE)
+expr2 <- egsub("^[.]([a-zA-Z0-9_.]+)[.]$", "\\\\1", expr, value=FALSE)
 print(expr2)
 ## {
 ##     res <- foo.bar.yaa(2)
@@ -22,7 +22,7 @@ print(expr2)
 ## }
 
 # Substitute with variable value
-expr3 <- egsub("^[.]([a-zA-Z0-9_.]+)[.]$", "\\1", expr, value=TRUE)
+expr3 <- egsub("^[.]([a-zA-Z0-9_.]+)[.]$", "\\\\1", expr, value=TRUE)
 print(expr3)
 ## {
 ##     res <- foo.bar.yaa(2)
