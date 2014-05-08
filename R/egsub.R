@@ -57,7 +57,12 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
   # Iterate?
   if (is.language(expr)) {
     for (ii in seq_along(expr)) {
-      expr[[ii]] <- egsub(pattern, replacement, expr[[ii]], ..., value=value);
+      # If expr[[ii]] is "missing", ignore the error.  This
+      # happens with for instance expressions like x[,1].
+      # FIXME: Is there a better way?!? /HB 2014-05-08
+      tryCatch({
+        expr[[ii]] <- egsub(pattern, replacement, expr[[ii]], ..., value=value);
+      }, error=function(ex) {})
     }
   }
 
@@ -67,7 +72,9 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
 
 ##############################################################################
 # HISTORY:
-# 2014-05-06
+# 2014-05-08
+# o Now skipping missing expressions via tryCatch().
+# 2014-05-07
 # o Added egsub(), which is gsub() for expression.
 # o Created.
 ##############################################################################
