@@ -39,10 +39,23 @@
 # }
 #
 # \section{Non-supported cases}{
-#  It is not possible to interrupt/break out of a "readline" prompt
-#  (e.g. @see "base::readline" and @see "base::readLines") using
-#  timeouts; the timeout exception will not be thrown until after
-#  the user completes the prompt (i.e. after pressing ENTER).
+#  In order to understand when this function is works and when it does not,
+#  it is useful to know that it utilizes R's built-in time-out mechanism,
+#  which sets what is possible and not.  From @see "base::setTimeLimit",
+#  we learn that:
+#  \emph{"Time limits are checked whenever a user interrupt could occur.
+#   This will happen frequently in R code and during Sys.sleep, but
+#   only at points in compiled C and Fortran code identified by the
+#   code author."}
+#  More precisely, if a function is implemented in native code (e.g. C)
+#  and the developer of that function does not check for user interrupts,
+#  then you cannot interrupt that function neither via a user interrupt
+#  (e.g. Ctrl-C) \emph{nor via the built-in time out mechanism}.
+#
+#  Furthermore, it is not possible to interrupt/break out of a "readline"
+#  prompt (e.g. @see "base::readline" and @see "base::readLines") using
+#  timeouts; the timeout exception will not be thrown until after the user
+#  completes the prompt (i.e. after pressing ENTER).
 # }
 #
 # @author

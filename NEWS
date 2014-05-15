@@ -5,6 +5,9 @@ Package: R.utils
 Version: 1.32.4 [2014-05-14]
 o Now egsub() also works with functions, in case it substitutes on
   the body of the function.
+o DOCUMENTATION: Added clarification to help("withTimeout") on the
+  limitations of the function and when it is/is not possible to
+  interrupt a function via timeouts.
 o Made the package test on absolute and relative paths less conservative,
   because it gave an error on Windows systems that have set R_USER to a
   Cygwin-flavored directory, which causes normalizePath("~") to return a
