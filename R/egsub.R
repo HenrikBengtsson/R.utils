@@ -14,7 +14,7 @@
 #      matched, cf. @see "base::gsub".}
 #   \item{replacement}{A @character string of the replacement to use
 #      when there is a match, cf. @see "base::gsub".}
-#   \item{x}{The @expression to be modified.}
+#   \item{x}{The @expression or a @function to be modified.}
 #   \item{...}{Additional arguments passed to @see "base::gsub"}
 #   \item{value}{If @TRUE, the value of the replacement itself is used
 #      to look up a variable with that name and then using that variables
@@ -61,9 +61,14 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
       # happens with for instance expressions like x[,1].
       # FIXME: Is there a better way?!? /HB 2014-05-08
       tryCatch({
-        expr[[ii]] <- egsub(pattern, replacement, expr[[ii]], ..., value=value);
+        expr[[ii]] <- egsub(pattern, replacement, expr[[ii]], ..., value=value, envir=envir, inherits=inherits);
       }, error=function(ex) {})
     }
+  }
+
+  # Update the *body* of a function?
+  if (is.function(expr)) {
+    body(expr) <- egsub(pattern, replacement, body(expr), ..., value=value, envir=envir, inherits=inherits)
   }
 
   expr
@@ -72,6 +77,9 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
 
 ##############################################################################
 # HISTORY:
+# 2014-05-14
+# o Now egsub() also works with functions, in case it substitutes on the
+#   body of the function.
 # 2014-05-08
 # o Now skipping missing expressions via tryCatch().
 # 2014-05-07

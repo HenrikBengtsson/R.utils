@@ -30,3 +30,8 @@ print(expr3)
 ##     R.utils::use("R.oo")
 ##     x <- 2
 ## }
+
+# Substitute the body of a function
+warnifnot <- egsub("stop", "warning", stopifnot, value=FALSE)
+print(warnifnot)
+warnifnot(pi == 3.14)

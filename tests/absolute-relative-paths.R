@@ -1,15 +1,22 @@
 library("R.utils")
+warnifnot <- egsub("stop", "warning", stopifnot, value=FALSE)
+
 
 # Current directory
 stopifnot(identical(getAbsolutePath("."), getwd()))
 stopifnot(identical(getRelativePath("."), "."))
 
 # Tilde expansion
-pathH <- getAbsolutePath(normalizePath("~"))
+pathH <- normalizePath("~")
+print(pathH)
+pathHA <- getAbsolutePath(pathH)
+print(pathHA)
 pathA <- getAbsolutePath("~", expandTilde=TRUE)
+print(pathA)
 pathR <- getRelativePath("~")
-stopifnot(identical(tolower(pathA), tolower(pathH)))
-stopifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
+print(pathR)
+warnifnot(identical(tolower(pathA), tolower(pathH)))
+warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 
 # Microsoft Windows UNC paths
 stopifnot(identical(getAbsolutePath("//vinata/biomed"), "//vinata/biomed"))
@@ -17,10 +24,15 @@ stopifnot(identical(getAbsolutePath("//vinata///biomed"), "//vinata/biomed"))
 
 # Vector of files
 paths <- c(".", "..", getwd())
+print(paths)
 pathsA <- getAbsolutePath(paths)
+print(pathsA)
 pathsR <- getRelativePath(paths)
+print(pathsR)
 pathsAR <- getRelativePath(pathsA)
+print(pathsAR)
 pathsRA <- getAbsolutePath(pathsR)
+print(pathsRA)
 
 # Sanity checks
 stopifnot(all(isAbsolutePath(pathsA)))

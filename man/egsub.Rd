@@ -25,7 +25,7 @@ egsub(pattern, replacement, x, ..., value=TRUE, envir=parent.frame(), inherits=T
      matched, cf. \code{\link[base]{gsub}}().}
   \item{replacement}{A \code{\link[base]{character}} string of the replacement to use
      when there is a match, cf. \code{\link[base]{gsub}}().}
-  \item{x}{The \code{\link[base]{expression}} to be modified.}
+  \item{x}{The \code{\link[base]{expression}} or a \code{\link[base]{function}} to be modified.}
   \item{...}{Additional arguments passed to \code{\link[base]{gsub}}()}
   \item{value}{If \code{\link[base:logical]{TRUE}}, the value of the replacement itself is used
      to look up a variable with that name and then using that variables
@@ -72,6 +72,11 @@ print(expr3)
 ##     R.utils::use("R.oo")
 ##     x <- 2
 ## }
+
+# Substitute the body of a function
+warnifnot <- egsub("stop", "warning", stopifnot, value=FALSE)
+print(warnifnot)
+warnifnot(pi == 3.14)
 }
 
 \author{Henrik Bengtsson}
