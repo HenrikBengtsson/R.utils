@@ -51,10 +51,10 @@ withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
 }
 
 \section{Non-supported cases}{
- In order to understand when this function is works and when it does not,
+ In order to understand when this function works and when it does not,
  it is useful to know that it utilizes R's built-in time-out mechanism,
- which sets what is possible and not.  From \code{\link[base]{setTimeLimit}}(),
- we learn that:
+ which sets the limits on what is possible and not.
+ From \code{\link[base]{setTimeLimit}}(), we learn that:
  \emph{"Time limits are checked whenever a user interrupt could occur.
   This will happen frequently in R code and during Sys.sleep, but
   only at points in compiled C and Fortran code identified by the
@@ -63,6 +63,8 @@ withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
  and the developer of that function does not check for user interrupts,
  then you cannot interrupt that function neither via a user interrupt
  (e.g. Ctrl-C) \emph{nor via the built-in time out mechanism}.
+ To change this, you need to contact the developer of that piece of
+ code and ask them to check for R user interrupts in their native code.
 
  Furthermore, it is not possible to interrupt/break out of a "readline"
  prompt (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using
