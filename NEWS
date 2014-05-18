@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 1.32.5 [2014-05-15]
+o BUG FIX: egsub() would return an invalid expression if the input had
+  definitions of functions without arguments, e.g.
+  egsub("x", "x", substitute(y <- function() 0)) which would throw
+  "Error: badly formed function expression" if deparsed/printed.
+  Added package test for this.
+
+
 Version: 1.32.4 [2014-05-14]
 o Now egsub() also works with functions, in case it substitutes on
   the body of the function.

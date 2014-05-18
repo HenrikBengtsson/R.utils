@@ -61,7 +61,12 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
       # happens with for instance expressions like x[,1].
       # FIXME: Is there a better way?!? /HB 2014-05-08
       tryCatch({
-        expr[[ii]] <- egsub(pattern, replacement, expr[[ii]], ..., value=value, envir=envir, inherits=inherits);
+        exprI <- expr[[ii]]
+        # Nothing to do?
+        if (!is.null(exprI)) {
+          exprI <- egsub(pattern, replacement, exprI, ..., value=value, envir=envir, inherits=inherits);
+          if (!is.null(exprI)) expr[[ii]] <- exprI;
+        }
       }, error=function(ex) {})
     }
   }
@@ -77,6 +82,11 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
 
 ##############################################################################
 # HISTORY:
+# 2014-05-17
+# o BUG FIX: egsub() would return an invalid expression if the input had
+#   definitions of functions without arguments, e.g.
+#   egsub("x", "x", substitute(y <- function() 0)) which would throw
+#   "Error: badly formed function expression" if deparsed/printed.
 # 2014-05-14
 # o Now egsub() also works with functions, in case it substitutes on the
 #   body of the function.
