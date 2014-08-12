@@ -2,6 +2,17 @@
 Package: R.utils
 ================
 
+Version: 1.32.6 [2014-08-12]
+o BUG FIX: withCapture({ if (T) 1 else 2 }) would give a parse error on
+  "unexpected 'else'", because the internal deparsing puts the 'else'
+  statement on a new line whenever an if-else statement is enclosed
+  in an { ... } expression.  This problem is also described in R help
+  thread "deparse() and the 'else' statement" by Yihui Xie on 2009-11-09
+  [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html].  The
+  workaround is to detect standalone 'else' statements and merge them
+  with the previous line.  Added package system test for this case.
+
+
 Version: 1.32.5 [2014-05-15]
 o BUG FIX: egsub() would return an invalid expression if the input had
   definitions of functions without arguments, e.g.

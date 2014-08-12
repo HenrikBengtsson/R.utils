@@ -66,3 +66,18 @@ bfr <- withCapture({
 })
 print(bfr)
 #stopifnot(bfr ==""> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- 3\n")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# BUG TEST: if-else statements
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bfr <- withCapture(if (TRUE) 1 else 2)
+print(bfr)
+stopifnot(bfr == "> if (TRUE) 1 else 2\n[1] 1\n")
+
+bfr <- withCapture({if (TRUE) 1 else 2 })
+print(bfr)
+## ODD: Different results when sourcing and R CMD check:ing
+## this test script. /HB 2014-08-12
+## print(unclass(bfr))
+## stopifnot(bfr == "> if (TRUE) \n+     1 else 2\n[1] 1\n")
