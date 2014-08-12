@@ -104,13 +104,37 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   # Trim code
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim of surrounding { ... }
-  if (sourceCode[1] == "{") {
-    sourceCode <- sourceCode[-c(1, length(sourceCode))];
+  if (sourceCode[1L] == "{") {
+    sourceCode <- sourceCode[-c(1L, length(sourceCode))];
     # Drop shortest white space prefix
     prefix <- gsub("^([ \t]*).*", "\\1", sourceCode);
     minPrefix <- min(nchar(prefix), na.rm=TRUE);
-    if (minPrefix > 0) {
+    if (minPrefix > 0L) {
       sourceCode <- substring(sourceCode, first=minPrefix+1);
+    }
+
+    # WORKAROUND: Put standalone 'else':s together with previous statement.
+    # This solves the problem described in R help thread "deparse() and the
+    # 'else' statement" by Yihui Xie on 2009-11-09
+    # [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html], where
+    # deparse puts 'else' on a new line iff if-else statement is enclosed
+    # in an { ... } expression, e.g.
+    # cat(deparse(substitute({if (T) 1 else 2})), sep="\n") gives:
+    # {
+    #     if (T)
+    #         1
+    #     else 2
+    # }
+    # whereas deparse(substitute(if (T) 1 else 2)) gives:
+    # if (T) 1 else 2
+    # /HB 2014-08-12
+    idxs <- grep("^[ ]*else[ ]*", sourceCode);
+    if (length(idxs) > 0L) {
+      if (any(idxs == 1L)) {
+        stop("INTERNAL ERROR: Detected 'else' statement at the very beginning: ", paste(sourceCode, collapse="\n"));
+      }
+      sourceCode[idxs-1L] <- paste(sourceCode[idxs-1L], sourceCode[idxs], sep=" ");
+      sourceCode <- sourceCode[-idxs];
     }
   }
 
@@ -135,7 +159,7 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop empty lines?
   if (trim) {
-    res <- res[nchar(res) > 0];
+    res <- res[nchar(res) > 0L];
   }
 
   if (!is.null(collapse)) {
@@ -160,6 +184,15 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-08-12
+# o BUG FIX: withCapture({ if (T) 1 else 2 }) would give a parse error on
+#   "unexpected 'else'", because the internal deparsing puts the 'else'
+#   statement on a new line whenever an if-else statement is enclosed
+#   in an { ... } expression.  This problem is also described in R help
+#   thread "deparse() and the 'else' statement" by Yihui Xie on 2009-11-09
+#   [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html].  The
+#   workaround is to detect standalone 'else' statements and merge them
+#   with the previous line.
 # 2014-05-06
 # o Added support for expression substitution via regular expressions.
 #   The default is now to substitute any '.x.' with gstring("${x}").
