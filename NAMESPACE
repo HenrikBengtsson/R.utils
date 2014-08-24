@@ -32,6 +32,7 @@ importFrom("R.oo", "trim")
 
 ## More functions
 importFrom("methods", "as")
+importFrom("methods", "show")
 importFrom("utils", "str")
 importFrom("utils", "available.packages")
 importFrom("utils", "capture.output")
@@ -72,6 +73,13 @@ S3method("inherits", "default")
 S3method("parse", "default")
 S3method("cat", "default")
 S3method("getOption", "default")
+
+S3method("mout", "default")
+S3method("mprint", "default")
+S3method("mcat", "default")
+S3method("mstr", "default")
+S3method("mshow", "default")
+S3method("mprintf", "default")
 
 # Arguments
 S3method("getCharacter", "Arguments")

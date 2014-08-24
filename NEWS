@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.33.0 [2014-08-24]
+o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
+  the corresponding print(), cat(), etc., but output using message(),
+  which in turn sends to standard error (instead of standard output).
+  See also mout().
+
+
 Version: 1.32.6 [2014-08-12]
 o BUG FIX: withCapture({ if (T) 1 else 2 }) would give a parse error on
   "unexpected 'else'", because the internal deparsing puts the 'else'
