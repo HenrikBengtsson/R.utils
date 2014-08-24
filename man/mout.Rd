@@ -7,38 +7,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{mout}
-\alias{mout.default}
 \alias{mout}
-\alias{.mprint}
-\alias{mprint.}
-\alias{mprint,-method}
 
 \alias{mprint}
-\alias{.mshow}
-\alias{mshow.}
-\alias{mshow,-method}
-
 \alias{mshow}
-\alias{.mcat}
-\alias{mcat.}
-\alias{mcat,-method}
-
 \alias{mcat}
-\alias{.mstr}
-\alias{mstr.}
-\alias{mstr,-method}
-
 \alias{mstr}
-\alias{.mprintf}
-\alias{mprintf.}
-\alias{mprintf,-method}
-
 \alias{mprintf}
 
-\title{Miscellaneous methods for outputting via message()}
+\title{Miscellaneous functions for outputting via message()}
 
 \description{
-  Miscellaneous methods for outputting via message().
+  Miscellaneous functions for outputting via message().
   These "m*" methods work analogously to their corresponding "*" methods
   \code{\link[base]{print}}(), \code{\link[base]{cat}}(), \code{\link[methods]{show}},
   \code{\link[utils]{str}}, and \code{\link{printf}}() but uses \code{\link[base]{message}}()
@@ -48,7 +28,7 @@
 }
 
 \usage{
-\method{mout}{default}(..., appendLF=FALSE)
+mout(..., appendLF=FALSE)
 }
 
 \arguments{
@@ -58,7 +38,7 @@
 }
 
 \value{
-  Returns what \code{\link[base]{message}}() returns.
+  Returns what the  \code{\link[base]{message}}() returns.
 }
 
 \examples{

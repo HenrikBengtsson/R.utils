@@ -1,5 +1,8 @@
 library("R.utils")
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# General tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- letters[1:8]
 x2 <- c(x[-1], "\n")
 x3 <- x2[-1]
@@ -33,6 +36,38 @@ mstr(x)
 str(y)
 mstr(y)
 
+cat("mshow():\n")
+show(x)
+mshow(x)
+
+show(y)
+mshow(y)
+
 cat("mprintf():\n")
 printf("x=%d\n", 1:3)
 mprintf("x=%d\n", 1:3)
+
+cat("mout():\n")
+writeLines(x)
+mout(writeLines(x))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Tests related to closure
+# - - - - - - - - - - - -- - - - - - - - - - - - - - - - - -
+mfoo <- function(a=1) {
+  mprintf("a=%s\n", a)
+}
+
+mbar <- function(...) {
+  mfoo(...)
+}
+
+a <- 2
+mfoo(a)
+mfoo(3)
+
+mbar(a)
+mbar(3)
+
+

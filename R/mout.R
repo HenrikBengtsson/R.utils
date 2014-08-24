@@ -1,17 +1,12 @@
 ###########################################################################/**
-# @RdocDefault mout
-# @aliasmethod mprint
+# @RdocFunction mout
 # @alias mprint
-# @aliasmethod mshow
 # @alias mshow
-# @aliasmethod mcat
 # @alias mcat
-# @aliasmethod mstr
 # @alias mstr
-# @aliasmethod mprintf
 # @alias mprintf
 #
-# @title "Miscellaneous methods for outputting via message()"
+# @title "Miscellaneous functions for outputting via message()"
 #
 # \description{
 #   @get "title".
@@ -32,7 +27,7 @@
 # }
 #
 # \value{
-#   Returns what @see "base::message" returns.
+#   Returns what the  @see "base::message" returns.
 # }
 #
 # \examples{
@@ -53,36 +48,48 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("mout", "default", function(..., appendLF=FALSE) {
-  bfr <- captureOutput(...)
+mout <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(..., envir=parent.frame())
   bfr <- paste(c(bfr, ""), collapse="\n")
   message(bfr, appendLF=appendLF)
-})
+}
 
-setMethodS3("mprintf", "default", function(..., appendLF=FALSE) {
+mprint <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(print(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  message(bfr, appendLF=appendLF)
+}
+
+mcat <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(cat(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  message(bfr, appendLF=appendLF)
+}
+
+mstr <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(str(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  message(bfr, appendLF=appendLF)
+}
+
+mshow <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(show(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  message(bfr, appendLF=appendLF)
+}
+
+mprintf <- function(..., appendLF=FALSE) {
   bfr <- sprintf(...)
   message(bfr, appendLF=appendLF)
-})
+}
 
-setMethodS3("mcat", "default", function(..., appendLF=FALSE) {
-  mout(cat(...))
-})
-
-setMethodS3("mprint", "default", function(..., appendLF=TRUE) {
-  mout(print(...))
-})
-
-setMethodS3("mshow", "default", function(..., appendLF=TRUE) {
-  mout(show(...))
-})
-
-setMethodS3("mstr", "default", function(..., appendLF=TRUE) {
-  mout(str(...))
-})
 
 
 ############################################################################
 # HISTORY:
 # 2014-08-24
+# o Note, these functions cannot be turned into S3/S4 methods because then
+#   the arguments needs to be evaluated before dispatching, which may
+#   result in output, e.g. mout(print(1:3)).
 # o Created.
 ############################################################################
