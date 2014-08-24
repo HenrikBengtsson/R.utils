@@ -12,3 +12,4 @@ Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: This package provides utility methods useful when programming and developing R packages.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
+
