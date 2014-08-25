@@ -18,7 +18,8 @@
 }
 
 \usage{
-useRepos(repos=NULL, where=c("before", "after", "replace"), ..., unique=TRUE)
+useRepos(repos=NULL, where=c("before", "after", "replace"), unique=TRUE, fallback=TRUE,
+  ...)
 }
 
 \arguments{
@@ -27,6 +28,10 @@ useRepos(repos=NULL, where=c("before", "after", "replace"), ..., unique=TRUE)
   \item{where}{A \code{\link[base]{character}} string specifying how to add them to the
    current set of repositories.}
   \item{unique}{If \code{\link[base:logical]{TRUE}}, only unique repositories are set.}
+  \item{fallback}{If \code{\link[base:logical]{TRUE}}, any remaining non-specified repository value
+   of format '\code{...}@' (e.g. '@CRAN@') than could not be recovered by
+   other means, will be assigned to a pre-defined known value, if possible.
+   If so, then an informative warning is given.}
   \item{...}{Not used.}
 }
 

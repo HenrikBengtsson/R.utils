@@ -16,6 +16,10 @@
 #   \item{where}{A @character string specifying how to add them to the
 #    current set of repositories.}
 #   \item{unique}{If @TRUE, only unique repositories are set.}
+#   \item{fallback}{If @TRUE, any remaining non-specified repository value
+#    of format '@...@' (e.g. '@CRAN@') than could not be recovered by
+#    other means, will be assigned to a pre-defined known value, if possible.
+#    If so, then an informative warning is given.}
 #   \item{...}{Not used.}
 # }
 #
@@ -33,7 +37,7 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., unique=TRUE) {
+useRepos <- function(repos=NULL, where=c("before", "after", "replace"), unique=TRUE, fallback=TRUE, ...) {
   # Nothing to do?
   if (is.null(repos)) {
     return(options("repos"))
@@ -46,7 +50,7 @@ useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., uni
     return(old)
   }
 
-  repos <- parseRepos(sets=repos, where=where, ...)
+  repos <- parseRepos(sets=repos, where=where, fallback=fallback, ...)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Keep only unique ones?
@@ -81,7 +85,7 @@ useRepos <- function(repos=NULL, where=c("before", "after", "replace"), ..., uni
 } # useRepos()
 
 
-parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
+parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallback=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -99,6 +103,10 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
 
   reposCustom <- function() {
     c("braju.com"="http://braju.com/R")
+  } # reposCustom()
+
+  reposFallback <- function() {
+    c("CRAN"="http://cran.r-project.org")
   } # reposCustom()
 
   reposAll <- function() {
@@ -119,9 +127,9 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
 
     # Unknown?
     if (!is.element(name, names(known)))
-      return(NULL);
+      return(NULL)
 
-    known[[name]];
+    known[[name]]
   } # superPattern()
 
   reposSubst <- function(repos, known=repos) {
@@ -241,10 +249,26 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
   # Then among the all known repositories
   repos <- reposSubst(repos, known=repos00)
 
+  # And finally among the fallback repositories?
+  if (fallback) {
+    repos0 <- repos
+    repos <- reposSubst(repos, known=reposFallback())
+    if (!identical(repos, repos0)) {
+      # Report on what was done
+      idxs <- which(repos0 != repos)
+      diff <- sprintf("%s -> %s", sQuote(repos0[idxs]), sQuote(repos[idxs]))
+      keys <- names(repos[idxs])
+      if (!is.null(keys)) diff <- sprintf("%s: %s", keys, diff)
+      diff <- paste(diff, collapse=", ")
+      warning("Had to fall back to a set of predefined repositories (please make sure to set your package repositories properly, cf. ?setRepositories): ", diff)
+    }
+  }
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop (name,value) duplicates
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  keys <- paste(names(repos), repos, sep=":");
+  keys <- paste(names(repos), repos, sep=":")
   repos <- repos[!duplicated(keys)]
 
   # Sanity check
@@ -257,6 +281,10 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-08-24
+# o ROBUSTNESS: Now parseRepos(..., fallback=TRUE) uses a set of fallback
+#   CRAN repository in case '@CRAN@' is not set.  If done, it will give
+#   an informative warning message.
 # 2014-05-01
 # o Created.
 ############################################################################

@@ -11,6 +11,9 @@ o Added withLocale().
 o Now the test for target discrepancies by createLink(..., skip=TRUE)
   is more forgiving on Windows (by assuming a case-insensitive file
   system) before generating a warning.
+o Now useRepos(..., fallback=TRUE), and hence use(), will fallback to
+  known/predefined CRAN repositories in case '@CRAN@' is not set.  
+  If done, it will give an informative warning message.
 o BUG FIX: commandArgs() would drop command-line arguments with periods,
   hyphens, or underscores in their names, e.g. --src_file=x.
 
