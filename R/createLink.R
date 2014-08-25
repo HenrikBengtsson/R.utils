@@ -89,7 +89,13 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
 
       resA <- getAbsolutePath(Sys.readlink2(res))
-      if (!identical(resA, target)) {
+      equal <- identical(resA, target)
+      # Be more forgiving on Windows system, i.e. assume a
+      # case-insensitive file system
+      if (!equal && (.Platform$OS.type == "windows")) {
+        equal <- identical(tolower(resA), tolower(target));
+      }
+      if (!equal) {
         warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)));
       }
 

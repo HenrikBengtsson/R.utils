@@ -8,6 +8,11 @@ o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
   which in turn sends to standard error (instead of standard output).
   See also mout().
 o Added withLocale().
+o Now the test for target discrepancies by createLink(..., skip=TRUE)
+  is more forgiving on Windows (by assuming a case-insensitive file
+  system) before generating a warning.
+o BUG FIX: commandArgs() would drop command-line arguments with periods,
+  hyphens, or underscores in their names, e.g. --src_file=x.
 
 
 Version: 1.32.6 [2014-08-12]

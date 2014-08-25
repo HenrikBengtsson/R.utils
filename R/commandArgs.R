@@ -331,6 +331,8 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (a) Parse key-value pairs
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # An argument name cannot start with a hypen ('-').
+    keyPattern <- "[[:alnum:]_.][[:alnum:]_.-]*";
     nargsT <- length(argsT);
     for (ii in seq(length=nargsT)) {
       argI <- argsT[[ii]];
@@ -348,7 +350,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       stopifnot(length(arg) == 1L);
 
       # --<key>=<value>
-      pattern <- "^--([[:alnum:]]+)(=)(.*)$";
+      pattern <- sprintf("^--(%s)(=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
         value <- gsub(pattern, "\\3", arg);
@@ -358,7 +360,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       }
 
       # --<key>
-      pattern <- "^--([[:alnum:]]+)$";
+      pattern <- sprintf("^--(%s)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
         argsT[[ii]]$key <- key;
@@ -366,7 +368,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       }
 
       # -<key>=<value>
-      pattern <- "^-([[:alnum:]]+)(=)(.*)$";
+      pattern <- sprintf("^-(%s)(=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
         value <- gsub(pattern, "\\3", arg);
@@ -376,7 +378,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       }
 
       # -<key>
-      pattern <- "^-([[:alnum:]]+)$";
+      pattern <- sprintf("^-(%s)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
         argsT[[ii]]$key <- key;
@@ -384,7 +386,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       }
 
       # <key>=<value>
-      pattern <- "^([[:alnum:]]+)(=)(.*)$";
+      pattern <- sprintf("^(%s)(=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
         value <- gsub(pattern, "\\3", arg);
@@ -567,6 +569,9 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 ############################################################################
 # HISTORY:
+# 2014-08-24
+# o BUG FIX: commandArgs() would drop command-line arguments with periods,
+#   hyphens, or underscores in their names, e.g. --src_file=x.
 # 2014-01-27
 # o BUG FIX: commandArgs(excludeReserved=TRUE) failed to drop reserved
 #   arguments of type --<key>=<value>, e.g. --encoding=ASCII.

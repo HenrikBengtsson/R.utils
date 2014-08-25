@@ -26,11 +26,11 @@ stopifnot(all.equal(args, args0))
 # Parsed command-line arguments
 ######################################################################
 # Call #1:
-argsC <- c("R", "--encoding=ASCII", "--encoding", "ASCII", "DATAPATH=../data", "--args", "--root=do da", "--foo", "bar", "--details", "--a=2")
+argsC <- c("R", "--encoding=ASCII", "--encoding", "ASCII", "DATAPATH=../data", "--args", "--root=do da", "--foo", "bar", "--details", "--a=2", "--src_file=foo.R")
 print(argsC)
 
 # Truth:
-args0 <- list("R", encoding="ASCII", encoding="ASCII", DATAPATH="../data", args=TRUE, root="do da", foo="bar", details=TRUE, a="2")
+args0 <- list("R", encoding="ASCII", encoding="ASCII", DATAPATH="../data", args=TRUE, root="do da", foo="bar", details=TRUE, a="2", "src_file"="foo.R")
 
 args <- commandArgs(asValue=TRUE, .args=argsC)
 str(args)

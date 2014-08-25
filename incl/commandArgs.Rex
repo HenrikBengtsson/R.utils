@@ -26,11 +26,11 @@ stopifnot(all.equal(args, args0, check.attributes=FALSE))
 ######################################################################
 # Get all arguments as a named list, e.g. if R is started as:
 #
-#   R DATAPATH=../data --args --root="do da" --foo bar --details --a=2 
+#   R DATAPATH=../data --args --root="do da" --foo bar --details --a=2
 #
 # then 'args' below will equal
 #
-#   list(R=NA, DATAPATH="../data" args=TRUE, root="do da", 
+#   list(R=NA, DATAPATH="../data" args=TRUE, root="do da",
 #        foo="bar", details=TRUE, a="2")
 args <- commandArgs(asValue=TRUE)
 str(args)
