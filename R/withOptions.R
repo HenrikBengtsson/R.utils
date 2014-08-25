@@ -26,7 +26,7 @@
 #
 # \seealso{
 #   Internally, @see "base::eval" is used to evaluate the expression.
-#   and @see "base::options" to set graphical parameters.
+#   and @see "base::options" to set options.
 # }
 #
 # @keyword IO

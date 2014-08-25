@@ -60,7 +60,7 @@ print(pi)
 
 \seealso{
   Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
-  and \code{\link[base]{options}}() to set graphical parameters.
+  and \code{\link[base]{options}}() to set options.
 }
 
 

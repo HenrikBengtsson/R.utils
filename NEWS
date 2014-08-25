@@ -7,6 +7,7 @@ o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
   the corresponding print(), cat(), etc., but output using message(),
   which in turn sends to standard error (instead of standard output).
   See also mout().
+o Added withLocale().
 
 
 Version: 1.32.6 [2014-08-12]
