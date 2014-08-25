@@ -65,7 +65,25 @@ bfr <- withCapture({
   y <- .b.c.
 })
 print(bfr)
-#stopifnot(bfr ==""> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- 3\n")
+## ODD: Different results when sourcing and R CMD check:ing
+## this test script. /HB 2014-08-12
+## stopifnot(bfr ==""> res <- foo.bar.yaa(3.14)\n> R.utils::use(\"R.utils\")\n> x <- 2\n> y <- 3\n")
+
+
+# Make sure '...' is not substituted
+bfr <- withCapture({
+  benchmark <- function(fcn, n, len=100L, ...) {
+    x <- lineBuffer(n, len=len, ...)
+    foo(...)
+    system.time({
+      fcn(cat(x))
+    }, gcFirst=TRUE)[[3]]
+ } # benchmark()
+})
+print(bfr)
+## ODD: Different results when sourcing and R CMD check:ing
+## this test script. /HB 2014-08-12
+## stopifnot(bfr == "> benchmark <- function(fcn, n, len = 100L, ...) {\n+     x <- lineBuffer(n, len = len, ...)\n+     foo(...)\n+     system.time({\n+         fcn(cat(x))\n+     }, gcFirst = TRUE)[[3]]\n+ }\n")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -79,5 +97,4 @@ bfr <- withCapture({if (TRUE) 1 else 2 })
 print(bfr)
 ## ODD: Different results when sourcing and R CMD check:ing
 ## this test script. /HB 2014-08-12
-## print(unclass(bfr))
 ## stopifnot(bfr == "> if (TRUE) \n+     1 else 2\n[1] 1\n")
