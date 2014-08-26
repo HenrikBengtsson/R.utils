@@ -46,7 +46,8 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
   CR <- as.raw(0x0d);
   SPC <- as.raw(32L);
 
-  isLastCR <- FALSE;
+  isLastCR <- isLastLF <- FALSE;
+  isEmpty <- TRUE;
   nbrOfLines <- 0L;
   while(TRUE) {
     bfr <- readBin(con=con, what=raw(), n=chunkSize);
@@ -60,25 +61,41 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
     if (n == 0L)
       break;
 
+    isEmpty <- FALSE;
+
     # Replace all CRLF:s to become LF:s
     idxsCR <- which(bfr == CR);
     nCR <- length(idxsCR);
     if (nCR > 0L) {
-      idxsCRLF <- idxsCR[(bfr[idxsCR+1L] == LF)];
-      bfr <- bfr[-idxsCRLF];
-      n <- length(bfr);
-      idxsCRLF <- NULL; # Not needed anymore
-      nCR <- length(which(bfr == CR));
+      idxsCRLF <- idxsCR[(bfr[idxsCR + 1L] == LF)];
+      if (length(idxsCRLF) > 0L) {
+        bfr <- bfr[-idxsCRLF];
+        n <- length(bfr);
+        idxsCRLF <- NULL; # Not needed anymore
+        nCR <- length(which(bfr == CR));
+      }
     }
 
     # Count all CR:s and LF:s
     nLF <- length(which(bfr == LF));
     nbrOfLines <- nbrOfLines + (nCR + nLF);
 
-    # If last symbol is CR it might be followed by a LF in
-    # the next chunk. If so, don't count that next LF.
-    isLastCR <- (bfr[n] == CR);
+    if (n == 0L) {
+      isLastCR <- isLastLF <- FALSE;
+    } else {
+      # If last symbol is CR it might be followed by a LF in
+      # the next chunk. If so, don't count that next LF.
+      bfrN <- bfr[n];
+      isLastCR <- (bfrN == CR);
+      isLastLF <- (bfrN == LF);
+    }
   } # while()
+
+  # Count any last line without newline too
+  if (!isEmpty) {
+    if (!isLastLF) nbrOfLines <- nbrOfLines + 1L;
+    attr(nbrOfLines, "lastLineHasNewline") <- isLastLF;
+  }
 
   nbrOfLines;
 })
@@ -86,6 +103,10 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-08-25
+# o BUG FIX: countLines() would not work for newlines of type '\r'.
+# o BUG FIX: countLines() would not count the last line if it did not
+#   contain a newline, despite it was documented to do so.
 # 2008-07-23
 # o Created.
 ############################################################################

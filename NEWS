@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.33.1 [2014-08-25]
+o BUG FIX: countLines() would not count the last line if it did
+  not contain a newline.  It would also give an error if the newline
+  characters were only CR.  This despite it was documented that both
+  cases were supported.  Added package system tests for them.
+
+
 Version: 1.33.0 [2014-08-24]
 o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
   the corresponding print(), cat(), etc., but output using message(),
@@ -12,7 +19,7 @@ o Now the test for target discrepancies by createLink(..., skip=TRUE)
   is more forgiving on Windows (by assuming a case-insensitive file
   system) before generating a warning.
 o Now useRepos(..., fallback=TRUE), and hence use(), will fallback to
-  known/predefined CRAN repositories in case '@CRAN@' is not set.  
+  known/predefined CRAN repositories in case '@CRAN@' is not set.
   If done, it will give an informative warning message.
 o BUG FIX: commandArgs() would drop command-line arguments with periods,
   hyphens, or underscores in their names, e.g. --src_file=x.
