@@ -32,46 +32,50 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("mkdirs", "default", function(pathname, ...) {
-  if (length(pathname) == 0)
-    return(TRUE);
+  # Nothing to do?
+  if (length(pathname) == 0L)
+    return(TRUE)
 
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
 
   # If already is a directory or a file, return FALSE
   if (isFile(pathname) || isDirectory(pathname))
-    return(FALSE);
+    return(FALSE)
 
   # Get the parent and make sure to delete it afterwards.
-  parent <- getParent(pathname);
+  parent <- getParent(pathname)
 
   if (identical(parent, pathname))
-    throw("Could not get parent directory: ", pathname);
+    throw("Could not get parent directory: ", pathname)
 
   # If the parent is a file, we can not create a directory!
   if (isFile(parent))
-    return(FALSE);
+    return(FALSE)
 
   # If parent is not already a directory, create it
   if (!isDirectory(parent)) {
     if (!mkdirs(parent))
-      return(FALSE);
+      return(FALSE)
   }
 
   # Finally, create this directory
   if (!isDirectory(pathname)) {
-    res <- dir.create(pathname);
+    res <- dir.create(pathname)
     if (!res) {
       # If failed, try to create it by its relative pathname
-      pathname <- getRelativePath(pathname);
-      res <- dir.create(pathname);
+      pathname <- getRelativePath(pathname)
+      res <- dir.create(pathname)
     }
+    return(res)
   }
 
-  res;
+  TRUE
 })
 
 ###########################################################################
 # HISTORY:
+# 2014-09-01
+# o BUG FIX: mkdirs() could return "object 'res' not found" error.
 # 2012-10-19
 # o mkdirs(path) could generate a warning if the path was created
 #   by another process as a race condition.  Now it always checks to

@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.33.2 [2014-09-01]
+o BUG FIX: mkdirs() could return "object 'res' not found" error.
+
+
 Version: 1.33.1 [2014-08-25]
 o BUG FIX: countLines() would not count the last line if it did
   not contain a newline.  It would also give an error if the newline
