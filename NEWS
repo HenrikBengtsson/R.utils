@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.33.3 [2014-09-04]
+o ROBUSTNESS: Now copyDirectory(), just as copyFile() already did,
+  silently drops arguments 'copy.mode' and 'copy.date' for older
+  R versions where base::file.copy() does not support them.
+
+
 Version: 1.33.2 [2014-09-01]
 o BUG FIX: mkdirs() could return "object 'res' not found" error.
 

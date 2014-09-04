@@ -34,6 +34,23 @@
 # @keyword file
 #*/###########################################################################
 setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE, recursive=TRUE) {
+  # BACKWARD COMPATIBILITY: file.copy() gained argument copy.mode=TRUE in
+  # R (>= 2.13.0) [April 2013].  Due to the default, this means that when
+  # previously copying a read-only file, the new file would have write
+  # permissions, whereas now it preserved the read-only permissions.
+  # This private function silently drop argument 'copy.mode' and 'copy.date'
+  # if passed older versions of R.
+  .file.copy <- function(...) {
+    args <- list(...)
+    names <- names(args)
+    if (!is.null(names)) {
+      known <- names(formals(base::file.copy))
+      keep <- (nchar(names) == 0L | is.element(names, known))
+      args <- args[keep]
+    }
+    do.call(base::file.copy, args=args, envir=parent.frame())
+  } # .file.copy()
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -59,7 +76,7 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
   for (file in files) {
     basename <- basename(file);
     if (isFile(file)) {
-      if (file.copy(from=file, to=filePath(to, basename), ...)) {
+      if (.file.copy(from=file, to=filePath(to, basename), ...)) {
         copiedFiles <- c(copiedFiles, file);
       }
     } else if (isDirectory(file)) {
@@ -76,6 +93,11 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
 
 ##############################################################################
 # HISTORY:
+# 2014-09-04
+# o ROBUSTNESS: Now copyDirectory() silently drops arguments 'copy.mode' and
+#   'copy.date' for older R versions where base::file.copy() does not support
+#   them.
+# o Added internal .file.copy().
 # 2013-10-13
 # o CLEANUP: copyDirectory() no longer attaches 'R.utils'.
 # 2005-09-06
