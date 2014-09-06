@@ -516,11 +516,25 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
       # Try to create a file
       filenameT <- basename(tempfile());
       pathnameT <- filePath(path, filenameT);
+
       on.exit({
         if (isFile(pathnameT)) {
-          file.remove(pathnameT);
+          # Try to remove the temporary file
+          res <- FALSE;
+          suppressWarnings({
+            for (tt in 1:maxTries) {
+              res <- file.remove(pathnameT);
+              if (res) break;
+              # If not, wait a bit and try again...
+              Sys.sleep(0.5);
+            }
+          })
+          if (!res) {
+            warning("Failed to remove temporary file: ", sQuote(pathnameT));
+          }
         }
       }, add=TRUE);
+
       tryCatch({
         cat(file=pathnameT, Sys.time());
       }, error = function(ex) {

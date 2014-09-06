@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.33.4 [2014-09-05]
+o ROBUSTNESS: Arguments$getWritablePathname() could sometimes generate
+  warning "file.remove(pathnameT) : cannot remove file 'file...',
+  reason 'Permission denied'.  Now it tries to remove that files
+  several times before giving up.
+
+
 Version: 1.33.3 [2014-09-04]
 o ROBUSTNESS: Now copyDirectory(), just as copyFile() already did,
   silently drops arguments 'copy.mode' and 'copy.date' for older
