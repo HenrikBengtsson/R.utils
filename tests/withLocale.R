@@ -1,5 +1,8 @@
 library("R.utils")
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Basic tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # The current set of locales
 old <- Sys.getlocale("LC_ALL")
 
@@ -21,3 +24,16 @@ curr <- Sys.getlocale("LC_ALL")
 if (!identical(curr, old)) {
   throw("Locale settings have changed: ", old, " != ", curr)
 }
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Nested calls
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+cat("Sorting with 'C' locale (nested inside a English one):\n")
+y3 <- withLocale({
+  withLocale({
+    sort(x)
+  }, "LC_COLLATE", "C")
+}, "LC_COLLATE", c("en_US", "en_US.UTF8", "English_United States.1252"))
+print(y3)
+stopifnot(identical(y3, y1))
