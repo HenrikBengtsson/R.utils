@@ -31,6 +31,13 @@ withOptions(expr, ..., args=list(), envir=parent.frame())
  Returns the results of the expression evaluated.
 }
 
+\details{
+  Upon exit (also on errors), this function will reset \emph{all}
+  options to the state of options available upon entry.  This means
+  any options \emph{modified} but also those \emph{added} when
+  evaluating \code{expr} will also be undone upon exit.
+}
+
 \author{Henrik Bengtsson}
 
 \examples{

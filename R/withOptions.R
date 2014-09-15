@@ -20,6 +20,13 @@
 #  Returns the results of the expression evaluated.
 # }
 #
+# \details{
+#   Upon exit (also on errors), this function will reset \emph{all}
+#   options to the state of options available upon entry.  This means
+#   any options \emph{modified} but also those \emph{added} when
+#   evaluating \code{expr} will also be undone upon exit.
+# }
+#
 # @author
 #
 # @examples "../incl/withOptions.Rex"
@@ -49,11 +56,20 @@ withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
   # All options specified
   new <- c(list(...), args)
 
-  # Set options temporarily
-  if (length(new) > 0L) {
-    prev <- options(new)
-    on.exit(options(prev))
-  }
+  # Set options temporarily (restore *all* upon exit)
+  prev <- options()
+  on.exit({
+    # Reset existing options
+    options(prev)
+    # Drop any added ones
+    added <- setdiff(names(options()), names(prev))
+    if (length(added) > 0L) {
+      drop <- vector("list", length=length(added))
+      names(drop) <- added
+      options(drop)
+    }
+  })
+  if (length(new) > 0L) options(new)
 
   eval(expr, envir=envir)
 } # withOptions()
@@ -61,6 +77,11 @@ withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2014-09-15
+# o ROBUSTNESS: Now withOptions() also resets the the options at entry
+#   even if no explicit options were specified.  This covers the case
+#   when the 'expr' changes the options, e.g.
+#   withOptions({ options(width=10); str(letter) }).
 # 2014-05-01
 # o Created.
 ############################################################################
