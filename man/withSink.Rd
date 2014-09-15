@@ -46,7 +46,7 @@ withSink(expr, file, append=FALSE, type=c("output", "message"), envir=parent.fra
 
 \examples{
 # Divert standard output
-pathname <- tempfile(fileext="output.txt")
+pathname <- tempfile(fileext=".output.txt")
 res <- withSink(file=pathname, {
   print(letters)
 })
@@ -54,7 +54,7 @@ mcat(readLines(pathname), sep="\n")
 
 
 # Divert standard error/messages
-pathname <- tempfile(fileext="message.txt")
+pathname <- tempfile(fileext=".message.txt")
 res <- withSink(file=pathname, type="message", {
   mprint(LETTERS)
 })
