@@ -112,7 +112,11 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   pathname <- filePath(pathname, removeUps=TRUE);
 
   if (expandTilde) {
-    pathname <- file.path(dirname(pathname), basename(pathname));
+    ## Can we replace this with base::path.expand()? /HB 2014-09-16
+    path <- dirname(pathname) # Does tilde expansion
+    if (path == "/") path <- ""  ## To avoid /tmp -> //tmp
+    filename <- basename(pathname)
+    pathname <- file.path(path, filename);
   }
 
   # Especially expandTilde=TRUE may add an extra slash ('/').
@@ -132,6 +136,8 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
 ###########################################################################
 # HISTORY:
+# 2014-09-16
+# o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
 # 2014-04-06
 # o Vectorized getAbsolutePath().
 # o Preparing to vectorize getAbsolutePath() by introducing option to

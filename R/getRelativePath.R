@@ -40,7 +40,7 @@
 #   getRelativePath("foo/bar", "foo")                   # "bar"
 #   getRelativePath("foo/bar", "foo/bar/yah")           # ".."
 #   getRelativePath("foo/bar/cool", "foo/bar/yah/sub/") # "../../cool"
-#   getRelativePath.default("/foo/bar/", "/bar/foo/")   # "../../foo/bar"
+#   getRelativePath("/tmp/bar/", "/bar/foo/")           # "../../tmp/bar"
 #
 #   # Windows
 #   getRelativePath("C:/foo/bar/", "C:/bar/")           # "../foo/bar"

@@ -18,6 +18,10 @@ print(pathR)
 warnifnot(identical(tolower(pathA), tolower(pathH)))
 warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 
+pathA <- getAbsolutePath("/tmp/", expandTilde=TRUE)
+print(pathA)
+stopifnot(identical(pathA, "/tmp"))
+
 # Microsoft Windows UNC paths
 stopifnot(identical(getAbsolutePath("//vinata/biomed"), "//vinata/biomed"))
 stopifnot(identical(getAbsolutePath("//vinata///biomed"), "//vinata/biomed"))
@@ -40,11 +44,12 @@ stopifnot(all(!isAbsolutePath(pathsR)))
 stopifnot(all(pathsRA == pathsA))
 stopifnot(all(pathsAR == pathsR))
 
-# Paths relative to give directories
+# Paths relative to given directories
 stopifnot(getRelativePath("foo", "foo") == ".")
 stopifnot(getRelativePath("foo/bar", "foo") == "bar")
 stopifnot(getRelativePath("foo/bar", "foo/bar/yah") == "..")
 stopifnot(getRelativePath("foo/bar/cool", "foo/bar/yah/sub/") == "../../cool")
-stopifnot(getRelativePath("/foo/bar/", "/bar/foo/") == "../../foo/bar")
+stopifnot(getRelativePath("/tmp/foo/", "/tmp/") == "foo")
+stopifnot(getRelativePath("/tmp/bar/", "/bar/foo/") == "../../tmp/bar")
 stopifnot(getRelativePath("C:/foo/bar/", "C:/bar/") == "../foo/bar")
 stopifnot(getRelativePath("C:/foo/bar/", "D:/bar/") == "C:/foo/bar")

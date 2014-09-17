@@ -2,10 +2,16 @@
 Package: R.utils
 ================
 
+Version: 1.33.6 [2014-09-16]
+o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
+  This would in turn have implications on getRelativePath(), e.g.
+  getRelativePath("/tmp/a", relativeTo="/tmp") returned "../../tmp/a".
+
+
 Version: 1.33.5 [2014-09-15]
 o Added withSeed() and withSink().
 o ROBUSTNESS: Now withOptions() also resets all the options available
-  upon entry even if no explicit options were specified.  This covers 
+  upon entry even if no explicit options were specified.  This covers
   the case when 'expr' changes the options and/or adds new options, e.g.
   withOptions({ options(width=10, foo="new"); str(letter) }).
 
