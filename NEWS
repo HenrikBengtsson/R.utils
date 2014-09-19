@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.33.7 [2014-09-18]
+o New default for writeDataFrame() - argument 'col.names=!append'.
+  Also, if append=TRUE, header comments are only written if specified.
+  Added package system test for writeDataFrame().
+
+
 Version: 1.33.6 [2014-09-16]
 o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
   This would in turn have implications on getRelativePath(), e.g.

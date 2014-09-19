@@ -15,7 +15,7 @@
 
 \usage{
 \method{writeDataFrame}{data.frame}(data, file, path=NULL, sep="\t", quote=FALSE, row.names=FALSE,
-  col.names=TRUE, ..., header=list(), createdBy=NULL,
+  col.names=!append, ..., header=list(), createdBy=NULL,
   createdOn=format(Sys.time(), format = "\%Y-\%m-\%d \%H:\%M:\%S \%Z"),
   nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE)
 }

@@ -43,7 +43,7 @@
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep="\t", quote=FALSE, row.names=FALSE, col.names=TRUE, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format="%Y-%m-%d %H:%M:%S %Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE) {
+setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep="\t", quote=FALSE, row.names=FALSE, col.names=!append, ..., header=list(), createdBy=NULL, createdOn=format(Sys.time(), format="%Y-%m-%d %H:%M:%S %Z"), nbrOfRows=nrow(data), headerPrefix="# ", headerSep=": ", append=FALSE, overwrite=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,6 +82,13 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   # Argument 'nbrOfRows':
   if (!is.null(nbrOfRows)) {
     nbrOfRows <- Arguments$getInteger(nbrOfRows);
+  }
+
+  # Argument 'append':
+  append <- Arguments$getLogical(append);
+  if (append) {
+    # Don't write headers when appending
+    if (missing(header)) header <- NULL;
   }
 
 
@@ -155,6 +162,9 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
 
 #############################################################################
 # HISTORY:
+# 2014-09-18
+# o New default for writeDataFrame() - argument 'col.names=!append'.
+#   Also, if append=TRUE, header comments are only written if specified.
 # 2012-11-04
 # o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
 #   would contain "integer" for "factor":s.  Now using class(x)[1] instead
