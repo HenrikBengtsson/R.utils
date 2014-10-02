@@ -238,17 +238,9 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
 
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Adjust repositories temporarily
+  # Vectorized call?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (length(repos) > 0L) {
-    verbose && printf(verbose, "Using specific repositories (%s):\n", paste(sQuote(repos), collapse=", "));
-    orepos <- useRepos(repos);
-    on.exit(options(orepos), add=TRUE)
-    verbose && str(verbose, as.list(getOption("repos")))
-  }
-
   if (npkgs > 1L) {
     res <- NULL;
     for (ii in seq(length=npkgs)) {
@@ -262,10 +254,15 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     return(invisible(res));
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # From now on we are only dealing with one package at the time
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   verbose && enterf(verbose, "%sing package", capitalize(how));
   if (!is.null(version)) {
     version <- .parseVersion(version);
   }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Parse package and repository names
@@ -306,6 +303,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   stopifnot(is.null(version) || is.list(version));
 
   pkg <- gsub(pattern, "\\1", pkg);
+
 
   # Parse 'repos'
   if (!is.null(repos)) {
@@ -472,6 +470,17 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
   repos;
 } # .parseRepos()
+
+
+##  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --
+##  # Adjust repositories temporarily
+##  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+##  if (length(repos) > 0L) {
+##    verbose && printf(verbose, "Using specific repositories (%s):\n", paste(sQuote(repos), collapse=", "));
+##    orepos <- useRepos(repos);
+##    on.exit(options(orepos), add=TRUE)
+##    verbose && str(verbose, as.list(getOption("repos")))
+##  }
 
 
 ############################################################################

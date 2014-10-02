@@ -2,6 +2,13 @@
 Package: R.utils
 ================
 
+Version: 1.33.8 [2014-10-02]
+o CLEANUP: use() would try temporarily set package repository options
+  even when not needed.  This could trigger unnecessary warnings for
+  users who haven't set a default CRAN mirror and using use() to
+  load/attach an already installed package.
+
+
 Version: 1.33.7 [2014-09-18]
 o New default for writeDataFrame() - argument 'col.names=!append'.
   Also, if append=TRUE, header comments are only written if specified.
