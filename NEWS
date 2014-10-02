@@ -3,6 +3,8 @@ Package: R.utils
 ================
 
 Version: 1.33.8 [2014-10-02]
+o Added argument 'unmap' to filePath() for "following" paths that are
+  on mapped Windows drives.
 o CLEANUP: use() would try temporarily set package repository options
   even when not needed.  This could trigger unnecessary warnings for
   users who haven't set a default CRAN mirror and using use() to

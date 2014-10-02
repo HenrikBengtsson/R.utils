@@ -14,8 +14,8 @@
 
 \usage{
 \method{filePath}{default}(..., fsep=.Platform$file.sep, removeUps=TRUE,
-  expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE,
-  verbose=FALSE)
+  expandLinks=c("none", "any", "local", "relative", "network"), unmap=FALSE,
+  mustExist=FALSE, verbose=FALSE)
 }
 
 \description{
@@ -42,6 +42,8 @@
      target is used. If \code{"network"}, the network target is used. If
      \code{"any"}, first the local, then the relative and finally the
      network target is searched for.}
+  \item{unmap}{If \code{\link[base:logical]{TRUE}}, paths on mapped Windows drives are "followed"
+     and translated to their corresponding "true" paths.}
   \item{mustExist}{If \code{\link[base:logical]{TRUE}} and if the target does not exist, the original
      pathname, that is, argument \code{pathname} is returned. In all other
      cases the target is returned.}

@@ -29,6 +29,8 @@
 #      target is used. If \code{"network"}, the network target is used. If
 #      \code{"any"}, first the local, then the relative and finally the
 #      network target is searched for.}
+#   \item{unmap}{If @TRUE, paths on mapped Windows drives are "followed"
+#      and translated to their corresponding "true" paths.}
 #   \item{mustExist}{If @TRUE and if the target does not exist, the original
 #      pathname, that is, argument \code{pathname} is returned. In all other
 #      cases the target is returned.}
@@ -73,7 +75,7 @@
 #
 # @keyword IO
 #*/###########################################################################
-setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, removeUps=TRUE, expandLinks=c("none", "any", "local", "relative", "network"), mustExist=FALSE, verbose=FALSE) {
+setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, removeUps=TRUE, expandLinks=c("none", "any", "local", "relative", "network"), unmap=FALSE, mustExist=FALSE, verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -85,6 +87,26 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     sprintf(fmtstr, drives);
   } # getWindowsDrivePattern()
 
+  unmapOnWindows <- function(pathname, ...) {
+    if (.Platform$OS.type != "windows") return(pathname)
+    if (!file.exists(pathname)) return(pathname)
+    isAbs <- isAbsolutePath(pathname)
+    if (!isAbs) pathname <- getAbsolutePath(pathname)
+    pattern <- getWindowsDrivePattern("^([%s]:)(/.*)$")
+    drive <- gsub(pattern, "\\1", pathname)
+    drive <- tolower(drive)
+    # NOTE: Identifying mapped drives introduces a delay.
+    # Should this be memomized? /HB 2014-10-02
+    drives <- System$getMappedDrivesOnWindows()
+    names(drives) <- tolower(names(drives))
+    target <- drives[drive]
+    if (!is.na(target)) {
+      pathname <- paste0(target, gsub(pattern, "\\2", pathname))
+    }
+    # Undo absolute path?
+    if (!isAbs) pathname <- getRelativePath(pathname)
+    pathname
+  } # unmapOnWindows()
 
   removeEmptyDirs <- function(pathname) {
     # Check if it is a pathname on a Windows network
@@ -172,6 +194,10 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # Argument 'expandLinks':
   expandLinks <- match.arg(expandLinks);
 
+  # Argument 'unmap':
+  unmap <- as.logical(unmap);
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create pathname
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -191,13 +217,18 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     if (removeUps) {
       pathname <- removeUpsFromPathname(pathname);
     }
+    # Undo Windows drive mapping?
+    if (unmap) pathname <- unmapOnWindows(pathname);
     return(pathname);
   }
 
   # Treat C:/, C:\\, ... special
   pattern <- getWindowsDrivePattern("^[%s]:[/\\]$");
   if (regexpr(pattern, pathname) != -1L)
-    return(gsub("\\\\", "/", pathname));
+    pathname <- gsub("\\\\", "/", pathname);
+    # Undo Windows drive mapping?
+    if (unmap) pathname <- unmapOnWindows(pathname);
+    return(pathname);
 
   # Requires that the 'pathname' is a absolute pathname.
   pathname0 <- pathname;
@@ -209,7 +240,6 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # 3. Expand the components from the root into a new absolute pathname
   isFirst <- TRUE;
   expandedPathname <- NULL;
-
 
   while(length(components) > 0L) {
     # Get next component
@@ -346,12 +376,18 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     pathname <- removeUpsFromPathname(pathname);
   }
 
+  # Undo Windows drive mapping?
+  if (unmap) pathname <- unmapOnWindows(pathname);
+
   pathname;
 }) # filePath()
 
 
 #############################################################################
 # HISTORY:
+# 2014-10-02
+# o Added argument 'unmap' to filePath() for "following" paths that are
+#   on mapped Windows drives.
 # 2014-05-08
 # o filePath("./././././") now returns "." (was "").
 # 2013-07-27
