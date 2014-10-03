@@ -6,6 +6,11 @@ Version: 1.33.9 [2014-10-03]
 o Now countLines() automatically supports gzipped files as well.
   Thanks to Sarah Nelson at Dept of Biostatistics at University 
   of Washington for the suggestion.
+o Now downloadFile("https://...") will use 'curl', and if not available
+  'wget', to download the file over the HTTPS protocol.  Previously
+  only 'wget' was use.  The 'curl' software is available on more
+  operating systems, include OS X, whereas 'wget' sometimes needs
+  a separate installation.
 
 
 Version: 1.33.8 [2014-10-02]

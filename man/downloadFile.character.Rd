@@ -49,7 +49,7 @@
 \details{
   Currently arguments \code{username} and \code{password} are only used
   for downloads via URL protocol 'https'.  The 'https' protocol requires
-  that 'wget' is available on the system.
+  that either of 'curl' or 'wget' are available on the system.
 }
 
 \examples{\dontrun{

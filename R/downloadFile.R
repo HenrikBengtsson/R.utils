@@ -38,7 +38,7 @@
 # \details{
 #   Currently arguments \code{username} and \code{password} are only used
 #   for downloads via URL protocol 'https'.  The 'https' protocol requires
-#   that 'wget' is available on the system.
+#   that either of 'curl' or 'wget' are available on the system.
 # }
 #
 # \examples{\dontrun{
@@ -145,40 +145,75 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   verbose && enter(verbose, "Downloading");
   if (is.element(protocol, c("https"))) {
-    verbose && enter(verbose, "Locating 'wget'");
-    bin <- Sys.which("wget");
-    verbose && cat(verbose, "Executable: ", bin);
-    verbose && exit(verbose);
+    verbose && enter(verbose, "Downloading via HTTPS");
+    # Locate external executables
+    bin <- Sys.which(c("curl", "wget"));
+    verbose && cat(verbose, "Available external executables:");
+    verbose && print(verbose, bin);
+    keep <- nzchar(bin);
+    if (!any(keep)) {
+      throw("Cannot download file over HTTPS protocol. Failed to locate external download software (%s): %s", paste(sQuote(names(bin)), collapse=", "), url);
+    }
+    bin <- bin[keep];
+    bin <- bin[1L];
+    verbose && printf(verbose, "Using external download software %s: %s\n", sQuote(names(bin)), bin);
 
     verbose && enter(verbose, "Setting up command-line options");
     # Command-line options
     args <- NULL;
 
-    if (!is.null(username)) {
-      arg <- sprintf("--http-user=%s", username);
+    if (names(bin) == "curl") {
+      # Less strict (=more likely to succeed)
+      arg <- "--insecure";
       args <- c(args, arg);
-    }
 
-    if (!is.null(password)) {
-      arg <- sprintf("--http-passwd=%s", password);
+      # Follow redirects
+      arg <- "--location"
       args <- c(args, arg);
-    }
 
-    # Output file
-    arg <- sprintf("--output-document=\"%s\"", pathnameT);
-    args <- c(args, arg);
+      if (!is.null(username)) {
+        arg <- sprintf("--user %s", username);
+        if (!is.null(password)) {
+          arg <- sprintf("%s:%s", password);
+        }
+        args <- c(args, arg);
+      }
 
-    # Less strict (=more likely to succeed)
-    arg <- "--no-check-certificate";
-    args <- c(args, arg);
+      # Output file
+      arg <- sprintf("--output \"%s\"", pathnameT);
+      args <- c(args, arg);
 
-    # URL to download
-    args <- c(args, url);
+      # URL to download
+      args <- c(args, url);
+    } else if (names(bin) == "wget") {
+      # Less strict (=more likely to succeed)
+      arg <- "--no-check-certificate";
+      args <- c(args, arg);
+
+      if (!is.null(username)) {
+        arg <- sprintf("--http-user=%s", username);
+        args <- c(args, arg);
+      }
+  
+      if (!is.null(password)) {
+        arg <- sprintf("--http-passwd=%s", password);
+        args <- c(args, arg);
+      }
+  
+      # Output file
+      arg <- sprintf("--output-document=\"%s\"", pathnameT);
+      args <- c(args, arg);
+  
+      # URL to download
+      args <- c(args, url);
+    }  
 
     verbose && print(verbose, args);
     verbose && exit(verbose);
 
     res <- system2(bin, args=args);
+
+    verbose && exit(verbose);
   } else {
     mode <- ifelse(binary, "wb", "w");
     verbose && cat(verbose, "Download mode: ", mode);
@@ -223,6 +258,12 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
 ############################################################################
 # HISTORY:
+# 2014-10-03
+# o Now downloadFile("https://...") will use 'curl', and if not available
+#   'wget', to download the file over the HTTPS protocol.  Previously
+#   only 'wget' was use.  The 'curl' software is available on more
+#   operating systems, include OS X, whereas 'wget' sometimes needs
+#   a separate installation.
 # 2014-05-04
 # o Now downloadFile() "adjusts" the output filename by decoding URL
 #   encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
