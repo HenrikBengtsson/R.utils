@@ -6,9 +6,10 @@ Version: 1.33.10 [2014-10-03]
 o Added shell.exec2(), which does a better job than shell.exec() in
   opening pathnames with forward slashes and files on mapped drives,
   which may or may not open depending software, e.g. Google Chrome
-  fails to open the latter.  Add options(browser=R.utils::shell.exec2)
-  to your ~/.Rprofile file to make browseURL() use this function
-  instead of shell.exec().  This function is only useful on Windows.
+  fails to open the latter.  Add options(browser=function(...)
+  R.utils::shell.exec2(...)) to your ~/.Rprofile file to make 
+  browseURL() use this function instead of shell.exec().  This
+  function is only useful on Windows.
 
 
 Version: 1.33.9 [2014-10-03]
