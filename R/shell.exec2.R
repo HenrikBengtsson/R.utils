@@ -42,9 +42,10 @@
 #   your @see ".Rprofile" file:
 #   \preformatted{
 #     if (.Platform$OS.type == "windows")
-#       options(browser=R.utils::shell.exec2)
+#       options(browser=function(...) R.utils::shell.exec2(...))
 #   }
-#   This will load (not attach) the \pkg{R.utils} package on startup.
+#   This will only load (not attach) the \pkg{R.utils} package
+#   when the browser function is actual used.
 # }
 #
 # @author
