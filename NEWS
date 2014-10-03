@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.33.9 [2014-10-03]
+o Now countLines() automatically supports gzipped files as well.
+  Thanks to Sarah Nelson at Dept of Biostatistics at University 
+  of Washington for the suggestion.
+
+
 Version: 1.33.8 [2014-10-02]
 o Added argument 'unmap' to filePath() for "following" paths that are
   on mapped Windows drives.

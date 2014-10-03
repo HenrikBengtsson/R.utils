@@ -21,6 +21,10 @@
 #   Returns an non-negative @integer.
 # }
 #
+# \details{
+#   Both compressed and non-compressed files are supported.
+# }
+#
 # @author
 #
 # @examples "../incl/countLines.Rex"
@@ -38,7 +42,7 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
     con <- file;
   } else {
     file <- as.character(file);
-    con <- file(file, open="rb");
+    con <- gzfile(file, open="rb");
     on.exit(close(con));
   }
 
@@ -103,6 +107,10 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-10-03
+# o Now countLines() automatically supports gzipped files as well.
+#   Thanks to Sarah Nelson at Dept of Biostatistics of University of
+#   Washington for the suggestion.
 # 2014-08-25
 # o BUG FIX: countLines() would not work for newlines of type '\r'.
 # o BUG FIX: countLines() would not count the last line if it did not

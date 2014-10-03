@@ -32,6 +32,10 @@
   Returns an non-negative \code{\link[base]{integer}}.
 }
 
+\details{
+  Both compressed and non-compressed files are supported.
+}
+
 \author{Henrik Bengtsson}
 
 \examples{
