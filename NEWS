@@ -7,9 +7,11 @@ o Added shell.exec2(), which does a better job than shell.exec() in
   opening pathnames with forward slashes and files on mapped drives,
   which may or may not open depending software, e.g. Google Chrome
   fails to open the latter.  Add options(browser=function(...)
-  R.utils::shell.exec2(...)) to your ~/.Rprofile file to make 
+  R.utils::shell.exec2(...)) to your ~/.Rprofile file to make
   browseURL() use this function instead of shell.exec().  This
   function is only useful on Windows.
+o BUG FIX: Now Arguments$getReadablePathname(file, path) ignores
+  'path' if 'file' specifies an absolute pathname.
 
 
 Version: 1.33.9 [2014-10-03]
@@ -18,7 +20,7 @@ o Now countLines() automatically supports gzipped files as well.
   of Washington for the suggestion.
 o Now downloadFile("https://...") will use 'curl', and if not available
   'wget', to download the file over the HTTPS protocol.  Previously
-  only 'wget' was use.  The 'curl' software is available on more
+  only 'wget' was used.  The 'curl' software is available on more
   operating systems, include OS X, whereas 'wget' sometimes needs
   a separate installation.
 

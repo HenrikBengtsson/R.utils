@@ -190,6 +190,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     }
     file <- getCharacter(static, file, length=c(1,1));
   }
+  # Ignore 'path'?
+  if (isAbsolutePath(file)) path <- NULL
 
   # Argument 'path':
   if (!is.null(path)) {
@@ -1358,6 +1360,9 @@ withoutGString <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2014-10-03
+# o Now Arguments$getReadablePathname(file, path) ignores 'path' if
+#   'file' specifies an absolute pathname.
 # 2014-05-04
 # o Added argument 'adjust' to Arguments$getReadablePathname().
 # 2014-01-12
