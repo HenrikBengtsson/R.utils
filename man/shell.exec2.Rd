@@ -17,7 +17,7 @@ shell.exec2(file)
 }
 
 \description{
-  Open a file or URL using Windows File Associations using \code{\link[base]{shell.exec}}() but makes some tweaks
+  Open a file or URL using Windows File Associations using \code{shell.exec()} but makes some tweaks
   to filenames to make them more likely to be opened properly.
 
   \emph{This function is only applicable on Windows systems.}
@@ -33,17 +33,17 @@ shell.exec2(file)
 
 \details{
   Before passing a \emph{file} on the file system to
-  \code{\link[base]{shell.exec}}(), this function:
+  \code{shell.exec()}, this function:
    (i) unmaps any mapped drive letters used in the pathname
        (e.g. 'X:/foo.bar.html' to 'C:/Users/Joe/bar.html'),
   (ii) and replaces any forward slashed with backward ones
        (e.g. 'C:\\Users\\Joe\\bar.html' to 'C:/Users/Joe/bar.html').
-  URLs are passed as is to \code{\link[base]{shell.exec}}().
+  URLs are passed as is to \code{shell.exec()}.
 
   The reason for (i) is that some web browsers (e.g. Google Chrome)
   will not open files on mapped drives.
   The reason for (ii) is that if forward slashes are used, then
-  \code{\link[base]{shell.exec}}() will give an error that the file was
+  \code{shell.exec()} will give an error that the file was
   not found (at least with the default Windows shell).
 }
 

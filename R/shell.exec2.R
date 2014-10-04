@@ -6,7 +6,7 @@
 # @synopsis
 #
 # \description{
-#   @get "title" using @see "base::shell.exec" but makes some tweaks
+#   @get "title" using \code{shell.exec()} but makes some tweaks
 #   to filenames to make them more likely to be opened properly.
 #
 #   \emph{This function is only applicable on Windows systems.}
@@ -22,17 +22,17 @@
 #
 # \details{
 #   Before passing a \emph{file} on the file system to
-#   @see "base::shell.exec", this function:
+#   \code{shell.exec()}, this function:
 #    (i) unmaps any mapped drive letters used in the pathname
 #        (e.g. 'X:/foo.bar.html' to 'C:/Users/Joe/bar.html'),
 #   (ii) and replaces any forward slashed with backward ones
 #        (e.g. 'C:\\Users\\Joe\\bar.html' to 'C:/Users/Joe/bar.html').
-#   URLs are passed as is to @see "base::shell.exec".
+#   URLs are passed as is to \code{shell.exec()}.
 #
 #   The reason for (i) is that some web browsers (e.g. Google Chrome)
 #   will not open files on mapped drives.
 #   The reason for (ii) is that if forward slashes are used, then
-#   @see "base::shell.exec" will give an error that the file was
+#   \code{shell.exec()} will give an error that the file was
 #   not found (at least with the default Windows shell).
 # }
 #
