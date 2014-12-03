@@ -100,12 +100,24 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
 
 
+  # Nothing todo?
+  if (length(sourceCode) == 0L) {
+    return(structure(character(0L), class=c("CapturedEvaluation", "character")));
+  }
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim code
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim of surrounding { ... }
   if (sourceCode[1L] == "{") {
     sourceCode <- sourceCode[-c(1L, length(sourceCode))];
+
+    # Nothing todo?
+    if (length(sourceCode) == 0L) {
+      return(structure(character(0L), class=c("CapturedEvaluation", "character")));
+    }
+
     # Drop shortest white space prefix
     prefix <- gsub("^([ \t]*).*", "\\1", sourceCode);
     minPrefix <- min(nchar(prefix), na.rm=TRUE);
@@ -184,6 +196,8 @@ setMethodS3("print", "CapturedEvaluation", function(x, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-12-02
+# o withCapture({}) no longer generates a warning.
 # 2014-08-12
 # o BUG FIX: withCapture({ if (T) 1 else 2 }) would give a parse error on
 #   "unexpected 'else'", because the internal deparsing puts the 'else'

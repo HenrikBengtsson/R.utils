@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 1.34.1 [2014-12-02]
+o withCapture({}) no longer generates a warning.
+
+
 Version: 1.34.0 [2014-10-07]
 o Added URL and BugReports fields to DESCRIPTION.
 o Submitted to CRAN.
