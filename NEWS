@@ -2,6 +2,11 @@
 Package: R.utils
 ================
 
+Version: 1.34.2 [2015-01-05]
+o CLEANUP: Now using requireNamespace() instead of require()
+  internally.
+
+
 Version: 1.34.1 [2014-12-02]
 o withCapture({}) no longer generates a warning.
 
