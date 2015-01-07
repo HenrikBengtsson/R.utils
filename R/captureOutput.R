@@ -16,9 +16,9 @@
 #      and returned as a @character @vector.}
 #   \item{append}{If @TRUE, the output is appended to the file or
 #      the (unopened) connection, otherwise it overwrites.}
-#   \item{collapse}{If @TRUE, then argument \code{expr} is not parsed
-#      (via @see "base::substitute"), otherwise it is.}
-#   \item{envir}{The @environment in which the expression js evaluated.}
+#   \item{collapse}{A @character string used for collapsing the captured
+#      rows. If @NULL, the rows are not collapsed.}
+#   \item{envir}{The @environment in which the expression is evaluated.}
 # }
 #
 # \value{
@@ -26,7 +26,7 @@
 # }
 #
 # \details{
-#  This methods immitates @see "utils::capture.output" with the major
+#  This method immitates @see "utils::capture.output" with the major
 #  difference that it captures strings via a @raw connection rather
 #  than via internal strings.  The latter becomes exponentially slow
 #  for large outputs [1].
