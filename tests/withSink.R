@@ -7,16 +7,12 @@ mfile <- function(file, ...) {
   mcat("-------------------------------------------------\n")
 } # mfile()
 
-clearWarnings <- function() {
-  assign("last.warning", value=NULL, envir=baseenv())
-}
-
 
 # Display warnings as they occur
 oopts <- options(warn=1L)
 
 # Clear all warnings
-clearWarnings()
+resetWarnings()
 
 cons0 <- showConnections()
 
@@ -54,7 +50,7 @@ res <- withSink(file=pathname, {
 }, append=TRUE)
 mfile(pathname)
 mprint(warnings())
-clearWarnings()
+resetWarnings()
 
 
 # Assert that all connections opened were closed
@@ -65,4 +61,4 @@ stopifnot(all.equal(cons1, cons0))
 
 # Reset how warnings are displayed and clear any generated
 options(oopts)
-clearWarnings()
+resetWarnings()
