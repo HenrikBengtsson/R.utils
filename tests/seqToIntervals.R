@@ -11,3 +11,14 @@ print(y)  # [1 10; 15 18; 20 20]
 z <- intervalsToSeq(y)
 print(z)
 stopifnot(all.equal(x,z))
+
+y <- matrix(c(5,11, 1,10), ncol=2L, byrow=TRUE)
+z <- intervalsToSeq(y, unique=FALSE)
+print(z)
+z <- intervalsToSeq(y, unique=TRUE)
+print(z)
+z <- intervalsToSeq(y, sort=TRUE)
+print(z)
+z <- intervalsToSeq(y, unique=TRUE, sort=TRUE)
+print(z)
+

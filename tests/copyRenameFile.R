@@ -5,7 +5,7 @@ cat("Hello", file="hello.txt")
 stopifnot(isFile("hello.txt"))
 
 # Copy file
-copyFile("hello.txt", "hello2.txt")
+copyFile("hello.txt", "hello2.txt", verbose=TRUE)
 stopifnot(isFile("hello2.txt"))
 
 # Copy file
