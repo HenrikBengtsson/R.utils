@@ -84,6 +84,7 @@ setMethodS3("getBuiltinGstring", "GString", function(object, ...) {
 cat(as.character(GString("Advanced example: ${gstring}\n")))
 
 
+if (FALSE) {
 # Advanced example
 setMethodS3("getBuiltinRunif", "GString", function(object, n=1, min=0, max=1, ...) {
   formatC(runif(n=n, min=min, max=max), ...)
@@ -102,3 +103,5 @@ cat("\n")
 cat(as.character(GString("$Random number of numbers: ")))
 cat(as.character(GString("$[n=runif(n=1,min=1,max=5), format='f']{runif}")))
 cat("\n")
+
+} # if (FALSE)
