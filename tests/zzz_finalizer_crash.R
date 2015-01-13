@@ -8,6 +8,7 @@ library("R.methodsS3")
 loadNamespace("R.utils")
 
 # Remove all existing variables
+rm(list=ls(all.names=TRUE))
 gc()
 
 R.oo::setConstructorS3("Verbose2", function(con=stderr(), ...) {
