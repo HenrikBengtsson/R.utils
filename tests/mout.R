@@ -1,4 +1,5 @@
 library("R.utils")
+show <- methods::show
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # General tests
