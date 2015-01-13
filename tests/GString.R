@@ -81,10 +81,10 @@ setMethodS3("getBuiltinGstring", "GString", function(object, ...) {
   GString("${date} ${time}")
 })
 
+if (FALSE) {
 cat(as.character(GString("Advanced example: ${gstring}\n")))
 
 
-if (FALSE) {
 # Advanced example
 setMethodS3("getBuiltinRunif", "GString", function(object, n=1, min=0, max=1, ...) {
   formatC(runif(n=n, min=min, max=max), ...)
