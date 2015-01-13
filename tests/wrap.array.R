@@ -1,7 +1,59 @@
 library("R.utils")
 
 
-# Create a 3x2x3 array
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# A matrix
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+cat("\nWrap a matrix 'y' to a vector and back again:\n")
+x <- matrix(1:8, nrow=2, dimnames=list(letters[1:2], 1:4))
+y <- wrap(x)
+z <- unwrap(y)
+print(z)
+stopifnot(identical(z,x))
+
+# Drop dimensions, iff applicable
+z <- unwrap(y, drop=TRUE)
+print(z)
+
+
+# Argument 'split' can also be a list of functions
+split <- list(function(names, ...) strsplit(names, split="[.]", ...))
+z2 <- unwrap(y, split=split)
+print(z2)
+stopifnot(identical(z2, z))
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# A matrix and a data frame
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x3 <- matrix(1:27, nrow=3L, ncol=9L)
+rownames(x3) <- LETTERS[1:3]
+colnames(x3) <- letters[1:9]
+x3b <- as.data.frame(x3)
+
+y3 <- wrap(x3)
+print(y3)
+
+y3b <- wrap(x3b)
+print(y3b)
+
+stopifnot(identical(y3b,y3))
+
+z3 <- unwrap(y3)
+stopifnot(identical(z3,x3))
+
+y3b <- as.data.frame(y3)
+z3b <- unwrap(y3b)
+stopifnot(identical(z3b,x3))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# A 3x2x3 array
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 dim <- c(3,2,3)
 ndim <- length(dim)
 dimnames <- list()
@@ -49,14 +101,10 @@ print(z)
 stopifnot(identical(z,x))
 
 
-cat("\nWrap a matrix 'y' to a vector and back again:\n")
-x <- matrix(1:8, nrow=2, dimnames=list(letters[1:2], 1:4))
-y <- wrap(x)
-z <- unwrap(y)
-print(z)
-stopifnot(identical(z,x))
 
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# An array with a random number of dimensions
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("\nWrap and unwrap a randomly sized and shaped array 'x2':\n")
 maxdim <- 5
 dim <- sample(1:maxdim, size=sample(2:maxdim))
@@ -94,3 +142,5 @@ z2 <- unwrap(y2)
 print(z2)
 
 stopifnot(identical(z2,x2))
+
+

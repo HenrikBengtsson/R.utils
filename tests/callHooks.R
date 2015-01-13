@@ -37,7 +37,7 @@ setHook("randomNumber", "rexp")     # By name
 setHook("randomNumber", "runiff")   # Non-existing name
 setHook("randomNumber", .GlobalEnv) # Not a function
 
-res <- callHooks("randomNumber", n=1)
+res <- callHooks("randomNumber", n=1, removeCalledHooks=TRUE)
 str(res)
 cat("Number of hooks: ", length(res), "\n");
 isErroneous <- unlist(lapply(res, FUN=function(x) !is.null(x$exception)));
