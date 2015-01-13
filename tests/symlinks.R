@@ -1,5 +1,5 @@
 library("R.utils")
-verbose <- Arguments$getVerbose(TRUE)
+verbose <- Arguments$getVerbose(TRUE, timestamp=TRUE)
 
 # Run only tests if this platform/client supports symbolic file links
 canSymlink <- tryCatch({
