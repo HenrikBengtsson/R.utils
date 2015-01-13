@@ -32,6 +32,7 @@
 #
 # \value{
 #   Returns (invisibly) the path or pathname to the link.
+#   If no link was created, @NULL is returned.
 # }
 #
 # \section{Required privileges on Windows}{
@@ -149,12 +150,16 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     }
   }
 
+
+  # Default result
+  res <- NULL
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Unix: Try to create a symbolic link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("unix-symlink", methods)) {
     targetF <- getAbsolutePath(target);
-    res <- NULL;
     tryCatch({
       file.symlink(from=targetF, to=link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
@@ -185,7 +190,6 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     } else {
       cmd <- sprintf("mklink \"%s\" \"%s\"", link, target);
     }
-    res <- NULL;
     tryCatch({
       shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"));
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
@@ -202,7 +206,6 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # Windows: Try to create a Windows Shortcut link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("windows-shortcut", methods)) {
-    res <- NULL;
     tryCatch({
       pathname <- sprintf("%s.LNK", link);
       createWindowsShortcut(pathname, target=target, overwrite=overwrite);
