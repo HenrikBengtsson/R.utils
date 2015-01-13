@@ -11,6 +11,8 @@ stopifnot(isDirectory(path))
 paths <- c(dirname(path), path)
 stopifnot(all(isDirectory(paths)))
 
+removeDirectory(dirname(path), recursive=TRUE)
+
 
 # Windows has a undocumented "feature" that for some set
 # ups on some machines (not all) it will for instance
@@ -22,6 +24,7 @@ mprint(path)
 mkdirs(path)
 tryCatch({
   stopifnot(isDirectory(path))
+  removeDirectory(path)
 }, error = function(ex) {
   mprint(ex)
 })
