@@ -1,6 +1,9 @@
 library("R.utils")
 
 # Use with one package
+use("tools", how="load")
+
+# Use with one package
 use("tools")
 
 # Use with multiple packages
