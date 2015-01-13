@@ -23,3 +23,7 @@ print(x1 - x2)
 print(x1 == x2)                           # FALSE on most machines
 print(identical(all.equal(x1, x2), TRUE)) # TRUE everywhere
 print(isZero(x1-x2))                      # TRUE everywhere
+
+# Specifying tolerance by name
+print(isZero(x1-x2, eps="double.eps"))
+print(isZero(x1-x2, eps="single.eps"))

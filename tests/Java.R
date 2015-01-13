@@ -37,6 +37,9 @@ if (!identical(bfr, i))
 bfr <- Java$readUTF(inn)
 cat("Read ", nchar(bfr), " UTF characters:\n", "'", bfr, "'\n", sep="")
 
+bfr <- Java$readUTF(inn, as.character=FALSE)
+cat("Read ", length(bfr), " UTF character bytes:\n", "'", hpaste(bfr), "'\n", sep="")
+
 close(inn)
 
 file.remove(pathname)

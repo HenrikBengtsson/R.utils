@@ -13,7 +13,7 @@ createFileAtomically("foobar.txt", FUN=function(pathname) {
     if (interactive()) Sys.sleep(0.1)
   }
   cat(file=pathname, "END OF FILE\n", append=TRUE)
-}, overwrite=TRUE)
+}, overwrite=TRUE, verbose=TRUE)
 
 bfr <- readLines("foobar.txt")
 cat(bfr, sep="\n")
