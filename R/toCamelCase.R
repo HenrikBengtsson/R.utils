@@ -42,17 +42,18 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
   s <- as.character(s)
 
   # Nothing to do?
-  if (length(s) == 0L) return(character(0L))
-
-  # Nothing to do?
+  if (length(s) == 0L) return(s)
+  if (length(s) == 1L && nchar(s) == 0L) return(s)
 
   # Split a single string
+  ns <- nchar(s)
   s <- strsplit(s, split=split)
+  s[ns == 0] <- ""
 
   if (preserveSameCase) {
     s <- lapply(s, FUN=function(s) {
       # Nothing to do?
-      if (length(s) == 0L) return(s)
+      if (length(s) == 0L || is.na(s)) return(s)
 
       # (a) Don't change case on all-upper case words
       sU <- toupper(s)
@@ -77,20 +78,23 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
 
       paste(s, collapse="")
     })
+    s <- unlist(s)
   } else {
     s <- lapply(s, FUN=function(s) {
+      if (length(s) == 0L || is.na(s)) return(s)
+
       s2 <- tolower(s)
       isUpperCase <- (!s %in% s2)
       s2 <- capitalize(s2)
       s2[isUpperCase] <- s[isUpperCase]
       paste(s2, collapse="")
     })
+    s <- unlist(s)
+
     if (!capitalize) {
       s <- decapitalize(s)
     }
   }
-
-  s <- unlist(s)
 
   s
 }, private=TRUE)

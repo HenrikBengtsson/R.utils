@@ -7,7 +7,6 @@ strings <- list(
   "GEO Accession" = c("gEOAccession", "GEOAccession", "geoAccession", "GEOAccession")
 )
 
-
 for (s in names(strings)) {
   printf("Original: %s\n", sQuote(s))
 
@@ -42,3 +41,7 @@ y <- toCamelCase(character(0L))
 stopifnot(length(y) == 0L)
 y <- toCamelCase(NULL)
 stopifnot(length(y) == 0L)
+
+# Missing values
+y <- toCamelCase(NA_character_)
+stopifnot(is.na(y))

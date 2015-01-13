@@ -52,26 +52,29 @@ args <- commandArgs(asValue=TRUE, .args=argsC)
 str(args)
 stopifnot(all.equal(args, args0))
 
-# Argument 'defaults'
-args <- commandArgs(asValue=TRUE, .args=argsC, defaults=list(a=1L, d=4L))
-str(args)
 
-# Argument 'always'
-args <- commandArgs(asValue=TRUE, .args=argsC, always=list(c=4L))
-str(args)
+for (asValue in c(TRUE, FALSE)) {
+  # Argument 'defaults'
+  args <- commandArgs(asValue=asValue, .args=argsC, defaults=c(a=1L, d=4L))
+  str(args)
 
-# Argument 'unique'
-args <- commandArgs(asValue=TRUE, .args=argsC, unique=TRUE)
-str(args)
+  # Argument 'always'
+  args <- commandArgs(asValue=asValue, .args=argsC, always=c(c=4L))
+  str(args)
 
-# Argument 'os'
-args <- commandArgs(asValue=TRUE, os="current")
-str(args)
+  # Argument 'unique'
+  args <- commandArgs(asValue=asValue, .args=argsC, unique=TRUE)
+  str(args)
 
-# Unusual option: -name=value
-args <- commandArgs(asValue=TRUE, .args="-foo=4")
-str(args)
+  # Argument 'os'
+  args <- commandArgs(asValue=asValue, os="current")
+  str(args)
 
-# Default
-args <- commandArgs(asValue=TRUE)
-str(args)
+  # Unusual option: -name=value
+  args <- commandArgs(asValue=asValue, .args="-foo=4")
+  str(args)
+
+  # Default
+  args <- commandArgs(asValue=asValue)
+  str(args)
+} # for (asValue ...)
