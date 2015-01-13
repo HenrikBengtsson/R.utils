@@ -1,10 +1,12 @@
 library("R.utils")
 
 strings <- list(
+  "",
   "hello world"   = c("helloWorld", "HelloWorld", "helloWorld", "HelloWorld"),
   "tcn start"     = c("tcnStart", "TcnStart", "tcnStart", "TcnStart"),
   "GEO Accession" = c("gEOAccession", "GEOAccession", "geoAccession", "GEOAccession")
 )
+
 
 for (s in names(strings)) {
   printf("Original: %s\n", sQuote(s))
@@ -32,7 +34,8 @@ for (s in names(strings)) {
 s <- names(strings)
 y <- toCamelCase(s)
 stopifnot(length(y) == length(s))
-stopifnot(all(y == sapply(strings, FUN=function(s) s[1L])))
+y0 <- sapply(strings, FUN=function(s) s[1L])
+stopifnot(all(y == y0))
 
 # Empty vector
 y <- toCamelCase(character(0L))

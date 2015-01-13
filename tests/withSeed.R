@@ -1,5 +1,10 @@
 library("R.utils")
 
+# Reset seed
+if (exists(".Random.seed", envir=globalenv())) {
+  rm(list=".Random.seed", envir=globalenv())
+}
+
 # Generate a random number
 y0 <- runif(1)
 print(y0)
@@ -19,3 +24,4 @@ for (ii in 1:10) {
 # Generate a random number
 y <- runif(1)
 print(y)
+

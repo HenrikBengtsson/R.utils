@@ -51,3 +51,27 @@ args0 <- list("R", "noname1", DATAPATH="../data", args=TRUE, root="do da", "nona
 args <- commandArgs(asValue=TRUE, .args=argsC)
 str(args)
 stopifnot(all.equal(args, args0))
+
+# Argument 'defaults'
+args <- commandArgs(asValue=TRUE, .args=argsC, defaults=list(a=1L, d=4L))
+str(args)
+
+# Argument 'always'
+args <- commandArgs(asValue=TRUE, .args=argsC, always=list(c=4L))
+str(args)
+
+# Argument 'unique'
+args <- commandArgs(asValue=TRUE, .args=argsC, unique=TRUE)
+str(args)
+
+# Argument 'os'
+args <- commandArgs(asValue=TRUE, os="current")
+str(args)
+
+# Unusual option: -name=value
+args <- commandArgs(asValue=TRUE, .args="-foo=4")
+str(args)
+
+# Default
+args <- commandArgs(asValue=TRUE)
+str(args)

@@ -2,12 +2,14 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-01-07]
+Version: 1.34.x [2015-01-12]
 o withCapture({}) no longer generates a warning.
 o DOCUMENTATION: Fixed mistake in help("captureOutput").
   Thanks to Mikko Korpela (Issue #4) for reporting on this.
 o CLEANUP: Now using requireNamespace() instead of require()
   internally.
+o BUG FIX: attachLocally() on an environment would remove the
+  attached fields/variables from that environment.
 
 
 Version: 1.34.0 [2014-10-07]

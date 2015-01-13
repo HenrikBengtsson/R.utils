@@ -40,6 +40,13 @@ print(bfr)
 stopifnot(bfr == "[1] 1\n")
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Fixed substitutions
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bfr <- withCapture({ x <- a }, substitute=list(a="abc"))
+print(bfr)
+stopifnot(bfr == '> x <- "abc"\n')
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With automatic variable substitute
@@ -98,3 +105,11 @@ print(bfr)
 ## ODD: Different results when sourcing and R CMD check:ing
 ## this test script. /HB 2014-08-12
 ## stopifnot(bfr == "> if (TRUE) \n+     1 else 2\n[1] 1\n")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Empty
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bfr <- withCapture({})
+print(bfr)
+stopifnot(length(bfr) == 0L)

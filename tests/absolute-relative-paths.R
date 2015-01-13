@@ -18,6 +18,9 @@ print(pathR)
 warnifnot(identical(tolower(pathA), tolower(pathH)))
 warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 
+pathR <- getRelativePath("~", caseSensitive=TRUE)
+print(pathR)
+
 pathA <- getAbsolutePath("/tmp/", expandTilde=TRUE)
 print(pathA)
 stopifnot(identical(pathA, "/tmp"))
