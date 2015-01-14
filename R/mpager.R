@@ -55,7 +55,9 @@ mpager <- function(files, header=NULL, title="R Information", delete.file=FALSE)
     bfr <- readLines(file)
     mcat(bfr, sep="\n", collapse="\n")
 
-    if (delete.file) file.remove(file)
+    if (delete.file) {
+      file.remove(file)
+    }
   }
 } # mpager()
 

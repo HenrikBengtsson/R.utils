@@ -60,7 +60,7 @@ cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
   if (identical(args, "*")) args <- list("*");
   if (!is.null(args)) {
     if (!is.list(args)) {
-      throw("Argument 'args' must be a character vector, a list or NULL: ", class(args)[1L]);
+      throw("Argument 'args' must a list or NULL: ", class(args)[1L]);
     }
   }
 
