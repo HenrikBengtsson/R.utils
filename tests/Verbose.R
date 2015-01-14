@@ -1,6 +1,7 @@
 library("R.utils")
 
 verbose <- Verbose(threshold=-1)
+print(verbose)
 
 header(verbose, "A verbose writer example", padding=0)
 
@@ -40,3 +41,24 @@ evaluate(verbose, rnorm, n=3, mean=2, sd=3)
 
 ruler(verbose)
 newline(verbose)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Odds and ends
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+print(equals(verbose, verbose))
+print(equals(verbose, NA))
+setThreshold(verbose, -4)
+print(verbose)
+setDefaultLevel(verbose, -1)
+print(verbose)
+print(as.logical(verbose))
+print(as.double(verbose))
+print(less(verbose))
+print(more(verbose))
+timestamp(verbose)
+setTimestampFormat(verbose)
+print(getTimestampFormat(verbose))
+warning("Hello world!")
+warnings(verbose)
+resetWarnings()
+

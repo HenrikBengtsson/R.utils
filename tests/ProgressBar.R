@@ -23,3 +23,11 @@ while (!isDone(pb)) {
 
 cat("\n")
 
+
+## Odds and ends
+print(pb)
+print(setStepLength(pb, 1L))
+print(setMaxValue(pb, 100L))
+print(setProgress(pb, 0.3))
+print(setTicks(pb, 10L))
+

@@ -48,3 +48,9 @@ for (kk in seq(length=nfiles)) {
 setLabel(sb, "file", "<done>")
 update(sb)
 cat("\n")
+
+## Odds and ends
+print(getLabel(sb, "progress"))
+print(newline(sb))
+updateLabels(sb)
+

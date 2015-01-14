@@ -10,3 +10,5 @@ while (!isDone(pb)) {
   if (interactive()) Sys.sleep(0.1)
   Sys.sleep(0.01)
 }
+
+cleanup(pb)

@@ -1,6 +1,12 @@
 library("R.utils")
 
 local <- Options()
+print(local)
+str(local)
+print(names(local))
+print(nbrOfOptions(local))
+print(getLeaves(local))
+
 
 # Query a missing option
 cex <- getOption(local, "graphics/cex")
@@ -37,5 +43,3 @@ print(graphics)
 # Get the complete tree of options
 all <- getOption(local)
 print(all)
-
-
