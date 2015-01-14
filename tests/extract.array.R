@@ -38,3 +38,12 @@ stopifnot(identical(yB, yA))
 yA <- y[,2:3,2]
 yB <- extract(y, indices=list(2:3,2), dims=c(2,3), drop=TRUE)
 stopifnot(identical(yB, yA))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Matrix
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+y <- matrix(1:24, nrow=6, ncol=4)
+yA <- y[,2:3]
+yB <- extract(y, indices=list(2:3), dims=length(dim(y)))
+stopifnot(identical(yB, yA))
