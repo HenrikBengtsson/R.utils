@@ -1,6 +1,6 @@
 library("R.utils")
 
-opager <- options(pager="console")
+opager <- options(pager=mpager)
 
 file <- system.file("DESCRIPTION", package="R.utils")
 cat("Displaying: ", file, ":\n", sep="")

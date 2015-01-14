@@ -1,5 +1,7 @@
 library("R.utils")
 
+opager <- options(pager=mpager)
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Example 1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -32,11 +34,11 @@ cat("=== Example 2 ================================================\n")
 preprocessor <- function(lines, ...) {
   cat("-----------------------------------------\n")
   cat("Source code before preprocessing:\n")
-  displayCode(code=lines, pager="console")
+  displayCode(code=lines)
   cat("-----------------------------------------\n")
   cat("Source code after preprocessing:\n")
   lines <- VComments$compile(lines)
-  displayCode(code=lines, pager="console")
+  displayCode(code=lines)
   cat("-----------------------------------------\n")
   lines
 }
@@ -52,3 +54,5 @@ code <- c(
 fh <- textConnection(code)
 sourceTo(fh)
 setHook("sourceTo/onPreprocess", oldHooks, action="replace")
+
+options(opager)
