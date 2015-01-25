@@ -3,7 +3,6 @@
 #
 # REFERENCES:
 # * Travis CI: https://travis-ci.org/
-# * r-travis: https://github.com/craigcitro/r-travis
 # * r-builder: https://github.com/metacran/r-builder
 # * covr: https://github.com/jimhester/covr
 # * Coveralls: https://coveralls.io/
@@ -15,14 +14,12 @@ language: c
 env:
   global:
     # Use r-travis or r-builder?
-#   - PKGR="./travis-tool.sh"  # r-travis
-    - PKGR="./pkg-build.sh"    # r-builder
+    - RENV="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran"
-    # Require also Suggested packages?
-    - _R_CHECK_FORCE_SUGGESTS_=false 
-    # Need LaTeX?
-    - BOOTSTRAP_LATEX=""  ## Very time consuming!
+    - _R_CHECK_FORCE_SUGGESTS_=false
+    # Need LaTeX? (very time consuming!)
+    - BOOTSTRAP_LATEX=""
     # Skip building vignettes, which iff LaTeX-based are very
     # time consuming because LaTeX needs to be installed
     - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
@@ -30,40 +27,40 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-    - RVERSION=3.1.2
+#    - RVERSION=3.0.3
+#    - RVERSION=3.1.2
     - RVERSION=devel
 
 
 before_install:
-  - echo PKGR=$PKGR
-  - if [ "$PKGR" == "./travis-tool.sh" ]; then
-      curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
-    elif [ "$PKGR" == "./pkg-build.sh" ]; then
-      curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
-    fi
-  - chmod 755 $PKGR
-  - $PKGR bootstrap
+  - echo RENV=$RENV
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
+  - chmod 755 $RENV
+  - $RENV bootstrap
   - if [ "BOOTSTRAP_LATEX" == "true" ]; then
-      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
+      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash);
+    else
+      export R_RSP_COMPILELATEX_FALLBACK="copy-force";
     fi
 
 install:
-#  - $PKGR github_package testthat
-#  - $PKGR github_package assertthat
-  - $PKGR install_r_binary r.methodss3 r.oo r.utils base64enc
-  - $PKGR install_r_binary digest Cairo R.rsp
-#  - $PKGR github_package jimhester/covr 
-  - $PKGR github_package HenrikBengtsson/covr
-  - $PKGR install_deps
+  - $RENV install_r R.methodsS3 R.oo digest
+#  - $RENV install_deps
 
-script: $PKGR run_tests
+script:
+  - $RENV run_build
+  - $RENV run_check
 
 after_success:
-  - if [ "$PKGR" == "./travis-tool.sh" ]; then
-      Rscript -e 'library(methods); covr::coveralls()';
-    elif [ "$PKGR" == "./pkg-build.sh" ]; then
-      $PKGR run_script -e 'library(methods); covr::coveralls()';
-    fi
+  - $RENV dump_logs_by_extension out
+  - $RENV install_devtools
+  - $RENV install_github HenrikBengtsson/R.methodsS3@develop
+  - $RENV install_github HenrikBengtsson/covr
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R; cat covr-utils.R;
+  - $RENV run_script .coveralls.R
+
+after_failure:
+  - $RENV dump_logs
 
 notifications:
   email:
