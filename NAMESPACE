@@ -74,6 +74,9 @@ S3method("parse", "default")
 S3method("cat", "default")
 S3method("getOption", "default")
 
+# From Verbose.R
+S3method("warnings", "default")
+
 # Arguments
 S3method("getCharacter", "Arguments")
 S3method("getCharacters", "Arguments")

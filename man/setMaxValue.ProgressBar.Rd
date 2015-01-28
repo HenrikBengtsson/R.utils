@@ -6,34 +6,34 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{setMaxValue.ProgressBar}
+\name{setMaxValue.ProgressBar}
 \alias{setMaxValue.ProgressBar}
 \alias{ProgressBar.setMaxValue}
 \alias{setMaxValue,ProgressBar-method}
 
- \title{Sets maximum value}
+\title{Sets maximum value}
 
- \description{
-   Sets maximum value.
- }
+\description{
+  Sets maximum value.
+}
 
- \usage{
+\usage{
 \method{setMaxValue}{ProgressBar}(this, maxValue, ...)
 }
 
- \arguments{
-  \item{maxValue}{New maximum value.}
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{maxValue}{New maximum value.}
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{ProgressBar}}.
- }
+\seealso{
+  For more information see \code{\link{ProgressBar}}.
+}
 \keyword{internal}
 \keyword{methods}

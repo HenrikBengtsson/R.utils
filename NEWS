@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-01-13]
+Version: 1.34.x [2015-01-27]
 o Added mpager() which is a "pager" function compatible with
   file.show() that will display file contents on standard error.
 o withCapture({}) no longer generates a warning.
