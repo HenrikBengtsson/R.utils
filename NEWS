@@ -2,7 +2,11 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-01-27]
+Version: 1.34.x [2015-01-30]
+o Now commandArgs(asValues=TRUE, adhoc=TRUE) interprets 'x:=1:10'
+  such that 'x' become the integer vector 1:10.  Likewise, you can
+  do 'x:=seq(1,3, by=0.1)' and 'x:=pi'.  To get the string "pi", 
+  use quotation marks, i.e. 'x:="pi"', or just 'x=pi'.
 o Added mpager() which is a "pager" function compatible with
   file.show() that will display file contents on standard error.
 o withCapture({}) no longer generates a warning.
