@@ -14,6 +14,7 @@ o DOCUMENTATION: Fixed mistake in help("captureOutput").
   Thanks to Mikko Korpela (Issue #4) for reporting on this.
 o CLEANUP: Now using requireNamespace() instead of require()
   internally.
+o ROBUSTNESS: Forgot to declare "default" warnings() as an S3 method.
 o BUG FIX: attachLocally() on an environment would remove the
   attached fields/variables from that environment.
 
