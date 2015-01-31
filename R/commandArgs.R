@@ -337,7 +337,6 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     for (ii in seq(length=nargsT)) {
       argI <- argsT[[ii]];
       arg <- argI$arg;
-
 ##      printf("Argument #%d: '%s' [n=%d]\n", ii, arg, length(arg));
 
       if (length(arg) == 2L) {
@@ -349,11 +348,13 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       # Sanity check
       stopifnot(length(arg) == 1L);
 
-      # --<key>=<value>
-      pattern <- sprintf("^--(%s)(=)(.*)$", keyPattern);
+      # --<key>(=|:=)<value>
+      pattern <- sprintf("^--(%s)(=|:=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
+        what <- gsub(pattern, "\\2", arg);
         value <- gsub(pattern, "\\3", arg);
+        if (what == ":=") class(value) <- c("CmdArgExpression")
         argsT[[ii]]$key <- key;
         argsT[[ii]]$value <- value;
         next;
@@ -367,11 +368,13 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         next;
       }
 
-      # -<key>=<value>
-      pattern <- sprintf("^-(%s)(=)(.*)$", keyPattern);
+      # -<key>(=|:=)<value>
+      pattern <- sprintf("^-(%s)(=|:=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
+        what <- gsub(pattern, "\\2", arg);
         value <- gsub(pattern, "\\3", arg);
+        if (what == ":=") class(value) <- c("CmdArgExpression")
         argsT[[ii]]$key <- key;
         argsT[[ii]]$value <- value;
         next;
@@ -385,11 +388,13 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         next;
       }
 
-      # <key>=<value>
-      pattern <- sprintf("^(%s)(=)(.*)$", keyPattern);
+      # <key>(=|:=)<value>
+      pattern <- sprintf("^(%s)(=|:=)(.*)$", keyPattern);
       if (regexpr(pattern, arg) != -1L) {
         key <- gsub(pattern, "\\1", arg);
+        what <- gsub(pattern, "\\2", arg);
         value <- gsub(pattern, "\\3", arg);
+        if (what == ":=") class(value) <- c("CmdArgExpression")
         argsT[[ii]]$key <- key;
         argsT[[ii]]$value <- value;
         next;
