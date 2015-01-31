@@ -487,16 +487,33 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (f) Ad hoc corcion of numerics?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (length(args) > 0L && adhoc) {
+    if (adhoc && length(args) > 0L) {
       modes <- sapply(args, FUN=storage.mode);
       idxs <- which(modes == "character");
       if (length(idxs) > 0L) {
         argsT <- args[idxs];
-        # Try to coerce to numeric
+        # Try to coerce / evaluate...
         for (kk in seq_along(argsT)) {
           arg <- argsT[[kk]];
-          # Don't coerce 'T' and 'F' to logical
+          # (a) Try to evaluate expression using eval(parse(...))
+          if (inherits(arg, "CmdArgExpression")) {
+            value <- tryCatch({
+              expr <- parse(text=arg);
+              value <- eval(expr, envir=globalenv());
+            }, error=function(ex) {
+              value <- arg;
+              class(value) <- c("FailedCmdArgExpression", class(value))
+              value
+            });
+            argsT[kk] <- list(value); ## Also NULL
+            next;
+          }
+
+          # (b) Don't coerce 'T' and 'F' to logical
           if (is.element(arg, c("T", "F"))) next;
+
+          # (c) Try to coerce to "logical, integer, numeric, complex
+          # or factor as appropriate." using utils::type.convert()
           tryCatch({
             value <- type.convert(arg, as.is=TRUE);
             argsT[[kk]] <- value;
@@ -505,7 +522,6 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
         args[idxs] <- argsT;
       }
     } # if (adhoc)
-
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # (g) Prepend defaults, if not already specified
@@ -569,6 +585,11 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
 ############################################################################
 # HISTORY:
+# 2015-01-30
+# o Now commandArgs(asValues=TRUE, adhoc=TRUE) interprets 'x:=1:10' such
+#   that 'x' become the integer vector 1:10.  Likewise, you can do
+#   'x:=seq(1,3, by=0.1)' and 'x:=pi'.  To get the string "pi", use
+#   quotation marks, i.e. 'x:="pi"', or just 'x=pi'.
 # 2014-08-24
 # o BUG FIX: commandArgs() would drop command-line arguments with periods,
 #   hyphens, or underscores in their names, e.g. --src_file=x.
