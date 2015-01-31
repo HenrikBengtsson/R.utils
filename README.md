@@ -6,11 +6,12 @@ The stable release of this R package is available via [CRAN](http://cran.r-proje
 install.packages('R.utils')
 ```
 
-* R CMD check status: <a
-  href="https://travis-ci.org/HenrikBengtsson/R.utils"><img
-  src="https://travis-ci.org/HenrikBengtsson/R.utils.svg?branch=master"
-  alt="Build status"></a>
-* Test coverage status: <a
-  href='https://coveralls.io/r/HenrikBengtsson/R.utils?branch=develop'><img
-  src='https://coveralls.io/repos/HenrikBengtsson/R.utils/badge.png?branch=develop'
-  alt='Coverage Status' /></a>  
+
+## Software quality
+
+* R CMD check status:
+  - <a href="http://cran.r-project.org/web/checks/check_results_R.utils.html">CRAN checks</a>
+  - <a href="https://travis-ci.org/HenrikBengtsson/R.utils"><img src="https://travis-ci.org/HenrikBengtsson/R.utils.svg?branch=master" alt="Build status"></a>
+* Test coverage status:
+  - <a href='https://coveralls.io/r/HenrikBengtsson/R.utils?branch=develop'><img
+  src='https://coveralls.io/repos/HenrikBengtsson/R.utils/badge.png?branch=develop' alt='Coverage Status' /></a>
