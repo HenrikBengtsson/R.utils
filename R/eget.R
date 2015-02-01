@@ -49,7 +49,7 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="any", cmdArg=FALSE) {
+eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="default", cmdArg=FALSE) {
   # Argument '...' => (name, default, ...)
   pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
 
@@ -97,8 +97,14 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="a
     if (is.element(name, names(envir))) {
       value <- envir[[name]];
     }
-  } else if (exists(name, mode=mode, envir=envir, inherits=inherits)) {
-    value <- get(name, mode=mode, envir=envir, inherits=inherits);
+  } else {
+    if (mode == "default") {
+      mode <- mode(value)
+      if (mode == "NULL") mode <- "any"
+    }
+    if (exists(name, mode=mode, envir=envir, inherits=inherits)) {
+      value <- get(name, mode=mode, envir=envir, inherits=inherits);
+    }
   }
 
   # Coerce?
@@ -119,6 +125,10 @@ ecget <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-31
+# o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
+#   (was "any"), where "default" corresponds to the mode of argument
+#   'default', unless it's NULL when mode="any" is used.
 # 2014-01-27
 # o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
 #   'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)

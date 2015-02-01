@@ -18,7 +18,8 @@
 }
 
 \usage{
-eget(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="any", cmdArg=FALSE)
+eget(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="default",
+  cmdArg=FALSE)
 }
 
 \arguments{
