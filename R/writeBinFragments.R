@@ -53,7 +53,9 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
     });
   } else if (inherits(con, "connection")) {
     if (!isSeekable(con))
-      throw("Argument 'con' is a non-seekable connection.");
+      t <- summary(con)
+      t <- paste(sprintf("%s: %s", names(t), t), collapse=", ")
+      throw("Argument 'con' is not a seekable connection: ", t)
   }
 
   # Argument 'idxs':
