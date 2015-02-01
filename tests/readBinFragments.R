@@ -1,5 +1,8 @@
 library("R.utils")
 
+if ("covr" %in% loadedNamespaces())
+  options("R.utils:onNonSeekable"="warning")
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Create a data file
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
