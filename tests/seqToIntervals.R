@@ -22,3 +22,9 @@ print(z)
 z <- intervalsToSeq(y, unique=TRUE, sort=TRUE)
 print(z)
 
+## Corner cases
+x <- integer(0)
+y <- seqToIntervals(x)
+print(y)
+str(y)
+stopifnot(all.equal(dim(y), c(0,2)))
