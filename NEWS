@@ -3,9 +3,12 @@ Package: R.utils
 ================
 
 Version: 1.34.x [2015-02-01]
+o Added compressFile(), decompressFile() and isCompressFile() methods,
+  which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
+  Thanks to Peter Hickey for pushing for this.
 o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow()
   for outputting to "console", which is neither R stdout nor stderr
-  and can therefor not be intercepted via capture.output(), sink() 
+  and can therefor not be intercepted via capture.output(), sink()
   or similar.  These functions are useful for outputting messages
   that requires user's attention and are often followed by a prompt
   via readline(), which also cannot be captured.

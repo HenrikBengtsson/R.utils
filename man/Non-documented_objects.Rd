@@ -189,7 +189,6 @@
 
 % Misc.
 \alias{extract}
-\alias{isGzipped.default}
 \alias{isOpen}
 \alias{isOpen.default}
 \alias{remove.default}
