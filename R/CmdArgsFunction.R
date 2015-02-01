@@ -24,6 +24,7 @@ setMethodS3("print", "CmdArgsFunction", function(x, ..., call=!interactive(), en
   # Should the result be printed?
   if (res$visible) {
     output <- attr(x, "output")
+    if (is.null(output)) output <- print
     output(res$value)
   }
 
