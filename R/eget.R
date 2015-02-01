@@ -49,7 +49,7 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=TRUE, mode="any", cmdArg=FALSE) {
+eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="any", cmdArg=FALSE) {
   # Argument '...' => (name, default, ...)
   pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
 
