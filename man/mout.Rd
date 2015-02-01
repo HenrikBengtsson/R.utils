@@ -14,6 +14,13 @@
 \alias{mcat}
 \alias{mstr}
 \alias{mprintf}
+\alias{cmsg}
+\alias{cout}
+\alias{cprint}
+\alias{cshow}
+\alias{ccat}
+\alias{cstr}
+\alias{cprintf}
 
 \title{Miscellaneous functions for outputting via message()}
 

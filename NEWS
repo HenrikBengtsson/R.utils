@@ -2,7 +2,13 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-01-31]
+Version: 1.34.x [2015-02-01]
+o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow()
+  for outputting to "console", which is neither R stdout nor stderr
+  and can therefor not be intercepted via capture.output(), sink() 
+  or similar.  These functions are useful for outputting messages
+  that requires user's attention and are often followed by a prompt
+  via readline(), which also cannot be captured.
 o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
   (was "any"), where "default" corresponds to the mode of argument
   'default', unless it's NULL when mode="any" is used.

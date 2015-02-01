@@ -11,77 +11,76 @@ y <- as.list(x[1:3])
 
 cat("mprint():\n")
 print(x)
-mprint(x)
+cprint(x)
 
 print(y)
-mprint(y)
+cprint(y)
 
 cat("mcat():\n")
 cat(x, "\n")
-mcat(x, "\n")
+ccat(x, "\n")
 
 cat(x2)
-mcat(x2)
+ccat(x2)
 
 cat(x3, sep=",")
-mcat(x3, sep=",")
+ccat(x3, sep=",")
 
 cat(x3, sep="\n")
-mcat(x3, sep="\n")
+ccat(x3, sep="\n")
 
 
 cat("mstr():\n")
 str(x)
-mstr(x)
+cstr(x)
 
 str(y)
-mstr(y)
+cstr(y)
 
 cat("mshow():\n")
 show(x)
-mshow(x)
+cshow(x)
 
 show(y)
-mshow(y)
+cshow(y)
 
 cat("mprintf():\n")
 printf("x=%d\n", 1:3)
-mprintf("x=%d\n", 1:3)
+cprintf("x=%d\n", 1:3)
 
 cat("mout():\n")
 writeLines(x)
-mout(writeLines(x))
+cout(writeLines(x))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Tests related to closure
 # - - - - - - - - - - - -- - - - - - - - - - - - - - - - - -
-mfoo <- function(a=1) {
-  mprintf("a=%s\n", a)
+cfoo <- function(a=1) {
+  cprintf("a=%s\n", a)
 }
 
-mbar <- function(...) {
-  mfoo(...)
+cbar <- function(...) {
+  cfoo(...)
 }
 
 a <- 2
-mfoo(a)
-mfoo(3)
+cfoo(a)
+cfoo(3)
 
-mbar(a)
-mbar(3)
-
+cbar(a)
+cbar(3)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Assert that "console" messages can be captured/sunk
-# via stderr but not stdout
+# Assert that "console" messages cannot be captured/sunk
+# via neither stdout nor stderr
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- captureOutput({ mcat("Hello") })
+res <- captureOutput({ ccat("Hello") })
 str(res)
 stopifnot(length(res) == 0L)
 
-withSink({ mcat("Hello") }, file="foo.txt", type="message")
+withSink({ ccat("Hello") }, file="foo.txt", type="message")
 res <- readLines("foo.txt")
 str(res)
-stopifnot(length(res) > 0L)
+stopifnot(length(res) == 0L)

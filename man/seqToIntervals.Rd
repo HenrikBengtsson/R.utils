@@ -21,8 +21,12 @@
 }
 
 \arguments{
-  \item{idx}{A \code{\link[base]{vector}} of \code{\link[base]{integer}} indices.}
+  \item{idx}{A \code{\link[base]{vector}} of N \code{\link[base]{integer}} indices.}
   \item{...}{Not used.}
+}
+
+\value{
+  An Nx2 \code{\link[base]{integer}} \code{\link[base]{matrix}}.
 }
 
 \author{Henrik Bengtsson}

@@ -5,6 +5,13 @@
 # @alias mcat
 # @alias mstr
 # @alias mprintf
+# @alias cmsg
+# @alias cout
+# @alias cprint
+# @alias cshow
+# @alias ccat
+# @alias cstr
+# @alias cprintf
 #
 # @title "Miscellaneous functions for outputting via message()"
 #
@@ -84,9 +91,66 @@ mprintf <- function(..., appendLF=FALSE) {
 }
 
 
+cmsg <- function(..., appendLF=FALSE) {
+  if (.Platform$OS.type == "windows") {
+    pager <- "console"
+  } else {
+    pager <- "cat"
+  }
+
+  ## Write output to a temporary file
+  ## FIXME: Do we have worry about encoding?!? /HB 2015-02-01
+  fh <- tempfile()
+  on.exit(file.remove(fh))
+  cat(..., file=fh)
+  if (appendLF) cat("\n", file=fh, append=TRUE)
+
+  ## Display file such that it cannot be
+  ## captured/intercepted by R.
+  file.show(fh, pager=pager, header="", title="", delete.file=FALSE)
+}
+
+cout <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(..., envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  cmsg(bfr, appendLF=appendLF)
+}
+
+cprint <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(print(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  cmsg(bfr, appendLF=appendLF)
+}
+
+ccat <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(cat(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  cmsg(bfr, appendLF=appendLF)
+}
+
+cstr <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(str(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  cmsg(bfr, appendLF=appendLF)
+}
+
+cshow <- function(..., appendLF=FALSE) {
+  bfr <- captureOutput(show(...), envir=parent.frame())
+  bfr <- paste(c(bfr, ""), collapse="\n")
+  cmsg(bfr, appendLF=appendLF)
+}
+
+cprintf <- function(..., appendLF=FALSE) {
+  bfr <- sprintf(...)
+  cmsg(bfr, appendLF=appendLF)
+}
+
+
 
 ############################################################################
 # HISTORY:
+# 2015-02-01
+# o Added ditto for "console" output.
 # 2014-08-24
 # o Note, these functions cannot be turned into S3/S4 methods because then
 #   the arguments needs to be evaluated before dispatching, which may
