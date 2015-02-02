@@ -92,12 +92,6 @@ mprintf <- function(..., appendLF=FALSE) {
 
 
 cmsg <- function(..., appendLF=FALSE) {
-  if (.Platform$OS.type == "windows") {
-    pager <- "console"
-  } else {
-    pager <- "cat"
-  }
-
   ## Write output to a temporary file
   ## FIXME: Do we have worry about encoding?!? /HB 2015-02-01
   fh <- tempfile()
@@ -107,7 +101,12 @@ cmsg <- function(..., appendLF=FALSE) {
 
   ## Display file such that it cannot be
   ## captured/intercepted by R.
-  file.show(fh, pager=pager, header="", title="", delete.file=FALSE)
+  if (.Platform$OS.type == "windows") {
+    file.show(fh, pager="console", header="", title="", delete.file=FALSE)
+  } else {
+    system(sprintf("cat %s", fh))
+  }
+  invisible()
 }
 
 cout <- function(..., appendLF=FALSE) {
