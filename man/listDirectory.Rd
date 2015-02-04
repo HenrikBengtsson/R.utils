@@ -42,6 +42,12 @@
  Returns a \code{\link[base]{vector}} of file names.
 }
 
+
+\section{Recursive searching}{
+  Recursive searching of directory structure is done breath-first
+  in a lexicographic order.
+}
+
 \author{Henrik Bengtsson}
 
 \seealso{
