@@ -77,5 +77,26 @@ withRepos({
 }, repos="[[all]]")
 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- withVisible({
+  withRepos({ 1 })
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withRepos({ x <- 1 })
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))
+
+
 # Undo
 options(orepos)

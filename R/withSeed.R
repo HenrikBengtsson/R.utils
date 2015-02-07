@@ -11,7 +11,7 @@
 #
 # \arguments{
 #   \item{expr}{The R expression to be evaluated.}
-#   \item{...}{Additional arguments passed to @see "base::set.seed".}
+#   \item{seed, ...}{Arguments passed to @see "base::set.seed".}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -36,7 +36,15 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withSeed <- function(expr, ..., envir=parent.frame()) {
+withSeed <- function(expr, seed, ..., envir=parent.frame()) {
+  # Argument '.expr':
+  expr <- substitute(expr)
+
+  # Argument 'envir':
+  if (!is.environment(envir))
+    throw("Argument 'envir' is not a list: ", class(envir)[1L])
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Record entry seed
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -55,10 +63,10 @@ withSeed <- function(expr, ..., envir=parent.frame()) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Set temporary seed
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  set.seed(...)
+  set.seed(seed=seed, ...)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Evaluate expression
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  eval(expr, envir=envir)
+  .eval2(expr, envir=envir)
 } # withSeed()

@@ -1,5 +1,7 @@
 library("R.utils")
 
+oopts <- options(warn=1)
+
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 # Function that takes "a long" time to run
 # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,3 +74,28 @@ tryCatch({
 }, error=function(ex) {
   cat("Another error occured: ", ex$message, "\n", sep="")
 })
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- withVisible({
+  withTimeout({ 1 }, timeout=1)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withTimeout({ x <- 1 }, timeout=1)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))
+
+
+# Undo
+options(oopts)

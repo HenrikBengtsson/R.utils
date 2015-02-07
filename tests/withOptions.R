@@ -47,3 +47,24 @@ stopifnot(is.null(getOption("dummy")))
 # Any modified or added option is undone
 stopifnot(all.equal(options(), oopts))
 
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+digits <- getOption("digits")+1L
+res <- withVisible({
+  withOptions({ 1 }, digits=digits)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withOptions({ x <- 1 }, digits=digits)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))

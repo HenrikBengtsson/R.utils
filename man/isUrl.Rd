@@ -26,7 +26,7 @@
 }
 
 \value{
- Returns a \code{\link[base]{logical}} \code{\link[base]{vector}}.
+ Returns a \code{\link[base]{logical}} \code{\link[base]{vector}} of either \code{\link[base:logical]{TRUE}} or \code{\link[base:logical]{FALSE}}.
 }
 
 \author{Henrik Bengtsson}

@@ -62,3 +62,25 @@ stopifnot(all.equal(cons1, cons0))
 # Reset how warnings are displayed and clear any generated
 options(oopts)
 resetWarnings()
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+pathname <- tempfile(fileext=".output.txt")
+res <- withVisible({
+  withSink({ print(1); 1 }, file=pathname)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withSink({ print(1); x <- 1 }, file=pathname)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))

@@ -1,5 +1,6 @@
 library("R.utils")
 
+
 # Reset seed
 if (exists(".Random.seed", envir=globalenv())) {
   rm(list=".Random.seed", envir=globalenv())
@@ -25,3 +26,23 @@ for (ii in 1:10) {
 y <- runif(1)
 print(y)
 
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- withVisible({
+  withSeed({ 1 }, seed=42L)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withSeed({ x <- 1 }, seed=42L)
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))

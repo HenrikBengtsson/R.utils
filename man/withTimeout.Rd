@@ -18,12 +18,12 @@
 }
 
 \usage{
-withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
-  onTimeout=c("error", "warning", "silent"))
+withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
+  onTimeout=c("error", "warning", "silent"), ...)
 }
 
 \arguments{
-  \item{...}{The R expression to be evaluated.}
+  \item{expr}{The R expression to be evaluated.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should
     be evaluated.}
   \item{timeout, cpu, elapsed}{A \code{\link[base]{numeric}} specifying the maximum number
@@ -33,6 +33,7 @@ withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
     in CPU time or in wall time.}
   \item{onTimeout}{A \code{\link[base]{character}} specifying what action to take if
     a timeout event occurs.}
+  \item{...}{Not used.}
 }
 
 \value{
