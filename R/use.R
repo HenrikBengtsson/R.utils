@@ -53,7 +53,7 @@
 # @keyword utilities
 # @keyword internal
 #*/###########################################################################
-setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
+setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -499,6 +499,8 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 ############################################################################
 # HISTORY:
+# 2015-02-07
+# o SPECIAL CASE: R.utils::use() now attaches 'R.utils'.
 # 2014-05-01
 # o Now use() utilizes useRepos() and withRepos().  It's default is
 #   now to install on all set repositories as well as the mainstream ones.

@@ -2,7 +2,8 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-02-06]
+Version: 1.34.x [2015-02-07]
+o SPECIAL CASE: R.utils::use() now attaches 'R.utils'.
 o use(..., quietly=FALSE) no longer captures/buffers the output,
   which prevented it from displaying full prompt messages that
   required a user response.  use(..., quietly=TRUE), which is the

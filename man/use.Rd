@@ -19,9 +19,9 @@
 }
 
 \usage{
-\method{use}{default}(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly,
-  install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ...,
-  verbose=FALSE)
+\method{use}{default}(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE,
+  warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]",
+  "[[mainstream]]")), ..., verbose=FALSE)
 }
 
 \arguments{
