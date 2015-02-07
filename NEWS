@@ -3,6 +3,9 @@ Package: R.utils
 ================
 
 Version: 1.34.x [2015-02-06]
+o use(..., quietly=FALSE) no longer captures/buffers the output,
+  which prevented it from displaying full prompt messages that
+  required a user response.
 o Now the returned value of all withNnn() functions preserves the
   "visibility" of the eval():uated expression.  Added package tests.
 o Added compressFile(), decompressFile() and isCompressFile() methods,

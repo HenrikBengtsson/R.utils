@@ -28,7 +28,7 @@
  \item{pkg}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying the package(s) to be used.}
  \item{version}{(optional) Version constraint(s) on requested package(s).}
  \item{how}{A \code{\link[base]{character}} string specifying whether the package should be attached or loaded.}
- \item{quietly}{If \code{\link[base:logical]{TRUE}}, minimial or no messages are reported.}
+ \item{quietly}{If \code{\link[base:logical]{TRUE}}, minimal or no messages are reported.}
  \item{warn.conflicts}{If \code{\link[base:logical]{TRUE}}, warnings on namespace conflicts are reported, otherwise not.}
  \item{install}{If \code{\link[base:logical]{TRUE}} and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
  \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying from which repositories

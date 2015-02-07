@@ -15,7 +15,7 @@
 #  \item{pkg}{A @character @vector specifying the package(s) to be used.}
 #  \item{version}{(optional) Version constraint(s) on requested package(s).}
 #  \item{how}{A @character string specifying whether the package should be attached or loaded.}
-#  \item{quietly}{If @TRUE, minimial or no messages are reported.}
+#  \item{quietly}{If @TRUE, minimal or no messages are reported.}
 #  \item{warn.conflicts}{If @TRUE, warnings on namespace conflicts are reported, otherwise not.}
 #  \item{install}{If @TRUE and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
 #  \item{repos}{(optional) A @character @vector specifying from which repositories
@@ -57,48 +57,56 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Sink stdout and stderr, and rethrow errors.
-  captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
-    closeAll <- function(out) {
-      if (!is.null(out)) {
-        sink(type="message");
-        sink(type="output");
-        close(out);
-      }
-      NULL;
-    } # closeAll()
+  ## "Hide" all messages?
+  if (quietly) {
+    # Sink stdout and stderr, and rethrow errors.
+    captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
+      out <- NULL
+      closeAll <- function(out) {
+        if (!is.null(out)) {
+          sink(type="message");
+          sink(type="output");
+          close(out);
+        }
+        NULL;
+      } # closeAll()
 
-    bfr <- NULL; rm(list="bfr"); # To please R CMD check
-    out <- textConnection("bfr", open="w", local=TRUE);
-    sink(file=out, type="output");
-    sink(file=out, type="message");
-    on.exit({
+      bfr <- NULL; rm(list="bfr"); # To please R CMD check
+      out <- textConnection("bfr", open="w", local=TRUE);
+      sink(file=out, type="output");
+      sink(file=out, type="message");
+      on.exit({
+        out <- closeAll(out);
+        # Output?
+        if (echo && length(bfr) > 0L) {
+          cat(paste(c(bfr, ""), collapse="\n"));
+        }
+      });
+
+      # Evaluate
+      tryCatch({
+        eval(expr, envir=envir);
+      }, error = function(ex) {
+        out <<- closeAll(out);
+        # If error, output all messages...
+        if (length(bfr) > 0L) {
+          echo <<- FALSE;
+          message(paste(c(bfr, ""), collapse="\n"));
+        }
+        # ...and rethrow the error
+        throw(ex);
+      })
+
+      # Close
       out <- closeAll(out);
-      # Output?
-      if (echo && length(bfr) > 0L) {
-        cat(paste(c(bfr, ""), collapse="\n"));
-      }
-    });
 
-    # Evaluate
-    tryCatch({
+      invisible(bfr);
+    } # captureAll()
+  } else {
+    captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
       eval(expr, envir=envir);
-    }, error = function(ex) {
-      out <<- closeAll(out);
-      # If error, output all messages...
-      if (length(bfr) > 0L) {
-        echo <<- FALSE;
-        message(paste(c(bfr, ""), collapse="\n"));
-      }
-      # ...and rethrow the error
-      throw(ex);
-    })
-
-    # Close
-    out <- closeAll(out);
-
-    invisible(bfr);
-  } # captureAll()
+    }
+  } # if (quietly)
 
 
   installPkg <- function(pkg, version=NULL, repos=NULL, type=getOption("pkgType"), ..., quietly=FALSE, verbose=FALSE) {
@@ -174,7 +182,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       install.packages(pkg, type=type, quiet=quietly, ...);
     }, echo=!quietly);
 
-    verbose && print(verbose, output);
+    if (!quietly) verbose && print(verbose, output);
     verbose && exit(verbose);
 
     installed <- isPackageInstalled(pkg);
