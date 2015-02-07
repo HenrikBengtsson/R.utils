@@ -5,7 +5,9 @@ Package: R.utils
 Version: 1.34.x [2015-02-06]
 o use(..., quietly=FALSE) no longer captures/buffers the output,
   which prevented it from displaying full prompt messages that
-  required a user response.
+  required a user response.  use(..., quietly=TRUE), which is the
+  default, no longer tries to ask user of Windows and OS X if they
+  wish to install from source if the binary is older.
 o Now the returned value of all withNnn() functions preserves the
   "visibility" of the eval():uated expression.  Added package tests.
 o Added compressFile(), decompressFile() and isCompressFile() methods,

@@ -263,6 +263,12 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
 
+  if (quietly) {
+    oopts <- options("install.packages.compile.from.source"="never")
+    on.exit(options(oopts), add=TRUE)
+  }
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # From now on we are only dealing with one package at the time
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
