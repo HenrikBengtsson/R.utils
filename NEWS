@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-02-04]
+Version: 1.34.x [2015-02-05]
 o Added compressFile(), decompressFile() and isCompressFile() methods,
   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
   Thanks to Peter Hickey for pushing for this.
@@ -22,10 +22,13 @@ o Now commandArgs(asValues=TRUE, adhoc=TRUE) interprets 'x:=1:10'
 o Added mpager() which is a "pager" function compatible with
   file.show() that will display file contents on standard error.
 o Just like for listDirectory(), argument 'recursive' of findFiles()
-  can in addtion to be FALSE (depth=0) and TRUE (depth=+Inf), be any
+  can in addition to be FALSE (depth=0) and TRUE (depth=+Inf), be any
   non-negative numeric number specifying how deeply the recursive
   search should be done.
 o withCapture({}) no longer generates a warning.
+o On Windows, Arguments$getReadablePathname() now gives an informative
+  warning if a pathname of length 256 or longer is used/generated,
+  which are not supported on Windows.
 o DOCUMENTATION: Fixed mistake in help("captureOutput").
   Thanks to Mikko Korpela (Issue #4) for reporting on this.
 o CLEANUP: Now using requireNamespace() instead of require()
