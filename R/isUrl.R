@@ -15,7 +15,7 @@
 # }
 #
 # \value{
-#  Returns a @logical @vector.
+#  Returns a @logical @vector of either @TRUE or @FALSE.
 # }
 #
 # @author
@@ -24,12 +24,16 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isUrl", "default", function(pathname, ...) {
-  hasUrlProtocol(pathname, ...);
+  res <- hasUrlProtocol(pathname, ...)
+  res[is.na(res)] <- FALSE
+  res
 })
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
+# 2015-02-06
+# o Now isUrl(NA) returns FALSE (instead of NA).
 # 2005-07-21
 # o Created.
 ###########################################################################

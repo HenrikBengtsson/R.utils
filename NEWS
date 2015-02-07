@@ -34,6 +34,7 @@ o DOCUMENTATION: Fixed mistake in help("captureOutput").
 o CLEANUP: Now using requireNamespace() instead of require()
   internally.
 o ROBUSTNESS: Forgot to declare "default" warnings() as an S3 method.
+o BUG FIX: Now isUrl(NA) returns FALSE (instead of NA).
 o BUG FIX: seqToIntervals(integer(0)) gave error "object 'res' not found".
 o BUG FIX: attachLocally() on an environment would remove the
   attached fields/variables from that environment.
