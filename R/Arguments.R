@@ -239,16 +239,26 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(path)) {
     pathname <- file;
-    path <- dirname(pathname);
-    file <- basename(pathname);
   } else if (is.null(file)) {
     pathname <- path;
-    path <- dirname(path);
-    file <- basename(path);
   } else {
-    path <- file.path(path, dirname(file));
-    file <- basename(file);
+    pathname <- file.path(path, file);
   }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Windows: The maximum number of symbols in a Windows pathname is 256,
+  # in R it's 255. For more details, see:
+  # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (.Platform$OS.type == "windows") {
+    if (nchar(pathname) > 255L) {
+      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname), pathname);
+      warning(msg);
+    }
+  }
+
+  path <- dirname(pathname);
+  file <- basename(pathname);
   pathname <- NULL;
 
 
