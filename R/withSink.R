@@ -156,7 +156,7 @@ withSink <- function(expr, file, append=FALSE, type=c("output", "message"), envi
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Evaluate expression
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .eval2(expr, envir=envir)
+  eval(expr, envir=envir)
 } # withSink()
 
 

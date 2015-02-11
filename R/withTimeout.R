@@ -106,7 +106,7 @@ withTimeout <- function(expr, envir=parent.frame(), timeout, cpu=timeout, elapse
   });
 
   tryCatch({
-    .eval2(expr, envir=envir);
+    eval(expr, envir=envir);
   }, error = function(ex) {
     msg <- ex$message;
     # Was it a timeout?

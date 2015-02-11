@@ -82,7 +82,7 @@ withLocale <- function(expr, category, locale, ..., envir=parent.frame()) {
     warning(msg)
   }
 
-  .eval2(expr, envir=envir)
+  eval(expr, envir=envir)
 } # withLocale()
 
 

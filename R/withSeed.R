@@ -68,5 +68,5 @@ withSeed <- function(expr, seed, ..., envir=parent.frame()) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Evaluate expression
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .eval2(expr, envir=envir)
+  eval(expr, envir=envir)
 } # withSeed()

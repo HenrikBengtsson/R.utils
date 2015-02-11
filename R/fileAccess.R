@@ -62,7 +62,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
 
   # Argument 'mode':
   if (!is.element(mode, c(0, 1, 2, 4))) {
-    throw("Valud of argument 'mode' is unknown: ", mode);
+    throw("Value of argument 'mode' is unknown: ", mode);
   }
 
 
