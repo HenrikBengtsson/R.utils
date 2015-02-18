@@ -288,8 +288,6 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 
   if (absolutePath) {
     pathname <- getAbsolutePath(pathname);
-  } else {
-    pathname <- getRelativePath(pathname);
   }
 
 
@@ -334,6 +332,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
           reason <- sprintf("%s; current directory is '%s'", reason, getwd());
         }
         reason <- sprintf(" (%s)", reason);
+      mprint(getwd())
+      mprint(dir())
       throw("Pathname not found: ", pathname, reason);
     }
 
