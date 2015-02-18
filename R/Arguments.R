@@ -288,6 +288,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 
   if (absolutePath) {
     pathname <- getAbsolutePath(pathname);
+  } else {
+    pathname <- getRelativePath(pathname);
   }
 
 
