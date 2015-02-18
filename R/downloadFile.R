@@ -194,19 +194,19 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
         arg <- sprintf("--http-user=%s", username);
         args <- c(args, arg);
       }
-  
+
       if (!is.null(password)) {
         arg <- sprintf("--http-passwd=%s", password);
         args <- c(args, arg);
       }
-  
+
       # Output file
       arg <- sprintf("--output-document=\"%s\"", pathnameT);
       args <- c(args, arg);
-  
+
       # URL to download
       args <- c(args, url);
-    }  
+    }
 
     verbose && print(verbose, args);
     verbose && exit(verbose);
