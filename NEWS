@@ -3,6 +3,7 @@ Package: R.utils
 ================
 
 Version: 1.34.x [2015-02-13]
+o ROBUSTNESS: Package test coverage is 66%.
 o ROBUSTNESS: Now %<-% evaluates the expression in a local()
   environment, and it assign to environments, e.g. env$a %<-% 1.
 o SPECIAL CASE: R.utils::use() now attaches 'R.utils'.
