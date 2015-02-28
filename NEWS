@@ -2,27 +2,14 @@
 Package: R.utils
 ================
 
-Version: 1.34.x [2015-02-13]
+Version: 2.0.x [2015-02-28]
 o ROBUSTNESS: Package test coverage is 66%.
 o ROBUSTNESS: Now %<-% evaluates the expression in a local()
   environment, and it assign to environments, e.g. env$a %<-% 1.
-o SPECIAL CASE: R.utils::use() now attaches 'R.utils'.
-o use(..., quietly=FALSE) no longer captures/buffers the output,
-  which prevented it from displaying full prompt messages that
-  required a user response.  use(..., quietly=TRUE), which is the
-  default, no longer tries to ask user of Windows and OS X if they
-  wish to install from source if the binary is older.
-o Now the returned value of all withNnn() functions preserves the
-  "visibility" of the eval():uated expression.  Added package tests.
+o R.utils::use() without arguments attaches 'R.utils'.
 o Added compressFile(), decompressFile() and isCompressFile() methods,
   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
   Thanks to Peter Hickey for pushing for this.
-o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow()
-  for outputting to "console", which is neither R stdout nor stderr
-  and can therefor not be intercepted via capture.output(), sink()
-  or similar.  These functions are useful for outputting messages
-  that requires user's attention and are often followed by a prompt
-  via readline(), which also cannot be captured.
 o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
   (was "any"), where "default" corresponds to the mode of argument
   'default', unless it's NULL when mode="any" is used.
@@ -30,21 +17,32 @@ o Now commandArgs(asValues=TRUE, adhoc=TRUE) interprets 'x:=1:10'
   such that 'x' become the integer vector 1:10.  Likewise, you can
   do 'x:=seq(1,3, by=0.1)' and 'x:=pi'.  To get the string "pi",
   use quotation marks, i.e. 'x:="pi"', or just 'x=pi'.
+o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow()
+  for outputting to "console", which is neither R stdout nor stderr
+  and can therefor not be intercepted via capture.output(), sink()
+  or similar.  These functions are useful for outputting messages
+  that requires user's attention and are often followed by a prompt
+  via readline(), which also cannot be captured.
 o Added mpager() which is a "pager" function compatible with
   file.show() that will display file contents on standard error.
 o Just like for listDirectory(), argument 'recursive' of findFiles()
   can in addition to be FALSE (depth=0) and TRUE (depth=+Inf), be any
   non-negative numeric number specifying how deeply the recursive
   search should be done.
-o withCapture({}) no longer generates a warning.
 o On Windows, Arguments$getReadablePathname() now gives an informative
   warning if a pathname of length 256 or longer is used/generated,
   which are not supported on Windows.
 o DOCUMENTATION: Fixed mistake in help("captureOutput").
   Thanks to Mikko Korpela (Issue #4) for reporting on this.
-o CLEANUP: Now using requireNamespace() instead of require()
-  internally.
 o ROBUSTNESS: Forgot to declare "default" warnings() as an S3 method.
+o BUG FIX: use(..., quietly=FALSE) no longer captures/buffers the 
+  output, which prevented it from displaying full prompt messages 
+  that required a user response.  use(..., quietly=TRUE), which is 
+  the default, no longer tries to ask user of Windows and OS X if 
+  they wish to install from source if the binary is older.
+o BUG FIX: Now the returned value of all withNnn() functions preserves 
+  the "visibility" of the eval():uated expression.  Added package tests.
+o BUG FIX: withCapture({}) no longer generates a warning.
 o BUG FIX: Now isUrl(NA) returns FALSE (instead of NA).
 o BUG FIX: seqToIntervals(integer(0)) gave error "object 'res' not found".
 o BUG FIX: attachLocally() on an environment would remove the
