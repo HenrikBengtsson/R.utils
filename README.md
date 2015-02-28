@@ -1,8 +1,8 @@
-# R package: R.utils
+# R.utils: Various Programming Utilities
 
 
 ## Installation
-Package is available on [CRAN](http://cran.r-project.org/package=R.utils).  Install in R as:
+R package R.utils is available on [CRAN](http://cran.r-project.org/package=R.utils) and can be installed in R as:
 ```r
 install.packages('R.utils')
 ```
