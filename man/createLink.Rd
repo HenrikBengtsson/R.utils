@@ -45,6 +45,7 @@
 
 \value{
   Returns (invisibly) the path or pathname to the link.
+  If no link was created, \code{\link[base]{NULL}} is returned.
 }
 
 \section{Required privileges on Windows}{

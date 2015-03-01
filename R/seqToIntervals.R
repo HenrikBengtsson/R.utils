@@ -4,14 +4,18 @@
 # @title "Gets all contigous intervals of a vector of indices"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
 #
 # \arguments{
-#   \item{idx}{A @vector of @integer indices.}
+#   \item{idx}{A @vector of N @integer indices.}
 #   \item{...}{Not used.}
+# }
+#
+# \value{
+#   An Nx2 @integer @matrix.
 # }
 #
 # @author
@@ -25,16 +29,19 @@
 # }
 #
 # @keyword "attribute"
-#*/#########################################################################t 
+#*/#########################################################################t
 setMethodS3("seqToIntervals", "default", function(idx, ...) {
   # Clean up sequence
   idx <- as.integer(idx);
   idx <- unique(idx);
   idx <- sort(idx);
-  
+
   n <- length(idx);
-  if (n == 0)
+  if (n == 0L) {
+    res <- matrix(NA_integer_, nrow=0L, ncol=2L);
+    colnames(res) <- c("from", "to");
     return(res);
+  }
 
 
   # Identify end points of intervals
@@ -44,7 +51,7 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
   nbrOfIntervals <- length(d) + 1;
 
   # Allocate return matrix
-  res <- matrix(as.integer(NA), nrow=nbrOfIntervals, ncol=2);
+  res <- matrix(NA_integer_, nrow=nbrOfIntervals, ncol=2L);
   colnames(res) <- c("from", "to");
 
   fromValue <- idx[1];
@@ -74,14 +81,14 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2010-02-22
 # o Added Rdoc "see also" references.
 # 2008-06-21
 # o Major speed up of seqToIntervals().  The previous implementation was
 #   building up the result iteratively where in each iteration a new
 #   interval was concatenated to the already found ones using c().  This
-#   was a brain-dead implementation to get something working.  The new 
+#   was a brain-dead implementation to get something working.  The new
 #   one preallocates the result matrix, which is heaps faster.
 # 2005-11-01
 # o Created from seqToHumanReadable().

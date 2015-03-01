@@ -169,6 +169,16 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
 #   then (character) @NA is returned, otherwise an exception is thrown.
 # }
 #
+# \section{Windows}{
+#  If a too long pathname is detected on Windows, an informative warning
+#  is given.
+#  The maximum number of symbols in a Windows pathname is 256, including
+#  file separators '/' or '\', but excluding the drive letter, and initial
+#  file separator (e.g. 'C:/'), and the string terminator ('\\0'), cf.
+#  'MSDN - Naming a File or Directory', Microsoft. In R, the limit is
+#  one symbol less, i.e. 255.
+# }
+#
 # @author
 #
 # \seealso{
@@ -232,8 +242,21 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   } else if (is.null(file)) {
     pathname <- path;
   } else {
-    pathname <-  file.path(path, file);
+    pathname <- file.path(path, file);
   }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Windows: The maximum number of symbols in a Windows pathname is 256,
+  # in R it's 255. For more details, see:
+  # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (.Platform$OS.type == "windows") {
+    if (nchar(pathname) > 255L) {
+      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname), pathname);
+      warning(msg);
+    }
+  }
+
   path <- dirname(pathname);
   file <- basename(pathname);
   pathname <- NULL;
@@ -267,6 +290,20 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     pathname <- getAbsolutePath(pathname);
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Windows: The maximum number of symbols in a Windows pathname is 256,
+  # in R it's 255. For more details, see:
+  # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (.Platform$OS.type == "windows") {
+    if (nchar(pathname) > 255L) {
+      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname), pathname);
+      warning(msg);
+    }
+  }
+
+
   if (mustExist) {
     # Check if file exists
     if (!file.exists(pathname)) {
@@ -295,6 +332,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
           reason <- sprintf("%s; current directory is '%s'", reason, getwd());
         }
         reason <- sprintf(" (%s)", reason);
+      mprint(getwd())
+      mprint(dir())
       throw("Pathname not found: ", pathname, reason);
     }
 
@@ -1360,6 +1399,8 @@ withoutGString <- function(..., envir=parent.frame()) {
 
 ############################################################################
 # HISTORY:
+# 2015-02-05
+# o Now getReadablePathname() warns about too long pathnames on Windows.
 # 2014-10-03
 # o Now Arguments$getReadablePathname(file, path) ignores 'path' if
 #   'file' specifies an absolute pathname.

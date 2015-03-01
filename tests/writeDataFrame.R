@@ -10,9 +10,11 @@ data <- data.frame(
   y = rnorm(n)
 )
 
-# Write to tab-delimited file
+# Write to tab-delimited file (using a connection)
 pathname <- tempfile(fileext=".tsv")
-writeDataFrame(data, file=pathname)
+con <- file(pathname, open="w")
+writeDataFrame(data, file=con, createdBy="R.utils")
+close(con)
 
 # Append another set of rows
 writeDataFrame(data, file=pathname, append=TRUE)
@@ -20,3 +22,7 @@ writeDataFrame(data, file=pathname, append=TRUE)
 # There should only be one header and one set of column names
 print(readLines(pathname))
 
+# Overwrite using a connection
+con <- file(pathname, open="w")
+writeDataFrame(data, file=con, overwrite=TRUE)
+close(con)

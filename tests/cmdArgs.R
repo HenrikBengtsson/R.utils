@@ -32,3 +32,17 @@ args0 <- list(K=50)
 args <- cmdArgs(args=args0, .args=argsC)
 str(args)
 stopifnot(all.equal(args, args0))
+
+
+args <- cmdArgs(args=list())
+str(args)
+
+args <- cmdArgs(args="*")
+str(args)
+
+args <- cmdArgs(args=list("*", "*"))
+str(args)
+
+args <- cmdArgs(args=list("*", a=3L, "*"))
+str(args)
+

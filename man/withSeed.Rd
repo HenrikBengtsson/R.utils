@@ -17,12 +17,12 @@
 }
 
 \usage{
-withSeed(expr, ..., envir=parent.frame())
+withSeed(expr, seed, ..., envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
-  \item{...}{Additional arguments passed to \code{\link[base]{set.seed}}().}
+  \item{seed, ...}{Arguments passed to \code{\link[base]{set.seed}}().}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 

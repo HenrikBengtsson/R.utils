@@ -14,24 +14,24 @@
 #  translated into non-eight bits data, e.g. 16- and 24-bits, which the
 #  readChar() method currently does not support.\cr
 #
-#  Furthermore, the Java class defines some static constants describing the 
+#  Furthermore, the Java class defines some static constants describing the
 #  minimum and maximum value of some of the common Java data types:
-#    \code{BYTE.MIN}, \code{BYTE.MAX} 
+#    \code{BYTE.MIN}, \code{BYTE.MAX}
 #    \code{SHORT.MIN}, \code{SHORT.MAX}
-#    \code{INT.MIN}, \code{INT.MAX}  
+#    \code{INT.MIN}, \code{INT.MAX}
 #    \code{LONG.MIN}, and \code{LONG.MAX}.
 # }
 #
 # @synopsis
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # @examples "../incl/Java.Rex"
 #
 # @author
-#*/########################################################################### 
+#*/###########################################################################
 setConstructorS3("Java", function() {
   extend(Object(), "Java",
     BYTE.MIN  = -128,                  # -2^7
@@ -131,7 +131,7 @@ setMethodS3("writeShort", "Java", function(static, con, s, ...) {
 #   Writes one or several integer's (32 bits) to a connection in Java
 #   format so they will be readable by Java.
 #   All data types in Java are signed, i.e. a byte can hold a value in
-#   the range [-2147483648,2147483647]. Trying to write a value outside 
+#   the range [-2147483648,2147483647]. Trying to write a value outside
 #   this range will automatically be truncated without a warning.
 # }
 #
@@ -300,8 +300,8 @@ setMethodS3("readShort", "Java", function(static, con, n=1, ...) {
 # }
 #
 # \value{
-#   Returns a @vector of @doubles. Note that R @integers gives 
-#   NA is as.integer(-2147483648), which is the smallest Java int 
+#   Returns a @vector of @doubles. Note that R @integers gives
+#   NA is as.integer(-2147483648), which is the smallest Java int
 #   available.
 # }
 #
@@ -367,11 +367,14 @@ setMethodS3("readInt", "Java", function(static, con, n=1, ...) {
 #*/#########################################################################
 setMethodS3("readUTF", "Java", function(static, con, as.character=TRUE, ...) {
    # BUG:
-   nbrOfBytes <- readShort(static, con);
+   nbrOfBytes <- readShort(static, con)
+   # Nothing to read?
    if (as.character) {
+     if (length(nbrOfBytes) == 0L) return(character(0L))
      readChar(con=con, nchars=nbrOfBytes);
    } else {
-     readBin(con=con, what=integer(), size=1, n=nbrOfBytes);
+     if (length(nbrOfBytes) == 0L) return(integer(0L))
+     readBin(con=con, what=integer(), size=1, n=nbrOfBytes)
    }
 }, static=TRUE)
 
@@ -529,8 +532,10 @@ setMethodS3("asLong", "Java", function(static, x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-13
+# o ROBUSTNESS: Now readUTF() returns an empty vector if stream is empty.
 # 2005-02-15
-# o Added arguments '...' in order to match any generic functions. 
+# o Added arguments '...' in order to match any generic functions.
 # 2005-02-10
 # o Wrote remaining Rdoc comments for the asNNN() methods.
 # 2003-04-16
@@ -539,10 +544,10 @@ setMethodS3("asLong", "Java", function(static, x, ...) {
 # o Added static constants for minimum and maximum values of some of the
 #   Java data types, e.g. LONG.MIN and SHORT.MAX.
 # o Added executable example code for the Java class. This was mainly
-#   to have a some test code that would make sure that bugs are not 
+#   to have a some test code that would make sure that bugs are not
 #   introduced with new version.
 # o BUG FIX: readShort() of the Java class did not return integers (as it
-#   could), i.e. is.integer() would return FALSE. Also, readShort() 
+#   could), i.e. is.integer() would return FALSE. Also, readShort()
 #   returned 32768 when it read -32768. readInt() did inherit an analogue
 #   problem for the smallest possible integer.
 # o BUG FIX: Java$writeUTF() and Java$readUTF() was broken because I forgot

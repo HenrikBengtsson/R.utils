@@ -18,6 +18,9 @@ for (n in c(10e3, 40e3, 80e3)) {
   print(t1)
   print(t1/t0)
 
+  bfr2n <- captureOutput(print(x), collapse="\n")
+  bfr2r <- captureOutput(print(x), collapse="\r")
+#  stopifnot(nchar(bfr2n) == nchar(bfr2r))
+
   stopifnot(identical(bfr, bfr0))
 } # for (n ...)
-

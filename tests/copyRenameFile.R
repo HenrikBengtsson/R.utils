@@ -5,15 +5,18 @@ cat("Hello", file="hello.txt")
 stopifnot(isFile("hello.txt"))
 
 # Copy file
-copyFile("hello.txt", "hello2.txt")
+copyFile("hello.txt", "hello2.txt", verbose=TRUE)
 stopifnot(isFile("hello2.txt"))
+
+# Copy file
+stopifnot(all(isFile(c("hello.txt", "hello2.txt"))))
 
 # Copy file by overwriting existing file
 copyFile("hello.txt", "hello2.txt", overwrite=TRUE)
 stopifnot(isFile("hello2.txt"))
 
 # Rename file
-renameFile("hello2.txt", "hello3.txt")
+renameFile("hello2.txt", "hello3.txt", verbose=TRUE)
 stopifnot(!isFile("hello2.txt"))
 stopifnot(isFile("hello3.txt"))
 

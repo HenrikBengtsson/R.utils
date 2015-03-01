@@ -46,6 +46,13 @@ withSink <- function(expr, file, append=FALSE, type=c("output", "message"), envi
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument '.expr':
+  expr <- substitute(expr)
+
+  # Argument 'envir':
+  if (!is.environment(envir))
+    throw("Argument 'envir' is not a list: ", class(envir)[1L])
+
   # Argument 'append':
   append <- as.logical(append)
 
@@ -99,7 +106,7 @@ withSink <- function(expr, file, append=FALSE, type=c("output", "message"), envi
   # Upon exit, close the requested sink and all other added sinks
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   on.exit({
-    # Close alled opened sinks, including those opened while
+    # Close all opened sinks, including those opened while
     # evaluating 'expr'.
     maxTries <- 10L
     for (tt in c("message", "output")) {

@@ -152,7 +152,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   #
   #   Offset Size/Type Contents
   #   -------------------------
-  #     0h  1 dword  Always 0000004Ch ‘L’
+  #     0h  1 dword  Always 0000004Ch 'L'
   #     4h 16 bytes  GUID of shortcut files
   #    14h  1 dword  Flags
   #    18h  1 dword  File attributes

@@ -17,6 +17,7 @@
  Assignment operator for delayed assignments such that the expression on the right-hand side (RHS)
  will not be evaluated until the value of the assigned variable
  (on left-hand side (LHS)) is evaluated.
+ The RHS expression will be evaluted in a \code{\link[base]{local}}().
 }
 
 \usage{

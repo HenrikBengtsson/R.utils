@@ -47,6 +47,16 @@
   then (character) \code{\link[base]{NA}} is returned, otherwise an exception is thrown.
 }
 
+\section{Windows}{
+ If a too long pathname is detected on Windows, an informative warning
+ is given.
+ The maximum number of symbols in a Windows pathname is 256, including
+ file separators '/' or '\', but excluding the drive letter, and initial
+ file separator (e.g. 'C:/'), and the string terminator ('\\0'), cf.
+ 'MSDN - Naming a File or Directory', Microsoft. In R, the limit is
+ one symbol less, i.e. 255.
+}
+
 \author{Henrik Bengtsson}
 
 \seealso{

@@ -15,7 +15,7 @@
 #   \item{colClass}{A single @character specifying the class of the
 #     index column.}
 #   \item{...}{Arguments passed to @see "readTable" used internally.}
-#   \item{verbose}{A @logical or a @see "Verbose" object.} 
+#   \item{verbose}{A @logical or a @see "Verbose" object.}
 # }
 #
 # \value{
@@ -37,13 +37,13 @@
 # }}
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "readTable".
 # }
 #
 # @keyword IO
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("readTableIndex", "default", function(..., indexColumn=1, colClass="character", verbose=FALSE) {
   # Argument 'indexColumn':
   if (is.numeric(indexColumn)) {
@@ -69,5 +69,4 @@ setMethodS3("readTableIndex", "default", function(..., indexColumn=1, colClass="
 # o BUG FIX: Method was declared static.
 # 2005-11-01
 # o Created.
-############################################################################  
- 
+############################################################################

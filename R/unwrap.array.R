@@ -55,6 +55,8 @@ setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), dro
   # Argument 'x':
   if (!is.array(x) && !is.matrix(x))
     throw("Argument 'x' is not an array or a matrix: ", class(x)[1]);
+  dim <- dim(x);
+  ndims <- length(dim);
 
   # Argument 'split':
   if (is.character(split)) {
@@ -67,9 +69,12 @@ setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), dro
       function(names, ...) strsplit(names, split=s, ...);
     })
   } else if (is.list(split)) {
+    if (length(split) != ndims) {
+      throw("Length of argument 'split' (a list) does not match the number of dimensions of argument 'x': ", length(split), " != ", ndims);
+    }
     for (fcn in split) {
       if (!is.function(fcn) && !is.null(fcn))
-        throw("Argument 'x' is a list, but does not contain functions.");
+        throw("Argument 'split' is a list, but does not contain functions.");
     }
   } else {
     throw("Argument 'split' is not an array: ", class(split)[1]);
@@ -79,9 +84,6 @@ setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), dro
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the new dimension names
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Extract information
-  dim <- dim(x);
-  ndims <- length(dim);
   dimnames <- dimnames(x);
 
   dimnames2 <- list();
@@ -143,7 +145,18 @@ setMethodS3("unwrap", "matrix", function(x, ...) {
 })
 
 setMethodS3("unwrap", "data.frame", function(x, ...) {
-  unwrap(as.matrix(x), ...);
+  ncol <- ncol(x)
+  x <- as.matrix(x)
+
+  # Special case
+  if (ncol == 1L) {
+    names <- rownames(x)
+    x <- x[,1L]
+    dim(x) <- length(x)
+    dimnames(x) <- list(names)
+  }
+
+  unwrap(x, ...)
 })
 
 setMethodS3("unwrap", "default", function(x, ...) {

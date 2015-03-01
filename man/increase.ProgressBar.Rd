@@ -6,35 +6,35 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{increase.ProgressBar}
+\name{increase.ProgressBar}
 \alias{increase.ProgressBar}
 \alias{ProgressBar.increase}
 \alias{increase,ProgressBar-method}
 
- \title{Increases (steps) progress bar}
+\title{Increases (steps) progress bar}
 
- \description{
-   Increases (steps) progress bar.
- }
+\description{
+  Increases (steps) progress bar.
+}
 
- \usage{
+\usage{
 \method{increase}{ProgressBar}(this, stepLength=this$stepLength, visual=TRUE, ...)
 }
 
- \arguments{
-  \item{stepLength}{Positive or negative step length.}
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{stepLength}{Positive or negative step length.}
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns new value.
- }
+\value{
+  Returns new value.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.
-   For more information see \code{\link{ProgressBar}}.
- }
+\seealso{
+  \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.
+  For more information see \code{\link{ProgressBar}}.
+}
 \keyword{internal}
 \keyword{methods}

@@ -27,9 +27,9 @@ captureOutput(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()
      and returned as a \code{\link[base]{character}} \code{\link[base]{vector}}.}
   \item{append}{If \code{\link[base:logical]{TRUE}}, the output is appended to the file or
      the (unopened) connection, otherwise it overwrites.}
-  \item{collapse}{If \code{\link[base:logical]{TRUE}}, then argument \code{expr} is not parsed
-     (via \code{\link[base]{substitute}}()), otherwise it is.}
-  \item{envir}{The \code{\link[base]{environment}} in which the expression js evaluated.}
+  \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
+     rows. If \code{\link[base]{NULL}}, the rows are not collapsed.}
+  \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 
 \value{
@@ -37,7 +37,7 @@ captureOutput(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()
 }
 
 \details{
- This methods immitates \code{\link[utils]{capture.output}} with the major
+ This method immitates \code{\link[utils]{capture.output}} with the major
  difference that it captures strings via a \code{\link[base]{raw}} connection rather
  than via internal strings.  The latter becomes exponentially slow
  for large outputs [1].

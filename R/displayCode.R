@@ -177,7 +177,10 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
           code[kk] <- substring(code[kk], wrap+1)
           wrapAt <- wrapAt[-1];
         }
-        indent <- c(prefix[kk], rep(emptyPrefix, length=length(line)-1));
+        indent <- prefix[kk];
+        if (length(emptyPrefix) > 0L) {
+          indent <- c(indent, rep(emptyPrefix, length=length(line)-1));
+        }
         line <- paste(indent, line, sep="");
       }
       code2 <- c(code2, line);
@@ -200,6 +203,8 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 
 ############################################################################
 # HISTORY:
+# 2015-01-12
+# o displayCode() would generate warnings.
 # 2013-02-14
 # o BUG FIX: displayCode(code) would GString process 'code'.
 # 2005-10-21

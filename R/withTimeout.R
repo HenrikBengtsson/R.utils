@@ -11,7 +11,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{...}{The R expression to be evaluated.}
+#   \item{expr}{The R expression to be evaluated.}
 #   \item{envir}{The @environment in which the expression should
 #     be evaluated.}
 #   \item{timeout, cpu, elapsed}{A @numeric specifying the maximum number
@@ -21,6 +21,7 @@
 #     in CPU time or in wall time.}
 #   \item{onTimeout}{A @character specifying what action to take if
 #     a timeout event occurs.}
+#   \item{...}{Not used.}
 # }
 #
 # \value{
@@ -77,10 +78,17 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent")) {
+withTimeout <- function(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'expr':
+  expr <- substitute(expr)
+
+  # Argument 'envir':
+  if (!is.environment(envir))
+    throw("Argument 'envir' is not a list: ", class(envir)[1L])
+
   # Argument 'cpu' and 'elapsed':
   cpu <- Arguments$getNumeric(cpu, range=c(0,Inf));
   elapsed <- Arguments$getNumeric(elapsed, range=c(0,Inf));
@@ -98,7 +106,7 @@ withTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed
   });
 
   tryCatch({
-    res <- eval(..., envir=envir);
+    eval(expr, envir=envir);
   }, error = function(ex) {
     msg <- ex$message;
     # Was it a timeout?
@@ -116,8 +124,6 @@ withTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed
       throw(ex);
     }
   })
-
-  res;
 } # withTimeout()
 
 # BACKWARD COMPATIBILITY

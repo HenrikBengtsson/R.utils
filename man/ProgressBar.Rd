@@ -6,15 +6,15 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{ProgressBar}
+\name{ProgressBar}
 \docType{class}
 \alias{ProgressBar}
 
 
- \title{Provides text based counting progress bar}
+\title{Provides text based counting progress bar}
 
- \description{
-  Package:  R.utils \cr
+\description{
+ Package:  R.utils \cr
 \bold{Class ProgressBar}\cr
 
 \code{\link[R.oo]{Object}}\cr
@@ -28,22 +28,22 @@ public static class \bold{ProgressBar}\cr
 extends \link[R.oo]{Object}\cr
 
 
- }
+}
 
- \usage{
+\usage{
 ProgressBar(max=100, ticks=10, stepLength=1, newlineWhenDone=TRUE)
 }
 
- \arguments{
-   \item{max}{The maximum number of steps.}
-   \item{ticks}{Put visual "ticks" every \code{ticks} step.}
-   \item{stepLength}{The default length for each increase.}
-   \item{newlineWhenDone}{If \code{\link[base:logical]{TRUE}}, a newline is outputted when bar is
-         updated, when done, otherwise not.}
- }
+\arguments{
+  \item{max}{The maximum number of steps.}
+  \item{ticks}{Put visual "ticks" every \code{ticks} step.}
+  \item{stepLength}{The default length for each increase.}
+  \item{newlineWhenDone}{If \code{\link[base:logical]{TRUE}}, a newline is outputted when bar is
+        updated, when done, otherwise not.}
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.utils:as.character.ProgressBar]{as.character}} \tab Gets a string description of the progress bar.\cr
  \tab \code{\link[R.utils:getBarString.ProgressBar]{getBarString}} \tab Gets the progress bar string to be displayed.\cr
@@ -63,9 +63,9 @@ ProgressBar(max=100, ticks=10, stepLength=1, newlineWhenDone=TRUE)
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
 
 
- }
+}
 
- \examples{
+\examples{
 # A progress bar with default step length one.
 pb <- ProgressBar(max=42)
 reset(pb)
@@ -91,5 +91,5 @@ cat("\n")
 
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 \keyword{classes}

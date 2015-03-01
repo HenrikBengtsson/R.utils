@@ -1,4 +1,5 @@
 library("R.utils")
+show <- methods::show
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # General tests
@@ -71,3 +72,16 @@ mbar(a)
 mbar(3)
 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Assert that "console" messages can be captured/sunk
+# via stderr but not stdout
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- captureOutput({ mcat("Hello") })
+str(res)
+stopifnot(length(res) == 0L)
+
+withSink({ mcat("Hello") }, file="foo.txt", type="message")
+res <- readLines("foo.txt")
+str(res)
+stopifnot(length(res) > 0L)

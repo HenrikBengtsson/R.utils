@@ -6,21 +6,21 @@
 # \description{
 #  @classhierarchy
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
 #   \item{max}{The maximum number of steps.}
 #   \item{ticks}{Put visual "ticks" every \code{ticks} step.}
 #   \item{stepLength}{The default length for each increase.}
-#   \item{newlineWhenDone}{If @TRUE, a newline is outputted when bar is 
+#   \item{newlineWhenDone}{If @TRUE, a newline is outputted when bar is
 #         updated, when done, otherwise not.}
 # }
 #
 # \section{Fields and Methods}{
 #  @allmethods
 # }
-# 
+#
 # @examples "../incl/ProgressBar.Rex"
 #
 # @author
@@ -30,7 +30,7 @@ setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlin
     ticks <- seq(from=0, to=max, by=10);
   if (stepLength <= 0)
     stop("Argument 'stepLength' is non-positive: ", stepLength);
-  extend(Object(), "ProgressBar", 
+  extend(Object(), "ProgressBar",
     value=0,
     max=max,
     stepLength=stepLength,
@@ -46,7 +46,7 @@ setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlin
 # @RdocMethod as.character
 #
 # @title "Gets a string description of the progress bar"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -66,7 +66,7 @@ setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlin
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("as.character", "ProgressBar", function(x, ...) {
   # To please R CMD check
   this <- x;
@@ -82,7 +82,7 @@ setMethodS3("as.character", "ProgressBar", function(x, ...) {
 # @RdocMethod getBarString
 #
 # @title "Gets the progress bar string to be displayed"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -102,7 +102,7 @@ setMethodS3("as.character", "ProgressBar", function(x, ...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("getBarString", "ProgressBar", function(this, ...) {
   count <- round(this$value);
   bfr <- rep(".", length=count+1);
@@ -128,7 +128,7 @@ setMethodS3("getBarString", "ProgressBar", function(this, ...) {
 # @RdocMethod isDone
 #
 # @title "Checks if progress bar is completed"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -148,7 +148,7 @@ setMethodS3("getBarString", "ProgressBar", function(this, ...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("isDone", "ProgressBar", function(this, ...) {
   (this$value >= this$max);
 })
@@ -158,7 +158,7 @@ setMethodS3("isDone", "ProgressBar", function(this, ...) {
 # @RdocMethod setStepLength
 #
 # @title "Sets default step length"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -179,7 +179,7 @@ setMethodS3("isDone", "ProgressBar", function(this, ...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("setStepLength", "ProgressBar", function(this, stepLength, ...) {
   if (stepLength <= 0)
     stop("Argument 'stepLength' is non-positive: ", stepLength);
@@ -193,7 +193,7 @@ setMethodS3("setStepLength", "ProgressBar", function(this, stepLength, ...) {
 # @RdocMethod setMaxValue
 #
 # @title "Sets maximum value"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -214,7 +214,7 @@ setMethodS3("setStepLength", "ProgressBar", function(this, stepLength, ...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("setMaxValue", "ProgressBar", function(this, maxValue, ...) {
   this$max <- maxValue;
 })
@@ -224,7 +224,7 @@ setMethodS3("setMaxValue", "ProgressBar", function(this, maxValue, ...) {
 # @RdocMethod setTicks
 #
 # @title "Sets values for which ticks should be visible"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -245,10 +245,11 @@ setMethodS3("setMaxValue", "ProgressBar", function(this, maxValue, ...) {
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("setTicks", "ProgressBar", function(this, ticks=10, ...) {
-  if (length(ticks) == 1)
-    ticks <- seq(from=0, to=max, by=10);
+  if (length(ticks) == 1) {
+    ticks <- seq(from=0, to=this$max, by=ticks);
+  }
   oldTicks <- this$ticks;
   this$ticks <- ticks;
   invisible(oldTicks);
@@ -259,7 +260,7 @@ setMethodS3("setTicks", "ProgressBar", function(this, ticks=10, ...) {
 # @RdocMethod setValue
 #
 # @title "Sets current value"
-# 
+#
 # \description{
 #   @get "title".
 #   Note that this method does \emph{not} update the bar visually.
@@ -284,7 +285,7 @@ setMethodS3("setTicks", "ProgressBar", function(this, ticks=10, ...) {
 #   @seemethod "reset".
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("setValue", "ProgressBar", function(this, value, ...) {
   if (value < 0)
     stop("Value out of range [0,", this$max, "]: ", value);
@@ -301,7 +302,7 @@ setMethodS3("setValue", "ProgressBar", function(this, value, ...) {
 # @RdocMethod setProgress
 #
 # @title "Sets current progress"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -326,7 +327,7 @@ setMethodS3("setValue", "ProgressBar", function(this, value, ...) {
 #   @seemethod "reset".
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("setProgress", "ProgressBar", function(this, progress, visual=TRUE, ...) {
   if (length(progress) != 1)
     throw("Argument 'progress' must be a single value.");
@@ -344,7 +345,7 @@ setMethodS3("setProgress", "ProgressBar", function(this, progress, visual=TRUE, 
 # @RdocMethod reset
 #
 # @title "Reset progress bar"
-# 
+#
 # \description{
 #   @get "title" by setting the value to zero and updating the display.
 # }
@@ -366,7 +367,7 @@ setMethodS3("setProgress", "ProgressBar", function(this, progress, visual=TRUE, 
 #   @seemethod "setValue".
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("reset", "ProgressBar", function(this, visual=TRUE, ...) {
   this$value <- 0;
   this$.lastBarString <- "";
@@ -379,7 +380,7 @@ setMethodS3("reset", "ProgressBar", function(this, visual=TRUE, ...) {
 # @RdocMethod increase
 #
 # @title "Increases (steps) progress bar"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -401,7 +402,7 @@ setMethodS3("reset", "ProgressBar", function(this, visual=TRUE, ...) {
 #   @seemethod "setValue".
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("increase", "ProgressBar", function(this, stepLength=this$stepLength, visual=TRUE, ...) {
   value <- this$value + stepLength;
   if (!this$.allowCarryOver && value >= this$max) {
@@ -418,7 +419,7 @@ setMethodS3("increase", "ProgressBar", function(this, stepLength=this$stepLength
 # @RdocMethod update
 #
 # @title "Updates progress bar"
-# 
+#
 # \description{
 #   @get "title".
 # }
@@ -439,7 +440,7 @@ setMethodS3("increase", "ProgressBar", function(this, stepLength=this$stepLength
 # \seealso{
 #   @seeclass
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("update", "ProgressBar", function(object, visual=TRUE, ...) {
   # To please R CMD check...
   this <- object;
@@ -461,7 +462,7 @@ setMethodS3("update", "ProgressBar", function(object, visual=TRUE, ...) {
 # 2005-06-16
 # o Now setProgress() also updates the bar visually.
 # 2005-03-01
-# o Added argument 'newlineWhenDone==TRUE'. 
+# o Added argument 'newlineWhenDone==TRUE'.
 # o Added setProgress().
 # 2004-10-22
 # o Made update() protected.

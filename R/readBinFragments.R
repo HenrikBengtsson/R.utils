@@ -58,7 +58,15 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c(
     });
   } else if (inherits(con, "connection")) {
     if (!isSeekable(con)) {
-      throw("Argument 'con' is a non-seekable connection.");
+      t <- summary(con)
+      t <- paste(sprintf("%s: %s", names(t), t), collapse=", ")
+      msg <- sprintf("Argument 'con' is not a seekable connection: %s", t)
+      action <- getOption("R.utils::onNonSeekable", "error")
+      if (action == "warning") {
+        warning(msg)
+      } else {
+        throw(msg)
+      }
     }
   }
 

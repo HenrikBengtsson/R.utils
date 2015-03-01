@@ -6,38 +6,38 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{setProgress.ProgressBar}
+\name{setProgress.ProgressBar}
 \alias{setProgress.ProgressBar}
 \alias{ProgressBar.setProgress}
 \alias{setProgress,ProgressBar-method}
 
- \title{Sets current progress}
+\title{Sets current progress}
 
- \description{
-   Sets current progress.
- }
+\description{
+  Sets current progress.
+}
 
- \usage{
+\usage{
 \method{setProgress}{ProgressBar}(this, progress, visual=TRUE, ...)
 }
 
- \arguments{
-  \item{progress}{A \code{\link[base]{double}} in [0,1] specifying the relative progress.}
-  \item{visual}{If \code{\link[base:logical]{TRUE}}, the progress bar is redraw, otherwise not.}
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{progress}{A \code{\link[base]{double}} in [0,1] specifying the relative progress.}
+ \item{visual}{If \code{\link[base:logical]{TRUE}}, the progress bar is redraw, otherwise not.}
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns old value.
- }
+\value{
+  Returns old value.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.
-   \code{\link[R.utils:increase.ProgressBar]{*increase}()}.
-   \code{\link[R.utils:reset.ProgressBar]{*reset}()}.
-   For more information see \code{\link{ProgressBar}}.
- }
+\seealso{
+  \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.
+  \code{\link[R.utils:increase.ProgressBar]{*increase}()}.
+  \code{\link[R.utils:reset.ProgressBar]{*reset}()}.
+  For more information see \code{\link{ProgressBar}}.
+}
 \keyword{internal}
 \keyword{methods}

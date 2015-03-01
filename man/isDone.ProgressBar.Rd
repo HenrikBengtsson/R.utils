@@ -6,33 +6,33 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{isDone.ProgressBar}
+\name{isDone.ProgressBar}
 \alias{isDone.ProgressBar}
 \alias{ProgressBar.isDone}
 \alias{isDone,ProgressBar-method}
 
- \title{Checks if progress bar is completed}
+\title{Checks if progress bar is completed}
 
- \description{
-   Checks if progress bar is completed.
- }
+\description{
+  Checks if progress bar is completed.
+}
 
- \usage{
+\usage{
 \method{isDone}{ProgressBar}(this, ...)
 }
 
- \arguments{
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns \code{\link[base:logical]{TRUE}} or \code{\link[base:logical]{FALSE}}.
- }
+\value{
+  Returns \code{\link[base:logical]{TRUE}} or \code{\link[base:logical]{FALSE}}.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{ProgressBar}}.
- }
+\seealso{
+  For more information see \code{\link{ProgressBar}}.
+}
 \keyword{internal}
 \keyword{methods}

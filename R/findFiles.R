@@ -12,8 +12,10 @@
 # \arguments{
 #  \item{pattern}{A regular expression file name pattern to match.}
 #  \item{paths}{A @character @vector of paths to be searched.}
-#  \item{recursive}{If @TRUE, the directory structure is searched
-#    breath-first, in lexicographic order.}
+#   \item{recursive}{If @TRUE, subdirectories are recursively processed,
+#    and not if @FALSE.  Alternatively, the maximum recursive depth can
+#    be specified as a non-negative @numeric, where @FALSE corresponds to
+#    \code{0L} depth and @TRUE corresponds \code{+Inf} depth.}
 #  \item{firstOnly}{If @TRUE, the method returns as soon as a matching
 #    file is found, otherwise not.}
 #  \item{allFiles}{If @FALSE, files and directories starting with
@@ -29,6 +31,11 @@
 #   The \code{paths} argument may also contain paths specified as
 #   semi-colon (\code{";"}) separated paths, e.g.
 #   \code{"/usr/;usr/bin/;.;"}.
+# }
+#
+# \section{Recursive searching}{
+#   Recursive searching of directory structure is done breath-first
+#   in a lexicographic order.
 # }
 #
 # \section{Windows Shortcut links}{
@@ -75,7 +82,8 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
   }
 
   # Argument 'recursive':
-  recursive <- as.logical(recursive);
+  depth <- Arguments$getNumeric(recursive, range=c(0,+Inf));
+  if (is.logical(recursive) && recursive) depth <- +Inf; ## TRUE => +Inf
 
   # Argument 'firstOnly':
   firstOnly <- as.logical(firstOnly);
@@ -202,7 +210,7 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
       }
 
       for (dir in sort(dirs)) {
-        files <- findFiles(pattern=pattern, paths=dir, recursive=recursive,
+        files <- findFiles(pattern=pattern, paths=dir, recursive=depth-1,
                                                  firstOnly=firstOnly, ...);
         if (length(files) > 0 && firstOnly) {
           return(files[1]);
@@ -219,6 +227,9 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
 
 ############################################################################
 # HISTORY:
+# 2015-02-04 [HB]
+# o Now argument 'recursive' of findFiles() can also specify
+#   the maximum recursive depth, cf. listDirectory().
 # 2012-04-16 [HB]
 # o Turned findFiles() into a "default" method.
 # o Now code assumes availability of needed R.utils methods.

@@ -44,46 +44,59 @@
 #*/#########################################################################
 setMethodS3("attachLocally", "list", function(object, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...) {
   if (is.null(fields)) {
-    fields <- names(object);
+    fields <- names(object)
     # Don't try to attach non-named elements
-    fields <- setdiff(fields, "");
+    fields <- setdiff(fields, "")
   }
 
   # Note: we cannot do 'fields <- setdiff(fields, excludeFields)', because
   # that will also remove duplicates!
-  attachedFields <- character(0L);
+  attachedFields <- character(0L)
   for (field in fields) {
     if (field %in% excludeFields)
-      next;
+      next
     if (overwrite || !exists(field, envir=envir, inherits=FALSE)) {
-      assign(field, object[[field]], envir=envir);
-      # Remove field; this way a 2nd field of the same name can
+      assign(field, object[[field]], envir=envir)
+      # Remove field this way a 2nd field of the same name can
       # be attached (and overwrite the first one)
-      object[[field]] <- NULL;
-      attachedFields <- c(attachedFields, field);
+      object[[field]] <- NULL
+      attachedFields <- c(attachedFields, field)
     }
   }
 
-  invisible(attachedFields);
+  invisible(attachedFields)
+})
+
+
+setMethodS3("attachLocally", "environment", function(object, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...) {
+  if (is.null(fields)) {
+    fields <- ls(envir=object)
+  }
+
+  fields <- setdiff(fields, excludeFields)
+
+  attachedFields <- character(0L)
+  for (field in fields) {
+    if (overwrite || !exists(field, envir=envir, inherits=FALSE)) {
+      assign(field, object[[field]], envir=envir)
+      attachedFields <- c(attachedFields, field)
+    }
+  }
+
+  invisible(attachedFields)
 })
 
 
 setMethodS3("attachLocally", "data.frame", function(..., envir=parent.frame()) {
-  attachLocally.list(..., envir=envir);
+  attachLocally.list(..., envir=envir)
 })
-
-
-setMethodS3("attachLocally", "environment", function(object, fields=NULL, ..., envir=parent.frame()) {
-  if (is.null(fields))
-    fields <- ls(envir=object);
-
-  attachLocally.list(object, fields=fields, ..., envir=envir);
-})
-
 
 
 ############################################################################
 # HISTORY:
+# 2015-01-12
+# o BUG FIX: attachLocally() on an environment would remove the attached
+#   fields/variables from that environment.
 # 2014-01-26
 # o BUG FIX: Now attachLocally() no longer tries to attach elements with
 #   an empty name, e.g. list(a=1, 2).

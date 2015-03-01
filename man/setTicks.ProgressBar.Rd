@@ -6,34 +6,34 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{setTicks.ProgressBar}
+\name{setTicks.ProgressBar}
 \alias{setTicks.ProgressBar}
 \alias{ProgressBar.setTicks}
 \alias{setTicks,ProgressBar-method}
 
- \title{Sets values for which ticks should be visible}
+\title{Sets values for which ticks should be visible}
 
- \description{
-   Sets values for which ticks should be visible.
- }
+\description{
+  Sets values for which ticks should be visible.
+}
 
- \usage{
+\usage{
 \method{setTicks}{ProgressBar}(this, ticks=10, ...)
 }
 
- \arguments{
-  \item{ticks}{Tick positions (values).}
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{ticks}{Tick positions (values).}
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns old tick positions.
- }
+\value{
+  Returns old tick positions.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{ProgressBar}}.
- }
+\seealso{
+  For more information see \code{\link{ProgressBar}}.
+}
 \keyword{internal}
 \keyword{methods}

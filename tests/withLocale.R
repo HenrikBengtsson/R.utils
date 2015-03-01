@@ -37,3 +37,23 @@ y3 <- withLocale({
 }, "LC_COLLATE", c("en_US", "en_US.UTF8", "English_United States.1252"))
 print(y3)
 stopifnot(identical(y3, y1))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Visibility
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- withVisible({
+  withLocale({ 1 }, "LC_COLLATE", "C")
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(res$visible)
+
+x <- 0
+res <- withVisible({
+  withLocale({ x <- 1 }, "LC_COLLATE", "C")
+})
+str(res)
+stopifnot(all.equal(res$value, 1))
+stopifnot(!res$visible)
+stopifnot(all.equal(x, 1))

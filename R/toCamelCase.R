@@ -39,59 +39,70 @@
 #*/###########################################################################
 setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSameCase=FALSE, split="[ \t]+", ...) {
   # Argument 's':
-  s <- as.character(s);
+  s <- as.character(s)
 
   # Nothing to do?
-  if (length(s) == 0L) return(character(0L));
+  if (length(s) == 0L) return(s)
+  if (length(s) == 1L && nchar(s) == 0L) return(s)
 
   # Split a single string
-  s <- strsplit(s, split=split);
+  ns <- nchar(s)
+  s <- strsplit(s, split=split)
+  s[ns == 0] <- ""
 
   if (preserveSameCase) {
     s <- lapply(s, FUN=function(s) {
+      # Nothing to do?
+      if (length(s) == 0L || is.na(s)) return(s)
+
       # (a) Don't change case on all-upper case words
-      sU <- toupper(s);
-      isAllUpperCase <- is.element(s, sU);
+      sU <- toupper(s)
+      isAllUpperCase <- is.element(s, sU)
 
       # (b) but for all others...
-      s2 <- s[!isAllUpperCase];
-      sL <- tolower(s2);
-      isUpperCase <- (!is.element(s2, sL));
-      s3 <- capitalize(sL);
-      s3[isUpperCase] <- s2[isUpperCase];
+      s2 <- s[!isAllUpperCase]
+      sL <- tolower(s2)
+      isUpperCase <- (!is.element(s2, sL))
+      s3 <- capitalize(sL)
+      s3[isUpperCase] <- s2[isUpperCase]
 
-      s[!isAllUpperCase] <- s3;
+      s[!isAllUpperCase] <- s3
 
       if (!capitalize) {
         if (!isAllUpperCase[1]) {
-          s[1] <- decapitalize(s[1]);
+          s[1] <- decapitalize(s[1])
         } else {
-          s[1] <- tolower(s[1]);
+          s[1] <- tolower(s[1])
         }
       }
 
-      paste(s, collapse="");
-    });
+      paste(s, collapse="")
+    })
+    s <- unlist(s)
   } else {
     s <- lapply(s, FUN=function(s) {
-      s2 <- tolower(s);
-      isUpperCase <- (!s %in% s2);
-      s2 <- capitalize(s2);
-      s2[isUpperCase] <- s[isUpperCase];
-      paste(s2, collapse="");
-    });
+      if (length(s) == 0L || is.na(s)) return(s)
+
+      s2 <- tolower(s)
+      isUpperCase <- (!s %in% s2)
+      s2 <- capitalize(s2)
+      s2[isUpperCase] <- s[isUpperCase]
+      paste(s2, collapse="")
+    })
+    s <- unlist(s)
+
     if (!capitalize) {
-      s <- decapitalize(s);
+      s <- decapitalize(s)
     }
   }
 
-  s <- unlist(s);
-
-  s;
+  s
 }, private=TRUE)
 
 ############################################################################
 # HISTORY:
+# 2015-01-12
+# o BUG FIX: toCamelCase("", preserveSameCase=TRUE) would give an error.
 # 2014-04-06
 # o BUG FIX: toCamelCase(character(0L)) gave an error.
 # 2012-09-21

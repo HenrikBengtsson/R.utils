@@ -35,13 +35,13 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For debug only!
-  printFromTo <- function(from, to, x) {
-    fromto <- matrix(c(from, to), ncol=2);
-    colnames(fromto) <- c("from", "to");
-    idx <- apply(fromto, MARGIN=1, FUN=function(i) seqToHumanReadable(i[1]:i[2]));
-    xidx <- apply(fromto, MARGIN=1, FUN=function(i) paste(x[i[1]:i[2]], collapse=","));
-    print(data.frame(from=from, to=to, idx=idx, x.=xidx))
-  }
+##   printFromTo <- function(from, to, x) {
+##     fromto <- matrix(c(from, to), ncol=2);
+##     colnames(fromto) <- c("from", "to");
+##     idx <- apply(fromto, MARGIN=1, FUN=function(i) seqToHumanReadable(i[1]:i[2]));
+##     xidx <- apply(fromto, MARGIN=1, FUN=function(i) paste(x[i[1]:i[2]], collapse=","));
+##     print(data.frame(from=from, to=to, idx=idx, x.=xidx))
+##   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
