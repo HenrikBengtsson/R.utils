@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.0.x [2015-02-28]
+Version: 2.0.0 [2015-02-28]
 o ROBUSTNESS: Package test coverage is 66%.
 o ROBUSTNESS: Now %<-% evaluates the expression in a local()
   environment, and it assign to environments, e.g. env$a %<-% 1.
