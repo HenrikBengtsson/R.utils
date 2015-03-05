@@ -7,7 +7,7 @@ o ROBUSTNESS: Package test coverage is 66%.
 o ROBUSTNESS: Now %<-% evaluates the expression in a local()
   environment, and it assign to environments, e.g. env$a %<-% 1.
 o R.utils::use() without arguments attaches 'R.utils'.
-o Added compressFile(), decompressFile() and isCompressFile() methods,
+o Added compressFile(), decompressFile() and isCompressedFile() methods,
   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
   Thanks to Peter Hickey for pushing for this.
 o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
