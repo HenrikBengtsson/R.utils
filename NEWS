@@ -2,10 +2,13 @@
 Package: R.utils
 ================
 
-Version: 2.0.0-9000 [2015-04-18]
+Version: 2.0.0-9000 [2015-04-24]
 o CLEANUP: R.utils no longer generates a warning if the R session
   is saved when R exits.  Thanks to Jose Alquicira Hernandez for
   reporting on this.
+o BUG FIX: toCamelCase() with missing values would give an error
+  in R devel (>= 2015-04-23) due to an update how nchar() handles
+  missing values.
 
 
 Version: 2.0.0 [2015-02-28]
