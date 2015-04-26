@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 2.0.1-9000 [2015-04-26]
+o ROBUSTNESS: Now nchar(..., type="chars") is used internally for
+  all file and directory names.
+o BUG FIX: Arguments$getReadablePathname(NA, mustExist=FALSE) no
+  longer gives an error with recent R devel (>= 2015-04-23).
+  This happened only on Windows.
+
+
 Version: 2.0.1 [2015-04-24]
 o CLEANUP: R.utils no longer generates a warning if the R session
   is saved when R exits.  Thanks to Jose Alquicira Hernandez for

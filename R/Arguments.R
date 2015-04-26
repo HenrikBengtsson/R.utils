@@ -48,6 +48,10 @@ setConstructorS3("Arguments", function(...) {
 #  otherwise an exception is thrown.
 # }
 #
+# \section{Missing values}{
+#   If \code{filename} is a missing value, then an exception is thrown.
+# }
+#
 # \details{
 #   When argument \code{class="safe"}, the following 86 ASCII characters
 #   are allowed in filenames:
@@ -99,6 +103,9 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
   }
 
   # Argument 'filename':
+  if (is.na(filename)) {
+    throw("Argument 'filename' cannot be a missing value: ", filename)
+  }
   filename <- getCharacter(static, filename, nchar=nchar, .name=.name);
 
   # Argument 'class':
@@ -251,7 +258,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (.Platform$OS.type == "windows") {
-    if (nchar(pathname, type="chars") > 255L) {
+    if (!is.na(pathname) && nchar(pathname, type="chars") > 255L) {
       msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname, type="chars"), pathname);
       warning(msg);
     }
@@ -297,7 +304,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (.Platform$OS.type == "windows") {
-    if (nchar(pathname, type="chars") > 255L) {
+    if (!is.na(pathname) && nchar(pathname, type="chars") > 255L) {
       msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname, type="chars"), pathname);
       warning(msg);
     }
@@ -740,6 +747,11 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #  thrown.
 # }
 #
+# \section{Missing values}{
+#   If \code{s} contains missing values, and \code{nchar} is not @NULL,
+#   then an exception is thrown.
+# }
+#
 # @author
 #
 # \seealso{
@@ -787,6 +799,11 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   # Nothing to check?
   if (is.null(nchar))
     return(s);
+
+  # At this point, missing values are not allowed
+  if (any(is.na(s))) {
+    throw("Argument 'nchar' cannot be specified if character vector contains missing values: ", hpaste(sQuote(s)))
+  }
 
   if (length(nchar) == 1L)
     nchar <- c(1L, nchar);
