@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.0.0-9000 [2015-04-24]
+Version: 2.0.1 [2015-04-24]
 o CLEANUP: R.utils no longer generates a warning if the R session
   is saved when R exits.  Thanks to Jose Alquicira Hernandez for
   reporting on this.
