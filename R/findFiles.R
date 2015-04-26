@@ -60,7 +60,7 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
     # If in format "path1; path2;path3", split it to multiple strings.
     paths <- unlist(strsplit(paths, split=";"));
     paths <- gsub("[ \t]*$", "", gsub("^[ \t]*", "", paths));
-    paths <- paths[nchar(paths) > 0];
+    paths <- paths[nchar(paths, type="chars") > 0];
     if (length(paths) == 0)
       return(NULL);
     paths;
@@ -133,7 +133,7 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
 
     # Exclude listings that are neither files nor directories
     files <- gsub("^[.][/\\]", "", files);
-    files <- files[nchar(files) > 0];
+    files <- files[nchar(files, type="chars") > 0L];
     if (length(files) > 0) {
       excl <- (basename(files) %in% c(".", "..", "/", "\\"));
       files <- files[!excl];

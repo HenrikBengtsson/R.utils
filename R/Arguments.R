@@ -126,7 +126,7 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for remaining (=invalid) characters
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (nchar(chars) > 0) {
+  if (nchar(chars, type="chars") > 0L) {
     chars <- unlist(strsplit(chars, split=""));
     chars <- sort(unique(chars));
     chars <- sprintf("'%s'", chars);
@@ -251,8 +251,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (.Platform$OS.type == "windows") {
-    if (nchar(pathname) > 255L) {
-      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname), pathname);
+    if (nchar(pathname, type="chars") > 255L) {
+      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname, type="chars"), pathname);
       warning(msg);
     }
   }
@@ -297,8 +297,8 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (.Platform$OS.type == "windows") {
-    if (nchar(pathname) > 255L) {
-      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname), pathname);
+    if (nchar(pathname, type="chars") > 255L) {
+      msg <- sprintf("A too long pathname (%d characters) was detected on Windows, where maximum number of symbols is 256 and in R it is one less: %s", nchar(pathname, type="chars"), pathname);
       warning(msg);
     }
   }
@@ -793,7 +793,7 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
 
   # Check the string length of each character string
   for (kk in seq(length=length(s))) {
-    slen <- nchar(s[kk]);
+    slen <- nchar(s[kk], type="chars");
     if (slen < nchar[1L] || slen > nchar[2L]) {
       throw(sprintf("String length of elements #%d in '%s' is out of range [%d,%d]: %d '%s'", kk, .name, nchar[1L], nchar[2L], slen, s[kk]));
     }

@@ -398,7 +398,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       }
 
       table$volumeLabel <- readString(con);
-      table$.offset <- table$.offset + nchar(table$volumeLabel) + 1;
+      table$.offset <- table$.offset + nchar(table$volumeLabel, type="chars") + 1;
 
       if (table$.offset != table$length) {
         stop("File format error: Length of structure did not match the number of bytes read.");
@@ -431,7 +431,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
       fileLocationInfo$basePathname <- readString(con);
       fileLocationInfo$.offset <- fileLocationInfo$.offset +
-                                    nchar(fileLocationInfo$basePathname) + 1;
+                      nchar(fileLocationInfo$basePathname, type="chars") + 1;
 
       if (verbose) {
         message("basePathname='", fileLocationInfo$basePathname, "'");
@@ -483,7 +483,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       }
 
       table$networkShareName <- readString(con);
-      table$.offset <- table$.offset + nchar(table$networkShareName) + 1;
+      table$.offset <- table$.offset + nchar(table$networkShareName, type="chars") + 1;
 
       if (verbose) {
         message("File location info / Network Volume Table:");
@@ -523,7 +523,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
     fileLocationInfo$remainingPathname <- readString(con);
     fileLocationInfo$.offset <- fileLocationInfo$.offset +
-                             nchar(fileLocationInfo$remainingPathname) + 1;
+               nchar(fileLocationInfo$remainingPathname, type="chars") + 1;
 
 
     if (fileLocationInfo$length != fileLocationInfo$.offset) {

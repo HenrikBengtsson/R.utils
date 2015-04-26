@@ -69,7 +69,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # Follow symbol file links
   pathname0 <- pathname;
   pathnameT <- Sys.readlink2(pathname, what="corrected");
-  if (!is.na(pathnameT) && nchar(pathnameT) > 0L) {
+  if (!is.na(pathnameT) && nchar(pathnameT, type="chars") > 0L) {
     pathname <- pathnameT;
   }
 
