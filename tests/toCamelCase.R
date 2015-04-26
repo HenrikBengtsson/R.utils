@@ -43,5 +43,14 @@ y <- toCamelCase(NULL)
 stopifnot(length(y) == 0L)
 
 # Missing values
-y <- toCamelCase(NA_character_)
-stopifnot(is.na(y))
+for (preserveSameCase in c(FALSE, TRUE)) {
+  y <- toCamelCase(NA_character_, preserveSameCase=preserveSameCase)
+  stopifnot(is.na(y))
+
+  y <- toCamelCase(c(NA_character_, NA_character_), preserveSameCase=preserveSameCase)
+  stopifnot(all(is.na(y)))
+
+  y <- toCamelCase(c(NA_character_, "hello world", NA_character_), preserveSameCase=preserveSameCase)
+  stopifnot(identical(y, c(NA_character_, "helloWorld", NA_character_)))
+}
+

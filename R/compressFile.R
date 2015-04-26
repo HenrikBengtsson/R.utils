@@ -341,7 +341,7 @@ setMethodS3("isGzipped", "default", function(..., ext="gz", fileClass="gzfile") 
 ############################################################################
 # HISTORY:
 # 2015-02-01
-# o Added compressFile(), decompressFile() and isCompressFile() methods,
+# o Added compressFile(), decompressFile() and isCompressedFile() methods,
 #   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
 #   Thanks to Peter Hickey for pushing for this.
 # 2013-07-27

@@ -2,12 +2,21 @@
 Package: R.utils
 ================
 
+Version: 2.0.1 [2015-04-24]
+o CLEANUP: R.utils no longer generates a warning if the R session
+  is saved when R exits.  Thanks to Jose Alquicira Hernandez for
+  reporting on this.
+o BUG FIX: toCamelCase() with missing values would give an error
+  in R devel (>= 2015-04-23) due to an update how nchar() handles
+  missing values.
+
+
 Version: 2.0.0 [2015-02-28]
 o ROBUSTNESS: Package test coverage is 66%.
 o ROBUSTNESS: Now %<-% evaluates the expression in a local()
   environment, and it assign to environments, e.g. env$a %<-% 1.
 o R.utils::use() without arguments attaches 'R.utils'.
-o Added compressFile(), decompressFile() and isCompressFile() methods,
+o Added compressFile(), decompressFile() and isCompressedFile() methods,
   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
   Thanks to Peter Hickey for pushing for this.
 o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
@@ -35,12 +44,12 @@ o On Windows, Arguments$getReadablePathname() now gives an informative
 o DOCUMENTATION: Fixed mistake in help("captureOutput").
   Thanks to Mikko Korpela (Issue #4) for reporting on this.
 o ROBUSTNESS: Forgot to declare "default" warnings() as an S3 method.
-o BUG FIX: use(..., quietly=FALSE) no longer captures/buffers the 
-  output, which prevented it from displaying full prompt messages 
-  that required a user response.  use(..., quietly=TRUE), which is 
-  the default, no longer tries to ask user of Windows and OS X if 
+o BUG FIX: use(..., quietly=FALSE) no longer captures/buffers the
+  output, which prevented it from displaying full prompt messages
+  that required a user response.  use(..., quietly=TRUE), which is
+  the default, no longer tries to ask user of Windows and OS X if
   they wish to install from source if the binary is older.
-o BUG FIX: Now the returned value of all withNnn() functions preserves 
+o BUG FIX: Now the returned value of all withNnn() functions preserves
   the "visibility" of the eval():uated expression.  Added package tests.
 o BUG FIX: withCapture({}) no longer generates a warning.
 o BUG FIX: Now isUrl(NA) returns FALSE (instead of NA).

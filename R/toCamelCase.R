@@ -43,7 +43,7 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
 
   # Nothing to do?
   if (length(s) == 0L) return(s)
-  if (length(s) == 1L && nchar(s) == 0L) return(s)
+  if (length(s) == 1L && (is.na(s) || nchar(s) == 0L)) return(s)
 
   # Split a single string
   ns <- nchar(s)
