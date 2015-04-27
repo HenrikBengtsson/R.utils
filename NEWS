@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.0.1-9000 [2015-04-26]
+Version: 2.0.2 [2015-04-27]
 o ROBUSTNESS: Now nchar(..., type="chars") is used internally for
   all file and directory names.
 o BUG FIX: Arguments$getReadablePathname(NA, mustExist=FALSE) no
