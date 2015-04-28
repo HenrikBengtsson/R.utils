@@ -6,32 +6,32 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{nbrOfOptions.Options}
+\name{nbrOfOptions.Options}
 \alias{nbrOfOptions.Options}
 \alias{Options.nbrOfOptions}
 \alias{nbrOfOptions,Options-method}
 
- \title{Gets the number of options set}
+\title{Gets the number of options set}
 
- \description{
-  Gets the number of options set.
- }
+\description{
+ Gets the number of options set.
+}
 
- \usage{
+\usage{
 \method{nbrOfOptions}{Options}(this, ...)
 }
 
- \arguments{
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{...}{Not used.}
+}
 
- \value{Returns an \code{\link[base]{integer}}.}
+\value{Returns an \code{\link[base]{integer}}.}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{Options}}.
- }
+\seealso{
+  For more information see \code{\link{Options}}.
+}
 
 
 \keyword{internal}

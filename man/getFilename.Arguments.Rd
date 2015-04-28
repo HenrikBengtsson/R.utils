@@ -44,6 +44,10 @@
  otherwise an exception is thrown.
 }
 
+\section{Missing values}{
+  If \code{filename} is a missing value, then an exception is thrown.
+}
+
 \details{
   When argument \code{class="safe"}, the following 86 ASCII characters
   are allowed in filenames:
