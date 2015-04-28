@@ -6,24 +6,24 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Options}
+\name{Options}
 \docType{class}
 \alias{Options}
 
 
- \title{The Options class}
+\title{The Options class}
 
- \usage{
+\usage{
 Options(options=list(), ...)
 }
 
- \arguments{
-   \item{options}{A tree \code{\link[base]{list}} structure of options.}
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{options}{A tree \code{\link[base]{list}} structure of options.}
+  \item{...}{Not used.}
+}
 
- \description{
-  Package:  R.utils \cr
+\description{
+ Package:  R.utils \cr
 \bold{Class Options}\cr
 
 \code{\link[R.oo]{Object}}\cr
@@ -38,15 +38,15 @@ extends \link[R.oo]{Object}\cr
 
 
 
-  A class to set and get either options stored in a \code{\link[base]{list}} tree structure.
+ A class to set and get either options stored in a \code{\link[base]{list}} tree structure.
 
-  Each option has a pathname. The format of a pathname is similar to a
-  (Unix) filesystem pathname, e.g. "graphics/cex". See examples for
-  more details.
- }
+ Each option has a pathname. The format of a pathname is similar to a
+ (Unix) filesystem pathname, e.g. "graphics/cex". See examples for
+ more details.
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.utils:as.character.Options]{as.character}} \tab Returns a character string version of this object.\cr
  \tab \code{\link[R.utils:as.list.Options]{as.list}} \tab Gets a list representation of the options.\cr
@@ -65,18 +65,18 @@ extends \link[R.oo]{Object}\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
 
 
- }
+}
 
- \value{
-  The constructor returns an Options object.
- }
+\value{
+ The constructor returns an Options object.
+}
 
- \details{
-  Note, this class and its methods do \emph{not} operate on the global
-  options structure defined in \R (\link{options}).
- }
+\details{
+ Note, this class and its methods do \emph{not} operate on the global
+ options structure defined in \R (\link{options}).
+}
 
- \examples{
+\examples{
 local <- Options()
 
 # Query a missing option
@@ -118,7 +118,7 @@ print(all)
 
 }
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
 
 \keyword{classes}

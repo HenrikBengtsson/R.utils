@@ -162,7 +162,7 @@ file.info2 <- function(...) {
   pathnames <- sapply(pathnames, FUN=Sys.readlink2);
 
   # Drop non-symbolic links
-  keep <- (!is.na(pathnames) & nchar(pathnames) > 0L);
+  keep <- (!is.na(pathnames) & nchar(pathnames, type="chars") > 0L);
   pathnames <- pathnames[keep];
   idxs <- idxs[keep];
 

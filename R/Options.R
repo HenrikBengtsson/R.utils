@@ -2,7 +2,7 @@
 # @RdocClass Options
 #
 # @title "The Options class"
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -27,9 +27,9 @@
 # \value{
 #  The constructor returns an Options object.
 # }
-# 
+#
 # \details{
-#  Note, this class and its methods do \emph{not} operate on the global 
+#  Note, this class and its methods do \emph{not} operate on the global
 #  options structure defined in \R (\link{options}).
 # }
 #
@@ -62,7 +62,7 @@ setConstructorS3("Options", function(options=list(), ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -94,7 +94,7 @@ setMethodS3("as.character", "Options", function(x, ...) {
 # @RdocMethod as.list
 #
 # @title "Gets a list representation of the options"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -127,7 +127,7 @@ setMethodS3("as.list", "Options", function(x, ...) {
 # @RdocMethod equals
 #
 # @title "Checks if this object is equal to another Options object"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -150,9 +150,9 @@ setMethodS3("as.list", "Options", function(x, ...) {
 # @keyword programming
 #*/#########################################################################
 setMethodS3("equals", "Options", function(this, other, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   equals.list <- function(list1, list2) {
     if (length(list1) != length(list2))
       return(FALSE);
@@ -172,9 +172,9 @@ setMethodS3("equals", "Options", function(this, other, ...) {
     TRUE;
   }
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Main comparison
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!inherits(other, "Options"))
     return(FALSE);
 
@@ -195,7 +195,7 @@ setMethodS3("equals", "Options", function(this, other, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -231,7 +231,7 @@ setMethodS3("str", "Options", function(object, header=paste(class(this)[1], ":\n
 # @RdocMethod names
 #
 # @title "Gets the full pathname of all (non-list) options"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -265,7 +265,7 @@ setMethodS3("names", "Options", function(x, ...) {
 # @RdocMethod getLeaves
 #
 # @title "Gets all (non-list) options in a flat list"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -287,9 +287,9 @@ setMethodS3("names", "Options", function(x, ...) {
 # @keyword programming
 #*/#########################################################################
 setMethodS3("getLeaves", "Options", function(this, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getLeaves <- function(list, ...) {
     if (length(list) == 0)
       return(NULL);
@@ -319,7 +319,7 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
 # @RdocMethod nbrOfOptions
 #
 # @title "Gets the number of options set"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -351,7 +351,7 @@ setMethodS3("nbrOfOptions", "Options", function(this, ...) {
 # @RdocMethod hasOption
 #
 # @title "Checks if an option exists"
-# 
+#
 # \description{
 #  @get "title".
 # }
@@ -389,7 +389,7 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
   pathname <- as.character(pathname);
 
   if (length(pathname) != 1) {
-    throw("Argument 'pathname' must be a single character string: ", 
+    throw("Argument 'pathname' must be a single character string: ",
                                            paste(pathname, collapse=", "));
   }
 
@@ -399,7 +399,7 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
 
   pathname <- unlist(strsplit(pathname, split="/"));
 
-  if (any(nchar(pathname) == 0))
+  if (any(nchar(pathname, type="chars") == 0))
     throw("Argument 'pathname' contains a zero length elements.");
 
   cur <- as.list(this);
@@ -430,7 +430,7 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
 # @RdocMethod getOption
 #
 # @title "Gets an option"
-# 
+#
 # \description{
 #  @get "title" in the options tree structure or return a default value.
 # }
@@ -441,13 +441,13 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
 #   \item{pathname}{A single or a @vector of @character strings specifying
 #      the paths to the options to be queried.
 #      By default the complete options structure is returned.}
-#   \item{defaultValue}{The default value to be returned, if option is 
+#   \item{defaultValue}{The default value to be returned, if option is
 #      missing. If multiple options are queried at the same times, multiple
 #      default values may be specified as a @vector or a @list.}
 #   \item{...}{Not used.}
 # }
 #
-# \value{If a single option is queried, a single value is returned. 
+# \value{If a single option is queried, a single value is returned.
 #   If a @vector of options are queried, a @list of values are returned.
 #   For non-existing options, the default value is returned.}
 #
@@ -478,7 +478,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
   pathname <- as.character(pathname);
 
   if (length(pathname) != 1) {
-    throw("Argument 'pathname' must be a single character string: ", 
+    throw("Argument 'pathname' must be a single character string: ",
                                            paste(pathname, collapse=", "));
   }
 
@@ -488,7 +488,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
 
   pathname <- unlist(strsplit(pathname, split="/"));
 
-  if (any(nchar(pathname) == 0))
+  if (any(nchar(pathname, type="chars") == 0))
     throw("Argument 'pathname' contains a zero length elements.");
 
   cur <- as.list(this);
@@ -523,7 +523,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
 # @RdocMethod setOption
 #
 # @title "Sets an option"
-# 
+#
 # \description{
 #  @get "title" in the options tree structure.
 # }
@@ -572,7 +572,7 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
   pathname <- as.character(pathname);
 
   if (length(pathname) != 1) {
-    throw("Argument 'pathname' must be a single character string: ", 
+    throw("Argument 'pathname' must be a single character string: ",
                                            paste(pathname, collapse=", "));
   }
 
@@ -588,7 +588,7 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
 
   pathname <- unlist(strsplit(pathname, split="/"));
 
-  if (any(nchar(pathname) == 0))
+  if (any(nchar(pathname, type="chars") == 0))
     throw("Argument 'pathname' contains a zero length elements.");
 
   if (is.null(this$.options))
