@@ -1,26 +1,23 @@
 library("R.utils")
 
-# captureOutput() is much faster than capture.output()
-# for large outputs when capturing to a string.
-for (n in c(10e3, 40e3, 80e3)) {
+message("*** captureOutput() == capture.output()")
+for (n in c(0, 1, 10, 100, 1000)) {
   printf("n=%d\n", n)
-
   x <- rnorm(n)
+  str(x)
 
-  t0 <- system.time({
-    bfr0 <- capture.output(print(x))
-  })
-  print(t0)
-
-  t1 <- system.time({
-    bfr <- captureOutput(print(x))
-  })
-  print(t1)
-  print(t1/t0)
-
-  bfr2n <- captureOutput(print(x), collapse="\n")
-  bfr2r <- captureOutput(print(x), collapse="\r")
-#  stopifnot(nchar(bfr2n) == nchar(bfr2r))
+  bfr0 <- capture.output(print(x))
+  bfr <- captureOutput(print(x))
+  stopifnot(nchar(bfr) == nchar(bfr0))
 
   stopifnot(identical(bfr, bfr0))
 } # for (n ...)
+
+message("*** captureOutput(..., collapse=ch)")
+x <- c("abc", "123", "def\n456")
+for (ch in list(NULL, "\n", "\r", "\n\r", "\r\n", ";\n", "")) {
+  bfr0 <- paste(capture.output(cat(x)), collapse=ch)
+  bfr <- captureOutput(cat(x), collapse=ch)
+  str(list(bfr0=bfr0, bfr=bfr))
+  stopifnot(identical(bfr0, bfr))
+}
