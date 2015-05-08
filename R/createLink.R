@@ -89,7 +89,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     if (skip) {
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
 
-      resA <- getAbsolutePath(Sys.readlink2(res))
+      resA <- getAbsolutePath(Sys.readlink2(res, what="corrected"))
       equal <- identical(resA, target)
       # Be more forgiving on Windows system, i.e. assume a
       # case-insensitive file system

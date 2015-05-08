@@ -2,7 +2,10 @@
 Package: R.utils
 ================
 
-Version: 2.0.0-9000 [2015-04-24]
+Version: 2.0.0-9000 [2015-05-08]
+o CLEANUP: createLink(..., skip=TRUE) would give a false warning
+  if a proper link already existed and the target was elsewhere
+  than the current directory.
 o CLEANUP: R.utils no longer generates a warning if the R session
   is saved when R exits.  Thanks to Jose Alquicira Hernandez for
   reporting on this.
