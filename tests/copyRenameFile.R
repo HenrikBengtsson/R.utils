@@ -15,6 +15,13 @@ stopifnot(all(isFile(c("hello.txt", "hello2.txt"))))
 copyFile("hello.txt", "hello2.txt", overwrite=TRUE)
 stopifnot(isFile("hello2.txt"))
 
+# Copy file to directory
+pathD <- tempdir()
+copyFile("hello.txt", pathD)
+pathnameD <- file.path(pathD, "hello.txt")
+stopifnot(isFile(pathnameD))
+file.remove(pathnameD)
+
 # Rename file
 renameFile("hello2.txt", "hello3.txt", verbose=TRUE)
 stopifnot(!isFile("hello2.txt"))
@@ -27,4 +34,3 @@ stopifnot(isFile("hello.txt"))
 
 # Cleanup
 file.remove("hello.txt")
-

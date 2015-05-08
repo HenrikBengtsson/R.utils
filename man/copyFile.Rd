@@ -24,7 +24,9 @@
 
 \arguments{
   \item{srcPathname}{The source file to be copied.}
-  \item{destPathname}{The destination file to be created.}
+  \item{destPathname}{The destination file to be created.
+   If an emph{existing directory}, then the destination file
+   becomes \code{file.path(destPathname, basename(srcPathname))}.}
   \item{skip, overwrite}{If a destination file does not exist, these
    arguments have no effect.
    If such a file exists and \code{skip} is \code{\link[base:logical]{TRUE}}, then no copying is
