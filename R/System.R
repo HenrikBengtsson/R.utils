@@ -493,12 +493,12 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   isFileX <- function(pathname, ...) {
     if (length(pathname) == 0L) return(logical(0L));
-    (nchar(pathname) > 0L) & sapply(pathname, FUN=isFile);
+    (nchar(pathname, type="chars") > 0L) & sapply(pathname, FUN=isFile);
   } # isFileX()
 
   isDirectoryX <- function(path, ...) {
     if (length(path) == 0L) return(logical(0L));
-    (nchar(path) > 0L) & sapply(path, FUN=isDirectory);
+    (nchar(path, type="chars") > 0L) & sapply(path, FUN=isDirectory);
   } # isDirectoryX()
 
   findGSBySysEnv <- function(names=c("R_GSCMD"), ...) {

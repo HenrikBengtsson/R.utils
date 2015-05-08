@@ -1,5 +1,5 @@
 Package: R.utils
-Version: 2.0.0-9000
+Version: 2.0.2-9000
 Depends:
   R (>= 2.5.0),
   R.oo (>= 1.18.0)
