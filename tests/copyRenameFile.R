@@ -32,8 +32,14 @@ renameFile("hello3.txt", "hello.txt", overwrite=TRUE)
 stopifnot(!isFile("hello3.txt"))
 stopifnot(isFile("hello.txt"))
 
+
 # Move file to directory (and back)
-pathD <- tempdir()
+# NOTE: We are not moving file to tempdir() just in case
+# that is on a different file system which in case we
+# risk getting error "cannot rename file reason 'Invalid
+# cross-device link' (some Unix problem)
+pathD <- "foo"
+mkdirs(pathD)
 renameFile("hello.txt", pathD)
 pathnameD <- file.path(pathD, "hello.txt")
 stopifnot(isFile(pathnameD))
@@ -41,4 +47,5 @@ renameFile(pathnameD, ".")
 
 
 # Cleanup
+removeDirectory("foo")
 file.remove("hello.txt")
