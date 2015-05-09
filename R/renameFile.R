@@ -14,7 +14,9 @@
 #
 # \arguments{
 #   \item{pathname}{The pathname of the file to be renamed.}
-#   \item{newPathname}{The new pathname.}
+#   \item{newPathname}{The new pathname.
+#    If an emph{existing directory} and the source is a file, then the
+#    destination becomes \code{file.path(newPathname, basename(pathname))}.}
 #   \item{overwrite}{If @TRUE and there exists a file with new pathname,
 #    then it is overwritten.}
 #   \item{...}{Not used.}
@@ -44,6 +46,10 @@ setMethodS3("renameFile", "default", function(pathname, newPathname, overwrite=F
 
   # Argument 'newPathname':
   newPathname <- Arguments$getCharacter(newPathname, nchar=c(1,512));
+  # Special case: Source is a file and destination is an existing directory?
+  if (isFile(pathname) && isDirectory(newPathname)) {
+    newPathname <- file.path(newPathname, basename(pathname))
+  }
   newPathname <- Arguments$getWritablePathname(newPathname,
                                                     mustNotExist=!overwrite);
 

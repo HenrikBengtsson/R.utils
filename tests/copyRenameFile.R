@@ -32,5 +32,13 @@ renameFile("hello3.txt", "hello.txt", overwrite=TRUE)
 stopifnot(!isFile("hello3.txt"))
 stopifnot(isFile("hello.txt"))
 
+# Move file to directory (and back)
+pathD <- tempdir()
+renameFile("hello.txt", pathD)
+pathnameD <- file.path(pathD, "hello.txt")
+stopifnot(isFile(pathnameD))
+renameFile(pathnameD, ".")
+
+
 # Cleanup
 file.remove("hello.txt")

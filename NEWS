@@ -6,6 +6,8 @@ Version: 2.0.2-9000 [2015-05-08]
 o If, and only if, 'path' is an existing directory, then
   copyFile(pathname, path) copies file 'pathname' to the 'path'
   directory (previously destination always had to be a file).
+  Analogously, renameFile(pathname, path) moves file 'pathname'
+  (not a directory though) to destination directory 'path'.
 o CLEANUP: createLink(..., skip=TRUE) would give a false warning
   if a proper link already existed and the target was elsewhere
   than the current directory.
