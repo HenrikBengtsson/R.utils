@@ -16,6 +16,9 @@
 #   \item{skip}{If @TRUE and an existing output file, then it is returned.}
 #   \item{overwrite}{If @FALSE, an error is thrown if the output file
 #      already exists, otherwise not.}
+#   \item{compression}{A @character @vector of compression methods
+#      to apply.  This overrides any low-level arguments passed via
+#      \code{...} that @see "tools::compactPDF".}
 #   \item{...}{Additional arguments passed to @see "tools::compactPDF",
 #      e.g. \code{gs_quality}.}
 # }
@@ -25,7 +28,7 @@
 # }
 #
 # \examples{\dontrun{
-#   pathnameZ <- compressPDF("report.pdf", outPath="foo", gs_quality="ebook")
+#   pathnameZ <- compressPDF("report.pdf")
 # }}
 #
 # @author
@@ -37,18 +40,54 @@
 # @keyword file
 # @keyword IO
 #*/###########################################################################
-setMethodS3("compressPDF", "default", function(filename, path=NULL, outFilename=basename(pathname), outPath=NULL, skip=FALSE, overwrite=FALSE, ...) {
+setMethodS3("compressPDF", "default", function(filename, path=NULL, outFilename=basename(pathname), outPath="compressedPDFs", skip=FALSE, overwrite=FALSE, compression="gs(ebook)+qpdf", ...) {
   ## Argument 'filename' and 'path':
   pathname <- Arguments$getReadablePathname(filename, path=path)
 
   ## Argument 'outFilename' and 'outPath':
   pathnameD <- Arguments$getWritablePathname(outFilename, path=outPath, mustNotExist=FALSE)
 
+  ## Argument 'compression':
+  if (!is.null(compression)) {
+    compression <- Arguments$getCharacters(compression)
+    compression <- trim(compression)
+    compression <- compression[nzchar(compression)]
+  }
+
   ## Skipping?
   if (isFile(pathnameD)) {
     if (skip) return(pathnameD)
     if (!overwrite) Arguments$getWritablePathname(pathnameD, mustNotExist=TRUE)
   }
+
+
+  ## Parse 'compression' argument
+  compress_args <- list()
+  if (length(compression) > 0L) {
+    compressionT <- unlist(strsplit(compression, split="+", fixed=TRUE))
+    compressionT <- trim(compressionT)
+    compressionT <- compressionT[nzchar(compressionT)]
+
+    cmethod <- gsub("[(].*", "", compressionT)
+    carg <- gsub("[)].*", "", gsub(".*[(]", "", compressionT))
+    keep <- is.element(cmethod, c("gs", "qpdf"))
+    if (any(!keep)) {
+      warning("Ignoring unknown PDF compression method: ",
+              paste(sQuote(cmethod[!keep]), collapse=", "))
+      compression <- compression[keep]
+      cmethod <- cmethod[keep]
+      carg <- carg[keep]
+    }
+
+    for (kk in seq_along(cmethod)) {
+      if (cmethod[kk] == "gs") {
+        opts <- unlist(strsplit(carg[kk], split=",", fixed=TRUE))
+        if (length(opts) > 0L) compress_args$gs_quality <- opts[1L]
+        if (length(opts) > 1L) compress_args$gs_extras <- opts[-1L]
+      }
+    }
+  } # if (length(compression) > 0L)
+
 
   ## WORKAROUND #1: tools::compactPDF(paths) compresses all PDFs in paths
   ## if length(paths) == 1 so working with a temporary directory.
@@ -63,8 +102,21 @@ setMethodS3("compressPDF", "default", function(filename, path=NULL, outFilename=
   pathnameDT <- tempfile(tmpdir=pathT, fileext=".pdf")
   copyFile(pathname, pathnameDT)
 
+  ## File size before
   size0 <- file.info(pathnameDT)$size
-  res <- tools::compactPDF(paths=pathT, ...)
+
+  ## Arguments to tools::compactPDF()
+  args <- list(paths=pathT, ...)
+
+  ## Override with 'compression' specifications
+  for (name in names(compress_args)) {
+    args[[name]] <- compress_args[[name]]
+  }
+
+  ## Call tools::compactPDF()
+  res <- do.call(tools::compactPDF, args=args)
+
+  ## File size after
   size1 <- file.info(pathnameDT)$size
 
   ## If compression < 10% or < 10kB, then considered not worth it

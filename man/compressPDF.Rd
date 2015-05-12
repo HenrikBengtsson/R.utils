@@ -17,8 +17,9 @@
 }
 
 \usage{
-\method{compressPDF}{default}(filename, path=NULL, outFilename=basename(pathname), outPath=NULL,
-  skip=FALSE, overwrite=FALSE, ...)
+\method{compressPDF}{default}(filename, path=NULL, outFilename=basename(pathname),
+  outPath="compressedPDFs", skip=FALSE, overwrite=FALSE, compression="gs(ebook)+qpdf",
+  ...)
 }
 
 \arguments{
@@ -28,6 +29,9 @@
   \item{skip}{If \code{\link[base:logical]{TRUE}} and an existing output file, then it is returned.}
   \item{overwrite}{If \code{\link[base:logical]{FALSE}}, an error is thrown if the output file
      already exists, otherwise not.}
+  \item{compression}{A \code{\link[base]{character}} \code{\link[base]{vector}} of compression methods
+     to apply.  This overrides any low-level arguments passed via
+     \code{...} that \code{\link[tools]{compactPDF}}.}
   \item{...}{Additional arguments passed to \code{\link[tools]{compactPDF}},
      e.g. \code{gs_quality}.}
 }
@@ -37,7 +41,7 @@
 }
 
 \examples{\dontrun{
-  pathnameZ <- compressPDF("report.pdf", outPath="foo", gs_quality="ebook")
+  pathnameZ <- compressPDF("report.pdf")
 }}
 
 \author{Henrik Bengtsson}
