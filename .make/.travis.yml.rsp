@@ -141,7 +141,7 @@ env:
 rversion <- c(
   "3.1.3" = "3.1.3",
   "3.2.0" = "3.2.0",
-  "3.3.0" = "devel _R_CHECK_FULL_=TRUE"
+  "3.3.0" = "devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE"
 )
 for (v in names(rversion))
   if (support_R(v)) cat(sprintf("    - RVERSION=%s\n", rversion[v]))
@@ -160,10 +160,12 @@ before_install:
     fi
 
 install:
+<%= install_bioc(c("SuggestsNote")) %>
+<%= install_cran(c("SuggestsNote")) %>
 <%= install_bioc(c("Depends", "Imports")) %>
-<%= install_bioc(c("Suggests", "SuggestsNote")) %>
 <%= install_cran(c("Depends", "Imports")) %>
-<%= install_cran(c("Suggests", "SuggestsNote")) %>
+<%= install_bioc(c("Suggests")) %>
+<%= install_cran(c("Suggests")) %>
 
 script:
   - $RENV run_build
@@ -171,10 +173,12 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
-  - if [ -f ".coveralls.R" ]; then
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".coveralls.R" ]]; then
       $RENV install_devtools;
-      $RENV install_github HenrikBengtsson/covr;
+      $RENV install_github jimhester/covr;
       curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+    fi
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".coveralls.R" ]]; then
       $RENV run_script .coveralls.R;
     fi
 

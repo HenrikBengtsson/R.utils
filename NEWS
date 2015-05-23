@@ -3,7 +3,7 @@ Package: R.utils
 ================
 
 Version: 2.0.2-9000 [2015-05-11]
-o Added compressPDF() for compress PDFs.
+o Added compressPDF() to compress PDFs.
 o If, and only if, 'path' is an existing directory, then
   copyFile(pathname, path) copies file 'pathname' to the 'path'
   directory (previously destination always had to be a file).

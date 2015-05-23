@@ -114,10 +114,12 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
+<%= install_bioc(c("SuggestsNote")) %>
+<%= install_cran(c("SuggestsNote")) %>
 <%= install_bioc(c("Depends", "Imports")) %>
-<%= install_bioc(c("Suggests", "SuggestsNote")) %>
 <%= install_cran(c("Depends", "Imports")) %>
-<%= install_cran(c("Suggests", "SuggestsNote")) %>
+<%= install_bioc(c("Suggests")) %>
+<%= install_cran(c("Suggests")) %>
 
 test_script:
   - travis-tool.sh run_tests
