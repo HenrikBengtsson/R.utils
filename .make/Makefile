@@ -244,7 +244,7 @@ check_Rex:
 
 
 covr:
-	$(R_SCRIPT) -e "source('.coveralls.R'); covr::shine(covr)"
+	$(R_SCRIPT) -e "source('.covr.R'); covr::shine(covr)"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
