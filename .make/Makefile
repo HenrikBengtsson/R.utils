@@ -391,7 +391,7 @@ clean:
 	$(RM) covr-utils.R
 
 refresh: clean
-	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/Makefile', path='.make/')"
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/Makefile', path='.make/', skip=FALSE)"
 	$(MAKE) --silent .make/.travis.yml.rsp
 	$(MAKE) --silent .make/appveyor.yml.rsp
 	$(MAKE) --silent .make/README.md.rsp

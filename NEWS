@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.0.2-9000 [2015-05-11]
+Version: 2.0.2-9000 [2015-05-27]
 o Added compressPDF() to compress PDFs.
 o If, and only if, 'path' is an existing directory, then
   copyFile(pathname, path) copies file 'pathname' to the 'path'
@@ -15,6 +15,8 @@ o CLEANUP: createLink(..., skip=TRUE) would give a false warning
 o INCONSISTENCY: captureOutput(..., collapse="\n") did not drop
   newline of the last line as captureOutput(..., collapse="\r")
   and any other collapse != "\n" strings.  Added package tests.
+o ROBUSTNESS: Code coverage (was 65%).
+o BUG FIX: captureOutput(..., file="foo.txt") gave an error.
 
 
 Version: 2.0.2 [2015-04-27]

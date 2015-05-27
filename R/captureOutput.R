@@ -82,10 +82,12 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
       res
     }, envir=envir, enclos=envir);
   } else {
-    # As usual?
+    # Backward compatibility, i.e. capture to file
     res <- eval({
       capture.output(expr, file=file, append=append);
     }, envir=envir, enclos=envir);
+
+    return(invisible(res))
   }
 
   ## At this point 'res' is a single character string if captured

@@ -26,3 +26,7 @@ print(readLines(pathname))
 con <- file(pathname, open="w")
 writeDataFrame(data, file=con, overwrite=TRUE)
 close(con)
+
+# Overwrite using a filename
+writeDataFrame(data, file=pathname, overwrite=TRUE)
+

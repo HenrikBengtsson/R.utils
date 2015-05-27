@@ -21,3 +21,16 @@ for (ch in list(NULL, "\n", "\r", "\n\r", "\r\n", ";\n", "")) {
   str(list(bfr0=bfr0, bfr=bfr))
   stopifnot(identical(bfr0, bfr))
 }
+
+
+message("*** captureOutput(..., file='foo.txt')")
+x <- c("abc", "123", "def\n456")
+capture.output(cat(x), file="foo1.txt")
+captureOutput(cat(x), file="foo2.txt")
+bfr1 <- readLines("foo1.txt", warn=FALSE)
+bfr2 <- readLines("foo2.txt", warn=FALSE)
+stopifnot(all.equal(bfr2, bfr1))
+file.remove("foo1.txt")
+file.remove("foo2.txt")
+
+

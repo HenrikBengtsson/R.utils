@@ -102,6 +102,7 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
 
   # Nothing todo?
   if (length(sourceCode) == 0L) {
+    ## Can this ever happen? /HB 2015-05-27
     return(structure(character(0L), class=c("CapturedEvaluation", "character")));
   }
 

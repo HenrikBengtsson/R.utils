@@ -46,6 +46,11 @@ stopifnot(isFile(pathnameD))
 renameFile(pathnameD, ".")
 
 
+## Exception handling
+res <- try(copyFile("hello.txt", "hello.txt"), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+
 # Cleanup
 removeDirectory("foo")
 file.remove("hello.txt")

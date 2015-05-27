@@ -92,10 +92,17 @@ close(con)
 
 # Assert everything is as expected
 # Read the complete file
-x <- readBin(pathname, what="integer", size=size, signed=FALSE, n=length(data))
+x <- readBin(pathname, what=integer(), size=size, signed=FALSE, n=length(data))
 stopifnot(identical(x, data))
 cat("Write connection...done\n")
 
+# Read bytes 1-4, 11-14, 21-24, ...
+idxs <- seq(from=1, to=255, by=10)
+idxs <- cbind(idxs, idxs+3)
+x <- readBinFragments(pathname, what="integer", size=size, signed=FALSE, idxs=idxs, verbose=TRUE)
+idxsX <- intervalsToSeq(idxs)
+stopifnot(identical(x, data[idxsX]))
+print(x)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Clean up

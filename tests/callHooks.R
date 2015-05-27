@@ -44,3 +44,13 @@ isErroneous <- unlist(lapply(res, FUN=function(x) !is.null(x$exception)));
 cat("Erroneous hooks: ", sum(isErroneous), "\n");
 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Exception handling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- try(callHooks(character(0L)), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+res <- try(callHooks(c("a", "b")), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
