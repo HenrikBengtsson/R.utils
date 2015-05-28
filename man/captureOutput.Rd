@@ -46,7 +46,7 @@ captureOutput(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()
 \examples{
 # captureOutput() is much faster than capture.output()
 # for large outputs when capturing to a string.
-for (n in c(10e3, 40e3, 80e3)) {
+for (n in c(10e3, 20e3, 30e3, 40e3)) {
   printf("n=\%d\n", n)
 
   x <- rnorm(n)
@@ -64,7 +64,6 @@ for (n in c(10e3, 40e3, 80e3)) {
 
   bfr2n <- captureOutput(print(x), collapse="\n")
   bfr2r <- captureOutput(print(x), collapse="\r")
-#  stopifnot(nchar(bfr2n) == nchar(bfr2r))
 
   stopifnot(identical(bfr, bfr0))
 } # for (n ...)
