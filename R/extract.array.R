@@ -77,11 +77,10 @@ setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(i
   args <- rep("", times=ndim);
   for (kk in seq(length=length(indices))) {
     dd <- dims[kk];
-    ii <- sprintf("indices[[%d]]", kk);
-    args[dd] <- ii;
+    args[dd] <- sprintf("indices[[%d]]", kk);
   }
   if (ndim > 1L)
-    args <- c(args,"drop=drop");
+    args <- c(args, sprintf("drop=%s", drop));
   args <- paste(args, collapse=",");
   code <- paste("x[", args, "]", sep="");
   expr <- parse(text=code);
