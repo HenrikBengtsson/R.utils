@@ -10,6 +10,9 @@ print(listDirectory(path, recursive=0L))
 print(listDirectory(path, recursive=1L))
 print(listDirectory(path, recursive=2L))
 
-# Non-existing
+## Full names
+print(listDirectory(path, recursive=2L, fullNames=TRUE))
+
+## Non-existing
 print(listDirectory("unknown-path"))
 

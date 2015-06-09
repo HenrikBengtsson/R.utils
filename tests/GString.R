@@ -14,6 +14,10 @@ cat(GString("Hello ${who}\n"))
 # Escaping
 cat(as.character(GString("Hello \\\\${who}\n")))
 
+# Printing
+print(GString("Hello ${who}\n"))
+
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Looping over vectors

@@ -29,8 +29,10 @@
 #  This method immitates @see "utils::capture.output" with the major
 #  difference that it captures strings via a @raw connection rather
 #  than via internal strings.  The latter becomes exponentially slow
-#  for large outputs [1].
+#  for large outputs [1,2].
 # }
+#
+# @examples ../incl/captureOutput.Rex
 #
 # @author
 #
@@ -43,6 +45,9 @@
 #  [1] R-devel thread 'capture.output(): Using a rawConnection() [linear]
 #      instead of textConnection() [exponential]?', 2014-02-03.
 #      \url{https://stat.ethz.ch/pipermail/r-devel/2014-February/068349.html}
+#  [2] JottR blog post 'PERFORMANCE: captureOutput() is much faster than
+#      capture.output()', 2015-05-26.
+#      \url{http://www.jottr.org/2014/05/captureOutput.html}
 # }
 #
 # @keyword IO
@@ -77,19 +82,24 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
       res
     }, envir=envir, enclos=envir);
   } else {
-    # As usual?
+    # Backward compatibility, i.e. capture to file
     res <- eval({
       capture.output(expr, file=file, append=append);
     }, envir=envir, enclos=envir);
+
+    return(invisible(res))
   }
 
-  # Return line by line or as one long string?
-  if (is.null(collapse)) {
-    res <- unlist(strsplit(res, split="\n", fixed=TRUE), use.names=FALSE);
-  } else if (collapse != "\n") {
-    res <- unlist(strsplit(res, split="\n", fixed=TRUE), use.names=FALSE);
-    res <- paste(res, collapse=collapse);
-  }
+  ## At this point 'res' is a single character string if captured
+  ## to a raw or file connection, whereas if captured to say
+  ## "text" connection, then it is a character vector with elements
+  ## split by '\n' newlines.
+  ## In order to emulate capture.output() behavior as far as possible,
+  ## we will split by '\n'.
+  res <- unlist(strsplit(res, split="\n", fixed=TRUE), use.names=FALSE)
+
+  ## Merge back using the collapse string?
+  if (!is.null(collapse)) res <- paste(res, collapse=collapse)
 
   res;
 } # captureOutput()
@@ -97,6 +107,8 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
 
 ##############################################################################
 # HISTORY:
+# 2015-05-08
+# o captureOutput(..., collapse="\n") no longer appends newline at the end.
 # 2014-05-01
 # o Immitates arguments of capture.output() plus 'collapse'.
 # o Renamed to captureOutput().

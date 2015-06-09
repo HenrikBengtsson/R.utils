@@ -32,5 +32,26 @@ gunzip("foo.txt.gz")
 print(file.info("foo.txt"))
 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Skipping and overwriting
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+cat(file="foo.txt", "Hello world!")
+gzip("foo.txt", remove=FALSE)
+
+res <- try(gzip("foo.txt", remove=FALSE, skip=FALSE), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+gzip("foo.txt", remove=FALSE, overwrite=TRUE)
+gzip("foo.txt", remove=FALSE, skip=TRUE)
+res <- try(gzip("foo.txt", remove=FALSE, skip=FALSE), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+gunzip("foo.txt.gz", remove=FALSE, overwrite=TRUE)
+res <- try(gunzip("foo.txt.gz", remove=FALSE, skip=FALSE), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+gunzip("foo.txt.gz", overwrite=TRUE)
+
+
 ## Cleanup
 file.remove("foo.txt")

@@ -12,7 +12,9 @@
 #
 # \arguments{
 #   \item{srcPathname}{The source file to be copied.}
-#   \item{destPathname}{The destination file to be created.}
+#   \item{destPathname}{The destination file to be created.
+#    If an emph{existing directory}, then the destination file
+#    becomes \code{file.path(destPathname, basename(srcPathname))}.}
 #   \item{skip, overwrite}{If a destination file does not exist, these
 #    arguments have no effect.
 #    If such a file exists and \code{skip} is @TRUE, then no copying is
@@ -81,7 +83,18 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=FALS
 
   verbose && enter(verbose, "Copying file safely");
   verbose && cat(verbose, "Source: ", srcPathname);
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Special case: Copying to an existing directory?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (isDirectory(destPathname)) {
+    destPath <- destPathname
+    destPath <- Arguments$getWritablePath(destPath)
+    verbose && cat(verbose, "Destination directory: ", destPath);
+    destPathname <- file.path(destPath, basename(srcPathname))
+  }
   verbose && cat(verbose, "Destination: ", destPathname);
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Initial validation

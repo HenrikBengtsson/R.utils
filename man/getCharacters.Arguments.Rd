@@ -50,6 +50,11 @@
  thrown.
 }
 
+\section{Missing values}{
+  If \code{s} contains missing values, and \code{nchar} is not \code{\link[base]{NULL}},
+  then an exception is thrown.
+}
+
 \author{Henrik Bengtsson}
 
 \seealso{

@@ -62,3 +62,5 @@ warning("Hello world!")
 warnings(verbose)
 resetWarnings()
 
+print(timestamp())
+

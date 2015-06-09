@@ -1,15 +1,16 @@
 Package: R.utils
-Version: 2.0.2
+Version: 2.1.0
 Depends:
   R (>= 2.5.0),
-  R.oo (>= 1.18.0)
+  R.oo (>= 1.19.0)
 Imports:
-  utils,
   methods,
+  utils,
+  tools,
   R.methodsS3 (>= 1.7.0)
 Suggests:
   digest (>= 0.6.8)
-Date: 2015-04-27
+Date: 2015-05-27
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))

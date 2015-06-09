@@ -46,3 +46,13 @@ str(args)
 args <- cmdArgs(args=list("*", a=3L, "*"))
 str(args)
 
+args <- cmdArgs(args=args0, names="K")
+str(args)
+stopifnot(all.equal(args, args0["K"]))
+
+
+## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Call function via command-line arguments
+## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+value <- cmdArgsCall("seq_len", args=list(length.out=5))
+print(value)

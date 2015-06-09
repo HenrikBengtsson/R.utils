@@ -57,3 +57,10 @@ for (m in missing)
 print(x)
 stopifnot(identical(as.double(x),as.double(Ex)))
 
+
+## Exception handling
+x <- 1:10
+res <- try(y <- insert(x, ats=1:2, values=1:3), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+

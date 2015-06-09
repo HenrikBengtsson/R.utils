@@ -2,6 +2,22 @@
 Package: R.utils
 ================
 
+Version: 2.1.0 [2015-05-27]
+o Added compressPDF() to compress PDFs.
+o If, and only if, 'path' is an existing directory, then
+  copyFile(pathname, path) copies file 'pathname' to the 'path'
+  directory (previously destination always had to be a file).
+  Analogously, renameFile(pathname, path) moves file 'pathname'
+  (not a directory though) to destination directory 'path'.
+o CLEANUP: createLink(..., skip=TRUE) would give a false warning
+  if a proper link already existed and the target was elsewhere
+  than the current directory.
+o INCONSISTENCY: captureOutput(..., collapse="\n") did not drop
+  newline of the last line as captureOutput(..., collapse="\r")
+  and any other collapse != "\n" strings.  Added package tests.
+o BUG FIX: captureOutput(..., file="foo.txt") gave an error.
+
+
 Version: 2.0.2 [2015-04-27]
 o ROBUSTNESS: Now nchar(..., type="chars") is used internally for
   all file and directory names.

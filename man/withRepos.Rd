@@ -45,6 +45,12 @@ withRepos(expr, repos="[[mainstream]]", ..., envir=parent.frame())
 
   # Install from R-Forge and mainstream repositories only
   withRepos(install.packages("R.utils"), repos="[[R-Forge]]")
+
+  # Update only CRAN packages
+  withRepos(update.packages(ask=FALSE), repos="[[CRAN]]")
+
+  # Update only Bioconductor packages
+  withRepos(update.packages(ask=FALSE), repos="[[BioC]]")
 }}
 
 \seealso{

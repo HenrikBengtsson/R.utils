@@ -13,3 +13,11 @@ str(x2)
 stopifnot(all.equal(x2, x))
 
 file.remove(file)
+
+
+if (isPackageInstalled("digest")) {
+  file <- saveObject(x)
+  print(file)
+  file.remove(file)
+}
+
