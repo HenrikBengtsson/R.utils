@@ -36,7 +36,7 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  Internally \code{\link[base]{sample}}() is used.
+  Internally \code{\link[base]{sample.int}}() is used.
 }
 
 \references{

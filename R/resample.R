@@ -25,25 +25,25 @@
 # @author
 #
 # \seealso{
-#   Internally @see "base::sample" is used.
+#   Internally @see "base::sample.int" is used.
 # }
 #
 # \references{
-#   [1] Henrik Bengtsson, 
+#   [1] Henrik Bengtsson,
 #       \emph{Using sample() to sample one value from a single value?},
 #       R-devel mailing list, 2010-11-03.\cr
 # }
 #
 # @keyword IO
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("resample", "default", function(x, ...) {
   x[sample.int(length(x), ...)];
 })
 
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2010-11-03
 # o Created from example("sample") in R v2.12.0.  See R-devel thread
 #   'Using sample() to sample one value from a single value?' by
