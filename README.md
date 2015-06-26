@@ -8,7 +8,7 @@ install.packages('R.utils')
 ```
 
 
-## Software quality
+## Software status
 
 | Resource:     | CRAN        | Travis CI     | Appveyor         |
 | ------------- | ------------------- | ------------- | ---------------- |
