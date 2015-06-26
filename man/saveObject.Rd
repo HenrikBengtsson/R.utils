@@ -17,7 +17,8 @@
 }
 
 \usage{
-\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)
+\method{saveObject}{default}(object, file=NULL, path=NULL, format=c("xdr", "rds"), compress=TRUE, ...,
+  safe=TRUE)
 }
 
 \arguments{
@@ -25,6 +26,7 @@
  \item{file}{A filename or \code{\link[base:connections]{connection}} where the object should be saved.
    If \code{\link[base]{NULL}}, the filename will be the hash code of the object plus ".xdr".}
  \item{path}{Optional path, if \code{file} is a filename.}
+ \item{format}{File format.}
  \item{compress}{If \code{\link[base:logical]{TRUE}}, the file is compressed to, otherwise not.}
  \item{...}{Other arguments accepted by \code{save()} in the base package.}
  \item{safe}{If \code{\link[base:logical]{TRUE}} and \code{file} is a file, then, in order to lower

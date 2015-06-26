@@ -14,6 +14,7 @@
 #  \item{file}{A filename or @connection where the object should be saved.
 #    If @NULL, the filename will be the hash code of the object plus ".xdr".}
 #  \item{path}{Optional path, if \code{file} is a filename.}
+#  \item{format}{File format.}
 #  \item{compress}{If @TRUE, the file is compressed to, otherwise not.}
 #  \item{...}{Other arguments accepted by \code{save()} in the base package.}
 #  \item{safe}{If @TRUE and \code{file} is a file, then, in order to lower
@@ -36,54 +37,63 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
+setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, format=c("xdr", "rds"), compress=TRUE, ..., safe=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (is.null(file)) {
-    requireNamespace("digest") || throw("Package not loaded: digest");
-    file <- digest::digest(as.list(object));  # Might be slow.
-    file <- sprintf("%s.xdr", file);
-  } 
+    requireNamespace("digest") || throw("Package not loaded: digest")
+    file <- digest::digest(as.list(object))  # Might be slow.
+    file <- sprintf("%s.xdr", file)
+  }
 
-  saveToFile <- (!inherits(file, "connection"));
+  # Argument 'format':
+  format <- match.arg(format)
+
+  saveToFile <- (!inherits(file, "connection"))
   if (saveToFile) {
-    file <- filePath(path, file, expandLinks="any");
+    file <- filePath(path, file, expandLinks="any")
   }
 
   # Write to a temporary file?
   if (safe && saveToFile) {
     # Final pathname
-    pathname <- file;
+    pathname <- file
     # Temporary pathname
-    pathnameT <- sprintf("%s.tmp", pathname);
+    pathnameT <- sprintf("%s.tmp", pathname)
     if (file.exists(pathnameT)) {
-      throw("Cannot save to file. Temporary file already exists: ", pathnameT);
+      throw("Cannot save to file. Temporary file already exists: ", pathnameT)
     }
     # Write to a temporary file
-    file <- pathnameT;
+    file <- pathnameT
     on.exit({
       if (!is.null(pathnameT) && file.exists(pathnameT)) {
-        file.remove(pathnameT);
+        file.remove(pathnameT)
       }
-    }, add=TRUE);
+    }, add=TRUE)
   }
 
-  saveLoadReference <- object;
-  base::save(saveLoadReference, file=file, ..., compress=compress, ascii=FALSE);
+
+  if (format == "xdr") {
+    saveLoadReference <- object
+    base::save(saveLoadReference, file=file, ..., compress=compress, ascii=FALSE)
+  } else if (format == "rds") {
+    saveRDS(object, file=file, ascii=FALSE, compress=compress, ...)
+  }
+
 
   # Rename temporary file?
   if (safe && saveToFile) {
-    file.rename(pathnameT, pathname);
+    file.rename(pathnameT, pathname)
     if (!file.exists(pathname) || file.exists(pathnameT)) {
-      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname);
+      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname)
     }
-    pathnameT <- NULL;
-    file <- pathname;
+    pathnameT <- NULL
+    file <- pathname
   }
 
-  invisible(file);
+  invisible(file)
 }) # saveObject()
 
 
