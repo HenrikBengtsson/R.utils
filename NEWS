@@ -2,9 +2,11 @@
 Package: R.utils
 ================
 
-Version: 2.1.0-9000 [2015-06-25]
+Version: 2.1.0-9000 [2015-07-01]
 o loadObject() and saveObject() gained argument 'format' in order
   to support also RDS files (in addition to XDR files).
+o Explicit import of all 'graphics', 'grDevices', 'stats' and
+  'utils' functions.
 
 
 Version: 2.1.0 [2015-05-27]
