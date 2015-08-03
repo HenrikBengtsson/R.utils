@@ -39,7 +39,7 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("loadObject", "default", function(file, path=NULL, format=c("xdr", "rds"), ...) {
+setMethodS3("loadObject", "default", function(file, path=NULL, format=c("auto", "xdr", "rds"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -50,6 +50,14 @@ setMethodS3("loadObject", "default", function(file, path=NULL, format=c("xdr", "
 
   # Argument 'format':
   format <- match.arg(format)
+
+  # Infer 'format' from filename extension?  Default is "xdr"
+  if (format == "auto") {
+    format <- tools::file_ext(file)
+    format <- tolower(format)
+    ## Here 'format' can be character(0L) or nchar(format) >= 0L
+    if (!isTRUE(is.element(format, c("xdr", "rds")))) format <- "xdr"
+  }
 
   if (format == "xdr") {
     # Declare variable

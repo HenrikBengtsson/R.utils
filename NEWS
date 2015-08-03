@@ -4,7 +4,10 @@ Package: R.utils
 
 Version: 2.1.0-9000 [2015-07-01]
 o loadObject() and saveObject() gained argument 'format' in order
-  to support also RDS files (in addition to XDR files).
+  to support also RDS files (in addition to XDR files).  File
+  formats XDR and RDS are supported.  The default format is
+  inferred from the filename extension.  If this is not possible,
+  then the XDR format is assumed (default; backward compatible).
 o Explicit import of all 'graphics', 'grDevices', 'stats' and
   'utils' functions.
 

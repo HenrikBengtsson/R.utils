@@ -37,19 +37,27 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, format=c("xdr", "rds"), compress=TRUE, ..., safe=TRUE) {
+setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, format=c("auto", "xdr", "rds"), compress=TRUE, ..., safe=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'format':
+  format <- match.arg(format)
+
+  # Infer 'format' from filename extension?  Default is "xdr"
+  if (format == "auto") {
+    format <- tools::file_ext(file)
+    format <- tolower(format)
+    ## Here 'format' can be character(0L) or nchar(format) >= 0L
+    if (!isTRUE(is.element(format, c("xdr", "rds")))) format <- "xdr"
+  }
+
   # Argument 'file':
   if (is.null(file)) {
     requireNamespace("digest") || throw("Package not loaded: digest")
     file <- digest::digest(as.list(object))  # Might be slow.
-    file <- sprintf("%s.xdr", file)
+    file <- sprintf("%s.%s", file, format)
   }
-
-  # Argument 'format':
-  format <- match.arg(format)
 
   saveToFile <- (!inherits(file, "connection"))
   if (saveToFile) {

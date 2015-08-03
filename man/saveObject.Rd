@@ -17,8 +17,8 @@
 }
 
 \usage{
-\method{saveObject}{default}(object, file=NULL, path=NULL, format=c("xdr", "rds"), compress=TRUE, ...,
-  safe=TRUE)
+\method{saveObject}{default}(object, file=NULL, path=NULL, format=c("auto", "xdr", "rds"), compress=TRUE,
+  ..., safe=TRUE)
 }
 
 \arguments{

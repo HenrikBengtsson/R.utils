@@ -17,7 +17,7 @@
 }
 
 \usage{
-\method{loadObject}{default}(file, path=NULL, format=c("xdr", "rds"), ...)
+\method{loadObject}{default}(file, path=NULL, format=c("auto", "xdr", "rds"), ...)
 }
 
 \arguments{

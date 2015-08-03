@@ -48,6 +48,12 @@ importFrom("methods", "show")
 importFrom("stats", "update")
 importFrom("stats", "na.omit")
 
+## importFrom("tools", "compactPDF")
+## importFrom("tools", "file_ext")
+## importFrom("tools", "Rd2txt")
+## importFrom("tools", "Rd2HTML")
+## importFrom("tools", "Rd2latex")
+
 importFrom("utils", "available.packages")
 importFrom("utils", "capture.output")
 importFrom("utils", "compareVersion")
