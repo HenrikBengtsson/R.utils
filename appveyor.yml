@@ -31,9 +31,9 @@ build_script:
 
 
 
- - travis-tool.sh install_r R.methodsS3 R.oo
+  - travis-tool.sh install_r R.methodsS3 R.oo
 
- - travis-tool.sh install_r digest
+  - travis-tool.sh install_r digest
 
 test_script:
   - travis-tool.sh run_tests
