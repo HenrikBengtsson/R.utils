@@ -3,5 +3,3 @@
 # from the install using .Rinstignore in the top-level directory
 # such as this one.
 doc/.*[.](bib|bst|sty)$
-
-
