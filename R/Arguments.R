@@ -334,13 +334,10 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
       } else {
         reason <- sprintf("%s/ exists, but nothing beyond", parent);
       }
-      if (!is.null(reason))
-        if (!isAbsolutePath(pathname)) {
-          reason <- sprintf("%s; current directory is '%s'", reason, getwd());
-        }
-        reason <- sprintf(" (%s)", reason);
-      mprint(getwd())
-      mprint(dir())
+      if (!is.null(reason) && !isAbsolutePath(pathname)) {
+        reason <- sprintf("%s; current directory is '%s'", reason, getwd());
+      }
+      reason <- sprintf(" (%s)", reason);
       throw("Pathname not found: ", pathname, reason);
     }
 
