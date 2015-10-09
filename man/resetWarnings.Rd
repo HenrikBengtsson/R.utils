@@ -6,35 +6,38 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{resetWarnings}
+\name{resetWarnings}
 \alias{resetWarnings.default}
 \alias{resetWarnings}
 
- \title{Resets recorded warnings}
+\title{Resets recorded warnings}
 
- \description{
-  Resets recorded warnings.
- }
+\description{
+ Resets recorded warnings.
+ \emph{This function only worked with R (< 2.4.0) and is now deprecated.}
+}
 
- \usage{
+\usage{
 \method{resetWarnings}{default}(...)
 }
 
- \arguments{
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{...}{Not used.}
+}
 
- \value{
-  Returns (invisibly) the number of warnings removed.
- }
+\value{
+ Returns (invisibly) the number of warnings removed.
+}
 
 
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[base]{warnings}}()
- }
+\seealso{
+  \code{\link[base]{warnings}}()
+}
+
 
 
 \keyword{programming}
+\keyword{internal}
