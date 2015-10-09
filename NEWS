@@ -8,6 +8,9 @@ o loadObject() and saveObject() gained argument 'format' in order
   formats XDR and RDS are supported.  The default format is
   inferred from the filename extension.  If this is not possible,
   then the XDR format is assumed (default; backward compatible).
+o ROBUSTNESS: Now writeDataFrame(..., sep, quote=FALSE) asserts
+  that none of the columns contains the field separator 'sep',
+  because then the written file would be corrupt/invalid.
 o Explicit import of all 'graphics', 'grDevices', 'stats' and
   'utils' functions.
 o CLEANUP: Deprecated resetWarnings().
