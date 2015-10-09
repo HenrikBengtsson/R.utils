@@ -30,6 +30,9 @@ cat("\n")
 cat(as.character(GString("(x,y)=(${x},$[capitalize]{y})")), sep=", ")
 cat("\n")
 
+cat(as.character(GString("(x,y)=(${x},$[toupper]{y})")), sep=", ")
+cat("\n")
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Predefined ("builtin") variables
