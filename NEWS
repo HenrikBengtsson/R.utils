@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.1.0-9000 [2015-10-09]
+Version: 2.1.0-9000 [2015-11-15]
 o loadObject() and saveObject() gained argument 'format' in order
   to support also RDS files (in addition to XDR files).  File
   formats XDR and RDS are supported.  The default format is
@@ -11,8 +11,12 @@ o loadObject() and saveObject() gained argument 'format' in order
 o ROBUSTNESS: Now writeDataFrame(..., sep, quote=FALSE) asserts
   that none of the columns contains the field separator 'sep',
   because then the written file would be corrupt/invalid.
-o Explicit import of all 'graphics', 'grDevices', 'stats' and
-  'utils' functions.
+o ROBUSTNESS: Explicit import of all 'graphics', 'grDevices',
+  'stats' and 'utils' functions.
+o DOCUMENTATION: Clarified in help for compressFile() et al. that
+  these functions remove the input file by default after the output
+  file is generated.  Thanks to Ben Bond-Lamberty (Pacific Northwest
+  National Laboratory) for pointing out this potential pitfall.
 o CLEANUP: Deprecated resetWarnings().
 o BUG FIX: GString ignored "simple" attributes, e.g. $[tolower]{y}.
   Thanks to Andre Mikulec for reporting on this.

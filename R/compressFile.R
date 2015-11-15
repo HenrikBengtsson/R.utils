@@ -37,6 +37,12 @@
 #
 # \description{
 #  @get "title" such as gzip:ed and bzip2:ed files.
+#
+#  \emph{
+#    NOTE: The default (\code{remove=TRUE}) behavior is that
+#    the input file is removed after that the output file
+#    is fully created and closed.
+#  }
 # }
 #
 # \arguments{
