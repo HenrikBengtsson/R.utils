@@ -131,7 +131,11 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
     # a) Unix (and OSX?!? /HB 2011-09-14)
     if ("unix" %in% os) {
-      reservedArgs <- c(reservedArgs, "--no-readline", "--debugger=(.*)", "-d", "--gui=(.*)", "-g", "--interactive", "--arch=(.*)")
+      reservedArgs <- c(reservedArgs, "--no-readline", "--debugger-args=(.*)", "--debugger=(.*)", "-d", "--gui=(.*)", "-g", "--interactive", "--arch=(.*)")
+      if (rVer >= "3.0.0") {
+        # Source: R 3.0.0 NEWS (but did not appear in R --help until R 3.2.0)
+        reservedArgs <- c(reservedArgs, "--min-nsize=(.*)", "--min-vsize=(.*)")
+      }
     }
 
     # b) Macintosh

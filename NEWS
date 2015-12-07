@@ -8,6 +8,10 @@ o loadObject() and saveObject() gained argument 'format' in order
   formats XDR and RDS are supported.  The default format is
   inferred from the filename extension.  If this is not possible,
   then the XDR format is assumed (default; backward compatible).
+o R.utils::commandArgs() now also ackowledges 'argv' set by the
+  littler executable.
+o R.utils::commandArgs() recognizes more reserved command-line
+  arguments, e.g. --debugger-args=N, --min-vsize=N and --min-nsize=N.
 o ROBUSTNESS: Now writeDataFrame(..., sep, quote=FALSE) asserts
   that none of the columns contains the field separator 'sep',
   because then the written file would be corrupt/invalid.
