@@ -71,7 +71,16 @@
 #
 # \section{Backward compatibility}{
 #  This function should be fully backward compatible with the same
-#  function in the \pkg{base} package.
+#  function in the \pkg{base} package, except when littler is used
+#  (see below).
+# }
+
+# \section{Compatibility with littler}{
+#  The littler package provides the \code{r} binary, which parses
+#  user command-line options and assigns them to character vector
+#  \code{argv} in the global environment.
+#  The \code{commandArgs()} of this package recognizes \code{argv}
+#  arguments as well.
 # }
 #
 # \section{Coercing to non-character data types}{
@@ -302,7 +311,14 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
   # Argument '.args':
   if (is.null(.args)) {
-    .args <- base::commandArgs(trailingOnly=trailingOnly);
+    .args <- base::commandArgs(trailingOnly=trailingOnly)
+    ## Also support 'littler' (https::cran.r-project.org/package=littler)
+    ## command-line options 'argv' character vector.  If it exists, then
+    ## append it to the above vector of arguments.
+    if (exists("argv", mode='character', envir=globalenv())) {
+      argv <- get("argv", mode='character', envir=globalenv())
+      .args <- c(.args, argv)
+    }
   } else if (!is.character(.args)) {
     throw("Argument '.args' must be a character vector: ", class(.args)[1L]);
   }

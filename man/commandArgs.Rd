@@ -83,7 +83,15 @@ commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adho
 
 \section{Backward compatibility}{
  This function should be fully backward compatible with the same
- function in the \pkg{base} package.
+ function in the \pkg{base} package, except when littler is used
+ (see below).
+}
+\section{Compatibility with littler}{
+ The littler package provides the \code{r} binary, which parses
+ user command-line options and assigns them to character vector
+ \code{argv} in the global environment.
+ The \code{commandArgs()} of this package recognizes \code{argv}
+ arguments as well.
 }
 
 \section{Coercing to non-character data types}{
