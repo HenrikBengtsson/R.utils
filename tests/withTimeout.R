@@ -97,5 +97,26 @@ stopifnot(!res$visible)
 stopifnot(all.equal(x, 1))
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Non-English settings
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+local({
+  olang <- Sys.getenv("LANGUAGE")
+  on.exit(Sys.setenv(LANGUAGE=olang))
+  Sys.setenv(LANGUAGE="fr")
+
+  res <- NULL
+  tryCatch({
+    res <- withTimeout({
+      foo()
+    }, timeout=1.08, onTimeout="warning")
+  }, warning=function(ex) {
+    cat("Timeout warning (", ex$message, "). Skipping.\n", sep="")
+  })
+
+  stopifnot(is.null(res))
+})
+
+
 # Undo
 options(oopts)

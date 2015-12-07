@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.1.0-9000 [2015-11-15]
+Version: 2.1.0-9000 [2015-12-07]
 o loadObject() and saveObject() gained argument 'format' in order
   to support also RDS files (in addition to XDR files).  File
   formats XDR and RDS are supported.  The default format is
@@ -18,6 +18,9 @@ o DOCUMENTATION: Clarified in help for compressFile() et al. that
   file is generated.  Thanks to Ben Bond-Lamberty (Pacific Northwest
   National Laboratory) for pointing out this potential pitfall.
 o CLEANUP: Deprecated resetWarnings().
+o BUG FIX: withTimeout() did not work in non-English locales.
+  Thanks to Arnaud Malapert at University Nice Sophia Antipolis for
+  reporting on this.
 o BUG FIX: GString ignored "simple" attributes, e.g. $[tolower]{y}.
   Thanks to Andre Mikulec for reporting on this.
 o BUG FIX: downloadFile() via https://<user>:<pwd>@<domain>/ gave
