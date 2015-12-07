@@ -14,8 +14,7 @@
 
 \usage{
 commandArgs(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, always=NULL, adhoc=FALSE,
-  unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL,
-  .args=base::commandArgs(trailingOnly = trailingOnly), ...)
+  unique=FALSE, excludeReserved=FALSE, excludeEnvVars=FALSE, os=NULL, .args=NULL, ...)
 }
 
 \description{
