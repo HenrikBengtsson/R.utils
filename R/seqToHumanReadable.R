@@ -11,6 +11,9 @@
 #
 # \arguments{
 #   \item{idx}{A @vector of @integer indices.}
+#   \item{tau}{A non-negative @integer specifying the minimum span of
+#    of a contiguous sequences for it to be collapsed to
+#    \code{<from>-<to>}.}
 #   \item{delimiter}{A @character string delimiter.}
 #   \item{collapse}{A @character string used to collapse subsequences.}
 #   \item{...}{Not used.}
@@ -20,6 +23,7 @@
 #
 # \examples{
 #   print(seqToHumanReadable(1:2))                 # "1, 2"
+#   print(seqToHumanReadable(1:2, tau=1))          # "1-2"
 #   print(seqToHumanReadable(1:10))                # "1-10"
 #   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 # }
@@ -30,7 +34,8 @@
 #
 # @keyword "attribute"
 #*/#########################################################################
-setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collapse=", ", ...) {
+setMethodS3("seqToHumanReadable", "default", function(idx, tau=2L, delimiter="-", collapse=", ", ...) {
+  tau <- as.integer(tau)
   data <- seqToIntervals(idx)
 
   ## Nothing to do?
@@ -41,17 +46,30 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
 
   delta <- data[,2L] - data[,1L]
 
+  ## Individual values
   idxs <- which(delta == 0)
   if (length(idxs) > 0L) {
-    s[idxs] <- data[idxs,1L]
+    s[idxs] <- as.character(data[idxs,1L])
   }
 
-  idxs <- which(delta == 1)
-  if (length(idxs) > 0L) {
-    s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=collapse)
+  if (tau > 1) {
+    if (tau == 2) {
+      idxs <- which(delta == 1)
+      if (length(idxs) > 0L) {
+        s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=collapse)
+      }
+    } else {
+      idxs <- which(delta < tau)
+      if (length(idxs) > 0L) {
+        for (idx in idxs) {
+          s[idx] <- paste(data[idx,1L]:data[idx,2L], collapse=collapse)
+        }
+      }
+    }
   }
 
-  idxs <- which(delta > 1)
+  ## Ranges
+  idxs <- which(delta >= tau)
   if (length(idxs) > 0L) {
     s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=delimiter)
   }
