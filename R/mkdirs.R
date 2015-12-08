@@ -62,8 +62,14 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
 
   if (isLink(pathname)) {
     target <- Sys.readlink2(pathname)
+    ## Should have been take care of above, but just in case
+    if (isDirectory(target)) return(FALSE)
     if (mustWork) {
-      throw(sprintf("Failed to create directory, because a link with the same pathname already exists but its target ('%s') appears to be missing: %s", target, pathname))
+      if (isFile(target)) {
+        throw(sprintf("Failed to create directory, because a link with the same pathname already exists and its target ('%s') appears to be a file: %s", target, pathname))
+      } else {
+        throw(sprintf("Failed to create directory, because a link with the same pathname already exists but its target ('%s') appears to be missing: %s", target, pathname))
+      }
     }
     return(FALSE)
   }
@@ -71,16 +77,24 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
   # Get the parent and make sure to delete it afterwards.
   parent <- getParent(pathname)
 
-  if (identical(parent, pathname))
-    throw("Could not get parent directory: ", pathname)
+  if (identical(parent, pathname)) {
+    if (mustWork) {
+      throw("Could not create directory, because failed to get parent directory: ", pathname)
+    }
+    return(FALSE)
+  }
 
   # If the parent is a file, we can not create a directory!
-  if (isFile(parent))
+  if (isFile(parent)) {
+    if (mustWork) {
+      throw(sprintf("Could not create directory, because parent ('%s') is a file not a directory: ", parent, pathname))
+    }
     return(FALSE)
+  }
 
   # If parent is not already a directory, create it
   if (!isDirectory(parent)) {
-    if (!mkdirs(parent, mustWork=mustWork))
+    if (!mkdirs(parent, mustWork=mustWork, ...))
       return(FALSE)
   }
 
