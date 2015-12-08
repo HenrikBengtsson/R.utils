@@ -25,56 +25,38 @@
 # }
 #
 # \seealso{
-#   @see "seqToIntervals".
+#   Internally, @see "seqToIntervals" is used.
 # }
 #
 # @keyword "attribute"
 #*/#########################################################################
 setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collapse=", ", ...) {
-  idx <- as.integer(idx);
-  idx <- unique(idx);
-  idx <- sort(idx);
+  data <- seqToIntervals(idx)
 
-  s <- "";
-  if (length(idx) == 0)
-    return(s);
+  ## Nothing to do?
+  n <- nrow(data)
+  if (n == 0) return("")
 
-  fromValue <- idx[1];
-  toValue <- fromValue-1;
-  lastValue <- fromValue;
+  s <- character(length=n)
 
-  count <- 0;
-  for (kk in seq(along=idx)) {
-    value <- idx[kk];
-    if (value - lastValue > 1) {
-      toValue <- lastValue;
-      if (count > 0)
-        s <- paste(s, collapse, sep="");
-      if (toValue - fromValue == 0) {
-        s <- paste(s, fromValue, sep="");
-      } else {
-        s <- paste(s, fromValue, delimiter, toValue, sep="");
-      }
-      fromValue <- value;
-      count <- count + 1;
-    }
-    lastValue <- value;
+  delta <- data[,2L] - data[,1L]
+
+  idxs <- which(delta == 0)
+  if (length(idxs) > 0L) {
+    s[idxs] <- data[idxs,1L]
   }
 
-  if (toValue < fromValue) {
-    toValue <- lastValue;
-    if (count > 0)
-      s <- paste(s, collapse, sep="");
-    if (toValue - fromValue == 0) {
-      s <- paste(s, fromValue, sep="");
-    } else if (toValue - fromValue == 1) {
-      s <- paste(s, fromValue, collapse, toValue, sep="");
-    } else {
-      s <- paste(s, fromValue, delimiter, toValue, sep="");
-    }
+  idxs <- which(delta == 1)
+  if (length(idxs) > 0L) {
+    s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=collapse)
   }
 
-  s;
+  idxs <- which(delta > 1)
+  if (length(idxs) > 0L) {
+    s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=delimiter)
+  }
+
+  paste(s, collapse=collapse)
 })
 
 ###########################################################################

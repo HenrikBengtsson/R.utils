@@ -4,13 +4,13 @@ library("R.utils")
 x <- c(1:10, 15, 21:20, 25:26)
 s <- seqToHumanReadable(x)
 print(s)
-stopifnot(s == "1-10, 15, 20-21, 25, 26")
+stopifnot(s == "1-10, 15, 20, 21, 25, 26")
 
 ## Other delimiters
 x <- c(1:10, 15, 21:20, 25:26)
 s <- seqToHumanReadable(x, delimiter=":", collapse="; ")
 print(s)
-stopifnot(s == "1:10; 15; 20:21; 25; 26")
+stopifnot(s == "1:10; 15; 20; 21; 25; 26")
 
 ## Single
 s <- seqToHumanReadable(0L)
@@ -36,4 +36,3 @@ stopifnot(s == "1, 3")
 s <- seqToHumanReadable(integer(0L))
 print(s)
 stopifnot(s == "")
-

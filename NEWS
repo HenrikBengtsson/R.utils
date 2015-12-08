@@ -22,6 +22,7 @@ o DOCUMENTATION: Clarified in help for compressFile() et al. that
   file is generated.  Thanks to Ben Bond-Lamberty (Pacific Northwest
   National Laboratory) for pointing out this potential pitfall.
 o CLEANUP: Deprecated resetWarnings().
+o BUG FIX: seqToHumanReadable(c(1:2, 4:5)) gave "1-2, 4, 5".
 o BUG FIX: withTimeout() did not work in non-English locales.
   Thanks to Arnaud Malapert at University Nice Sophia Antipolis for
   reporting on this.

@@ -36,7 +36,7 @@
 }
 
 \seealso{
-  \code{\link{seqToIntervals}}().
+  Internally, \code{\link{seqToIntervals}}() is used.
 }
 
 
