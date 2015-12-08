@@ -80,7 +80,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
 
   # If parent is not already a directory, create it
   if (!isDirectory(parent)) {
-    if (!mkdirs(parent))
+    if (!mkdirs(parent, mustWork=mustWork))
       return(FALSE)
   }
 
