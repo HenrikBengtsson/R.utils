@@ -17,11 +17,13 @@
 }
 
 \usage{
-\method{mkdirs}{default}(pathname, ...)
+\method{mkdirs}{default}(pathname, mustWork=FALSE, ...)
 }
 
 \arguments{
   \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}
+  \item{mustWork}{If \code{\link[base:logical]{TRUE}} and the directory does not already exists or
+   is failed to be created, an error is thrown, otherwise not.}
   \item{...}{Not used.}
 }
 

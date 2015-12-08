@@ -11,6 +11,8 @@
 #
 # \arguments{
 #   \item{pathname}{A @character string of the pathname to be checked.}
+#   \item{mustWork}{If @TRUE and the directory does not already exists or
+#    is failed to be created, an error is thrown, otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
@@ -31,16 +33,40 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-setMethodS3("mkdirs", "default", function(pathname, ...) {
+setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
+  isLink <- function(pathname) {
+    target <- Sys.readlink2(pathname)
+    !is.na(target) && nzchar(target)
+  } ## isLink()
+
+  ## Argument 'mustWork':
+  mustWork <- as.logical(mustWork)
+
   # Nothing to do?
   if (length(pathname) == 0L)
     return(TRUE)
 
   pathname <- as.character(pathname)
 
-  # If already is a directory or a file, return FALSE
-  if (isFile(pathname) || isDirectory(pathname))
+  # If already is a directory, return FALSE
+  if (isDirectory(pathname))
     return(FALSE)
+
+  # If already a file, return FALSE or give an error
+  if (isFile(pathname)) {
+    if (mustWork) {
+      throw("Failed to create directory, because a file with the same pathname already exists: ", pathname)
+    }
+    return(FALSE)
+  }
+
+  if (isLink(pathname)) {
+    target <- Sys.readlink2(pathname)
+    if (mustWork) {
+      throw(sprintf("Failed to create directory, because a link with the same pathname already exists but its target ('%s') appears to be missing: %s", target, pathname))
+    }
+    return(FALSE)
+  }
 
   # Get the parent and make sure to delete it afterwards.
   parent <- getParent(pathname)
@@ -63,9 +89,14 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
     res <- dir.create(pathname)
     if (!res) {
       # If failed, try to create it by its relative pathname
-      pathname <- getRelativePath(pathname)
-      res <- dir.create(pathname)
+      pathnameR <- getRelativePath(pathname)
+      res <- dir.create(pathnameR)
     }
+
+    if (!res && mustWork) {
+      throw("Failed to create directory (for unknown reasons): ", pathname)
+    }
+
     return(res)
   }
 
@@ -74,6 +105,8 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
 
 ###########################################################################
 # HISTORY:
+# 2015-12-08
+# o Added argument 'mustWork'.
 # 2014-09-01
 # o BUG FIX: mkdirs() could return "object 'res' not found" error.
 # 2012-10-19
