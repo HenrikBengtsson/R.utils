@@ -30,7 +30,8 @@
 \author{Henrik Bengtsson}
 
 \examples{
-  print(seqToHumanReadable(1:10))  # "1-10"
+  print(seqToHumanReadable(1:2))                 # "1, 2"
+  print(seqToHumanReadable(1:10))                # "1-10"
   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 }
 

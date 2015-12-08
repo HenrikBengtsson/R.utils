@@ -4,7 +4,7 @@
 # @title "Gets a short human readable string representation of an vector of indices"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -19,7 +19,8 @@
 # @author
 #
 # \examples{
-#   print(seqToHumanReadable(1:10))  # "1-10"
+#   print(seqToHumanReadable(1:2))                 # "1, 2"
+#   print(seqToHumanReadable(1:10))                # "1-10"
 #   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 # }
 #
@@ -28,7 +29,7 @@
 # }
 #
 # @keyword "attribute"
-#*/#########################################################################t 
+#*/#########################################################################
 setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collapse=", ", ...) {
   idx <- as.integer(idx);
   idx <- unique(idx);
@@ -77,7 +78,7 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2010-02-22
 # o Added Rdoc "see also" references.
 # 2005-11-14
