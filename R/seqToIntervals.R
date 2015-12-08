@@ -73,7 +73,6 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
   if (toValue < fromValue) {
     toValue <- lastValue;
     res[count,] <- c(fromValue, toValue);
-    count <- count + 1;
   }
 
   res;
