@@ -121,13 +121,13 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
   # Finally, create this directory
   if (!isDirectory(pathname)) {
     for (tt in 1:maxTries) {
-      dir.create(pathname)
+      suppressWarnings(dir.create(pathname))
       res <- isDirectory(pathname)
       if (res) break
 
       # If failed, try to create it by its relative pathname
       pathnameR <- getRelativePath(pathname)
-      dir.create(pathnameR)
+      suppressWarnings(dir.create(pathnameR))
       res <- isDirectory(pathname)
       if (res) break
 
