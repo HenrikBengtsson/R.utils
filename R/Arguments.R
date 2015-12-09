@@ -523,31 +523,8 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
         pathnameP <- getWritablePathname(static, file="dummy-not-tested", path=pathP, mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=maxTries);
       }
 
-      # Argument 'maxTries':
-      maxTries <- getInteger(static, maxTries, range=c(1L,100L));
-
       # Try to create the directory
-      res <- FALSE;
-      for (tt in 1:maxTries) {
-        mkdirs(path);
-        # Succeeded?
-        res <- isDirectory(path);
-        if (res) break;
-        # If not, wait a bit and try again...
-        Sys.sleep(0.5);
-      } # for (tt in ...)
-
-      if (!res) {
-        # Check if file permissions allow to create a directory
-        pathP <- ifelse(is.null(pathP), ".", pathP);
-        if (fileAccess(pathP, mode=2) == -1) {
-          reason <- ", most likely because of lack of file permissions";
-        } else {
-          reason <- " for unknown reasons"
-        }
-
-        throw(sprintf("Failed not create file path (tried %d time(s))%s (%s %s but nothing beyond; current directory is '%s'): %s", maxTries, reason, pathP, ifelse(createParent, "was created", "exists"), getwd(), path));
-      }
+      mkdirs(path, mustWork=TRUE, maxTries=maxTries)
     }
 
     filename <- basename(pathname);
@@ -627,10 +604,7 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
     throw("Directory does not exist: ", pathname);
   }
 
-  mkdirs(pathname);
-  if (!isDirectory(pathname)) {
-    throw("Failed to create directory (recursively): ", pathname);
-  }
+  mkdirs(pathname, mustWork=TRUE)
 
   pathname;
 }, static=TRUE, protected=TRUE)

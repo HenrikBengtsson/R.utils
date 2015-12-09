@@ -151,7 +151,7 @@ setMethodS3("compressFile", "default", function(filename, destname=sprintf("%s.%
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
-  if (!isDirectory(destpath)) mkdirs(destpath);
+  if (!isDirectory(destpath)) mkdirs(destpath, mustWork=TRUE);
 
   # Setup input and output connections
   inn <- file(filename, open="rb");
@@ -231,7 +231,7 @@ setMethodS3("decompressFile", "default", function(filename, destname=gsub(sprint
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
-  if (!isDirectory(destpath)) mkdirs(destpath);
+  if (!isDirectory(destpath)) mkdirs(destpath, mustWork=TRUE);
 
   # Setup input and output connections
   inn <- FUN(filename, open="rb");
