@@ -51,10 +51,9 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
     !is.na(target) && nzchar(target)
   }
 
-  curdir <- function(pathname, fmtstr=" (%s)") {
-    if (isAbsolutePath(pathname)) return("")
-    s <- sprintf("current directory is '%s'", getwd())
-    sprintf(fmtstr, s)
+  curdir <- function(pathname) {
+    if (isAbsolutePath(pathname)) return(pathname)
+    sprintf("%s (current directory is '%s')", pathname, getwd())
   }
 
   ## Argument 'pathname':
@@ -76,7 +75,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
   # If already a file, return FALSE or give an error
   if (isFile(pathname)) {
     if (mustWork) {
-      throw(sprintf("Failed to create directory, because a file with the same pathname already exists%s: %s", curdir(pathname), pathname))
+      throw("Failed to create directory, because a file with the same pathname already exists: ", curdir(pathname))
     }
     return(FALSE)
   }
@@ -87,9 +86,9 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
     if (isDirectory(target)) return(FALSE)
     if (mustWork) {
       if (isFile(target)) {
-        throw(sprintf("Failed to create directory, because a link with the same pathname already exists and its target ('%s') appears to be a file: %s", target, pathname))
+        throw(sprintf("Failed to create directory, because a link with the same pathname already exists and its target ('%s') appears to be a file: %s", target, curdir(pathname)))
       } else {
-        throw(sprintf("Failed to create directory, because a link with the same pathname already exists but its target ('%s') appears to be missing: %s", target, pathname))
+        throw(sprintf("Failed to create directory, because a link with the same pathname already exists but its target ('%s') appears to be missing: %s", target, curdir(pathname)))
       }
     }
     return(FALSE)
@@ -100,7 +99,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
 
   if (identical(parent, pathname)) {
     if (mustWork) {
-      throw(sprintf("Could not create directory, because failed to get parent directory%s: %s", curdir(pathname), pathname))
+      throw("Could not create directory, because failed to get parent directory: ", curdir(pathname))
     }
     return(FALSE)
   }
@@ -108,7 +107,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
   # If the parent is a file, we can not create a directory!
   if (isFile(parent)) {
     if (mustWork) {
-      throw(sprintf("Could not create directory, because parent ('%s'%s) is a file not a directory: %s", parent, curdir(pathname, fmtstr="; %s"), pathname))
+      throw(sprintf("Could not create directory, because parent ('%s') is a file not a directory: %s", parent, curdir(pathname)))
     }
     return(FALSE)
   }
@@ -145,7 +144,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
         reason <- " for unknown reasons"
       }
 
-      throw(sprintf("Failed not create file path (tried %d time(s))%s (%s exists but nothing beyond%s): %s", maxTries, reason, parent, curdir(pathname, fmtstr="; %s"), pathname))
+      throw(sprintf("Failed not create file path (tried %d time(s))%s (%s exists but nothing beyond): %s", maxTries, reason, parent, curdir(pathname)))
     }
 
     return(res)
