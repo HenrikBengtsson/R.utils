@@ -8,7 +8,7 @@ o loadObject() and saveObject() gained argument 'format' in order
   formats XDR and RDS are supported.  The default format is
   inferred from the filename extension.  If this is not possible,
   then the XDR format is assumed (default; backward compatible).
-o mkdirs() gained argument 'mustWork'.
+o mkdirs() gained arguments 'mustWork' and 'maxTries'.
 o seqToHumanReadable() gained argument 'tau'.
 o R.utils::commandArgs() now also ackowledges 'argv' set by the
   littler executable.

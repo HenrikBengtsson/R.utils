@@ -455,7 +455,7 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #
 # \section{Slow file systems}{
 #   On very rare occassions, we have observed on a large shared file
-#   system that if one tests for the existance of a directory immediately
+#   system that if one tests for the existence of a directory immediately
 #   after creating it with @see "base::dir.create", it may appear not
 #   to be created.  We believe this is due to the fact that there is a
 #   short delay between creating a directory and that information being

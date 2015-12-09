@@ -13,6 +13,8 @@
 #   \item{pathname}{A @character string of the pathname to be checked.}
 #   \item{mustWork}{If @TRUE and the directory does not already exists or
 #    is failed to be created, an error is thrown, otherwise not.}
+#   \item{maxTries}{A positive @integer specifying how many times the
+#     method should try to create a missing directory before giving up.}
 #   \item{...}{Not used.}
 # }
 #
@@ -22,7 +24,17 @@
 #  Note that if the directory already exists, @FALSE is returned.
 # }
 #
-#
+# \section{Slow file systems}{
+#   On very rare occassions, we have observed on a large shared file
+#   system that if one tests for the existence of a directory immediately
+#   after creating it with @see "base::dir.create", it may appear not
+#   to be created.  We believe this is due to the fact that there is a
+#   short delay between creating a directory and that information being
+#   fully propagated on the file system.  To minimize the risk for such
+#   false assertions on "slow" file systems, this method tries to create
+#   a missing directory multiple times (argument \code{maxTries}) (while
+#   waiting a short period of time between each round) before giving up.
+# }
 #
 # @author
 #
@@ -33,20 +45,29 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
+setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L, ...) {
   isLink <- function(pathname) {
     target <- Sys.readlink2(pathname)
     !is.na(target) && nzchar(target)
-  } ## isLink()
+  }
+
+  curdir <- function(pathname, fmtstr=" (%s)") {
+    if (isAbsolutePath(pathname)) return("")
+    s <- sprintf("current directory is '%s'", getwd())
+    sprintf(fmtstr, s)
+  }
+
+  ## Argument 'pathname':
+  # Nothing to do?
+  if (length(pathname) == 0L) return(TRUE)
+  pathname <- as.character(pathname)
 
   ## Argument 'mustWork':
-  mustWork <- as.logical(mustWork)
+  mustWork <- Arguments$getLogical(mustWork)
 
-  # Nothing to do?
-  if (length(pathname) == 0L)
-    return(TRUE)
+  ## Argument 'maxTries':
+  maxTries <- Arguments$getInteger(maxTries, range=c(1L,100L))
 
-  pathname <- as.character(pathname)
 
   # If already is a directory, return FALSE
   if (isDirectory(pathname))
@@ -55,7 +76,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
   # If already a file, return FALSE or give an error
   if (isFile(pathname)) {
     if (mustWork) {
-      throw("Failed to create directory, because a file with the same pathname already exists: ", pathname)
+      throw(sprintf("Failed to create directory, because a file with the same pathname already exists%s: %s", curdir(pathname), pathname))
     }
     return(FALSE)
   }
@@ -79,7 +100,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
 
   if (identical(parent, pathname)) {
     if (mustWork) {
-      throw("Could not create directory, because failed to get parent directory: ", pathname)
+      throw(sprintf("Could not create directory, because failed to get parent directory%s: %s", curdir(pathname), pathname))
     }
     return(FALSE)
   }
@@ -87,28 +108,44 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
   # If the parent is a file, we can not create a directory!
   if (isFile(parent)) {
     if (mustWork) {
-      throw(sprintf("Could not create directory, because parent ('%s') is a file not a directory: ", parent, pathname))
+      throw(sprintf("Could not create directory, because parent ('%s'%s) is a file not a directory: %s", parent, curdir(pathname, fmtstr="; %s"), pathname))
     }
     return(FALSE)
   }
 
   # If parent is not already a directory, create it
   if (!isDirectory(parent)) {
-    if (!mkdirs(parent, mustWork=mustWork, ...))
+    if (!mkdirs(parent, mustWork=mustWork, maxTries=maxTries, ...))
       return(FALSE)
   }
 
   # Finally, create this directory
   if (!isDirectory(pathname)) {
-    res <- dir.create(pathname)
-    if (!res) {
+    for (tt in 1:maxTries) {
+      dir.create(pathname)
+      res <- isDirectory(pathname)
+      if (res) break
+
       # If failed, try to create it by its relative pathname
       pathnameR <- getRelativePath(pathname)
-      res <- dir.create(pathnameR)
+      dir.create(pathnameR)
+      res <- isDirectory(pathname)
+      if (res) break
+
+      # If not, wait a bit and try again...
+      Sys.sleep(0.5)
     }
 
     if (!res && mustWork) {
-      throw("Failed to create directory (for unknown reasons): ", pathname)
+      # Check if file permissions allow to create a directory
+      parent <- ifelse(is.null(parent), ".", parent)
+      if (fileAccess(parent, mode=2) == -1) {
+        reason <- ", most likely because of lack of file permissions"
+      } else {
+        reason <- " for unknown reasons"
+      }
+
+      throw(sprintf("Failed not create file path (tried %d time(s))%s (%s exists but nothing beyond%s): %s", maxTries, reason, parent, curdir(pathname, fmtstr="; %s"), pathname))
     }
 
     return(res)
@@ -120,7 +157,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, ...) {
 ###########################################################################
 # HISTORY:
 # 2015-12-08
-# o Added argument 'mustWork'.
+# o Added arguments 'mustWork' and 'maxTries'.
 # 2014-09-01
 # o BUG FIX: mkdirs() could return "object 'res' not found" error.
 # 2012-10-19
