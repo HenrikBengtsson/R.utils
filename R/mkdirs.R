@@ -47,6 +47,7 @@
 #*/###########################################################################
 setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L, ...) {
   isLink <- function(pathname) {
+    pathname <- getAbsolutePath(pathname)
     target <- Sys.readlink2(pathname)
     !is.na(target) && nzchar(target)
   }
@@ -81,7 +82,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
   }
 
   if (isLink(pathname)) {
-    target <- Sys.readlink2(pathname)
+    target <- Sys.readlink2(getAbsolutePath(pathname))
     ## Should have been take care of above, but just in case
     if (isDirectory(target)) return(FALSE)
     if (mustWork) {
@@ -144,7 +145,7 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
         reason <- " for unknown reasons"
       }
 
-      throw(sprintf("Failed not create file path (tried %d time(s))%s (%s exists but nothing beyond): %s", maxTries, reason, parent, curdir(pathname)))
+      throw(sprintf("Failed to create directory (tried %d times)%s (directory '%s' exists but nothing beyond): %s", maxTries, reason, parent, curdir(pathname)))
     }
 
     return(res)
