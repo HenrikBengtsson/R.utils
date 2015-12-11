@@ -110,7 +110,7 @@ withTimeout <- function(expr, envir=parent.frame(), timeout, cpu=timeout, elapse
   }, error = function(ex) {
     msg <- ex$message;
     # Was it a timeout?
-    pattern <- gettext("reached elapsed time limit");
+    pattern <- gettext("reached elapsed time limit", domain="R")
     if (regexpr(pattern, msg) != -1L) {
       ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed);
       if (onTimeout == "error") {

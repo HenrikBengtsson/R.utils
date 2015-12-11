@@ -174,7 +174,7 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
       if (!is.null(username)) {
         arg <- sprintf("--user %s", username);
         if (!is.null(password)) {
-          arg <- sprintf("%s:%s", password);
+          arg <- sprintf("%s:%s", arg, password);
         }
         args <- c(args, arg);
       }

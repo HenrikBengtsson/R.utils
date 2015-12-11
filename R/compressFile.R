@@ -37,6 +37,12 @@
 #
 # \description{
 #  @get "title" such as gzip:ed and bzip2:ed files.
+#
+#  \emph{
+#    NOTE: The default (\code{remove=TRUE}) behavior is that
+#    the input file is removed after that the output file
+#    is fully created and closed.
+#  }
 # }
 #
 # \arguments{
@@ -145,7 +151,7 @@ setMethodS3("compressFile", "default", function(filename, destname=sprintf("%s.%
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
-  if (!isDirectory(destpath)) mkdirs(destpath);
+  if (!isDirectory(destpath)) mkdirs(destpath, mustWork=TRUE);
 
   # Setup input and output connections
   inn <- file(filename, open="rb");
@@ -225,7 +231,7 @@ setMethodS3("decompressFile", "default", function(filename, destname=gsub(sprint
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
-  if (!isDirectory(destpath)) mkdirs(destpath);
+  if (!isDirectory(destpath)) mkdirs(destpath, mustWork=TRUE);
 
   # Setup input and output connections
   inn <- FUN(filename, open="rb");

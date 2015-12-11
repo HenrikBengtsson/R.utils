@@ -12,11 +12,12 @@
 # \arguments{
 #  \item{file}{A filename or @connection to read the object from.}
 #  \item{path}{The path where the file exists.}
-#   \item{...}{Not used.}
+#  \item{format}{File format.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
-#  Returns the save object.
+#  Returns the saved object.
 # }
 #
 # \details{
@@ -38,25 +39,42 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
+setMethodS3("loadObject", "default", function(file, path=NULL, format=c("auto", "xdr", "rds"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (!inherits(file, "connection")) {
-    file <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE);
+    file <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE)
   }
 
-  # Declare variable
-  saveLoadReference <- NULL;
- 
-  # load.default() recognized gzip'ed files too.
-  vars <- base::load(file=file);
+  # Argument 'format':
+  format <- match.arg(format)
 
-  if (!"saveLoadReference" %in% vars)
-    throw("The file was not saved by saveObject(): ", file);
+  # Infer 'format' from filename extension?  Default is "xdr"
+  if (format == "auto") {
+    format <- tools::file_ext(file)
+    format <- tolower(format)
+    ## Here 'format' can be character(0L) or nchar(format) >= 0L
+    if (!isTRUE(is.element(format, c("xdr", "rds")))) format <- "xdr"
+  }
 
-  saveLoadReference;
+  if (format == "xdr") {
+    # Declare variable
+    saveLoadReference <- NULL
+
+    # load.default() recognized gzip'ed files too.
+    vars <- base::load(file=file)
+
+    if (!"saveLoadReference" %in% vars)
+      throw("The file was not saved by saveObject(): ", file)
+
+    res <- saveLoadReference
+  } else if (format == "rds") {
+    res <- readRDS(file)
+  }
+
+  res
 }) # loadObject()
 
 

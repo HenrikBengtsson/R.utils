@@ -502,7 +502,6 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
     } else if (ww == "envir") {
       if (exists(name, envir=envir, inherits=inherits)) {
         value <- get(name, envir=envir, inherits=inherits);
-        break;
       }
     } else if (ww == "parent") {
       envirL <- NULL;

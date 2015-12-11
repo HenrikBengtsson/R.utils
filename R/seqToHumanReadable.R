@@ -4,13 +4,16 @@
 # @title "Gets a short human readable string representation of an vector of indices"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
 #
 # \arguments{
 #   \item{idx}{A @vector of @integer indices.}
+#   \item{tau}{A non-negative @integer specifying the minimum span of
+#    of a contiguous sequences for it to be collapsed to
+#    \code{<from>-<to>}.}
 #   \item{delimiter}{A @character string delimiter.}
 #   \item{collapse}{A @character string used to collapse subsequences.}
 #   \item{...}{Not used.}
@@ -19,65 +22,63 @@
 # @author
 #
 # \examples{
-#   print(seqToHumanReadable(1:10))  # "1-10"
+#   print(seqToHumanReadable(1:2))                 # "1, 2"
+#   print(seqToHumanReadable(1:2, tau=1))          # "1-2"
+#   print(seqToHumanReadable(1:10))                # "1-10"
 #   print(seqToHumanReadable(c(1:10, 15:18, 20)))  # "1-10, 15-18, 20"
 # }
 #
 # \seealso{
-#   @see "seqToIntervals".
+#   Internally, @see "seqToIntervals" is used.
 # }
 #
 # @keyword "attribute"
-#*/#########################################################################t 
-setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collapse=", ", ...) {
-  idx <- as.integer(idx);
-  idx <- unique(idx);
-  idx <- sort(idx);
+#*/#########################################################################
+setMethodS3("seqToHumanReadable", "default", function(idx, tau=2L, delimiter="-", collapse=", ", ...) {
+  tau <- as.integer(tau)
+  data <- seqToIntervals(idx)
 
-  s <- "";
-  if (length(idx) == 0)
-    return(s);
+  ## Nothing to do?
+  n <- nrow(data)
+  if (n == 0) return("")
 
-  fromValue <- idx[1];
-  toValue <- fromValue-1;
-  lastValue <- fromValue;
+  s <- character(length=n)
 
-  count <- 0;
-  for (kk in seq(along=idx)) {
-    value <- idx[kk];
-    if (value - lastValue > 1) {
-      toValue <- lastValue;
-      if (count > 0)
-        s <- paste(s, collapse, sep="");
-      if (toValue - fromValue == 0) {
-        s <- paste(s, fromValue, sep="");
-      } else {
-        s <- paste(s, fromValue, delimiter, toValue, sep="");
+  delta <- data[,2L] - data[,1L]
+
+  ## Individual values
+  idxs <- which(delta == 0)
+  if (length(idxs) > 0L) {
+    s[idxs] <- as.character(data[idxs,1L])
+  }
+
+  if (tau > 1) {
+    if (tau == 2) {
+      idxs <- which(delta == 1)
+      if (length(idxs) > 0L) {
+        s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=collapse)
       }
-      fromValue <- value;
-      count <- count + 1;
-    }
-    lastValue <- value;
-  }
-
-  if (toValue < fromValue) {
-    toValue <- lastValue;
-    if (count > 0)
-      s <- paste(s, collapse, sep="");
-    if (toValue - fromValue == 0) {
-      s <- paste(s, fromValue, sep="");
-    } else if (toValue - fromValue == 1) {
-      s <- paste(s, fromValue, collapse, toValue, sep="");
     } else {
-      s <- paste(s, fromValue, delimiter, toValue, sep="");
+      idxs <- which(delta < tau)
+      if (length(idxs) > 0L) {
+        for (idx in idxs) {
+          s[idx] <- paste(data[idx,1L]:data[idx,2L], collapse=collapse)
+        }
+      }
     }
   }
 
-  s;
+  ## Ranges
+  idxs <- which(delta >= tau)
+  if (length(idxs) > 0L) {
+    s[idxs] <- paste(data[idxs,1L], data[idxs,2L], sep=delimiter)
+  }
+
+  paste(s, collapse=collapse)
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
 # 2010-02-22
 # o Added Rdoc "see also" references.
 # 2005-11-14

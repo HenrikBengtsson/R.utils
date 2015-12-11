@@ -56,6 +56,14 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
     con <- NULL;
   }
 
+  # Argument 'sep':
+  if (!is.character(sep)) {
+    throw("Argument 'sep' must be a character: ", mode(sep))
+## TO ADD? read.table() requires nchar(sep) == 1  /HB 2015-10-09
+##  } else if (nchar(sep) != 1L) {
+##    throw("Argument 'sep' must be a single character: ", sQuote(sep))
+  }
+
   # Argument 'header':
   if (!is.null(header)) {
     if (!is.list(header)) {
@@ -91,6 +99,20 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
     if (missing(header)) header <- NULL;
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Pre-write assertions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Assert that none of the fields contains a 'sep' character
+  if (is.logical(quote) && !quote) {
+    for (kk in seq_along(data)) {
+      value <- data[[kk]]
+      str(list(value=value))
+      if (any(grepl(sep, value))) {
+        throw(sprintf("Cannot write data using this field separator (sep=%s) without quotes (quote=FALSE), because column #%d contains the same symbol", sQuote(sep), kk))
+      }
+    }
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Build header

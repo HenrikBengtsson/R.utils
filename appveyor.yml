@@ -25,18 +25,21 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
+  - echo Current directory=%CD%
 
 
 
- - travis-tool.sh install_r R.methodsS3 R.oo
 
- - travis-tool.sh install_r digest
+
+  - travis-tool.sh install_r R.methodsS3 R.oo
+
+  - travis-tool.sh install_r digest
 
 test_script:
   - travis-tool.sh run_tests
 
-on_failure:
-  - travis-tool.sh dump_logs
+after_test:
+  - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
@@ -45,14 +48,15 @@ artifacts:
   - path: '*.Rcheck\**\*.out'
     name: Logs
 
-  - path: '*.Rcheck\**\*.fail'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.Rout'
-    name: Logs
+  - path: all-Rout.zip
+    name: AllRout
 
   - path: '\*_*.tar.gz'
     name: Bits
 
   - path: '\*_*.zip'
     name: Bits
+
+on_failure:
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip

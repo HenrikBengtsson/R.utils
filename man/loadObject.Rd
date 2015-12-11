@@ -17,17 +17,18 @@
 }
 
 \usage{
-\method{loadObject}{default}(file, path=NULL, ...)
+\method{loadObject}{default}(file, path=NULL, format=c("auto", "xdr", "rds"), ...)
 }
 
 \arguments{
  \item{file}{A filename or \code{\link[base:connections]{connection}} to read the object from.}
  \item{path}{The path where the file exists.}
-  \item{...}{Not used.}
+ \item{format}{File format.}
+ \item{...}{Not used.}
 }
 
 \value{
- Returns the save object.
+ Returns the saved object.
 }
 
 \details{

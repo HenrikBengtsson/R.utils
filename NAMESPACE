@@ -31,14 +31,35 @@ importFrom("R.oo", "startupMessage")
 importFrom("R.oo", "trim")
 
 ## More functions
+importFrom("graphics", "lines")
+importFrom("graphics", "mtext")
+importFrom("graphics", "par")
+importFrom("graphics", "plot")
+importFrom("graphics", "strwidth")
+importFrom("graphics", "strheight")
+
+importFrom("grDevices", "dev.off")
+importFrom("grDevices", "jpeg")
+importFrom("grDevices", "png")
+
 importFrom("methods", "as")
 importFrom("methods", "show")
-importFrom("utils", "str")
+
+importFrom("stats", "update")
+importFrom("stats", "na.omit")
+
+## importFrom("tools", "compactPDF")
+## importFrom("tools", "file_ext")
+## importFrom("tools", "Rd2txt")
+## importFrom("tools", "Rd2HTML")
+## importFrom("tools", "Rd2latex")
+
 importFrom("utils", "available.packages")
 importFrom("utils", "capture.output")
 importFrom("utils", "compareVersion")
 importFrom("utils", "contrib.url")
 importFrom("utils", "download.file")
+importFrom("utils", "file_test")
 importFrom("utils", "flush.console")
 importFrom("utils", "head")
 importFrom("utils", "help")
@@ -47,7 +68,9 @@ importFrom("utils", "object.size")
 importFrom("utils", "packageDescription")
 importFrom("utils", "packageVersion")
 importFrom("utils", "read.table")
+importFrom("utils", "str")
 importFrom("utils", "type.convert")
+importFrom("utils", "URLdecode")
 importFrom("utils", "write.table")
 
 # Manual fixes
