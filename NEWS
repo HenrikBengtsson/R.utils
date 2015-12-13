@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 2.2.0-9000 [2015-12-13]
+o Package now formally requires R (>= 2.14.0) release Oct 2011.
+
+
 Version: 2.2.0 [2015-12-09]
 o loadObject() and saveObject() gained argument 'format' in order
   to support also RDS files (in addition to XDR files).  File

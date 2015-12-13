@@ -101,7 +101,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     names(drives) <- tolower(names(drives))
     target <- drives[drive]
     if (!is.na(target)) {
-      pathname <- paste0(target, gsub(pattern, "\\2", pathname))
+      pathname <- paste(target, gsub(pattern, "\\2", pathname), sep="")
     }
     # Undo absolute path?
     if (!isAbs) pathname <- getRelativePath(pathname)
