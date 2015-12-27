@@ -70,10 +70,10 @@ shell.exec2 <- function(file) {
   }
 
   # To please R CMD check on non-Windows systems, we call
-  # shell.exec() via do.call().
-  ns <- getNamespace("base")
-  shell.exec <- get("shell.exec", mode="function", envir=ns)
-  do.call(shell.exec, args=list(file))
+  # shell.exec() such that it looks like were' calling a
+  # local function.
+  shell.exec <- get("shell.exec", mode="function", envir=getNamespace("base"))
+  shell.exec(file)
 } # shell.exec2()
 
 
