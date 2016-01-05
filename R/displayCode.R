@@ -165,7 +165,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     wrap <- wrap - width;
 
     code2 <- c();
-    for (kk in seq(code)) {
+    for (kk in seq(along=code)) {
       if (nchar(code[kk]) <= wrap) {
         line <- paste(prefix[kk], code[kk], sep="");
       } else {

@@ -46,20 +46,20 @@
 # \seealso{
 #   @see "graphics::layout" and \code{layout.show}().
 # }
-#*/######################################################################### 
+#*/#########################################################################
 setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
                                                           byrow=TRUE, ...) {
   # If a vector was passed, then use the length of the vector for 'n'
   if (!missing(n) && length(n) > 1)
     n <- length(n);
-  
+
   if (!is.null(nrow) && !is.null(ncol) && !missing(n)) {
     if (n != nrow*ncol)
       stop("Arguments 'nrow' and 'ncol' is incompatible with argument 'n'. Do you really want to specify all three?!");
   }
 
   if (missing(n)) {
-    layout <- matrix(seq(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq(length=nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
   } else {
     if (n == 1) {
       nrow <- ncol <- 1
@@ -77,9 +77,9 @@ setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
         ncol <- ceiling(n / nrow);
       }
     }
-    layout <- matrix(seq(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq(length=nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
   }
-  
+
   layout(layout, ...);
   invisible(layout);
 })
