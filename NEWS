@@ -4,7 +4,7 @@ Package: R.utils
 
 Version: 2.2.0-9000 [2016-01-16]
 o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore
-  also functions such as gzip() and gunzip(), outputs atomically
+  also functions such as gzip() and gunzip(), output atomically
   by writing to a temporary file which is only renamed when completed.
 o Package now formally requires R (>= 2.14.0) release Oct 2011.
 
