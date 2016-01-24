@@ -107,7 +107,6 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   if (is.logical(quote) && !quote) {
     for (kk in seq_along(data)) {
       value <- data[[kk]]
-      str(list(value=value))
       if (any(grepl(sep, value))) {
         throw(sprintf("Cannot write data using this field separator (sep=%s) without quotes (quote=FALSE), because column #%d contains the same symbol", sQuote(sep), kk))
       }
