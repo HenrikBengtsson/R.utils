@@ -143,7 +143,7 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   ns <- tos-froms+1;
   tos2 <- froms2 + ns - 1;
 
-  for (kk in seq(along=froms2)) {
+  for (kk in seq_along(froms2)) {
     from <- froms[kk];
     to <- tos[kk];
     from2 <- froms2[kk];

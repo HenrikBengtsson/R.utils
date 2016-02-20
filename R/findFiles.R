@@ -96,7 +96,7 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
   paths <- unique(paths);
 
   # Don't search non-existing paths
-  for (kk in seq(along=paths)) {
+  for (kk in seq_along(paths)) {
     path <- paths[kk];
     # Example any '~':s
     path <- file.path(dirname(path), basename(path));

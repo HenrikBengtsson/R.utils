@@ -43,7 +43,7 @@ setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALS
   res <- vector("integer", n);
 
   offset <- as.integer(0);
-  for (rr in seq(length=nrow(fromTo))) {
+  for (rr in seq_len(nrow(fromTo))) {
     # Sequence for current interval
     idxs <- offset + 1:ns[rr];
     res[idxs] <- fromTo[rr,1]:fromTo[rr,2];

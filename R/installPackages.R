@@ -68,7 +68,7 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   defType <- getOption("pkgType");
   types <- rep(types, length.out=length(pkgs));
-  for (kk in seq(along=pkgs)) {
+  for (kk in seq_along(pkgs)) {
     if (types[kk] == "auto") {
       pkg <- pkgs[kk];
       if (isUrl(pkg)) {
@@ -91,7 +91,7 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
 
 
   # Install each package requested
-  for (kk in seq(along=pkgs)) {
+  for (kk in seq_along(pkgs)) {
     pkg <- pkgs[kk];
     type <- types[kk];
 

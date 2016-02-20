@@ -123,7 +123,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     return();
 
   # Number the read lines
-  numbers <- as.integer(seq(length=nlines));
+  numbers <- as.integer(seq_len(nlines));
 
   # Prepare highlight marks
   marks <- rep(" ", nlines);
@@ -165,7 +165,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     wrap <- wrap - width;
 
     code2 <- c();
-    for (kk in seq(along=code)) {
+    for (kk in seq_along(code)) {
       if (nchar(code[kk]) <= wrap) {
         line <- paste(prefix[kk], code[kk], sep="");
       } else {

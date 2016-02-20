@@ -59,7 +59,7 @@ setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
   }
 
   if (missing(n)) {
-    layout <- matrix(seq(length=nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
   } else {
     if (n == 1) {
       nrow <- ncol <- 1
@@ -77,7 +77,7 @@ setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
         ncol <- ceiling(n / nrow);
       }
     }
-    layout <- matrix(seq(length=nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
   }
 
   layout(layout, ...);

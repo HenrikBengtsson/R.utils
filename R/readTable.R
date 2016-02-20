@@ -192,7 +192,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     # patterns or as is?
     if (isPatterns) {
       colClasses2 <- rep(NA, length=length(colnames));
-      for (kk in seq(length=length(colClasses))) {
+      for (kk in seq_along(colClasses)) {
         pattern <- names(colClasses)[kk];
         colClass <- colClasses[kk];
         # Find matching column names and assign the current column
@@ -266,7 +266,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
       if (nchar(quote) > 0) {
         verbose && enter(verbose, "Stripping quotes from all lines: ", quote);
         quotes <- unlist(strsplit(quote, split=""));
-        for (kk in seq(length=length(quotes)))
+        for (kk in seq_along(quotes))
           lines <- gsub(quotes[kk], "", lines, fixed=TRUE);
         verbose && exit(verbose);
       }
@@ -308,7 +308,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     df <- NULL;
     rownames <- NULL;
     ready <- FALSE;
-    for (ii in seq(length=nrow(intervals))) {
+    for (ii in seq_len(nrow(intervals))) {
       from <- intervals[ii,"from"];
       to <- intervals[ii,"to"];
 

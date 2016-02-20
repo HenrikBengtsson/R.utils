@@ -143,7 +143,7 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   oSeqs <- NULL;
 
   outOffset <- 0;
-  for (kk in seq(length=length(froms))) {
+  for (kk in seq_along(froms)) {
     n <- ns[kk];
     idx <- outOffset + 1:n;
     seek(con=con, where=froms[kk], origin="start", rw="write");

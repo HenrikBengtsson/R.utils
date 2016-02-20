@@ -140,7 +140,7 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   # 2. Remove all matching components in 'relativeTo' and 'pathname'.
   #    The removed parts constitute their common path.
-  for (kk in seq(length=length(relativeTo))) {
+  for (kk in seq_along(relativeTo)) {
     aPart <- relativeTo[1];
     bPart <- pathnameC[1];
     if (!identical(aPart, bPart))

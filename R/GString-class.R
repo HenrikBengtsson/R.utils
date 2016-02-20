@@ -745,7 +745,7 @@ setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
   }
 
   s <- "";
-  for (kk in seq(length=length(parts))) {
+  for (kk in seq_along(parts)) {
     part <- parts[[kk]];
     s <- paste(s, part, sep="");
   }

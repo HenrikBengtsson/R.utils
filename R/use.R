@@ -251,7 +251,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (npkgs > 1L) {
     res <- NULL;
-    for (ii in seq(length=npkgs)) {
+    for (ii in seq_len(npkgs)) {
       resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=NULL, ..., verbose=verbose);
       if (ii == 1L) {
         res <- resII
