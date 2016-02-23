@@ -182,7 +182,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
   parseReservedArgs <- function(args, os) {
     nargs <- length(args);
 
-    reservedArgs <- getReserved(os=os, pattern=TRUE);
+    reservedArgs <- getReserved(os=os, patterns=TRUE);
 
     # Set user arguments to start after '--args', otherwise
     # all arguments are considered user arguments
