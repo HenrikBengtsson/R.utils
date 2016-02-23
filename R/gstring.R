@@ -40,7 +40,7 @@ setMethodS3("gstring", "default", function(..., file=NULL, path=NULL, envir=pare
       file <- file.path(path, file);
     }
     if (!isUrl(file)) {
-      file <- Arguments$getReadablePathname(file, absolute=TRUE);
+      file <- Arguments$getReadablePathname(file, absolutePath=TRUE);
     }
   }
 
