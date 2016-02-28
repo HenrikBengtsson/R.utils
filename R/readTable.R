@@ -191,7 +191,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     # Should colClasses be found using regular expression
     # patterns or as is?
     if (isPatterns) {
-      colClasses2 <- rep(NA, length=length(colnames));
+      colClasses2 <- rep(NA, times=length(colnames));
       for (kk in seq_along(colClasses)) {
         pattern <- names(colClasses)[kk];
         colClass <- colClasses[kk];

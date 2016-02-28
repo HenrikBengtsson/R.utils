@@ -83,8 +83,7 @@ setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRU
     }
   }
 
-  naValue <- as.integer(NA);
-  map <- rep(naValue, length=length(x));
+  map <- rep(NA_integer_, times=length(x));
   nbrOfIntervals <- nrow(intervals);
   for (kk in seq_len(nbrOfIntervals)) {
     rr <- (nbrOfIntervals - kk + 1L);

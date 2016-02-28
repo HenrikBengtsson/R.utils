@@ -105,7 +105,7 @@ setMethodS3("as.character", "ProgressBar", function(x, ...) {
 #*/#########################################################################
 setMethodS3("getBarString", "ProgressBar", function(this, ...) {
   count <- round(this$value);
-  bfr <- rep(".", length=count+1);
+  bfr <- rep(".", times=count+1);
   # First, set the ticks
   bfr[intersect(1:count, this$ticks)+1] <- "|";
 

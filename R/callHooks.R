@@ -102,7 +102,7 @@ setMethodS3("callHooks", "list", function(hooks, ...) {
 
   res <- vector(nhooks, mode="list");
 
-  failedHooks <- rep(TRUE, length=nhooks);
+  failedHooks <- rep(TRUE, times=nhooks);
   hookNames <- character(nhooks);
   for (kk in seq_len(nhooks)) {
     # Get the hook function
