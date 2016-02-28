@@ -53,7 +53,7 @@ setMethodS3("toUrl", "default", function(pathname, safe=TRUE, ...) {
     }
     res <- NULL;
 
-    for (k in seq(nchar(pathname, type="chars"))) {
+    for (k in seq_len(nchar(pathname, type="chars"))) {
       ch <- substring(pathname, k, k);
       re <- regexpr(keepSet, ch);
       if (re == -1) {

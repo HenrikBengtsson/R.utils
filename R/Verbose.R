@@ -1147,7 +1147,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
     withVisible(eval(expr, pf));
   }
 
-  for (kk in seq(length = length(args))) {
+  for (kk in seq_along(args)) {
     expr <- args[[kk]];
     if (mode(expr) == "expression") {
       tmp <- lapply(expr, FUN=evalVis);
