@@ -3,7 +3,8 @@ Package: R.utils
 ================
 
 Version: 2.2.0-9000 [2016-03-28]
-o Add tmpfile() for creating temporary files with content that
+o Added hsize().
+o Added tmpfile() for creating temporary files with content that
   is deleted automatically by the garbage collector unless there
   is a reference to it in R.
 o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore

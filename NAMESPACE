@@ -353,6 +353,8 @@ S3method("summary", "NullVerbose")
 S3method("writeRaw", "NullVerbose")
 
 # numeric
+S3method("hsize", "numeric")
+S3method("hsize", "object_size")
 S3method("inAnyInterval", "numeric")
 S3method("mapToIntervals", "numeric")
 S3method("mergeIntervals", "numeric")
