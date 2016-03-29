@@ -12,10 +12,10 @@
 \alias{hsize.numeric}
 \alias{hsize.object_size}
 
-\title{Returns a human-readable size string}
+\title{Convert byte sizes into human-readable byte sizes}
 
 \description{
- Returns a human-readable size string from a numeric value.
+ Convert byte sizes into human-readable byte sizes.
 }
 
 \usage{
@@ -25,7 +25,9 @@ hsize(...)
 \arguments{
   \item{size}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of sizes.}
   \item{digits}{Number of digits to be presented in the give unit.}
-  \item{unit}{A \code{\link[base]{character}} string specifying type of units to use.}
+  \item{units}{A \code{\link[base]{character}} string specifying type of units to use.}
+  \item{bytes}{The string used for units of bytes without a prefix.
+   Applied only if \code{units="auto"}.}
   \item{...}{Not used.}
 }
 

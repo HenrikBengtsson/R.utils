@@ -3,10 +3,10 @@
 # @alias hsize.numeric
 # @alias hsize.object_size
 #
-# @title "Returns a human-readable size string"
+# @title "Convert byte sizes into human-readable byte sizes"
 #
 # \description{
-#  @get "title" from a numeric value.
+#  @get "title".
 # }
 #
 # @synopsis
@@ -14,7 +14,9 @@
 # \arguments{
 #   \item{size}{A @numeric @vector of sizes.}
 #   \item{digits}{Number of digits to be presented in the give unit.}
-#   \item{unit}{A @character string specifying type of units to use.}
+#   \item{units}{A @character string specifying type of units to use.}
+#   \item{bytes}{The string used for units of bytes without a prefix.
+#    Applied only if \code{units="auto"}.}
 #   \item{...}{Not used.}
 # }
 #
@@ -33,51 +35,58 @@
 # @keyword programming
 # @keyword internal
 #*/###########################################################################
-setMethodS3("hsize", "numeric", function(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"), ...) {
-  standard <- match.arg(standard, choices=c("IEC", "SI"))
+setMethodS3("hsize", "numeric", function(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"), bytes=getOption("hsize.standard", "B"), ...) {
+  standard <- match.arg(standard, choices=c("IEC", "JEDEC", "SI"))
   stopifnot(is.character(units), length(units) == 1L)
   stopifnot(is.numeric(digits), length(digits) == 1L)
+  stopifnot(is.character(bytes), length(bytes) == 1L)
+  nsizes <- length(sizes)
 
   kunits <- list(
-    IEC = c("B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"),
-    SI  = c("B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    IEC   = c(bytes=0, B=0, KiB=1, MiB=2, GiB=3, TiB=4, PiB=5, EiB=6, ZiB=7, YiB=8),
+    JEDEC = c(bytes=0, B=0, KB=1, MB=2, GB=3),
+    SI    = c(bytes=0, B=0, kB=1, MB=2, GB=3, TB=4, PB=5, EB=6, ZB=7, YB=8)
   )
 
   ## Infer standard from unit?
-  if (units != "auto" && units != "bytes") {
-    idx <- which(sapply(kunits, FUN=function(x) any(units == x)))
+  if (units != "auto") {
+    idx <- which(sapply(kunits, FUN=function(x) any(units == names(x))))
     if (length(idx) == 0L) {
       stop(sprintf("Unknown units: %s", sQuote(units)))
     }
-    standard <- names(kunits)[idx[1]]
+    standard <- names(idx[1])
   }
   kunits <- kunits[[standard]]
-
-  if (standard == "IEC") {
-    base <- 1024
-  } else if (standard == "SI") {
-    base <- 1000
-  }
+  base <- switch(standard, IEC=1024, JEDEC=1024, SI=1000)
 
   if (units == "auto") {
-    exp <- log(sizes, base=base)
-    exp <- floor(exp)
-    exp[exp < 0] <- 0
-    exp[exp > length(kunits)-1] <- length(kunits)-1
-    units <- kunits[exp + 1L]
-    positions <- rep(digits, length.out=length(sizes))
-    positions[exp == 0] <- 0L
-  } else if (units == "bytes") {
-    exp <- 0L
+    ## Keep the "bytes" alternative specified
+    excl <- setdiff(c("bytes", "B"), bytes)
+    kunits <- kunits[-which(names(kunits) == excl)]
+
+    exps <- log(sizes, base=base)
+    exps <- floor(exps)
+    exps[exps < 0] <- 0
+    maxexp <- max(kunits)
+    exps[exps > maxexp] <- maxexp
+    units <- names(kunits)[exps+1L]
+    positions <- rep(digits, length.out=nsizes)
+    positions[exps == 0] <- 0L
   } else {
-    exp <- match(units, kunits) - 1L
-    if (is.na(exp)) {
+    exps <- kunits[units]
+    if (is.na(exps)) {
       stop(sprintf("Unknown units for standard %s: %s", sQuote(standard), sQuote(units)))
     }
+    units <- rep(units, times=nsizes)
   }
-  sizes <- round(sizes / base^exp, digits=digits)
-  positions <- rep(digits, length.out=length(sizes))
-  positions[exp == 0] <- 0L
+
+  ## Use '1 byte' (not '1 bytes')
+  ones <- which(sizes == 1)
+  if (length(ones) > 0) units[ones] <- gsub("s$", "", units[ones])
+
+  sizes <- round(sizes / base^exps, digits=digits)
+  positions <- rep(digits, length.out=nsizes)
+  positions[exps == 0] <- 0L
   sprintf("%.*f %s", positions, sizes, units)
 })
 
