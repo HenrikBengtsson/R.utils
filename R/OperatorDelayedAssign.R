@@ -5,6 +5,10 @@
 # @title "Assignment operator for delayed assignments ('lazy future')"
 #
 # \description{
+#  \emph{This infix operator is deprecated. For an alternative, see
+#    \code{\%<=\%} part of the future package.
+#  }
+#
 #  @get "title" such that the expression on the right-hand side (RHS)
 #  is evaluated using "lazy future" (a call by future that has lazy
 #  evaluation semantics), which mean it "promised" to be evaluated
@@ -47,6 +51,7 @@
 # @keyword internal
 #*/###########################################################################
 `%<-%` <- function(x, value) {
+  .Deprecated(msg="Use `x %<=% { expr } %plan% lazy` from the future package instead.")
   envir <- parent.frame(1)
   target <- .asAssignTarget(substitute(x), envir=envir)
   assign.env <- target$envir
@@ -124,6 +129,8 @@
 
 ##############################################################################
 # HISTORY:
+# 2016-03-28
+# o Deprecated.
 # 2015-02-13
 # o Now %<-% can also assign to environments, e.g. env$a %<-% 1.
 # o ROBUSTNESS: Now %<-% evaluates the expression in a local() environment.
