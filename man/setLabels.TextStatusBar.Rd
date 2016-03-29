@@ -6,36 +6,36 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{setLabels.TextStatusBar}
+\name{setLabels.TextStatusBar}
 \alias{setLabels.TextStatusBar}
 \alias{TextStatusBar.setLabels}
 \alias{setLabels,TextStatusBar-method}
 
- \title{Sets new values of given labels}
+\title{Sets new values of given labels}
 
- \description{
-   Sets new values of given labels.
- }
+\description{
+  Sets new values of given labels.
+}
 
- \usage{
+\usage{
 \method{setLabels}{TextStatusBar}(this, ...)
 }
 
- \arguments{
-  \item{...}{A set of named arguments.}
- }
+\arguments{
+ \item{...}{A set of named arguments.}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[R.utils:setLabel.TextStatusBar]{*setLabel}()}.
-   \code{\link[R.utils:updateLabels.TextStatusBar]{*updateLabels}()}.
-   For more information see \code{\link{TextStatusBar}}.
- }
+\seealso{
+  \code{\link[R.utils:setLabel.TextStatusBar]{*setLabel}()}.
+  \code{\link[R.utils:updateLabels.TextStatusBar]{*updateLabels}()}.
+  For more information see \code{\link{TextStatusBar}}.
+}
 
 
 \keyword{internal}

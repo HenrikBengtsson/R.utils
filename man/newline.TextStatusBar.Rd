@@ -6,34 +6,34 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{newline.TextStatusBar}
+\name{newline.TextStatusBar}
 \alias{newline.TextStatusBar}
 \alias{TextStatusBar.newline}
 \alias{newline,TextStatusBar-method}
 
- \title{Writes a newline}
+\title{Writes a newline}
 
- \description{
-   Writes a newline.
- }
+\description{
+  Writes a newline.
+}
 
- \usage{
+\usage{
 \method{newline}{TextStatusBar}(this, ...)
 }
 
- \arguments{
-  \item{...}{Not used.}
- }
+\arguments{
+ \item{...}{Not used.}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   For more information see \code{\link{TextStatusBar}}.
- }
+\seealso{
+  For more information see \code{\link{TextStatusBar}}.
+}
 
 
 \keyword{internal}

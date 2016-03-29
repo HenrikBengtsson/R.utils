@@ -6,51 +6,51 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{hpaste}
+\name{hpaste}
 \alias{hpaste.default}
 \alias{hpaste}
 
- \title{Concatenating vectors into human-readable strings}
+\title{Concatenating vectors into human-readable strings}
 
- \description{
-  Concatenating vectors into human-readable strings such as "1, 2, 3, ..., 10".
- }
+\description{
+ Concatenating vectors into human-readable strings such as "1, 2, 3, ..., 10".
+}
 
- \usage{
+\usage{
 \method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL,
   maxHead=if (missing(lastCollapse)) 3 else Inf,
   maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")
 }
 
- \arguments{
-  \item{...}{Arguments to be pasted.}
-  \item{sep}{A \code{\link[base]{character}} string used to concatenate the arguments
-    in \code{...}, if more than one.}
-  \item{collapse, lastCollapse}{The \code{\link[base]{character}} strings to collapse
-    the elements together, where \code{lastCollapse} is specifying
-    the collapse string used between the last two elements.
-    If \code{lastCollapse} is \code{\link[base]{NULL}} (default), it is corresponds
-    to using the default collapse.}
-  \item{maxHead, maxTail, abbreviate}{Non-negative \code{\link[base]{integer}}s (also \code{\link[base:is.finite]{Inf}})
-    specifying the maxium number of elements of the beginning and
-    then end of the vector to be outputted.  If \code{n = length(x)}
-    is greater than \code{maxHead+maxTail+1}, then \code{x} is
-    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
-    and \code{x[(n-maxTail+1):n]}.}
- }
+\arguments{
+ \item{...}{Arguments to be pasted.}
+ \item{sep}{A \code{\link[base]{character}} string used to concatenate the arguments
+   in \code{...}, if more than one.}
+ \item{collapse, lastCollapse}{The \code{\link[base]{character}} strings to collapse
+   the elements together, where \code{lastCollapse} is specifying
+   the collapse string used between the last two elements.
+   If \code{lastCollapse} is \code{\link[base]{NULL}} (default), it is corresponds
+   to using the default collapse.}
+ \item{maxHead, maxTail, abbreviate}{Non-negative \code{\link[base]{integer}}s (also \code{\link[base:is.finite]{Inf}})
+   specifying the maxium number of elements of the beginning and
+   then end of the vector to be outputted.  If \code{n = length(x)}
+   is greater than \code{maxHead+maxTail+1}, then \code{x} is
+   truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
+   and \code{x[(n-maxTail+1):n]}.}
+}
 
- \value{
-  Returns a \code{\link[base]{character}} string.
- }
+\value{
+ Returns a \code{\link[base]{character}} string.
+}
 
- \details{
-  \code{hpaste(..., sep=" ", maxHead=Inf)} corresponds to
-  \code{paste(..., sep=" ", collapse=", ")}.
- }
+\details{
+ \code{hpaste(..., sep=" ", maxHead=Inf)} corresponds to
+ \code{paste(..., sep=" ", collapse=", ")}.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \examples{
+\examples{
 
 # Some vectors
 x <- 1:6
@@ -119,9 +119,9 @@ stopifnot(identical(s1, s2))
 
 }
 
- \seealso{
-   Internally \code{\link[base]{paste}}() is used.
- }
+\seealso{
+  Internally \code{\link[base]{paste}}() is used.
+}
 
 
 \keyword{programming}
