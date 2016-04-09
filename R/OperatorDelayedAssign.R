@@ -6,7 +6,7 @@
 #
 # \description{
 #  \emph{This infix operator is deprecated. For an alternative, see
-#    \code{\%<=\%} part of the future package.
+#    \code{\%<-\%} part of the future package.
 #  }
 #
 #  @get "title" such that the expression on the right-hand side (RHS)
@@ -51,7 +51,7 @@
 # @keyword internal
 #*/###########################################################################
 `%<-%` <- function(x, value) {
-  .Deprecated(msg="Use `x %<=% { expr } %plan% lazy` from the future package instead.")
+  .Deprecated(msg="Use `x %<-% { expr } %plan% lazy` from the future package instead.")
   envir <- parent.frame(1)
   target <- .asAssignTarget(substitute(x), envir=envir)
   assign.env <- target$envir

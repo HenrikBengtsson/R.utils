@@ -15,7 +15,7 @@
 
 \description{
  \emph{This infix operator is deprecated. For an alternative, see
-   \code{\%<=\%} part of the future package.
+   \code{\%<-\%} part of the future package.
  }
 
  Assignment operator for delayed assignments ('lazy future') such that the expression on the right-hand side (RHS)

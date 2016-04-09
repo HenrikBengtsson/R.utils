@@ -10,7 +10,7 @@ o Added tmpfile() for creating temporary files with content that
 o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore
   also functions such as gzip() and gunzip(), output atomically
   by writing to a temporary file which is only renamed when completed.
-o CLEANUP: Deprecated `%<-%` in favor of `%<=%` in the future package.
+o CLEANUP: Deprecated `%<-%` in favor of `%<-%` in the future package.
 o Package now formally requires R (>= 2.14.0) release Oct 2011.
 
 
