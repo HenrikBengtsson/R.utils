@@ -410,7 +410,7 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
   }
 
   pathnames <- list();
-  for (kk in seq(length=nbrOfFiles)) {
+  for (kk in seq_len(nbrOfFiles)) {
     pathnames[[kk]] <- getReadablePathname(static, files[kk],
                                                        path=paths[kk], ...);
   }
@@ -769,7 +769,7 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
     nchar <- c(1L, nchar);
 
   # Check the string length of each character string
-  for (kk in seq(length=length(s))) {
+  for (kk in seq_along(s)) {
     slen <- nchar(s[kk], type="chars");
     if (slen < nchar[1L] || slen > nchar[2L]) {
       throw(sprintf("String length of elements #%d in '%s' is out of range [%d,%d]: %d '%s'", kk, .name, nchar[1L], nchar[2L], slen, s[kk]));

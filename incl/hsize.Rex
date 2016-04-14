@@ -1,0 +1,7 @@
+sizes <- c(1000^(0:8), 1024^(0:8))
+df <- data.frame(size=sizes)
+df$SI <- hsize(sizes, standard="SI")
+df$TB <- hsize(sizes, units="TB")
+df$IEC <- hsize(sizes, standard="IEC")
+df$TiB <- hsize(sizes, units="TiB")
+print(df)

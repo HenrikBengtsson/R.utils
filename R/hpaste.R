@@ -1,4 +1,4 @@
-###########################################################################/** 
+###########################################################################/**
 # @RdocDefault hpaste
 #
 # @title "Concatenating vectors into human-readable strings"
@@ -11,18 +11,18 @@
 #
 # \arguments{
 #  \item{...}{Arguments to be pasted.}
-#  \item{sep}{A @character string used to concatenate the arguments 
+#  \item{sep}{A @character string used to concatenate the arguments
 #    in \code{...}, if more than one.}
 #  \item{collapse, lastCollapse}{The @character strings to collapse
 #    the elements together, where \code{lastCollapse} is specifying
 #    the collapse string used between the last two elements.
 #    If \code{lastCollapse} is @NULL (default), it is corresponds
 #    to using the default collapse.}
-#  \item{maxHead, maxTail, abbreviate}{Non-negative @integers (also @Inf) 
+#  \item{maxHead, maxTail, abbreviate}{Non-negative @integers (also @Inf)
 #    specifying the maxium number of elements of the beginning and
 #    then end of the vector to be outputted.  If \code{n = length(x)}
 #    is greater than \code{maxHead+maxTail+1}, then \code{x} is
-#    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate}, 
+#    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
 #    and \code{x[(n-maxTail+1):n]}.}
 # }
 #
@@ -34,8 +34,8 @@
 #  \code{hpaste(..., sep=" ", maxHead=Inf)} corresponds to
 #  \code{paste(..., sep=" ", collapse=", ")}.
 # }
-# 
-# @author 
+#
+# @author
 #
 # @examples "../incl/hpaste.Rex"
 #
@@ -44,7 +44,7 @@
 # }
 #
 # @keyword programming
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...") {
   # Argument 'maxHead':
   maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf));
@@ -67,8 +67,8 @@ setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollap
 
   # Abbreviate?
   if (n > maxHead + maxTail + 1) {
-    head <- x[seq(length=maxHead)];
-    tail <- rev(rev(x)[seq(length=maxTail)]);
+    head <- x[seq_len(maxHead)];
+    tail <- rev(rev(x)[seq_len(maxTail)]);
     x <- c(head, abbreviate, tail);
     n <- length(x);
   }

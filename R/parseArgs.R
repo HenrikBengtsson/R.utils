@@ -23,7 +23,7 @@
   argsT <- list();
 
   # Get the arguments, if they are named
-  for (kk in seq(along=formals)) {
+  for (kk in seq_along(formals)) {
     key <- formals[kk];
     keys <- names(argsN);
     if (is.element(key, keys)) {
@@ -37,7 +37,7 @@
 
 
   # Get the remaining arguments by position
-  for (kk in seq(along=formals)) {
+  for (kk in seq_along(formals)) {
     key <- formals[kk];
     if (length(args) > 0L) {
       value <- args[[1L]];

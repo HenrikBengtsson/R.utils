@@ -1147,7 +1147,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
     withVisible(eval(expr, pf));
   }
 
-  for (kk in seq(length = length(args))) {
+  for (kk in seq_along(args)) {
     expr <- args[[kk]];
     if (mode(expr) == "expression") {
       tmp <- lapply(expr, FUN=evalVis);
@@ -1297,12 +1297,12 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 
   ruler(this, char=char);
 
-  for (kk in seq(length=padding))
+  for (kk in seq_len(padding))
     writeRaw(this, prefix, "\n");
 
   cat(this, prefix, ..., sep="", collapse="\n");
 
-  for (kk in seq(length=padding))
+  for (kk in seq_len(padding))
     writeRaw(this, prefix, "\n");
 
   ruler(this, char=char);

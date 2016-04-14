@@ -59,7 +59,7 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
   lastValue <- fromValue;
 
   count <- 1;
-  for (kk in seq(along=idx)) {
+  for (kk in seq_along(idx)) {
     value <- idx[kk];
     if (value - lastValue > 1) {
       toValue <- lastValue;

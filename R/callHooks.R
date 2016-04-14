@@ -12,7 +12,7 @@
 # \arguments{
 #  \item{hookName}{A @character string of the hook name.}
 #  \item{...}{Argument passed to each hook function.}
-#  \item{removeCalledHooks}{If @TRUE, called hook functions are removed, 
+#  \item{removeCalledHooks}{If @TRUE, called hook functions are removed,
 #     otherwise not.}
 # }
 #
@@ -35,13 +35,13 @@ setMethodS3("callHooks", "default", function(hookName, ..., removeCalledHooks=FA
   # Argument 'hookName':
   hookName <- as.character(hookName);
   if (length(hookName) != 1) {
-    throw("Argument 'hookName' must be a single character string: ", 
+    throw("Argument 'hookName' must be a single character string: ",
                                                             length(hookName));
   }
 
   # Argument 'removeCalledHooks':
   removeCalledHooks <- as.logical(removeCalledHooks);
-    
+
   hooks <- getHook(hookName);
   if (length(hooks) == 0)
     return();
@@ -80,9 +80,9 @@ setMethodS3("callHooks", "default", function(hookName, ..., removeCalledHooks=FA
 # }
 #
 # \value{
-#   Returns (invisibly) a @list that is named with hook names, if possible.  
-#   Each element in the list is in turn a @list with three element: 
-#   \code{fcn} is the hook function called, \code{result} is its return 
+#   Returns (invisibly) a @list that is named with hook names, if possible.
+#   Each element in the list is in turn a @list with three element:
+#   \code{fcn} is the hook function called, \code{result} is its return
 #   value, and \code{exception} is the exception caught or @NULL.
 # }
 #
@@ -102,9 +102,9 @@ setMethodS3("callHooks", "list", function(hooks, ...) {
 
   res <- vector(nhooks, mode="list");
 
-  failedHooks <- rep(TRUE, length=nhooks);
+  failedHooks <- rep(TRUE, times=nhooks);
   hookNames <- character(nhooks);
-  for (kk in seq(length=nhooks)) {
+  for (kk in seq_len(nhooks)) {
     # Get the hook function
     fcn <- hooks[[kk]];
     tmp <- list(fcn=fcn, result=NULL, exception=NULL);

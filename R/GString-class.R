@@ -259,7 +259,7 @@ setMethodS3("getBuiltinUsername", "GString", function(static, ...) {
 #*/###########################################################################
 setMethodS3("getBuiltinDate", "GString", function(static, format="%Y-%m-%d", ...) {
   args <- list(Sys.time(), format=format);
-  do.call("format", args);
+  do.call(base::format, args);
 }, static=TRUE)
 
 
@@ -291,7 +291,7 @@ setMethodS3("getBuiltinDate", "GString", function(static, format="%Y-%m-%d", ...
 #*/###########################################################################
 setMethodS3("getBuiltinTime", "GString", function(static, format="%H:%M:%S", ...) {
   args <- list(Sys.time(), format=format);
-  do.call("format", args);
+  do.call(base::format, args);
 }, static=TRUE)
 
 
@@ -323,7 +323,7 @@ setMethodS3("getBuiltinTime", "GString", function(static, format="%H:%M:%S", ...
 #*/###########################################################################
 setMethodS3("getBuiltinDatetime", "GString", function(static, format=NULL, ...) {
   args <- list(Sys.time(), format=format);
-  do.call("format", args);
+  do.call(base::format, args);
 }, static=TRUE)
 
 
@@ -745,7 +745,7 @@ setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
   }
 
   s <- "";
-  for (kk in seq(length=length(parts))) {
+  for (kk in seq_along(parts)) {
     part <- parts[[kk]];
     s <- paste(s, part, sep="");
   }

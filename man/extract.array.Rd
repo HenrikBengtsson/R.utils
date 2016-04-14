@@ -32,7 +32,7 @@
  \item{indices}{A \code{\link[base]{list}} of index \code{\link[base]{vector}}s to be extracted.}
  \item{dims}{An \code{\link[base]{vector}} of dimensions - one per element
     in \code{indices} - which will be coerced to \code{\link[base]{integer}}s.
-    If \code{\link[base]{NULL}}, it will default to \code{seq(along=indices)}.}
+    If \code{\link[base]{NULL}}, it will default to \code{seq_along(indices)}.}
  \item{drop}{If \code{\link[base:logical]{TRUE}}, dimensions of length one are dropped,
     otherwise not.}
 }

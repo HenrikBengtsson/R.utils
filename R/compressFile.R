@@ -143,43 +143,52 @@ setMethodS3("compressFile", "default", function(filename, destname=sprintf("%s.%
   # Already done?
   if (file.exists(destname)) {
     if (skip) {
-      return(destname);
-    } else if (!overwrite) {
-      stop(sprintf("File already exists: %s", destname));
+      return(destname)
+    } else if (overwrite) {
+      file.remove(destname)
+    } else {
+      stop(sprintf("File already exists: %s", destname))
     }
   }
 
+  ## Compress to temporary file
+  destnameT <- pushTemporaryFile(destname)
+
   # Create output directory, iff missing
-  destpath <- dirname(destname);
+  destpath <- dirname(destnameT);
   if (!isDirectory(destpath)) mkdirs(destpath, mustWork=TRUE);
 
   # Setup input and output connections
   inn <- file(filename, open="rb");
   on.exit(if (!is.null(inn)) close(inn));
 
-  outComplete <- FALSE;
-  out <- FUN(destname, open="wb", ...);
+  outComplete <- FALSE
+  out <- FUN(destnameT, open="wb", ...)
   on.exit({
-    close(out);
-    # Was the processing incomplete?
-    if (!outComplete) {
-      # Remove the incomplete file
-      file.remove(destname);
-    }
-  }, add=TRUE);
+    if (!is.null(out)) close(out)
+    # Remove incomplete file?
+    if (!outComplete) file.remove(destnameT)
+  }, add=TRUE)
 
   # Process
-  nbytes <- 0L;
+  nbytes <- 0
   repeat {
-    bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE);
-    n <- length(bfr);
-    if (n == 0L)
-      break;
-    nbytes <- nbytes + n;
-    writeBin(bfr, con=out, size=1L);
-    bfr <- NULL;  # Not needed anymore
+    bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE)
+    n <- length(bfr)
+    if (n == 0L) break;
+    nbytes <- nbytes + n
+    writeBin(bfr, con=out, size=1L)
+    bfr <- NULL  # Not needed anymore
   };
-  outComplete <- TRUE;
+  outComplete <- TRUE
+  close(out)
+  out <- NULL
+
+  ## Rename to final name
+  destname <- popTemporaryFile(destnameT)
+
+  # Return the output file
+  attr(destname, "nbrOfBytes") <- nbytes
 
   # Cleanup
   if (remove) {
@@ -187,9 +196,6 @@ setMethodS3("compressFile", "default", function(filename, destname=sprintf("%s.%
     inn <- NULL;
     file.remove(filename);
   }
-
-  # Return the output file
-  attr(destname, "nbrOfBytes") <- nbytes;
 
   invisible(destname);
 }) # compressFile()
@@ -223,11 +229,16 @@ setMethodS3("decompressFile", "default", function(filename, destname=gsub(sprint
   # Already done?
   if (file.exists(destname)) {
     if (skip) {
-      return(destname);
-    } else if (!overwrite) {
-      stop(sprintf("File already exists: %s", destname));
+      return(destname)
+    } else if (overwrite) {
+      file.remove(destname)
+    } else {
+      stop(sprintf("File already exists: %s", destname))
     }
   }
+
+  ## Compress to temporary file
+  destnameT <- pushTemporaryFile(destname)
 
   # Create output directory, iff missing
   destpath <- dirname(destname);
@@ -237,29 +248,33 @@ setMethodS3("decompressFile", "default", function(filename, destname=gsub(sprint
   inn <- FUN(filename, open="rb");
   on.exit(if (!is.null(inn)) close(inn));
 
-  outComplete <- FALSE;
-  out <- file(destname, open="wb");
+  outComplete <- FALSE
+  out <- file(destnameT, open="wb", ...)
   on.exit({
-    close(out);
-    # Was the processing incomplete?
-    if (!outComplete) {
-      # Remove the incomplete file
-      file.remove(destname);
-    }
-  }, add=TRUE);
+    if (!is.null(out)) close(out)
+    # Remove incomplete file?
+    if (!outComplete) file.remove(destnameT)
+  }, add=TRUE)
 
   # Process
-  nbytes <- 0L;
+  nbytes <- 0
   repeat {
-    bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE);
-    n <- length(bfr);
-    if (n == 0L)
-      break;
-    nbytes <- nbytes + n;
-    writeBin(bfr, con=out, size=1L);
-    bfr <- NULL;  # Not needed anymore
+    bfr <- readBin(inn, what=raw(0L), size=1L, n=BFR.SIZE)
+    n <- length(bfr)
+    if (n == 0L) break;
+    nbytes <- nbytes + n
+    writeBin(bfr, con=out, size=1L)
+    bfr <- NULL  # Not needed anymore
   };
-  outComplete <- TRUE;
+  outComplete <- TRUE
+  close(out)
+  out <- NULL
+
+  ## Rename to final name
+  destname <- popTemporaryFile(destnameT)
+
+  # Return the output file
+  attr(destname, "nbrOfBytes") <- nbytes
 
   # Cleanup
   if (remove) {
@@ -267,9 +282,6 @@ setMethodS3("decompressFile", "default", function(filename, destname=gsub(sprint
     inn <- NULL;
     file.remove(filename);
   }
-
-  # Return the output file
-  attr(destname, "nbrOfBytes") <- nbytes;
 
   invisible(destname);
 }) # decompressFile()

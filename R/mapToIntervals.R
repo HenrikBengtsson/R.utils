@@ -13,8 +13,8 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of K values to be matched.}
-#   \item{intervals}{The N intervals to be matched against.  
-#      If an Nx2 @numeric @matrix, the first column should be the lower 
+#   \item{intervals}{The N intervals to be matched against.
+#      If an Nx2 @numeric @matrix, the first column should be the lower
 #      bounds and the second column the upper bounds of each interval.
 #      If a @numeric @vector of length 2N, each consecutive pair should
 #      be the lower and upper bounds of an interval.
@@ -30,7 +30,7 @@
 # }
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "inAnyInterval".
 #  @see "base::match".
@@ -38,13 +38,13 @@
 #  @see "base::cut".
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRUE, includeUpper=TRUE, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
     throw("Argument 'x' is not numeric: ", mode(x)[1]);
@@ -59,7 +59,7 @@ setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRU
   if (!asMatrix) {
     intervals <- matrix(intervals, ncol=2, byrow=TRUE);
   } else if (ncol(intervals) != 2) {
-    throw("Argument 'intervals' is not a matrix with two columns: ", 
+    throw("Argument 'intervals' is not a matrix with two columns: ",
                                                         ncol(intervals));
   }
 
@@ -83,10 +83,9 @@ setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRU
     }
   }
 
-  naValue <- as.integer(NA);
-  map <- rep(naValue, length=length(x));
+  map <- rep(NA_integer_, times=length(x));
   nbrOfIntervals <- nrow(intervals);
-  for (kk in seq(length=nbrOfIntervals)) {
+  for (kk in seq_len(nbrOfIntervals)) {
     rr <- (nbrOfIntervals - kk + 1L);
     ll <- isInside(x, intervals[rr,]);
     map[ll] <- rr;

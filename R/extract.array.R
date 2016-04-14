@@ -22,7 +22,7 @@
 #  \item{indices}{A @list of index @vectors to be extracted.}
 #  \item{dims}{An @vector of dimensions - one per element
 #     in \code{indices} - which will be coerced to @integers.
-#     If @NULL, it will default to \code{seq(along=indices)}.}
+#     If @NULL, it will default to \code{seq_along(indices)}.}
 #  \item{drop}{If @TRUE, dimensions of length one are dropped,
 #     otherwise not.}
 # }
@@ -50,7 +50,7 @@ setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(i
 
   # Argument 'dims':
   if (is.null(dims)) {
-    dims <- seq(length=nindices);
+    dims <- seq_len(nindices);
   } else {
     # (i) Try to match to dimnames(x)
     dimnames <- dimnames(x);
@@ -75,7 +75,7 @@ setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(i
     throw("Argument 'x' is not an array: ", class(x)[1L]);
 
   args <- rep("", times=ndim);
-  for (kk in seq(length=length(indices))) {
+  for (kk in seq_along(indices)) {
     dd <- dims[kk];
     args[dd] <- sprintf("indices[[%d]]", kk);
   }

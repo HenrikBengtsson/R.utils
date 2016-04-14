@@ -157,7 +157,7 @@ setMethodS3("equals", "Options", function(this, other, ...) {
     if (length(list1) != length(list2))
       return(FALSE);
 
-    for (kk in seq(length=length(list1))) {
+    for (kk in seq_along(list1)) {
       obj1 <- list1[[kk]];
       obj2 <- list2[[kk]];
       if (is.list(obj1)) {
@@ -300,7 +300,7 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
     leafs <- list[!isList];
     trees <- list[isList];
     treeNames <- names(trees);
-    for (kk in seq(length=length(trees))) {
+    for (kk in seq_along(trees)) {
       tree <- trees[[kk]];
       treeName <- treeNames[kk];
       treeLeaves <- getLeaves(tree, ...);
@@ -379,7 +379,7 @@ setMethodS3("nbrOfOptions", "Options", function(this, ...) {
 setMethodS3("hasOption", "Options", function(this, pathname, ...) {
   if (length(pathname) > 1) {
     res <- c();
-    for (kk in seq(along=pathname))
+    for (kk in seq_along(pathname))
       res[kk] <- hasOption(this, pathname[kk]);
     names(res) <- pathname;
     return(res);
@@ -407,7 +407,7 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
     return(FALSE);
 
   depth <- length(pathname);
-  for (kk in seq(length=depth)) {
+  for (kk in seq_len(depth)) {
     key <- pathname[kk];
     keys <- names(cur);
     if (key %in% keys) {
@@ -465,7 +465,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
   if (length(pathname) > 1) {
     defaultValue <- rep(defaultValue, length.out=length(pathname));
     res <- list();
-    for (kk in seq(along=pathname))
+    for (kk in seq_along(pathname))
       res[[kk]] <- getOption(this, pathname[kk], defaultValue[kk]);
     names(res) <- pathname;
     return(res);
@@ -499,7 +499,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
     return(defaultValue);
 
   depth <- length(pathname);
-  for (kk in seq(length=depth)) {
+  for (kk in seq_len(depth)) {
     key <- pathname[kk];
     keys <- names(cur);
     if (key %in% keys) {

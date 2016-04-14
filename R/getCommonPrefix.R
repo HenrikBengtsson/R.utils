@@ -11,14 +11,14 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
   # Put the characters into a matrix
   naValue <- as.character(NA);
   data <- matrix(naValue, nrow=length(chars), ncol=max(nchars));
-  for (kk in seq(along=chars)) {
-    cc <- seq(length=nchars[kk]);
+  for (kk in seq_along(chars)) {
+    cc <- seq_len(nchars[kk]);
     data[kk,cc] <- chars[[kk]];
   }
 
   # Find first column with different characters
   count <- 0;
-  for (cc in seq(length=ncol(data))) {
+  for (cc in seq_len(ncol(data))) {
     uchars <- unique(data[,cc]);
     if (length(uchars) > 1)
       break;
@@ -26,7 +26,7 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
   }
 
   # The common prefix as a character vector
-  prefix <- chars[[1]][seq(length=count)];
+  prefix <- chars[[1]][seq_len(count)];
 
   # Asked for the suffix?
   if (suffix) {

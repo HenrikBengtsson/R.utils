@@ -123,10 +123,10 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     return();
 
   # Number the read lines
-  numbers <- as.integer(seq(length=nlines));
+  numbers <- as.integer(seq_len(nlines));
 
   # Prepare highlight marks
-  marks <- rep(" ", nlines);
+  marks <- rep(" ", times=nlines);
   marks[highlight] <- "*";
 
   if (length(lines) > 1) {
@@ -153,7 +153,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
   if (!is.null(marks) || !is.null(numbers)) {
     prefix <- paste(marks, numbers, "|", sep="");
     width <- nchar(prefix[1]);
-    emptyPrefix <- paste(paste(rep(" ", width-1), collapse=""), "|", sep="");
+    emptyPrefix <- paste(paste(rep(" ", times=width-1), collapse=""), "|", sep="");
   } else {
     prefix <- NULL;
     width <- 0;
@@ -165,7 +165,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     wrap <- wrap - width;
 
     code2 <- c();
-    for (kk in seq(code)) {
+    for (kk in seq_along(code)) {
       if (nchar(code[kk]) <= wrap) {
         line <- paste(prefix[kk], code[kk], sep="");
       } else {
@@ -179,7 +179,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
         }
         indent <- prefix[kk];
         if (length(emptyPrefix) > 0L) {
-          indent <- c(indent, rep(emptyPrefix, length=length(line)-1));
+          indent <- c(indent, rep(emptyPrefix, length.out=length(line)-1));
         }
         line <- paste(indent, line, sep="");
       }

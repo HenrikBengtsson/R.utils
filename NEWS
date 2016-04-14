@@ -2,6 +2,18 @@
 Package: R.utils
 ================
 
+Version: 2.3.0 [2016-04-13]
+o Added hsize().
+o Added tmpfile() for creating temporary files with content that
+  is deleted automatically by the garbage collector unless there
+  is a reference to it in R.
+o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore
+  also functions such as gzip() and gunzip(), output atomically
+  by writing to a temporary file which is only renamed when completed.
+o CLEANUP: Deprecated `%<-%` in favor of `%<-%` in the future package.
+o Package now formally requires R (>= 2.14.0) release Oct 2011.
+
+
 Version: 2.2.0 [2015-12-09]
 o loadObject() and saveObject() gained argument 'format' in order
   to support also RDS files (in addition to XDR files).  File

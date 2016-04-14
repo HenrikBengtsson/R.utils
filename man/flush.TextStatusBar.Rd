@@ -6,40 +6,40 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{flush.TextStatusBar}
+\name{flush.TextStatusBar}
 \alias{flush.TextStatusBar}
 \alias{TextStatusBar.flush}
 \alias{flush,TextStatusBar-method}
 
- \title{Flushes the output}
+\title{Flushes the output}
 
- \description{
-   Flushes the output.
- }
+\description{
+  Flushes the output.
+}
 
- \usage{
+\usage{
 \method{flush}{TextStatusBar}(con, ...)
 }
 
- \arguments{
-  \item{...}{Arguments passed to \code{\link[base]{cat}}().}
- }
+\arguments{
+ \item{...}{Arguments passed to \code{\link[base]{cat}}().}
+}
 
- \value{
-   Returns nothing.
- }
+\value{
+  Returns nothing.
+}
 
- \details{
-   All this methods does is to call \code{\link[utils]{flush.console}}, which
-   flushes the output to the console.
- }
+\details{
+  All this methods does is to call \code{\link[utils]{flush.console}}, which
+  flushes the output to the console.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \code{\link[utils]{flush.console}}.
-   For more information see \code{\link{TextStatusBar}}.
- }
+\seealso{
+  \code{\link[utils]{flush.console}}.
+  For more information see \code{\link{TextStatusBar}}.
+}
 
 
 \keyword{internal}

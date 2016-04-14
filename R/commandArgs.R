@@ -182,7 +182,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
   parseReservedArgs <- function(args, os) {
     nargs <- length(args);
 
-    reservedArgs <- getReserved(os=os, pattern=TRUE);
+    reservedArgs <- getReserved(os=os, patterns=TRUE);
 
     # Set user arguments to start after '--args', otherwise
     # all arguments are considered user arguments
@@ -354,7 +354,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     # An argument name cannot start with a hypen ('-').
     keyPattern <- "[[:alnum:]_.][[:alnum:]_.-]*";
     nargsT <- length(argsT);
-    for (ii in seq(length=nargsT)) {
+    for (ii in seq_len(nargsT)) {
       argI <- argsT[[ii]];
       arg <- argI$arg;
 ##      printf("Argument #%d: '%s' [n=%d]\n", ii, arg, length(arg));

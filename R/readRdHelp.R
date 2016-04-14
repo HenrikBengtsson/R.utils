@@ -33,7 +33,7 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
       cat(readLines(con), sep="\n");
     }
     capture.output({
-      do.call("help", args=list(..., pager=stdoutPager));
+      do.call(help, args=list(..., pager=stdoutPager));
     });
   } # readRdHelpTextPreR210()
 

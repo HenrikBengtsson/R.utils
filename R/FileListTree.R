@@ -33,7 +33,7 @@ setMethodS3("toFileListTree", "character", function(x, depth=-1, dirsFirst=TRUE,
   } else {
     output <- c(leaves, tailOutput);
   }
-  
+
   class(output) <- "FileListTree";
   output;
 }, private=TRUE)
@@ -56,7 +56,7 @@ setMethodS3("pasteTree", "FileListTree", function(x, indent="  ", nodeStr="  ", 
   .nextTotalIndent <- paste(indent, .totalIndent, sep="");
 
   names <- names(x);
-  for (kk in seq(along=x)) {
+  for (kk in seq_along(x)) {
     values <- x[[kk]];
     name <- names[kk];
     if (name != ".")

@@ -156,7 +156,7 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
 
   # Create a call expression to source(file=fh, ..., local=local)
   expr <- substitute({
-    do.call("source", args)
+    do.call(source, args)
   }, list(args=args));
 
   # Call source()

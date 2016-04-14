@@ -6,7 +6,7 @@
 # \description{
 #  @classhierarchy
 #
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -19,18 +19,18 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # \details{
 #   A label with name \code{hfill} can be used for automatic horizontal
 #   filling.  It must be @numeric and be immediate before a string
-#   label such that a \code{hfill} label and the following string label 
+#   label such that a \code{hfill} label and the following string label
 #   together specifies an sprintf format such as \code{"\%*-s"}.
 #   The value of \code{hfill} will be set such that the resulting status
 #   bar has width equal to \code{getOption("width")-1} (the reason for the
 #   -1 is to prevent the text status bar from writing into the next line).
-#   If more than one \code{hfill} label is used their widths will be 
+#   If more than one \code{hfill} label is used their widths will be
 #   uniformly distributed.  Left over spaces will be distributed between
 #   \code{hfill} labels with initial values of one.
 # }
@@ -59,7 +59,7 @@ setConstructorS3("TextStatusBar", function(fmt=paste("%-", getOption("width")-1,
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -91,10 +91,10 @@ setMethodS3("update", "TextStatusBar", function(object, ...) {
     argsT <- args;
     argsT[isHFill] <- 0;
     argsT[isHFill+1] <- "";
-    str <- do.call("sprintf", args=c(list(fmt=fmt), argsT));
+    str <- do.call(sprintf, args=c(list(fmt=fmt), argsT));
     nfill <- (getOption("width")-1) - nchar(str);
     if (nfill > 0) {
-      # Distribute the horizontal fillers evenly.  
+      # Distribute the horizontal fillers evenly.
       spcs <- rep(nfill %/% nHFill, times=nHFill);
       ndiff <- nfill - sum(spcs);
       if (ndiff > 0) {
@@ -107,7 +107,7 @@ setMethodS3("update", "TextStatusBar", function(object, ...) {
       args[isHFill] <- spcs;
     }
   }
-  str <- do.call("sprintf", args=c(list(fmt=fmt), args));
+  str <- do.call(sprintf, args=c(list(fmt=fmt), args));
 
   lastStr <- this$.lastStr;
   this$.lastStr <- str;
@@ -124,7 +124,7 @@ setMethodS3("update", "TextStatusBar", function(object, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -147,7 +147,7 @@ setMethodS3("update", "TextStatusBar", function(object, ...) {
 #*/###########################################################################
 setMethodS3("setLabels", "TextStatusBar", function(this, ...) {
   pars <- list(...);
- 
+
   args <- this$.args;
   for (label in names(pars)) {
     args[[label]] <- pars[[label]];
@@ -155,7 +155,7 @@ setMethodS3("setLabels", "TextStatusBar", function(this, ...) {
   this$.args <- args;
 })
 
- 
+
 ###########################################################################/**
 # @RdocMethod setLabel
 #
@@ -164,7 +164,7 @@ setMethodS3("setLabels", "TextStatusBar", function(this, ...) {
 # \description{
 #   @get "title" address either by its index or its names.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -201,7 +201,7 @@ setMethodS3("setLabel", "TextStatusBar", function(this, label, value, ...) {
 # \description{
 #   @get "title" address either by its index or its names.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -236,7 +236,7 @@ setMethodS3("getLabel", "TextStatusBar", function(this, label, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -269,7 +269,7 @@ setMethodS3("newline", "TextStatusBar", function(this, ...) {
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -304,7 +304,7 @@ setMethodS3("updateLabels", "TextStatusBar", function(this, ...) {
 # \description{
 #   @get "title" by scrolling up previous messages popped.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -332,7 +332,7 @@ setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep=
   erazor <- c(backspaces, rep(" ", nchar(lastStr)), backspaces);
   cat(erazor, sep="");
   this$.lastStr <- "";
-    
+
   cat(..., collapse=collapse, sep=sep);
   cat("\n");
   update(this);
@@ -349,7 +349,7 @@ setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep=
 # \description{
 #   @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -385,7 +385,7 @@ setMethodS3("flush", "TextStatusBar", function(con, ...) {
 
 
 ############################################################################
-# HISTORY: 
+# HISTORY:
 # 2007-08-15
 # o Added flush() to TextStatusBar.
 # 2006-10-04
