@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.2.0-9000 [2016-03-28]
+Version: 2.3.0 [2016-04-13]
 o Added hsize().
 o Added tmpfile() for creating temporary files with content that
   is deleted automatically by the garbage collector unless there
