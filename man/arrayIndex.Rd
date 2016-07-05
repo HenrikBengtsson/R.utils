@@ -65,5 +65,7 @@ print(arrayIndex(which.max(m), dim=dim(m)))
 
 
 
+
 \keyword{manip}
 \keyword{utilities}
+\keyword{internal}

@@ -40,8 +40,11 @@
 #
 # @keyword manip
 # @keyword utilities
+# @keyword internal
 #*/########################################################################### 
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
+  .Deprecated(new="base::arrayInd()")
+  
   ndim <- length(dim);       # number of dimension
   dim <- as.integer(dim);
   pi <- cumprod(c(1L,dim));  # base
