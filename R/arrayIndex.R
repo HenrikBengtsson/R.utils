@@ -23,7 +23,9 @@
 #  \code{length(dim)} columns.
 # }
 #
-# @examples "../incl/arrayIndex.Rex"
+# \examples{\donttest{
+# @include "../incl/arrayIndex.Rex"
+# }}
 #
 # \references{
 #  [1] H. Bengtsson, \emph{Bayesian Networks - a self-contained 
