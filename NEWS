@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 2.3.0-9000 [2016-07-05]
+o Now setThreshold() for Verbose accepts also logical values.
+
+
 Version: 2.3.0 [2016-04-13]
 o Added hsize().
 o Added tmpfile() for creating temporary files with content that

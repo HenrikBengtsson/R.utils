@@ -265,11 +265,22 @@ setMethodS3("equals", "Verbose", function(this, other, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("setThreshold", "Verbose", function(this, threshold, ...) {
-  if (!is.numeric(threshold) || length(threshold) != 1)
-    throw("Argument 'threshold' must be a scalar.");
-  old <- this$threshold;
-  this$threshold <- threshold;
-  invisible(old);
+  ## Argument 'threshold':
+  if (length(threshold) != 1) {
+    throw("Argument 'threshold' must be a scalar.")
+  } else if (is.na(threshold)) {
+    throw("Argument 'threshold' must not be a missing value: ", threshold)
+  }
+  
+  if (is.logical(threshold)) {
+    threshold <- -as.integer(threshold)  ## => FALSE = 0, TRUE = -1
+  } else if (!is.numeric(threshold)) {
+    throw("Argument 'threshold' must be a logical or a numeric: ", mode(threshold))
+  }
+  
+  old <- this$threshold
+  this$threshold <- threshold
+  invisible(old)
 })
 
 
