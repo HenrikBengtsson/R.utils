@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  OperatorDelayedAssign.R
+%  DEPRECATED.OperatorDelayedAssign.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +14,7 @@
 \title{Assignment operator for delayed assignments ('lazy future')}
 
 \description{
- \emph{This infix operator is deprecated. For an alternative, see
+ \emph{This infix operator is defunct. For an alternative, see
    \code{\%<-\%} part of the future package.
  }
 
@@ -47,17 +47,6 @@
   Returns (invisibly) \code{\link[base]{NULL}}.
   Note, contrary to \code{\link[base]{<-}}(), it is \emph{not}
   meaniful to do \code{a \%<-\% b \%<-\% c \%<-\% 6}.
-}
-
-\examples{
-message("a \%<-\% ...")
-a \%<-\% { message("Now assigning 'a'"); 1 }
-message("b \%<-\% a")
-b \%<-\% a
-message("c \%<-\% b")
-c \%<-\% b
-message("d \%<-\% 2*c")
-d <- 2*c
 }
 
 \author{Henrik Bengtsson}

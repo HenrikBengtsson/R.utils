@@ -2,9 +2,11 @@
 Package: R.utils
 ================
 
-Version: 2.3.0-9000 [2016-07-05]
+Version: 2.3.0-9000 [2016-07-10]
 o Added nullfile().
 o Now setThreshold() for Verbose accepts also logical values.
+o CLEANUP: Defunct `%<-%` in favor of `%<-%` in the future package.
+o Package now formally requires R (>= 2.14.0) released Oct 2011.
 o CLEANUP: Deprecated arrayIndex().  arrayInd() in base (>= 2.11.0)
   provides the same functionality.
 
@@ -18,7 +20,7 @@ o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore
   also functions such as gzip() and gunzip(), output atomically
   by writing to a temporary file which is only renamed when completed.
 o CLEANUP: Deprecated `%<-%` in favor of `%<-%` in the future package.
-o Package now formally requires R (>= 2.14.0) release Oct 2011.
+o Package now formally requires R (>= 2.14.0) released Oct 2011.
 
 
 Version: 2.2.0 [2015-12-09]
