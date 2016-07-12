@@ -2,7 +2,9 @@
 Package: R.utils
 ================
 
-Version: 2.3.0-9000 [2016-07-10]
+Version: 2.3.0-9000 [2016-07-11]
+o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs
+  that was left behind by packages that have already been unloaded.
 o Added nullfile().
 o Now setThreshold() for Verbose accepts also logical values.
 o CLEANUP: Defunct `%<-%` in favor of `%<-%` in the future package.
