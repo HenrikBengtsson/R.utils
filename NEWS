@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.3.0-9000 [2016-07-11]
+Version: 2.3.0-9000 [2016-08-05]
 o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs
   that was left behind by packages that have already been unloaded.
 o Added nullfile().

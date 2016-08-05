@@ -118,7 +118,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 
   # Keep only 'methods' that are supported on the current platform
-  if (.Platform$OS != "windows") {
+  if (.Platform$OS.type != "windows") {
     methods <- grep("windows-", methods, value=TRUE, invert=TRUE);
   }
 
