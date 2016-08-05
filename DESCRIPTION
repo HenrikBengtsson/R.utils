@@ -9,7 +9,7 @@ Imports:
   tools,
   R.methodsS3 (>= 1.7.1)
 Suggests:
-  digest (>= 0.6.8)
+  digest (>= 0.6.10)
 Date: 2016-08-05
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
