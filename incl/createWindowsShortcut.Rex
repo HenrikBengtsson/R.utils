@@ -4,7 +4,7 @@ targets <- list(
   system.file("DESCRIPTION", package="R.utils")
 )
 
-for (kk in seq(along=targets)) {
+for (kk in seq_along(targets)) {
   cat("Link #", kk, "\n", sep="")
 
   target <- targets[[kk]]

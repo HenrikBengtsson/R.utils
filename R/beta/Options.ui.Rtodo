@@ -41,7 +41,7 @@ setMethodS3("fromProperties", "Options", function(static, properties, ...) {
   object <- newInstance(clazz);
 
   # Populate it with the specified properties
-  for (kk in seq(length=length(properties)) {
+  for (kk in seq_along(properties)) {
     name <- names(properties)[kk];
     value <- properties[[kk]];
     setProperty(object, name, value);
