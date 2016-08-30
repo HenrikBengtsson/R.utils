@@ -2,11 +2,14 @@
 Package: R.utils
 ================
 
-Version: 2.3.0-9000 [2016-08-05]
+Version: 2.3.0-9000 [2016-08-29]
 o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs
   that was left behind by packages that have already been unloaded.
 o Added nullfile().
 o Now setThreshold() for Verbose accepts also logical values.
+o CLEANUP: Argument 'absolutePath' for Arguments$getReadablePathname()
+  was renamed to 'absolute'.  For backward compatibililty, the old
+  name will still work for some time.
 o CLEANUP: Defunct `%<-%` in favor of `%<-%` in the future package.
 o Package now formally requires R (>= 2.14.0) released Oct 2011.
 o CLEANUP: Deprecated arrayIndex().  arrayInd() in base (>= 2.11.0)

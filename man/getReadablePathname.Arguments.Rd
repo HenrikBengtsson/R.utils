@@ -20,11 +20,11 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE,
-##   absolutePath=FALSE, adjust=c("none", "url"), ...)
+## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolute=FALSE,
+##   adjust=c("none", "url"), ...)
 
 ## Don't use the below:
-\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE,
+\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolute=FALSE,
   adjust=c("none", "url"), ...)
 }
 
@@ -34,7 +34,7 @@
   \item{mustExist}{If \code{\link[base:logical]{TRUE}}, the pathname must exists and be readable,
     otherwise an exception is thrown. If \code{\link[base:logical]{FALSE}}, no such test is
     performed.}
-  \item{absolutePath}{If \code{\link[base:logical]{TRUE}}, the absolute pathname is returned.}
+  \item{absolute}{If \code{\link[base:logical]{TRUE}}, the absolute pathname is returned.}
   \item{...}{Not used.}
 }
 
