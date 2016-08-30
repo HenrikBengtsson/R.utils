@@ -12,7 +12,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{size}{A @numeric @vector of sizes.}
+#   \item{sizes}{A @numeric @vector of sizes.}
 #   \item{digits}{Number of digits to be presented in the give unit.}
 #   \item{units}{A @character string specifying type of units to use.}
 #   \item{bytes}{The string used for units of bytes without a prefix.
@@ -35,7 +35,7 @@
 # @keyword programming
 # @keyword internal
 #*/###########################################################################
-setMethodS3("hsize", "numeric", function(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"), bytes=getOption("hsize.standard", "B"), ...) {
+setMethodS3("hsize", "numeric", function(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"), bytes=getOption("hsize.bytes", "B"), ...) {
   standard <- match.arg(standard, choices=c("IEC", "JEDEC", "SI"))
   stopifnot(is.character(units), length(units) == 1L)
   stopifnot(is.numeric(digits), length(digits) == 1L)

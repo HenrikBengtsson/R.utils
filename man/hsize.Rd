@@ -23,7 +23,7 @@ hsize(...)
 }
 
 \arguments{
-  \item{size}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of sizes.}
+  \item{sizes}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of sizes.}
   \item{digits}{Number of digits to be presented in the give unit.}
   \item{units}{A \code{\link[base]{character}} string specifying type of units to use.}
   \item{bytes}{The string used for units of bytes without a prefix.
