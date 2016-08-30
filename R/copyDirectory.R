@@ -59,7 +59,7 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
     throw("Argument 'from' is not a directory: ", from);
 
   # Argument 'to':
-  to <- Arguments$getWritablePath(to, mkdirs=TRUE, absolutePath=FALSE);
+  to <- Arguments$getWritablePath(to, mkdirs=TRUE, absolute=FALSE);
 
   # Argument 'private':
   private <- Arguments$getLogical(private);
