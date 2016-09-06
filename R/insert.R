@@ -23,7 +23,9 @@
 # @examples "../incl/insert.Rex"
 #
 # \seealso{
-#   @see "base::append".
+#   @see "base::append" takes argument \code{after} (a scalar).  For example,
+#   \code{append(x, y, after=after) == insert(x, values=y, ats=after+1)}.
+#   Contrary to \code{append()}, \code{insert()} accepts a vector of insert indices.
 # }
 #
 # @author

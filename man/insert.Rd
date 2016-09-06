@@ -92,7 +92,9 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 }
 
 \seealso{
-  \code{\link[base]{append}}().
+  \code{\link[base]{append}}() takes argument \code{after} (a scalar).  For example,
+  \code{append(x, y, after=after) == insert(x, values=y, ats=after+1)}.
+  Contrary to \code{append()}, \code{insert()} accepts a vector of insert indices.
 }
 
 \author{Henrik Bengtsson}
