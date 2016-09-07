@@ -1570,7 +1570,7 @@ setMethodS3("pushState", "Verbose", function(this, ...) {
     stackLevel = this$.stackLevel
   )
 
-  this$.stackState <- append(this$.stackState, list(stack));
+  this$.stackState <- c(this$.stackState, list(stack));
   invisible(TRUE);
 })
 
