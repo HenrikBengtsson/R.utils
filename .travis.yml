@@ -12,6 +12,7 @@ sudo: false
 cache: packages
 warnings_are_errors: false
 r_check_args: --as-cran
+latex: false
 
 matrix:
   include:
@@ -28,10 +29,8 @@ matrix:
       r: devel
     - os: osx
       r: oldrel
-      latex: false
     - os: osx
       r: release
-      latex: false
     
 notifications:
   email:

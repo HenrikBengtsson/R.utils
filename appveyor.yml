@@ -39,8 +39,7 @@ install:
 
 build_script:
   - echo Current directory=%CD%
-  - travis-tool.sh install_r R.methodsS3 R.oo
-  - travis-tool.sh install_r digest
+  - travis-tool.sh install_r R.methodsS3 R.oo digest
 
 test_script:
   - travis-tool.sh run_tests
