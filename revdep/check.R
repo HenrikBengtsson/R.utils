@@ -15,6 +15,8 @@ availableCores <- function() {
   1L
 }
 
-revdep_check(bioconductor = FALSE, recursive = FALSE, threads = availableCores())
+## Skip testing because requires rgdal (fails on test system)
+ignore <- "PopGenReport"
+revdep_check(bioconductor = FALSE, recursive = FALSE, threads = availableCores(), ignore = ignore)
 revdep_check_save_summary()
 revdep_check_print_problems()

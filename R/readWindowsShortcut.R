@@ -29,8 +29,8 @@
 # @author
 #
 # \seealso{
-#   @see "createWindowsShortcut"
-#   \code{\link{filePath}}
+#   @see "createWindowsShortcut" and
+#   \code{\link{filePath}()}
 # }
 #
 # \references{
@@ -46,7 +46,7 @@
 #       April 2008. \url{http://wiki.tcl.tk/1844} \cr
 #   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com,
 #       April 24, 2009. \cr
-#       \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
+#       \url{https://web.archive.org/web/20110817051855/http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html} (was http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html)\cr
 #   [7] [MS-SHLLINK]: Shell Link (.LNK) Binary File Format, Microsoft Inc.,
 #       September 25, 2009. \cr
 # }
