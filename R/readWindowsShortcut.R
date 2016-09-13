@@ -29,8 +29,8 @@
 # @author
 #
 # \seealso{
-#   @see "createWindowsShortcut"
-#   \code{\link{filePath}}
+#   @see "createWindowsShortcut" and
+#   \code{\link{filePath}()}
 # }
 #
 # \references{

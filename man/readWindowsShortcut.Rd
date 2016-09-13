@@ -53,8 +53,8 @@ history <- filePath(pathname, expandLinks="relative")
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{\link{createWindowsShortcut}}()
-  \code{\link{filePath}}
+  \code{\link{createWindowsShortcut}}() and
+  \code{\link{filePath}()}
 }
 
 \references{
