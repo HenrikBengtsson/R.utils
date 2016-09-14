@@ -7,3 +7,4 @@
 .test
 .o
 .dll
+.make/README.md.rsp
