@@ -1,5 +1,5 @@
 Package: R.utils
-Version: 2.3.0-9000
+Version: 2.4.0
 Depends:
   R (>= 2.14.0),
   R.oo (>= 1.20.0)
@@ -10,7 +10,7 @@ Imports:
   R.methodsS3 (>= 1.7.1)
 Suggests:
   digest (>= 0.6.10)
-Date: 2016-09-06
+Date: 2016-09-13
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
