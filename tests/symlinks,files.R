@@ -34,7 +34,7 @@ for (path in paths) {
 
   # WORKAROUND: On Windows, file.symlink() does not translate forward
   # slashes for you! Fixed (PR#15631) in r64711 2014-01-09.
-  if (.Platform$OS == "windows") {
+  if (.Platform$OS.type == "windows") {
     pathnameS <- gsub("/", "\\", pathname, fixed=TRUE)
   }
 
@@ -81,7 +81,7 @@ for (path in paths) {
   stopifnot(identical(lastModified(pathnameL), lastModified(pathname)))
 
   # Note that file.info() does not follow links on Windows
-  if (.Platform$OS == "windows") {
+  if (.Platform$OS.type == "windows") {
     fiLx <- file.info(pathnameL)
     printf("*** file.info('%s'):\n", pathnameL)
     print(fiLx)

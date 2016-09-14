@@ -60,7 +60,7 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
   isSymlink <- (!is.na(pathT) && nchar(pathT, type="chars") > 0L);
   if (isSymlink) {
     # Special case: Windows
-    if (.Platform$OS == "windows") {
+    if (.Platform$OS.type == "windows") {
       cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)));
       shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE);
     } else {

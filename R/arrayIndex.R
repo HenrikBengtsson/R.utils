@@ -23,7 +23,9 @@
 #  \code{length(dim)} columns.
 # }
 #
-# @examples "../incl/arrayIndex.Rex"
+# \examples{\donttest{
+# @include "../incl/arrayIndex.Rex"
+# }}
 #
 # \references{
 #  [1] H. Bengtsson, \emph{Bayesian Networks - a self-contained 
@@ -40,8 +42,11 @@
 #
 # @keyword manip
 # @keyword utilities
+# @keyword internal
 #*/########################################################################### 
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
+  .Deprecated(new="base::arrayInd()")
+  
   ndim <- length(dim);       # number of dimension
   dim <- as.integer(dim);
   pi <- cumprod(c(1L,dim));  # base

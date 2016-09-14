@@ -163,7 +163,7 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
 #   \item{mustExist}{If @TRUE, the pathname must exists and be readable,
 #     otherwise an exception is thrown. If @FALSE, no such test is
 #     performed.}
-#   \item{absolutePath}{If @TRUE, the absolute pathname is returned.}
+#   \item{absolute}{If @TRUE, the absolute pathname is returned.}
 #   \item{...}{Not used.}
 # }
 #
@@ -196,7 +196,7 @@ setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, adjust=c("none", "url"), ...) {
+setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExist=TRUE, absolute=FALSE, adjust=c("none", "url"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -222,12 +222,15 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # Argument 'mustExist':
   mustExist <- getLogical(static, mustExist);
 
-  # Argument 'absolutePath':
-  absolutePath <- getLogical(static, absolutePath);
+  # Backward compatibility (absolutePath -> absolute)
+  absolutePath <- list(...)$absolutePath
+  if (!is.null(absolutePath)) absolute <- absolutePath
+
+  # Argument 'absolute':
+  absolute <- getLogical(static, absolute);
 
   # Argument 'adjust':
   adjust <- match.arg(adjust);
-
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Process arguments
@@ -293,7 +296,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # a pathname, not that it will give an error if file does not exist.
   pathname <- filePath(path, file, expandLinks="any", mustExist=TRUE);
 
-  if (absolutePath) {
+  if (absolute) {
     pathname <- getAbsolutePath(pathname);
   }
 

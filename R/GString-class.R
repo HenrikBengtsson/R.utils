@@ -625,13 +625,13 @@ setMethodS3("parse", "GString", function(object, ...) {
       } else {
         text <- s;
         text <- gsub("\\\\\\$", "$", text);
-        parts <- append(parts, list(text=text));
+        parts <- c(parts, list(text=text));
         break;
       }
     }
 
     prefix <- list(text=text);
-    parts <- append(parts, prefix);
+    parts <- c(parts, prefix);
 
     last <- pos + matchLen - 1L;
     var <- substr(s, start=pos, stop=last);
@@ -669,7 +669,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     part[[1L]]$attributes <- attributes;
     part[[1L]]$searchReplace <- searchReplace;
 
-    parts <- append(parts, part);
+    parts <- c(parts, part);
 
     s <- substr(s, start=last+1L, stop=nchar(s));
     if (nchar(s) == 0L)

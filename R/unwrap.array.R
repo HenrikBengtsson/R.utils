@@ -121,7 +121,7 @@ setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), dro
     for (ll in 1:ulen)
       dnames[[ll]] <- unique(snames[,ll]);
 
-    dimnames2 <- append(dimnames2, dnames);
+    dimnames2 <- c(dimnames2, dnames);
   }
 
   dim2 <- unlist(lapply(dimnames2, FUN=length));

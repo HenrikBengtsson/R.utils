@@ -34,7 +34,7 @@
  \code{length(dim)} columns.
 }
 
-\examples{
+\examples{\donttest{
 # Single index
 print(arrayIndex(21, dim=c(4,3,3)))
 
@@ -48,7 +48,8 @@ print(arrayIndex(1:length(x), dim=dim(x)))
 # Find (row,column) of maximum value
 m <- diag(4-abs(-4:4))
 print(arrayIndex(which.max(m), dim=dim(m)))
-}
+
+}}
 
 \references{
  [1] H. Bengtsson, \emph{Bayesian Networks - a self-contained
@@ -65,5 +66,7 @@ print(arrayIndex(which.max(m), dim=dim(m)))
 
 
 
+
 \keyword{manip}
 \keyword{utilities}
+\keyword{internal}

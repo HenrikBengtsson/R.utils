@@ -15,7 +15,7 @@ sb <- TextStatusBar("File: %-*s [%3.0f%% %7.0f bytes %-8s]",
                 hfill=1, file="", progress=0, nbytes=0L, time="")
 
 nbytes <- 0L
-for (kk in seq(length=nfiles)) {
+for (kk in seq_len(nfiles)) {
   file <- files[kk]
 
   # Update the status bar
