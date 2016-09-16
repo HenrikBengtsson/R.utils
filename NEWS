@@ -2,8 +2,9 @@
 Package: R.utils
 ================
 
-Version: 2.4.0-9000 [2016-09-14]
-o ...
+Version: 2.4.0-9000 [2016-09-15]
+o BUG FIX: withCapture(x <- 1L) would drop integer suffix 'L' from
+  the output when run in non-interactive mode.
 
 
 Version: 2.4.0 [2016-09-13]
