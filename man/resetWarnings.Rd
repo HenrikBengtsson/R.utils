@@ -14,7 +14,7 @@
 
 \description{
  Resets recorded warnings.
- \emph{This function only worked with R (< 2.4.0) and is now deprecated.}
+ \emph{This function only worked with R (< 2.4.0) and is now defunct.}
 }
 
 \usage{

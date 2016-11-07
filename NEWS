@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 2.5.0 [2016-11-07]
+o CLEANUP: Removed operator `%<-%` which was defunct since 2.4.0.
+  An alternative is to use ditto of the future package.
+o CLEANUP: Made resetWarnings() defunct.
+o BUG FIX: withCapture(x <- 1L) would drop integer suffix 'L' from
+  the output when run in non-interactive mode.
+
+
 Version: 2.4.0 [2016-09-13]
 o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs
   that was left behind by packages that have already been unloaded.

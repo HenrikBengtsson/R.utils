@@ -60,7 +60,6 @@ setTimestampFormat(verbose)
 print(getTimestampFormat(verbose))
 warning("Hello world!")
 warnings(verbose)
-resetWarnings()
 
 print(timestamp())
 

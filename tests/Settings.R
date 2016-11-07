@@ -15,6 +15,9 @@ setOption(settings, "io/verbose", Verbose(threshold=-1), overwrite=FALSE)
 
 # Save and reload settings
 path <- tempdir()
+str(list(path=path, file.info(path), file_test("-d", path)))
+stopifnot(file_test("-d", path), isDirectory(path))
+
 saveAnywhere(settings, path=path)
 settings2 <- Settings$loadAnywhere(basename, paths=path)
 print(isModified(settings2))

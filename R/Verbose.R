@@ -1496,7 +1496,7 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 # \arguments{
 #  \item{title}{A @character string to be outputted before the warnings, if
 #    they exists.}
-#  \item{reset}{If @TRUE, the warnings are reset afterward, otherwise not.}
+#  \item{reset}{(deprecated) Ignored.}
 #  \item{...}{Arguments passed to @seemethod "cat".}
 #  \item{level}{A @numeric value to be compared to the threshold.}
 # }
@@ -1517,13 +1517,13 @@ setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", re
   if (!isVisible(this, level))
     return(invisible(FALSE));
 
+  if (!missing(reset)) .Deprecated(msg="Argument 'reset' to warnings() for Verbose is deprecated and ignored. Please don't use anymore.")
+  
   if (exists("last.warning", envir=.GlobalEnv)) {
     if (!is.null(title))
       cat(this, title);
     txt <- paste(capture.output(base::warnings()), collapse="\n");
     cat(this, txt, ..., level=level);
-    if (reset)
-      resetWarnings();
   }
 
   invisible(TRUE);

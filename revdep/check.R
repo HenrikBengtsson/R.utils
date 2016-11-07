@@ -15,22 +15,6 @@ availableCores <- function() {
   1L
 }
 
-assert_no_dep <- function(pkg, pkgs) {
-  for (kk in seq_along(pkgs)) {
-   cat(sprintf("%d. %s\n", kk, pkgs[kk]))
-   deps <- devtools:::package_deps(pkgs[kk], dependencies=TRUE)
-   if (pkg %in% deps) stop()
-  }
-} ## assert_no_dep()
-## pkgs <- assert_no_dep("rgdal", pkgs=readRDS("revdep/.cache.rds")$pkgs)
-
-## Skip testing because requires rgdal (fails on test system)
-## cf. grep -r --include=DESCRIPTION -F rgdal /cbc/henrik/R/x86_64-pc-linux-gnu-library/devtools/3.3/
-ignore <- c("PopGenReport", "SpaDES", "gdalUtils", "oce", "simPATHy", "stplanr", "tmle.npvi")
-
-## Skip testing because requires V8 (fails on test system)
-ignore <- c(ignore, "ChemoSpec", "V8")
-
-revdep_check(bioconductor = FALSE, recursive = FALSE, threads = availableCores(), ignore = ignore)
+revdep_check(bioconductor = TRUE, recursive = FALSE, threads = availableCores(),)
 revdep_check_save_summary()
 revdep_check_print_problems()

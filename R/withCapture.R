@@ -163,7 +163,7 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r");
   res <- captureOutput({
-    sourceTo(file=con, echo=code, print.eval=output, max.deparse.length=max.deparse.length, ..., envir=envir);
+    sourceTo(file=con, echo=code, print.eval=output, keep.source=TRUE, max.deparse.length=max.deparse.length, ..., envir=envir);
   });
 
 

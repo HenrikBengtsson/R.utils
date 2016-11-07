@@ -26,7 +26,7 @@
 \arguments{
  \item{title}{A \code{\link[base]{character}} string to be outputted before the warnings, if
    they exists.}
- \item{reset}{If \code{\link[base:logical]{TRUE}}, the warnings are reset afterward, otherwise not.}
+ \item{reset}{(deprecated) Ignored.}
  \item{...}{Arguments passed to \code{\link[R.utils:cat.Verbose]{*cat}()}.}
  \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
 }
