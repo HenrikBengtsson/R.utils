@@ -2,6 +2,10 @@
 Package: R.utils
 ================
 
+Version: 2.5.0-9000 [2016-11-07]
+o ...
+
+
 Version: 2.5.0 [2016-11-07]
 o CLEANUP: Removed operator `%<-%` which was defunct since 2.4.0.
   An alternative is to use ditto of the future package.
