@@ -2,7 +2,7 @@
 # @RdocFunction isSingle
 # @alias singles
 #
-# @title "Identifies all entries that exists exactly ones"
+# @title "Identifies all entries that exists exactly once"
 #
 # \description{
 #   @get "title".
