@@ -116,7 +116,8 @@ print(fileAccess(pathname, mode=4))
 \references{
  [1] R-devel thread
      \emph{file.access() on network (mounted) drive on Windows Vista?}
-     on Nov 26, 2008.\cr
+     on Nov 26, 2008.
+     \url{https://stat.ethz.ch/pipermail/r-devel/2008-December/051461.html}\cr
  [2] Filesystem permissions, Wikipedia, 2010.
      \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 }
