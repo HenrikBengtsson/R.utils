@@ -13,7 +13,7 @@
 \title{Gets the pathname of the NULL device on the current platform}
 
 \description{
- Gets the pathname of the NULL device on the current platform.  On Windows, it returns \code{"NIL"}.  On all other
+ Gets the pathname of the NULL device on the current platform.  On Windows, it returns \code{"NUL"}.  On all other
  platforms include Unix and macOS it returns \code{"/dev/null"}.
 }
 
