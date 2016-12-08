@@ -4,7 +4,7 @@
 # @title "Gets the pathname of the NULL device on the current platform"
 #
 # \description{
-#  @get "title".  On Windows, it returns \code{"NIL"}.  On all other
+#  @get "title".  On Windows, it returns \code{"NUL"}.  On all other
 #  platforms include Unix and macOS it returns \code{"/dev/null"}.
 # }
 #
