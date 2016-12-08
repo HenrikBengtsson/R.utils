@@ -2,7 +2,7 @@
 # @set "class=connection"
 # @RdocMethod isEof
 #
-# @title "Checks if the current file position for a connection is at the 'End of File'"
+# @title "Checks if the current file position for a connection is at the 'End of File'. It internally uses the seek() function and thus discouraged on Windows."
 #
 # \description{
 #  @get "title".
