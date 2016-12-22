@@ -16,6 +16,7 @@
 # @synopsis
 #
 # \arguments{
+#  \item{gc}{If @TRUE, if there are stray DLLs, then the garbage collector is run before unloading those DLLs.  This is done in order to trigger any finalizers, of which some may need those DLLs, to be called.}
 #  \item{quiet}{If @FALSE, a message is outputted for every stray DLL that is unloaded.}
 # }
 #
@@ -32,6 +33,11 @@
 #   following to your package:
 #   \preformatted{
 #   .onUnload <- function(libpath) {
+#       ## (1) Force finalizers to be called before removing the DLL
+#       ##     in case some of them need the DLL.
+#       gc()
+#
+#       ## (2) Unload the DLL for this package
 #       library.dynam.unload(.packageName, libpath)
 #   }
 #   }
@@ -81,9 +87,18 @@ strayDLLs <- function() {
 } ## strayDLLs()
 
 
-gcDLLs <- function(quiet = TRUE) {
+gcDLLs <- function(gc = TRUE, quiet = TRUE) {
   ## Find all package DLLs for which no package is loaded
   dlls <- strayDLLs()
+
+  ## Nothing to do?
+  if (length(dlls) == 0) return(dlls)
+
+  ## Garbage collect to trigger finalizers that may still use some
+  ## of these DLLs?  See Karl Miller's comments in R-devel thread
+  ## 'Request: Increasing MAX_NUM_DLLS in Rdynload.c' on 2016-12-20
+  ## https://stat.ethz.ch/pipermail/r-devel/2016-December/073537.html
+  if (gc) gc(verbose = !quiet)
   
   ## Unload DLLs
   for (dll in dlls) {

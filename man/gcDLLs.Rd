@@ -23,10 +23,11 @@
 }
 
 \usage{
-gcDLLs(quiet=TRUE)
+gcDLLs(gc=TRUE, quiet=TRUE)
 }
 
 \arguments{
+ \item{gc}{If \code{\link[base:logical]{TRUE}}, if there are stray DLLs, then the garbage collector is run before unloading those DLLs.  This is done in order to trigger any finalizers, of which some may need those DLLs, to be called.}
  \item{quiet}{If \code{\link[base:logical]{FALSE}}, a message is outputted for every stray DLL that is unloaded.}
 }
 
@@ -43,6 +44,11 @@ gcDLLs(quiet=TRUE)
   following to your package:
   \preformatted{
   .onUnload <- function(libpath) {
+      ## (1) Force finalizers to be called before removing the DLL
+      ##     in case some of them need the DLL.
+      gc()
+
+      ## (2) Unload the DLL for this package
       library.dynam.unload(.packageName, libpath)
   }
   }
