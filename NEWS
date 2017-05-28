@@ -2,7 +2,10 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-05-27]
+Version: 2.5.0-9000 [2017-05-28]
+o BUG FIX: findSourceTraceback() now could fail and give an obscure error when
+  for instance the 'XML' package was attached.  It now tries a bit harder to
+  locate the internal 'srcfile' object.
 o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing
   stray DLLs in order for any finalizers who rely on the DLL to be
   called before the DLL is removed.
