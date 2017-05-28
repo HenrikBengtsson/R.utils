@@ -2,10 +2,11 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2016-12-20]
+Version: 2.5.0-9000 [2017-05-27]
 o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing
   stray DLLs in order for any finalizers who rely on the DLL to be
   called before the DLL is removed.
+o BUG FIX: Forgot to register S3 method `[`() for GenericSummary.
 
 
 Version: 2.5.0 [2016-11-07]
