@@ -53,7 +53,7 @@
 # @keyword utilities
 # @keyword internal
 #*/###########################################################################
-setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
+setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=getOption("R.utils.use.install", TRUE), repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
