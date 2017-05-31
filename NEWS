@@ -6,8 +6,9 @@ Version: 2.5.0-9000 [2017-05-30]
 
 NEW FEATURES:
 
- o Argument 'install' of use() now defaults to option 'R.utils.use.install'
-   and if not set it defaults to TRUE.
+ o Argument 'install' of use() now defaults to option 'R.utils.use.install',
+   which in turn defaults to environment variable 'R_R_UTILS_USE_INSTALL'.
+   If neither is set, the default is TRUE.
  
  o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing stray
    DLLs in order for any finalizers who rely on the DLL to be called before the
@@ -24,8 +25,12 @@ BUG FIXES:
  
 Version: 2.5.0 [2016-11-07]
 
- o BUG FIX: withCapture(x <- 1L) would drop integer suffix 'L' from
-   the output when run in non-interactive mode.
+BUG FIXES:
+
+ o withCapture(x <- 1L) would drop integer suffix 'L' from the output when run
+   in non-interactive mode.
+
+DEPRECATE AND DEFUNCT:
 
  o CLEANUP: Removed operator `%<-%` which was defunct since 2.4.0.
    An alternative is to use ditto of the future package.
@@ -35,196 +40,230 @@ Version: 2.5.0 [2016-11-07]
  
 Version: 2.4.0 [2016-09-13]
 
- o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs
-   that was left behind by packages that have already been unloaded.
+NEW FEATURES:
+
+ o Added strayDLLs() and gcDLLs() to identify and unload stray DLLs that was
+   left behind by packages that have already been unloaded.
 
  o Added nullfile().
 
  o Now setThreshold() for Verbose accepts also logical values.
 
- o CLEANUP: Argument 'absolutePath' for Arguments$getReadablePathname()
-   was renamed to 'absolute'.  For backward compatibililty, the old
-   name will still work for some time.
+ o Argument 'absolutePath' for Arguments$getReadablePathname() was renamed to
+   'absolute'.  For backward compatibililty, the old name will still work for
+   some time.
+
+DEPRECATE AND DEFUNCT:
 
  o CLEANUP: Defunct `%<-%` in favor of `%<-%` in the future package.
 
- o Package now formally requires R (>= 2.14.0) released Oct 2011.
-
  o CLEANUP: Deprecated arrayIndex().  arrayInd() in base (>= 2.11.0)
    provides the same functionality.
- 
+
+CODE REFACTORING:
+
+ o Package now formally requires R (>= 2.14.0) released October 2011.
+
  
 Version: 2.3.0 [2016-04-13]
 
+NEW FEATURES:
+
  o Added hsize().
 
- o Added tmpfile() for creating temporary files with content that
-   is deleted automatically by the garbage collector unless there
-   is a reference to it in R.
+ o Added tmpfile() for creating temporary files with content that is deleted
+   automatically by the garbage collector unless there is a reference to it.
 
- o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore
-   also functions such as gzip() and gunzip(), output atomically
-   by writing to a temporary file which is only renamed when completed.
+ o ROBUSTNESS: Now compressFile() and decompressFile(), and therefore also
+   functions such as gzip() and gunzip(), output atomically by writing to a
+   temporary file which is only renamed when completed.
+
+DEPRECATE AND DEFUNCT:
 
  o CLEANUP: Deprecated `%<-%` in favor of `%<-%` in the future package.
+
+CODE REFACTORING:
 
  o Package now formally requires R (>= 2.14.0) released Oct 2011.
  
  
 Version: 2.2.0 [2015-12-09]
 
- o loadObject() and saveObject() gained argument 'format' in order
-   to support also RDS files (in addition to XDR files).  File
-   formats XDR and RDS are supported.  The default format is
-   inferred from the filename extension.  If this is not possible,
-   then the XDR format is assumed (default; backward compatible).
+NEW FEATURES:
+
+ o loadObject() and saveObject() gained argument 'format' in order to support
+   also RDS files (in addition to XDR files).  File formats XDR and RDS are
+   supported.  The default format is inferred from the filename extension.  If
+   this is not possible, then the XDR format is assumed (default; backward
+   compatible).
 
  o mkdirs() gained arguments 'mustWork' and 'maxTries'.
 
  o seqToHumanReadable() gained argument 'tau'.
 
- o R.utils::commandArgs() now also ackowledges 'argv' set by the
-   littler executable.
+ o R.utils::commandArgs() now also ackowledges 'argv' set by the littler
+   executable.
 
- o R.utils::commandArgs() recognizes more reserved command-line
-   arguments, e.g. --debugger-args=N, --min-vsize=N and --min-nsize=N.
+ o R.utils::commandArgs() recognizes more reserved command-line arguments, e.g.
+   --debugger-args=N, --min-vsize=N and --min-nsize=N.
 
- o ROBUSTNESS: Now writeDataFrame(..., sep, quote=FALSE) asserts
-   that none of the columns contains the field separator 'sep',
-   because then the written file would be corrupt/invalid.
+ o ROBUSTNESS: Now writeDataFrame(..., sep, quote = FALSE) asserts that none of
+   the columns contains the field separator 'sep', because then the written
+   file would be corrupt/invalid.
 
- o ROBUSTNESS: Explicit import of all 'graphics', 'grDevices',
-   'stats' and 'utils' functions.
+ o ROBUSTNESS: Explicit import of all 'graphics', 'grDevices', 'stats' and
+   'utils' functions.
 
- o DOCUMENTATION: Clarified in help for compressFile() et al. that
-   these functions remove the input file by default after the output
-   file is generated.  Thanks to Ben Bond-Lamberty (Pacific Northwest
-   National Laboratory) for pointing out this potential pitfall.
+DOCUMENTATION:
+
+ o Clarified in help for compressFile() et al. that these functions remove the
+   input file by default after the output file is generated.  Thanks to Ben
+   Bond-Lamberty (Pacific Northwest National Laboratory) for pointing out this
+   potential pitfall.
+
+BUG FIXES:
+
+ o seqToHumanReadable(c(1:2, 4:5)) gave "1-2, 4, 5".
+
+ o withTimeout() did not work in non-English locales. Thanks to Arnaud Malapert
+   at University Nice Sophia Antipolis for reporting on this.
+
+ o GString ignored "simple" attributes, e.g. $[tolower]{y}. Thanks to Andre
+   Mikulec for reporting on this.
+
+ o downloadFile() via https://<user>:<pwd>@<domain>/ gave an error.
+
+DEPRECATE AND DEFUNCT:
 
  o CLEANUP: Deprecated resetWarnings().
-
- o BUG FIX: seqToHumanReadable(c(1:2, 4:5)) gave "1-2, 4, 5".
-
- o BUG FIX: withTimeout() did not work in non-English locales.
-   Thanks to Arnaud Malapert at University Nice Sophia Antipolis for
-   reporting on this.
-
- o BUG FIX: GString ignored "simple" attributes, e.g. $[tolower]{y}.
-   Thanks to Andre Mikulec for reporting on this.
-
- o BUG FIX: downloadFile() via https://<user>:<pwd>@<domain>/ gave
-   an error.
  
  
 Version: 2.1.0 [2015-05-27]
 
+NEW FEATURES:
+
  o Added compressPDF() to compress PDFs.
 
- o If, and only if, 'path' is an existing directory, then
-   copyFile(pathname, path) copies file 'pathname' to the 'path'
-   directory (previously destination always had to be a file).
-   Analogously, renameFile(pathname, path) moves file 'pathname'
-   (not a directory though) to destination directory 'path'.
+ o If, and only if, 'path' is an existing directory, then copyFile(pathname,
+   path) copies file 'pathname' to the 'path' directory (previously destination
+   always had to be a file). Analogously, renameFile(pathname, path) moves file
+   'pathname' (not a directory though) to destination directory 'path'.
 
- o CLEANUP: createLink(..., skip=TRUE) would give a false warning
-   if a proper link already existed and the target was elsewhere
-   than the current directory.
+ o CLEANUP: createLink(..., skip = TRUE) would give a false warning if a proper
+   link already existed and the target was elsewhere than the current directory.
 
- o INCONSISTENCY: captureOutput(..., collapse="\n") did not drop
-   newline of the last line as captureOutput(..., collapse="\r")
-   and any other collapse != "\n" strings.  Added package tests.
+ o INCONSISTENCY: captureOutput(..., collapse = "\n") did not drop newline of the
+   last line as captureOutput(..., collapse = "\r") and any other collapse != "\n"
+   strings.  Added package tests.
 
- o BUG FIX: captureOutput(..., file="foo.txt") gave an error.
+BUG FIXES:
+
+ o captureOutput(..., file = "foo.txt") gave an error.
  
  
 Version: 2.0.2 [2015-04-27]
 
- o ROBUSTNESS: Now nchar(..., type="chars") is used internally for
-   all file and directory names.
+BUG FIXES:
 
- o BUG FIX: Arguments$getReadablePathname(NA, mustExist=FALSE) no
-   longer gives an error with recent R devel (>= 2015-04-23) related
-   to an update on how nchar() handles missing values. This bug
-   affected only Windows.
- 
+ o Arguments$getReadablePathname(NA, mustExist = FALSE) no longer gives an error
+   with recent R devel (>= 2015-04-23) related to an update on how nchar()
+   handles missing values. This bug affected only Windows.
+
+CODE REFACTORING:
+
+ o ROBUSTNESS: Now nchar(..., type = "chars") is used internally for all file and
+   directory names.
+
  
 Version: 2.0.1 [2015-04-24]
 
- o CLEANUP: R.utils no longer generates a warning if the R session
-   is saved when R exits.  Thanks to Jose Alquicira Hernandez for
-   reporting on this.
+NEW FEATURES:
 
- o BUG FIX: toCamelCase() with missing values would give an error
-   in R devel (>= 2015-04-23) due to an update how nchar() handles
-   missing values.
+ o R.utils no longer generates a warning if the R session is saved when R
+   exits. Thanks to Jose Alquicira Hernandez for reporting on this.
+
+BUG FIXES:
+
+ o toCamelCase() with missing values would give an error in R devel
+   (>= 2015-04-23) due to an update how nchar() handles missing values.
  
  
 Version: 2.0.0 [2015-02-28]
 
- o ROBUSTNESS: Package test coverage is 66%.
+NEW FEATURES:
 
- o ROBUSTNESS: Now %<-% evaluates the expression in a local()
-   environment, and it assign to environments, e.g. env$a %<-% 1.
+ o ROBUSTNESS: Now %<-% evaluates the expression in a local() environment, and
+   it assign to environments, e.g. env$a %<-% 1.
 
- o R.utils::use() without arguments attaches 'R.utils'.
+ o Added compressFile(), decompressFile() and isCompressedFile() methods, which
+   gzip()/gunzip() and the new bzip2()/bunzip2() now use. Thanks to Peter
+   Hickey for pushing for this.
 
- o Added compressFile(), decompressFile() and isCompressedFile() methods,
-   which gzip()/gunzip() and the new bzip2()/bunzip2() now use.
-   Thanks to Peter Hickey for pushing for this.
+ o Now eget() uses inherits = FALSE (was TRUE) and mode = "default" (was
+   "any"), where "default" corresponds to the mode of argument 'default',
+   unless it's NULL when mode = "any" is used.
 
- o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
-   (was "any"), where "default" corresponds to the mode of argument
-   'default', unless it's NULL when mode="any" is used.
+ o Now commandArgs(asValues = TRUE, adhoc = TRUE) interprets 'x:=1:10' such that 'x'
+   become the integer vector 1:10.  Likewise, you can do 'x:=seq(1,3, by = 0.1)'
+   and 'x:=pi'.  To get the string "pi", use quotation marks, i.e. 'x:="pi"',
+   or just 'x=pi'.
 
- o Now commandArgs(asValues=TRUE, adhoc=TRUE) interprets 'x:=1:10'
-   such that 'x' become the integer vector 1:10.  Likewise, you can
-   do 'x:=seq(1,3, by=0.1)' and 'x:=pi'.  To get the string "pi",
-   use quotation marks, i.e. 'x:="pi"', or just 'x=pi'.
+ o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow() for
+   outputting to "console", which is neither R stdout nor stderr and can
+   therefor not be intercepted via capture.output(), sink() or similar.  These
+   functions are useful for outputting messages that requires user's attention
+   and are often followed by a prompt via readline(), which also cannot be
+   captured.
 
- o Added cmsg(), cout(), ccat(), cprintf(), cprint(), cstr(), cshow()
-   for outputting to "console", which is neither R stdout nor stderr
-   and can therefor not be intercepted via capture.output(), sink()
-   or similar.  These functions are useful for outputting messages
-   that requires user's attention and are often followed by a prompt
-   via readline(), which also cannot be captured.
+ o Added mpager() which is a "pager" function compatible with file.show() that
+   will display file contents on standard error.
 
- o Added mpager() which is a "pager" function compatible with
-   file.show() that will display file contents on standard error.
+ o Just like for listDirectory(), argument 'recursive' of findFiles() can in
+   addition to be FALSE (depth = 0) and TRUE (depth = +Inf), be any non-negative
+   numeric number specifying how deeply the recursive search should be done.
 
- o Just like for listDirectory(), argument 'recursive' of findFiles()
-   can in addition to be FALSE (depth=0) and TRUE (depth=+Inf), be any
-   non-negative numeric number specifying how deeply the recursive
-   search should be done.
+ o On Windows, Arguments$getReadablePathname() now gives an informative warning
+   if a pathname of length 256 or longer is used/generated, which are not
+   supported on Windows.
 
- o On Windows, Arguments$getReadablePathname() now gives an informative
-   warning if a pathname of length 256 or longer is used/generated,
-   which are not supported on Windows.
+DOCUMENTATION:
 
- o DOCUMENTATION: Fixed mistake in help("captureOutput").
-   Thanks to Mikko Korpela (Issue #4) for reporting on this.
+ o Fixed mistake in help("captureOutput"). Thanks to Mikko Korpela (Issue #4)
+   for reporting on this.
+
+BUG FIXES:
+
+ o use(..., quietly = FALSE) no longer captures/buffers the output, which
+   prevented it from displaying full prompt messages that required a user
+   response.  use(..., quietly = TRUE), which is the default, no longer tries to
+   ask user of Windows and OS X if they wish to install from source if the
+   binary is older.
+
+ o Now the returned value of all withNnn() functions preserves the "visibility"
+   of the eval():uated expression.  Added package tests.
+
+ o withCapture({}) no longer generates a warning.
+
+ o Now isUrl(NA) returns FALSE (instead of NA).
+
+ o seqToIntervals(integer(0)) gave error "object 'res' not found".
+
+ o attachLocally() on an environment would remove the attached fields/variables
+   from that environment.
+
+CODE REFACTORING:
 
  o ROBUSTNESS: Forgot to declare "default" warnings() as an S3 method.
 
- o BUG FIX: use(..., quietly=FALSE) no longer captures/buffers the
-   output, which prevented it from displaying full prompt messages
-   that required a user response.  use(..., quietly=TRUE), which is
-   the default, no longer tries to ask user of Windows and OS X if
-   they wish to install from source if the binary is older.
+ o R.utils::use() without arguments attaches 'R.utils'.
 
- o BUG FIX: Now the returned value of all withNnn() functions preserves
-   the "visibility" of the eval():uated expression.  Added package tests.
+ o ROBUSTNESS: Package test coverage is 66%.
 
- o BUG FIX: withCapture({}) no longer generates a warning.
 
- o BUG FIX: Now isUrl(NA) returns FALSE (instead of NA).
-
- o BUG FIX: seqToIntervals(integer(0)) gave error "object 'res' not found".
-
- o BUG FIX: attachLocally() on an environment would remove the
-   attached fields/variables from that environment.
- 
  
 Version: 1.34.0 [2014-10-07]
+
+CODE REFACTORING:
 
  o Added URL and BugReports fields to DESCRIPTION.
 
@@ -233,144 +272,174 @@ Version: 1.34.0 [2014-10-07]
  
 Version: 1.33.10 [2014-10-03]
 
- o Added shell.exec2(), which does a better job than shell.exec() in
-   opening pathnames with forward slashes and files on mapped drives,
-   which may or may not open depending software, e.g. Google Chrome
-   fails to open the latter.  Add options(browser=function(...)
-   R.utils::shell.exec2(...)) to your ~/.Rprofile file to make
-   browseURL() use this function instead of shell.exec().  This
-   function is only useful on Windows.
+NEW FEATURES:
 
- o BUG FIX: Now Arguments$getReadablePathname(file, path) ignores
-   'path' if 'file' specifies an absolute pathname.
+ o Added shell.exec2(), which does a better job than shell.exec() in opening
+   pathnames with forward slashes and files on mapped drives, which may or may
+   not open depending software, e.g. Google Chrome fails to open the latter.
+   Add options(browser = function(...) R.utils::shell.exec2(...)) to your
+   ~/.Rprofile file to make browseURL() use this function instead of
+   shell.exec().  This function is only useful on Windows.
+
+BUG FIXES:
+
+ o Now Arguments$getReadablePathname(file, path) ignores 'path' if 'file'
+   specifies an absolute pathname.
  
  
 Version: 1.33.9 [2014-10-03]
 
- o Now countLines() automatically supports gzipped files as well.
-   Thanks to Sarah Nelson at Dept of Biostatistics at University
-   of Washington for the suggestion.
+NEW FEATURES:
 
- o Now downloadFile("https://...") will use 'curl', and if not available
-   'wget', to download the file over the HTTPS protocol.  Previously
-   only 'wget' was used.  The 'curl' software is available on more
-   operating systems, include OS X, whereas 'wget' sometimes needs
-   a separate installation.
+ o Now countLines() automatically supports gzipped files as well. Thanks to
+   Sarah Nelson at Dept of Biostatistics at University of Washington for the
+   suggestion.
+
+ o Now downloadFile("https://...") will use 'curl', and if not available 'wget',
+   to download the file over the HTTPS protocol.  Previously only 'wget' was
+   used.  The 'curl' software is available on more operating systems, include
+   OS X, whereas 'wget' sometimes needs a separate installation.
  
  
 Version: 1.33.8 [2014-10-02]
 
- o Added argument 'unmap' to filePath() for "following" paths that are
-   on mapped Windows drives.
+NEW FEATURES:
 
- o CLEANUP: use() would try temporarily set package repository options
-   even when not needed.  This could trigger unnecessary warnings for
-   users who haven't set a default CRAN mirror and using use() to
-   load/attach an already installed package.
+ o Added argument 'unmap' to filePath() for "following" paths that are on
+   mapped Windows drives.
+
+ o CLEANUP: use() would try temporarily set package repository options even
+   when not needed.  This could trigger unnecessary warnings for users who
+   haven't set a default CRAN mirror and using use() to load/attach an already
+   installed package.
  
  
 Version: 1.33.7 [2014-09-18]
 
- o New default for writeDataFrame() - argument 'col.names=!append'.
-   Also, if append=TRUE, header comments are only written if specified.
-   Added package system test for writeDataFrame().
+NEW FEATURES:
+
+ o New default for writeDataFrame() - argument 'col.names = !append'. Also, if
+   append = TRUE, header comments are only written if specified. Added package
+   system test for writeDataFrame().
  
  
 Version: 1.33.6 [2014-09-16]
 
- o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
-   This would in turn have implications on getRelativePath(), e.g.
-   getRelativePath("/tmp/a", relativeTo="/tmp") returned "../../tmp/a".
+BUG FIXES:
+
+ o getAbsolutePath("/tmp", expandTilde = TRUE) returned "//tmp". This would in
+   turn have implications on getRelativePath(), e.g. getRelativePath("/tmp/a",
+   relativeTo = "/tmp") returned "../../tmp/a".
  
  
 Version: 1.33.5 [2014-09-15]
 
+NEW FEATURES:
+
  o Added withSeed() and withSink().
 
- o ROBUSTNESS: Now withOptions() also resets all the options available
-   upon entry even if no explicit options were specified.  This covers
-   the case when 'expr' changes the options and/or adds new options, e.g.
-   withOptions({ options(width=10, foo="new"); str(letter) }).
+ o ROBUSTNESS: Now withOptions() also resets all the options available upon
+   entry even if no explicit options were specified.  This covers the case when
+   'expr' changes the options and/or adds new options, e.g.
+   withOptions({ options(width = 10, foo = "new"); str(letter) }).
  
  
 Version: 1.33.4 [2014-09-05]
 
- o ROBUSTNESS: Arguments$getWritablePathname() could sometimes generate
-   warning "file.remove(pathnameT) : cannot remove file 'file...',
-   reason 'Permission denied'.  Now it tries to remove that files
-   several times before giving up.
+BUG FIXES:
+
+ o ROBUSTNESS: Arguments$getWritablePathname() could sometimes generate warning
+   "file.remove(pathnameT) : cannot remove file 'file...', reason 'Permission
+   denied'.  Now it tries to remove that files several times before giving up.
  
  
 Version: 1.33.3 [2014-09-04]
 
- o ROBUSTNESS: Now copyDirectory(), just as copyFile() already did,
-   silently drops arguments 'copy.mode' and 'copy.date' for older
-   R versions where base::file.copy() does not support them.
+NEW FEATURES:
+
+ o ROBUSTNESS: Now copyDirectory(), just as copyFile() already did, silently
+   drops arguments 'copy.mode' and 'copy.date' for older R versions where 
+   base::file.copy() does not support them.
  
  
 Version: 1.33.2 [2014-09-01]
 
- o BUG FIX: mkdirs() could return "object 'res' not found" error.
+BUG FIXES:
+
+ o mkdirs() could return "object 'res' not found" error.
  
  
 Version: 1.33.1 [2014-08-25]
 
- o BUG FIX: countLines() would not count the last line if it did
-   not contain a newline.  It would also give an error if the newline
-   characters were only CR.  This despite it was documented that both
-   cases were supported.  Added package system tests for them.
+BUG FIXES:
+
+ o countLines() would not count the last line if it did not contain a newline.
+   It would also give an error if the newline characters were only CR.  This 
+   despite it was documented that both cases were supported.  Added package 
+   system tests for them.
  
  
 Version: 1.33.0 [2014-08-24]
 
- o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
-   the corresponding print(), cat(), etc., but output using message(),
-   which in turn sends to standard error (instead of standard output).
-   See also mout().
+NEW FEATURES:
+
+ o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like the
+   corresponding print(), cat(), etc., but output using message(), which in
+   turn sends to standard error (instead of standard output). See also mout().
 
  o Added withLocale().
 
- o Now the test for target discrepancies by createLink(..., skip=TRUE)
-   is more forgiving on Windows (by assuming a case-insensitive file
-   system) before generating a warning.
+ o Now the test for target discrepancies by createLink(..., skip = TRUE) is
+   more forgiving on Windows (by assuming a case-insensitive file system) 
+   before generating a warning.
 
- o Now useRepos(..., fallback=TRUE), and hence use(), will fallback to
-   known/predefined CRAN repositories in case '@CRAN@' is not set.
-   If done, it will give an informative warning message.
+ o Now useRepos(..., fallback = TRUE), and hence use(), will fallback to
+   known/predefined CRAN repositories in case '@CRAN@' is not set. If done, it
+   will give an informative warning message.
 
- o BUG FIX: commandArgs() would drop command-line arguments with periods,
-   hyphens, or underscores in their names, e.g. --src_file=x.
+BUG FIXES:
+
+ o commandArgs() would drop command-line arguments with periods, hyphens, or
+   underscores in their names, e.g. --src_file=x.
  
  
 Version: 1.32.6 [2014-08-12]
 
- o BUG FIX: withCapture({ if (T) 1 else 2 }) would give a parse error on
-   "unexpected 'else'", because the internal deparsing puts the 'else'
-   statement on a new line whenever an if-else statement is enclosed
-   in an { ... } expression.  This problem is also described in R help
-   thread "deparse() and the 'else' statement" by Yihui Xie on 2009-11-09
-   [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html].  The
-   workaround is to detect standalone 'else' statements and merge them
-   with the previous line.  Added package system test for this case.
+BUG FIXES:
+
+ o withCapture({ if (T) 1 else 2 }) would give a parse error on "unexpected
+   'else'", because the internal deparsing puts the 'else' statement on a new
+   line whenever an if-else statement is enclosed in an { ... } expression.
+   This problem is also described in R help thread "deparse() and the 'else'
+   statement" by Yihui Xie on 2009-11-09
+   [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html].  The workaround
+   is to detect standalone 'else' statements and merge them with the previous
+   line.  Added package system test for this case.
  
  
 Version: 1.32.5 [2014-05-15]
 
- o BUG FIX: egsub() would return an invalid expression if the input had
-   definitions of functions without arguments, e.g.
-   egsub("x", "x", substitute(y <- function() 0)) which would throw
-   "Error: badly formed function expression" if deparsed/printed.
-   Added package test for this.
+BUG FIXES:
+
+ o egsub() would return an invalid expression if the input had definitions of
+   functions without arguments, e.g. egsub("x", "x", substitute(y <- 
+   function() 0)) which would throw "Error: badly formed function expression" 
+   if deparsed/printed. Added package test for this.
  
  
 Version: 1.32.4 [2014-05-14]
 
- o Now egsub() also works with functions, in case it substitutes on
-   the body of the function.
+NEW FEATURES:
 
- o DOCUMENTATION: Added clarification to help("withTimeout") on the
-   limitations of the function and when it is/is not possible to
-   interrupt a function via timeouts.
+ o Now egsub() also works with functions, in case it substitutes on the body of
+   the function.
+
+DOCUMENTATION:
+
+ o Added clarification to help("withTimeout") on the limitations of the
+   function and when it is/is not possible to interrupt a function via timeouts.
+
+SOFTWARE QUALITY:
 
  o Made the package test on absolute and relative paths less conservative,
    because it gave an error on Windows systems that have set R_USER to a
@@ -380,61 +449,71 @@ Version: 1.32.4 [2014-05-14]
  
 Version: 1.32.3 [2014-05-08]
 
- o filePath("./././././") now returns "." (was "").  Added package
-   system tests for filePath().
+BUG FIXES:
+
+ o filePath("./././././") now returns "." (was "").  Added package system tests
+   for filePath().
  
  
 Version: 1.32.2 [2014-05-07]
 
- o Added support for substitution of expressions in withCapture()
-   based on regular expressions utilizing new egsub().
+NEW FEATURES:
 
- o Added egsub(), which is gsub() for expressions with some bells
-   and whistles.
+ o Added support for substitution of expressions in withCapture() based on
+   regular expressions utilizing new egsub().
+
+ o Added egsub(), which is gsub() for expressions with some bells and whistles.
  
  
 Version: 1.32.1 [2014-05-04]
 
- o Now downloadFile() "adjusts" the output filename by decoding URL
-   encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
-   Also, unsafe filename characters (':', '*', '\') are encoded, e.g.
+NEW FEATURES:
+
+ o Now downloadFile() "adjusts" the output filename by decoding URL encoded
+   characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.  Also, 
+   unsafe filename characters (':', '*', '\') are encoded, e.g. 
    'How_to:_RSP.txt' becomes 'How_to%3A_RSP.txt'.
 
- o Added argument 'adjust' to Arguments$getReadablePathname().  When
-   adjust="url" it decodes and encodes the filename the same way as
-   downloadFile() now adjusts it (see above).
+ o Added argument 'adjust' to Arguments$getReadablePathname().  When adjust =
+   "url" it decodes and encodes the filename the same way as downloadFile() 
+   now adjusts it (see above).
  
  
 Version: 1.32.0 [2014-05-01]
 
- o Added captureOutput() which is much faster than capture.output()
-   for large outputs.  withCapture() utilizes this now.  Added package
-   system tests for both functions.
+NEW FEATURES:
+
+ o Added captureOutput() which is much faster than capture.output() for large
+   outputs.  withCapture() utilizes this now.  Added package system tests for
+   both functions.
 
  o use() now installs missing packages from all set repositories (as before)
    and uses the mainstream (CRAN and BioC) ones as fall backs.
 
  o Added withRepos() for installing/updating packages using a set of
-   temporarily set repositories.  It is possible to specify repositories
-   by names, which are then selected from a set of known repositories,
-   e.g. withRepos(install.packages("edgeR"), repos="[[BioC]]").
+   temporarily set repositories.  It is possible to specify repositories by
+   names, which are then selected from a set of known repositories, e.g.
+   withRepos(install.packages("edgeR"), repos = "[[BioC]]").
 
- o Added withOptions() for evaluating an expression with a set of
-   options temporarily set.
+ o Added withOptions() for evaluating an expression with a set of options
+   temporarily set.
 
  o Renamed evalCapture() to withCapture() and evalWithTimeout() and
-   withTimeout().  The old name is kept for backward compatibility,
-   but will eventually be deprecated.
+   withTimeout().  The old name is kept for backward compatibility, but will
+   eventually be deprecated.
  
  
 Version: 1.31.1 [2014-04-29]
 
- o ROBUSTNESS: Now use("<repos>::<pkg>") will detect when a repository
-   is unknown and give an informative error message on how to update
-   option 'repos'.
+NEW FEATURES:
+
+ o Now use("<repos>::<pkg>") will detect when a repository is unknown and give
+   an informative error message on how to update option 'repos'.
  
  
 Version: 1.31.0 [2014-04-26]
+
+NEW FEATURES:
 
  o Added assignment operator %<-% for delayed assignments.
 
@@ -443,158 +522,202 @@ Version: 1.31.0 [2014-04-26]
  
 Version: 1.30.7 [2014-04-26]
 
+NEW FEATURES:
+
  o Added argument 'xtrim' to draw() for density object.
 
- o CLEANUP: createLink(..., skip=TRUE) no longer warns if the link file
-   was skipped.  Now it only warns if the skipped link file links to a
-   different file than the intended target file.
+ o CLEANUP: createLink(..., skip = TRUE) no longer warns if the link file was
+   skipped.  Now it only warns if the skipped link file links to a different
+   file than the intended target file.
+
+CODE REFACTORING:
 
  o CLEANUP: Dropping '::' in calls where possible.
  
  
 Version: 1.30.6 [2014-04-24]
 
+NEW FEATURES:
+
  o Added argument 'newline' to evalCapture().
  
  
 Version: 1.30.5 [2014-04-22]
 
- o Added argument 'substitute' to evalCapture() for substituting
-   symbols "on the fly" in the expression before it is evaluated.
+NEW FEATURES:
+
+ o Added argument 'substitute' to evalCapture() for substituting symbols "on
+   the fly" in the expression before it is evaluated.
  
  
 Version: 1.30.4 [2014-04-18]
 
- o Added argument 'modifiedOnly' to sourceDirectory(), which was
-   previously passed via '...' to sourceTo(), and it now defaults
-   to TRUE.
+NEW FEATURES:
+
+ o Added argument 'modifiedOnly' to sourceDirectory(), which was previously
+   passed via '...' to sourceTo(), and it now defaults to TRUE.
  
  
 Version: 1.30.3 [2014-04-15]
 
- o BUG FIX: use() would not install package dependencies.
+BUG FIXES:
+
+ o use() would not install package dependencies.
  
  
 Version: 1.30.2 [2014-04-08]
+
+NEW FEATURES:
 
  o Added argument 'max.deparse.length' to evalCapture().
  
  
 Version: 1.30.1 [2014-04-06]
 
- o Now evalCapture() utilizes deparse() to get the source code and
-   acknowledges options 'deparse.cutoff' to control the code wrapping.
-   Previously capture.output(print()) was used.
+NEW FEATURES:
+
+ o Now evalCapture() utilizes deparse() to get the source code and acknowledges
+   options 'deparse.cutoff' to control the code wrapping.  Previously
+   capture.output(print()) was used.
+
+BUG FIXES:
 
  o WORKAROUND: moveInSearchPath() redirects any messages to stderr that
-   base::attach() sent to stdout.  UPDATE: This attach() issue has been
-   fixed in R 3.1.0 patched.
+   base::attach() sent to stdout.  UPDATE: This attach() issue has been fixed
+   in R 3.1.0 patched.
  
  
 Version: 1.30.0 [2014-04-06]
 
- o Vectorized detachPackage(), getAbsolutePath(), getRelativePath(),
-   isAbsolutePath(), isDirectory(), isFile(), isOpen(),
-   isPackageInstalled(), touchFile() and toUrl(). Added package system
-   tests for several of them.  For backward compatibility,
-   getAbsolutePath(), getRelativePath(), isAbsolutePath(), isFile() and
-   isDirectory() treats an empty vector of path/pathnames equal to ".".
-   However, in a future version, empty results will returned by these too.
+NEW FEATURES:
 
- o BUG FIX: toCamelCase(character(0L)) gave an error.
+ o Vectorized detachPackage(), getAbsolutePath(), getRelativePath(),
+   isAbsolutePath(), isDirectory(), isFile(), isOpen(), isPackageInstalled(), 
+   touchFile() and toUrl(). Added package system tests for several of them.  
+   For backward compatibility, getAbsolutePath(), getRelativePath(), 
+   isAbsolutePath(), isFile(), and isDirectory() treats an empty vector of
+   path/pathnames equal to ".".  However, in a future version, empty results
+   will returned by these too.
+
+BUG FIXES:
+
+ o toCamelCase(character(0L)) gave an error.
  
  
 Version: 1.29.11 [2014-04-02]
 
- o BUG FIX: str() and summary() for Verbose did not acknowledge
-   argument 'level'.
+BUG FIXES:
+
+ o str() and summary() for Verbose did not acknowledge argument 'level'.
  
  
 Version: 1.29.10 [2014-02-28]
 
- o DOCUMENTATION: Added a help section on privileges required on Windows
-   in order for createLink() to work.
+DOCUMENTATION:
+
+ o Added a help section on privileges required on Windows in order for
+   createLink() to work.
  
  
 Version: 1.29.9 [2014-02-24]
 
- o ROBUSTNESS: Added a package redundancy test for a bug occurring in
-   R.oo (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT()
-   can only be applied to a 'list', not a 'integer'") or gives an error
-   (with "Error: not a weak reference") under certain conditions when a
-   registered finalizer tried to reload R.oo if it was unloaded.  This
-   occurred only on R prior to R 3.0.2 patched (2014-02-21 r65057).  Also,
-   the 'methods' package needs to be attached, so it is still not clear
-   what is the true cause of the bug.  In R.oo (>= 1.18.0) this bug is
-   avoided.
+NEW FEATURES:
+
+ o ROBUSTNESS: Added a package redundancy test for a bug occurring in R.oo
+   (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT() can only be
+   applied to a 'list', not a 'integer'") or gives an error (with "Error: not a
+   weak reference") under certain conditions when a registered finalizer tried
+   to reload R.oo if it was unloaded.  This occurred only on R prior to R 3.0.2
+   patched (2014-02-21 r65057).  Also, the 'methods' package needs to be 
+   attached, so it is still not clear what is the true cause of the bug.  In
+   R.oo (>= 1.18.0) this bug is avoided.
  
  
 Version: 1.29.8 [2014-01-27]
 
- o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would use command-line
-   argument 'K=1' as the default (instead of K=2), calling
-   eget("K", 2, cmdArgs=TRUE) would not.
+BUG FIXES:
 
- o BUG FIX: commandArgs(excludeReserved=TRUE) failed to drop reserved
-   arguments of type --<key>=<value>, e.g. --encoding=ASCII.
+ o Although eget(K = 2, cmdArgs = TRUE) would use command-line argument 'K=1'
+   as the default (instead of K=2), calling eget("K", 2, cmdArgs = TRUE) would
+   not.
+
+ o commandArgs(excludeReserved = TRUE) failed to drop reserved arguments of
+   type --<key>=<value>, e.g. --encoding=ASCII.
  
  
 Version: 1.29.7 [2014-01-27]
+
+NEW FEATURES:
 
  o Added trial version of the CmdArgsFunction class.
  
  
 Version: 1.29.6 [2014-01-27]
 
- o Added cmdArgsCall() for easy calling of functions from the command
-   line, e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.
+NEW FEATURES:
+
+ o Added cmdArgsCall() for easy calling of functions from the command line,
+   e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.
  
  
 Version: 1.29.5 [2014-01-27]
 
- o doCall() gained argument 'envir', which also means that the new
-   behavior is to evaluate the call within the calling frame.  Also,
-   doCall() now accepts call a function object in addition to a name
-   of a function.
+NEW FEATURES:
+
+ o doCall() gained argument 'envir', which also means that the new behavior is
+   to evaluate the call within the calling frame.  Also, doCall() now accepts 
+   call a function object in addition to a name of a function.
  
  
 Version: 1.29.4 [2014-01-26]
 
+NEW FEATURES:
+
  o Added argument 'unique' to cmdArgs().
 
- o Now commandArgs(asValues=TRUE) returns no-named arguments as a
-   list element with the argument as the value and with a "" name.
-   For instance, in the past one would get list(R=NA, a="1", noname=NA)
-   whereas now one gets list("R", a="1", "noname").
+ o Now commandArgs(asValues = TRUE) returns no-named arguments as a list
+   element with the argument as the value and with a "" name. For instance, in
+   the past one would get list(R = NA, a = "1", noname = NA) whereas now one
+   gets list("R", a = "1", "noname").
 
- o BUG FIX: Now attachLocally() no longer tries to attach elements with
-   an empty name, e.g. list(a=1, 2).  Previously it gave an error.
-   Added a package system test for attachLocally().
+BUG FIXES:
+
+ o Now attachLocally() no longer tries to attach elements with an empty name,
+   e.g. list(a = 1, 2).  Previously it gave an error. Added a package system
+   test for attachLocally().
  
  
 Version: 1.29.3 [2014-01-19]
 
- o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
-   the path/pathname to the link (and not the target) just like it does
-   for the other types of file links.  By link we here mean the
-   path/pathname without the *.lnk extension.
+NEW FEATURES:
+
+ o CONSISTENCY: Now createLink(..., method = "windows-shortcut") returns the
+   path/pathname to the link (and not the target) just like it does for the
+   other types of file links.  By link we here mean the path/pathname without
+   the *.lnk extension.
+
+SOFTWARE QUALITY:
 
  o ROBUSTNESS: Added package system tests for createLink().
  
  
 Version: 1.29.2 [2014-01-12]
 
- o Now Arguments$getCharacters() preserves attributes.  Also, made
-   argument 'useNames' defaults to TRUE.
+NEW FEATURES:
+
+ o Now Arguments$getCharacters() preserves attributes.  Also, made argument
+   'useNames' defaults to TRUE.
 
  o Added [() for GenericSummary.
  
  
 Version: 1.29.1 [2014-01-10]
 
- o Added argument 'what' to Sys.readlink2(), where what="corrected"
-   makes sure to return the proper target path (not just the one
-   relative to where the link lives).
+NEW FEATURES:
+
+ o Added argument 'what' to Sys.readlink2(), where what = "corrected" makes
+   sure to return the proper target path (not just the one relative to where
+   the link lives).
  
  
 Version: 1.29.0 [2014-01-07]
@@ -621,7 +744,7 @@ Version: 1.29.0 [2014-01-07]
    links on non-Windows platforms.
 
  o ROBUSTNESS: Updated a shell() calls that assume the Windows command
-   interpreter to explicitly specify shell=Sys.getenv("COMSPEC").
+   interpreter to explicitly specify shell = Sys.getenv("COMSPEC").
  
  
 Version: 1.28.6 [2014-01-06]
@@ -629,7 +752,7 @@ Version: 1.28.6 [2014-01-06]
  o Added argument 'skip' (in addition to existing 'overwrite') to copyFile()
    to allow for better control on how to handle existing destination files.
    For backward compatibilities, it defaults to FALSE, but may be changed
-   to skip=!overwrite in a future version.  Furthermore, copyFile() now
+   to skip = !overwrite in a future version.  Furthermore, copyFile() now
    passes (known) arguments '...' to base::file.copy() making it possible
    to copy with or without file permissions etc.  Thanks Taku Tokuyasu (UCSF)
    for reporting on this.
@@ -659,7 +782,7 @@ Version: 1.28.3 [2013-11-15]
  
 Version: 1.28.2 [2013-11-15]
 
- o CLEANUP: Arguments$getNumerics(NA, range=c(0,1)) no longer gives
+ o CLEANUP: Arguments$getNumerics(NA, range = c(0,1)) no longer gives
    warnings on "no non-missing arguments to min()" etc.
  
  
@@ -703,7 +826,7 @@ Version: 1.27.5 [2013-10-07]
 Version: 1.27.4 [2013-09-28]
 
  o Now argument 'recursive' of listDirectory() can also specify the
-   maximum recursive depth, e.g listDirectory(..., recursive=5L).
+   maximum recursive depth, e.g listDirectory(..., recursive = 5L).
 
  o Now the 'R.utils' Package object is also available when the
    package is only loaded (but not attached).
@@ -722,7 +845,7 @@ Version: 1.27.2 [2013-09-15]
  
 Version: 1.27.1 [2013-09-10]
 
- o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
+ o BUG FIX: commandArgs(asValues = TRUE) failed to set the value of
    the very last argument to TRUE if it was a flag, e.g.
    'R --args --bar'.  Thanks to Stijn van Dongen at EMBL-EBI in
    Cambridge/Hinxton, UK for reporting on this.
@@ -738,7 +861,7 @@ Version: 1.27.0 [2013-08-30]
  
 Version: 1.26.4 [2013-08-27]
 
- o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
+ o CLEANUP: Arguments$getReadablePathnames(files, paths = NULL) no longer
    warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
    the result will be NULL" if length(files) > 0.
 
@@ -775,7 +898,7 @@ Version: 1.26.0 [2013-07-27]
  o Added enterf() to Verbose, which is an sprintf-like enter().
 
  o Now System$findGhostscript() returns system variable 'R_GSCMD' if
-   set and it refers to an existing executable (and unless force=TRUE).
+   set and it refers to an existing executable (and unless force = TRUE).
    It then checks with Sys.which().  On Windows, it finally searches
    for 'gswin64c.exe' and 'gswin32c.exe' on known locations.  Added
    arguments 'firstOnly' and 'force'.
@@ -793,7 +916,7 @@ Version: 1.26.0 [2013-07-27]
 Version: 1.25.3 [2013-07-27]
 
  o BUG FIX: findSourceTraceback() would give an error "Unknown class of
-   'srcfile': character" for source(..., keep.source=FALSE) in recent
+   'srcfile': character" for source(..., keep.source = FALSE) in recent
    R devel and R v3.0.1 patched.  Thanks Duncan Murdoch for the report.
  
  
@@ -872,14 +995,14 @@ Version: 1.23.3 [2013-03-29]
  
 Version: 1.23.2 [2013-03-22]
 
- o BUG FIX: Previous update caused commandArgs(..., adhoc=TRUE)
+ o BUG FIX: Previous update caused commandArgs(..., adhoc = TRUE)
    to coerce 'T' and 'F' to logicals TRUE and FALSE.  They are
    now preserved as character string.
  
  
 Version: 1.23.1 [2013-03-21]
 
- o Now commandArgs(..., adhoc=TRUE) utilizes utils::type.convert().
+ o Now commandArgs(..., adhoc = TRUE) utilizes utils::type.convert().
  
  
 Version: 1.23.0 [2013-03-20]
@@ -888,9 +1011,9 @@ Version: 1.23.0 [2013-03-20]
    corresponding to the command-line argument.
 
  o Added eget() for retrieving a single variable, with a
-   fallback to a default value, e.g. n <- eget(n=42).
+   fallback to a default value, e.g. n <- eget(n = 42).
 
- o Added support for cmdArg(n=42) as an alias to cmdArg("n", 42).
+ o Added support for cmdArg(n = 42) as an alias to cmdArg("n", 42).
  
  
 Version: 1.22.0 [2013-03-14]
@@ -932,13 +1055,13 @@ Version: 1.20.1 [2013-03-04]
  
 Version: 1.20.0 [2013-02-24]
 
- o Added cmdArgs() which is short for R.utils::commandArgs(asValues=TRUE,
-   adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L].
+ o Added cmdArgs() which is short for R.utils::commandArgs(asValues = TRUE,
+   adhoc = TRUE, unique = TRUE, excludeReserved = TRUE, ...)[-1L].
 
  o Now it is possible to specify default arguments in commandArgs().
-   In addition, if asValues=TRUE, then the values of the parsed
+   In addition, if asValues = TRUE, then the values of the parsed
    command-line arguments will be coerced to the data type of the
-   default ones if they share names.  If adhoc=TRUE, arguments will
+   default ones if they share names.  If adhoc = TRUE, arguments will
    be coerced to numerics unless the result is NA.
 
  o For conveniency, getAbsolutePath() and getRelativePath() returns
@@ -955,7 +1078,7 @@ Version: 1.20.0 [2013-02-24]
    an single report (on a Windows 7 system) that such getwd() may return
    such drive letters, e.g. 'c:/path/' instead of 'C:/path/'.
 
- o BUG FIX: evaluate(..., where="parent") for GString would result
+ o BUG FIX: evaluate(..., where = "parent") for GString would result
    in an endless loop.
 
  o BUG FIX: displayCode(code) incorrectly processed 'code' as GString:s.
@@ -989,7 +1112,7 @@ Version: 1.19.1 [2012-12-02]
 
  o CLEANUP: R CMD check no longer warns on global assignments.
 
- o BUG FIX: Arguments$getIndices(x, max=0, disallow="NaN") where 'x'
+ o BUG FIX: Arguments$getIndices(x, max = 0, disallow = "NaN") where 'x'
    contains only NA_integer_, would give "Exception: Argument 'x' is
    of length 1 although the range ([0,0]) implies that is should be
    empty." although it should return 'x' as is.
@@ -1103,17 +1226,17 @@ Version: 1.16.5 [2012-09-26]
 
  o Added argument 'skip' to createLink().
 
- o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo
+ o ROBUSTNESS: Now createLink(..., overwrite = TRUE) will try to undo
    the overwrite, iff it failed to create the new link.
 
- o BUG FIX: createLink(..., overwrite=TRUE) would give an error saying
+ o BUG FIX: createLink(..., overwrite = TRUE) would give an error saying
    "file already exists" (iff that is true) when it tries to create
    a "unix-symlink" link.  Thanks Taku Tokuyasu at UCSF for the report.
  
  
 Version: 1.16.4 [2012-09-24]
 
- o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
+ o BUG FIX: Arguments$getReadablePath(..., mustExist = FALSE) did not work.
  
  
 Version: 1.16.3 [2012-09-21]
@@ -1121,9 +1244,9 @@ Version: 1.16.3 [2012-09-21]
  o Now insert() silently expands 'values' to be of the same length
    as 'ats', iff length(values) == 1.
 
- o toCamelCase(..., preserveSameCase=TRUE) makes all-upper-case
+ o toCamelCase(..., preserveSameCase = TRUE) makes all-upper-case
    words into same-case words, e.g. toCamelCase("HTML View",
-   preserveSameCase=TRUE) outputs "htmlView" (not "hTMLView").
+   preserveSameCase = TRUE) outputs "htmlView" (not "hTMLView").
    Added system tests for toCamelCase().
  
  
@@ -1138,7 +1261,7 @@ Version: 1.16.1 [2012-09-07]
 
  o Now createLink() also supports targets with '~' in the path.
 
- o ROBUSTNESS: createLink(target="C:/") would try to create a link with
+ o ROBUSTNESS: createLink(target = "C:/") would try to create a link with
    name "C:", which is not valid resulting is the somewhat confusing
    error on "cannot symlink 'S:' to 'S:', reason 'Access is denied'".
    Now it instead throws "Cannot infer a valid link name from argument
@@ -1200,7 +1323,7 @@ Version: 1.13.0 [2012-04-07]
 Version: 1.12.2 [2012-04-05]
 
  o Now it is possible to have devEval() rename incompletely generated
-   image files, by using argument onIncomplete="rename".  This will simplify
+   image files, by using argument onIncomplete = "rename".  This will simplify
    troubleshooting.  The default is still to remove incomplete files.
 
  o ROBUSTNESS: Updated package dependencies.
@@ -1251,7 +1374,7 @@ Version: 1.11.0 [2012-02-26]
 
  o Added argument 'scale' to devNew().
 
- o BUG FIX: Before devNew(..., aspectRatio=1) would ignore
+ o BUG FIX: Before devNew(..., aspectRatio = 1) would ignore
    devOptions(...)$width if neither argument 'width' nor 'height'
    was given.
  
@@ -1300,7 +1423,7 @@ Version: 1.9.7 [2011-12-16]
  o BUG FIX: evalWithTimeout() would not detect timeouts in R sessions
    that use a non-English locale.
 
- o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.  Thanks
+ o BUG FIX: Now evalWithTimeout(..., onTimeout = "silent") works.  Thanks
    Nicholas Beeton (Univ. of Tasmania, Australia) for reporting on this.
  
  
@@ -1321,7 +1444,7 @@ Version: 1.9.5 [2011-11-19]
  
 Version: 1.9.4 [2011-11-15]
 
- o SPEEDUP: Now Arguments$getCharacters(s, asGString=TRUE) is much
+ o SPEEDUP: Now Arguments$getCharacters(s, asGString = TRUE) is much
    faster for elements of 's' that are non-GStrings.  For long
    character vectors the speedup is 100-200x times.
 
@@ -1385,7 +1508,7 @@ Version: 1.8.6 [2011-10-31]
  
 Version: 1.8.5 [2011-10-16]
 
- o CORRECTION: Arguments$getNumerics(c(Inf), disallow="Inf") would report
+ o CORRECTION: Arguments$getNumerics(c(Inf), disallow = "Inf") would report
    that it contains "NA" instead of "Inf" values.
  
  
@@ -1465,8 +1588,8 @@ Version: 1.7.5 [2011-04-12]
  
 Version: 1.7.4 [2011-04-03]
 
- o Now hpaste(..., sep=" ", maxHead=Inf) corresponds to
-   paste(..., sep=" ", collapse=", ").  Added to example.
+ o Now hpaste(..., sep = " ", maxHead = Inf) corresponds to
+   paste(..., sep = " ", collapse = ", ").  Added to example.
  
  
 Version: 1.7.3 [2011-04-02]
@@ -1633,16 +1756,16 @@ Version: 1.5.2 [2010-09-15]
 
  o fileAccess() no longer returns a named value if file.access() is used.
 
- o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2)
+ o ROBUSTNESS: Added a more robust test for fileAccess(path, mode = 2)
    when 'path' is a directory.  Thanks Chao Chen at University of
    Chicago for reporting issues with this.
 
- o BUG FIX: Now fileAccess(..., mode=1) only utilizes file.info()$exe
+ o BUG FIX: Now fileAccess(..., mode = 1) only utilizes file.info()$exe
    if it is a file and on Windows, otherwise it relies on file.access().
 
  o DOCUMENTATION: Added an example to help(fileAccess).
 
- o MISC: Added support for readRdHelp(..., format="text") in R < 2.10.0.
+ o MISC: Added support for readRdHelp(..., format = "text") in R < 2.10.0.
  
  
 Version: 1.5.1 [2010-08-28]
@@ -1709,9 +1832,9 @@ Version: 1.3.3 [2010-01-25]
  
 Version: 1.3.2 [2010-01-09]
 
- o sourceTo(..., modifiedOnly=FALSE) followed by a sourceTo(...,
-   modifiedOnly=TRUE) will now work as expected.  Before you had to
-   do at least one modifiedOnly=TRUE call before for it to work.
+ o sourceTo(..., modifiedOnly = FALSE) followed by a sourceTo(...,
+   modifiedOnly = TRUE) will now work as expected.  Before you had to
+   do at least one modifiedOnly = TRUE call before for it to work.
 
  o sourceTo() no longer gives a warning if there is a missing EOL.
  
@@ -1756,7 +1879,7 @@ Version: 1.3.0 [2010-01-02]
  
 Version: 1.2.6 [2009-12-19]
 
- o Added argument envir=new.env() to loadToEnv().
+ o Added argument envir = new.env() to loadToEnv().
  
  
 Version: 1.2.5 [2009-11-20]
@@ -1807,7 +1930,7 @@ Version: 1.2.0 [2009-09-09]
  
 Version: 1.1.9 [2009-06-29]
 
- o Added argument 'useNames=FALSE' to getCharacters() of Arguments.
+ o Added argument 'useNames = FALSE' to getCharacters() of Arguments.
    For forgotten reasons, before (the default now) 'names' attributes
    were always dropped.  Now they can be kept, if wanted.
 
@@ -1816,7 +1939,7 @@ Version: 1.1.9 [2009-06-29]
  
 Version: 1.1.8 [2009-06-07]
 
- o BUG FIX: getParent(..., depth=0) gave an error, instead of returning
+ o BUG FIX: getParent(..., depth = 0) gave an error, instead of returning
    the input path.
  
  
@@ -1848,10 +1971,10 @@ Version: 1.1.5 [2009-05-16]
  
 Version: 1.1.4 [2009-04-04]
 
- o Now getReadablePathname(..., mustExist=TRUE) of Arguments reports also
+ o Now getReadablePathname(..., mustExist = TRUE) of Arguments reports also
    the working directory if the a relative pathname is missing.
 
- o BUG FIX: getReadablePathname(..., mustExist=TRUE) of Arguments gave an
+ o BUG FIX: getReadablePathname(..., mustExist = TRUE) of Arguments gave an
    internal error if the pathname was in the current directory and did
    not exist.
  
@@ -1865,8 +1988,8 @@ Version: 1.1.3 [2009-01-12]
  
 Version: 1.1.2 [2008-12-27]
 
- o Now getReadablePathname(..., mustExist=TRUE) and
-   getWritablePathname(..., mkdirs=FALSE) of Arguments report which
+ o Now getReadablePathname(..., mustExist = TRUE) and
+   getWritablePathname(..., mkdirs = FALSE) of Arguments report which
    of the parent directories exists when the requested pathname is not
    found.  This will help troubleshooting missing pathnames.
 
@@ -1916,13 +2039,13 @@ Version: 1.1.0 [2008-10-24]
 Version: 1.0.9 [2008-10-17]
 
  o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") :
-   invalid argument type' if both arguments excludeReserved=TRUE and
-   excludeEnvVars=TRUE were used.
+   invalid argument type' if both arguments excludeReserved = TRUE and
+   excludeEnvVars = TRUE were used.
  
  
 Version: 1.0.8 [2008-10-16]
 
- o Now devDone(which=1) does nothing.  Before it gave an error.
+ o Now devDone(which = 1) does nothing.  Before it gave an error.
 
  o BUG FIX: Argument 'type' of devNew() did not take function:s.
  
@@ -2016,7 +2139,7 @@ Version: 1.0.0 [2008-02-26]
 
  o Now the '...' arguments to Arguments$getVerbose() are passed
    to the constructor of Verbose.  This allows constructs such
-   as Arguments$getVerbose(-10, timestamp=TRUE).
+   as Arguments$getVerbose(-10, timestamp = TRUE).
 
  o BUG FIX: When argument 'values' of insert() was a non-list
    its values were placed in a single-element list even when
@@ -2130,7 +2253,7 @@ Version: 0.8.8 [2007-04-03]
    to the same root/device".  The warning was more confusing than
    helpful.
 
- o BUG FIX: getAbsolutePath("C:/foo/", expandTilde=TRUE) would return
+ o BUG FIX: getAbsolutePath("C:/foo/", expandTilde = TRUE) would return
    "C://foo" and not "C:/foo".  Now the method also replace all
    multiple occurances of slashes with a single one.  This bug
    cause getRelativePath("C:/foo", "C:/") to return the wrong thing.
@@ -2200,7 +2323,7 @@ Version: 0.8.2 [2006-10-05]
  
 Version: 0.8.1 [2006-09-16]
 
- o BUG FIX: sourceDirectory(..., onError="error") would quietly ignore
+ o BUG FIX: sourceDirectory(..., onError = "error") would quietly ignore
    errors in source().
 
  o Added methods more() and less() to the Verbose class.
@@ -2256,7 +2379,7 @@ Version: 0.7.4 [2005-12-23]
    find the details using Sys.info().  After that system environment
    variable and so on are checked.
 
- o Added argument 'expandTilde=FALSE' to getAbsolutePath() so
+ o Added argument 'expandTilde = FALSE' to getAbsolutePath() so
    that tildes (~) are expanded to there corresponding path.
 
  o Now relative paths handle tildes too.
@@ -2275,7 +2398,7 @@ Version: 0.7.3 [2005-11-24]
  
 Version: 0.7.2 [2005-11-22]
 
- o BUG FIX: filePath(..., expandLinks="any") would return the relative
+ o BUG FIX: filePath(..., expandLinks = "any") would return the relative
    link instead of the network pathname, even if there were no local
    pathname.
 
@@ -2373,7 +2496,7 @@ Version: 0.5.9 [2005-09-18]
  
 Version: 0.5.8 [2005-09-06]
 
- o Added argument asGString=TRUE to the Verbose constructor.
+ o Added argument asGString = TRUE to the Verbose constructor.
 
  o Added remove() to FileProgressBar.
 
@@ -2388,7 +2511,7 @@ Version: 0.5.8 [2005-09-06]
    Sometimes relative pathnames will work when the absolute ones does
    not (because of missing file access rights).
 
- o BUG FIX: copyDirectory() would not return copied files if recursive==TRUE.
+ o BUG FIX: copyDirectory() would not return copied files if recursive == TRUE.
 
  o BUG FIX: Smart comments preceeded by TABs would not be recognized.
 
@@ -2441,7 +2564,7 @@ Version: 0.5.5 [2005-07-21]
 
  o BUG FIX: getCharacters() would not coerce Object:s correctly.
 
- o Now sourceDirectory() does 'chdir=FALSE' instead of 'chdir=FALSE'.
+ o Now sourceDirectory() does 'chdir = FALSE' instead of 'chdir = FALSE'.
 
  o Now mkdirs() has an internal check for infinit-recursive calls.
  
@@ -2451,7 +2574,7 @@ Version: 0.5.4 [2005-07-19]
  o BUG FIX: If there are no files to source in a directory, and verbose
    is active, basefile() on NULL was called generating an error.
 
- o BUG FIX: sourceTo(..., chdir=TRUE) would generate an error. This
+ o BUG FIX: sourceTo(..., chdir = TRUE) would generate an error. This
    would for instance make sourceDirectory() useless.
  
  
