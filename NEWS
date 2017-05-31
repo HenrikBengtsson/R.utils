@@ -2,17 +2,24 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-05-28]
+Version: 2.5.0-9000 [2017-05-30]
 
- o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing
-   stray DLLs in order for any finalizers who rely on the DLL to be
-   called before the DLL is removed.
-   
- o BUG FIX: findSourceTraceback() now could fail and give an obscure error when
-   for instance the 'XML' package was attached.  It now tries a bit harder to
+NEW FEATURES:
+
+ o Argument 'install' of use() now defaults to option 'R.utils.use.install'
+   and if not set it defaults to TRUE.
+ 
+ o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing stray
+   DLLs in order for any finalizers who rely on the DLL to be called before the
+   DLL is removed.
+
+BUG FIXES:
+
+ o findSourceTraceback() now could fail and give an obscure error when for
+   instance the 'XML' package was attached.  It now tries a bit harder to
    locate the internal 'srcfile' object.
 
- o BUG FIX: Forgot to register S3 method `[`() for GenericSummary.
+ o Forgot to register S3 method `[`() for GenericSummary.
  
  
 Version: 2.5.0 [2016-11-07]
