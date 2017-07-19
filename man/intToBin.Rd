@@ -25,11 +25,15 @@
 }
 
 \arguments{
- \item{x}{An \code{\link[base]{integer}} to be converted.}
+ \item{x}{An \code{\link[base]{numeric}} integer to be converted.
+ For \code{intToHex()} and \code{intToOct()} the supported range is that of
+ \R integers, i.e. \code{[-.Machine$integer.max, +.Machine$integer.max]}.
+ For \code{intToBin()} the supported range is that of all numeric integers.}
 }
 
 \value{
- Returns a \code{\link[base]{character}}.
+Returns a \code{\link[base]{character}}.  For invalid coercions, or coercions out of range,
+value \code{\link[base]{NA}}_character_ is returned.
 }
 
 \author{Henrik Bengtsson}

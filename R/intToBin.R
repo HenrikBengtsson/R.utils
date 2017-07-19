@@ -67,11 +67,15 @@ setMethodS3("as.character", "binmode", function(x, ...) {
 # }
 #
 # \arguments{
-#  \item{x}{An @integer to be converted.}
+#  \item{x}{An @numeric integer to be converted.
+#  For \code{intToHex()} and \code{intToOct()} the supported range is that of
+#  \R integers, i.e. \code{[-.Machine$integer.max, +.Machine$integer.max]}.
+#  For \code{intToBin()} the supported range is that of all numeric integers.}
 # }
 #
 # \value{
-#  Returns a @character.
+# Returns a @character.  For invalid coercions, or coercions out of range,
+# value @NA_character_ is returned.
 # }
 #
 # @author
@@ -81,23 +85,9 @@ setMethodS3("as.character", "binmode", function(x, ...) {
 # @keyword programming
 #*/########################################################################
 intToBin <- function(x) {
-  y <- as.integer(x);
-  class(y) <- "binmode";
-  y <- as.character(y);
-  dim(y) <- dim(x);
-  y;
+  y <- as.numeric(x)
+  class(y) <- "binmode"
+  y <- as.character(y)
+  dim(y) <- dim(x)
+  y
 }
-
-
-############################################################################
-# HISTORY:
-# 2008-07-03
-# o Removed documentation for as.character() for 'hexmode' since it is
-#   now in the 'base' package.
-# 2005-02-20
-# o Now using setMethodS3() and added '...' to please R CMD check.
-# 2004-10-18
-# o Added Rdoc comments.
-# 2002-07-18
-# o Created from intToOct.R.
-############################################################################

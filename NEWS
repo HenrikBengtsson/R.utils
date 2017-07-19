@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-05-30]
+Version: 2.5.0-9000 [2017-07-19]
 
 NEW FEATURES:
 
@@ -13,6 +13,9 @@ NEW FEATURES:
  o ROBUSTNESS: Now gcDLLs() runs the garbage collector before removing stray
    DLLs in order for any finalizers who rely on the DLL to be called before the
    DLL is removed.
+
+ o intToBin(x) now supports 'x' outside of [-1,1] * .Machine$integer.max.
+   Note, intToHex() and intToOct() are still limited to the above range.
 
 BUG FIXES:
 
