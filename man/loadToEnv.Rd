@@ -17,7 +17,7 @@
 }
 
 \usage{
-\method{loadToEnv}{default}(..., envir=new.env())
+\method{loadToEnv}{default}(file, ..., envir=new.env())
 }
 
 \arguments{

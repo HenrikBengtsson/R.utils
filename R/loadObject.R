@@ -64,14 +64,24 @@ setMethodS3("loadObject", "default", function(file, path=NULL, format=c("auto", 
     saveLoadReference <- NULL
 
     # load.default() recognized gzip'ed files too.
-    vars <- base::load(file=file)
+    tryCatch({
+      vars <- base::load(file = file)
+    }, error = function(ex) {
+      throw(sprintf("Failed to load file %s. The reason was: %s",
+                    sQuote(file), conditionMessage(ex)))
+    })
 
     if (!"saveLoadReference" %in% vars)
       throw("The file was not saved by saveObject(): ", file)
 
     res <- saveLoadReference
   } else if (format == "rds") {
-    res <- readRDS(file)
+    tryCatch({
+      res <- readRDS(file)
+    }, error = function(ex) {
+      throw(sprintf("Failed to load file %s. The reason was: %s",
+                    sQuote(file), conditionMessage(ex)))
+    })
   }
 
   res
