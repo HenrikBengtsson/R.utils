@@ -14,6 +14,10 @@ foo <- function() {
   print("Tac")
 }
 
+fib <- function(n) {
+  if (n == 0 | n == 1) return(n)
+  return (fib(n - 1) + fib(n - 2))
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 # Evaluate code, if it takes too long, generate
@@ -24,6 +28,19 @@ tryCatch({
   res <- withTimeout({
     foo()
   }, timeout=1.08)
+}, TimeoutException=function(ex) {
+  cat("Timeout (", ex$message, "). Skipping.\n", sep="")
+})
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Evaluate code, if it takes too much CPU time,
+# generate a TimeoutException error.
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- NULL
+tryCatch({
+  res <- withTimeout({
+    fib(30)
+  }, cpu=0.1, elapsed=Inf)
 }, TimeoutException=function(ex) {
   cat("Timeout (", ex$message, "). Skipping.\n", sep="")
 })
@@ -41,6 +58,18 @@ tryCatch({
   cat("Timeout warning (", ex$message, "). Skipping.\n", sep="")
 })
 
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Evaluate code, if it takes too much CPU time,
+# generate a timeout warning.
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- NULL
+tryCatch({
+  res <- withTimeout({
+    fib(30)
+  }, cpu=0.1, elapsed=Inf, onTimeout="warning")
+}, warning=function(ex) {
+  cat("Timeout warning (", ex$message, "). Skipping.\n", sep="")
+})
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 # Evaluate code, if it takes too long, generate
