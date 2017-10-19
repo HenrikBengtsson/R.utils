@@ -22,13 +22,17 @@ NEW FEATURES:
 
 BUG FIXES:
 
+ o withTimeout() would produce a regular error but not a TimeoutException
+   for timeouts reaching the _total_ CPU time limit while it would work
+   for those reaching the _elapsed_ CPU time limit.  Thanks to Alexej Gossmann
+   at Tulane University for troubleshooting and provide a fix.
+
  o findSourceTraceback() now could fail and give an obscure error when for
    instance the 'XML' package was attached.  It now tries a bit harder to
    locate the internal 'srcfile' object.
 
  o Forgot to register S3 method `[`() for GenericSummary.
- 
- 
+
 Version: 2.5.0 [2016-11-07]
 
 BUG FIXES:
