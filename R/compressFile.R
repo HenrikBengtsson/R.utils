@@ -69,7 +69,11 @@
 #   Returns the pathname of the output file.
 #   The number of bytes processed is returned as an attribute.
 #
-#   \code{isCompressedFile()} etc. return a @logical.
+#   \code{isCompressedFile()}, \code{isGzipped()} and \code{isBzipped()}
+#   return a @logical.
+#   Note that with \code{method = "extension"} (default), only the filename
+#   extension is used to infer whether the file is compressed or not.
+#   Specifically, it does not matter whether the file actually exists or not.
 # }
 #
 # \details{
