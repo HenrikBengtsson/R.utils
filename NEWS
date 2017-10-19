@@ -33,6 +33,7 @@ BUG FIXES:
 
  o Forgot to register S3 method `[`() for GenericSummary.
 
+
 Version: 2.5.0 [2016-11-07]
 
 BUG FIXES:
