@@ -24,8 +24,8 @@
    \item{name}{The name of the object to be replaced."}
    \item{pkgName}{The name of the package where the object lives."}
    \item{value}{The new value to be assigned.}
-   \item{keepOld}{If \code{\link[base:logical]{TRUE}}, the old value is kept as an attribute in
-     the new object.}
+   \item{keepOld}{If \code{\link[base:logical]{TRUE}}, the old value is kept as attribute
+     \code{oldValue} in the new object.}
    \item{...}{Not used.}
  }
 
