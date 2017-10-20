@@ -504,10 +504,40 @@ Version: 4.2-0
 
 Version: 1.0.0
 
-## In both
+## Newly broken
 
 *   R CMD check timed out
     
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    ...
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Warning: 'rbind.pages' is deprecated.
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Warning: 'rbind.pages' is deprecated.
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Warning: 'rbind.pages' is deprecated.
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Warning: 'rbind.pages' is deprecated.
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Warning: 'rbind.pages' is deprecated.
+    Use 'rbind_pages' instead.
+    See help("Deprecated")
+    Error: lexical error: invalid char in json text.
+                                           <html><body><h1>504 Gateway Tim
+                         (right here) ------^
+    Execution halted
+    ```
+
+## In both
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -586,6 +616,70 @@ Version: 1.0.2
     Insufficient package version (submitted: 1.0.2, existing: 1.0.2)
     ```
 
+# CNEr
+
+Version: 1.12.1
+
+## In both
+
+*   checking compiled code ... WARNING
+    ```
+    File ‘CNEr/libs/CNEr.so’:
+      Found ‘abort’, possibly from ‘abort’ (C)
+        Object: ‘ucsc/errabort.o’
+      Found ‘exit’, possibly from ‘exit’ (C)
+        Objects: ‘ucsc/errabort.o’, ‘ucsc/pipeline.o’
+      Found ‘puts’, possibly from ‘printf’ (C), ‘puts’ (C)
+        Object: ‘ucsc/pipeline.o’
+      Found ‘rand’, possibly from ‘rand’ (C)
+        Object: ‘ucsc/obscure.o’
+      Found ‘stderr’, possibly from ‘stderr’ (C)
+        Objects: ‘ucsc/axt.o’, ‘ucsc/errabort.o’, ‘ucsc/obscure.o’,
+          ‘ucsc/verbose.o’, ‘ucsc/os.o’
+      Found ‘stdout’, possibly from ‘stdout’ (C)
+        Objects: ‘ucsc/common.o’, ‘ucsc/errabort.o’, ‘ucsc/verbose.o’,
+          ‘ucsc/os.o’
+    
+    Compiled code should not call entry points which might terminate R nor
+    write to stdout/stderr instead of to the console, nor the system RNG.
+    
+    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Ge Tan <ge_tan@live.com>’
+    
+    Package duplicated from https://bioconductor.org/packages/3.5/bioc
+    
+    No package encoding and non-ASCII characters in the following R files:
+      R/utils.R
+        222: ### savefig: <e2><80><98>savefig<e2><80><99> saves figures to files with minimal surrounding white
+        223: ### space, suitable for inclusion in books and reports. <e2><80><98>savefig<e2><80><99> is
+        225: ### supported are eps, pdf and jpg. Default file format for <e2><80><98>savefig<e2><80><99>
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 9326126 bytes
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 18.3Mb
+      sub-directories of 1Mb or more:
+        extdata  15.9Mb
+        libs      1.1Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘BiocGenerics:::replaceSlots’ ‘S4Vectors:::make_zero_col_DataFrame’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
 # CollapsABEL
 
 Version: 0.10.11
@@ -647,34 +741,6 @@ Version: 1.2.10
 
 Version: 1.28.0
 
-## Newly broken
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    twoSampleFromGraph: no visible global function definition for ‘rnorm’
-    writeAdjacencyMatrix2KGML: no visible binding for global variable
-      ‘Arguments’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘pushState’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘popState’
-    writeAdjacencyMatrix2KGML : <anonymous>: no visible global function
-      definition for ‘na.omit’
-    Undefined global functions or variables:
-      Arguments ProgressBar as enter exit heat.colors increase na.omit
-      phyper pnorm popState pushState quantile reset rnorm str
-      translateNCI2GeneID var
-    Consider adding
-      importFrom("grDevices", "heat.colors")
-      importFrom("methods", "as")
-      importFrom("stats", "na.omit", "phyper", "pnorm", "quantile", "rnorm",
-                 "var")
-      importFrom("utils", "str")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
-    ```
-
 ## In both
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -726,6 +792,32 @@ Version: 1.28.0
       for when this namespace is loaded but not attached.
     Unexported object imported by a ':::' call: ‘graph:::getIndices’
       See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    twoSampleFromGraph: no visible global function definition for ‘rnorm’
+    writeAdjacencyMatrix2KGML: no visible binding for global variable
+      ‘Arguments’
+    writeAdjacencyMatrix2KGML: no visible global function definition for
+      ‘pushState’
+    writeAdjacencyMatrix2KGML: no visible global function definition for
+      ‘popState’
+    writeAdjacencyMatrix2KGML : <anonymous>: no visible global function
+      definition for ‘na.omit’
+    Undefined global functions or variables:
+      Arguments ProgressBar as enter exit heat.colors increase na.omit
+      phyper pnorm popState pushState quantile reset rnorm str
+      translateNCI2GeneID var
+    Consider adding
+      importFrom("grDevices", "heat.colors")
+      importFrom("methods", "as")
+      importFrom("stats", "na.omit", "phyper", "pnorm", "quantile", "rnorm",
+                 "var")
+      importFrom("utils", "str")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
     ```
 
 # demi
@@ -1666,15 +1758,6 @@ Version: 1.0.0
 
 Version: 0.2.1
 
-## Newly broken
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/rorynolan/nandb.svg?branch=master
-    TlsExceptionHostPort (HandshakeFailed (Error_Packet_unexpected "Alert [(AlertLevel_Fatal,BadRecordMac)]" " expected: change cipher")) "travis-ci.org" 443
-    ```
-
 ## In both
 
 *   checking CRAN incoming feasibility ... WARNING
@@ -1811,26 +1894,6 @@ Version: 0.9-22
 
 Version: 0.1.8
 
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      NA
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    unable to create ‘vign_test’
-    ```
-
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    Fatal error: cannot create 'R_TempDir'
-    ```
-
 ## In both
 
 *   checking examples ... ERROR
@@ -1838,17 +1901,18 @@ Version: 0.1.8
     Running examples in ‘officer-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: ph_hyperlink
-    > ### Title: hyperlink a placeholder
-    > ### Aliases: ph_hyperlink
+    > ### Name: slip_in_img
+    > ### Title: append an image
+    > ### Aliases: slip_in_img
     > 
     > ### ** Examples
     > 
-    > fileout <- tempfile(fileext = ".pptx")
-    > doc <- read_pptx()
-    Error in unzip(zipfile = file, exdir = folder) : 
-      cannot open file '/tmp/RtmphnZOew/file22114ba0bf0c/ppt/tags/tag1.xml': No such file or directory
-    Calls: read_pptx -> unpack_folder -> unzip
+    > library(magrittr)
+    > img.file <- file.path( Sys.getenv("R_HOME"), "doc", "html", "logo.jpg" )
+    > x <- read_docx() %>%
+    +   body_add_par("R logo: ", style = "Normal") %>%
+    +   slip_in_img(src = img.file, style = "strong", width = .3, height = .3)
+    Error: file.exists(src) is not TRUE
     Execution halted
     ```
 
@@ -1859,6 +1923,27 @@ Version: 0.1.8
     Insufficient package version (submitted: 0.1.8, existing: 0.1.8)
     
     Number of updates in past 6 months: 7
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    
+    Attaching package: 'dplyr'
+    
+    The following objects are masked from 'package:stats':
+    
+        filter, lag
+    
+    The following objects are masked from 'package:base':
+    
+        intersect, setdiff, setequal, union
+    
+    Quitting from lines 180-190 (powerpoint.Rmd) 
+    Error: processing vignette 'powerpoint.Rmd' failed with diagnostics:
+    file.exists(src) is not TRUE
+    Execution halted
     ```
 
 # oneChannelGUI
@@ -1936,39 +2021,7 @@ Version: 1.42.0
 
 Version: 1.14.0
 
-## Newly broken
-
-*   checking running R code from vignettes ...
-    ```
-       ‘HowToAutoGating.Rmd’ ... failed to complete the test
-       ‘HowToWriteCSVTemplate.Rmd’ ... OK
-       ‘openCytoVignette.Rmd’ ... OK
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘HowToAutoGating.Rmd’
-      ...
-    
-    ... incomplete output.  Crash?
-    ```
-
-*   checking PDF version of manual without hyperrefs or index ... ERROR
-    ```
-    Re-running with no redirection of stdout/stderr.
-    ```
-
-*   checking PDF version of manual ... WARNING
-    ```
-    LaTeX errors when creating PDF version.
-    This typically indicates Rd problems.
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error in re-building vignettes:
-      ...
-    ```
-
-## Newly fixed
+## In both
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -1986,8 +2039,6 @@ Version: 1.14.0
     there is no package called 'ggcyto'
     Execution halted
     ```
-
-## In both
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -2047,18 +2098,10 @@ Version: 1.14.0
 
 Version: 1.6.0
 
-## Newly broken
+## Newly fixed
 
-*   checking PDF version of manual without hyperrefs or index ... ERROR
-    ```
-    Re-running with no redirection of stdout/stderr.
-    ```
-
-*   checking PDF version of manual ... WARNING
-    ```
-    LaTeX errors when creating PDF version.
-    This typically indicates Rd problems.
-    ```
+*   R CMD check timed out
+    
 
 ## In both
 
@@ -2844,35 +2887,10 @@ Version: 1.3
 
 Version: 2.5.9
 
-## Newly broken
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-    The following objects are masked from 'package:S4Vectors':
-    
-        first, intersect, rename, setdiff, setequal, union
-    
-    The following objects are masked from 'package:BiocGenerics':
-    
-        combine, intersect, setdiff, union
-    
-    The following objects are masked from 'package:stats':
-    
-        filter, lag
-    
-    The following objects are masked from 'package:base':
-    
-        intersect, setdiff, setequal, union
-    
-    Quitting from lines 16-20 (clinical.Rmd) 
-    Error: processing vignette 'clinical.Rmd' failed with diagnostics:
-    there is no package called 'DT'
-    Execution halted
-    ```
-
 ## In both
+
+*   R CMD check timed out
+    
 
 *   checking CRAN incoming feasibility ... WARNING
     ```
@@ -2914,11 +2932,6 @@ Version: 2.5.9
         R      1.1Mb
         data   2.3Mb
         doc   57.4Mb
-    ```
-
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    'library' or 'require' call not declared from: ‘DT’
     ```
 
 # tmle.npvi
