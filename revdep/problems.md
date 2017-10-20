@@ -504,40 +504,10 @@ Version: 4.2-0
 
 Version: 1.0.0
 
-## Newly broken
+## In both
 
 *   R CMD check timed out
     
-
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Warning: 'rbind.pages' is deprecated.
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Warning: 'rbind.pages' is deprecated.
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Warning: 'rbind.pages' is deprecated.
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Warning: 'rbind.pages' is deprecated.
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Warning: 'rbind.pages' is deprecated.
-    Use 'rbind_pages' instead.
-    See help("Deprecated")
-    Error: lexical error: invalid char in json text.
-                                           <html><body><h1>504 Gateway Tim
-                         (right here) ------^
-    Execution halted
-    ```
-
-## In both
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
