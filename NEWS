@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-09-01]
+Version: 2.5.0-9000 [2017-10-19]
 
 NEW FEATURES:
 
@@ -27,9 +27,9 @@ BUG FIXES:
    for those reaching the _elapsed_ CPU time limit.  Thanks to Alexej Gossmann
    at Tulane University for troubleshooting and provide a fix.
 
- o findSourceTraceback() now could fail and give an obscure error when for
-   instance the 'XML' package was attached.  It now tries a bit harder to
-   locate the internal 'srcfile' object.
+ o findSourceTraceback() could fail and give an obscure error when for instance
+   the 'XML' package was attached.  It now tries a bit harder to locate the
+   internal 'srcfile' object.
 
  o Forgot to register S3 method `[`() for GenericSummary.
 
