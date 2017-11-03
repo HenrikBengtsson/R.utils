@@ -32,18 +32,26 @@
 # @keyword programming
 #*/########################################################################
 setMethodS3("as.character", "binmode", function(x, ...) {
-  isna <- is.na(x);
-  y <- x[!isna];
-  ans0 <- character(length(y));
-  z <- NULL;
-  while (any(y > 0) | is.null(z)) {
-    z <- y%%2;
-    y <- floor(y/2);
-    ans0 <- paste(z, ans0, sep = "");
+  isna <- is.na(x)
+  y <- x[!isna]
+  ans0 <- character(length = length(y))
+
+  ## Handle negative values specially; emulates octmode and hexmode
+  neg <- which(y < 0)
+  if (length(neg) > 0) {
+    y[neg] <- y[neg] + 1L + .Machine$integer.max
   }
-  ans <- rep(as.character(NA), length(x));
-  ans[!isna] <- ans0;
-  ans;
+
+  z <- NULL
+  while (any(y > 0) || is.null(z)) {
+    z <- y %% 2
+    y <- floor(y / 2)
+    ans0 <- paste(z, ans0, sep = "")
+  }
+  
+  ans <- rep(NA_character_, times = length(x))
+  ans[!isna] <- ans0
+  ans
 })
 
 
@@ -67,15 +75,27 @@ setMethodS3("as.character", "binmode", function(x, ...) {
 # }
 #
 # \arguments{
-#  \item{x}{An @numeric integer to be converted.
-#  For \code{intToHex()} and \code{intToOct()} the supported range is that of
-#  \R integers, i.e. \code{[-.Machine$integer.max, +.Machine$integer.max]}.
-#  For \code{intToBin()} the supported range is that of all numeric integers.}
+#  \item{x}{A @numeric vector of integers to be converted.}
 # }
 #
 # \value{
-# Returns a @character.  For invalid coercions, or coercions out of range,
-# value @NA_character_ is returned.
+# Returns a @character string of length \code{length(x)}.
+# For coercions out of range, \code{NA_character_} is returned for
+# such elements.
+# }
+#
+# \details{
+#  For \code{length(x)} > 1, the number of characters in each of returned
+#  elements is the same and driven by the \code{x} element that requires
+#  the highest number of character - all other elements are padded with
+#  zeros (or ones for negative values).  This is why we for instance get
+#  \code{intToHex(15) == "f"} but \code{intToHex(15:16) == c("0f", "10")}.
+#
+#  The supported range for \code{intToHex()}, \code{intToOct()}, and
+#  \code{intToBin()} is that of \R integers, i.e.
+#  \code{[-.Machine$integer.max, +.Machine$integer.max]} where.
+#  \code{.Machine$integer.max} is \eqn{2^31-1}.
+#  This limitation is there such that negative values can be converted too.
 # }
 #
 # @author
@@ -85,7 +105,7 @@ setMethodS3("as.character", "binmode", function(x, ...) {
 # @keyword programming
 #*/########################################################################
 intToBin <- function(x) {
-  y <- as.numeric(x)
+  y <- as.integer(x)
   class(y) <- "binmode"
   y <- as.character(y)
   dim(y) <- dim(x)

@@ -14,9 +14,6 @@ NEW FEATURES:
    DLLs in order for any finalizers who rely on the DLL to be called before the
    DLL is removed.
 
- o intToBin(x) now supports 'x' outside of [-1,1] * .Machine$integer.max.
-   Note, intToHex() and intToOct() are still limited to the above range.
-
  o loadObject() and loadToEnv() give more informative error message if an
    error occurs while reading from a file / connection.
 
@@ -35,6 +32,10 @@ BUG FIXES:
    internal 'srcfile' object.
 
  o Forgot to register S3 method `[`() for GenericSummary.
+
+ o intToOct() would convert to hexadecimals.
+ 
+ o intToBin() would output garbage for negative values.
 
 DEPRECATE AND DEFUNCT:
 
