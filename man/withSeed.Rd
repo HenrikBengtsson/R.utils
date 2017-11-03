@@ -17,12 +17,14 @@
 }
 
 \usage{
-withSeed(expr, seed, ..., envir=parent.frame())
+withSeed(expr, seed, ..., substitute=TRUE, envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
   \item{seed, ...}{Arguments passed to \code{\link[base]{set.seed}}().}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 

@@ -17,13 +17,15 @@
 }
 
 \usage{
-withRepos(expr, repos="[[mainstream]]", ..., envir=parent.frame())
+withRepos(expr, repos="[[mainstream]]", ..., substitute=TRUE, envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
   \item{repos}{A \code{\link[base]{character}} \code{\link[base]{vector}} of repositories to use.}
   \item{...}{Additional arguments passed to \code{\link{useRepos}}().}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 

@@ -13,6 +13,8 @@
 #   \item{expr}{The R expression to be evaluated.}
 #   \item{...}{Named options to be used.}
 #   \item{args}{(optional) Additional named options specified as a named @list.}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -39,9 +41,9 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withOptions <- function(expr, ..., args=list(), envir=parent.frame()) {
-  # Argument '.expr':
-  expr <- substitute(expr)
+withOptions <- function(expr, ..., args=list(), substitute=TRUE, envir=parent.frame()) {
+  # Argument 'expr':
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'args':
   if (!is.list(args)) {

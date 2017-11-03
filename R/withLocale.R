@@ -15,6 +15,8 @@
 #   \item{locale}{@character @vector specifying the locale to used.  The
 #    first successfully set one will be used.}
 #   \item{...}{Not used.}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -34,9 +36,9 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withLocale <- function(expr, category, locale, ..., envir=parent.frame()) {
-  # Argument '.expr':
-  expr <- substitute(expr)
+withLocale <- function(expr, category, locale, ..., substitute=TRUE, envir=parent.frame()) {
+  # Argument 'expr':
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'envir':
   if (!is.environment(envir)) {
