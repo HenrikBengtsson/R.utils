@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-10-19]
+Version: 2.5.0-9000 [2017-11-02]
 
 NEW FEATURES:
 
@@ -32,6 +32,10 @@ BUG FIXES:
    internal 'srcfile' object.
 
  o Forgot to register S3 method `[`() for GenericSummary.
+
+DEPRECATE AND DEFUNCT:
+
+ o Deprecated evalWithTimeout(); use withTimeout(), which is the preferred name.
 
 
 Version: 2.5.0 [2016-11-07]

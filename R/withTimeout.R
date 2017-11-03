@@ -128,7 +128,14 @@ withTimeout <- function(expr, envir=parent.frame(), timeout, cpu=timeout, elapse
 } # withTimeout()
 
 # BACKWARD COMPATIBILITY
-evalWithTimeout <- withTimeout
+evalWithTimeout <- local({
+  fcn <- withTimeout
+  expr <- body(fcn)
+  expr <- expr[c(1:2, 2:length(expr))]
+  expr[[2]] <- quote(.Deprecated(new = "withTimeout"))
+  body(fcn) <- expr
+  fcn
+})
 
 
 ############################################################################
