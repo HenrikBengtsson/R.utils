@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-11-02]
+Version: 2.5.0-9000 [2017-11-03]
 
 NEW FEATURES:
 
@@ -19,6 +19,9 @@ NEW FEATURES:
 
  o loadObject() and loadToEnv() give more informative error message if an
    error occurs while reading from a file / connection.
+
+ o withTimeout() gained argument 'substitute' making it possible to pass an
+   expression object, e.g. withTimeout(expr, subsitute = FALSE, ...).
 
 BUG FIXES:
 

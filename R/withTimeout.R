@@ -12,6 +12,8 @@
 #
 # \arguments{
 #   \item{expr}{The R expression to be evaluated.}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should
 #     be evaluated.}
 #   \item{timeout, cpu, elapsed}{A @numeric specifying the maximum number
@@ -78,12 +80,12 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withTimeout <- function(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"), ...) {
+withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'expr':
-  expr <- substitute(expr)
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'envir':
   if (!is.environment(envir))

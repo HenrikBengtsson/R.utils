@@ -18,12 +18,14 @@
 }
 
 \usage{
-withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
-  onTimeout=c("error", "warning", "silent"), ...)
+withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
+  elapsed=timeout, onTimeout=c("error", "warning", "silent"), ...)
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should
     be evaluated.}
   \item{timeout, cpu, elapsed}{A \code{\link[base]{numeric}} specifying the maximum number
