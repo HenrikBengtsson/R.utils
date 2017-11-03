@@ -61,6 +61,10 @@
 #  prompt (e.g. @see "base::readline" and @see "base::readLines") using
 #  timeouts; the timeout exception will not be thrown until after the user
 #  completes the prompt (i.e. after pressing ENTER).
+#
+#  Other examples of calls that does \emph{not} support timeout are
+#  \code{system()} calls and "atomic" calls that may take very long such
+#  as \code{rnorm(n)} where \code{n} is very large.
 # }
 #
 # @author
