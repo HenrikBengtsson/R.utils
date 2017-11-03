@@ -1,6 +1,6 @@
 intToOct <- function(x) {
   y <- as.integer(x)
-  class(y) <- "hexmode"
+  class(y) <- "octmode"
   y <- as.character(y)
   dim(y) <- dim(x)
   y
