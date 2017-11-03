@@ -22,6 +22,12 @@ NEW FEATURES:
    The expection is withCapture(), where argument 'substitute' means something
    else for legacy reasons.
 
+ o Argument 'substitute' of withCapture() has been renamed to 'replace'.
+   Code that calls withCapture(..., substitute = ...) will still work, but
+   eventually 'subsitute' will be deprecated and later become defunct.
+   The purpose of this change of argument name is so that the meaning of
+   'substitute' can be harmonized with the other withNnn() functions.
+
 BUG FIXES:
 
  o withTimeout() would produce a regular error but not a TimeoutException

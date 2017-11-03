@@ -12,7 +12,7 @@
 #
 # \arguments{
 #   \item{expr}{The R expression to be evaluated.}
-#   \item{substitute}{An optional named @list used for substituting
+#   \item{replace}{An optional named @list used for substituting
 #      symbols with other strings.}
 #   \item{code}{If @TRUE, the deparsed code of the expression is echoed.}
 #   \item{output}{If @TRUE, the output of each evaluated subexpression
@@ -26,6 +26,7 @@
 #      is appended at the end.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
+#   \item{substitute}{(to be deprecated) use \code{replace} instead.}
 #   \item{envir}{The @environment in which the expression is evaluated.}
 # }
 #
@@ -43,24 +44,29 @@
 #
 # @keyword utilities
 #*/###########################################################################
-withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", substitute=replace, envir=parent.frame()) {
   # Get code/expression without evaluating it
   expr2 <- substitute(expr);
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Substitute?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  ## 'substitute' will become deprecated in favor of 'replace'.
+  if (!missing(substitute) && missing(replace)) {
+    replace <- substitute
+  }
+  
   # (a) Substitute by "constant" symbols?
-  if (is.list(substitute) && (length(substitute) > 0L)) {
-    names <- names(substitute);
-    if (is.null(names)) throw("Argument 'substitute' must be named.");
-    expr2 <- do.call(base::substitute, args=list(expr2, substitute))
+  if (is.list(replace) && (length(replace) > 0L)) {
+    names <- names(replace);
+    if (is.null(names)) throw("Argument 'replace' must be named.");
+    expr2 <- do.call(base::substitute, args=list(expr2, replace))
   }
 
-  # (b) Substitute code by regular expressions?
-  if (is.character(substitute) && (length(substitute) > 0L)) {
-    patterns <- names(substitute);
-    replacements <- substitute;
+  # (b) Replace code by regular expressions?
+  if (is.character(replace) && (length(replace) > 0L)) {
+    patterns <- names(replace);
+    replacements <- replace;
 
     # Predefined rules?
     if (is.null(patterns)) {
@@ -81,9 +87,9 @@ withCapture <- function(expr, substitute=getOption("withCapture/substitute", ".x
       }
     }
 
-    if (is.null(patterns)) throw("Argument 'substitute' must be named.");
+    if (is.null(patterns)) throw("Argument 'replace' must be named.");
 
-    # (b) Substitute via regular expression
+    # (b) Replace via regular expression
     for (kk in seq_along(replacements)) {
       pattern <- patterns[kk];
       replacement <- replacements[kk];
