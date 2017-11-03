@@ -19,14 +19,8 @@ NEW FEATURES:
 
  o All withNnn() functions gained argument 'substitute' making it possible to
    pass an expression object, e.g. withTimeout(expr, subsitute = FALSE, ...).
-   The expection is withCapture(), where argument 'substitute' means something
-   else for legacy reasons.
-
- o Argument 'substitute' of withCapture() has been renamed to 'replace'.
-   Code that calls withCapture(..., substitute = ...) will still work, but
-   eventually 'subsitute' will be deprecated and later become defunct.
-   The purpose of this change of argument name is so that the meaning of
-   'substitute' can be harmonized with the other withNnn() functions.
+   The expection is withCapture(), where, the now deprecated (see below),
+   argument 'substitute' means something else for legacy reasons.
 
 BUG FIXES:
 
@@ -46,6 +40,12 @@ BUG FIXES:
  o intToBin() would output garbage for negative values.
 
 DEPRECATE AND DEFUNCT:
+
+ o Argument 'substitute' of withCapture() has been renamed to 'replace'.
+   Code that calls withCapture(..., substitute = ...) will still work, but
+   the use of 'subsitute' is deprecated and will later become defunct.
+   The purpose of this change of argument name is so that the meaning of
+   'substitute' can be harmonized with the other withNnn() functions.
 
  o Deprecated evalWithTimeout(); use withTimeout(), which is the preferred name.
 
