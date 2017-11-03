@@ -62,9 +62,14 @@
 #  timeouts; the timeout exception will not be thrown until after the user
 #  completes the prompt (i.e. after pressing ENTER).
 #
-#  Other examples of calls that does \emph{not} support timeout are
-#  \code{system()} calls and "atomic" calls that may take very long such
-#  as \code{rnorm(n)} where \code{n} is very large.
+#  System calls via @see "base::system" and \code{system2()} cannot be
+#  timed out via the above mechanisms.  However, in \R (>= 3.5.0) these
+#  functions have argument \code{timeout} providing their own independent
+#  timeout mechanism.
+#
+#  Other examples of calls that do \emph{not} support timeout are "atomic"
+#  calls that may take very long such as large object allocation and
+#  \code{rnorm(n)} where \code{n} is very large.
 # }
 #
 # @author
@@ -72,8 +77,8 @@
 # @examples "../incl/withTimeout.Rex"
 #
 # \seealso{
-#   Internally, @see "base::eval" is used to evaluate the expression.
-#   @see "base::setTimeLimit"
+#   Internally, @see "base::eval" is used to evaluate the expression and
+#   @see "base::setTimeLimit" is used to control for timeout events.
 # }
 #
 # \references{
