@@ -85,9 +85,9 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  calls that may take very long such as large object allocation and
  \code{rnorm(n)} where \code{n} is very large.
 
- (*) Note that on Linux, \code{Sys.sleep(time)} will signal a timeout
-     error only \emph{after} \code{time} seconds passed, regardless
-     of \code{timeout} limit (< \code{time}).
+ (*) Note that on Unux and macOS, \code{Sys.sleep(time)} will signal a
+     timeout error only \emph{after} \code{time} seconds passed,
+     regardless of \code{timeout} limit (< \code{time}).
 }
 
 \author{Henrik Bengtsson}
