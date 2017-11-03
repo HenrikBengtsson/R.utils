@@ -58,10 +58,12 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  it is useful to know that it utilizes R's built-in time-out mechanism,
  which sets the limits on what is possible and not.
  From \code{\link[base]{setTimeLimit}}(), we learn that:
+
  \emph{"Time limits are checked whenever a user interrupt could occur.
-  This will happen frequently in R code and during Sys.sleep, but
+  This will happen frequently in R code and during Sys.sleep(*), but
   only at points in compiled C and Fortran code identified by the
   code author."}
+
  More precisely, if a function is implemented in native code (e.g. C)
  and the developer of that function does not check for user interrupts,
  then you cannot interrupt that function neither via a user interrupt
@@ -82,6 +84,10 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  Other examples of calls that do \emph{not} support timeout are "atomic"
  calls that may take very long such as large object allocation and
  \code{rnorm(n)} where \code{n} is very large.
+
+ (*) Note that on Linux, \code{Sys.sleep(time)} will signal a timeout
+     error only \emph{after} \code{time} seconds passed, regardless
+     of \code{timeout} limit (< \code{time}).
 }
 
 \author{Henrik Bengtsson}
