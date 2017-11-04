@@ -146,6 +146,34 @@ Version: 2.1
 
 Version: 1.1.2
 
+## Newly broken
+
+*   checking examples ... WARNING
+    ```
+    ...
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+      Warning: 'evalWithTimeout' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
+
 ## In both
 
 *   checking CRAN incoming feasibility ... WARNING
@@ -376,8 +404,6 @@ Version: 1.0.4
     Maintainer: ‘Paul C. Boutros <Paul.Boutros@oicr.on.ca>’
     
     Insufficient package version (submitted: 1.0.4, existing: 1.0.4)
-    
-    Days since last update: 5
     ```
 
 # bigstep
@@ -399,7 +425,7 @@ Version: 0.7.4
 
 # BioInstaller
 
-Version: 0.2.1
+Version: 0.2.2
 
 ## In both
 
@@ -407,7 +433,9 @@ Version: 0.2.1
     ```
     Maintainer: ‘Jianfeng Li <lee_jianfeng@sjtu.edu.cn>’
     
-    Insufficient package version (submitted: 0.2.1, existing: 0.2.1)
+    Insufficient package version (submitted: 0.2.2, existing: 0.2.2)
+    
+    Days since last update: 3
     ```
 
 # bsseq
@@ -584,6 +612,8 @@ Version: 1.0.2
     Maintainer: ‘Patrick Miller <pmiller@civisanalytics.com>’
     
     Insufficient package version (submitted: 1.0.2, existing: 1.0.2)
+    
+    This build time stamp is over a month old.
     ```
 
 # CNEr
@@ -669,7 +699,31 @@ Version: 0.10.11
 
 # countyfloods
 
-Version: 0.0.2
+Version: 0.1.0
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/countyfloods_test.R’ failed.
+    Last 13 lines of output:
+      + # fl <- time_series_flood(state = "Florida", start_date = "2017-09-08", end_date = "2017-09-25", filter_data = FALSE)
+      + # time_series_map(fl[[2]], filename = "C:/Users/rlammers/Desktop/Hurricane Photos/FL")
+      + #
+      + # #Hawaii
+      + # hi <- time_series_flood(state = "Hawaii", start_date = "2017-09-01", end_date = "2017-09-03", filter_data = FALSE)
+      + # time_series_map(hi[[1]])
+      + #
+      + # #Alaska
+      + # ak <- time_series_flood(state = "Alaska", start_date = "2017-09-01", end_date = "2017-09-01", filter_data = FALSE)
+      + # time_series_map(ak[[1]])
+      + }
+      Error in if (county_stats$state %in% c("puerto rico", "alaska", "hawaii")) { : 
+        the condition has length > 1
+      Calls: map_flood -> map_county
+      Execution halted
+    ```
 
 ## In both
 
@@ -677,9 +731,13 @@ Version: 0.0.2
     ```
     Maintainer: ‘Rod Lammers <rodlammers@gmail.com>’
     
-    Insufficient package version (submitted: 0.0.2, existing: 0.0.2)
-    
-    This build time stamp is over a month old.
+    Insufficient package version (submitted: 0.1.0, existing: 0.1.0)
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘maps’
+      All declared Imports should be used.
     ```
 
 # DeepBlueR
@@ -687,6 +745,32 @@ Version: 0.0.2
 Version: 1.2.10
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    + 
+    +     experiment_names = deepblue_extract_names(experiments_list)
+    +     histones_datasets[[epigenetic_marks[[i]]]] = experiment_names
+    + }
+    Called method: deepblue_list_experiments
+    Reported status was: okay
+    Called method: deepblue_list_experiments
+    Reported status was: okay
+    Called method: deepblue_list_experiments
+    Reported status was: okay
+    > 
+    > deepblue_enrich_region_overlap(
+    +   query_id=filtered_query_id,
+    +   background_query=rg_10kb_tilling,
+    +   datasets=histones_datasets,
+    +   genome="grch38")
+    Called method: deepblue_enrich_region_overlap
+    Reported status was: error
+    Error in deepblue_enrich_region_overlap(query_id = filtered_query_id,  : 
+      Command enrich_region_overlap does not exists.
+    Execution halted
+    ```
 
 *   checking CRAN incoming feasibility ... WARNING
     ```
@@ -859,19 +943,19 @@ Version: 1.6.6
 *   checking CRAN incoming feasibility ... WARNING
     ```
     ...
-    Insufficient package version (submitted: 1.6.6, existing: 1.6.6)
-    
-    Found the following (possibly) invalid URLs:
-      URL: http://dendrolab.org/
-        From: man/bai.in.Rd
-              man/bai.out.Rd
-              man/cms.Rd
               man/ffcsaps.Rd
               man/gp.d2pith.Rd
               man/gp.dbh.Rd
               man/gp.po.Rd
               man/gp.rwl.Rd
               man/rcs.Rd
+        Status: Error
+        Message: libcurl error code 60:
+        	SSL certificate problem: unable to get local issuer certificate
+        	(Status without verification: OK)
+      URL: http://www.geo.uni-bremen.de/geomod/staff/mschulz/
+        From: man/print.redfit.Rd
+              man/redfit.Rd
         Status: Error
         Message: libcurl error code 60:
         	SSL certificate problem: unable to get local issuer certificate
@@ -893,8 +977,6 @@ Version: 4.3.0
     Maintainer: ‘William Michael Landau <will.landau@lilly.com>’
     
     Insufficient package version (submitted: 4.3.0, existing: 4.3.0)
-    
-    Days since last update: 0
     ```
 
 # DupChecker
@@ -1310,6 +1392,28 @@ Version: 0.7.4
     TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
     ```
 
+# glue
+
+Version: 1.2.0
+
+## In both
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    Maintainer: ‘Jim Hester <james.f.hester@gmail.com>’
+    
+    Insufficient package version (submitted: 1.2.0, existing: 1.2.0)
+    
+    Days since last update: 6
+    ```
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch https://img.shields.io/codecov/c/github/tidyverse/glue/master.svg
+    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
+    ```
+
 # gofCopula
 
 Version: 0.2-3
@@ -1329,7 +1433,7 @@ Version: 0.2-3
 
 # GSODR
 
-Version: 1.0.7
+Version: 1.1.0
 
 ## In both
 
@@ -1337,16 +1441,14 @@ Version: 1.0.7
     ```
     Maintainer: ‘Adam Sparks <adamhsparks@gmail.com>’
     
-    Insufficient package version (submitted: 1.0.7, existing: 1.0.7)
-    
-    Days since last update: 2
+    Insufficient package version (submitted: 1.1.0, existing: 1.1.0)
     ```
 
 *   checking top-level files ... WARNING
     ```
     Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://codecov.io/gh/ropensci/GSODR/branch/master/graph/badge.svg
-    TlsExceptionHostPort (HandshakeFailed (Error_Packet_unexpected "Alert [(AlertLevel_Fatal,BadRecordMac)]" " expected: change cipher")) "codecov.io" 443
+    pandoc: Could not fetch https://badges.ropensci.org/79_status.svg
+    TlsExceptionHostPort (HandshakeFailed (Error_Misc "unimplemented RSA signature hash type: HashSHA384")) "badges.ropensci.org" 443
     ```
 
 # hashFunction
@@ -1578,7 +1680,7 @@ Version: 1.2.4
     ```
     Conversion of ‘README.md’ failed:
     pandoc: Could not fetch https://dl.dropboxusercontent.com/u/1373164/methylKit_logo.png
-    StatusCodeException (Status {statusCode = 404, statusMessage = "Not Found"}) [("Server","nginx"),("Date","Thu, 19 Oct 2017 16:25:39 GMT"),("Content-Type","text/html"),("Transfer-Encoding","chunked"),("Connection","keep-alive"),("Vary","Accept-Encoding"),("X-Dropbox-Request-Id","869dc4764f4d00bfded6f7c4b73b21d5"),("X-Robots-Tag","noindex, nofollow, noimageindex"),("Content-Encoding","gzip"),("X-Response-Body-Start","<!DOCTYPE html>\n<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n<title>Dropbox - 404</title>\n<link href=\"https://cfl.dropboxstatic.com/static/css/error.css\" rel=\"stylesheet\" type=\"text/css\"/>\n<link rel=\"shortcut icon\" href=\"https://cfl.dropboxstatic.com/static/images/favicon.ico\"/>\n\n</head>\n<body>\n<div class=\"figure\">\n<img src=\"https://cfl.dropboxstatic.com/static/images/publicfoldersunset.svg\" alt=\"Error: 404\"/>\n</div>\n<div id=\"errorbox\">\n<div class=\"public-folder-404\"> <h1 class=\"error_message\">File not found</h1> <br> <div class=\"message_body\"> Sorry, that file doesn&rsquo;t live here anymore. It might have been moved or made private. </div> <br> <a class=\"c-btn c-btn--primary public-folder-link\" href=\"https://www.dropbox.com\">Learn about Dropbox</a> </div>\n</div>\n<section class=\"footer-row\"><footer id=\"homepage-footer\" class=\"twelve-column dropbox-footer clearfix\"><nav><ul class=\"o-nav\"><li class=\"o-nav__header\">Dropbox</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/install\">Desktop app</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/mobile\">Mobile apps</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/plans?trigger=homepagefoot\">Plans</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/security\">Security</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Company</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/about\">About us</a></li><li class=\"o-nav__item\"><a href=\"https://bit.ly/dbxdotcomapps\">Jobs</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/news\">Press</a></li><li class=\"o-nav__item\"><a href=\"https://blogs.dropbox.com/dropbox\">Blog</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Support</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/help\">Help Center</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/contact\">Contact us</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/terms/cookies\">Cookies</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/privacy\">Privacy &amp; terms</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Community</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/developers\">Developers</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/referrals\">Referrals</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropboxforum.com\">Forum</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Connect</li><li class=\"o-nav__item\"><a href=\"https://twitter.com/dropbox\">Twitter</a></li><li class=\"o-nav__item\"><a href=\"https://www.facebook.com/Dropbox\">Facebook</a></li><li class=\"o-nav__item\"><a href=\"https://plus.google.com/+Dropbox/posts\">Google+</a></li><li class=\"o-nav__item\"><a href=\"https://www.youtube.com/user/dropbox\">YouTube</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Products</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/pro\">Plus</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/business\">Business</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/enterprise\">Enterprise</a></li></ul></nav><div class=\"react-locale-selector-wrapper\"><div id=\"component1937679262106323703\"><div class=\"react-stub\"></div></div></div></footer></section>\n</body>\n</html>\n"),("X-Request-URL","GET https://dl.dropboxusercontent.com:443/u/1373164/methylKit_logo.png")] (CJ {expose = []})
+    StatusCodeException (Status {statusCode = 404, statusMessage = "Not Found"}) [("Server","nginx"),("Date","Sat, 04 Nov 2017 07:41:49 GMT"),("Content-Type","text/html"),("Transfer-Encoding","chunked"),("Connection","keep-alive"),("Vary","Accept-Encoding"),("X-Dropbox-Request-Id","e247046b0155c456514b526055b30119"),("X-Robots-Tag","noindex, nofollow, noimageindex"),("Strict-Transport-Security","max-age=15552000; includeSubDomains"),("Content-Encoding","gzip"),("X-Response-Body-Start","<!DOCTYPE html>\n<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n<title>Dropbox - 404</title>\n<link href=\"https://cfl.dropboxstatic.com/static/css/error.css\" rel=\"stylesheet\" type=\"text/css\"/>\n<link rel=\"shortcut icon\" href=\"https://cfl.dropboxstatic.com/static/images/favicon.ico\"/>\n\n</head>\n<body>\n<div class=\"figure\">\n<img src=\"https://cfl.dropboxstatic.com/static/images/publicfoldersunset.svg\" alt=\"Error: 404\"/>\n</div>\n<div id=\"errorbox\">\n<div class=\"public-folder-404\"> <h1 class=\"error_message\">File not found</h1> <br> <div class=\"message_body\"> Sorry, that file doesn&rsquo;t live here anymore. It might have been moved or made private. </div> <br> <a class=\"c-btn c-btn--primary public-folder-link\" href=\"https://www.dropbox.com\">Learn about Dropbox</a> </div>\n</div>\n<section class=\"footer-row\"><footer id=\"homepage-footer\" class=\"twelve-column dropbox-footer clearfix\"><nav><ul class=\"o-nav\"><li class=\"o-nav__header\">Dropbox</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/install\">Desktop app</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/mobile\">Mobile apps</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/plans?trigger=homepagefoot\">Plans</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/security\">Security</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Company</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/about\">About us</a></li><li class=\"o-nav__item\"><a href=\"https://bit.ly/dbxdotcomapps\">Jobs</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/news\">Press</a></li><li class=\"o-nav__item\"><a href=\"https://blogs.dropbox.com/dropbox\">Blog</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Support</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/help\">Help Center</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/contact\">Contact us</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/terms/cookies\">Cookies</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/privacy\">Privacy &amp; terms</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Community</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/developers\">Developers</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/referrals\">Referrals</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropboxforum.com\">Forum</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Connect</li><li class=\"o-nav__item\"><a href=\"https://twitter.com/dropbox\">Twitter</a></li><li class=\"o-nav__item\"><a href=\"https://www.facebook.com/Dropbox\">Facebook</a></li><li class=\"o-nav__item\"><a href=\"https://plus.google.com/+Dropbox/posts\">Google+</a></li><li class=\"o-nav__item\"><a href=\"https://www.youtube.com/user/dropbox\">YouTube</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Products</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/pro\">Plus</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/business\">Business</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/enterprise\">Enterprise</a></li></ul></nav><div class=\"react-locale-selector-wrapper\"><div id=\"component1937679262106323703\"><div class=\"react-stub\"></div></div></div></footer></section>\n</body>\n</html>\n"),("X-Request-URL","GET https://dl.dropboxusercontent.com:443/u/1373164/methylKit_logo.png")] (CJ {expose = []})
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -1891,100 +1993,6 @@ Version: 0.1.8
     Maintainer: ‘David Gohel <david.gohel@ardata.fr>’
     
     Insufficient package version (submitted: 0.1.8, existing: 0.1.8)
-    
-    Number of updates in past 6 months: 7
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    
-    Attaching package: 'dplyr'
-    
-    The following objects are masked from 'package:stats':
-    
-        filter, lag
-    
-    The following objects are masked from 'package:base':
-    
-        intersect, setdiff, setequal, union
-    
-    Quitting from lines 180-190 (powerpoint.Rmd) 
-    Error: processing vignette 'powerpoint.Rmd' failed with diagnostics:
-    file.exists(src) is not TRUE
-    Execution halted
-    ```
-
-# oneChannelGUI
-
-Version: 1.42.0
-
-## In both
-
-*   checking sizes of PDF files under ‘inst/doc’ ... WARNING
-    ```
-      ‘gs+qpdf’ made some significant size reductions:
-         compacted ‘Exon-level.analysis.pdf’ from 1395Kb to 598Kb
-         compacted ‘RNAseq.pdf’ from 1979Kb to 385Kb
-      consider running tools::compactPDF(gs_quality = "ebook") on these files
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-      R/exonmenu.R
-        29: #              .cosie adapted from the article of Gaidatzis Nucleic Acids Research, 2009, 1<96>10
-      R/qcmenu.R
-        369:                #######################################################<e0><e0>
-        405:                #######################################################<e0><e0>
-        406:                #######################################################<e0><e0>
-        442:                #######################################################<e0><e0>
-        660:                       #######################################################<e0><e0>
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A graphical interface designed to facilitate analysis of microarrays and miRNA/RNA-seq data on laptops’
-    ‘A Graphical Interface Designed to Facilitate Analysis of Microarrays and miRNA/RNA-Seq Data on Laptops’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 11484094 bytes
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      ‘Biobase’ ‘affylmGUI’ ‘tkrplot’ ‘tkWidgets’ ‘IRanges’ ‘Rsamtools’
-      ‘Biostrings’ ‘siggenes’ ‘chimera’
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.6Mb
-      sub-directories of 1Mb or more:
-        doc   5.0Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘BSgenome.Mmusculus.UCSC.mm9’
-      ‘BSgenome.Rnorvegicus.UCSC.rn4’ ‘Genominator’ ‘affy’ ‘affyPLM’
-      ‘chipseq’ ‘maSigPro’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
     ```
 
 # openCyto
@@ -2064,14 +2072,83 @@ Version: 1.14.0
     'library' or 'require' call not declared from: ‘ggcyto’
     ```
 
-# PGA
+# paxtoolsr
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## Newly fixed
 
-*   R CMD check timed out
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    downloadFile: no visible global function definition for ‘URLencode’
+    downloadFile: no visible global function definition for ‘read.table’
+    downloadFile: no visible global function definition for ‘write.table’
+    downloadPc2: no visible global function definition for ‘select.list’
+    downloadSignedPC: no visible global function definition for
+      ‘read.table’
+    getPcRequest: no visible global function definition for ‘URLencode’
+    readSifnx: no visible global function definition for ‘read.table’
+    splitSifnxByPathway: no visible global function definition for
+      ‘txtProgressBar’
+    splitSifnxByPathway: no visible global function definition for
+      ‘%dopar%’
+    splitSifnxByPathway: no visible global function definition for
+      ‘setTxtProgressBar’
+    Undefined global functions or variables:
+      %dopar% URLencode read.table select.list setTxtProgressBar
+      txtProgressBar write.table
+    Consider adding
+      importFrom("utils", "URLencode", "read.table", "select.list",
+                 "setTxtProgressBar", "txtProgressBar", "write.table")
+    to your NAMESPACE file.
+    ```
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    ...
+        From: man/validate.Rd
+        Status: 404
+        Message: Not Found
+      URL: http://www.pathwaycommons.org/pc2/help/formats.html
+        From: man/pcFormats.Rd
+        Status: 406
+        Message: Not Acceptable
     
+    The Title field starts with the package name.
+    The Title field should be in title case, current version then in title case:
+    ‘PaxtoolsR: Access Pathways from Multiple Databases through BioPAX and Pathway Commons’
+    ‘PaxtoolsR: Access Pathways from Multiple Databases Through BioPAX and Pathway Commons’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 24477983 bytes
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 30.9Mb
+      sub-directories of 1Mb or more:
+        extdata   5.6Mb
+        java     24.5Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘jsonlite’
+      All declared Imports should be used.
+    ```
+
+# PGA
+
+Version: 1.6.0
 
 ## In both
 
@@ -2206,6 +2283,23 @@ Version: 1.12.3
       print.msQCres
     See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
     manual.
+    ```
+
+# PSCBS
+
+Version: 0.63.0
+
+## In both
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
+    
+    Insufficient package version (submitted: 0.63.0, existing: 0.63.0)
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
     ```
 
 # psichomics
@@ -2519,11 +2613,6 @@ Version: 1.14.0
     Size of tarball: 8490435 bytes
     ```
 
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: ‘MSGFplus’ ‘MSGFgui’
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  8.0Mb
@@ -2592,8 +2681,6 @@ Version: 0.6-1
     Maintainer: ‘Wenping Wang <wwang8198@gmail.com>’
     
     Insufficient package version (submitted: 0.6.1, existing: 0.6.1)
-    
-    Days since last update: 6
     ```
 
 # sdmpredictors
@@ -2697,8 +2784,6 @@ Version: 0.3.1
     Maintainer: ‘Luca Weihs <lucaw@uw.edu>’
     
     Insufficient package version (submitted: 0.3.1, existing: 0.3.1)
-    
-    Days since last update: 5
     ```
 
 # SensusR
@@ -2859,8 +2944,31 @@ Version: 2.5.9
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking examples ... ERROR
+    ```
+    ...
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    |NA                          |NA                                  |NA                   |NA                           |
+    Error in checkProjectInput(project) : 
+      Please set a valid project argument from the column id above. Project TCGA-ACC was not found.
+    Calls: GDCquery -> checkProjectInput
+    Execution halted
+    ```
 
 *   checking CRAN incoming feasibility ... WARNING
     ```
@@ -2902,6 +3010,11 @@ Version: 2.5.9
         R      1.1Mb
         data   2.3Mb
         doc   57.4Mb
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' call not declared from: ‘DT’
     ```
 
 # tmle.npvi
@@ -3052,20 +3165,6 @@ Version: 1.1.4
     Maintainer: ‘Carlo Pacioni <C.Pacioni@Murdoch.edu.au>’
     
     Insufficient package version (submitted: 1.1.4, existing: 1.1.4)
-    
-    Found the following (possibly) invalid URLs:
-      URL: https://doi.org/10.1071/PC17002
-        From: man/pac.clas.Nadults.Rd
-              man/pac.clas.Ne.Rd
-              man/pac.clas.Rd
-              man/pac.clas.lookup.Rd
-              man/pac.clas.pairw.Rd
-              man/pac.lhs.Rd
-              man/pac.run.lhs.Rd
-              man/pac.yr.Rd
-              man/vortexR.Rd
-        Status: 503
-        Message: Service Unavailable
     
     This build time stamp is over a month old.
     ```
