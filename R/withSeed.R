@@ -12,6 +12,8 @@
 # \arguments{
 #   \item{expr}{The R expression to be evaluated.}
 #   \item{seed, ...}{Arguments passed to @see "base::set.seed".}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -36,9 +38,9 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withSeed <- function(expr, seed, ..., envir=parent.frame()) {
-  # Argument '.expr':
-  expr <- substitute(expr)
+withSeed <- function(expr, seed, ..., substitute=TRUE, envir=parent.frame()) {
+  # Argument 'expr':
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'envir':
   if (!is.environment(envir))

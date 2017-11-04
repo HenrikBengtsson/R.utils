@@ -2,12 +2,12 @@
 # Function that takes "a long" time to run
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 foo <- function() {
-  print("Tic");
+  print("Tic")
   for (kk in 1:100) {
-    print(kk);
-    Sys.sleep(0.1);
+    print(kk)
+    Sys.sleep(0.1)
   }
-  print("Tac");
+  print("Tac")
 }
 
 
@@ -15,13 +15,13 @@ foo <- function() {
 # Evaluate code, if it takes too long, generate
 # a timeout by throwing a TimeoutException.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- NULL;
+res <- NULL
 tryCatch({
   res <- withTimeout({
-    foo();
-  }, timeout=1.08);
-}, TimeoutException=function(ex) {
-  cat("Timeout. Skipping.\n");
+    foo()
+  }, timeout = 1.08)
+}, TimeoutException = function(ex) {
+  message("Timeout. Skipping.")
 })
 
 
@@ -30,8 +30,14 @@ tryCatch({
 # a timeout returning NULL and generate a warning.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
-  foo();
-}, timeout=1.08, onTimeout="warning");
+  foo()
+}, timeout = 1.08, onTimeout = "warning")
+
+
+# The same using an expression object
+expr <- quote(foo())
+res <- withTimeout(expr, substitute = FALSE,
+                   timeout = 1.08, onTimeout = "warning")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -39,5 +45,5 @@ res <- withTimeout({
 # a timeout, and return silently NULL.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
-  foo();
-}, timeout=1.08, onTimeout="silent");
+  foo()
+}, timeout = 1.08, onTimeout = "silent")

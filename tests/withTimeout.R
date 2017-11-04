@@ -105,6 +105,12 @@ tryCatch({
 })
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Evalute expression
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+expr <- quote(cat("Hello world!\n"))
+res <- withTimeout(expr, substitute = FALSE, timeout=1.08)
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Visibility

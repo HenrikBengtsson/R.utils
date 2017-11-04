@@ -17,13 +17,15 @@
 }
 
 \usage{
-withOptions(expr, ..., args=list(), envir=parent.frame())
+withOptions(expr, ..., args=list(), substitute=TRUE, envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
   \item{...}{Named options to be used.}
   \item{args}{(optional) Additional named options specified as a named \code{\link[base]{list}}.}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 

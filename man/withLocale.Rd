@@ -17,7 +17,7 @@
 }
 
 \usage{
-withLocale(expr, category, locale, ..., envir=parent.frame())
+withLocale(expr, category, locale, ..., substitute=TRUE, envir=parent.frame())
 }
 
 \arguments{
@@ -26,6 +26,8 @@ withLocale(expr, category, locale, ..., envir=parent.frame())
   \item{locale}{\code{\link[base]{character}} \code{\link[base]{vector}} specifying the locale to used.  The
    first successfully set one will be used.}
   \item{...}{Not used.}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 

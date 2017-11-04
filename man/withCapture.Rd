@@ -18,14 +18,15 @@
 }
 
 \usage{
-withCapture(expr, substitute=getOption("withCapture/substitute", ".x."), code=TRUE,
+withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
   output=code, ..., max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
-  newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame())
+  newline=getOption("withCapture/newline", TRUE), collapse="\n", substitute=replace,
+  envir=parent.frame())
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
-  \item{substitute}{An optional named \code{\link[base]{list}} used for substituting
+  \item{replace}{An optional named \code{\link[base]{list}} used for substituting
      symbols with other strings.}
   \item{code}{If \code{\link[base:logical]{TRUE}}, the deparsed code of the expression is echoed.}
   \item{output}{If \code{\link[base:logical]{TRUE}}, the output of each evaluated subexpression
@@ -39,6 +40,7 @@ withCapture(expr, substitute=getOption("withCapture/substitute", ".x."), code=TR
      is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
+  \item{substitute}{(to be deprecated) use \code{replace} instead.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 
@@ -78,7 +80,7 @@ print(withCapture({
 
 
 # Automatic "variable" substitute
-# (disable with substitute=NULL)
+# (disable with relabel=NULL)
 a <- 2
 b <- "Hello world!"
 

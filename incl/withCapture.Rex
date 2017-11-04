@@ -29,7 +29,7 @@ print(withCapture({
 
 
 # Automatic "variable" substitute
-# (disable with substitute=NULL)
+# (disable with relabel=NULL)
 a <- 2
 b <- "Hello world!"
 

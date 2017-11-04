@@ -10,7 +10,7 @@ Imports:
   R.methodsS3 (>= 1.7.1)
 Suggests:
   digest (>= 0.6.10)
-Date: 2017-09-01
+Date: 2017-11-03
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))

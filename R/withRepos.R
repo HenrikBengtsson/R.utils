@@ -13,6 +13,8 @@
 #   \item{expr}{The R expression to be evaluated.}
 #   \item{repos}{A @character @vector of repositories to use.}
 #   \item{...}{Additional arguments passed to @see "useRepos".}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -50,9 +52,9 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withRepos <- function(expr, repos="[[mainstream]]", ..., envir=parent.frame()) {
-  # Argument '.expr':
-  expr <- substitute(expr)
+withRepos <- function(expr, repos="[[mainstream]]", ..., substitute=TRUE, envir=parent.frame()) {
+  # Argument 'expr':
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'envir':
   if (!is.environment(envir))

@@ -17,7 +17,8 @@
 }
 
 \usage{
-withSink(expr, file, append=FALSE, type=c("output", "message"), envir=parent.frame())
+withSink(expr, file, append=FALSE, type=c("output", "message"), substitute=TRUE,
+  envir=parent.frame())
 }
 
 \arguments{
@@ -29,6 +30,8 @@ withSink(expr, file, append=FALSE, type=c("output", "message"), envir=parent.fra
   \item{type}{A \code{\link[base]{character}} string specifying whether to divert output
    sent to the standard output or the standard error.
    See \code{\link[base]{sink}}() for details.}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should be evaluated.}
 }
 
