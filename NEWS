@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.5.0-9000 [2017-11-03]
+Version: 2.6.0 [2017-11-05]
 
 NEW FEATURES:
 
@@ -47,7 +47,7 @@ DEPRECATE AND DEFUNCT:
    The purpose of this change of argument name is so that the meaning of
    'substitute' can be harmonized with the other withNnn() functions.
 
- o Deprecated evalWithTimeout(); use withTimeout(), which is the preferred name.
+ o Deprecated evalWithTimeout(); use withTimeout() - the preferred name.
 
 
 Version: 2.5.0 [2016-11-07]
