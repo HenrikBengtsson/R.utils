@@ -149,7 +149,7 @@ evalWithTimeout <- local({
   fcn <- withTimeout
   expr <- body(fcn)
   expr <- expr[c(1:2, 2:length(expr))]
-  expr[[2]] <- quote(.Deprecated(new = "withTimeout"))
+  expr[[2]] <- quote(.Deprecated(msg = "R.utils::evalWithTimeout() is deprecated.  Instead, use R.utils::withTimeout()."))
   body(fcn) <- expr
   fcn
 })

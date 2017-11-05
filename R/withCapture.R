@@ -53,7 +53,7 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   ## 'substitute' will become deprecated in favor of 'replace'.
   if (!missing(substitute) && missing(replace)) {
-    .Deprecated(msg = "Argument 'substitute' of withCapture() has been renamed to 'replace'")
+    .Deprecated(msg = "Argument 'substitute' of R.utils::withCapture() has been renamed to 'replace'.")
     replace <- substitute
   }
   

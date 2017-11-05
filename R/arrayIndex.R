@@ -45,7 +45,7 @@
 # @keyword internal
 #*/########################################################################### 
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
-  .Deprecated(new="base::arrayInd()")
+  .Deprecated(msg = "R.utils::arrayIndex() is deprecated. Instead, use base::arrayInd().")
   
   ndim <- length(dim);       # number of dimension
   dim <- as.integer(dim);
