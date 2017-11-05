@@ -45,23 +45,7 @@
 # @keyword internal
 #*/########################################################################### 
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
-  .Deprecated(msg = "R.utils::arrayIndex() is deprecated. Instead, use base::arrayInd().")
-  
-  ndim <- length(dim);       # number of dimension
-  dim <- as.integer(dim);
-  pi <- cumprod(c(1L,dim));  # base
-
-  # Allocate return matrix
-  naValue <- as.integer(NA);
-  j <- matrix(naValue, nrow=length(i), ncol=ndim);
-
-  i <- (i-1);
-  for (kk in 1:ndim) {
-    j[,kk] <- as.integer(floor((i %% pi[kk+1])/pi[kk]));
-  }
-  j <- j + 1L;
-
-  j;
+  .Defunct(msg = "R.utils::arrayIndex() is defunct. Instead, use base::arrayInd().")
 })
 
 ############################################################################

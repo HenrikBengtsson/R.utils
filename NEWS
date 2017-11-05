@@ -8,6 +8,8 @@ Version: 2.6.0-9000 [2017-11-05]
  
 DEPRECATE AND DEFUNCT:
 
+ o arrayIndex() is now defunct. Instead use base::arrayInd().
+
  o Removed deprecated and ignored argument 'reset' of warnings() for Verbose.
  
 
