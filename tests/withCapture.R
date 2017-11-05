@@ -43,6 +43,10 @@ stopifnot(bfr == "[1] 1\n")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Fixed substitutions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bfr <- withCapture({ x <- a }, replace=list(a="abc"))
+print(bfr)
+stopifnot(bfr == '> x <- "abc"\n')
+
 bfr <- withCapture({ x <- a }, substitute=list(a="abc"))
 print(bfr)
 stopifnot(bfr == '> x <- "abc"\n')

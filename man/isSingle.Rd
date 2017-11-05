@@ -11,10 +11,10 @@
 
 \alias{singles}
 
-\title{Identifies all entries that exists exactly ones}
+\title{Identifies all entries that exists exactly once}
 
 \description{
-  Identifies all entries that exists exactly ones.
+  Identifies all entries that exists exactly once.
 }
 
 \usage{

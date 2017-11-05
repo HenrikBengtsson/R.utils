@@ -282,6 +282,7 @@ S3method("update", "FileProgressBar")
 S3method("callHooks", "function")
 
 # GenericSummary
+S3method("[", "GenericSummary")
 S3method("c", "GenericSummary")
 S3method("print", "GenericSummary")
 

@@ -18,6 +18,8 @@
 #   \item{type}{A @character string specifying whether to divert output
 #    sent to the standard output or the standard error.
 #    See @see "base::sink" for details.}
+#   \item{substitute}{If @TRUE, argument \code{expr} is
+#    \code{\link[base]{substitute}()}:ed, otherwise not.}
 #   \item{envir}{The @environment in which the expression should be evaluated.}
 # }
 #
@@ -42,12 +44,12 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withSink <- function(expr, file, append=FALSE, type=c("output", "message"), envir=parent.frame()) {
+withSink <- function(expr, file, append=FALSE, type=c("output", "message"), substitute=TRUE, envir=parent.frame()) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Argument '.expr':
-  expr <- substitute(expr)
+  # Argument 'expr':
+  if (substitute) expr <- substitute(expr)
 
   # Argument 'envir':
   if (!is.environment(envir))

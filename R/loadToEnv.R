@@ -28,9 +28,19 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-setMethodS3("loadToEnv", "default", function(..., envir=new.env()) {
-  base::load(..., envir=envir);
-  envir;
+setMethodS3("loadToEnv", "default", function(file, ..., envir = new.env()) {
+  tryCatch({
+    base::load(file = file, envir = envir, ...)
+  }, error = function(ex) {
+    if (is.character(file)) {
+      msg <- sprintf("Failed to load file %s.", sQuote(file))
+    } else {
+      msg <- sprintf("Failed to load from %s.", sQuote(class(file)[1]))
+    }
+    msg <- sprintf("%s The reason was: %s", msg, conditionMessage(ex))
+    throw(msg)
+  })
+  envir
 }, private=TRUE) # loadToEnv()
 
 

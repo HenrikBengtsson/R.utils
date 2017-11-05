@@ -26,7 +26,7 @@
 #    (i) unmaps any mapped drive letters used in the pathname
 #        (e.g. 'X:/foo.bar.html' to 'C:/Users/Joe/bar.html'),
 #   (ii) and replaces any forward slashed with backward ones
-#        (e.g. 'C:\\Users\\Joe\\bar.html' to 'C:/Users/Joe/bar.html').
+#        (e.g. 'C:/Users/Joe/bar.html' to 'C:\\Users\\Joe\\bar.html').
 #   URLs are passed as is to \code{shell.exec()}.
 #
 #   The reason for (i) is that some web browsers (e.g. Google Chrome)

@@ -18,12 +18,14 @@
 }
 
 \usage{
-withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
-  onTimeout=c("error", "warning", "silent"), ...)
+withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
+  elapsed=timeout, onTimeout=c("error", "warning", "silent"), ...)
 }
 
 \arguments{
   \item{expr}{The R expression to be evaluated.}
+  \item{substitute}{If \code{\link[base:logical]{TRUE}}, argument \code{expr} is
+   \code{\link[base]{substitute}()}:ed, otherwise not.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should
     be evaluated.}
   \item{timeout, cpu, elapsed}{A \code{\link[base]{numeric}} specifying the maximum number
@@ -56,10 +58,12 @@ withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
  it is useful to know that it utilizes R's built-in time-out mechanism,
  which sets the limits on what is possible and not.
  From \code{\link[base]{setTimeLimit}}(), we learn that:
+
  \emph{"Time limits are checked whenever a user interrupt could occur.
-  This will happen frequently in R code and during Sys.sleep, but
+  This will happen frequently in R code and during Sys.sleep(*), but
   only at points in compiled C and Fortran code identified by the
   code author."}
+
  More precisely, if a function is implemented in native code (e.g. C)
  and the developer of that function does not check for user interrupts,
  then you cannot interrupt that function neither via a user interrupt
@@ -71,6 +75,19 @@ withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
  prompt (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using
  timeouts; the timeout exception will not be thrown until after the user
  completes the prompt (i.e. after pressing ENTER).
+
+ System calls via \code{\link[base]{system}}() and \code{system2()} cannot be
+ timed out via the above mechanisms.  However, in \R (>= 3.5.0) these
+ functions have argument \code{timeout} providing their own independent
+ timeout mechanism.
+
+ Other examples of calls that do \emph{not} support timeout are "atomic"
+ calls that may take very long such as large object allocation and
+ \code{rnorm(n)} where \code{n} is very large.
+
+ (*) Note that on Unux and macOS, \code{Sys.sleep(time)} will signal a
+     timeout error only \emph{after} \code{time} seconds passed,
+     regardless of \code{timeout} limit (< \code{time}).
 }
 
 \author{Henrik Bengtsson}
@@ -80,12 +97,12 @@ withTimeout(expr, envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
 # Function that takes "a long" time to run
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 foo <- function() {
-  print("Tic");
+  print("Tic")
   for (kk in 1:100) {
-    print(kk);
-    Sys.sleep(0.1);
+    print(kk)
+    Sys.sleep(0.1)
   }
-  print("Tac");
+  print("Tac")
 }
 
 
@@ -93,13 +110,13 @@ foo <- function() {
 # Evaluate code, if it takes too long, generate
 # a timeout by throwing a TimeoutException.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- NULL;
+res <- NULL
 tryCatch({
   res <- withTimeout({
-    foo();
-  }, timeout=1.08);
-}, TimeoutException=function(ex) {
-  cat("Timeout. Skipping.\n");
+    foo()
+  }, timeout = 1.08)
+}, TimeoutException = function(ex) {
+  message("Timeout. Skipping.")
 })
 
 
@@ -108,8 +125,14 @@ tryCatch({
 # a timeout returning NULL and generate a warning.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
-  foo();
-}, timeout=1.08, onTimeout="warning");
+  foo()
+}, timeout = 1.08, onTimeout = "warning")
+
+
+# The same using an expression object
+expr <- quote(foo())
+res <- withTimeout(expr, substitute = FALSE,
+                   timeout = 1.08, onTimeout = "warning")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -117,13 +140,13 @@ res <- withTimeout({
 # a timeout, and return silently NULL.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
-  foo();
-}, timeout=1.08, onTimeout="silent");
+  foo()
+}, timeout = 1.08, onTimeout = "silent")
 }
 
 \seealso{
-  Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
-  \code{\link[base]{setTimeLimit}}()
+  Internally, \code{\link[base]{eval}}() is used to evaluate the expression and
+  \code{\link[base]{setTimeLimit}}() is used to control for timeout events.
 }
 
 \references{

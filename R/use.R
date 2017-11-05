@@ -53,7 +53,7 @@
 # @keyword utilities
 # @keyword internal
 #*/###########################################################################
-setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
+setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=getOption("R.utils.use.install", Sys.getenv("R_R_UTILS_USE_INSTALL", "TRUE")), repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -236,7 +236,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
   quietly <- Arguments$getLogical(quietly);
 
   # Argument 'install':
-  install <- Arguments$getLogical(install);
+  install <- Arguments$getLogical(install, coerce = TRUE)
 
   # Argument 'verbose':
   verbose <- Arguments$getVerbose(verbose);

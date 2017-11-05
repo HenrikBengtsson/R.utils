@@ -19,6 +19,13 @@
 #  Returns a @logical.
 # }
 #
+# \details{
+# Internally @see base::seek is used, which according to to the \R help
+# is discouraged on Windows.  However, after many years of large-scale
+# testing on various Windows versions and file systems we have yet to
+# experience issues with using \code{seek()} on Windows.
+# }
+#
 # @author
 #
 # \seealso{
