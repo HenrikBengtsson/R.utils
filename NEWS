@@ -6,6 +6,10 @@ Version: 2.6.0-9000 [2017-11-05]
 
  o ...
  
+DEPRECATE AND DEFUNCT:
+
+ o Removed deprecated and ignored argument 'reset' of warnings() for Verbose.
+ 
 
 Version: 2.6.0 [2017-11-05]
 
