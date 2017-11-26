@@ -30,7 +30,7 @@ NEW FEATURES:
 
  o All withNnn() functions gained argument 'substitute' making it possible to
    pass an expression object, e.g. withTimeout(expr, subsitute = FALSE, ...).
-   The expection is withCapture(), where, the now deprecated (see below),
+   The exception is withCapture(), where, the now deprecated (see below),
    argument 'substitute' means something else for legacy reasons.
 
 BUG FIXES:
