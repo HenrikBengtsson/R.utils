@@ -114,9 +114,6 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
   onTimeout <- match.arg(onTimeout);
 
 
-  # Default result value
-  res <- invisible();
-
   setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE);
   on.exit({
     setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE);
