@@ -240,9 +240,9 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
     # Read all lines
     verbose && enter(verbose, "Reading lines of interest");
-    t <- system.time(
+    t <- system.time({
       lines <- readLines(file, n=max(rows))
-    );
+    }, gcFirst = FALSE);
     verbose && printf(verbose, "Read %d lines in %.2f seconds.\n", length(lines), t[3]);
 
     # Did we try to read non-existing rows?
@@ -275,11 +275,11 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     verbose && enter(verbose, "Re-reading the lines as a data table");
     con <- textConnection(lines);
     tryCatch({
-      t <- system.time(
+      t <- system.time({
         df <- read.table(con, colClasses=colClasses, header=FALSE,
                          skip=skip, nrows=nrows, check.names=check.names,
                          col.names=colnames, ...)
-      );
+      }, gcFirst = FALSE);
       verbose && printf(verbose, "Read a %dx%d table in %.2f seconds.\n", nrow(df), ncol(df), t[3]);
     }, finally = {
       close(con);

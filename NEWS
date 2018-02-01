@@ -2,9 +2,15 @@
 Package: R.utils
 ================
 
-Version: 2.6.0-9000 [2017-11-05]
+Version: 2.6.0-9000 [2018-02-01]
 
  o ...
+
+PERFORMANCE:
+
+ o readTable() no longer runs the garbage collector - was done so implicitly
+   through an internal system.time() call without using gcFirst = FALSE.
+   
  
 DEPRECATE AND DEFUNCT:
 
