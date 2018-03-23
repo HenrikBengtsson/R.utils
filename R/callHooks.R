@@ -141,17 +141,3 @@ setMethodS3("callHooks", "list", function(hooks, ...) {
 setMethodS3("callHooks", "function", function(hooks, ...) {
   callHooks(list(hooks), ...);
 })
-
-
-############################################################################
-# HISTORY:
-# 2006-04-13
-# o Added callHooks() for lists.  This way hook functions can be pre-fetched
-#   by name once if called multiple times.
-# 2005-06-15
-# o Now callHooks() returns a detailed list of hooks called, their return
-#   values and any exceptions caught.
-# o Added arguments '...', which are passed to the hook function.
-# 2005-06-10
-# o Created.
-############################################################################

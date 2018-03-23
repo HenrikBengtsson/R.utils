@@ -78,21 +78,3 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
 
   expr
 } # egsub()
-
-
-##############################################################################
-# HISTORY:
-# 2014-05-17
-# o BUG FIX: egsub() would return an invalid expression if the input had
-#   definitions of functions without arguments, e.g.
-#   egsub("x", "x", substitute(y <- function() 0)) which would throw
-#   "Error: badly formed function expression" if deparsed/printed.
-# 2014-05-14
-# o Now egsub() also works with functions, in case it substitutes on the
-#   body of the function.
-# 2014-05-08
-# o Now skipping missing expressions via tryCatch().
-# 2014-05-07
-# o Added egsub(), which is gsub() for expression.
-# o Created.
-##############################################################################

@@ -41,13 +41,3 @@ setMethodS3("isPackageLoaded", "default", function(package, version=NULL, ...) {
   pattern <- sprintf("package:%s", package);
  (pattern %in% s);
 })
-
-
-############################################################################
-# HISTORY:
-# 2013-01-11
-# o BUG FIX: Specifying argument 'version' to isPackageLoaded() would give
-#   "Error: 'manglePackageName' is defunct." in recent versions of R.
-# 2008-02-21
-# o Created.  Inspired by internal code in affxparser::findFiles().
-############################################################################

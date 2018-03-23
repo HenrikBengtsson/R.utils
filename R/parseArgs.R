@@ -56,10 +56,3 @@
   # Return parsed arguments
   list(args=argsT, namedArgs=argsN, unnamedArgs=args);
 } # .parseArgs()
-
-############################################################################
-# HISTORY:
-# 2013-03-20
-# o Added .parseArgs() used by cmdArg() and eget().
-# o Created.
-############################################################################

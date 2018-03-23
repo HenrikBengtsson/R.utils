@@ -84,18 +84,3 @@ setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollap
 
   x;
 }) # hpaste()
-
-
-##############################################################################
-# HISTORY:
-# 2011-04-03
-# o Dropped argument 'quote'; can easily be done using hpaste("'", x, "'").
-# o Now hpaste(..., sep=" ", maxHead=Inf) corresponds to
-#   paste(..., sep=" ", collapse=", ").
-# o Added argument sep="" to hpaste().
-# 2011-04-02
-# o Now hpaste() uses arguments 'maxHead' and 'maxTail' instead of 'maxCount'.
-# 2011-03-30
-# o Added hpaste() for human-readable pasting of elements in a vector.
-# o Created.
-##############################################################################

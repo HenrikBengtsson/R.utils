@@ -162,26 +162,3 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
 
   x2;
 })
-
-
-############################################################################
-# HISTORY:
-# 2012-09-21
-# o Now insert() silently expands 'values' to be of the same length
-#   as 'ats', iff length(values) == 1.
-# 2008-12-27
-# o Added argument 'useNames' to insert(), which is now aware of names
-#   of the input object.
-# 2008-03-31
-# o BUG FIX: If 'x' in insert(x, ...) was zero length, an "Error in from:to
-#   : NA/NaN argument" was thrown.
-# 2008-02-21
-# o BUG FIX: When 'values' was a non-list its values were placed in a
-#   single-element list.  Should have been as.list().
-# 2005-06-12
-# o Updated a lot! Wrote a rather large example.
-# 2005-02-20
-# o Now using setMethodS3() and added '...' to please R CMD check.
-# 2001-11-24
-# o Created.
-############################################################################

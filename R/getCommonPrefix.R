@@ -38,12 +38,3 @@ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
 
   prefix;
 } # getCommonPrefix()
-
-##############################################################################
-# HISTORY:
-# 2010-07-05
-# o Now getCommonPrefix() allocates a character matrix with NAs, and no
-#   longer a logical NA matrix.
-# 2006-12-15
-# o Created (since stringTree() is broken and this is good enough).
-##############################################################################

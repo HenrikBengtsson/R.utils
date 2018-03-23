@@ -161,24 +161,3 @@ setMethodS3("patchCode", "default", function(paths=NULL, recursive=TRUE, suppres
   # Return nothing.
   invisible(count);
 }) # patchCode()
-
-
-###########################################################################
-# HISTORY:
-# 2014-01-06
-# o CLEANUP: Now patchCode() uses isDirectory() instead of file.info().
-# 2005-02-20
-# o Added '...' to please R CMD check.
-# 2005-01-22
-# o Moved into R.basic. Added Rdoc comments. Now looking for system
-#   environment variable R_PATCHES as the default patch path.
-# 2004-07-12
-# o Added argument 'verbose'.
-# 2004-05-22
-# o Recreated from memory after HDD crash. Instead of using library() to
-#   get all installed packages it is faster to list all files in the
-#   .libPaths(). This is good enough for this "patch all" script.
-# o Argh. HDD crash on my laptop. Totally dead! Impossible to restore
-#   anything. I think I can recover most stuff from backups, but not
-#   everything.
-###########################################################################

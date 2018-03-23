@@ -127,25 +127,3 @@ setMethodS3("cleanup", "FileProgressBar", function(object, ...) {
 
   invisible(isFile(this$pathname));
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2012-03-06
-# o CRAN POLICY: Renamed remove() for FileProgressBar to cleanup(),
-#   because otherwise it would be inevitable to create an internal
-#   copy of base::remove() which contains an .Internal() call.
-#   This move may break existing code that calls remove() on an
-#   FileProgressBar object.
-# 2005-09-06
-# o Added remove() method to remove progress files.
-# 2005-03-01
-# o Update constructor for new argument 'newlineWhenDone' in superclass.
-# 2004-10-21
-# o Added Rdoc comments.
-# 2003-07-10
-# o Created. After adding update() to superclass ProgressBar this class
-#   does not have to do much.
-############################################################################
-

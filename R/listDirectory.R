@@ -106,17 +106,3 @@ setMethodS3("listDirectory", "default", function(path=".", pattern=NULL, recursi
 
   files;
 })
-
-###########################################################################
-# HISTORY:
-# 2013-09-28
-# o Now argument 'recursive' of listDirectory() can also specify
-#   the maximum recursive depth.
-# 2005-10-28
-# o Added inifite recursive call detection to listDirectory().
-# 2005-08-02
-# o TODO: Now all listings are done using relative pathnames.
-# 2005-05-29
-# o Renamed from listDir() to listDirectory().
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

@@ -13,10 +13,3 @@ mergeByCommonTails <- function(strs, collapse="", ...) {
   str <- paste(prefix, body, suffix, sep="");
   str;
 } # mergeByCommonTails()
-
-
-##############################################################################
-# HISTORY:
-# 2006-12-15
-# o Created (since stringTree() is broken and this is good enough).
-##############################################################################

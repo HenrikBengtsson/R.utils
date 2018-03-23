@@ -46,10 +46,3 @@ setMethodS3("onGarbageCollect", "default", function(fcn, action=c("prepend", "ap
   reg.finalizer(dummyEnv, fcn, onexit=FALSE);
   invisible();
 })
-
-
-############################################################################
-# HISTORY:
-# 2010-02-16
-# o Created.
-############################################################################

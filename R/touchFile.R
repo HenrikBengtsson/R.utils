@@ -104,19 +104,3 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
 
   invisible(oldTimestamp);
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized touchFile().
-# 2013-07-03
-# o Now touchFile() utilizes base::Sys.setFileTime(), iff available.
-# 2008-02-27
-# o NOTE: From r-devel thread 'Unix-like touch to update modification
-#   timestamp of file?' on 2008-02-26, we learn that on Windows one can do
-#   shell("copy /B /V file.foo +,, >nul"), on Windows with Rtools installed
-#   system("touch file.foo"), which should also work on most Unix systems.
-# 2008-02-26
-# o Created.
-############################################################################

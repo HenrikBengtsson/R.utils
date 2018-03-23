@@ -40,9 +40,3 @@ setMethodS3("lastModified", "default", function(pathname, ...) {
   info <- file.info2(pathname);
   info$mtime;
 })
-
-###########################################################################
-# HISTORY:
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

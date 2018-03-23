@@ -223,36 +223,3 @@ setMethodS3("findFiles", "default", function(pattern=NULL, paths=NULL, recursive
 
   pathnames;
 }) # findFiles()
-
-
-############################################################################
-# HISTORY:
-# 2015-02-04 [HB]
-# o Now argument 'recursive' of findFiles() can also specify
-#   the maximum recursive depth, cf. listDirectory().
-# 2012-04-16 [HB]
-# o Turned findFiles() into a "default" method.
-# o Now code assumes availability of needed R.utils methods.
-# o Copied from affxparser package to R.utils.
-# 2008-02-20 [KH]
-# o Replaced require("R.utils") with a "isLoaded()" feature.
-# 2008-02-14
-# o Added argument 'allFiles=TRUE' to findFiles().
-# 2007-09-17
-# o ROBUSTNESS: Now findFiles() are robust against broken Unix links.
-# 2007-08-30
-# o BUG FIX: Pattern matching was done on expanded filenames, whereas they
-#   should really be done on the non-expanded ones.  This, only applies to
-#   Windows shortcuts, but it is not the destination file that is of
-#   interest, but the name of the shortcut file.
-# o BUG FIX: The recent update was not grep():ing correctly; forgot to
-#   extract the basename().
-# 2007-08-27
-# o Now findFiles(..., recursive=TRUE) does a breath-first search in
-#   lexicographic order.
-# o Now findFiles() don't search replicated directories.
-# 2006-11-01
-# o Removed usage of R.utils for now.
-# 2006-03-14
-# o Created from findCdf.R.
-############################################################################

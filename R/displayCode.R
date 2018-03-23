@@ -199,30 +199,3 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
 
   invisible(code);
 })
-
-
-############################################################################
-# HISTORY:
-# 2015-01-12
-# o displayCode() would generate warnings.
-# 2013-02-14
-# o BUG FIX: displayCode(code) would GString process 'code'.
-# 2005-10-21
-# o Rename all 'mustExists' arguments to 'mustExist' in calls to Arguments.
-# 2005-09-23
-# o BUG FIX: Argument 'pager' did not support functions.
-# 2005-09-06
-# o BUG FIX: Code was interpreted as GStrings.
-# 2005-08-02
-# o Added argument 'pager'.
-# 2005-08-01
-# o Now file.show() is used to display code.
-# o Added argument 'code'.
-# o Simplified code a little bit.
-# o Additional argument validation.
-# 2005-06-26
-# o Renamed from display File() to displayCode().
-# 2005-06-17
-# o Added Rdoc help and example.
-# o Created.
-############################################################################

@@ -26,10 +26,3 @@ splitByCommonTails <- function(strs, ...) {
 
   strs;
 } # splitByCommonTails()
-
-
-##############################################################################
-# HISTORY:
-# 2006-12-15
-# o Created (since stringTree() is broken and this is good enough).
-##############################################################################

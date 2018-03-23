@@ -102,10 +102,3 @@ setMethodS3("renameFile", "default", function(pathname, newPathname, overwrite=F
 
   TRUE;
 }) # renameFile()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Created from copyFile.R.
-############################################################################

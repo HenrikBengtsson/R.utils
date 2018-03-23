@@ -61,12 +61,3 @@ setMethodS3("readTableIndex", "default", function(..., indexColumn=1, colClass="
 
   unname(index[[1]]);
 })
-
-
-############################################################################
-# HISTORY:
-# 2005-11-10
-# o BUG FIX: Method was declared static.
-# 2005-11-01
-# o Created.
-############################################################################

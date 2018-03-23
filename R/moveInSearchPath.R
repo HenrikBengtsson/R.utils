@@ -123,28 +123,3 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   # Return the name of the environment moved.
   invisible(attr(env, "name"));
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-04-06
-# o WORKAROUND: moveInSearchPath() redirects any messages that
-#   base::attach() sends to stdout to stderr.
-# 2012-12-18
-# o R CMD check for R devel no longer gives a NOTE about attach().
-# 2012-09-12
-# o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
-#   .Internal(detach(...)) but instead .detachPlain() which in turn
-#   calls base::detach() in such a way that neither detach hook nor
-#   .Last.lib() are called.
-# 2007-09-17
-# o BUG FIX: moveInSearchPath() would make the package environment loose
-#   the 'path' attribute, which is for instance needed by
-#   packageDescription().  Now moveInSearchPath() makes sure to set all
-#   attributes on a moved package environment to what it used to be.
-#   BTW, is this a bug in base::attach()?  Reported to r-devel 2007-09-17.
-# 2007-03-24
-# o Moved to R.utils from aroma.affymetrix.
-# 2007-03-06
-# o Created.
-############################################################################

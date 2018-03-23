@@ -40,12 +40,3 @@
 setMethodS3("resample", "default", function(x, ...) {
   x[sample.int(length(x), ...)];
 })
-
-
-###########################################################################
-# HISTORY:
-# 2010-11-03
-# o Created from example("sample") in R v2.12.0.  See R-devel thread
-#   'Using sample() to sample one value from a single value?' by
-#   Henrik Bengtsson on 2010-11-03.
-###########################################################################

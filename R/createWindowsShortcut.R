@@ -159,20 +159,3 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # Return the LNK file
   invisible(pathname);
 }) # createWindowsShortcut()
-
-
-
-#############################################################################
-# HISTORY:
-# 2014-02-28
-# o DOCUMENTATION: Added an Rd section on privileges required on Windows
-#   for createLink() to work.
-# 2013-10-13
-# o CLEANUP: createWindowsShortcut() no longer attaches 'R.utils'.
-# 2012-10-29
-# o ROBUSTNESS: Now createWindowsShortcut() uses an improved validation
-#   strategy of the created *.lnk file.
-# 2009-10-01
-# o Microsoft has released a document [7] describing the LNK file format.
-# o Created.
-#############################################################################

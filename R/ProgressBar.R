@@ -454,27 +454,3 @@ setMethodS3("update", "ProgressBar", function(object, visual=TRUE, ...) {
       cat("\n");
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2005-06-16
-# o Now setProgress() also updates the bar visually.
-# 2005-03-01
-# o Added argument 'newlineWhenDone==TRUE'.
-# o Added setProgress().
-# 2004-10-22
-# o Made update() protected.
-# o Added Rdoc comments to all metods.
-# 2004-07-10
-# o Now allow carry overs if explicitly accepted.
-# o Renamed from CountProgressBar to ProgressBar.
-# 2003-07-07
-# o Removed an obsolete usage of new() in Rdoc example.
-# 2002-11-28
-# o Added setMaxValue() and setTicks().
-# 2002-05-30
-# o Created.
-############################################################################
-

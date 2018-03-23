@@ -103,18 +103,3 @@ setMethodS3("countLines", "default", function(file, chunkSize=50e6, ...) {
 
   nbrOfLines;
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-10-03
-# o Now countLines() automatically supports gzipped files as well.
-#   Thanks to Sarah Nelson at Dept of Biostatistics of University of
-#   Washington for the suggestion.
-# 2014-08-25
-# o BUG FIX: countLines() would not work for newlines of type '\r'.
-# o BUG FIX: countLines() would not count the last line if it did not
-#   contain a newline, despite it was documented to do so.
-# 2008-07-23
-# o Created.
-############################################################################

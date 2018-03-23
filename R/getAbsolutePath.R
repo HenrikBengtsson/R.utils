@@ -132,37 +132,3 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
 
   pathname;
 })
-
-
-###########################################################################
-# HISTORY:
-# 2014-09-16
-# o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
-# 2014-04-06
-# o Vectorized getAbsolutePath().
-# o Preparing to vectorize getAbsolutePath() by introducing option to
-#   generate a warning or an error if a zero-length path is given.  This
-#   way we can detect packages making this error, without breaking them.
-# 2013-07-27
-# o Now getAbsolutePath() shortens paths if possible, e.g. "C:/foo/.."
-#   becomes "C:/".
-# 2013-02-21
-# o For conveniency, getAbsolutePath() and getRelativePath() returns
-#   the same pathname if it is a URL.
-# 2010-06-23
-# o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
-#   the initial double-slashes ('//') and return "/server/dir/".
-# 2009-12-30
-# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
-#   returns a (character) NA if the input is NA.
-# 2007-04-03
-# o BUG FIX: getAbsolutePath("C:/foo/", expandTilde=TRUE) would return
-#   "C://foo" and not "C:/foo".
-# 2005-12-05
-# o Added argument 'expandTilde'.  This is needed to get a valid output
-#   path for a graphics device!
-# 2005-06-16
-# o Now getAbsolutePath() removes ".." too.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

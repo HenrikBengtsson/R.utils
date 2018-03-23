@@ -87,15 +87,3 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
   args <- c(args, alwaysArgs);
   do.call(.fcn, args=args, envir=envir);
 }) # doCall()
-
-############################################################################
-# HISTORY:
-# 2014-01-27
-# o ROBUSTNESS: Now argument '.fcn' can also contain functions in
-#   addition to names of functions.
-# o doCall() gained argument 'envir', which also means that the new
-#   behavior is to evaluate the call within the calling frame.  It now
-#   also accepts call a function object in addition to a name of a function.
-# 2004-12-28
-# o Created.
-############################################################################

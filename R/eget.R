@@ -121,18 +121,3 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="d
 ecget <- function(..., envir=parent.frame()) {
   eget(..., envir=envir, cmdArg=TRUE);
 } # ecget()
-
-
-############################################################################
-# HISTORY:
-# 2015-01-31
-# o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
-#   (was "any"), where "default" corresponds to the mode of argument
-#   'default', unless it's NULL when mode="any" is used.
-# 2014-01-27
-# o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
-#   'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)
-#   would not.
-# 2013-03-20
-# o Created.
-############################################################################

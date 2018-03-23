@@ -76,19 +76,3 @@ setMethodS3("seqToHumanReadable", "default", function(idx, tau=2L, delimiter="-"
 
   paste(s, collapse=collapse)
 })
-
-###########################################################################
-# HISTORY:
-# 2010-02-22
-# o Added Rdoc "see also" references.
-# 2005-11-14
-# o BUG FIX: Sequences of length one was given as intervals, e.g. 10-10.
-# 2005-02-20
-# o Added '...' to please R CMD check.
-# 2004-10-21
-# o Added Rdoc comments.
-# 2004-07-24
-# o BUG FIX: If length(idx) == 0, an error occured.
-# 2004-07-12
-# o Created.
-###########################################################################

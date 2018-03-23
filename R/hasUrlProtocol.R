@@ -27,10 +27,3 @@ setMethodS3("hasUrlProtocol", "default", function(pathname, ...) {
   pattern <- "^([abcdefghijklmnopqrstuvwxyz]+)(://.*)";
   (regexpr(pattern, pathname) != -1);
 })
-
-
-###########################################################################
-# HISTORY: 
-# 2005-07-21
-# o Created.
-###########################################################################

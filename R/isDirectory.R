@@ -125,29 +125,3 @@ setMethodS3("isDirectory", "default", function(pathname, ...) {
     FALSE;
   }
 }) # isDirectory()
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized isDirectory().
-# o Preparing to vectorize isDirectory() by introducing option to generate
-#   a warning or an error if a zero-length path is given.  This way we can
-#   detect packages making this error, without breaking them.
-# 2013-05-13
-# o The workaround for isDirectory("C:/") is only needed for R (< 3.0.2).
-# 2011-09-19
-# o WORKAROUND: isDirectory("C:/") would not return TRUE due to a
-#   bug in file.info("C:/") causing it to return NAs.
-# 2009-12-30
-# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.
-#   Before it gave an unexpected error.
-# 2005-10-28
-# o BUG FIX: isDirectory() on a file would result in an infinite recursive
-#   loop to itself.
-# 2005-08-01
-# o Made the code a little bit more failsafe to missing file rights;
-#   if the path is the current working directory, then it must exists and
-#   therefore TRUE is returned.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

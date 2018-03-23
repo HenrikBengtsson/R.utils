@@ -220,18 +220,3 @@ setMethodS3("check", "Assert", function(static, condition, message=NULL, ...) {
   }
   invisible(TRUE);
 }, static=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2005-05-31
-# o Added Rdoc comments.
-# 2004-02-12
-# o Made the dimension arguments for isVector() and isMatrix() optional.
-# 2003-12-10
-# o Added inherits().
-# 2003-12-08
-# o Added check().
-# 2003-12-07
-# o Created.
-############################################################################

@@ -524,39 +524,3 @@ setMethodS3("asLong", "Java", function(static, x, ...) {
   x <- (x-LONG.MIN) %% LONG.RANGE + LONG.MIN;
   as.integer(x);
 }, static=TRUE)
-
-
-
-
-
-
-############################################################################
-# HISTORY:
-# 2015-01-13
-# o ROBUSTNESS: Now readUTF() returns an empty vector if stream is empty.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2005-02-10
-# o Wrote remaining Rdoc comments for the asNNN() methods.
-# 2003-04-16
-# o Updated the Rdoc's to make use of the new Rdoc comments.
-# 2003-01-16
-# o Added static constants for minimum and maximum values of some of the
-#   Java data types, e.g. LONG.MIN and SHORT.MAX.
-# o Added executable example code for the Java class. This was mainly
-#   to have a some test code that would make sure that bugs are not
-#   introduced with new version.
-# o BUG FIX: readShort() of the Java class did not return integers (as it
-#   could), i.e. is.integer() would return FALSE. Also, readShort()
-#   returned 32768 when it read -32768. readInt() did inherit an analogue
-#   problem for the smallest possible integer.
-# o BUG FIX: Java$writeUTF() and Java$readUTF() was broken because I forgot
-#   to update the code to call the write/read methods as static methods as
-#   introduced 2002-10-23 (see below).
-# 2002-10-23
-# o Place all methods in a static class.
-# 2002-09-03
-# o Cleaned up the code and wrote up the Rdoc comments.
-# 2002-08-26
-# o Created.
-############################################################################

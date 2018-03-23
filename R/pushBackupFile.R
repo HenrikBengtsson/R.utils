@@ -122,10 +122,3 @@ setMethodS3("pushBackupFile", "default", function(filename, path=NULL, suffix=".
 
   pathnameB;
 }) # pushBackupFile()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Created from pushTemporaryFile.R.
-############################################################################

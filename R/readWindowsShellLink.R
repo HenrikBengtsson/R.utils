@@ -941,12 +941,3 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
   lnk;
 }) # readWindowsShellLink()
-
-
-#############################################################################
-# HISTORY:
-# 2012-10-29
-# o Updated Rdoc help.
-# 2012-10-28
-# o Created.
-#############################################################################

@@ -106,12 +106,3 @@ setMethodS3("popTemporaryFile", "default", function(filename, path=NULL, suffix=
 
   pathname;
 }) # popTemporaryFile()
-
-
-
-############################################################################
-# HISTORY:
-# 2011-02-28
-# o Added popTemporaryFile().
-# o Created.
-############################################################################

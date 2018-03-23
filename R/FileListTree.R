@@ -76,11 +76,3 @@ setMethodS3("cat", "FileListTree", function(x, collapse="\n", ...) {
   cat(s, collapse=collapse);
   invisible(s);
 }, private=TRUE)
-
-
-
-############################################################################
-# HISTORY:
-# 2007-08-27
-# o Created for the purpose of listing directories in a nice way.
-############################################################################

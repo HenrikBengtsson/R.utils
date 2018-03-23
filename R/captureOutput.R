@@ -103,16 +103,3 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
 
   res;
 } # captureOutput()
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-08
-# o captureOutput(..., collapse="\n") no longer appends newline at the end.
-# 2014-05-01
-# o Immitates arguments of capture.output() plus 'collapse'.
-# o Renamed to captureOutput().
-# 2014-02-03
-# o Added .captureViaRaw().
-# o Created.
-##############################################################################

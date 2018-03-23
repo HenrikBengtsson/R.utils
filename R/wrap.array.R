@@ -152,14 +152,3 @@ setMethodS3("wrap", "matrix", function(x, ...) {
 setMethodS3("wrap", "data.frame", function(x, ...) {
   wrap(as.matrix(x), ...);
 })
-
-
-############################################################################
-# HISTORY:
-# 2005-11-23
-# o Added default argument 'map=list(NA)'.
-# 2005-11-14
-# o BUG FIX: Missing object 'ndim'; should be 'ndims'.
-# 2005-11-12
-# o Created.
-############################################################################  

@@ -90,21 +90,3 @@ setMethodS3("attachLocally", "environment", function(object, fields=NULL, exclud
 setMethodS3("attachLocally", "data.frame", function(..., envir=parent.frame()) {
   attachLocally.list(..., envir=envir)
 })
-
-
-############################################################################
-# HISTORY:
-# 2015-01-12
-# o BUG FIX: attachLocally() on an environment would remove the attached
-#   fields/variables from that environment.
-# 2014-01-26
-# o BUG FIX: Now attachLocally() no longer tries to attach elements with
-#   an empty name, e.g. list(a=1, 2).
-# 2011-09-19
-# o Now attachLocally() returns a character vector also of length zero.
-#   Before NULL was returned.
-# 2005-06-14
-# o Added Rdoc comments.
-# o Added argument 'excludeFields'. Method now also returns attached fields.
-# o Created from attachLocally.Object().
-############################################################################

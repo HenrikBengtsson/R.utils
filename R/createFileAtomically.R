@@ -123,14 +123,3 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
 
   invisible(pathname);
 }) # createFileAtomically()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Added argument 'backup'.
-# o Now createFileAtomically() utilizes push- and popBackupFile().
-# 2011-02-28
-# o Added createFileAtomically().
-# o Created.
-############################################################################

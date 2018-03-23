@@ -56,10 +56,3 @@ setMethodS3("toAsciiRegExprPattern", "character", function(pattern, ...) {
   pattern <- paste(bfr2, collapse="");
   pattern;
 })
-
-
-############################################################################
-# HISTORY:
-# 2008-06-12
-# o Created.
-############################################################################

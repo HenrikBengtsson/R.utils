@@ -86,10 +86,3 @@ withLocale <- function(expr, category, locale, ..., substitute=TRUE, envir=paren
 
   eval(expr, envir=envir)
 } # withLocale()
-
-
-############################################################################
-# HISTORY:
-# 2014-08-24
-# o Created.
-############################################################################

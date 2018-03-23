@@ -179,24 +179,3 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
 
   invisible(res);
 }) # writeDataFrame()
-
-
-#############################################################################
-# HISTORY:
-# 2014-09-18
-# o New default for writeDataFrame() - argument 'col.names=!append'.
-#   Also, if append=TRUE, header comments are only written if specified.
-# 2012-11-04
-# o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
-#   would contain "integer" for "factor":s.  Now using class(x)[1] instead
-#   of storage.mode(x) to infer column classes.
-# o BUG FIX: Despite documented header fields 'createdBy' and 'createdOn'
-#   to be ignored if NULL, they did set the corresponding' element in
-#   'header' argument to NULL if they were NULL.
-# 2011-09-12
-# o Added support for writing to a connection.
-# o Added Rdoc comments.
-# o Added writeDataFrame().  Is really true that I haven't created this
-#   method earlier/somewhere else?
-# o Created.
-#############################################################################

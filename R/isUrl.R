@@ -28,12 +28,3 @@ setMethodS3("isUrl", "default", function(pathname, ...) {
   res[is.na(res)] <- FALSE
   res
 })
-
-
-###########################################################################
-# HISTORY:
-# 2015-02-06
-# o Now isUrl(NA) returns FALSE (instead of NA).
-# 2005-07-21
-# o Created.
-###########################################################################

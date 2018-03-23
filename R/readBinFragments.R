@@ -196,22 +196,3 @@ setMethodS3("readBinFragments", "default", function(con, what, idxs=1, origin=c(
 
   res;
 }) # readBinFragments()
-
-
-############################################################################
-# HISTORY:
-# 2010-11-07
-# o ROBUSTNESS: Asserts that argument 'idxs' contains non-negative indices.
-# o Added support to readBinFragments() to start reading from either the
-#   current file position (default; as previously) or from the start of
-#   the connection.  For backward compatibility, we keep the default to
-#   be relative to the current position, but this may change in the future.
-# 2008-07-01
-# o SPEED UP: Made readBinFragments() by having it read data in chunks and
-#   ignoring non-requested elements.
-# 2008-06-16
-# o Now argument 'idxs' can also be an matrix of index intervals.
-# o Added Rdoc comments.
-# 2007-08-22
-# o Created.
-############################################################################

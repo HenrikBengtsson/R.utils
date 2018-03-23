@@ -139,11 +139,3 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
 
   pathname;
 }) # popTemporaryFile()
-
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Created from popTemporaryFile.R.
-############################################################################

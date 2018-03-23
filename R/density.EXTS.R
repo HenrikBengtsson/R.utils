@@ -155,16 +155,3 @@ setMethodS3("draw", "density", function(object, side=1, height=0.2, offset=0, sc
 
   invisible(d);
 }) # draw()
-
-
-###########################################################################
-# HISTORY:
-# 2014-04-26
-# o Added argument 'xtrim' to draw() for density object.
-# 2012-02-23
-# o Added Rdoc comments.
-# o Moved to R.utils from aroma.core.
-# 2010-09-12
-# o Added swapXY() and draw() for objects of class 'density'.
-# o Created.
-###########################################################################

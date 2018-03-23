@@ -60,14 +60,3 @@ tempvar <- function(prefix="var", value, envir=parent.frame(), inherits=FALSE) {
   # Failed to find a unique temporary variable name
   throw(sprintf("Failed to generate a unique non-existing temporary variable with prefix '%s'", prefix));
 } # tempvar()
-
-
-##############################################################################
-# HISTORY:
-# 2013-07-27
-# o Added default value for argument 'prefix' so that tempvar() works
-#   out of the box.
-# 2013-07-18
-# o Added tempvar(). One day it will end up in R.utils.
-# o Created.
-##############################################################################

@@ -355,19 +355,3 @@ setMethodS3("convertComment", "SmartComments", abstract=TRUE, protected=TRUE);
 setMethodS3("validate", "SmartComments", function(this, lines, ...) {
   lines;
 }, protected=TRUE)
-
-
-
-############################################################################
-# HISTORY: 
-# 2005-09-04
-# o BUG FIX: Smart comments preceeded by TABs would not be recognized.
-# 2005-06-26
-# o Made class and methods non-static, but they can still be used by the
-#   static class instance, which then works as a default object.
-# 2005-06-23
-# o Added reset().
-# o Added Rdoc comments.
-# 2005-06-22
-# o Created.
-############################################################################

@@ -380,18 +380,3 @@ setMethodS3("flush", "TextStatusBar", function(con, ...) {
 
   flush.console();
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2007-08-15
-# o Added flush() to TextStatusBar.
-# 2006-10-04
-# o Added popMessage() to TextStatusBar.
-# 2006-04-21
-# o Added setLabels() and updateLabels().
-# 2006-04-06
-# o Created.
-############################################################################

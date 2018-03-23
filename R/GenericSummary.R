@@ -41,20 +41,3 @@ setMethodS3("[", "GenericSummary", function(x, i, ...) {
 #
 #    toString(this);
 # })
-
-
-############################################################################
-# HISTORY:
-# 2014-01-12
-# o Added [() for GenericSummary.
-# 2013-11-16
-# o Added c() for GenericSummary.
-# 2009-12-30
-# o Moved from aroma.core to R.utils.
-# 2007-01-13
-# o Added indentation support GenericSummary.
-# 2006-11-22
-# o Added GenericSummary.
-# 2006-08-11
-# o Created.
-############################################################################

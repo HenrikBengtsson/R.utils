@@ -153,23 +153,3 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
 
   TRUE
 })
-
-###########################################################################
-# HISTORY:
-# 2015-12-08
-# o Added arguments 'mustWork' and 'maxTries'.
-# 2014-09-01
-# o BUG FIX: mkdirs() could return "object 'res' not found" error.
-# 2012-10-19
-# o mkdirs(path) could generate a warning if the path was created
-#   by another process as a race condition.  Now it always checks to
-#   see if the directory already exists just before trying to create
-#   the directory.
-# 2005-08-01
-# o mkdirs() tries to create directory with relative path if absolute
-#   path fails. This sometimes works when the file permission are missing.
-# 2005-07-19
-# o Added internal check for valid parent directory.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

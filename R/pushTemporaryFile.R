@@ -101,11 +101,3 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
 
   pathnameT;
 }) # pushTemporaryFile()
-
-
-############################################################################
-# HISTORY:
-# 2011-02-28
-# o Added pushTemporaryFile().
-# o Created.
-############################################################################

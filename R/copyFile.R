@@ -187,19 +187,3 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=FALS
 
   TRUE;
 }) # copyFile()
-
-
-############################################################################
-# HISTORY:
-# 2014-01-06
-# o For backward compatibilities, argument 'skip' of fileCopy() defaults
-#   to FALSE, but may be changed to skip=!overwrite in a future version.
-# o Added argument 'validate' to fileCopy().
-# o Added argument 'skip' to fileCopy() and added more documentation.
-# o fileCopy() now passes arguments '...' to base::file.copy().  Thanks
-#   Taku Tokuyasu (UCSF) for reporting on this.
-# 2007-11-26
-# o Renamed from fileCopy() to be consistent with copyDirectory().
-# 2007-09-15
-# o Created.
-############################################################################

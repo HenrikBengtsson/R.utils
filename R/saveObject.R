@@ -103,18 +103,3 @@ setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, form
 
   invisible(file)
 }) # saveObject()
-
-
-
-##############################################################################
-# HISTORY:
-# 2009-10-30
-# o ROBUSTIFICATION: Added argument 'safe=TRUE' to saveObject().
-# 2007-06-09
-# o Replaced digest() with digest::digest().
-# 2007-04-03
-# o Moved to R.utils from aroma.affymetrix.
-# 2006-11-24
-# o Created from Object.R in the R.oo package. This will probably be moved
-#   to either R.oo or R.utils later.
-##############################################################################

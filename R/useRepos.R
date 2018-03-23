@@ -277,14 +277,3 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
   # Return
   repos
 } # parseRepos()
-
-
-############################################################################
-# HISTORY:
-# 2014-08-24
-# o ROBUSTNESS: Now parseRepos(..., fallback=TRUE) uses a set of fallback
-#   CRAN repository in case '@CRAN@' is not set.  If done, it will give
-#   an informative warning message.
-# 2014-05-01
-# o Created.
-############################################################################

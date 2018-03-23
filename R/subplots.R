@@ -83,11 +83,3 @@ setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
   layout(layout, ...);
   invisible(layout);
 })
-
-
-############################################################################
-# HISTORY:
-# 2008-12-17
-# o Created by extracting it from subplots() of the Device class in the
-#   obsolete R.graphics package.
-############################################################################

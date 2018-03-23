@@ -86,19 +86,3 @@ setMethodS3("loadObject", "default", function(file, path=NULL, format=c("auto", 
 
   res
 }) # loadObject()
-
-
-
-##############################################################################
-# HISTORY:
-# 2010-11-21
-# o ROBUSTNESS: Now loadObject() asserts that the file exists.  If file
-#   doesn't exist, an informative error message is thrown.
-# 2007-06-09
-# o Added explicit "declaration" of 'saveLoadReference'.
-# 2007-04-03
-# o Moved to R.utils from aroma.affymetrix.
-# 2006-11-24
-# o Created from Object.R in the R.oo package. This will probably be moved
-#   to either R.oo or R.utils later.
-##############################################################################

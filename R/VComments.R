@@ -298,21 +298,3 @@ setMethodS3("validate", "VComments", function(this, lines, ...) {
 
   lines;
 }, protected=TRUE)
-
-
-############################################################################
-# HISTORY: 
-# 2011-02-01
-# o ROBUSTNESS: Now using argument 'fixed' (not 'fix') in regexpr() calls.
-# 2005-07-07
-# o Added output of warnings.
-# 2005-06-26
-# o Made class and methods non-static, but they can still be used by the
-#   static class instance, which then works as a default object.
-# 2005-06-23
-# o Added reset().
-# o Now it is possible to rename the 'verbose' object.
-# o Added Rdoc comments.
-# 2005-06-22
-# o Created.
-############################################################################

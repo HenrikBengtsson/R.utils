@@ -38,10 +38,3 @@ setMethodS3("setOption", "default", function(x, value, ...) {
 
   invisible(ovalue);
 }) # setOption()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-10
-# o Added setOption().  It should really be in the 'base' package.
-############################################################################

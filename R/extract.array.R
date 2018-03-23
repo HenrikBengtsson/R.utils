@@ -109,17 +109,3 @@ setMethodS3("extract", "default", function(x, ...) {
     throw("Do not know how to unwrap object: ", class(x)[1L]);
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2013-06-17
-# o Now argument 'dims' of extract() can also be dimension names.
-# o Now using integer constants.
-# 2011-11-01
-# o Added argument 'dims' to extract() for arrays.
-# o Moved argument 'drop' to the end/.
-# 2005-11-23
-# o Created.
-############################################################################

@@ -113,18 +113,3 @@ setMethodS3("writeRaw", "MultiVerbose", function(this, ...) {
   lapply(this, FUN=writeRaw, ...);
   invisible(TRUE);
 })
-
-
-
-
-############################################################################
-# HISTORY: 
-# 2012-11-29
-# o CLEANUP: Dropped lapply() for MultiVerbose.
-# o Added as.list() to MultiVerbose.
-# 2007-11-26
-# o BUG FIX: writeRaw() of MultiVerbose returned a list of logicals.  Now
-#   it returns TRUE.
-# 2007-04-26
-# o Created.
-############################################################################

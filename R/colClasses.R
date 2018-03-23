@@ -122,14 +122,3 @@ setMethodS3("colClasses", "default", function(fmt, ...) {
 
   colClasses;
 })
-
-
-############################################################################
-# HISTORY:
-# 2008-02-22
-# o BUG FIX: Repeats >= 10 gave an error.  Forgot to coerce to integers.
-# o Now predefined types are expanded at the very end.
-# o Added support for repeats of vectors.
-# 2008-01-25
-# o Created.
-############################################################################

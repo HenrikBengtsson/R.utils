@@ -150,24 +150,3 @@ evalWithTimeout <- local({
   body(fcn) <- expr
   fcn
 })
-
-
-############################################################################
-# HISTORY:
-# 2012-10-09 [HB on Kauai]
-# o BUG FIX: evalWithTimeout() would not reset the time limits after
-#   returning. Thanks to Gregory Ryslik at Yale University for reporting
-#   on this.
-# 2011-12-30
-# o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
-#   does not throw a timeout exception until after readline() returns.
-# 2011-12-16
-# o GENERALIZATION: evalWithTimeout() would fail to detect timeouts
-#   in non-English locales.
-# o Improved the Rd help.
-# o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.
-# 2010-12-07
-# o Added Rdoc comments with an example.
-# 2010-12-06
-# o Created.
-############################################################################

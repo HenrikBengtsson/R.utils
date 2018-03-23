@@ -121,29 +121,3 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
 
   invisible();
 }) # installPackages()
-
-
-
-###############################################################################
-# HISTORY:
-# 2013-10-13
-# o CLEANUP: installPackages() no longer attaches 'R.utils'.
-# 2013-08-27
-# o BUG FIX: The exception thrown by installPackages() for unknown
-#   filename extensions would itself generate an error.
-# o DOCUMENTATION: Rdoc comments were not recognized.
-# 2013-07-03
-# o Now installPackages() may also install from https URLs.  This was
-#   achieved but using the package isUrl() rather than a local one.
-# 2011-09-30
-# o Added installPackages(url, ..., types="auto") for auto-setting of
-#   the file type given the file extension of the URL.
-# o Created from hbLite.R script.  Moved to R.utils.  The idea is that
-#   hbLite() will install/update R.utils and then utilize this method.
-#
-# HISTORY from hbLite.R:
-# 2008-12-02
-# o BUG FIX: Some download.file() were not explicitly set to mode="wb".
-# 2008-05-22
-# o Added installPackages(), which can install packages by their URLs.
-###############################################################################

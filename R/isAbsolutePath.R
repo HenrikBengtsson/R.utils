@@ -60,18 +60,3 @@ setMethodS3("isAbsolutePath", "default", function(pathname, ...) {
 
   (components[1L] == "");
 })
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized isAbsolutePath().
-# o Preparing to vectorize isAbsolutePath() by introducing option to
-#   generate a warning or an error if a zero-length path is given.  This
-#   way we can detect packages making this error, without breaking them.
-# 2005-08-01
-# o A NULL pathname is not an absolute path.
-# 2005-06-01
-# o Now isAbsolutePath() also recognizes paths beginning with '~'.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

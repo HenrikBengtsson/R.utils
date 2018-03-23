@@ -495,29 +495,3 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
 ##    on.exit(options(orepos), add=TRUE)
 ##    verbose && str(verbose, as.list(getOption("repos")))
 ##  }
-
-
-############################################################################
-# HISTORY:
-# 2015-02-07
-# o SPECIAL CASE: R.utils::use() now attaches 'R.utils'.
-# 2014-05-01
-# o Now use() utilizes useRepos() and withRepos().  It's default is
-#   now to install on all set repositories as well as the mainstream ones.
-# o Now use("CRAN::digest", repos=c("BioCsoft", "R-Forge")) works.
-# 2014-04-29
-# o ROBUSTNESS: Now use("UnknownRepos::pkg") will detect that repository
-#   is unknown and give an informative error message on how to update
-#   option 'repos'.
-# 2014-04-15
-# o BUG FIX: use() would not install package dependencies.
-# 2013-08-31
-# o ROBUSTNESS: Now use() rethrows exceptions "visibly", iff they occur.
-# o Now use() handles newlines and TABs in package strings.
-# 2013-08-30
-# o Added .parseVersion() and .parseRepos(), which are used by use().
-# o Created use() from .usePackage().
-# 2013-08-26
-# o Added .usePackage().
-# o Created.
-############################################################################

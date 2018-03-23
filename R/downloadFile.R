@@ -254,28 +254,3 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
   pathname;
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-10-03
-# o Now downloadFile("https://...") will use 'curl', and if not available
-#   'wget', to download the file over the HTTPS protocol.  Previously
-#   only 'wget' was use.  The 'curl' software is available on more
-#   operating systems, include OS X, whereas 'wget' sometimes needs
-#   a separate installation.
-# 2014-05-04
-# o Now downloadFile() "adjusts" the output filename by decoding URL
-#   encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
-#   Also, unsafe filename characters (':', '*', '\') are encoded, e.g.
-#   'How_to:_RSP.txt' becomes 'How_to%3A_RSP.txt'.
-# 2013-10-13
-# o CLEANUP: downloadFile() no longer attaches 'R.utils'.
-# 2013-03-29
-# o BUG FIX: downloadFile('https://...') did not work if 'username' or
-#   'password' was NULL.
-# 2010-08-23
-# o Added support for https authentication via wget.
-# 2010-05-27
-# o Created.
-############################################################################

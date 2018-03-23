@@ -42,12 +42,3 @@ env <- function(..., hash=FALSE, parent=parent.frame(), size=29L) {
   evalq(..., envir=envir);
   envir;
 } # env()
-
-###########################################################################
-# HISTORY:
-# 2011-03-10
-# o Renamed to env().  Ideally it should be environment() but that is
-#   already taken by a 'base' function.
-# 2011-03-09
-# o Added newEnvEval().
-###########################################################################

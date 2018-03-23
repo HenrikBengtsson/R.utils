@@ -73,13 +73,3 @@ queryRCmdCheck <- function(...) {
 
   res;
 } # queryRCmdCheck()
-
-
-############################################################################
-# HISTORY:
-# 2012-11-06
-# o BUG FIX: queryRCmdCheck() did not detect "tests" evidences when
-#   'R CMD check' was testing multiple architectures.
-# 2011-11-03
-# o Created.
-############################################################################

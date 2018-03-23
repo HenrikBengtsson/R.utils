@@ -73,14 +73,3 @@ setMethodS3("systemR", "default", function(command="", ..., Rcommand="R", verbos
 
   system(cmd, ...);
 })
-
-
-############################################################################
-# HISTORY:
-# 2012-05-22
-# o ROBUSTNESS: Now launching R without assuming it is on the search path,
-#   cf. R-devel thread 'Best way to locate R executable from within R?'
-#   on May 22, 2012.
-# o Adopted from an affxparser system test.
-# o Created.
-############################################################################

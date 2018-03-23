@@ -172,15 +172,3 @@ setMethodS3("unwrap", "default", function(x, ...) {
     throw("Do not know how to unwrap object: ", class(x)[1]);
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2005-12-05
-# o Added unwrap() for data frames.
-# 2005-11-23
-# o Added a default unwrap() to unwrap vector too.
-# 2005-11-12
-# o Created.
-############################################################################

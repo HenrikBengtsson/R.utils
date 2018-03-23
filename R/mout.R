@@ -143,16 +143,3 @@ cprintf <- function(..., appendLF=FALSE) {
   bfr <- sprintf(...)
   cmsg(bfr, appendLF=appendLF)
 }
-
-
-
-############################################################################
-# HISTORY:
-# 2015-02-01
-# o Added ditto for "console" output.
-# 2014-08-24
-# o Note, these functions cannot be turned into S3/S4 methods because then
-#   the arguments needs to be evaluated before dispatching, which may
-#   result in output, e.g. mout(print(1:3)).
-# o Created.
-############################################################################

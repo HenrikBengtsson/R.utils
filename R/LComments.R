@@ -32,11 +32,3 @@
 setConstructorS3("LComments", function(letter="L", verboseName="log", ...) {
   extend(VComments(letter=letter, verboseName=verboseName), "LComments")
 })
-
-
-############################################################################
-# HISTORY: 
-# 2005-06-26
-# o Class exists just for conveniency.
-# o Created.
-############################################################################

@@ -124,28 +124,3 @@ setMethodS3("getParent", "default", function(pathname, depth=1L, fsep=.Platform$
 
   path;
 })
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Now getParent() handles zero length arguments.
-# 2013-02-24
-# o BUG FIX: Now getParent() also recognizes Windows drive letters in
-#   lower case, which we have at least one report from Windows 7 that
-#   getwd() can return 'c:/path/' instead of 'C:/path/'.
-# 2009-12-30
-# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
-#   returns a (character) NA if the input is NA.
-# 2009-06-07
-# o BUG FIX: getParent(..., depth=0) gave an error, instead of returning
-#   the input path.
-# 2007-03-07
-# o Now getParent(...) returns NULL if the parent directory does not
-#   exists, regardless of depth.
-# 2007-02-15
-# o Added argument 'depth' to getParent().
-# 2005-08-01
-# o Empty parent directory is now returned as NULL.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

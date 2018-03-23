@@ -75,10 +75,3 @@ shell.exec2 <- function(file) {
   shell.exec <- get("shell.exec", mode="function", envir=getNamespace("base"))
   shell.exec(file)
 } # shell.exec2()
-
-
-############################################################################
-# HISTORY:
-# 2014-10-03
-# o Created.
-############################################################################

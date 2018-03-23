@@ -83,20 +83,3 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
 
   return(invisible(!isDirectory(path)));
 }) # removeDirectory()
-
-
-###########################################################################
-# HISTORY:
-# 2014-01-07
-# o ...and also on non-Windows platforms.
-# 2014-01-06
-# o Now removeDirectory() can remove symbol links on Windows.
-# 2013-10-13
-# o CLEANUP: removeDirectory() no longer attaches 'R.utils'.
-# 2010-11-17
-# o BUG FIX: Now removeDirectory() also works for paths starting with
-#   a tilde (~).  The reason was/is that base::unlink() used internally
-#   does not support that.  We now use base::path.expand() first.
-# 2008-12-27
-# o Created.
-###########################################################################

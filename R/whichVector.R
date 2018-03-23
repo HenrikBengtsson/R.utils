@@ -82,14 +82,3 @@ setMethodS3("whichVector", "matrix", function(x, ...) {
   x <- as.vector(x);
   whichVector(x, ...);
 }, private=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2012-10-26
-# o Update help("whichVector") to mention that base::which() is favorable
-#   to whichVector() since R v2.11.0.  Removed the methods from the help
-#   index of the package.
-# 2008-07-10
-# o Created.
-############################################################################

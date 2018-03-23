@@ -89,23 +89,3 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
 
   invisible(copiedFiles);
 })
-
-
-##############################################################################
-# HISTORY:
-# 2014-09-04
-# o ROBUSTNESS: Now copyDirectory() silently drops arguments 'copy.mode' and
-#   'copy.date' for older R versions where base::file.copy() does not support
-#   them.
-# o Added internal .file.copy().
-# 2013-10-13
-# o CLEANUP: copyDirectory() no longer attaches 'R.utils'.
-# 2005-09-06
-# o Using relative paths instead of absolute; sometimes you have permission
-#   to read the relative but not the absolute pathname of the same file.
-# 2005-09-05
-# o BUG FIX: copyDirectory() would not return copied files if recursive==TRUE.
-# o Use relative pathnames now.
-# 2005-08-01
-# o Created.
-##############################################################################

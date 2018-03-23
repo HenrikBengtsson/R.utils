@@ -163,33 +163,3 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   pathname;
 })
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized getRelativePath().
-# o Preparing to vectorize getRelativePath() by introducing option to
-#   generate a warning or an error if a zero-length path is given.  This
-#   way we can detect packages making this error, without breaking them.
-# 2013-02-21
-# o For conveniency, getAbsolutePath() and getRelativePath() returns
-#   the same pathname if it is a URL.
-# 2009-12-30
-# o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
-#   returns a (character) NA if the input is NA.
-# 2007-04-03
-# o Removed the warning when a relative path could not be found because
-#   the two paths are on different file systems.
-# 2007-03-20
-# o The warning message on "cannot refer relative pathname" didn't paste
-#   the path resulting in a funny looking warning.
-# 2005-12-05
-# o Now getRelativePath() also recognizes tildes.
-# 2005-08-02
-# o Relative path "" is not returned as ".".
-# o If path is not absolute, assume it is already relative.
-# o Added argument 'caseSensitive'.
-# o BUG FIX: The comparison of Windows devices was case sensitive.
-# 2005-06-27
-# o Created.
-###########################################################################

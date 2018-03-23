@@ -51,12 +51,3 @@ isReplicated <- function(x, ...) {
 replicates <- function(x, ...) {
   x[isReplicated(x, ...)];
 }
-
-
-############################################################################
-# HISTORY:
-# 2011-04-30 [HB] 
-# o Added isReplicated(), and replicates() as well as corresponding
-#   isSingle(), and singles().
-# o Created.
-############################################################################

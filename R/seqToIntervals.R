@@ -77,18 +77,3 @@ setMethodS3("seqToIntervals", "default", function(idx, ...) {
 
   res;
 })
-
-
-###########################################################################
-# HISTORY:
-# 2010-02-22
-# o Added Rdoc "see also" references.
-# 2008-06-21
-# o Major speed up of seqToIntervals().  The previous implementation was
-#   building up the result iteratively where in each iteration a new
-#   interval was concatenated to the already found ones using c().  This
-#   was a brain-dead implementation to get something working.  The new
-#   one preallocates the result matrix, which is heaps faster.
-# 2005-11-01
-# o Created from seqToHumanReadable().
-###########################################################################

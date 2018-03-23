@@ -32,11 +32,3 @@
 setMethodS3("finalizeSession", "default", function(...) {
   callHooks("onSessionExit", removeCalledHooks=TRUE);
 }, private=TRUE)
-
-
-
-############################################################################
-# HISTORY:
-# 2005-06-10
-# o Created. Followed up with a query on r-devel for a better solution.
-############################################################################

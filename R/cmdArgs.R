@@ -201,20 +201,3 @@ cmdArg <- function(...) {
 cmdArgsCall <- function(..., args=cmdArgs(unique=FALSE), .ignoreUnusedArgs=FALSE, envir=parent.frame()) {
   doCall(..., args=args, .ignoreUnusedArgs=.ignoreUnusedArgs, envir=envir);
 } # cmdArgsCall()
-
-
-
-############################################################################
-# HISTORY:
-# 2014-01-27
-# o Added cmdArgsCall() for convenient calling of R functions from the
-#   command line, e.g. Rscript -e R.utils::cmdArgsCall(rnorm) n=4.
-# 2013-03-20
-# o Added support for cmdArg(a=42) as an alias to cmdArg("a", default=42).
-# 2013-03-14
-# o Added cmdArg().
-# o Added argument 'names' to cmdArgs().
-# 2013-02-24
-# o Created.
-############################################################################
-

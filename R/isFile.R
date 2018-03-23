@@ -78,20 +78,3 @@ setMethodS3("isFile", "default", function(pathname, ...) {
 
   return(FALSE);
 })
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized isFile().
-# o Preparing to vectorize isFile() by introducing option to generate
-#   a warning or an error if a zero-length path is given.  This way we can
-#   detect packages making this error, without breaking them.
-# 2009-12-30
-# o BUG FIX: Now isFile(NA) and isDirectory(NA) return FALSE.
-#   Before it gave an unexpected error.
-# 2005-11-29
-# o BUG FIX: Added protection against infinite loops where relative path
-#   is the same as the absolute path.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

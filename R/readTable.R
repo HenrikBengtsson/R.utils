@@ -367,37 +367,3 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # Return table
   df;
 })
-
-
-############################################################################
-# HISTORY:
-# 2013-09-10
-# o CLEANUP: readTable() no longer looks for read.table() in the 'base'
-#   package, where it was in R < 2.5.0, because package now requires
-#   R >= 2.5.0.
-# 2007-05-10
-# o BUG FIX: readTable() tried to access base::read.table() but that was
-#   moved to 'utils' as of R v2.5.0.
-# 2006-07-28
-# o Added more verbose output.
-# 2005-11-21
-# o BUG FIX: Tried to read the header with a 'sep' set to a regular
-#   expression, but only accepts single characters.
-# 2005-11-15
-# o Now using scan() instead of readLines() to parse header.  This way the
-#   header can now also be quoted.
-# 2005-11-10
-# o BUG FIX: Method was declared static.
-# o Updated Rdoc comments.
-# 2005-11-02
-# o Now row.names=<index> is supported.
-# o BUG FIX: 'skip' did not work correctly when 'header=FALSE'.
-# 2005-11-01
-# o Added a readLines() method too, because reading with intervals is only
-#   fast if the number of intervals is not too many.
-# o Added Rdoc comments. Cleaned out some non-used arguments.
-# o Added support for reading any subset of rows.
-# o Added support for regular expression matching too.
-# 2005-10-31
-# o Created.
-############################################################################

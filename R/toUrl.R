@@ -105,11 +105,3 @@ setMethodS3("toUrl", "default", function(pathname, safe=TRUE, ...) {
 
   url;
 })
-
-###########################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized toUrl().
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

@@ -77,18 +77,3 @@ setMethodS3("dimNA<-", "default", function(x, value) {
 
   invisible(x);
 }) # dimNA<-()
-
-
-
-############################################################################
-# HISTORY:
-# 2013-09-15
-# o TYPO: An error message of dimNA<-() was referring to 'files' rather
-#   than to 'elements.
-# 2009-06-08
-# o Added Rdoc comments.
-# o The generic function automatically created for dimNA<-() has arguments
-#   '...', which is not valid (anymore?) for replacement functions.
-# 2009-06-03
-# o Created.
-############################################################################

@@ -427,25 +427,3 @@ setMethodS3("promptAndSave", "Settings", function(this, saveOption="saveSettings
     invisible(FALSE);
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2013-04-18
-# o Now the verbose output of loadAnywhere() for Settings is sent
-#   to standard error (was standard output).
-# 2006-02-22
-# o saveAnywhere() now returns the pathname where the settings were saved.
-# o Rdoc: Fixed a missing link in saveAnywhere().
-# 2005-10-20
-# o Update loadAnywhere() so that it works on objects too for which the
-#   default basename is the static basename.
-# 2005-06-11
-# o Added last modified date in loading message.
-# 2005-06-01
-# o Added isModified().
-# o Added Rdoc comments.
-# 2005-05-31
-# o Created.
-############################################################################

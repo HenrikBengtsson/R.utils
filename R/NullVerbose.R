@@ -147,19 +147,3 @@ setMethodS3("isVisible", "NullVerbose", function(this, ...) {
 setMethodS3("isOn", "NullVerbose", function(this, ...) {
   FALSE;
 })
-
-
-
-############################################################################
-# HISTORY: 
-# 2005-06-11
-# o Now all output methods returns FALSE.
-# 2005-06-10
-# o Now the core of a NullVerbose object, that is the value of the reference
-#   variable, is always FALSE. This makes it  possible to use the reference
-#   variable in logical tests, which might speed up code a bit, e.g. 
-#   verbose && enter(verbose, "Loading"). It also makes it possible to set
-#   verbose to FALSE.
-# 2005-06-09
-# o Created.
-############################################################################

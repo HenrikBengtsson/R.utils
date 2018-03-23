@@ -93,10 +93,3 @@ setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRU
 
   map;
 }) # mapToIntervals()
-
-
-###########################################################################
-# HISTORY:
-# 2008-09-20
-# o Created.
-###########################################################################

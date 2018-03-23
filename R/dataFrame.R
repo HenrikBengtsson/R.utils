@@ -47,11 +47,3 @@ setMethodS3("dataFrame", "default", function(colClasses, nrow=1, ...) {
   class(df) <- "data.frame";
   df;
 }, private=TRUE)
-
-##############################################################################
-# HISTORY:
-# 2007-11-25
-# o Added Rdoc comments.
-# 2006-11-22
-# o Created.
-##############################################################################

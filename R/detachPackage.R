@@ -59,12 +59,3 @@ setMethodS3("detachPackage", "default", function(pkgname, ...) {
   names(res) <- pkgname;
   invisible(res);
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized detachPackage().
-# 2005-06-11
-# o Created.
-############################################################################

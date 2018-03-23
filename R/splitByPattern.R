@@ -62,13 +62,3 @@ setMethodS3("splitByPattern", "default",  function(str, pattern, ...) {
 
   parts;
 }) # splitByPattern()
-
-
-############################################################################
-# HISTORY: 
-# 2005-07-27
-# o BUG FIX: Used 'Argument' instead of 'Arguments'.
-# 2005-07-06
-# o Created.
-############################################################################
-

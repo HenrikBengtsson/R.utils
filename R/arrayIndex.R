@@ -47,13 +47,3 @@
 setMethodS3("arrayIndex", "default", function(i, dim, ...) {
   .Defunct(msg = "R.utils::arrayIndex() is defunct. Instead, use base::arrayInd().")
 })
-
-############################################################################
-# HISTORY:
-# 2010-07-05
-# o Now arrayIndex() returns an @integer @matrix.
-# o Added an Rd link to base::arrayInd.
-# 2006-03-07
-# o Created as an answer to R-help thread "[R] returning the largest element
-#   in an array/matrix?" on 2006-03-07.
-############################################################################

@@ -174,17 +174,3 @@ file.info2 <- function(...) {
 
   info;
 } # file.info2()
-
-
-############################################################################
-# HISTORY:
-# 2014-01-10
-# o Added argument 'what' to Sys.readlink2(), where what="corrected"
-#   makes sure to return the proper target path (not just the one
-#   relative to where the link lives).
-# 2014-01-06
-# o Added file.info2().
-# o Added Sys.readlink2().
-# o Created. See also R-devel thread 'file.info() on a file.symlink():ed
-#   file on Windows - is help correct?' on 2014-01-06.
-############################################################################

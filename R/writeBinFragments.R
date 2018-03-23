@@ -154,16 +154,3 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
 
   invisible(NULL);
 }) # writeBinFragments()
-
-
-
-############################################################################
-# HISTORY:
-# 2010-11-07
-# o ROBUSTNESS: Asserts that argument 'idxs' contains non-negative indices.
-# 2008-06-16
-# o Now argument 'idxs' can also be an matrix of index intervals.
-# o Added Rdoc comments.
-# 2007-08-22
-# o Created.
-############################################################################

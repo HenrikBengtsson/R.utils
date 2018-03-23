@@ -111,10 +111,3 @@ setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
 
   intervals2;
 }) # mergeIntervals()
-
-
-###########################################################################
-# HISTORY:
-# 2008-09-20
-# o Created from old mergeRegions() function.
-###########################################################################

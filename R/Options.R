@@ -598,30 +598,3 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
 
   invisible(oldValue);
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2006-02-22
-# o BUG FIX: getLeaves() would give an error for Options with an option
-#   tree with branches, i.e. not a single straight path.
-# 2005-10-20
-# o BUG FIX: getLeaves() would give an error for empty Options objects.
-# 2005-09-23
-# o Now the options are always retrieved via as.list(this).  This makes
-#   it easier to override this class to dynamically retrieve options, say
-#   via options().
-# 2005-06-03
-# o Added getLeaves().
-# 2005-06-01
-# o Added argument 'overwrite' to setOption().
-# o Added equals().
-# o Added Rdoc comments.
-# o Removed the read() and write() methods. Use load() and save() instead.
-# 2005-05-26
-# o Added support to query multiple options in has-/getOption().
-# o Created. Needed an flexible API to deal with settings in the R.matlab
-#   package.
-############################################################################

@@ -72,13 +72,3 @@ setConstructorS3("TimeoutException", function(..., cpu=NA, elapsed=NA) {
 setMethodS3("getMessage", "TimeoutException", function(this, ...) {
   sprintf("%s [cpu=%ss, elapsed=%ss]", this$.msg, this$cpu, this$elapsed);
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2010-12-07
-# o Added Rdoc comments.
-# 2010-12-06
-# o Created.
-############################################################################

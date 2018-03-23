@@ -107,15 +107,3 @@ setMethodS3("decapitalize", "default", function(str, ...) {
 
   res;
 })
-
-
-############################################################################
-# HISTORY:
-# 2013-04-15
-# o BUG FIX: capitalize()/decapitalize() would return "NANA" for missing
-#   values.
-# 2005-02-20
-# o Now using setMethodS3() and added '...' to please R CMD check.
-# 2003-01-07
-# * Created. Initially used by R.io::HTMLReporter.
-############################################################################
