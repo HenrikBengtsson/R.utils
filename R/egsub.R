@@ -36,19 +36,19 @@
 # @keyword programming
 #*/###########################################################################
 egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame(), inherits=TRUE) {
-  expr <- x;
+  expr <- x
 
   # Substitute?
   if (is.symbol(expr)) {
-    code <- as.character(expr);
+    code <- as.character(expr)
     if (regexpr(pattern, code, ...) != -1L) {
-      name <- sub(pattern, replacement, code, ...);
+      name <- sub(pattern, replacement, code, ...)
 
       # Substitute with the *value* of a variable, or a variable?
       if (value) {
-        expr <- get(name, envir=envir, inherits=inherits);
+        expr <- get(name, envir=envir, inherits=inherits)
       } else {
-        expr <- as.symbol(name);
+        expr <- as.symbol(name)
       }
     }
     return(expr)
@@ -64,8 +64,8 @@ egsub <- function(pattern, replacement, x, ..., value=TRUE, envir=parent.frame()
         exprI <- expr[[ii]]
         # Nothing to do?
         if (!is.null(exprI)) {
-          exprI <- egsub(pattern, replacement, exprI, ..., value=value, envir=envir, inherits=inherits);
-          if (!is.null(exprI)) expr[[ii]] <- exprI;
+          exprI <- egsub(pattern, replacement, exprI, ..., value=value, envir=envir, inherits=inherits)
+          if (!is.null(exprI)) expr[[ii]] <- exprI
         }
       }, error=function(ex) {})
     }

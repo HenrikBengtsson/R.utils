@@ -30,5 +30,5 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("finalizeSession", "default", function(...) {
-  callHooks("onSessionExit", removeCalledHooks=TRUE);
+  callHooks("onSessionExit", removeCalledHooks=TRUE)
 }, private=TRUE)

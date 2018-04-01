@@ -90,43 +90,43 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # Argument 'file' and 'path':
   if (inherits(file, "connection")) {
   } else if (is.character(file)) {
-    pathname <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE);
-    file <- file(pathname);
+    pathname <- Arguments$getReadablePathname(file, path=path, mustExist=TRUE)
+    file <- file(pathname)
   } else {
-    throw("Unknown data type of argument 'file': ", mode(file));
+    throw("Unknown data type of argument 'file': ", mode(file))
   }
 
   # Argument 'colClasses':
-#  colClasses <- Arguments$getCharacters(colClasses);
+#  colClasses <- Arguments$getCharacters(colClasses)
 
   # Argument 'isPatterns':
-  isPatterns <- Arguments$getLogical(isPatterns);
+  isPatterns <- Arguments$getLogical(isPatterns)
 
   # Argument 'defColClass':
-  defColClass <- Arguments$getCharacter(defColClass, asGString=FALSE);
+  defColClass <- Arguments$getCharacter(defColClass, asGString=FALSE)
 
   # Argument 'skip':
-  skip <- Arguments$getInteger(skip, range=c(0,Inf));
+  skip <- Arguments$getInteger(skip, range=c(0,Inf))
 
   # Argument 'nrows':
-  nrows <- Arguments$getInteger(nrows);
+  nrows <- Arguments$getInteger(nrows)
 
   # Argument 'rows':
   if (!is.null(rows))
-    rows <- Arguments$getIntegers(rows, range=c(1,Inf));
+    rows <- Arguments$getIntegers(rows, range=c(1,Inf))
 
   # Argument 'col.names':
   if (!is.null(col.names))
-    col.names <- Arguments$getCharacters(col.names);
+    col.names <- Arguments$getCharacters(col.names)
 
   # Argument 'stripQuotes':
-  stripQuotes <- Arguments$getLogical(stripQuotes);
+  stripQuotes <- Arguments$getLogical(stripQuotes)
 
   # Argument 'method':
-  method <- match.arg(method);
+  method <- match.arg(method)
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
 
 
 
@@ -134,8 +134,8 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # If file is not open, open it and close it when done.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!isOpen(file)) {
-    open(file, open="r");
-    on.exit(close(file), add=TRUE);
+    open(file, open="r")
+    on.exit(close(file), add=TRUE)
   }
 
 
@@ -143,72 +143,72 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # Skip lines at the beginning?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (skip > 0) {
-    readLines(file, n=skip);
-    verbose && cat(verbose, "Skipped the first ", skip, " lines.");
-    skip <- 0;
+    readLines(file, n=skip)
+    verbose && cat(verbose, "Skipped the first ", skip, " lines.")
+    skip <- 0
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the formals of read.table()
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  formals <- formals(read.table);
+  formals <- formals(read.table)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Read the header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header) {
-    sep <- list(...)$sep;
+    sep <- list(...)$sep
     if (is.null(sep))
-      sep <- formals$sep;
+      sep <- formals$sep
 
-    quote <- list(...)$quote;
+    quote <- list(...)$quote
     if (is.null(quote))
-      quote <- formals$quote;
+      quote <- formals$quote
 
-    colnames <- scan(file=file, what=character(0), sep=sep, quote=quote, nlines=1, quiet=TRUE);
-#    colnames <- readLines(file, n=1);
-#    colnames <- unlist(strsplit(colnames, split=split));
-    colnames <- trim(colnames);
+    colnames <- scan(file=file, what=character(0), sep=sep, quote=quote, nlines=1, quiet=TRUE)
+#    colnames <- readLines(file, n=1)
+#    colnames <- unlist(strsplit(colnames, split=split))
+    colnames <- trim(colnames)
 
 #    if (!is.null(quote) && nchar(quote) > 0) {
 #    }
 
-    names <- paste("'", colnames, "'", sep="");
+    names <- paste("'", colnames, "'", sep="")
     verbose && cat(verbose, "Read ", length(colnames), " column names: ",
-                                              paste(names, collapse=", "));
+                                              paste(names, collapse=", "))
   }
 
   if (!is.null(col.names))
-    colnames <- col.names;
+    colnames <- col.names
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create colClasses?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  isMap <- !is.null(names(colClasses));
+  isMap <- !is.null(names(colClasses))
   if (!is.null(colClasses) && isMap) {
     # Should colClasses be found using regular expression
     # patterns or as is?
     if (isPatterns) {
-      colClasses2 <- rep(NA_character_, times=length(colnames));
+      colClasses2 <- rep(NA_character_, times=length(colnames))
       for (kk in seq_along(colClasses)) {
-        pattern <- names(colClasses)[kk];
-        colClass <- colClasses[kk];
+        pattern <- names(colClasses)[kk]
+        colClass <- colClasses[kk]
         # Find matching column names and assign the current column
         # class to those columns.
-        incl <- (regexpr(pattern, colnames) != -1);
-        colClasses2[incl] <- colClass;
+        incl <- (regexpr(pattern, colnames) != -1)
+        colClasses2[incl] <- colClass
       }
-      colClasses <- colClasses2;
+      colClasses <- colClasses2
     } else {
-      colClasses <- colClasses[colnames];
+      colClasses <- colClasses[colnames]
     }
 
-    colClasses[is.na(colClasses)] <- defColClass;
+    colClasses[is.na(colClasses)] <- defColClass
 
-    verbose && cat(verbose, "Column classes: ");
-    verbose && print(verbose, colClasses);
+    verbose && cat(verbose, "Column classes: ")
+    verbose && print(verbose, colClasses)
   }
 
 
@@ -216,15 +216,15 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # Read full data table?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(rows)) {
-    verbose && enter(verbose, "Reading the complete data table");
+    verbose && enter(verbose, "Reading the complete data table")
     df <- read.table(file, colClasses=colClasses, header=FALSE,
                      skip=0, nrows=nrows, check.names=check.names,
-                     col.names=colnames, ...);
-    verbose && str(verbose, df);
-    verbose && exit(verbose);
+                     col.names=colnames, ...)
+    verbose && str(verbose, df)
+    verbose && exit(verbose)
 
     # Return table
-    return(df);
+    return(df)
   }
 
 
@@ -234,136 +234,136 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   if (method == "readLines") {
     # Skip certain lines
     if (skip > 0) {
-      readLines(file, n=skip);
-      verbose && cat(verbose, "Skipped the first ", skip, " lines.");
+      readLines(file, n=skip)
+      verbose && cat(verbose, "Skipped the first ", skip, " lines.")
     }
 
     # Read all lines
-    verbose && enter(verbose, "Reading lines of interest");
+    verbose && enter(verbose, "Reading lines of interest")
     t <- system.time({
       lines <- readLines(file, n=max(rows))
-    }, gcFirst = FALSE);
-    verbose && printf(verbose, "Read %d lines in %.2f seconds.\n", length(lines), t[3]);
+    }, gcFirst = FALSE)
+    verbose && printf(verbose, "Read %d lines in %.2f seconds.\n", length(lines), t[3])
 
     # Did we try to read non-existing rows?
-    keep <- (rows <= length(lines));
-    rows <- rows[keep];
+    keep <- (rows <= length(lines))
+    rows <- rows[keep]
     if (verbose && any(!keep)) {
-      verbose && cat(verbose, "Skipped ", sum(!keep), " non-existing rows.");
+      verbose && cat(verbose, "Skipped ", sum(!keep), " non-existing rows.")
     }
     keep <- NULL; # Not needed anymore
 
     # Keep only those of interest
-    lines <- lines[rows];
+    lines <- lines[rows]
 
-    verbose && cat(verbose, "Kept ", length(lines), " lines.");
-    verbose && exit(verbose);
+    verbose && cat(verbose, "Kept ", length(lines), " lines.")
+    verbose && exit(verbose)
 
     if (stripQuotes) {
-      quote <- list(...)$quote;
+      quote <- list(...)$quote
       if (is.null(quote))
-        quote <- formals$quote;
+        quote <- formals$quote
       if (nchar(quote) > 0) {
-        verbose && enter(verbose, "Stripping quotes from all lines: ", quote);
-        quotes <- unlist(strsplit(quote, split=""));
+        verbose && enter(verbose, "Stripping quotes from all lines: ", quote)
+        quotes <- unlist(strsplit(quote, split=""))
         for (kk in seq_along(quotes))
-          lines <- gsub(quotes[kk], "", lines, fixed=TRUE);
-        verbose && exit(verbose);
+          lines <- gsub(quotes[kk], "", lines, fixed=TRUE)
+        verbose && exit(verbose)
       }
     }
 
-    verbose && enter(verbose, "Re-reading the lines as a data table");
-    con <- textConnection(lines);
+    verbose && enter(verbose, "Re-reading the lines as a data table")
+    con <- textConnection(lines)
     tryCatch({
       t <- system.time({
         df <- read.table(con, colClasses=colClasses, header=FALSE,
                          skip=skip, nrows=nrows, check.names=check.names,
                          col.names=colnames, ...)
-      }, gcFirst = FALSE);
-      verbose && printf(verbose, "Read a %dx%d table in %.2f seconds.\n", nrow(df), ncol(df), t[3]);
+      }, gcFirst = FALSE)
+      verbose && printf(verbose, "Read a %dx%d table in %.2f seconds.\n", nrow(df), ncol(df), t[3])
     }, finally = {
-      close(con);
+      close(con)
     })
     lines <- NULL; # Not needed anymore
-    verbose && exit(verbose);
+    verbose && exit(verbose)
 
   } else if (method == "intervals") {
-    remap <- TRUE;
-    rows2 <- unique(rows);
+    remap <- TRUE
+    rows2 <- unique(rows)
     if (identical(rows, rows2)) {
-      rows2 <- sort(rows2);
+      rows2 <- sort(rows2)
       if (identical(rows, rows2))
-        remap <- FALSE;
+        remap <- FALSE
     }
 
     # Get contiguous intervals of rows indices.
-    intervals <- seqToIntervals(rows2);
+    intervals <- seqToIntervals(rows2)
     rows2 <- NULL; # Not needed anymore
 
-    verbose && cat(verbose, "Reading row intervals: ");
-    verbose && print(verbose, intervals);
+    verbose && cat(verbose, "Reading row intervals: ")
+    verbose && print(verbose, intervals)
 
-    nextRow <- 1;
+    nextRow <- 1
 
-    df <- NULL;
-    rownames <- NULL;
-    ready <- FALSE;
+    df <- NULL
+    rownames <- NULL
+    ready <- FALSE
     for (ii in seq_len(nrow(intervals))) {
-      from <- intervals[ii,"from"];
-      to <- intervals[ii,"to"];
+      from <- intervals[ii,"from"]
+      to <- intervals[ii,"to"]
 
-      verbose && cat(verbose, "Interval [", from, ",", to, "]");
+      verbose && cat(verbose, "Interval [", from, ",", to, "]")
 
       # Skip to the next row
-      skip <- (from - nextRow);
+      skip <- (from - nextRow)
 
       # Read 'nrows' from there on.
-      nrows <- (to-from+1);
+      nrows <- (to-from+1)
       tryCatch({
         dfI <- read.table(file, colClasses=colClasses, header=FALSE,
                           skip=skip, nrows=nrows, check.names=check.names,
-                                                   col.names=colnames, ...);
+                                                   col.names=colnames, ...)
       }, error = function(ex) {
         # Ignore non-existing rows => we're done.
-        ready <<- (regexpr("no lines available", ex$message) != -1);
+        ready <<- (regexpr("no lines available", ex$message) != -1)
         if (!ready)
-          signalCondition(ex);
+          signalCondition(ex)
       })
 
       if (ready)
-        break;
+        break
 
       # Did we read that many rows?
-      to <- min(to, from+nrow(dfI)-1);
+      to <- min(to, from+nrow(dfI)-1)
 
       # Assign rows names
-      rownames(dfI) <- from:to;
-      rownames <- c(rownames, from:to);
+      rownames(dfI) <- from:to
+      rownames <- c(rownames, from:to)
 
       if (is.null(df)) {
-        df <- dfI;
+        df <- dfI
       } else {
-        df <- rbind(df, dfI);
+        df <- rbind(df, dfI)
       }
 
       dfI <- NULL; # Not needed anymore
 
-      nextRow <- to+1;
+      nextRow <- to+1
     }
 
     # Finally, if 'rows' where not an order sets of unique row numbers,
     # return a table with rows in the same order as the requested ones.
     if (remap) {
-      idx <- match(rows, rownames);
-      idx <- idx[!is.na(idx)];
-      df <- df[idx,];
-      rownames <- rownames[idx];
+      idx <- match(rows, rownames)
+      idx <- idx[!is.na(idx)]
+      df <- df[idx,]
+      rownames <- rownames[idx]
       idx <- NULL; # Not needed anymore
     }
   }
 
-  verbose && str(verbose, df);
+  verbose && str(verbose, df)
 
   # Return table
-  df;
+  df
 })

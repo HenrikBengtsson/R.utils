@@ -58,68 +58,68 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'skip':
-  skip <- Arguments$getLogical(skip);
+  skip <- Arguments$getLogical(skip)
 
   # Argument 'overwrite':
-  overwrite <- Arguments$getLogical(overwrite);
+  overwrite <- Arguments$getLogical(overwrite)
 
   # Argument 'backup':
-  backup <- Arguments$getLogical(backup);
+  backup <- Arguments$getLogical(backup)
   
   # Arguments 'filename' & 'path':
-  pathname <- Arguments$getWritablePathname(filename, path=path, mustNotExist=(!skip && !overwrite));
+  pathname <- Arguments$getWritablePathname(filename, path=path, mustNotExist=(!skip && !overwrite))
 
   # Argument 'FUN':
   if (!is.function(FUN)) {
-    throw("Argument 'FUN' is not a function: ", mode(FUN));
+    throw("Argument 'FUN' is not a function: ", mode(FUN))
   }
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
-  verbose && enter(verbose, "Writes a file atomically");
-  verbose && cat(verbose, "Pathname: ", pathname);
-  verbose && cat(verbose, "Argument 'skip': ", skip);
-  verbose && cat(verbose, "Argument 'overwrite': ", overwrite);
+  verbose && enter(verbose, "Writes a file atomically")
+  verbose && cat(verbose, "Pathname: ", pathname)
+  verbose && cat(verbose, "Argument 'skip': ", skip)
+  verbose && cat(verbose, "Argument 'overwrite': ", overwrite)
 
   if (skip && isFile(pathname)) {
-    verbose && cat(verbose, "Returning already existing file (skip=TRUE).");
-    verbose && exit(verbose);
-    return(pathname);
+    verbose && cat(verbose, "Returning already existing file (skip=TRUE).")
+    verbose && exit(verbose)
+    return(pathname)
   }
 
   # Back existing file, if it exists?
   if (backup) {
-    pathnameB <- pushBackupFile(pathname, verbose=verbose);
+    pathnameB <- pushBackupFile(pathname, verbose=verbose)
     on.exit({
       # Restore or drop backup file
-      popBackupFile(pathnameB, drop=TRUE, verbose=verbose);
-    }, add=TRUE);
+      popBackupFile(pathnameB, drop=TRUE, verbose=verbose)
+    }, add=TRUE)
   }
 
   # Write to a temporary pathname
-  pathnameT <- pushTemporaryFile(pathname, ..., verbose=verbose);
-  verbose && cat(verbose, "Writing to temporary file: ", pathname);
+  pathnameT <- pushTemporaryFile(pathname, ..., verbose=verbose)
+  verbose && cat(verbose, "Writing to temporary file: ", pathname)
 
   tryCatch({
-    verbose && enter(verbose, "Calling write function (argument 'FUN')");
-    FUN(pathnameT);
-    verbose && exit(verbose);
+    verbose && enter(verbose, "Calling write function (argument 'FUN')")
+    FUN(pathnameT)
+    verbose && exit(verbose)
 
     # Rename temporary pathname
-    pathname <- popTemporaryFile(pathnameT, ..., verbose=verbose);
+    pathname <- popTemporaryFile(pathnameT, ..., verbose=verbose)
   }, interrupt = function(intr) {
-    verbose && cat(verbose, "An interrupt occurred while writing to temporary file. File was not created.");
+    verbose && cat(verbose, "An interrupt occurred while writing to temporary file. File was not created.")
   }, error = function(ex) {
-    verbose && cat(verbose, "An error occurred while writing to temporary file. File was not created.");
-  });
+    verbose && cat(verbose, "An error occurred while writing to temporary file. File was not created.")
+  })
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  invisible(pathname);
+  invisible(pathname)
 }) # createFileAtomically()

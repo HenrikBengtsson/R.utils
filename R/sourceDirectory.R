@@ -54,123 +54,123 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'path':
-  path <- filePath(path);
+  path <- filePath(path)
   if (!isDirectory(path))
-    return(NULL);
+    return(NULL)
 
   # Argument 'onError'
-  onError <- match.arg(onError);
+  onError <- match.arg(onError)
 
   # Argument 'verbose'
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # start...
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Store files that get sourced.
-  sourcedFiles <- c();
+  sourcedFiles <- c()
 
   # First, if recursive, follow all directories...
   if (recursive) {
-    verbose && cat(verbose, "Sourcing directory recursively: ", path);
+    verbose && cat(verbose, "Sourcing directory recursively: ", path)
     dirs <- list.files(path=path, recursive=FALSE,
-                                          all.files=TRUE, full.names=TRUE);
-    dirs <- dirs[!(basename(dirs) %in% c(".", ".."))];
+                                          all.files=TRUE, full.names=TRUE)
+    dirs <- dirs[!(basename(dirs) %in% c(".", ".."))]
 
     # Source directories in lexicographic order
     if (length(dirs) > 0)  # To avoid warning():s
-      dirs <- sort(dirs);
+      dirs <- sort(dirs)
 
     for (dir in dirs) {
-      pathname <- filePath(dir);
+      pathname <- filePath(dir)
       if (isDirectory(pathname)) {
-        verbose && cat(verbose, "Entering: ", pathname);
+        verbose && cat(verbose, "Entering: ", pathname)
         sourcedFiles <- c(sourcedFiles,
           sourceDirectory(pathname, pattern=pattern, recursive=recursive,
                        envir=envir, onError=onError, verbose=verbose, ...)
-        );
+        )
 
       }
     } # for (dir ...)
   } else {
-    verbose && cat(verbose, "Sourcing directory (non-recursively): ", path);
+    verbose && cat(verbose, "Sourcing directory (non-recursively): ", path)
   }
 
   # Then, get all files in current directory...
   files <- listDirectory(path, pattern=pattern, recursive=FALSE,
-                                          allNames=TRUE, fullNames=TRUE);
+                                          allNames=TRUE, fullNames=TRUE)
 
   # Source files in lexicographic order
   if (length(files) > 0)  # To avoid warning():s
-    files <- sort(files);
+    files <- sort(files)
 
   if (verbose) {
     if (length(files) > 0) {
-      cat(verbose, "Found *.R scripts:");
-      readable <- (sapply(files, FUN=file.access, mode=4) == 0);
-      bytes <- sapply(files, FUN=function(x) file.info(x)$size);
+      cat(verbose, "Found *.R scripts:")
+      readable <- (sapply(files, FUN=file.access, mode=4) == 0)
+      bytes <- sapply(files, FUN=function(x) file.info(x)$size)
       df <- data.frame(filename=basename(files), bytes=bytes,
-                                        readable=readable, row.names=NULL);
-      print(verbose, df);
+                                        readable=readable, row.names=NULL)
+      print(verbose, df)
       # Not needed anymore
-      df <- bytes <- readable <- NULL;
+      df <- bytes <- readable <- NULL
     } else {
-      cat(verbose, "Found no *.R scripts.");
+      cat(verbose, "Found no *.R scripts.")
     }
   }
 
   for (file in files) {
-    pathname <- filePath(file);
+    pathname <- filePath(file)
     if (!isDirectory(pathname)) {
       # If the parent directory is called 'global' then source to
       # the global environment, otherwise the local job environment.
-      parent <- basename(dirname(pathname));
-      local <- (parent != "global");
-      type <- ifelse(local, "local", "global");
+      parent <- basename(dirname(pathname))
+      local <- (parent != "global")
+      type <- ifelse(local, "local", "global")
 
       tryCatch({
         verbose && enter(verbose, "Loading (", type, ") source file: ",
-                                                        basename(pathname));
+                                                        basename(pathname))
 #        output <- capture.output({
-          sourceTo(pathname, ..., local=local, chdir=FALSE, envir=envir, modifiedOnly=modifiedOnly);
-#        });
+          sourceTo(pathname, ..., local=local, chdir=FALSE, envir=envir, modifiedOnly=modifiedOnly)
+#        })
 
-#        print(ll(envir=envir));
-        sourcedFiles <- c(sourcedFiles, pathname);
+#        print(ll(envir=envir))
+        sourcedFiles <- c(sourcedFiles, pathname)
 #        if (length(output) > 0)
-#          verbose && cat(verbose, output	, collapse="\n");
-        verbose && exit(verbose);
+#          verbose && cat(verbose, output	, collapse="\n")
+        verbose && exit(verbose)
       }, error = function(ex) {
         if (verbose) {
-          print(verbose, ex);
+          print(verbose, ex)
           tryCatch({
             # Display source code with erroneous line highlighted.
             cat(verbose, displayCode(pathname, highlight=ex$message,
-                                                             pager="none"));
+                                                             pager="none"))
           }, error = function(ex) {})
         }
-        verbose && exit(verbose, suffix="...failed");
+        verbose && exit(verbose, suffix="...failed")
 
         # An error was detected, but always log it.
         verbose && cat(verbose, "Error when sourcing file ", pathname, ": ",
-                                                                ex$message);
+                                                                ex$message)
 
         if (onError == "skip") {
           # Ignore the error, but log it.
         } else if (onError == "warning") {
           # Give a warning.
-          warning(ex$message);
+          warning(ex$message)
         } else {
           # Rethrow error.
-          signalCondition(ex);
+          signalCondition(ex)
           msg <- sprintf("sourceDirectory() failed to source '%s': %s",
-                                                    pathname, ex$message);
-          stop(msg);
+                                                    pathname, ex$message)
+          stop(msg)
         }
       }) # tryCatch()
     }
   } # for (file ...)
 
   # Return files that was sourced.
-  invisible(sourcedFiles);
+  invisible(sourcedFiles)
 })   # sourceDirectory()

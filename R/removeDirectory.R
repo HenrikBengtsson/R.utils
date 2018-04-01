@@ -44,42 +44,42 @@ setMethodS3("removeDirectory", "default", function(path, recursive=FALSE, mustEx
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'path':
-  path <- Arguments$getReadablePath(path, mustExist=mustExist);
+  path <- Arguments$getReadablePath(path, mustExist=mustExist)
   # WORKAROUND: base::unlink() does not support paths with leading tilde,
   # cf. https://stat.ethz.ch/pipermail/r-help/2010-October/254998.html
   # /HB 2010-11-17
-  path <- path.expand(path);
-  path <- Arguments$getReadablePath(path, mustExist=mustExist);
+  path <- path.expand(path)
+  path <- Arguments$getReadablePath(path, mustExist=mustExist)
 
   # Argument 'recursive':
-  recursive <- Arguments$getLogical(recursive);
+  recursive <- Arguments$getLogical(recursive)
 
 
   # Check if a symbolic link
-  pathT <- Sys.readlink2(path, what="corrected");
-  isSymlink <- (!is.na(pathT) && nchar(pathT, type="chars") > 0L);
+  pathT <- Sys.readlink2(path, what="corrected")
+  isSymlink <- (!is.na(pathT) && nchar(pathT, type="chars") > 0L)
   if (isSymlink) {
     # Special case: Windows
     if (.Platform$OS.type == "windows") {
-      cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)));
-      shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE);
+      cmd <- sprintf("rmdir %s", dQuote(normalizePath(path)))
+      shell(cmd, shell=Sys.getenv("COMSPEC"), intern=TRUE, mustWork=TRUE)
     } else {
-      file.remove(path);
+      file.remove(path)
     }
-    return(invisible(!isDirectory(path)));
+    return(invisible(!isDirectory(path)))
   }
 
   # Check if directory is empty
-  pathnames <- list.files(path=path, all.files=TRUE, full.names=FALSE);
-  pathnames <- setdiff(pathnames, c(".", ".."));
-  isEmpty <- (length(pathnames) == 0);
+  pathnames <- list.files(path=path, all.files=TRUE, full.names=FALSE)
+  pathnames <- setdiff(pathnames, c(".", ".."))
+  isEmpty <- (length(pathnames) == 0)
   if (!isEmpty && !recursive) {
-    throw("Cannot remove directory. Directory is not empty: ", path);
+    throw("Cannot remove directory. Directory is not empty: ", path)
   }
 
   # Remove directory (if 'recursive' is FALSE, the actual directory
   # will not be removed).
-  res <- unlink(path, recursive=TRUE);
+  res <- unlink(path, recursive=TRUE)
 
-  return(invisible(!isDirectory(path)));
+  return(invisible(!isDirectory(path)))
 }) # removeDirectory()

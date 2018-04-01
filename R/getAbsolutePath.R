@@ -42,28 +42,28 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getName <- function(pathname, removeSuffix=FALSE, ...) {
-    components <- strsplit(pathname, split="[/\\]")[[1]];
+    components <- strsplit(pathname, split="[/\\]")[[1]]
 
-    len <- length(components);
+    len <- length(components)
     if (len == 0) {
-      return("");
+      return("")
     }
 
-    name <- components[len];
+    name <- components[len]
     if (name == ".") {
-      return("");
+      return("")
     }
 
-    reg <- regexpr("^.:", name);
+    reg <- regexpr("^.:", name)
     if (reg != -1) {
-      name <- substring(name, attr(reg, "match.length")+1);
+      name <- substring(name, attr(reg, "match.length")+1)
     }
 
     if (removeSuffix) {
       name <- gsub("[.][^.]*$", "", name); # Remove the suffix.
     }
 
-    name;
+    name
   } # getName()
 
 
@@ -71,64 +71,64 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
 
   # BACKWARD COMPATIBILITY: Treat empty path specially?
   pathname <- .getPathIfEmpty(pathname, where="getAbsolutePath")
 
-  nPathnames <- length(pathname);
+  nPathnames <- length(pathname)
 
   # Nothing to do?
-  if (nPathnames == 0L) return(logical(0L));
+  if (nPathnames == 0L) return(logical(0L))
 
   # Multiple pathnames to be checked?
   if (nPathnames > 1L) {
-    res <- sapply(pathname, FUN=getAbsolutePath, workDirectory=workDirectory, expandTilde=expandTilde, ...);
-    return(res);
+    res <- sapply(pathname, FUN=getAbsolutePath, workDirectory=workDirectory, expandTilde=expandTilde, ...)
+    return(res)
   }
 
   # Missing path?
-  if (is.na(pathname)) return(NA_character_);
+  if (is.na(pathname)) return(NA_character_)
 
   # A URL?
-  if (isUrl(pathname)) return(pathname);
+  if (isUrl(pathname)) return(pathname)
 
   if (!isAbsolutePath(pathname)) {
-    workDirectory <- strsplit(workDirectory, split="[/\\]")[[1L]];
+    workDirectory <- strsplit(workDirectory, split="[/\\]")[[1L]]
 
-    name <- getName(pathname);
+    name <- getName(pathname)
     if (name == "" || name == ".")
       name <- NULL;                        # Only, details, but as in Java!
 
-    pathname <- strsplit(pathname, split="[/\\]")[[1L]];
-    len <- length(pathname);
+    pathname <- strsplit(pathname, split="[/\\]")[[1L]]
+    len <- length(pathname)
     if (len != 0L) {
-      pathname <- pathname[-len];
+      pathname <- pathname[-len]
     }
 
-    pathname <- c(workDirectory, pathname, name);
-    pathname <- paste(pathname, sep="", collapse=.Platform$file.sep);
+    pathname <- c(workDirectory, pathname, name)
+    pathname <- paste(pathname, sep="", collapse=.Platform$file.sep)
   }
-  pathname <- filePath(pathname, removeUps=TRUE);
+  pathname <- filePath(pathname, removeUps=TRUE)
 
   if (expandTilde) {
     ## Can we replace this with base::path.expand()? /HB 2014-09-16
     path <- dirname(pathname) # Does tilde expansion
     if (path == "/") path <- ""  ## To avoid /tmp -> //tmp
     filename <- basename(pathname)
-    pathname <- file.path(path, filename);
+    pathname <- file.path(path, filename)
   }
 
   # Especially expandTilde=TRUE may add an extra slash ('/').
   # Replace all replicated slashes ('/') with single ones, except
   # if they are at the beginning of the path, because then they
   # are Microsoft Windows UNC paths.
-  isWindowsUNC <- (regexpr("^//", pathname) != -1L);
-  pathname <- gsub("//*", "/", pathname);
+  isWindowsUNC <- (regexpr("^//", pathname) != -1L)
+  pathname <- gsub("//*", "/", pathname)
   if (isWindowsUNC) {
     # Make sure WindowsUNC starts with "//".
-    pathname <- paste("/", pathname, sep="");
+    pathname <- paste("/", pathname, sep="")
   }
 
-  pathname;
+  pathname
 })

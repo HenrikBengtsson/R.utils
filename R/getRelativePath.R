@@ -63,10 +63,10 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getWindowsDrivePattern <- function(fmtstr, ...) {
     # Windows drive letters
-    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Support also lower case
-    drives <- paste(c(drives, tolower(drives)), collapse="");
-    sprintf(fmtstr, drives);
+    drives <- paste(c(drives, tolower(drives)), collapse="")
+    sprintf(fmtstr, drives)
   } # getWindowsDrivePattern()
 
 
@@ -74,92 +74,92 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
   # BACKWARD COMPATIBILITY: Treat empty path specially?
   pathname <- .getPathIfEmpty(pathname, where="getRelativePath")
 
-  nPathnames <- length(pathname);
+  nPathnames <- length(pathname)
 
   # Nothing to do?
-  if (nPathnames == 0L) return(logical(0L));
+  if (nPathnames == 0L) return(logical(0L))
 
   # Multiple pathnames to be checked?
   if (nPathnames > 1L) {
-    res <- sapply(pathname, FUN=getRelativePath, relativeTo=relativeTo, caseSensitive=caseSensitive, ...);
-    return(res);
+    res <- sapply(pathname, FUN=getRelativePath, relativeTo=relativeTo, caseSensitive=caseSensitive, ...)
+    return(res)
   }
 
   # A missing pathname?
-  if (is.na(pathname)) return(NA_character_);
+  if (is.na(pathname)) return(NA_character_)
 
   # A URL?
-  if (isUrl(pathname)) return(pathname);
+  if (isUrl(pathname)) return(pathname)
 
   # If not an absolute path, assume it is a relative path already.
-  pathname <- getAbsolutePath(pathname, expandTilde=TRUE);
-  if (!isAbsolutePath(pathname)) return(pathname);
+  pathname <- getAbsolutePath(pathname, expandTilde=TRUE)
+  if (!isAbsolutePath(pathname)) return(pathname)
 
   # Argument 'relativeTo':
   if (is.null(relativeTo))
-    relativeTo <- ".";
+    relativeTo <- "."
 
   if (length(relativeTo) > 1L) {
-    throw("Argument 'relativeTo' must be a single character string: ", hpaste(relativeTo));
+    throw("Argument 'relativeTo' must be a single character string: ", hpaste(relativeTo))
   }
 
   # Argument 'caseSensitive':
   if (is.null(caseSensitive)) {
-    pattern <- getWindowsDrivePattern("^[%s]:");
-    isWindows <- (regexpr(pattern, relativeTo) != -1L);
-    caseSensitive <- !isWindows;
+    pattern <- getWindowsDrivePattern("^[%s]:")
+    isWindows <- (regexpr(pattern, relativeTo) != -1L)
+    caseSensitive <- !isWindows
   } else {
-    caseSensitive <- as.logical(caseSensitive);
+    caseSensitive <- as.logical(caseSensitive)
     if (!caseSensitive %in% c(FALSE, TRUE))
-      throw("Argument 'caseSensitive' must be logical: ", caseSensitive);
+      throw("Argument 'caseSensitive' must be logical: ", caseSensitive)
   }
 
-  relativeTo <- getAbsolutePath(relativeTo, expandTilde=TRUE);
+  relativeTo <- getAbsolutePath(relativeTo, expandTilde=TRUE)
 
   # Split the two pathnames into their components
-  relativeTo <- unlist(strsplit(relativeTo, split="[\\/]"));
-  pathname <- unlist(strsplit(pathname, split="[\\/]"));
-  pathnameC <- pathname;
+  relativeTo <- unlist(strsplit(relativeTo, split="[\\/]"))
+  pathname <- unlist(strsplit(pathname, split="[\\/]"))
+  pathnameC <- pathname
 
   # Case sensitive comparisons?
   if (!caseSensitive) {
-    relativeTo <- tolower(relativeTo);
-    pathnameC <- tolower(pathnameC);
+    relativeTo <- tolower(relativeTo)
+    pathnameC <- tolower(pathnameC)
   }
 
   # 1. Check that the pathnames are "compatible".
   if (!identical(relativeTo[1L], pathnameC[1L])) {
-    pathname <- paste(pathname, collapse="/");
-    # warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device (will use absolute pathname instead): ", paste(relativeTo, collapse="/"), " != ", pathname);
-    return(pathname);
+    pathname <- paste(pathname, collapse="/")
+    # warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device (will use absolute pathname instead): ", paste(relativeTo, collapse="/"), " != ", pathname)
+    return(pathname)
   }
 
   # 2. Remove all matching components in 'relativeTo' and 'pathname'.
   #    The removed parts constitute their common path.
   for (kk in seq_along(relativeTo)) {
-    aPart <- relativeTo[1];
-    bPart <- pathnameC[1];
+    aPart <- relativeTo[1]
+    bPart <- pathnameC[1]
     if (!identical(aPart, bPart))
-      break;
+      break
 
-    relativeTo <- relativeTo[-1L];
-    pathname <- pathname[-1L];
-    pathnameC <- pathnameC[-1L];
+    relativeTo <- relativeTo[-1L]
+    pathname <- pathname[-1L]
+    pathnameC <- pathnameC[-1L]
   }
 
   # 3. If there are more components in 'relativeTo', this means that the
   #    rest of 'relativeTo' is in a different subdirectory than 'pathname'.
-  prefix <- rep("..", length.out=length(relativeTo));
+  prefix <- rep("..", length.out=length(relativeTo))
 
-  pathname <- c(prefix, pathname);
-  pathname <- paste(pathname, collapse="/");
+  pathname <- c(prefix, pathname)
+  pathname <- paste(pathname, collapse="/")
 
   if (pathname == "")
-    pathname <- ".";
+    pathname <- "."
 
-  pathname;
+  pathname
 })

@@ -29,7 +29,7 @@
 # }
 #*/###########################################################################
 setMethodS3("gstring", "GString", function(s, envir=parent.frame(), ...) {
-  evaluate(s, envir=envir, ...);
+  evaluate(s, envir=envir, ...)
 })
 
 setMethodS3("gstring", "default", function(..., file=NULL, path=NULL, envir=parent.frame()) {
@@ -37,19 +37,19 @@ setMethodS3("gstring", "default", function(..., file=NULL, path=NULL, envir=pare
   if (inherits(file, "connection")) {
   } else if (is.character(file)) {
     if (!is.null(path)) {
-      file <- file.path(path, file);
+      file <- file.path(path, file)
     }
     if (!isUrl(file)) {
-      file <- Arguments$getReadablePathname(file, absolute=TRUE);
+      file <- Arguments$getReadablePathname(file, absolute=TRUE)
     }
   }
 
   if (is.null(file)) {
-    s <- GString(...);
+    s <- GString(...)
   } else {
-    s <- readLines(file, warn=FALSE);
-    s <- GString(s);
+    s <- readLines(file, warn=FALSE)
+    s <- GString(s)
   }
 
-  gstring(s, envir=envir);
+  gstring(s, envir=envir)
 })

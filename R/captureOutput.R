@@ -56,36 +56,36 @@
 captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()) {
   # Argument 'file':
   # Default is to capture via a raw connection
-  if (is.null(file)) file <- raw(0L);
+  if (is.null(file)) file <- raw(0L)
 
   # It is still possible to capture via a string
-  if (identical(file, character(0L))) file <- NULL;
+  if (identical(file, character(0L))) file <- NULL
 
   # How to capture output?
   if (is.raw(file)) {
     # Via a temporary raw connection? [MUCH FASTER]
     res <- eval({
-      file <- rawConnection(raw(0L), open="w");
+      file <- rawConnection(raw(0L), open="w")
       on.exit({
-        if (!is.null(file)) close(file);
+        if (!is.null(file)) close(file)
       })
 
-      capture.output(expr, file=file);
+      capture.output(expr, file=file)
 
-      res <- rawConnectionValue(file);
-      close(file);
+      res <- rawConnectionValue(file)
+      close(file)
       file <- NULL; # Not needed anymore
 
       # Convert to character
-      res <- rawToChar(res);
+      res <- rawToChar(res)
 
       res
-    }, envir=envir, enclos=envir);
+    }, envir=envir, enclos=envir)
   } else {
     # Backward compatibility, i.e. capture to file
     res <- eval({
-      capture.output(expr, file=file, append=append);
-    }, envir=envir, enclos=envir);
+      capture.output(expr, file=file, append=append)
+    }, envir=envir, enclos=envir)
 
     return(invisible(res))
   }
@@ -101,5 +101,5 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
   ## Merge back using the collapse string?
   if (!is.null(collapse)) res <- paste(res, collapse=collapse)
 
-  res;
+  res
 } # captureOutput()

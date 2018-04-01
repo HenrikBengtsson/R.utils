@@ -34,14 +34,14 @@
 #*/###########################################################################
 setMethodS3("isEof", "connection", function(con, ...) {
   # Remember position
-  offset <- seek(con, rw="read");
+  offset <- seek(con, rw="read")
 
   # Try to read next byte
-  bfr <- readChar(con, nchars=1);
+  bfr <- readChar(con, nchars=1)
 
   # Reposition
-  seek(con, where=offset, rw="read");
+  seek(con, where=offset, rw="read")
 
   # No more bytes?
-  (nchar(bfr) == 0);
+  (nchar(bfr) == 0)
 }) # isEof()

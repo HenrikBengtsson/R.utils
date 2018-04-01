@@ -80,39 +80,39 @@ setConstructorS3("TextStatusBar", function(fmt=paste("%-", getOption("width")-1,
 #*/###########################################################################
 setMethodS3("update", "TextStatusBar", function(object, ...) {
   # To please R CMD check
-  this <- object;
+  this <- object
 
-  fmt <- this$.fmt;
-  args <- this$.args;
-  isHFill <- which(names(args) == "hfill");
-  nHFill <- length(isHFill);
+  fmt <- this$.fmt
+  args <- this$.args
+  isHFill <- which(names(args) == "hfill")
+  nHFill <- length(isHFill)
   if (nHFill > 0) {
     # First, use zero width to figure out the total width without "hfillers".
-    argsT <- args;
-    argsT[isHFill] <- 0;
-    argsT[isHFill+1] <- "";
-    str <- do.call(sprintf, args=c(list(fmt=fmt), argsT));
-    nfill <- (getOption("width")-1) - nchar(str);
+    argsT <- args
+    argsT[isHFill] <- 0
+    argsT[isHFill+1] <- ""
+    str <- do.call(sprintf, args=c(list(fmt=fmt), argsT))
+    nfill <- (getOption("width")-1) - nchar(str)
     if (nfill > 0) {
       # Distribute the horizontal fillers evenly.
-      spcs <- rep(nfill %/% nHFill, times=nHFill);
-      ndiff <- nfill - sum(spcs);
+      spcs <- rep(nfill %/% nHFill, times=nHFill)
+      ndiff <- nfill - sum(spcs)
       if (ndiff > 0) {
         # For the left overs, distribute them evenly between the hfillers
         # with values 1.
-        incr <- rep(FALSE, times=nHFill);
-        incr[args[isHFill] == 1] <- TRUE;
-        spcs[incr] <- spcs[incr] + 1;
+        incr <- rep(FALSE, times=nHFill)
+        incr[args[isHFill] == 1] <- TRUE
+        spcs[incr] <- spcs[incr] + 1
       }
-      args[isHFill] <- spcs;
+      args[isHFill] <- spcs
     }
   }
-  str <- do.call(sprintf, args=c(list(fmt=fmt), args));
+  str <- do.call(sprintf, args=c(list(fmt=fmt), args))
 
-  lastStr <- this$.lastStr;
-  this$.lastStr <- str;
-  backspaces <- paste(rep("\b", nchar(lastStr)), collapse="");
-  cat(backspaces, str, sep="");
+  lastStr <- this$.lastStr
+  this$.lastStr <- str
+  backspaces <- paste(rep("\b", nchar(lastStr)), collapse="")
+  cat(backspaces, str, sep="")
 })
 
 
@@ -146,13 +146,13 @@ setMethodS3("update", "TextStatusBar", function(object, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("setLabels", "TextStatusBar", function(this, ...) {
-  pars <- list(...);
+  pars <- list(...)
 
-  args <- this$.args;
+  args <- this$.args
   for (label in names(pars)) {
-    args[[label]] <- pars[[label]];
+    args[[label]] <- pars[[label]]
   }
-  this$.args <- args;
+  this$.args <- args
 })
 
 
@@ -188,9 +188,9 @@ setMethodS3("setLabels", "TextStatusBar", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("setLabel", "TextStatusBar", function(this, label, value, ...) {
-  args <- this$.args;
-  args[[label]] <- value;
-  this$.args <- args;
+  args <- this$.args
+  args[[label]] <- value
+  this$.args <- args
 })
 
 ###########################################################################/**
@@ -223,8 +223,8 @@ setMethodS3("setLabel", "TextStatusBar", function(this, label, value, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getLabel", "TextStatusBar", function(this, label, ...) {
-  args <- this$.args;
-  .subset2(args, label);
+  args <- this$.args
+  .subset2(args, label)
 })
 
 
@@ -256,8 +256,8 @@ setMethodS3("getLabel", "TextStatusBar", function(this, label, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("newline", "TextStatusBar", function(this, ...) {
-  this$.lastStr <- "";
-  cat("\n");
+  this$.lastStr <- ""
+  cat("\n")
 })
 
 
@@ -290,8 +290,8 @@ setMethodS3("newline", "TextStatusBar", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("updateLabels", "TextStatusBar", function(this, ...) {
-  setLabels(this, ...);
-  update(this);
+  setLabels(this, ...)
+  update(this)
 })
 
 
@@ -325,17 +325,17 @@ setMethodS3("updateLabels", "TextStatusBar", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep="") {
-  lastStr <- this$.lastStr;
+  lastStr <- this$.lastStr
 
   # Erase current statusbar
-  backspaces <- rep("\b", nchar(lastStr));
-  erazor <- c(backspaces, rep(" ", nchar(lastStr)), backspaces);
-  cat(erazor, sep="");
-  this$.lastStr <- "";
+  backspaces <- rep("\b", nchar(lastStr))
+  erazor <- c(backspaces, rep(" ", nchar(lastStr)), backspaces)
+  cat(erazor, sep="")
+  this$.lastStr <- ""
 
-  cat(..., collapse=collapse, sep=sep);
-  cat("\n");
-  update(this);
+  cat(..., collapse=collapse, sep=sep)
+  cat("\n")
+  update(this)
 })
 
 
@@ -376,7 +376,7 @@ setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep=
 #*/###########################################################################
 setMethodS3("flush", "TextStatusBar", function(con, ...) {
   # To please R CMD check
-  this <- con;
+  this <- con
 
-  flush.console();
+  flush.console()
 })

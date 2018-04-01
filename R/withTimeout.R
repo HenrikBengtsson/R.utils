@@ -107,36 +107,36 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
     throw("Argument 'envir' is not a list: ", class(envir)[1L])
 
   # Argument 'cpu' and 'elapsed':
-  cpu <- Arguments$getNumeric(cpu, range=c(0,Inf));
-  elapsed <- Arguments$getNumeric(elapsed, range=c(0,Inf));
+  cpu <- Arguments$getNumeric(cpu, range=c(0,Inf))
+  elapsed <- Arguments$getNumeric(elapsed, range=c(0,Inf))
 
   # Argument 'onTimeout':
-  onTimeout <- match.arg(onTimeout);
+  onTimeout <- match.arg(onTimeout)
 
 
-  setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE);
+  setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE)
   on.exit({
-    setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE);
-  });
+    setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE)
+  })
 
   tryCatch({
-    eval(expr, envir=envir);
+    eval(expr, envir=envir)
   }, error = function(ex) {
-    msg <- ex$message;
+    msg <- ex$message
     # Was it a timeout?
     pattern <- gettext("reached elapsed time limit", "reached CPU time limit", domain="R")
     pattern <- paste(pattern, collapse = "|")
     if (regexpr(pattern, msg) != -1L) {
-      ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed);
+      ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed)
       if (onTimeout == "error") {
-        throw(ex);
+        throw(ex)
       } else if (onTimeout == "warning") {
-        warning(getMessage(ex));
+        warning(getMessage(ex))
       } else if (onTimeout == "silent") {
       }
     } else {
       # Rethrow error
-      throw(ex);
+      throw(ex)
     }
   })
 } # withTimeout()

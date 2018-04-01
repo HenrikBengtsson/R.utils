@@ -30,9 +30,9 @@
 # }
 #*/########################################################################### 
 isSingle <- function(x, ...) {
-  !isReplicated(x, ...);
+  !isReplicated(x, ...)
 }
 
 singles <- function(x, ...) {
-  x[isSingle(x, ...)];
+  x[isSingle(x, ...)]
 }

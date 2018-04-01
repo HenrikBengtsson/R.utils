@@ -34,31 +34,31 @@
 #*/######################################################################### 
 setMethodS3("splitByPattern", "default",  function(str, pattern, ...) {
   # Argument 'str':
-  str <- Arguments$getCharacter(str);
+  str <- Arguments$getCharacter(str)
 
   # Argument 'pattern':
-  pattern <- Arguments$getCharacter(pattern);
+  pattern <- Arguments$getCharacter(pattern)
 
-  parts <- c();
+  parts <- c()
   while(TRUE) {
-    pos <- regexpr(pattern, str);
+    pos <- regexpr(pattern, str)
     if (pos == -1)
-      break;
+      break
     text <- substring(str, first=1, last=pos-1);        # This is allowed!
-    lastPos <- pos+attr(pos, "match.length")-1;
-    flag <- substring(str, first=pos, last=lastPos);
-    str <- substring(str, first=lastPos+1);
-    parts <- c(parts, text, flag);
+    lastPos <- pos+attr(pos, "match.length")-1
+    flag <- substring(str, first=pos, last=lastPos)
+    str <- substring(str, first=lastPos+1)
+    parts <- c(parts, text, flag)
   }
   if (nchar(str) > 0)
-    parts <- c(parts, str);
+    parts <- c(parts, str)
 
   # Add indicator if a pattern string or not.
-  isPattern <- rep(c(FALSE, TRUE), length.out=length(parts));
-  names(parts) <- isPattern;
+  isPattern <- rep(c(FALSE, TRUE), length.out=length(parts))
+  names(parts) <- isPattern
 
   if (nchar(parts[1]) == 0)
-    parts <- parts[-1];
+    parts <- parts[-1]
 
-  parts;
+  parts
 }) # splitByPattern()

@@ -57,10 +57,10 @@
 #*/#########################################################################
 cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
   # Argument 'args':
-  if (identical(args, "*")) args <- list("*");
+  if (identical(args, "*")) args <- list("*")
   if (!is.null(args)) {
     if (!is.list(args)) {
-      throw("Argument 'args' must a list or NULL: ", class(args)[1L]);
+      throw("Argument 'args' must a list or NULL: ", class(args)[1L])
     }
   }
 
@@ -70,12 +70,12 @@ cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(args)) {
     res <- commandArgs(asValues=TRUE, adhoc=TRUE, unique=unique,
-                       excludeReserved=TRUE, ..., .args=.args);
-    res <- res[-1L];
+                       excludeReserved=TRUE, ..., .args=.args)
+    res <- res[-1L]
     if (!is.null(names)) {
-      res <- res[names];
+      res <- res[names]
     }
-    return(res);
+    return(res)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -83,80 +83,80 @@ cmdArgs <- function(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Find the asterisk ('*')
   if (length(args) == 0L) {
-    idxA <- integer(0L);
+    idxA <- integer(0L)
   } else {
-    idxA <- which(sapply(args, FUN=identical, "*"));
+    idxA <- which(sapply(args, FUN=identical, "*"))
     # Use only first asterisk if more than one is used
     if (length(idxA) > 1L) {
-      excl <- idxA[-1L];
-      args <- args[excl];
-      idxA <- idxA[1L];
+      excl <- idxA[-1L]
+      args <- args[excl]
+      idxA <- idxA[1L]
     }
   }
 
   # None?
   if (length(idxA) == 0L) {
-    defaults <- NULL;
-    always <- args;
-    args <- character(0L);
+    defaults <- NULL
+    always <- args
+    args <- character(0L)
   } else {
     n <- length(args); # Here n >= 1
-    idxsD <- if (idxA == 1L) integer(0L) else 1:(idxA-1L);
-    idxsF <- if (idxA == n)  integer(0L) else (idxA+1L):n;
-    defaults <- args[idxsD];
-    always <- args[idxsF];
-    args <- .args;
+    idxsD <- if (idxA == 1L) integer(0L) else 1:(idxA-1L)
+    idxsF <- if (idxA == n)  integer(0L) else (idxA+1L):n
+    defaults <- args[idxsD]
+    always <- args[idxsF]
+    args <- .args
   }
 
   res <- commandArgs(asValues=TRUE, defaults=defaults, always=always,
-      adhoc=TRUE, unique=unique, excludeReserved=TRUE, .args=args, ...);
+      adhoc=TRUE, unique=unique, excludeReserved=TRUE, .args=args, ...)
 
   if (is.null(args)) {
-    res <- res[-1L];
+    res <- res[-1L]
   }
   if (!is.null(names)) {
-    res <- res[names];
+    res <- res[names]
   }
 
-  res;
+  res
 } # cmdArgs()
 
 
 
 cmdArg <- function(...) {
   # Argument '...' => (name, default, ...)
-  pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
+  pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL))
 
   # Special short format, e.g. cmdArg(n=42)?
-  args <- pargs$args;
+  args <- pargs$args
   if (!is.element("name", names(args))) {
-    argsT <- pargs$namedArgs;
+    argsT <- pargs$namedArgs
     if (length(argsT) == 0L) {
-      stop("Argument 'name' is missing (or NULL).");
+      stop("Argument 'name' is missing (or NULL).")
     }
-    args$name <- names(argsT)[1L];
-    args$default <- argsT[[1L]];
-    argsT <- argsT[-1L];
-    pargs$args <- args;
-    pargs$namedArgs <- argsT;
+    args$name <- names(argsT)[1L]
+    args$default <- argsT[[1L]]
+    argsT <- argsT[-1L]
+    pargs$args <- args
+    pargs$namedArgs <- argsT
   }
-  args <- Reduce(c, pargs);
+  args <- Reduce(c, pargs)
 
   # Argument 'name':
-  name <- as.character(args$name);
-  stopifnot(length(name) == 1L);
+  name <- as.character(args$name)
+  stopifnot(length(name) == 1L)
 
 
   # Call cmdArgs(names=name, defaults=list(<name>=default), ...)
-  args$names <- name;
-  args$name <- NULL;
-  args$defaults <- list(args$default);
-  names(args$defaults) <- args$names;
-  args$default <- NULL;
+  args$names <- name
+  args$name <- NULL
+  args$defaults <- list(args$default)
+  names(args$defaults) <- args$names
+  args$default <- NULL
 
-  res <- do.call(cmdArgs, args=args);
+  res <- do.call(cmdArgs, args=args)
 
-  res[[1]];
+  res[[1]]
 } # cmdArg()
 
 
@@ -199,5 +199,5 @@ cmdArg <- function(...) {
 # @keyword internal
 #*/#########################################################################
 cmdArgsCall <- function(..., args=cmdArgs(unique=FALSE), .ignoreUnusedArgs=FALSE, envir=parent.frame()) {
-  doCall(..., args=args, .ignoreUnusedArgs=.ignoreUnusedArgs, envir=envir);
+  doCall(..., args=args, .ignoreUnusedArgs=.ignoreUnusedArgs, envir=envir)
 } # cmdArgsCall()

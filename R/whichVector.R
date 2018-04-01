@@ -56,29 +56,29 @@
 #*/########################################################################### 
 setMethodS3("whichVector", "logical", function(x, na.rm=TRUE, use.names=TRUE, ...) {
   if (!is.vector(x)) {
-    stop("Argument 'x' is not a vector: ", class(x)[1]);
+    stop("Argument 'x' is not a vector: ", class(x)[1])
   }
 
-  idxs <- seq_along(x);
+  idxs <- seq_along(x)
 
   # Identify TRUE and NA elements
-  idxs <- idxs[x];
+  idxs <- idxs[x]
 
   # Remove missing values?
   if (na.rm) {
-    idxs <- idxs[!is.na(idxs)]; 
+    idxs <- idxs[!is.na(idxs)]
   }
 
   # Use names
   if (use.names) {
-    names(idxs) <- names(x)[idxs];
+    names(idxs) <- names(x)[idxs]
   }
 
-  idxs;
+  idxs
 }, private=TRUE) # whichVector()
 
 
 setMethodS3("whichVector", "matrix", function(x, ...) {
-  x <- as.vector(x);
-  whichVector(x, ...);
+  x <- as.vector(x)
+  whichVector(x, ...)
 }, private=TRUE)

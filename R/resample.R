@@ -38,5 +38,5 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("resample", "default", function(x, ...) {
-  x[sample.int(length(x), ...)];
+  x[sample.int(length(x), ...)]
 })

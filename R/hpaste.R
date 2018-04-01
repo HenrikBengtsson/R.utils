@@ -47,40 +47,40 @@
 #*/###########################################################################
 setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...") {
   # Argument 'maxHead':
-  maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf));
+  maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf))
 
   # Argument 'maxTail':
-  maxTail <- Arguments$getNumeric(maxTail, range=c(0, Inf));
+  maxTail <- Arguments$getNumeric(maxTail, range=c(0, Inf))
 
   if (is.null(lastCollapse)) {
-    lastCollapse <- collapse;
+    lastCollapse <- collapse
   }
 
 
   # Build vector 'x'
-  x <- paste(..., sep=sep);
-  n <- length(x);
+  x <- paste(..., sep=sep)
+  n <- length(x)
 
   # Nothing todo?
-  if (n == 0) return(x);
-  if (is.null(collapse)) return(x);
+  if (n == 0) return(x)
+  if (is.null(collapse)) return(x)
 
   # Abbreviate?
   if (n > maxHead + maxTail + 1) {
-    head <- x[seq_len(maxHead)];
-    tail <- rev(rev(x)[seq_len(maxTail)]);
-    x <- c(head, abbreviate, tail);
-    n <- length(x);
+    head <- x[seq_len(maxHead)]
+    tail <- rev(rev(x)[seq_len(maxTail)])
+    x <- c(head, abbreviate, tail)
+    n <- length(x)
   }
 
   if (!is.null(collapse) && n > 1) {
     if (lastCollapse == collapse) {
-      x <- paste(x, collapse=collapse);
+      x <- paste(x, collapse=collapse)
     } else {
-      xT <- paste(x[1:(n-1)], collapse=collapse);
-      x <- paste(xT, x[n], sep=lastCollapse);
+      xT <- paste(x[1:(n-1)], collapse=collapse)
+      x <- paste(xT, x[n], sep=lastCollapse)
     }
   }
 
-  x;
+  x
 }) # hpaste()

@@ -47,29 +47,29 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
   # Sys.setFileTime() exists in R (>= 2.14.0)
   if (!exists("Sys.setFileTime", mode="function")) {
     Sys.setFileTime <- function(path, ...) {
-      info <- file.info(pathname);
+      info <- file.info(pathname)
       if (info$isdir) {
-        stop(sprintf("In R v%s, it is not possible to change the timestamp of a directory: %s", getRversion(), pathname));
+        stop(sprintf("In R v%s, it is not possible to change the timestamp of a directory: %s", getRversion(), pathname))
       }
 
-      con <- NULL;
+      con <- NULL
       on.exit({
         if (!is.null(con))
-          close(con);
-      });
+          close(con)
+      })
 
       # Zero-sized files have to be treated specially
       if (info$size == 0) {
-        con <- file(pathname, open="w");
+        con <- file(pathname, open="w")
       } else {
-        con <- file(pathname, open="r+b");
-        seek(con=con, where=0, origin="start", rw="read");
-        bfr <- readBin(con=con, what=raw(), n=1);
-        seek(con=con, where=0, origin="start", rw="write");
-        writeBin(con=con, bfr);
+        con <- file(pathname, open="r+b")
+        seek(con=con, where=0, origin="start", rw="read")
+        bfr <- readBin(con=con, what=raw(), n=1)
+        seek(con=con, where=0, origin="start", rw="write")
+        writeBin(con=con, bfr)
       }
 
-      invisible(TRUE);
+      invisible(TRUE)
     } # Sys.setFileTime()
   } # if (!exists("Sys.setFileTime", ...))
 
@@ -78,29 +78,29 @@ setMethodS3("touchFile", "default", function(pathname, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  pathname <- as.character(pathname);
-  nPathnames <- length(pathname);
+  pathname <- as.character(pathname)
+  nPathnames <- length(pathname)
 
   # Nothing to do?
-  if (nPathnames == 0L) return(invisible(NULL));
+  if (nPathnames == 0L) return(invisible(NULL))
 
   # Multiple files?
   if (nPathnames > 1L) {
-    res <- lapply(pathname, FUN=touchFile, ...);
-    res <- Reduce(c, res);
-    return(invisible(res));
+    res <- lapply(pathname, FUN=touchFile, ...)
+    res <- Reduce(c, res)
+    return(invisible(res))
   }
 
   # Sanity check
   if (!file.exists(pathname))
-    stop("No such file: ", pathname);
+    stop("No such file: ", pathname)
 
-  info <- file.info(pathname);
-  oldTimestamp <- info$mtime;
+  info <- file.info(pathname)
+  oldTimestamp <- info$mtime
 
   if (!Sys.setFileTime(pathname, time=Sys.time())) {
-    stop("Failed to set timestamp: ", pathname);
+    stop("Failed to set timestamp: ", pathname)
   }
 
-  invisible(oldTimestamp);
+  invisible(oldTimestamp)
 })

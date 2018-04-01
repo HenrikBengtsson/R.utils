@@ -51,3 +51,5 @@ Rplots.pdf$
 [.]future
 
 
+^.*\.Rproj$
+^\.Rproj\.user$

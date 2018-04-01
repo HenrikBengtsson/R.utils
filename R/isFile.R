@@ -37,44 +37,44 @@
 #*/###########################################################################
 setMethodS3("isFile", "default", function(pathname, ...) {
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
   # BACKWARD COMPATIBILITY: Treat empty path specially?
   pathname <- .getPathIfEmpty(pathname, where="isFile")
 
-  nPathnames <- length(pathname);
+  nPathnames <- length(pathname)
 
   # Nothing to do?
-  if (nPathnames == 0L) return(logical(0L));
+  if (nPathnames == 0L) return(logical(0L))
 
   # Multiple pathnames to be checked?
   if (nPathnames > 1L) {
-    res <- sapply(pathname, FUN=isFile, ...);
-    return(res);
+    res <- sapply(pathname, FUN=isFile, ...)
+    return(res)
   }
 
   # A missing pathname?
-  if (is.na(pathname)) return(FALSE);
+  if (is.na(pathname)) return(FALSE)
 
-  isdir <- file.info(pathname)$isdir;
+  isdir <- file.info(pathname)$isdir
   if (identical(isdir, FALSE))
-    return(TRUE);
+    return(TRUE)
 
   if (is.na(isdir)) {
     if (!isAbsolutePath(pathname))
-      return(FALSE);
+      return(FALSE)
 
     # Try the relative pathname
-    relPathname <- getRelativePath(pathname);
+    relPathname <- getRelativePath(pathname)
 
     # Avoid infinite recursive loops; check if succeeded in getting a
     # relative pathname?
     if (!identical(relPathname, pathname)) {
-      return(isFile(relPathname));
+      return(isFile(relPathname))
     } else {
       # At this point, we can only return FALSE.
-      return(FALSE);
+      return(FALSE)
     }
   }
 
-  return(FALSE);
+  return(FALSE)
 })

@@ -80,8 +80,8 @@ setConstructorS3("Java", function() {
 # }
 #*/#########################################################################
 setMethodS3("writeByte", "Java", function(static, con, b, ...) {
-  writeBin(con=con, as.integer(b), size=1);
-}, static=TRUE);
+  writeBin(con=con, as.integer(b), size=1)
+}, static=TRUE)
 
 
 
@@ -115,7 +115,7 @@ setMethodS3("writeByte", "Java", function(static, con, b, ...) {
 # }
 #*/#########################################################################
 setMethodS3("writeShort", "Java", function(static, con, s, ...) {
-   writeBin(con=con, as.integer(s), size=2, endian="big");
+   writeBin(con=con, as.integer(s), size=2, endian="big")
 }, static=TRUE)
 
 
@@ -149,12 +149,12 @@ setMethodS3("writeShort", "Java", function(static, con, s, ...) {
 # }
 #*/#########################################################################
 setMethodS3("writeInt", "Java", function(static, con, i, ...) {
-   i <- matrix(i, nrow=1);
+   i <- matrix(i, nrow=1)
    bfr <- apply(i, MARGIN=2, FUN=function(x) {
-     c(x %/% 256^3, x %/% 256^2, x %/% 256, x %% 256);
+     c(x %/% 256^3, x %/% 256^2, x %/% 256, x %% 256)
    })
-   bfr <- as.vector(bfr);
-   writeBin(con=con, as.integer(bfr), size=1);
+   bfr <- as.vector(bfr)
+   writeBin(con=con, as.integer(bfr), size=1)
 }, static=TRUE)
 
 
@@ -185,9 +185,9 @@ setMethodS3("writeInt", "Java", function(static, con, i, ...) {
 # }
 #*/#########################################################################
 setMethodS3("writeUTF", "Java", function(static, con, str, ...) {
-   str <- as.character(str);
-   writeShort(static, con=con, nchar(str));
-   writeChar(con=con, str, eos=NULL);
+   str <- as.character(str)
+   writeShort(static, con=con, nchar(str))
+   writeChar(con=con, str, eos=NULL)
 }, static=TRUE)
 
 
@@ -226,7 +226,7 @@ setMethodS3("writeUTF", "Java", function(static, con, str, ...) {
 # }
 #*/#########################################################################
 setMethodS3("readByte", "Java", function(static, con, n=1, ...) {
-   as.integer(readBin(con=con, what=integer(), size=1, n=n));
+   as.integer(readBin(con=con, what=integer(), size=1, n=n))
 }, static=TRUE)
 
 
@@ -268,14 +268,14 @@ setMethodS3("readShort", "Java", function(static, con, n=1, ...) {
 #  The byte values to be written, in the order shown, are:
 #   (byte)(0xff & (v >> 8))
 #   (byte)(0xff & v)
-#  readBin(con=con, what=integer(), size=2, n=n, endian="big");
-  bfr <- readBin(con=con, what=integer(), size=1, n=2*n, signed=FALSE);
-  bfr <- matrix(bfr, ncol=2, byrow=TRUE);
-  bfr[,1] <-   bfr[,1]*256;
-  bfr <- rowSums(bfr);
+#  readBin(con=con, what=integer(), size=2, n=n, endian="big")
+  bfr <- readBin(con=con, what=integer(), size=1, n=2*n, signed=FALSE)
+  bfr <- matrix(bfr, ncol=2, byrow=TRUE)
+  bfr[,1] <-   bfr[,1]*256
+  bfr <- rowSums(bfr)
   neg <- (bfr >= 2^15)
-  bfr[neg] <- bfr[neg] - 2^16;
-  as.integer(bfr);
+  bfr[neg] <- bfr[neg] - 2^16
+  as.integer(bfr)
 }, static=TRUE)
 
 
@@ -313,16 +313,16 @@ setMethodS3("readShort", "Java", function(static, con, n=1, ...) {
 # }
 #*/#########################################################################
 setMethodS3("readInt", "Java", function(static, con, n=1, ...) {
-#   readBin(con=con, what=integer(), size=4, n=n, endian="big");
-  bfr <- readBin(con=con, what=integer(), size=1, n=4*n, signed=FALSE);
-  bfr <- matrix(bfr, ncol=4, byrow=TRUE);
-  bfr[,1] <-   bfr[,1] * 256^3;
-  bfr[,2] <-   bfr[,2] * 256^2;
-  bfr[,3] <-   bfr[,3] * 256;
-  bfr <- rowSums(bfr);
+#   readBin(con=con, what=integer(), size=4, n=n, endian="big")
+  bfr <- readBin(con=con, what=integer(), size=1, n=4*n, signed=FALSE)
+  bfr <- matrix(bfr, ncol=4, byrow=TRUE)
+  bfr[,1] <-   bfr[,1] * 256^3
+  bfr[,2] <-   bfr[,2] * 256^2
+  bfr[,3] <-   bfr[,3] * 256
+  bfr <- rowSums(bfr)
   neg <- (bfr >= 2^31)
-  bfr[neg] <- bfr[neg] - 2^32;
-  bfr;
+  bfr[neg] <- bfr[neg] - 2^32
+  bfr
 }, static=TRUE)
 
 
@@ -371,7 +371,7 @@ setMethodS3("readUTF", "Java", function(static, con, as.character=TRUE, ...) {
    # Nothing to read?
    if (as.character) {
      if (length(nbrOfBytes) == 0L) return(character(0L))
-     readChar(con=con, nchars=nbrOfBytes);
+     readChar(con=con, nchars=nbrOfBytes)
    } else {
      if (length(nbrOfBytes) == 0L) return(integer(0L))
      readBin(con=con, what=integer(), size=1, n=nbrOfBytes)
@@ -408,11 +408,11 @@ setMethodS3("readUTF", "Java", function(static, con, as.character=TRUE, ...) {
 # }
 #*/#########################################################################
 setMethodS3("asByte", "Java", function(static, x, ...) {
-  BYTE.MIN <- -128;
-  BYTE.MAX <-  127;
-  BYTE.RANGE <- BYTE.MAX-BYTE.MIN + 1;
-  x <- (x-BYTE.MIN) %% BYTE.RANGE + BYTE.MIN;
-  as.integer(x);
+  BYTE.MIN <- -128
+  BYTE.MAX <-  127
+  BYTE.RANGE <- BYTE.MAX-BYTE.MIN + 1
+  x <- (x-BYTE.MIN) %% BYTE.RANGE + BYTE.MIN
+  as.integer(x)
 }, static=TRUE)
 
 
@@ -444,12 +444,12 @@ setMethodS3("asByte", "Java", function(static, x, ...) {
 # }
 #*/#########################################################################
 setMethodS3("asShort", "Java", function(static, x, ...) {
-#  x <- as.integer(x);
-  SHORT.MIN <- -32768;
-  SHORT.MAX <-  32767;
-  SHORT.RANGE <- SHORT.MAX-SHORT.MIN + 1;
-  x <- (x-SHORT.MIN) %% SHORT.RANGE + SHORT.MIN;
-  as.integer(x);
+#  x <- as.integer(x)
+  SHORT.MIN <- -32768
+  SHORT.MAX <-  32767
+  SHORT.RANGE <- SHORT.MAX-SHORT.MIN + 1
+  x <- (x-SHORT.MIN) %% SHORT.RANGE + SHORT.MIN
+  as.integer(x)
 }, static=TRUE)
 
 
@@ -481,11 +481,11 @@ setMethodS3("asShort", "Java", function(static, x, ...) {
 # }
 #*/#########################################################################
 setMethodS3("asInt", "Java", function(static, x, ...) {
-  INT.MIN <- -2147483648;
-  INT.MAX <-  2147483647;
-  INT.RANGE <- INT.MAX-INT.MIN + 1;
-  x <- (x-INT.MIN) %% INT.RANGE + INT.MIN;
-  as.integer(x);
+  INT.MIN <- -2147483648
+  INT.MAX <-  2147483647
+  INT.RANGE <- INT.MAX-INT.MIN + 1
+  x <- (x-INT.MIN) %% INT.RANGE + INT.MIN
+  as.integer(x)
 }, static=TRUE)
 
 
@@ -517,10 +517,10 @@ setMethodS3("asInt", "Java", function(static, x, ...) {
 # }
 #*/#########################################################################
 setMethodS3("asLong", "Java", function(static, x, ...) {
-#  x <- as.integer(x);
-  LONG.MIN <- -9223372036854775808;
-  LONG.MAX <-  9223372036854775807;
-  LONG.RANGE <- LONG.MAX-LONG.MIN + 1;
-  x <- (x-LONG.MIN) %% LONG.RANGE + LONG.MIN;
-  as.integer(x);
+#  x <- as.integer(x)
+  LONG.MIN <- -9223372036854775808
+  LONG.MAX <-  9223372036854775807
+  LONG.RANGE <- LONG.MAX-LONG.MIN + 1
+  x <- (x-LONG.MIN) %% LONG.RANGE + LONG.MIN
+  as.integer(x)
 }, static=TRUE)

@@ -47,29 +47,29 @@ setMethodS3("systemR", "default", function(command="", ..., Rcommand="R", verbos
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'command':
-  command <- Arguments$getCharacters(command);
+  command <- Arguments$getCharacters(command)
 
   # Locate the R executable, cf. help("R.home") and [1].
   # NB: R.home() is guaranteed to return a path without spaces.
-  Rpath <- R.home("bin");
-  Rpath <- Arguments$getReadablePath(Rpath, mustExist=TRUE);
+  Rpath <- R.home("bin")
+  Rpath <- Arguments$getReadablePath(Rpath, mustExist=TRUE)
 
   # Argument 'Rcommand':
-  Rcommand <- Arguments$getCharacter(Rcommand);
+  Rcommand <- Arguments$getCharacter(Rcommand)
 
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose), add=TRUE);
+    pushState(verbose)
+    on.exit(popState(verbose), add=TRUE)
   }
 
 
   # Setup the full system command
-  Rbin <- file.path(Rpath, Rcommand);
-  command <- paste(command, collapse=" ");
-  command <- paste(command, sep=" ");
-  cmd <- sprintf('%s %s', shQuote(Rbin), command);
-  verbose && cat(verbose, "System command: ", cmd);
+  Rbin <- file.path(Rpath, Rcommand)
+  command <- paste(command, collapse=" ")
+  command <- paste(command, sep=" ")
+  cmd <- sprintf('%s %s', shQuote(Rbin), command)
+  verbose && cat(verbose, "System command: ", cmd)
 
-  system(cmd, ...);
+  system(cmd, ...)
 })

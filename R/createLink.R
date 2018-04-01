@@ -65,88 +65,88 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'skip':
-  skip <- Arguments$getLogical(skip);
+  skip <- Arguments$getLogical(skip)
 
   # Argument 'overwrite':
-  overwrite <- Arguments$getLogical(overwrite);
+  overwrite <- Arguments$getLogical(overwrite)
 
   # Argument 'target':
-  target <- normalizePath(target);
-  target <- Arguments$getReadablePathname(target, mustExist=TRUE);
-  target <- getAbsolutePath(target);
+  target <- normalizePath(target)
+  target <- Arguments$getReadablePathname(target, mustExist=TRUE)
+  target <- getAbsolutePath(target)
 
   # Argument 'link':
   if (is.null(link) || link == ".") {
     # Infer from 'target'
-    link <- basename(target);
+    link <- basename(target)
     if (regexpr("^[a-zA-Z]:$", link) != -1) {
-      throw("Cannot infer a valid link name from argument 'target': ", target);
+      throw("Cannot infer a valid link name from argument 'target': ", target)
     }
   }
 
-  links <- c(link, sprintf("%s.LNK", link));
+  links <- c(link, sprintf("%s.LNK", link))
   if (any(file.exists(links))) {
     if (skip) {
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
 
       resA <- getAbsolutePath(Sys.readlink2(res, what="corrected"))
       equal <- identical(resA, target)
       # Be more forgiving on Windows system, i.e. assume a
       # case-insensitive file system
       if (!equal && (.Platform$OS.type == "windows")) {
-        equal <- identical(tolower(resA), tolower(target));
+        equal <- identical(tolower(resA), tolower(target))
       }
       if (!equal) {
-        warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)));
+        warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)))
       }
 
       # If a Windows Shortcut, avoid returning the target.
       if (file.exists(links[2L]) && !file.exists(link)) {
-        res <- link;
-        attr(res, "linkType") <- "windows-shortcut";
+        res <- link
+        attr(res, "linkType") <- "windows-shortcut"
       }
 
-      return(res);
+      return(res)
     }
     if (!overwrite) {
-      throw("Cannot create link. Link file already exists: ", link);
+      throw("Cannot create link. Link file already exists: ", link)
     }
   }
 
   # Argument 'methods':
-  methods <- match.arg(methods, several.ok=TRUE);
+  methods <- match.arg(methods, several.ok=TRUE)
 
 
   # Keep only 'methods' that are supported on the current platform
   if (.Platform$OS.type != "windows") {
-    methods <- grep("windows-", methods, value=TRUE, invert=TRUE);
+    methods <- grep("windows-", methods, value=TRUE, invert=TRUE)
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create directory where link should be, if missing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  path <- dirname(getAbsolutePath(link));
-  path <- Arguments$getWritablePath(path);
+  path <- dirname(getAbsolutePath(link))
+  path <- Arguments$getWritablePath(path)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Overwrite?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (overwrite) {
-    linksS <- links[file.exists(links)];
+    linksS <- links[file.exists(links)]
     if (length(linksS) > 0) {
-      linksD <- sprintf("%s.%s", linksS, basename(tempdir()));
+      linksD <- sprintf("%s.%s", linksS, basename(tempdir()))
       # Remove current link, by renaming to a temporary name.
-      file.rename(linksS, linksD);
+      file.rename(linksS, linksD)
       on.exit({
         # Undo if failing to create link below.
         if (length(linksS) > 0) {
-          file.rename(linksD, linksS);
+          file.rename(linksD, linksS)
         } else if (length(linksD) > 0) {
-          file.remove(linksD);
+          file.remove(linksD)
         }
-      });
+      })
     }
   }
 
@@ -159,23 +159,23 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # Unix: Try to create a symbolic link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("unix-symlink", methods)) {
-    targetF <- getAbsolutePath(target);
+    targetF <- getAbsolutePath(target)
     tryCatch({
-      file.symlink(from=targetF, to=link);
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE);
-      attr(res, "linkType") <- "unix-symlink";
+      file.symlink(from=targetF, to=link)
+      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      attr(res, "linkType") <- "unix-symlink"
     }, warning = function(ex) {
-    });
+    })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res);
+      return(res)
     }
 
     # Cleanup, in case something was created but the link is not
     # working, which can happen on Windows.  If it worked, then
     # 'res' should be non-NULL above.
     if (file.exists(link)) {
-      file.remove(link);
+      file.remove(link)
     }
   }
 
@@ -186,19 +186,19 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   if (is.element("windows-ntfs-symlink", methods)) {
     # Are we linking to a directory (or a file)?
     if (isDirectory(target)) {
-      cmd <- sprintf("mklink /D \"%s\" \"%s\"", link, target);
+      cmd <- sprintf("mklink /D \"%s\" \"%s\"", link, target)
     } else {
-      cmd <- sprintf("mklink \"%s\" \"%s\"", link, target);
+      cmd <- sprintf("mklink \"%s\" \"%s\"", link, target)
     }
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"));
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE);
-      attr(res, "linkType") <- "windows-ntfs-symlink";
+      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"))
+      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      attr(res, "linkType") <- "windows-ntfs-symlink"
     }, error = function(ex) {
-    });
+    })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res);
+      return(res)
     }
   }
 
@@ -207,23 +207,23 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.element("windows-shortcut", methods)) {
     tryCatch({
-      pathname <- sprintf("%s.LNK", link);
-      createWindowsShortcut(pathname, target=target, overwrite=overwrite);
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      pathname <- sprintf("%s.LNK", link)
+      createWindowsShortcut(pathname, target=target, overwrite=overwrite)
+      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
       # Make sure to return the link and not the target
-      res <- link;
-      attr(res, "linkType") <- "windows-shortcut";
+      res <- link
+      attr(res, "linkType") <- "windows-shortcut"
     }, error = function(ex) {
-    });
+    })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res);
+      return(res)
     }
   }
 
   if (is.null(res)) {
-    throw("Failed to create file link: ", link, "[.lnk] -> ", target);
+    throw("Failed to create file link: ", link, "[.lnk] -> ", target)
   }
 
-  res;
+  res
 }) # createLink()

@@ -57,57 +57,57 @@ setMethodS3("mergeIntervals", "numeric", function(intervals, ...) {
   # Argument 'intervals':
   if (length(intervals) %% 2 != 0) {
     throw("Argument 'intervals' does not contain an even number of values: ",
-                                                          length(intervals));
+                                                          length(intervals))
   }
-  asMatrix <- is.matrix(intervals);
+  asMatrix <- is.matrix(intervals)
   if (!asMatrix) {
-    intervals <- matrix(intervals, ncol=2, byrow=TRUE);
+    intervals <- matrix(intervals, ncol=2, byrow=TRUE)
   } else if (ncol(intervals) != 2) {
     throw("Argument 'intervals' is not a matrix with two columns: ",
-                                                        ncol(intervals));
+                                                        ncol(intervals))
   }
 
 
   # Sort intervals by the lower bounds
-  o <- order(intervals[,1]);
-  intervals <- intervals[o,,drop=FALSE];
-  rownames(intervals) <- NULL;
+  o <- order(intervals[,1])
+  intervals <- intervals[o,,drop=FALSE]
+  rownames(intervals) <- NULL
   # Not needed anymore
-  o <- NULL;
+  o <- NULL
 
   # Merge intervals (assuming already ordered)
-  intervals2 <- matrix(as.integer(0), nrow=0, ncol=2);
-  colnames(intervals2) <- colnames(intervals);
-  currInterval <- intervals[1,,drop=FALSE];
+  intervals2 <- matrix(as.integer(0), nrow=0, ncol=2)
+  colnames(intervals2) <- colnames(intervals)
+  currInterval <- intervals[1,,drop=FALSE]
   for (kk in seq(from=2, to=nrow(intervals))) {
-    nextInterval <- intervals[kk,];
+    nextInterval <- intervals[kk,]
 
     # Does the next interval overlap with the current one?
     if (nextInterval[1] <= currInterval[2]) {
       # Does it stretch beyond the current one?
       if (nextInterval[2] > currInterval[2]) {
         # Then merge the two
-        currInterval[2] <- nextInterval[2];
-        nextInterval <- NULL;
+        currInterval[2] <- nextInterval[2]
+        nextInterval <- NULL
       } else {
         # Drop the next interval because it is fully
         # included in the current one.
-        nextInterval <- NULL;
+        nextInterval <- NULL
       }
     } else {
       # The next and current intervals are disjoint.
-      intervals2 <- rbind(intervals2, currInterval);
-      currInterval <- nextInterval;
+      intervals2 <- rbind(intervals2, currInterval)
+      currInterval <- nextInterval
     }
   } # for (kk ...)
-  intervals2 <- rbind(intervals2, currInterval);
-  rownames(intervals2) <- NULL;
+  intervals2 <- rbind(intervals2, currInterval)
+  rownames(intervals2) <- NULL
 
   # Return intervals a vector of paired intervals
   if (!asMatrix) {
-    intervals2 <- t(intervals2);
-    intervals2 <- as.vector(intervals2);
+    intervals2 <- t(intervals2)
+    intervals2 <- as.vector(intervals2)
   }
 
-  intervals2;
+  intervals2
 }) # mergeIntervals()

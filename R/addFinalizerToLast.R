@@ -36,35 +36,35 @@ setMethodS3("addFinalizerToLast", "default", function(...) {
   # Modify existing .Last() or create a new one?
   if (exists(".Last", mode="function")) {
     # A) Modify
-    .Last <- get(".Last", mode="function");
+    .Last <- get(".Last", mode="function")
 
     # Already has finalizeSession()?
     if (identical(attr(.Last, "finalizeSession"), TRUE)) {
       # And a version from R.utils v0.8.5 or after?
-      ver <- attr(.Last, "finalizeSessionVersion");
+      ver <- attr(.Last, "finalizeSessionVersion")
       if (!is.null(ver) && compareVersion(ver, "0.8.5") >= 0) {
         # ...then everything is fine.
-        return(invisible(FALSE));
+        return(invisible(FALSE))
       }
 
       # Otherwise, overwrite old buggy version.
     } else {
       # Rename original .Last() function
       env <- globalenv(); # To please R CMD check
-      assign(".LastOriginal", .Last, envir=env);
+      assign(".LastOriginal", .Last, envir=env)
     }
 
     # Define a new .Last() function
     .Last <- function(...) {
       tryCatch({
         if (exists("finalizeSession", mode="function"))
-          finalizeSession();
+          finalizeSession()
         if (exists(".LastOriginal", mode="function")) {
-          .LastOriginal <- get(".LastOriginal", mode="function");
-          .LastOriginal();
+          .LastOriginal <- get(".LastOriginal", mode="function")
+          .LastOriginal()
         }
       }, error = function(ex) {
-        message("Ignoring error occured in .Last(): ", as.character(ex));
+        message("Ignoring error occured in .Last(): ", as.character(ex))
       })
     }
   } else {
@@ -72,19 +72,19 @@ setMethodS3("addFinalizerToLast", "default", function(...) {
     .Last <- function(...) {
       tryCatch({
         if (exists("finalizeSession", mode="function"))
-          finalizeSession();
+          finalizeSession()
       }, error = function(ex) {
-        message("Ignoring error occured in .Last(): ", as.character(ex));
+        message("Ignoring error occured in .Last(): ", as.character(ex))
       })
     }
   }
-  attr(.Last, "finalizeSession") <- TRUE;
-  attr(.Last, "finalizeSessionVersion") <- packageDescription("R.utils")$Version;
+  attr(.Last, "finalizeSession") <- TRUE
+  attr(.Last, "finalizeSessionVersion") <- packageDescription("R.utils")$Version
   environment(.Last) <- globalenv()
 
   # Store it.
   env <- globalenv(); # To please R CMD check
-  assign(".Last", .Last, envir=env);
+  assign(".Last", .Last, envir=env)
 
-  invisible(FALSE);
+  invisible(FALSE)
 }, private=TRUE)

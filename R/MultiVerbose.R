@@ -35,7 +35,7 @@ setConstructorS3("MultiVerbose", function(verboseList=NULL, ...) {
   if (!is.null(verboseList)) {
     for (arg in verboseList) {
       if (!inherits(arg, "Verbose")) {
-        throw("One of the elements in argument 'verboseList' is not a Verbose object: ", class(arg)[1]);
+        throw("One of the elements in argument 'verboseList' is not a Verbose object: ", class(arg)[1])
       }
     }
   }
@@ -74,8 +74,8 @@ setConstructorS3("MultiVerbose", function(verboseList=NULL, ...) {
 #*/###########################################################################
 setMethodS3("as.list", "MultiVerbose", function(x, ...) {
   # To please R CMD check
-  this <- x;
-  this$.verboseList;
+  this <- x
+  this$.verboseList
 }, protected=TRUE)
 
 
@@ -110,6 +110,6 @@ setMethodS3("as.list", "MultiVerbose", function(x, ...) {
 #*/###########################################################################
 setMethodS3("writeRaw", "MultiVerbose", function(this, ...) {
   # Write output to each of the Verbose objects
-  lapply(this, FUN=writeRaw, ...);
-  invisible(TRUE);
+  lapply(this, FUN=writeRaw, ...)
+  invisible(TRUE)
 })

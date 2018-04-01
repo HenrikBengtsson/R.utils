@@ -47,155 +47,155 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'lines':
   if (!is.numeric(lines))
-    throw("Argument 'lines' must be numeric: ", mode(lines));
-  lines <- unique(as.integer(lines));
+    throw("Argument 'lines' must be numeric: ", mode(lines))
+  lines <- unique(as.integer(lines))
 
   if (length(lines) == 1) {
     if (is.na(lines))
-      lines <- -1;
+      lines <- -1
   } else if (length(lines) > 1) {
     if (any(lines <= 0)) {
       throw("Argument 'lines' must be positive: [",
-                                         min(lines), ",", max(lines), "]");
+                                         min(lines), ",", max(lines), "]")
     }
   }
 
   # Argument 'code':
   if (!is.null(code)) {
-    code <- Arguments$getCharacters(code, asGString=FALSE);
-    code <- gsub("\r\n|\n\r|\r", "\n", code);
-    code <- unlist(strsplit(code, split="\n"));
-    pathname <- "R code";
+    code <- Arguments$getCharacters(code, asGString=FALSE)
+    code <- gsub("\r\n|\n\r|\r", "\n", code)
+    code <- unlist(strsplit(code, split="\n"))
+    pathname <- "R code"
   }
 
   # Argument 'con':
   if (is.null(code)) {
     if (is.character(con)) {
-      pathname <- Arguments$getReadablePathname(con, mustExist=TRUE);
-      code <- readLines(pathname, n=max(lines), warn=FALSE);
+      pathname <- Arguments$getReadablePathname(con, mustExist=TRUE)
+      code <- readLines(pathname, n=max(lines), warn=FALSE)
     } else if (inherits(con, "connection")) {
-      pathname <- summary(con)$description;
-      code <- readLines(con, n=max(lines), warn=FALSE);
+      pathname <- summary(con)$description
+      code <- readLines(con, n=max(lines), warn=FALSE)
     } else {
       throw("Argument 'con' must be a filename or a connection: ",
-                                                             class(con)[1]);
+                                                             class(con)[1])
     }
   }
 
   # Argument 'numerate':
-  numerate <- Arguments$getLogical(numerate);
+  numerate <- Arguments$getLogical(numerate)
 
 
   # Argument 'wrap':
   if (length(wrap) != 1) {
     throw("Argument 'wrap' must be a single number: ",
-                                               paste(wrap, collapse=", "));
+                                               paste(wrap, collapse=", "))
   }
 
   if (any(!is.finite(wrap)))
-    throw("Argument 'wrap' is non-finite: ", wrap);
+    throw("Argument 'wrap' is non-finite: ", wrap)
 
   # Argument 'highlight':
   if (is.character(highlight)) {
     # Find line number in 'highlight' string.  For example, by passing
     # geterrmessage() we can automatigally highlight the erroneous line.
-    pattern <- ".*(line|row)(|s) ([0-9][0-9]*).*";
+    pattern <- ".*(line|row)(|s) ([0-9][0-9]*).*"
     if (regexpr(pattern, highlight) != -1) {
-      highlight <- gsub(pattern, "\\3", highlight);
-      highlight <- as.integer(highlight);
+      highlight <- gsub(pattern, "\\3", highlight)
+      highlight <- as.integer(highlight)
     }
   }
 
   if (!is.null(highlight) && is.na(highlight)) {
-    highlight <- NULL;
+    highlight <- NULL
   } else {
-    highlight <- unique(as.integer(highlight));
+    highlight <- unique(as.integer(highlight))
   }
 
   # Argument 'pager':
   if (is.function(pager)) {
   } else {
-    pager <- Arguments$getCharacter(pager);
+    pager <- Arguments$getCharacter(pager)
   }
 
-  nlines <- length(code);
+  nlines <- length(code)
   if (nlines == 0)
-    return();
+    return()
 
   # Number the read lines
-  numbers <- as.integer(seq_len(nlines));
+  numbers <- as.integer(seq_len(nlines))
 
   # Prepare highlight marks
-  marks <- rep(" ", times=nlines);
-  marks[highlight] <- "*";
+  marks <- rep(" ", times=nlines)
+  marks[highlight] <- "*"
 
   if (length(lines) > 1) {
     # Ignore lines not read
-    lines <- lines[lines <= length(code)];
-    code <- code[lines];
-    numbers <- numbers[lines];
-    marks <- marks[lines];
+    lines <- lines[lines <= length(code)]
+    code <- code[lines]
+    numbers <- numbers[lines]
+    marks <- marks[lines]
   }
 
   if (all(marks == " "))
-    marks <- NULL;
+    marks <- NULL
 
   # Create right-aligned line number strings
   if (numerate) {
-    width <- nchar(as.character(nlines));
-    fmtstr <- paste("%", width, "d", sep="");
-    numbers <- sprintf(fmtstr, numbers);
+    width <- nchar(as.character(nlines))
+    fmtstr <- paste("%", width, "d", sep="")
+    numbers <- sprintf(fmtstr, numbers)
   } else {
-    numbers <- NULL;
+    numbers <- NULL
   }
 
   # Create the line prefixes
   if (!is.null(marks) || !is.null(numbers)) {
-    prefix <- paste(marks, numbers, "|", sep="");
-    width <- nchar(prefix[1]);
-    emptyPrefix <- paste(paste(rep(" ", times=width-1), collapse=""), "|", sep="");
+    prefix <- paste(marks, numbers, "|", sep="")
+    width <- nchar(prefix[1])
+    emptyPrefix <- paste(paste(rep(" ", times=width-1), collapse=""), "|", sep="")
   } else {
-    prefix <- NULL;
-    width <- 0;
-    emptyPrefix <- NULL;
+    prefix <- NULL
+    width <- 0
+    emptyPrefix <- NULL
   }
 
   # Create output lines by wrapping the lines, but not the line numbers
   if (wrap > 0) {
-    wrap <- wrap - width;
+    wrap <- wrap - width
 
-    code2 <- c();
+    code2 <- c()
     for (kk in seq_along(code)) {
       if (nchar(code[kk]) <= wrap) {
-        line <- paste(prefix[kk], code[kk], sep="");
+        line <- paste(prefix[kk], code[kk], sep="")
       } else {
         # Wrap line at positions:
-        wrapAt <- seq(from=1, to=nchar(code[kk]), by=wrap);
-        line <- c();
+        wrapAt <- seq(from=1, to=nchar(code[kk]), by=wrap)
+        line <- c()
         while (length(wrapAt) > 0) {
-          line <- c(line, substr(code[kk], 1, wrap));
+          line <- c(line, substr(code[kk], 1, wrap))
           code[kk] <- substring(code[kk], wrap+1)
-          wrapAt <- wrapAt[-1];
+          wrapAt <- wrapAt[-1]
         }
-        indent <- prefix[kk];
+        indent <- prefix[kk]
         if (length(emptyPrefix) > 0L) {
-          indent <- c(indent, rep(emptyPrefix, length.out=length(line)-1));
+          indent <- c(indent, rep(emptyPrefix, length.out=length(line)-1))
         }
-        line <- paste(indent, line, sep="");
+        line <- paste(indent, line, sep="")
       }
-      code2 <- c(code2, line);
+      code2 <- c(code2, line)
     }
-    code <- code2;
+    code <- code2
   }
 
-  code <- paste(code, collapse="\n");
-  code <- paste(code, "\n", sep="");
+  code <- paste(code, collapse="\n")
+  code <- paste(code, "\n", sep="")
 
   if (!is.null(pager) && !identical(pager, "none")) {
-    tmpfile <- tempfile();
-    cat(file=tmpfile, code);
-    file.show(tmpfile, title=pathname, delete.file=TRUE, pager=pager, ...);
+    tmpfile <- tempfile()
+    cat(file=tmpfile, code)
+    file.show(tmpfile, title=pathname, delete.file=TRUE, pager=pager, ...)
   }
 
-  invisible(code);
+  invisible(code)
 })

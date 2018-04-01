@@ -3,24 +3,24 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .getPathIfEmpty <- function(pathname, where=NULL) {
   # Nothing to do?
-  if (length(pathname) > 0L) return(pathname);
+  if (length(pathname) > 0L) return(pathname)
 
-  onEmptyPath <- getOption("R.utils::onEmptyPath", ".");
+  onEmptyPath <- getOption("R.utils::onEmptyPath", ".")
 
   # Treat as the current working directory?  (Backward compatibility)
   if (onEmptyPath == ".")
-    return(".");
+    return(".")
 
   # Warning or error?
   if (is.element(onEmptyPath, c("warning", "error"))) {
     if (is.null(where)) {
-      msg <- "Argument 'pathname' is NULL.";
+      msg <- "Argument 'pathname' is NULL."
     } else {
-      msg <- sprintf("Argument 'pathname' of %s is NULL.", where);
+      msg <- sprintf("Argument 'pathname' of %s is NULL.", where)
     }
-    if (onEmptyPath == "error") throw(msg);
-    warning(msg);
+    if (onEmptyPath == "error") throw(msg)
+    warning(msg)
   }
 
-  pathname;
+  pathname
 } # .getPathIfEmpty()

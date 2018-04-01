@@ -64,146 +64,146 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
       out <- NULL
       closeAll <- function(out) {
         if (!is.null(out)) {
-          sink(type="message");
-          sink(type="output");
-          close(out);
+          sink(type="message")
+          sink(type="output")
+          close(out)
         }
-        NULL;
+        NULL
       } # closeAll()
 
       bfr <- NULL; rm(list="bfr"); # To please R CMD check
-      out <- textConnection("bfr", open="w", local=TRUE);
-      sink(file=out, type="output");
-      sink(file=out, type="message");
+      out <- textConnection("bfr", open="w", local=TRUE)
+      sink(file=out, type="output")
+      sink(file=out, type="message")
       on.exit({
-        out <- closeAll(out);
+        out <- closeAll(out)
         # Output?
         if (echo && length(bfr) > 0L) {
-          cat(paste(c(bfr, ""), collapse="\n"));
+          cat(paste(c(bfr, ""), collapse="\n"))
         }
-      });
+      })
 
       # Evaluate
       tryCatch({
-        eval(expr, envir=envir);
+        eval(expr, envir=envir)
       }, error = function(ex) {
-        out <<- closeAll(out);
+        out <<- closeAll(out)
         # If error, output all messages...
         if (length(bfr) > 0L) {
-          echo <<- FALSE;
-          message(paste(c(bfr, ""), collapse="\n"));
+          echo <<- FALSE
+          message(paste(c(bfr, ""), collapse="\n"))
         }
         # ...and rethrow the error
-        throw(ex);
+        throw(ex)
       })
 
       # Close
-      out <- closeAll(out);
+      out <- closeAll(out)
 
-      invisible(bfr);
+      invisible(bfr)
     } # captureAll()
   } else {
     captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
-      eval(expr, envir=envir);
+      eval(expr, envir=envir)
     }
   } # if (quietly)
 
 
   installPkg <- function(pkg, version=NULL, repos=NULL, type=getOption("pkgType"), ..., quietly=FALSE, verbose=FALSE) {
-    verbose && enter(verbose, "Trying to install package");
+    verbose && enter(verbose, "Trying to install package")
 
     # Already installed? (=should not have been called)
     if (isPackageInstalled(pkg)) {
-      ver <- packageVersion(pkg);
-      msg <- sprintf("INTERNAL ERROR: Package %s v%s is already installed. ", sQuote(pkg), ver);
-      throw(msg);
+      ver <- packageVersion(pkg)
+      msg <- sprintf("INTERNAL ERROR: Package %s v%s is already installed. ", sQuote(pkg), ver)
+      throw(msg)
     }
 
     # Parse/expand argument 'repos':
-    if (is.null(repos)) repos <- "[[current]]";
-    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
+    if (is.null(repos)) repos <- "[[current]]"
+    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "))
 
     # Temporary set of repositories
-    orepos <- useRepos(repos);
-    on.exit(useRepos(orepos));
+    orepos <- useRepos(repos)
+    on.exit(useRepos(orepos))
 
     # Repositories being used
-    repos <- getOption("repos");
+    repos <- getOption("repos")
     if (!identical(repos, orepos)) {
-      cat(verbose, "Repositories (expanded): ", paste(sQuote(repos), collapse=", "));
+      cat(verbose, "Repositories (expanded): ", paste(sQuote(repos), collapse=", "))
     }
 
     # Identify all available packages of this repository
     captureAll({
-      avail <- available.packages(type=type);
-    }, echo=!quietly);
+      avail <- available.packages(type=type)
+    }, echo=!quietly)
 
     # Does the package of interest exists?
-    keep <- na.omit(match(pkg, rownames(avail)));
-    availT <- avail[keep,, drop=FALSE];
+    keep <- na.omit(match(pkg, rownames(avail)))
+    availT <- avail[keep,, drop=FALSE]
     if (length(availT) == 0L) {
-      throw(sprintf("Package '%s' is not available from any of the repositories: %s", pkg, paste(sQuote(repos), collapse=", ")));
+      throw(sprintf("Package '%s' is not available from any of the repositories: %s", pkg, paste(sQuote(repos), collapse=", ")))
     }
-    verbose && print(verbose, availT[,c("Package", "Version")]);
+    verbose && print(verbose, availT[,c("Package", "Version")])
 
     # Find a particular version?
     if (!is.null(version)) {
-      vers <- availT[,"Version", drop=TRUE];
-      keep <- sapply(vers, FUN=function(ver) version$test(ver));
-      availT <- availT[keep,,drop=FALSE];
+      vers <- availT[,"Version", drop=TRUE]
+      keep <- sapply(vers, FUN=function(ver) version$test(ver))
+      availT <- availT[keep,,drop=FALSE]
       if (length(availT) == 0L) {
-        throw(sprintf("Package '%s' (%s) is not available from any of the repositories: %s", pkg, version$label, paste(sQuote(repos), collapse=", ")));
+        throw(sprintf("Package '%s' (%s) is not available from any of the repositories: %s", pkg, version$label, paste(sQuote(repos), collapse=", ")))
       }
-      verbose && print(verbose, availT[,c("Package", "Version")]);
+      verbose && print(verbose, availT[,c("Package", "Version")])
     }
 
-    verbose && enter(verbose, "Installing package");
-    verbose && cat(verbose, "Type: ", type);
-    verbose && cat(verbose, "Number of possible installation files available: ", nrow(availT));
+    verbose && enter(verbose, "Installing package")
+    verbose && cat(verbose, "Type: ", type)
+    verbose && cat(verbose, "Number of possible installation files available: ", nrow(availT))
 
     # Detach/unload namespace first?
     if (is.element(pkg, loadedNamespaces())) {
-      verbose && enter(verbose, "Unloading package namespace before installing");
+      verbose && enter(verbose, "Unloading package namespace before installing")
       captureAll({
-        unloadNamespace(pkg);
-      }, echo=!quietly);
+        unloadNamespace(pkg)
+      }, echo=!quietly)
       if (is.element(pkg, loadedNamespaces())) {
-        throw("Cannot install package. Failed to unload namespace: ", pkg);
+        throw("Cannot install package. Failed to unload namespace: ", pkg)
       }
-      verbose && exit(verbose);
+      verbose && exit(verbose)
     }
 
-    verbose && enter(verbose, "install.packages()");
-    verbose && cat(verbose, "Arguments:");
-    verbose && str(verbose, list(available=avail, type=type, quiet=quietly, ...));
+    verbose && enter(verbose, "install.packages()")
+    verbose && cat(verbose, "Arguments:")
+    verbose && str(verbose, list(available=avail, type=type, quiet=quietly, ...))
 
     output <- captureAll({
-#      install.packages(pkg, available=avail, type=type, quiet=quietly, ...);
-      install.packages(pkg, type=type, quiet=quietly, ...);
-    }, echo=!quietly);
+#      install.packages(pkg, available=avail, type=type, quiet=quietly, ...)
+      install.packages(pkg, type=type, quiet=quietly, ...)
+    }, echo=!quietly)
 
-    if (!quietly) verbose && print(verbose, output);
-    verbose && exit(verbose);
+    if (!quietly) verbose && print(verbose, output)
+    verbose && exit(verbose)
 
-    installed <- isPackageInstalled(pkg);
+    installed <- isPackageInstalled(pkg)
     if (!installed) {
-      throw("Failed to install package: ", pkg);
+      throw("Failed to install package: ", pkg)
     }
-    verbose && exit(verbose);
+    verbose && exit(verbose)
 
-    ver <- packageVersion(pkg);
-    verbose && printf(verbose, "Installed version: %s v%s\n", pkg, ver);
+    ver <- packageVersion(pkg)
+    verbose && printf(verbose, "Installed version: %s v%s\n", pkg, ver)
 
     # Assert installed package version
     if (!is.null(version)) {
       if (!version$test(ver)) {
-        throw(sprintf("[SANITY CHECK]: The package version ('%s') available after installation does not meet the request version specification ('%s'): %s", ver, version$label, pkg));
+        throw(sprintf("[SANITY CHECK]: The package version ('%s') available after installation does not meet the request version specification ('%s'): %s", ver, version$label, pkg))
       }
     }
 
-    verbose && exit(verbose);
+    verbose && exit(verbose)
 
-    invisible(ver);
+    invisible(ver)
   } # installPkg()
 
 
@@ -211,38 +211,38 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkg':
-  pkg <- Arguments$getCharacters(pkg);
-  pkg <- .splitBy(pkg, split=",");
-  npkgs <- length(pkg);
+  pkg <- Arguments$getCharacters(pkg)
+  pkg <- .splitBy(pkg, split=",")
+  npkgs <- length(pkg)
 
   # Argument 'version':
   if (!is.null(version)) {
-    version <- Arguments$getCharacters(version);
-    version <- .splitBy(version, split=",");
+    version <- Arguments$getCharacters(version)
+    version <- .splitBy(version, split=",")
     if (length(version) != npkgs) {
-      throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs);
+      throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs)
     }
   }
 
   # Argument 'repos':
   if (is.null(repos)) {
-    repos <- Arguments$getCharacters(repos);
+    repos <- Arguments$getCharacters(repos)
   }
 
   # Argument 'how':
-  how <- match.arg(how);
+  how <- match.arg(how)
 
   # Argument 'quietly':
-  quietly <- Arguments$getLogical(quietly);
+  quietly <- Arguments$getLogical(quietly)
 
   # Argument 'install':
   install <- Arguments$getLogical(install, coerce = TRUE)
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
@@ -250,16 +250,16 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
   # Vectorized call?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (npkgs > 1L) {
-    res <- NULL;
+    res <- NULL
     for (ii in seq_len(npkgs)) {
-      resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=NULL, ..., verbose=verbose);
+      resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=NULL, ..., verbose=verbose)
       if (ii == 1L) {
         res <- resII
       } else {
-        res <- c(res, resII);
+        res <- c(res, resII)
       }
     }
-    return(invisible(res));
+    return(invisible(res))
   }
 
 
@@ -272,217 +272,217 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # From now on we are only dealing with one package at the time
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  verbose && enterf(verbose, "%sing package", capitalize(how));
+  verbose && enterf(verbose, "%sing package", capitalize(how))
   if (!is.null(version)) {
-    version <- .parseVersion(version);
+    version <- .parseVersion(version)
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Parse package and repository names
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  verbose && enter(verbose, "Parsing package, version and repositories");
-  pkgOrg <- pkg;
-  parts <- .splitBy(pkg, split="::");
-  nparts <- length(parts);
+  verbose && enter(verbose, "Parsing package, version and repositories")
+  pkgOrg <- pkg
+  parts <- .splitBy(pkg, split="::")
+  nparts <- length(parts)
   # Sanity check
   if (nparts == 0L || nparts > 2L) {
-    throw("Syntax error (in usage of '::'): ", pkgOrg);
+    throw("Syntax error (in usage of '::'): ", pkgOrg)
   }
 
   # Infer (repos,pkg) parameters
   if (nparts == 1L) {
-    repos <- NULL;
-    pkg <- parts[1L];
+    repos <- NULL
+    pkg <- parts[1L]
   } else if (nparts == 2L) {
-    repos <- parts[1L];
-    pkg <- parts[2L];
+    repos <- parts[1L]
+    pkg <- parts[2L]
   }
 
-  patternO <- "<|<=|==|>=|>";
-  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*";
-  pattern <- sprintf("^([^ ]+)[ ]*(|[(]((|%s)[ ]*%s)[)])", patternO, patternV);
+  patternO <- "<|<=|==|>=|>"
+  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*"
+  pattern <- sprintf("^([^ ]+)[ ]*(|[(]((|%s)[ ]*%s)[)])", patternO, patternV)
   if (regexpr(pattern, pkg) == -1L) {
-    throw("Syntax error (in usage after '::'): ", pkgOrg);
+    throw("Syntax error (in usage after '::'): ", pkgOrg)
   }
-  versionT <- gsub(pattern, "\\2", pkg);
-  hasVersion <- nzchar(versionT);
+  versionT <- gsub(pattern, "\\2", pkg)
+  hasVersion <- nzchar(versionT)
   if (hasVersion) {
     if (!is.null(version)) {
-      throw(sprintf("Argument 'version' (%s) must not be given if argument 'pkg' specifies a version constraint as well: %s", version, pkg));
+      throw(sprintf("Argument 'version' (%s) must not be given if argument 'pkg' specifies a version constraint as well: %s", version, pkg))
     }
-    version <- versionT;
-    version <- .parseVersion(version);
+    version <- versionT
+    version <- .parseVersion(version)
   }
-  stopifnot(is.null(version) || is.list(version));
+  stopifnot(is.null(version) || is.list(version))
 
-  pkg <- gsub(pattern, "\\1", pkg);
+  pkg <- gsub(pattern, "\\1", pkg)
 
 
   # Parse 'repos'
   if (!is.null(repos)) {
     if (length(repos) > 1L) {
-      repos <- paste(repos, collapse="|");
+      repos <- paste(repos, collapse="|")
     }
-    repos <- .parseRepos(repos);
-    repos <- unique(repos);
+    repos <- .parseRepos(repos)
+    repos <- unique(repos)
   }
-  if (is.null(repos)) repos <- "[[current]]";
+  if (is.null(repos)) repos <- "[[current]]"
 
   if (verbose) {
-    cat(verbose, "Package: ", sQuote(pkg));
+    cat(verbose, "Package: ", sQuote(pkg))
     if (is.null(version)) {
-      cat(verbose, "Version constraint: <none>");
+      cat(verbose, "Version constraint: <none>")
     } else {
-      cat(verbose, "Version constraint: ", version$label);
+      cat(verbose, "Version constraint: ", version$label)
     }
-    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
+    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "))
   }
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
 
-  verbose && enter(verbose, "Checking package installing");
-  cat(verbose, "Package: ", sQuote(pkg));
-  installed <- isPackageInstalled(pkg);
+  verbose && enter(verbose, "Checking package installing")
+  cat(verbose, "Package: ", sQuote(pkg))
+  installed <- isPackageInstalled(pkg)
   if (!installed && install) {
-    ver <- installPkg(pkg, version=version, repos=repos, ..., quietly=quietly, verbose=verbose);
-    installed <- isPackageInstalled(pkg);
+    ver <- installPkg(pkg, version=version, repos=repos, ..., quietly=quietly, verbose=verbose)
+    installed <- isPackageInstalled(pkg)
   }
 
   if (!installed) {
-    cat(verbose, "Package version: <not installed>");
-    verbose && exit(verbose);
-    verbose && exit(verbose);
-    throw(sprintf("Failed to %s package:%s", how, pkg));
+    cat(verbose, "Package version: <not installed>")
+    verbose && exit(verbose)
+    verbose && exit(verbose)
+    throw(sprintf("Failed to %s package:%s", how, pkg))
   }
 
-  ver <- packageVersion(pkg);
-  verbose && cat(verbose, "Package version: ", ver);
-  verbose && exit(verbose);
+  ver <- packageVersion(pkg)
+  verbose && cat(verbose, "Package version: ", ver)
+  verbose && exit(verbose)
 
 
-  verbose && enter(verbose, "Checking requested package version");
+  verbose && enter(verbose, "Checking requested package version")
   if (!is.null(version)) {
-    ver <- packageVersion(pkg);
-    cat(verbose, "Package version: ", ver);
-    cat(verbose, "Requested version: ", version$label);
-    res <- version$test(ver);
-    printf(verbose, "Result of test (%s %s): %s\n", ver, version$label, res);
+    ver <- packageVersion(pkg)
+    cat(verbose, "Package version: ", ver)
+    cat(verbose, "Requested version: ", version$label)
+    res <- version$test(ver)
+    printf(verbose, "Result of test (%s %s): %s\n", ver, version$label, res)
 
     # Need to install a newer version?
     if (!res) {
-      verbose && printf(verbose, "Installed version ('%s') does meet the version requirements (%s)\n", ver, version$label);
+      verbose && printf(verbose, "Installed version ('%s') does meet the version requirements (%s)\n", ver, version$label)
       if (install) {
-        ver <- installPkg(pkg, version=version, repos=repos, ..., quietly=quietly, verbose=verbose);
-        verbose && printf(verbose, "Installed %s v%s\n", pkg, ver);
-        verbose && exit(verbose);
+        ver <- installPkg(pkg, version=version, repos=repos, ..., quietly=quietly, verbose=verbose)
+        verbose && printf(verbose, "Installed %s v%s\n", pkg, ver)
+        verbose && exit(verbose)
       } else {
-        throw(sprintf("%s (%s) is not installed: %s", sQuote(pkg), version$label, ver));
+        throw(sprintf("%s (%s) is not installed: %s", sQuote(pkg), version$label, ver))
       }
     }
   }
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  verbose && enterf(verbose, "%sing package", capitalize(how));
-  ver <- packageVersion(pkg);
-  cat(verbose, "Package: ", sQuote(pkg));
-  cat(verbose, "Package version: ", ver);
-  cat(verbose, "How: ", how);
+  verbose && enterf(verbose, "%sing package", capitalize(how))
+  ver <- packageVersion(pkg)
+  cat(verbose, "Package: ", sQuote(pkg))
+  cat(verbose, "Package version: ", ver)
+  cat(verbose, "How: ", how)
   if (how == "attach") {
     captureAll({
       ## NB: do.call() is needed to avoid 'R CMD check' NOTE on
       ## "... may be used in an incorrect context". /HB 2013-08-31
-      res <- do.call(require, list(pkg, ..., quietly=quietly, warn.conflicts=warn.conflicts, character.only=TRUE));
-      if (!res) throw("Package not attached: ", pkg);
-    }, echo=!quietly);
+      res <- do.call(require, list(pkg, ..., quietly=quietly, warn.conflicts=warn.conflicts, character.only=TRUE))
+      if (!res) throw("Package not attached: ", pkg)
+    }, echo=!quietly)
   } else if (how == "load") {
     captureAll({
-      res <- requireNamespace(pkg, ..., quietly=quietly);
-      if (!res) throw("Package not loaded: ", pkg);
-    }, echo=!quietly);
+      res <- requireNamespace(pkg, ..., quietly=quietly)
+      if (!res) throw("Package not loaded: ", pkg)
+    }, echo=!quietly)
   }
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  names(ver) <- pkg;
-  invisible(ver);
+  names(ver) <- pkg
+  invisible(ver)
 }) # use()
 
 
 .splitBy <- function(s, split=",", fixed=TRUE, ...) {
   trim <- function(s, ...) {
-    s <- gsub("^[ \t\n\r]*", "", s);
-    s <- gsub("[ \t\n\r]*$", "", s);
-    s;
+    s <- gsub("^[ \t\n\r]*", "", s)
+    s <- gsub("[ \t\n\r]*$", "", s)
+    s
   } # trim()
 
-  s <- strsplit(s, split=split, fixed=fixed);
-  s <- unlist(s, use.names=FALSE);
-  trim(s);
+  s <- strsplit(s, split=split, fixed=fixed)
+  s <- unlist(s, use.names=FALSE)
+  trim(s)
 } # .splitBy()
 
 
 .parseVersion <- function(version, defaultOp="==", ...) {
-  versionOrg <- version;
+  versionOrg <- version
 
   # Trim
-  version <- gsub("^[ ]+", "", version);
-  version <- gsub("[ ]+$", "", version);
+  version <- gsub("^[ ]+", "", version)
+  version <- gsub("[ ]+$", "", version)
 
   # Drop optional parenthesis
-  pattern <- "^[(]([^)]*)[)]$";
+  pattern <- "^[(]([^)]*)[)]$"
   if (regexpr(pattern, version) != -1L) {
-    version <- gsub(pattern, "\\1", version);
+    version <- gsub(pattern, "\\1", version)
   }
 
   # (a) Just a version number?
-  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*";
-  pattern <- sprintf("^%s$", patternV);
+  patternV <- "[0-9]+[.-][0-9]+([.-][0-9]+)*"
+  pattern <- sprintf("^%s$", patternV)
   if (regexpr(pattern, version) != -1L) {
-    version <- sprintf("%s %s", defaultOp, version);
+    version <- sprintf("%s %s", defaultOp, version)
   }
 
-  patternO <- "<|<=|==|>=|>";
-  pattern <- sprintf("^(%s)[ ]*(%s)$", patternO, patternV);
+  patternO <- "<|<=|==|>=|>"
+  pattern <- sprintf("^(%s)[ ]*(%s)$", patternO, patternV)
   if (regexpr(pattern, version) == -1L) {
-    throw("Syntax error in specification of version constraint: ", versionOrg);
+    throw("Syntax error in specification of version constraint: ", versionOrg)
   }
 
   # Parse operation, version number
-  op <- gsub(pattern, "\\1", version);
-  version <- gsub(pattern, "\\2", version);
-  version <- package_version(version);
-  label <- sprintf("%s %s", op, version);
+  op <- gsub(pattern, "\\1", version)
+  version <- gsub(pattern, "\\2", version)
+  version <- package_version(version)
+  label <- sprintf("%s %s", op, version)
 
   # Create test function
   test <- function(other) {
-    do.call(op, list(other, version));
+    do.call(op, list(other, version))
   }
 
-  list(label=label, op=op, version=version, test=test);
+  list(label=label, op=op, version=version, test=test)
 } # .parseVersion()
 
 
 
 .parseRepos <- function(repos, ...) {
-  reposOrg <- repos;
+  reposOrg <- repos
 
   # Trim
-  repos <- gsub("^[ ]+", "", repos);
-  repos <- gsub("[ ]+$", "", repos);
+  repos <- gsub("^[ ]+", "", repos)
+  repos <- gsub("[ ]+$", "", repos)
 
   # Drop optional parenthesis
-  pattern <- "^[(]([^)]*)[)]$";
+  pattern <- "^[(]([^)]*)[)]$"
   if (regexpr(pattern, repos) != -1L) {
-    repos <- gsub(pattern, "\\1", repos);
+    repos <- gsub(pattern, "\\1", repos)
   }
 
   # Split
-  repos <- .splitBy(repos, split="|");
+  repos <- .splitBy(repos, split="|")
 
-  repos;
+  repos
 } # .parseRepos()
 
 
@@ -490,8 +490,8 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
 ##  # Adjust repositories temporarily
 ##  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ##  if (length(repos) > 0L) {
-##    verbose && printf(verbose, "Using specific repositories (%s):\n", paste(sQuote(repos), collapse=", "));
-##    orepos <- useRepos(repos);
+##    verbose && printf(verbose, "Using specific repositories (%s):\n", paste(sQuote(repos), collapse=", "))
+##    orepos <- useRepos(repos)
 ##    on.exit(options(orepos), add=TRUE)
 ##    verbose && str(verbose, as.list(getOption("repos")))
 ##  }
