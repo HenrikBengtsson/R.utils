@@ -56,48 +56,48 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'isFile':
-  isFile <- Arguments$getLogical(isFile);
+  isFile <- Arguments$getLogical(isFile)
 
   # Argument 'filename' & 'path':
   pathname <- Arguments$getWritablePathname(filename, path=path,
-                    mustExist=isFile, mustNotExist=!isFile);
+                    mustExist=isFile, mustNotExist=!isFile)
 
   # Argument 'suffix':
-  suffix <- Arguments$getCharacter(suffix);
+  suffix <- Arguments$getCharacter(suffix)
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
-  verbose && enter(verbose, "Adding temporary suffix from file");
-  verbose && cat(verbose, "Pathname: ", pathname);
-  verbose && cat(verbose, "Suffix: ", suffix);
-  verbose && cat(verbose, "Rename existing file?: ", isFile);
+  verbose && enter(verbose, "Adding temporary suffix from file")
+  verbose && cat(verbose, "Pathname: ", pathname)
+  verbose && cat(verbose, "Suffix: ", suffix)
+  verbose && cat(verbose, "Rename existing file?: ", isFile)
 
-  pathnameT <- sprintf("%s%s", pathname, suffix);
-  verbose && cat(verbose, "Temporary pathname: ", pathnameT);
+  pathnameT <- sprintf("%s%s", pathname, suffix)
+  verbose && cat(verbose, "Temporary pathname: ", pathnameT)
 
-  pathnameT <- Arguments$getWritablePathname(pathnameT, mustNotExist=TRUE);
+  pathnameT <- Arguments$getWritablePathname(pathnameT, mustNotExist=TRUE)
 
   if (isFile) {
-    verbose && enter(verbose, "Renaming existing file");
-    res <- file.rename(pathname, pathnameT);
-    verbose && cat(verbose, "Result: ", res);
-    verbose && exit(verbose);
+    verbose && enter(verbose, "Renaming existing file")
+    res <- file.rename(pathname, pathnameT)
+    verbose && cat(verbose, "Result: ", res)
+    verbose && exit(verbose)
 
     if (!isFile(pathnameT)) {
-      throw("Failed to rename file (final file does not exist): ", pathname, " -> ", pathnameT);
+      throw("Failed to rename file (final file does not exist): ", pathname, " -> ", pathnameT)
     }
     if (isFile(pathname)) {
-      throw("Failed to rename file (file still exists): ", pathname, " -> ", pathnameT);
+      throw("Failed to rename file (file still exists): ", pathname, " -> ", pathnameT)
     }
   } # if (isFile)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  pathnameT;
+  pathnameT
 }) # pushTemporaryFile()

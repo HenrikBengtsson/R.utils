@@ -37,7 +37,7 @@ setConstructorS3("TimeoutException", function(..., cpu=NA, elapsed=NA) {
   extend(Exception(...), "TimeoutException",
     cpu = cpu,
     elapsed = elapsed
-  );
+  )
 })
 
 ###########################################################################/**
@@ -70,5 +70,5 @@ setConstructorS3("TimeoutException", function(..., cpu=NA, elapsed=NA) {
 # \keyword{error}
 #*/###########################################################################  
 setMethodS3("getMessage", "TimeoutException", function(this, ...) {
-  sprintf("%s [cpu=%ss, elapsed=%ss]", this$.msg, this$cpu, this$elapsed);
+  sprintf("%s [cpu=%ss, elapsed=%ss]", this$.msg, this$cpu, this$elapsed)
 })

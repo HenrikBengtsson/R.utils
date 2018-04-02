@@ -49,11 +49,11 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file' & 'path':
   if (inherits(file, "connection")) {
-    con <- file;
+    con <- file
   } else {
     pathname <- Arguments$getWritablePathname(file, path=path,
-                                       mustNotExist=(!append && !overwrite));
-    con <- NULL;
+                                       mustNotExist=(!append && !overwrite))
+    con <- NULL
   }
 
   # Argument 'sep':
@@ -67,36 +67,36 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   # Argument 'header':
   if (!is.null(header)) {
     if (!is.list(header)) {
-      throw("Argument 'header' is not a list: ", class(header)[1]);
+      throw("Argument 'header' is not a list: ", class(header)[1])
     }
   }
 
   # Argument 'headerPrefix':
-  headerPrefix <- Arguments$getCharacter(headerPrefix);
+  headerPrefix <- Arguments$getCharacter(headerPrefix)
 
   # Argument 'headerSep':
-  headerSep <- Arguments$getCharacter(headerSep);
+  headerSep <- Arguments$getCharacter(headerSep)
 
   # Argument 'createdBy':
   if (!is.null(createdBy)) {
-    createdBy <- Arguments$getCharacter(createdBy);
+    createdBy <- Arguments$getCharacter(createdBy)
   }
 
   # Argument 'createdOn':
   if (!is.null(createdOn)) {
-    createdOn <- Arguments$getCharacter(createdOn);
+    createdOn <- Arguments$getCharacter(createdOn)
   }
 
   # Argument 'nbrOfRows':
   if (!is.null(nbrOfRows)) {
-    nbrOfRows <- Arguments$getInteger(nbrOfRows);
+    nbrOfRows <- Arguments$getInteger(nbrOfRows)
   }
 
   # Argument 'append':
-  append <- Arguments$getLogical(append);
+  append <- Arguments$getLogical(append)
   if (append) {
     # Don't write headers when appending
-    if (missing(header)) header <- NULL;
+    if (missing(header)) header <- NULL
   }
 
 
@@ -118,16 +118,16 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is.null(header)) {
     if (!is.null(createdBy)) {
-      header$createdBy <- createdBy;
+      header$createdBy <- createdBy
     }
     if (!is.null(createdOn)) {
-      header$createdOn <- createdOn;
+      header$createdOn <- createdOn
     }
-    header$nbrOfRows <- nbrOfRows;
-    header$nbrOfColumns <- ncol(data);
-    header$columnNames <- colnames(data);
-    header$columnClasses <- sapply(data, FUN=function(x) class(x)[1L]);
-    header <- lapply(header, FUN=paste, collapse=sep);
+    header$nbrOfRows <- nbrOfRows
+    header$nbrOfColumns <- ncol(data)
+    header$columnNames <- colnames(data)
+    header$columnClasses <- sapply(data, FUN=function(x) class(x)[1L])
+    header <- lapply(header, FUN=paste, collapse=sep)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -136,46 +136,46 @@ setMethodS3("writeDataFrame", "data.frame", function(data, file, path=NULL, sep=
   if (is.null(con)) {
     # Remove existing file?
     if (!append && overwrite && isFile(pathname)) {
-      file.remove(pathname);
+      file.remove(pathname)
     }
 
     # Write to a temporary file (which may be an existing file)
-    pathnameT <- pushTemporaryFile(pathname, isFile=isFile(pathname));
+    pathnameT <- pushTemporaryFile(pathname, isFile=isFile(pathname))
 
     # Open file connection
-    open <- ifelse(append, "at", "wt");
-    con <- file(pathnameT, open=open);
+    open <- ifelse(append, "at", "wt")
+    con <- file(pathnameT, open=open)
 
     on.exit({
       if (!is.null(con)) {
-        close(con);
-        con <- NULL;
+        close(con)
+        con <- NULL
       }
-    });
+    })
   }
 
   # Write header
   if (!is.null(header)) {
-    bfr <- paste(headerPrefix, names(header), headerSep, header, sep="");
-    cat(file=con, bfr, sep="\n");
+    bfr <- paste(headerPrefix, names(header), headerSep, header, sep="")
+    cat(file=con, bfr, sep="\n")
   }
 
   # Write data section
   write.table(file=con, data, sep=sep, quote=quote,
-              row.names=row.names, col.names=col.names, ...);
+              row.names=row.names, col.names=col.names, ...)
 
   if (inherits(file, "connection")) {
-    res <- con;
+    res <- con
   } else {
     # Close opened file connection
-    close(con);
-    con <- NULL;
+    close(con)
+    con <- NULL
 
     # Rename temporary file
-    pathname <- popTemporaryFile(pathnameT);
+    pathname <- popTemporaryFile(pathnameT)
 
-    res <- pathname;
+    res <- pathname
   }
 
-  invisible(res);
+  invisible(res)
 }) # writeDataFrame()

@@ -46,7 +46,7 @@
 #*/###########################################################################
 withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", substitute=replace, envir=parent.frame()) {
   # Get code/expression without evaluating it
-  expr2 <- substitute(expr);
+  expr2 <- substitute(expr)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Substitute?
@@ -59,42 +59,42 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   
   # (a) Substitute by "constant" symbols?
   if (is.list(replace) && (length(replace) > 0L)) {
-    names <- names(replace);
-    if (is.null(names)) throw("Argument 'replace' must be named.");
+    names <- names(replace)
+    if (is.null(names)) throw("Argument 'replace' must be named.")
     expr2 <- do.call(base::substitute, args=list(expr2, replace))
   }
 
   # (b) Replace code by regular expressions?
   if (is.character(replace) && (length(replace) > 0L)) {
-    patterns <- names(replace);
-    replacements <- replace;
+    patterns <- names(replace)
+    replacements <- replace
 
     # Predefined rules?
     if (is.null(patterns)) {
-      patterns <- rep(NA_character_, times=length(replacements));
+      patterns <- rep(NA_character_, times=length(replacements))
       for (kk in seq_along(replacements)) {
-        replacement <- replacements[kk];
+        replacement <- replacements[kk]
         if (identical(replacement, ".x.")) {
           patterns[kk] <- "^[.]([a-zA-Z0-9_.]+)[.]$"
-          replacements[kk] <- "\\1";
+          replacements[kk] <- "\\1"
         } else if (identical(replacement, "..x..")) {
           patterns[kk] <- "^[.][.]([a-zA-Z0-9_.]+)[.][.]$"
-          replacements[kk] <- "\\1";
+          replacements[kk] <- "\\1"
         }
       }
-      unknown <- replacements[is.na(patterns)];
+      unknown <- replacements[is.na(patterns)]
       if (length(unknown) > 0L) {
-        throw("Unknown substitution rules: ", paste(sQuote(unknown), collapse=", "));
+        throw("Unknown substitution rules: ", paste(sQuote(unknown), collapse=", "))
       }
     }
 
-    if (is.null(patterns)) throw("Argument 'replace' must be named.");
+    if (is.null(patterns)) throw("Argument 'replace' must be named.")
 
     # (b) Replace via regular expression
     for (kk in seq_along(replacements)) {
-      pattern <- patterns[kk];
-      replacement <- replacements[kk];
-      expr2 <- egsub(pattern, replacement, expr2, envir=envir);
+      pattern <- patterns[kk]
+      replacement <- replacements[kk]
+      expr2 <- egsub(pattern, replacement, expr2, envir=envir)
     }
   }
 
@@ -103,14 +103,14 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # Deparse
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # WAS:
-  ## sourceCode <- capture.output(print(expr2));
-  sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L));
+  ## sourceCode <- capture.output(print(expr2))
+  sourceCode <- deparse(expr2, width.cutoff=getOption("deparse.cutoff", 60L))
 
 
   # Nothing todo?
   if (length(sourceCode) == 0L) {
     ## Can this ever happen? /HB 2015-05-27
-    return(structure(character(0L), class=c("CapturedEvaluation", "character")));
+    return(structure(character(0L), class=c("CapturedEvaluation", "character")))
   }
 
 
@@ -119,18 +119,18 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Trim of surrounding { ... }
   if (sourceCode[1L] == "{") {
-    sourceCode <- sourceCode[-c(1L, length(sourceCode))];
+    sourceCode <- sourceCode[-c(1L, length(sourceCode))]
 
     # Nothing todo?
     if (length(sourceCode) == 0L) {
-      return(structure(character(0L), class=c("CapturedEvaluation", "character")));
+      return(structure(character(0L), class=c("CapturedEvaluation", "character")))
     }
 
     # Drop shortest white space prefix
-    prefix <- gsub("^([ \t]*).*", "\\1", sourceCode);
-    minPrefix <- min(nchar(prefix), na.rm=TRUE);
+    prefix <- gsub("^([ \t]*).*", "\\1", sourceCode)
+    minPrefix <- min(nchar(prefix), na.rm=TRUE)
     if (minPrefix > 0L) {
-      sourceCode <- substring(sourceCode, first=minPrefix+1);
+      sourceCode <- substring(sourceCode, first=minPrefix+1)
     }
 
     # WORKAROUND: Put standalone 'else':s together with previous statement.
@@ -148,13 +148,13 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
     # whereas deparse(substitute(if (T) 1 else 2)) gives:
     # if (T) 1 else 2
     # /HB 2014-08-12
-    idxs <- grep("^[ ]*else[ ]*", sourceCode);
+    idxs <- grep("^[ ]*else[ ]*", sourceCode)
     if (length(idxs) > 0L) {
       if (any(idxs == 1L)) {
-        stop("INTERNAL ERROR: Detected 'else' statement at the very beginning: ", paste(sourceCode, collapse="\n"));
+        stop("INTERNAL ERROR: Detected 'else' statement at the very beginning: ", paste(sourceCode, collapse="\n"))
       }
-      sourceCode[idxs-1L] <- paste(sourceCode[idxs-1L], sourceCode[idxs], sep=" ");
-      sourceCode <- sourceCode[-idxs];
+      sourceCode[idxs-1L] <- paste(sourceCode[idxs-1L], sourceCode[idxs], sep=" ")
+      sourceCode <- sourceCode[-idxs]
     }
   }
 
@@ -165,13 +165,13 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # WORKAROUND: The following will *not* evaluate in environment
   # 'envir' due to capture.output() *unless* we evaluate 'envir'
   # before.  This sanity check will do that. /HB 2011-11-23
-  stopifnot(is.environment(envir));
+  stopifnot(is.environment(envir))
 
   # Evaluate the sourceCode via source()
-  con <- textConnection(sourceCode, open="r");
+  con <- textConnection(sourceCode, open="r")
   res <- captureOutput({
-    sourceTo(file=con, echo=code, print.eval=output, keep.source=TRUE, max.deparse.length=max.deparse.length, ..., envir=envir);
-  });
+    sourceTo(file=con, echo=code, print.eval=output, keep.source=TRUE, max.deparse.length=max.deparse.length, ..., envir=envir)
+  })
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -179,17 +179,17 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop empty lines?
   if (trim) {
-    res <- res[nchar(res) > 0L];
+    res <- res[nchar(res) > 0L]
   }
 
   if (!is.null(collapse)) {
-    if (newline) res <- c(res, "");
-    res <- paste(res, collapse=collapse);
+    if (newline) res <- c(res, "")
+    res <- paste(res, collapse=collapse)
   }
 
-  class(res) <- c("CapturedEvaluation", class(res));
+  class(res) <- c("CapturedEvaluation", class(res))
 
-  res;
+  res
 } # withCapture()
 
 # BACKWARD COMPATIBIILTY
@@ -197,5 +197,5 @@ evalCapture <- withCapture
 
 
 setMethodS3("print", "CapturedEvaluation", function(x, ...) {
-  cat(x);
+  cat(x)
 })

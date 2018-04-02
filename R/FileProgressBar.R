@@ -39,10 +39,10 @@ setConstructorS3("FileProgressBar", function(pathname=NULL, ...) {
 
   if (!is.null(pathname)) {
     # Resets the progress bar and creates the file
-    reset(this);
+    reset(this)
   }
 
-  this;
+  this
 })
 
 
@@ -75,17 +75,17 @@ setConstructorS3("FileProgressBar", function(pathname=NULL, ...) {
 #*/######################################################################### 
 setMethodS3("update", "FileProgressBar", function(object, visual=TRUE, ...) {
   # To please R CMD check...
-  this <- object;
+  this <- object
 
   if (visual) {
     # Create bar string
-    s <- getBarString(this);
+    s <- getBarString(this)
   
     # Cut initial character representing value zero off.
-    s <- substring(s, 2);
+    s <- substring(s, 2)
   
     # Creates an empty file
-    cat(file=this$pathname, s);
+    cat(file=this$pathname, s)
   }
 })
 
@@ -120,10 +120,10 @@ setMethodS3("update", "FileProgressBar", function(object, visual=TRUE, ...) {
 #*/######################################################################### 
 setMethodS3("cleanup", "FileProgressBar", function(object, ...) {
   # To please R CMD check...
-  this <- object;
+  this <- object
 
   if (isFile(this$pathname))
-    file.remove(this$pathname);
+    file.remove(this$pathname)
 
-  invisible(isFile(this$pathname));
+  invisible(isFile(this$pathname))
 })

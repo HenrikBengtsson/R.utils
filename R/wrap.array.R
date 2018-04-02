@@ -60,43 +60,43 @@ setMethodS3("wrap", "array", function(x, map=list(NA), sep=".", ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.array(x) && !is.matrix(x))
-    throw("Argument 'x' is not an array or a matrix: ", class(x)[1]);
+    throw("Argument 'x' is not an array or a matrix: ", class(x)[1])
 
   if (!is.list(map))
-    throw("Argument 'map' is not a list: ", class(map)[1]);
+    throw("Argument 'map' is not a list: ", class(map)[1])
 
-  umap <- unlist(map);
+  umap <- unlist(map)
   if (any(duplicated(umap))) {
     throw("Argument 'map' contains duplicated dimension indices: ", 
-                        paste(umap[duplicated(umap)], collapse=", "));
+                        paste(umap[duplicated(umap)], collapse=", "))
   }
 
   # Extract information
-  dim <- dim(x);
-  ndims <- length(dim);
+  dim <- dim(x)
+  ndims <- length(dim)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate dimension map
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Look for missing dimension indices
-  missingDims <- setdiff(1:ndims, umap);
+  missingDims <- setdiff(1:ndims, umap)
   if (length(missingDims) > 0) {
-    wildcard <- is.na(map);
+    wildcard <- is.na(map)
     if (any(wildcard)) {
-      map[[which(wildcard)]] <- missingDims;
-      umap <- unlist(map);
+      map[[which(wildcard)]] <- missingDims
+      umap <- unlist(map)
     } else {
       throw("Argument 'map' miss some dimensions: ", 
-                                        paste(missingDims, collapse=", "));
+                                        paste(missingDims, collapse=", "))
     }
   }
   
   # Look for non-existing dimension indices
-  falseDims <- setdiff(umap, 1:ndims);
+  falseDims <- setdiff(umap, 1:ndims)
   if (length(falseDims) > 0) {
     throw("Argument 'map' contains non-existing dimensions: ", 
-                                          paste(falseDims, collapse=", "));
+                                          paste(falseDims, collapse=", "))
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -104,11 +104,11 @@ setMethodS3("wrap", "array", function(x, map=list(NA), sep=".", ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (any(diff(umap) < 0)) {
     # Permute dimensions
-    perm <- umap;
-    x <- aperm(x, perm=perm);
+    perm <- umap
+    x <- aperm(x, perm=perm)
 
     # Remap old dimension indices to the new ones for the map
-    map <- lapply(map, FUN=function(ii) match(ii, perm));
+    map <- lapply(map, FUN=function(ii) match(ii, perm))
   }
 
 
@@ -116,39 +116,39 @@ setMethodS3("wrap", "array", function(x, map=list(NA), sep=".", ...) {
   # Reshape array
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Calculate the dimension sizes of the new array
-  dim <- dim(x);
-  dim2 <- lapply(map, FUN=function(ii) prod(dim[ii]));
+  dim <- dim(x)
+  dim2 <- lapply(map, FUN=function(ii) prod(dim[ii]))
 
   # Generate the new dimension names.
   # Note that the values in array 'x' are stored such that the *leftmost*
   # subscript moves fastest.  When we change the reshape the array by
   # changing the dimensions, the dimension names must be consistent with
   # this rule.
-  dimnames <- dimnames(x);
+  dimnames <- dimnames(x)
   dimnames2 <- lapply(map, FUN=function(iis) {
-    names <- NULL;
+    names <- NULL
     for (ii in iis) {
       if (is.null(names)) {
-        names <- dimnames[[ii]];
+        names <- dimnames[[ii]]
       } else {
-        names <- paste(names, rep(dimnames[[ii]], each=length(names)), sep=sep);
+        names <- paste(names, rep(dimnames[[ii]], each=length(names)), sep=sep)
       }
     }
-    names;
+    names
   })
 
   # Now, reshape the array
-  dim(x) <- dim2;
-  dimnames(x) <- dimnames2;
+  dim(x) <- dim2
+  dimnames(x) <- dimnames2
 
-  x;
+  x
 })
 
 
 setMethodS3("wrap", "matrix", function(x, ...) {
-  wrap.array(x, ...);
+  wrap.array(x, ...)
 })
 
 setMethodS3("wrap", "data.frame", function(x, ...) {
-  wrap(as.matrix(x), ...);
+  wrap(as.matrix(x), ...)
 })

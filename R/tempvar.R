@@ -35,28 +35,28 @@
 # @keyword internal
 #*/###########################################################################
 tempvar <- function(prefix="var", value, envir=parent.frame(), inherits=FALSE) {
-  maxTries <- 1e6;
-  maxInt <- .Machine$integer.max;
+  maxTries <- 1e6
+  maxInt <- .Machine$integer.max
 
-  ii <- 0L;
+  ii <- 0L
   while (ii < maxTries) {
     # Generate random variable name
-    idx <- sample.int(maxInt, size=1L);
-    name <- sprintf("%s%d", prefix, idx);
+    idx <- sample.int(maxInt, size=1L)
+    name <- sprintf("%s%d", prefix, idx)
 
     # Is it available?
     if (!exists(name, envir=envir, inherits=inherits)) {
       # Assign a value?
       if (!missing(value)) {
-        assign(name, value, envir=envir, inherits=inherits);
+        assign(name, value, envir=envir, inherits=inherits)
       }
-      return(name);
+      return(name)
     }
 
     # Next try
-    ii <- ii + 1L;
+    ii <- ii + 1L
   }
 
   # Failed to find a unique temporary variable name
-  throw(sprintf("Failed to generate a unique non-existing temporary variable with prefix '%s'", prefix));
+  throw(sprintf("Failed to generate a unique non-existing temporary variable with prefix '%s'", prefix))
 } # tempvar()

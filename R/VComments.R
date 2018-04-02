@@ -80,7 +80,7 @@
 # @keyword IO
 #*/###########################################################################
 setConstructorS3("VComments", function(letter="V", verboseName="verbose", ...) {
-  verboseName <- as.character(verboseName);
+  verboseName <- as.character(verboseName)
 
   extend(SmartComments(letter=letter), "VComments",
     resetVerboseName = verboseName,
@@ -118,8 +118,8 @@ setConstructorS3("VComments", function(letter="V", verboseName="verbose", ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("reset", "VComments", function(this, ...) {
-  NextMethod("reset");
-  this$verboseName <- this$resetVerboseName;
+  NextMethod("reset")
+  this$verboseName <- this$resetVerboseName
 })
 
 
@@ -155,102 +155,102 @@ setMethodS3("reset", "VComments", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("convertComment", "VComments", function(this, vcomment, .currLine=NA, .line=NA, ...) {
-  cmd <- vcomment$cmd;
-  args <- vcomment$args;
+  cmd <- vcomment$cmd
+  args <- vcomment$args
 
   if (is.null(args)) {
-    argsStr <- "";
+    argsStr <- ""
   } else {
-    argsStr <- sprintf(", \"%s\"", gsub("\"", "\\\"", args, fixed=TRUE));
+    argsStr <- sprintf(", \"%s\"", gsub("\"", "\\\"", args, fixed=TRUE))
   }
 
-  vcmd <- NULL;
+  vcmd <- NULL
   if (cmd == "+") {
-    vcmd <- sprintf("enter(<verbose>%s)", argsStr);
+    vcmd <- sprintf("enter(<verbose>%s)", argsStr)
   } else if (cmd == "-") {
-    vcmd <- sprintf("exit(<verbose>%s)", argsStr);
+    vcmd <- sprintf("exit(<verbose>%s)", argsStr)
   } else if (cmd %in% c("0", "1")) {
-    clazz <- ifelse(cmd == "1", "Verbose", "NullVerbose");
+    clazz <- ifelse(cmd == "1", "Verbose", "NullVerbose")
     if (is.null(args)) {
-      vcmd <- sprintf("<verbose> <- %s()", clazz);
+      vcmd <- sprintf("<verbose> <- %s()", clazz)
     } else {
-      vcmd <- sprintf("<verbose> <- %s(%s)", clazz, args);
+      vcmd <- sprintf("<verbose> <- %s(%s)", clazz, args)
     }
   } else if (cmd == "=") {
     if (is.null(args)) {
-      reset(this);
+      reset(this)
     } else {
-      this$verboseName <- args;
+      this$verboseName <- args
     }
   } else if (cmd == "^") {
-    threshold <- as.integer(args);
+    threshold <- as.integer(args)
     if (!is.na(threshold)) {
-      vcmd <- sprintf("setThreshold(<verbose>, threshold=%d)", threshold);
+      vcmd <- sprintf("setThreshold(<verbose>, threshold=%d)", threshold)
     } else {
-      throw("Invalid threshold value: ", threshold);
+      throw("Invalid threshold value: ", threshold)
     }
   } else if (cmd == "?") {
-    vcmd <- sprintf("if (isVisible(<verbose>)) { capture(<verbose>, %s) }", args);
+    vcmd <- sprintf("if (isVisible(<verbose>)) { capture(<verbose>, %s) }", args)
   } else if (cmd == "@") {
     if (is.na(as.numeric(args))) {
-      throw("VComment error: Invalid verbose level on line ", .currLine, ": ", .line);
+      throw("VComment error: Invalid verbose level on line ", .currLine, ": ", .line)
     }
-    vcmd <- sprintf("setDefaultVerboseLevel(<verbose>, %s)", as.double(args));
+    vcmd <- sprintf("setDefaultVerboseLevel(<verbose>, %s)", as.double(args))
   } else if (cmd == "!") {
-    vcmd <- "pushState(<verbose>); on.exit(popState(<verbose>), add=TRUE)";
+    vcmd <- "pushState(<verbose>); on.exit(popState(<verbose>), add=TRUE)"
     if (!is.null(args))
-      vcmd <- sprintf("%s; enter(<verbose>, \"%s\")", vcmd, args);
+      vcmd <- sprintf("%s; enter(<verbose>, \"%s\")", vcmd, args)
   } else if (cmd == "c") {
-    vcmd <- sprintf("cat(<verbose>%s)", argsStr);
+    vcmd <- sprintf("cat(<verbose>%s)", argsStr)
   } else if (cmd == "e") {
-    vcmd <- sprintf("evaluate(<verbose>, %s)", args);
+    vcmd <- sprintf("evaluate(<verbose>, %s)", args)
   } else if (cmd == "m") {
-    method <- gsub("^([^ ]*)([ ]*)(.*)", "\\1", args);
-    args <- gsub("^([^ ]*)([ ]*)(.*)", "\\3", args);
-    args <- trim(args);
+    method <- gsub("^([^ ]*)([ ]*)(.*)", "\\1", args)
+    args <- gsub("^([^ ]*)([ ]*)(.*)", "\\3", args)
+    args <- trim(args)
     if (nchar(args) == 0) {
-      vcmd <- sprintf("%s(<verbose>)", method);
+      vcmd <- sprintf("%s(<verbose>)", method)
     } else {
-      vcmd <- sprintf("%s(<verbose>, %s)", method, args);
+      vcmd <- sprintf("%s(<verbose>, %s)", method, args)
     }
   } else if (cmd == "n") {
-    vcmd <- sprintf("newline(<verbose>)");
+    vcmd <- sprintf("newline(<verbose>)")
   } else if (cmd == "p") {
-    vcmd <- sprintf("print(<verbose>, %s)", args);
+    vcmd <- sprintf("print(<verbose>, %s)", args)
   } else if (cmd == "s") {
-    vcmd <- sprintf("summary(<verbose>, %s)", args);
+    vcmd <- sprintf("summary(<verbose>, %s)", args)
   } else if (cmd == "t") {
-    vcmd <- "timestamp(<verbose>)";
+    vcmd <- "timestamp(<verbose>)"
   } else if (cmd == "w") {
     if (nchar(args) == 0) {
-      vcmd <- "warnings(<verbose>)";
+      vcmd <- "warnings(<verbose>)"
     } else {
-      vcmd <- sprintf("warnings(<verbose>, %s)", args);
+      vcmd <- sprintf("warnings(<verbose>, %s)", args)
     }
   } else if (cmd == "z") {
-    vcmd <- sprintf("str(<verbose>, %s)", args);
+    vcmd <- sprintf("str(<verbose>, %s)", args)
   } else if (cmd == "r") {
-    vcmd <- sprintf("ruler(<verbose>)");
+    vcmd <- sprintf("ruler(<verbose>)")
   } else if (cmd == "h") {
-    vcmd <- sprintf("header(<verbose>, \"%s\")", args);
+    vcmd <- sprintf("header(<verbose>, \"%s\")", args)
   } else {
-    vcmd <- NA;
+    vcmd <- NA
   }
 
   if (!is.null(vcmd)) {
     if (is.na(vcmd)) {
-      newLine <- paste("# <?>", .line, "</?>", sep="");
-      warning("Unknown VComment on line ", .currLine, ": ", .line);
+      newLine <- paste("# <?>", .line, "</?>", sep="")
+      warning("Unknown VComment on line ", .currLine, ": ", .line)
     } else if (cmd %in% c("0", "1")) {
-      newLine <- vcmd;
+      newLine <- vcmd
     } else {
-      newLine <- paste("if (<verbose>) { ", vcmd, " }", sep="");
+      newLine <- paste("if (<verbose>) { ", vcmd, " }", sep="")
     }
   
-    newLine <- gsub("<verbose>", this$verboseName, newLine, fixed=TRUE);
-    paste(vcomment$indent, newLine, sep="");
+    newLine <- gsub("<verbose>", this$verboseName, newLine, fixed=TRUE)
+    paste(vcomment$indent, newLine, sep="")
   } else {
-    NA;
+    NA
   }
 }, protected=TRUE)
 
@@ -287,14 +287,14 @@ setMethodS3("convertComment", "VComments", function(this, vcomment, .currLine=NA
 #*/###########################################################################
 setMethodS3("validate", "VComments", function(this, lines, ...) {
   # Check number of enters and exits.
-  pattern <- paste("enter(", this$verboseName, sep="");
-  nbrOfEnters <- sum(regexpr(pattern, lines, fixed=TRUE) != -1);
-  pattern <- paste("exit(", this$verboseName, sep="");
-  nbrOfExits <- sum(regexpr(pattern, lines, fixed=TRUE) != -1);
+  pattern <- paste("enter(", this$verboseName, sep="")
+  nbrOfEnters <- sum(regexpr(pattern, lines, fixed=TRUE) != -1)
+  pattern <- paste("exit(", this$verboseName, sep="")
+  nbrOfExits <- sum(regexpr(pattern, lines, fixed=TRUE) != -1)
   if (nbrOfEnters != nbrOfExits) {
     warning("Number of verbose enters and exits do not match: ", 
-                                             nbrOfEnters, " != ", nbrOfExits);
+                                             nbrOfEnters, " != ", nbrOfExits)
   }
 
-  lines;
+  lines
 }, protected=TRUE)

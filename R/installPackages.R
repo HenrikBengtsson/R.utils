@@ -45,46 +45,46 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkgs':
-  pkgs <- Arguments$getCharacters(pkgs);
+  pkgs <- Arguments$getCharacters(pkgs)
 
   # Argument 'types':
-  types <- Arguments$getCharacters(types);
+  types <- Arguments$getCharacters(types)
 
   # Argument 'repos':
   if (!is.null(repos)) {
-    repos <- Arguments$getCharacters(repos);
+    repos <- Arguments$getCharacters(repos)
   }
 
   # Argument 'destPath':
-  destPath <- Arguments$getWritablePath(destPath);
+  destPath <- Arguments$getWritablePath(destPath)
 
   # Argument 'cleanup':
-  cleanup <- Arguments$getLogical(cleanup);
+  cleanup <- Arguments$getLogical(cleanup)
 
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Infer 'type' for each package
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  defType <- getOption("pkgType");
-  types <- rep(types, length.out=length(pkgs));
+  defType <- getOption("pkgType")
+  types <- rep(types, length.out=length(pkgs))
   for (kk in seq_along(pkgs)) {
     if (types[kk] == "auto") {
-      pkg <- pkgs[kk];
+      pkg <- pkgs[kk]
       if (isUrl(pkg)) {
-        filename <- basename(pkg);
-        ext <- gsub("(.*)[.](tar.gz|tgz|zip)$", "\\2", tolower(filename));
+        filename <- basename(pkg)
+        ext <- gsub("(.*)[.](tar.gz|tgz|zip)$", "\\2", tolower(filename))
         if (ext == "tar.gz") {
-          types[kk] <- "source";
+          types[kk] <- "source"
         } else if (ext == "tgz") {
-          types[kk] <- "mac.binary.leopard";
+          types[kk] <- "mac.binary.leopard"
         } else if (ext == "zip") {
-          types[kk] <- "win.binary";
+          types[kk] <- "win.binary"
         } else {
-          throw("Cannot install R package. Unknown filename extension: ", pkg);
+          throw("Cannot install R package. Unknown filename extension: ", pkg)
         }
       } else {
-        types[kk] <- defType;
+        types[kk] <- defType
       }
     }
   } # for (kk ...)
@@ -92,32 +92,32 @@ setMethodS3("installPackages", "default", function(pkgs, types="auto", repos=get
 
   # Install each package requested
   for (kk in seq_along(pkgs)) {
-    pkg <- pkgs[kk];
-    type <- types[kk];
+    pkg <- pkgs[kk]
+    type <- types[kk]
 
     if (isUrl(pkg)) {
-      url <- pkg;
-      filename <- basename(url);
+      url <- pkg
+      filename <- basename(url)
 
       # Download file
-      pathname <- filePath(destPath, filename);
-      downloadFile(url, filename=pathname, skip=TRUE);
+      pathname <- filePath(destPath, filename)
+      downloadFile(url, filename=pathname, skip=TRUE)
       if (!isFile(pathname)) {
-        throw("Failed to download package file: ", url);
+        throw("Failed to download package file: ", url)
       }
 
-      install.packages(pathname, repos=NULL, type=type, ...);
+      install.packages(pathname, repos=NULL, type=type, ...)
 
       if (cleanup) {
-        file.remove(pathname);
+        file.remove(pathname)
         if (isFile(pathname)) {
-          throw("Failed to remove package file after installation: ", pathname);
+          throw("Failed to remove package file after installation: ", pathname)
         }
       }
     } else {
-      install.packages(pkg, repos=repos, type=type, ...);
+      install.packages(pkg, repos=repos, type=type, ...)
     }
   } # for (kk ...)
 
-  invisible();
+  invisible()
 }) # installPackages()

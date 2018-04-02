@@ -27,9 +27,9 @@
 #*/###########################################################################
 setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlineWhenDone=TRUE) {
   if (length(ticks) == 1)
-    ticks <- seq(from=0, to=max, by=10);
+    ticks <- seq(from=0, to=max, by=10)
   if (stepLength <= 0)
-    stop("Argument 'stepLength' is non-positive: ", stepLength);
+    stop("Argument 'stepLength' is non-positive: ", stepLength)
   extend(Object(), "ProgressBar",
     value=0,
     max=max,
@@ -69,10 +69,10 @@ setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlin
 #*/#########################################################################
 setMethodS3("as.character", "ProgressBar", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  s <- paste(data.class(this), ": max=", this$max, ", value=", this$value, sep="");
-  s;
+  s <- paste(data.class(this), ": max=", this$max, ", value=", this$value, sep="")
+  s
 })
 
 
@@ -104,23 +104,23 @@ setMethodS3("as.character", "ProgressBar", function(x, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getBarString", "ProgressBar", function(this, ...) {
-  count <- round(this$value);
-  bfr <- rep(".", times=count+1);
+  count <- round(this$value)
+  bfr <- rep(".", times=count+1)
   # First, set the ticks
-  bfr[intersect(1:count, this$ticks)+1] <- "|";
+  bfr[intersect(1:count, this$ticks)+1] <- "|"
 
   # Then set the starter
-  bfr[1] <- "[";
+  bfr[1] <- "["
 
   # ...and the stopper (and carry overs)
   if (count >= this$max) {
-    bfr[this$max+1] <- "]";
-    bfr[-(1:(this$max+1))] <- "?";
+    bfr[this$max+1] <- "]"
+    bfr[-(1:(this$max+1))] <- "?"
   }
 
   # Generate the string
-  bfr <- paste(bfr, collapse="");
-  bfr;
+  bfr <- paste(bfr, collapse="")
+  bfr
 })
 
 
@@ -150,7 +150,7 @@ setMethodS3("getBarString", "ProgressBar", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("isDone", "ProgressBar", function(this, ...) {
-  (this$value >= this$max);
+  (this$value >= this$max)
 })
 
 
@@ -182,10 +182,10 @@ setMethodS3("isDone", "ProgressBar", function(this, ...) {
 #*/#########################################################################
 setMethodS3("setStepLength", "ProgressBar", function(this, stepLength, ...) {
   if (stepLength <= 0)
-    stop("Argument 'stepLength' is non-positive: ", stepLength);
-  oldStepLength <- this$stepLength;
-  this$stepLength <- stepLength;
-  invisible(oldStepLength);
+    stop("Argument 'stepLength' is non-positive: ", stepLength)
+  oldStepLength <- this$stepLength
+  this$stepLength <- stepLength
+  invisible(oldStepLength)
 })
 
 
@@ -216,7 +216,7 @@ setMethodS3("setStepLength", "ProgressBar", function(this, stepLength, ...) {
 # }
 #*/#########################################################################
 setMethodS3("setMaxValue", "ProgressBar", function(this, maxValue, ...) {
-  this$max <- maxValue;
+  this$max <- maxValue
 })
 
 
@@ -248,11 +248,11 @@ setMethodS3("setMaxValue", "ProgressBar", function(this, maxValue, ...) {
 #*/#########################################################################
 setMethodS3("setTicks", "ProgressBar", function(this, ticks=10, ...) {
   if (length(ticks) == 1) {
-    ticks <- seq(from=0, to=this$max, by=ticks);
+    ticks <- seq(from=0, to=this$max, by=ticks)
   }
-  oldTicks <- this$ticks;
-  this$ticks <- ticks;
-  invisible(oldTicks);
+  oldTicks <- this$ticks
+  this$ticks <- ticks
+  invisible(oldTicks)
 })
 
 
@@ -288,12 +288,12 @@ setMethodS3("setTicks", "ProgressBar", function(this, ticks=10, ...) {
 #*/#########################################################################
 setMethodS3("setValue", "ProgressBar", function(this, value, ...) {
   if (value < 0)
-    stop("Value out of range [0,", this$max, "]: ", value);
+    stop("Value out of range [0,", this$max, "]: ", value)
   if (!this$.allowCarryOver && value > this$max)
-    stop("Value out of range [0,", this$max, "]: ", value);
-  oldValue <- this$value;
-  this$value <- value;
-  invisible(oldValue);
+    stop("Value out of range [0,", this$max, "]: ", value)
+  oldValue <- this$value
+  this$value <- value
+  invisible(oldValue)
 })
 
 
@@ -330,12 +330,12 @@ setMethodS3("setValue", "ProgressBar", function(this, value, ...) {
 #*/#########################################################################
 setMethodS3("setProgress", "ProgressBar", function(this, progress, visual=TRUE, ...) {
   if (length(progress) != 1)
-    throw("Argument 'progress' must be a single value.");
+    throw("Argument 'progress' must be a single value.")
   if (!is.numeric(progress) || progress < 0 || progress > 1)
-    throw("Argument 'progress' out of range [0,1]: ", progress);
-  oldValue <- setValue(this, progress*this$max);
-  update(this, visual=visual);
-  invisible(oldValue/this$max);
+    throw("Argument 'progress' out of range [0,1]: ", progress)
+  oldValue <- setValue(this, progress*this$max)
+  update(this, visual=visual)
+  invisible(oldValue/this$max)
 })
 
 
@@ -369,10 +369,10 @@ setMethodS3("setProgress", "ProgressBar", function(this, progress, visual=TRUE, 
 # }
 #*/#########################################################################
 setMethodS3("reset", "ProgressBar", function(this, visual=TRUE, ...) {
-  this$value <- 0;
-  this$.lastBarString <- "";
-  update(this, visual=visual);
-  invisible(this$value);
+  this$value <- 0
+  this$.lastBarString <- ""
+  update(this, visual=visual)
+  invisible(this$value)
 })
 
 
@@ -404,14 +404,14 @@ setMethodS3("reset", "ProgressBar", function(this, visual=TRUE, ...) {
 # }
 #*/#########################################################################
 setMethodS3("increase", "ProgressBar", function(this, stepLength=this$stepLength, visual=TRUE, ...) {
-  value <- this$value + stepLength;
+  value <- this$value + stepLength
   if (!this$.allowCarryOver && value >= this$max) {
-    this$value <- this$max;
+    this$value <- this$max
   } else {
-    this$value <- value;
+    this$value <- value
   }
-  update(this, visual=visual);
-  invisible(value);
+  update(this, visual=visual)
+  invisible(value)
 }, protected=TRUE)
 
 
@@ -443,14 +443,14 @@ setMethodS3("increase", "ProgressBar", function(this, stepLength=this$stepLength
 #*/#########################################################################
 setMethodS3("update", "ProgressBar", function(object, visual=TRUE, ...) {
   # To please R CMD check...
-  this <- object;
+  this <- object
 
   if (visual) {
-    s <- getBarString(this);
-    ls <- this$.lastBarString;
+    s <- getBarString(this)
+    ls <- this$.lastBarString
     cat(substring(s, nchar(ls)+1))
-    this$.lastBarString <- s;
+    this$.lastBarString <- s
     if (this$newlineWhenDone && isDone(this))
-      cat("\n");
+      cat("\n")
   }
 })

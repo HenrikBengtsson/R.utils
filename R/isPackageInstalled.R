@@ -29,7 +29,7 @@
 #*/###########################################################################
 setMethodS3("isPackageInstalled", "default", function(package, ...) {
   suppressWarnings({
-    paths <- sapply(package, FUN=function(p) system.file(package=p));
-  });
-  (paths != "");
+    paths <- sapply(package, FUN=function(p) system.file(package=p))
+  })
+  (paths != "")
 })

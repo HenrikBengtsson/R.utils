@@ -56,36 +56,36 @@ setMethodS3("copyDirectory", "default", function(from, to=".", ..., private=TRUE
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'from':
   if (!isDirectory(from))
-    throw("Argument 'from' is not a directory: ", from);
+    throw("Argument 'from' is not a directory: ", from)
 
   # Argument 'to':
-  to <- Arguments$getWritablePath(to, mkdirs=TRUE, absolute=FALSE);
+  to <- Arguments$getWritablePath(to, mkdirs=TRUE, absolute=FALSE)
 
   # Argument 'private':
-  private <- Arguments$getLogical(private);
+  private <- Arguments$getLogical(private)
 
   # Argument 'recursive':
-  recursive <- Arguments$getLogical(recursive);
+  recursive <- Arguments$getLogical(recursive)
 
   # Use relative pathnames
-  files <- list.files(from, all.files=private, full.names=FALSE);
-  files <- files[!basename(files) %in% c(".", "..")];
-  files <- file.path(from, files);
+  files <- list.files(from, all.files=private, full.names=FALSE)
+  files <- files[!basename(files) %in% c(".", "..")]
+  files <- file.path(from, files)
 
-  copiedFiles <- c();
+  copiedFiles <- c()
   for (file in files) {
-    basename <- basename(file);
+    basename <- basename(file)
     if (isFile(file)) {
       if (.file.copy(from=file, to=filePath(to, basename), ...)) {
-        copiedFiles <- c(copiedFiles, file);
+        copiedFiles <- c(copiedFiles, file)
       }
     } else if (isDirectory(file)) {
       if (recursive) {
         copiedFiles <- c(copiedFiles,
-         copyDirectory(file, to=filePath(to, basename), ..., recursive=TRUE));
+         copyDirectory(file, to=filePath(to, basename), ..., recursive=TRUE))
       }
     }
   }
 
-  invisible(copiedFiles);
+  invisible(copiedFiles)
 })

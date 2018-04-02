@@ -41,16 +41,16 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'con':
   if (is.character(con)) {
-    pathname <- con;
-    pathname <- Arguments$getReadablePathname(pathname);
+    pathname <- con
+    pathname <- Arguments$getReadablePathname(pathname)
 
-    con <- file(pathname, open="r+b");
+    con <- file(pathname, open="r+b")
     on.exit({
       if (!is.null(con)) {
-        close(con);
-        con <- NULL;
+        close(con)
+        con <- NULL
       }
-    });
+    })
   } else if (inherits(con, "connection")) {
     if (!isSeekable(con)) {
       t <- summary(con)
@@ -68,26 +68,26 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   # Argument 'idxs':
   if (is.matrix(idxs) || is.data.frame(idxs)) {
     if (ncol(idxs) != 2) {
-      throw("When argument 'idxs' is a data frame, it must have exactly two columns: ", ncol(idxs));
+      throw("When argument 'idxs' is a data frame, it must have exactly two columns: ", ncol(idxs))
     }
-    idxs <- as.matrix(idxs);
+    idxs <- as.matrix(idxs)
   }
   if (!is.numeric(idxs)) {
-    stop("Argument 'idxs' must be numeric: ", class(idxs)[1]);
+    stop("Argument 'idxs' must be numeric: ", class(idxs)[1])
   }
   if (any(idxs < 0)) {
-    throw("Argument 'idxs' contains negative indices: ", paste(head(idxs[idxs < 0]), collapse=", "));
+    throw("Argument 'idxs' contains negative indices: ", paste(head(idxs[idxs < 0]), collapse=", "))
   }
 
   # Argument 'size':
   if (length(size) != 1) {
-    stop("Argument 'size' must be a single value: ", length(size));
+    stop("Argument 'size' must be a single value: ", length(size))
   }
   if (is.na(size)) {
     # Calculating the natural size
-    size <- as.integer(object.size(rep(object, length.out=1e4))/1e4);
+    size <- as.integer(object.size(rep(object, length.out=1e4))/1e4)
   } else if (!is.numeric(size)) {
-    stop("Argument 'size' must be numeric or NA: ", class(size)[1]);
+    stop("Argument 'size' must be numeric or NA: ", class(size)[1])
   }
 
 
@@ -95,62 +95,62 @@ setMethodS3("writeBinFragments", "default", function(con, object, idxs, size=NA,
   # Identify index intervals
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.matrix(idxs)) {
-    oSeqs <- idxs;
+    oSeqs <- idxs
 
     # Sanity checks
     ## For now, we assume that non-overlapping intervals. /HB 2008-06-16
 
     # Calculate lengths of intervals
-    ns <- oSeqs[,2] - oSeqs[,1] + as.integer(1);
+    ns <- oSeqs[,2] - oSeqs[,1] + as.integer(1)
 
-    nAll <- sum(ns);
+    nAll <- sum(ns)
   } else {
     # Number of elements to be written
-    nAll <- length(idxs);
+    nAll <- length(idxs)
 
     # Order the indices
-    o <- order(idxs);
-    oIdxs <- as.integer(idxs)[o];
+    o <- order(idxs)
+    oIdxs <- as.integer(idxs)[o]
 
     # Reorder the input vector accordingly
-    object <- object[o];
+    object <- object[o]
     # Not needed anymore
-    o <- NULL;
+    o <- NULL
 
     # Identify contiguous fragments
-    oSeqs <- seqToIntervals(oIdxs);
+    oSeqs <- seqToIntervals(oIdxs)
 
     # Calculate their lengths
-    ns <- oSeqs[,2] - oSeqs[,1] + as.integer(1);
+    ns <- oSeqs[,2] - oSeqs[,1] + as.integer(1)
 
     # Sanity check
     if (nAll != sum(ns)) {
-      stop("Argument 'idxs' does most likely contain replicated indices, which is currently not supported.");
+      stop("Argument 'idxs' does most likely contain replicated indices, which is currently not supported.")
     }
   }
 
   # Sanity check
   if (nAll != length(object)) {
-    stop("The number of elements specified by argument 'idxs' does not match the number of objects written: ", nAll, " != ", size*length(object));
+    stop("The number of elements specified by argument 'idxs' does not match the number of objects written: ", nAll, " != ", size*length(object))
   }
 
 
   # Starting positions (double in order to address larger vectors!)
   offset <- seek(con=con, origin="start", rw="write"); # Get current file offset
-  froms <- as.double(oSeqs[,1])*size + (offset - size);
+  froms <- as.double(oSeqs[,1])*size + (offset - size)
 
   # Not needed anymore
-  oSeqs <- NULL;
+  oSeqs <- NULL
 
-  outOffset <- 0;
+  outOffset <- 0
   for (kk in seq_along(froms)) {
-    n <- ns[kk];
-    idx <- outOffset + 1:n;
-    seek(con=con, where=froms[kk], origin="start", rw="write");
-#    print(list(idx=idx, where=froms[kk], n=n, values=object[idx]));
-    writeBin(object[idx], con=con, size=size, ...);
-    outOffset <- outOffset + n;
+    n <- ns[kk]
+    idx <- outOffset + 1:n
+    seek(con=con, where=froms[kk], origin="start", rw="write")
+#    print(list(idx=idx, where=froms[kk], n=n, values=object[idx]))
+    writeBin(object[idx], con=con, size=size, ...)
+    outOffset <- outOffset + n
   } # for (rr ...)
 
-  invisible(NULL);
+  invisible(NULL)
 }) # writeBinFragments()

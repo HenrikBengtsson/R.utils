@@ -49,18 +49,18 @@ setConstructorS3("System", function() {
 # }
 #**/#######################################################################
 setMethodS3("getHostname", "System", function(static, ...) {
-  host <- Sys.getenv(c("HOST", "HOSTNAME", "COMPUTERNAME"));
-  host <- host[host != ""];
+  host <- Sys.getenv(c("HOST", "HOSTNAME", "COMPUTERNAME"))
+  host <- host[host != ""]
   if (length(host) == 0) {
     # Sys.info() is not implemented on all machines, if not it returns NULL,
     # which the below code will handle properly.
-    host <- Sys.info()["nodename"];
-    host <- host[host != ""];
+    host <- Sys.info()["nodename"]
+    host <- host[host != ""]
     if (length(host) == 0) {
-      host <- readLines(pipe("/usr/bin/env uname -n"));
+      host <- readLines(pipe("/usr/bin/env uname -n"))
     }
   }
-  host[1];
+  host[1]
 }, static=TRUE)
 
 
@@ -91,18 +91,18 @@ setMethodS3("getHostname", "System", function(static, ...) {
 # }
 #**/#######################################################################
 setMethodS3("getUsername", "System", function(static, ...) {
-  user <- Sys.getenv(c("USER", "USERNAME"));
-  user <- user[user != ""];
+  user <- Sys.getenv(c("USER", "USERNAME"))
+  user <- user[user != ""]
   if (length(user) == 0) {
     # Sys.info() is not implemented on all machines, if not it returns NULL,
     # which the below code will handle properly.
-    user <- Sys.info()["user"];
-    user <- user[user != "" & user != "unknown"];
+    user <- Sys.info()["user"]
+    user <- user[user != "" & user != "unknown"]
     if (length(user) == 0) {
-      user <- readLines(pipe("/usr/bin/env whoami"));
+      user <- readLines(pipe("/usr/bin/env whoami"))
     }
   }
-  user[1];
+  user[1]
 }, static=TRUE)
 
 
@@ -132,15 +132,15 @@ setMethodS3("getUsername", "System", function(static, ...) {
 # }
 #*/###########################################################################
 setMethodS3("currentTimeMillis", "System", function(this, ...) {
-  secs <- as.numeric(Sys.time());
-  times <- proc.time();
+  secs <- as.numeric(Sys.time())
+  times <- proc.time()
   time <- times[2];  # System CPU time
 
-  # CPU time is not available on Win 98/Me;
+  # CPU time is not available on Win 98/Me
   if (is.na(time))
     time <- times[3]; # Total elapsed times
-  (secs + time %% 1)*1000;
-}, static=TRUE);
+  (secs + time %% 1)*1000
+}, static=TRUE)
 
 
 
@@ -186,81 +186,81 @@ setMethodS3("currentTimeMillis", "System", function(this, ...) {
 #*/###########################################################################
 setMethodS3("parseDebian", "System", function(this, text=NULL, file=NULL, keys=NULL, ...) {
   if (is.null(text) && is.null(file))
-    throw("Either argument text or argument file must be specified.");
+    throw("Either argument text or argument file must be specified.")
 
   # Retrieve the text to be parsed.
   if (is.null(text)) {
-    file <- as.character(file);
-    text <- scan(file=file, what="", sep="\n", quiet=TRUE);
-    text <- paste(text, "", sep="");
+    file <- as.character(file)
+    text <- scan(file=file, what="", sep="\n", quiet=TRUE)
+    text <- paste(text, "", sep="")
   } else {
-    text <- unlist(text);
-    text <- strsplit(text, "\n");
-    text <- unlist(text);
+    text <- unlist(text)
+    text <- strsplit(text, "\n")
+    text <- unlist(text)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the keys (names) and values of the parameters
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  nbrOfLines <- length(text);
-  keyMatches <- regexpr("^[^:]*:", text);
-  keyLines <- which(keyMatches == 1);
-  keyLengths <- attr(keyMatches, "match.length")[keyLines]-1;
-  pkeys <- substring(text[keyLines], 1, keyLengths);
-  text[keyLines] <- substring(text[keyLines], keyLengths+2);
-  valueNbrOfLines <- c(keyLines, 0) - c(0, keyLines);
-  valueNbrOfLines <- valueNbrOfLines[-length(valueNbrOfLines)];
-  valueNbrOfLines <- valueNbrOfLines[-1];
-  len <- length(valueNbrOfLines);
-  valueNbrOfLines[len+1] <- keyLines[len+1]-length(text)+1;
-  values <- c();
+  nbrOfLines <- length(text)
+  keyMatches <- regexpr("^[^:]*:", text)
+  keyLines <- which(keyMatches == 1)
+  keyLengths <- attr(keyMatches, "match.length")[keyLines]-1
+  pkeys <- substring(text[keyLines], 1, keyLengths)
+  text[keyLines] <- substring(text[keyLines], keyLengths+2)
+  valueNbrOfLines <- c(keyLines, 0) - c(0, keyLines)
+  valueNbrOfLines <- valueNbrOfLines[-length(valueNbrOfLines)]
+  valueNbrOfLines <- valueNbrOfLines[-1]
+  len <- length(valueNbrOfLines)
+  valueNbrOfLines[len+1] <- keyLines[len+1]-length(text)+1
+  values <- c()
   for (k in 1:length(keyLines)) {
-    valueLines <- keyLines[k] + 1:valueNbrOfLines[k] - 1;
-    value <- paste(text[valueLines], sep="", collapse="\n");
-    values <- c(values, value);
+    valueLines <- keyLines[k] + 1:valueNbrOfLines[k] - 1
+    value <- paste(text[valueLines], sep="", collapse="\n")
+    values <- c(values, value)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Some cleanup of values
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # 1. Replace all '\r' with '\n'.
-  values <- gsub("\r", "\n", values);
+  values <- gsub("\r", "\n", values)
   # 2. At the end of each line, remove all whitespaces and add a space.
-  values <- gsub("[ \t]*\n", " \n", values);
+  values <- gsub("[ \t]*\n", " \n", values)
   # 3. At the beginning of each line, remove all whitespaces.
-  values <- gsub("\n[ \t]*", "\n", values);
+  values <- gsub("\n[ \t]*", "\n", values)
   # 4. Replace all lines that contains a single '.' with '\r'.
-  values <- gsub("\n[.] \n", "\n\r\n", values);
+  values <- gsub("\n[.] \n", "\n\r\n", values)
   values <- gsub("\n[.] \n", "\n\r\n", values);  # since we miss every second!
   # 4. Remove all '\n'.
-  values <- gsub("\n", "", values);
+  values <- gsub("\n", "", values)
   # 1. Replace all '\r' with '\n' (single '.' lines).
-  values <- gsub("\r", "\n", values);
+  values <- gsub("\r", "\n", values)
   # 4. Removes prefix whitespaces
-  values <- gsub("^[ \t]", "", values);
+  values <- gsub("^[ \t]", "", values)
   # 5. Removes suffix whitespaces
   # For some reason, the gsub below crashes once in a while, i.e. once every
   # 20:th time. Strange! But, I think I tracked it down to happen when one
   # of the strings in values has zero length. So, by making all zero length
   # strings equal to " " the gsub call won't crash. I think! /hb 2001-05-11
-  values[nchar(values) == 0] <- " ";
-  values <- gsub("[ \t]*$", "", values);
+  values[nchar(values) == 0] <- " "
+  values <- gsub("[ \t]*$", "", values)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Return the wanted parameters
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(keys)) {
-    parameters <- as.list(values);
-    names(parameters) <- pkeys;
+    parameters <- as.list(values)
+    names(parameters) <- pkeys
   } else {
-    idx <- na.omit(match(keys, pkeys));
-    parameters <- as.list(values[idx]);
-    names(parameters) <- pkeys[idx];
+    idx <- na.omit(match(keys, pkeys))
+    parameters <- as.list(values[idx])
+    names(parameters) <- pkeys[idx]
   }
 
-  parameters;
-}, static=TRUE);
+  parameters
+}, static=TRUE)
 
 
 
@@ -337,82 +337,82 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   startsWith <- function(prefix, s, ...) {
-    res <- regexpr(paste("^", prefix, sep=""), as.character(s));
-    (res[[1]] != -1);
+    res <- regexpr(paste("^", prefix, sep=""), as.character(s))
+    (res[[1]] != -1)
   }
 
   endsWith <- function(suffix, s, ...) {
-    res <- regexpr(paste(suffix, "$", sep=""), as.character(s));
-    (res[[1]] != -1);
+    res <- regexpr(paste(suffix, "$", sep=""), as.character(s))
+    (res[[1]] != -1)
   }
 
-  url <- as.character(query);
+  url <- as.character(query)
   if (regexpr("^[abcdefghijklmnopqrstuvwxyz]+:", url) == -1) {
     # Assume we are dealing with a file
-    file <- filePath(url);
+    file <- filePath(url)
     if (!file.exists(file))
-      throw("File not found: ", file);
-    url <- toUrl(file);
+      throw("File not found: ", file)
+    url <- toUrl(file)
   }
 
-  browser <- getOption("browser");
+  browser <- getOption("browser")
   if (!is.null(browser)) {
     # Check if 'browser' contains spaces, but the user forgot to quote it.
     if (regexpr(" ", browser) != -1) {
       if (regexpr("^\"", browser) == -1 || regexpr("\"$", browser) == -1) {
-        browser <- paste("\"", browser, "\"", sep="");
-        msg <- paste("getOption(\"browser\") contains spaces, but it is not quoted:", browser);
-        warning(msg);
+        browser <- paste("\"", browser, "\"", sep="")
+        msg <- paste("getOption(\"browser\") contains spaces, but it is not quoted:", browser)
+        warning(msg)
       }
     }
   }
 
-  OST <- .Platform$OS.type;
+  OST <- .Platform$OS.type
   # ---------------------------------------------------------------------
   # W i n d o w s
   # ---------------------------------------------------------------------
   if (OST == "windows") {
-    first <- 1;
-    tmp <- tolower(url);
+    first <- 1
+    tmp <- tolower(url)
 
     if (is.null(browser) &&
       !startsWith(tmp, "http:") && !startsWith(tmp, "file:") &&
         !endsWith(tmp, ".html") && !endsWith(tmp, ".htm")) {
-      first <- 2;
-      msg <- paste("The extension of the URL might not be opened in a HTML browser on your Windows system: ", url, sep="");
-      warning(msg);
+      first <- 2
+      msg <- paste("The extension of the URL might not be opened in a HTML browser on your Windows system: ", url, sep="")
+      warning(msg)
     }
 
     if (first == 1) {
       # 1. Try to call <url>
-      shell.exec(url);
+      shell.exec(url)
     } else {
       # 2a. Try to call <browser> <url>
-      loaded <- FALSE;
+      loaded <- FALSE
       if (!is.null(browser)) {
         # 2a.i.
-        cmd <- paste(browser, url);
-        res <- system(cmd, wait=FALSE);
-        loaded <- (res == 0);
+        cmd <- paste(browser, url)
+        res <- system(cmd, wait=FALSE)
+        loaded <- (res == 0)
         if (!loaded) {
           # 2a.ii. Check if "start" exists, because that might help us
-          start <- "start /minimized";
+          start <- "start /minimized"
           tryCatch({
             system(start, intern=TRUE)
           }, error = function(ex) {
             start <<- NULL
           })
-          cmd <- paste(start, browser, url);
-          res <- system(cmd, wait=FALSE);
-          loaded <- (res == 0);
+          cmd <- paste(start, browser, url)
+          res <- system(cmd, wait=FALSE)
+          loaded <- (res == 0)
         }
         if (!loaded) {
-          warning("Could not find the browser specified in options(). Please make sure it is specified with the absolute path *and* if it contains spaces, it has to be quoted.");
+          warning("Could not find the browser specified in options(). Please make sure it is specified with the absolute path *and* if it contains spaces, it has to be quoted.")
         }
       }
       # 2b. Try to call <url>
       if (!loaded)
-        shell.exec(url);
+        shell.exec(url)
     }
   }
   # ---------------------------------------------------------------------
@@ -420,24 +420,24 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
   # ---------------------------------------------------------------------
   else if (OST == "unix") {
     if (is.null(browser))
-       throw("options(\"browser\") not set.");
+       throw("options(\"browser\") not set.")
     # 1. Try to call <browser> -remote "openURL(<url>)", which opens the
     #    document in an already existing browser.
-    cmd1 <- paste(browser, " -remote \"openURL(", url, ")\" 2>/dev/null", sep="");
+    cmd1 <- paste(browser, " -remote \"openURL(", url, ")\" 2>/dev/null", sep="")
     # 2. Try to call <browser> <url>, which opens the document in a new
     #    browser.
-    cmd2 <- paste(browser, url);
+    cmd2 <- paste(browser, url)
 
     # If 1 fails, try 2.
-    cmd  <- paste(cmd1, "||", cmd2);
-    system(cmd);
+    cmd  <- paste(cmd1, "||", cmd2)
+    system(cmd)
   } else {
-    throw("Don't know how to open the browser on", OST);
+    throw("Don't know how to open the browser on", OST)
   }
 
   # Return the url, which was tried to be opened.
-  invisible(url);
-}, static=TRUE);
+  invisible(url)
+}, static=TRUE)
 
 
 #########################################################################/**
@@ -492,82 +492,82 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   isFileX <- function(pathname, ...) {
-    if (length(pathname) == 0L) return(logical(0L));
-    (nchar(pathname, type="chars") > 0L) & sapply(pathname, FUN=isFile);
+    if (length(pathname) == 0L) return(logical(0L))
+    (nchar(pathname, type="chars") > 0L) & sapply(pathname, FUN=isFile)
   } # isFileX()
 
   isDirectoryX <- function(path, ...) {
-    if (length(path) == 0L) return(logical(0L));
-    (nchar(path, type="chars") > 0L) & sapply(path, FUN=isDirectory);
+    if (length(path) == 0L) return(logical(0L))
+    (nchar(path, type="chars") > 0L) & sapply(path, FUN=isDirectory)
   } # isDirectoryX()
 
   findGSBySysEnv <- function(names=c("R_GSCMD"), ...) {
-    pathnames <- Sys.getenv(names, "");
-    pathnames <- pathnames[isFileX(pathnames)];
-    pathnames;
+    pathnames <- Sys.getenv(names, "")
+    pathnames <- pathnames[isFileX(pathnames)]
+    pathnames
   } # findGSBySysEnv()
 
   findGSByWhich <- function(names=c("gswin64c", "gswin32c", "gs"), ...) {
-    pathnames <- Sys.which(names);
-    pathnames <- pathnames[isFileX(pathnames)];
-    pathnames;
+    pathnames <- Sys.which(names)
+    pathnames <- pathnames[isFileX(pathnames)]
+    pathnames
   } # findGSByWhich()
 
   findGSOnWindows <- function(patterns=c("^gswin64c.exe$", "^gswin32c.exe$"), ...) {
     # (a) Look in "Program Files" directories
-    paths <- Sys.getenv(c("ProgramFiles(X86)", "ProgramFiles", "Programs"));
+    paths <- Sys.getenv(c("ProgramFiles(X86)", "ProgramFiles", "Programs"))
 
     # (b) Look also in C:\ and %SystemDrive%
     paths <- c(paths, "C:", Sys.getenv("SystemDrive"))
 
     # (c) Drop non-existing directories
-    paths <- unique(paths);
-    paths <- paths[isDirectoryX(paths)];
-    if (length(paths) == 0L) return(NULL);
+    paths <- unique(paths)
+    paths <- paths[isDirectoryX(paths)]
+    if (length(paths) == 0L) return(NULL)
 
     # Assume Ghostscript is installed under <path>\gs\
-    paths <- file.path(paths, "gs");
-    paths <- paths[isDirectoryX(paths)];
-    if (length(paths) == 0L) return(NULL);
+    paths <- file.path(paths, "gs")
+    paths <- paths[isDirectoryX(paths)]
+    if (length(paths) == 0L) return(NULL)
 
     # Now search each of the directories for Ghostscript executables
-    pathnames <- NULL;
+    pathnames <- NULL
     for (pattern in patterns) {
       for (path in paths) {
         pathnamesT <- list.files(pattern=pattern, ignore.case=TRUE,
-                                 path=path, recursive=TRUE, full.names=TRUE);
-        pathnamesT <- pathnamesT[isFileX(pathnamesT)];
-        pathnames <- c(pathnames, pathnamesT);
+                                 path=path, recursive=TRUE, full.names=TRUE)
+        pathnamesT <- pathnamesT[isFileX(pathnamesT)]
+        pathnames <- c(pathnames, pathnamesT)
       } # for (path ...)
     } # for (pattern ...)
 
-    pathnames;
+    pathnames
   } # findGSOnWindows()
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check environment variable 'R_GSCMD'
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  pathnames <- findGSBySysEnv("R_GSCMD");
+  pathnames <- findGSBySysEnv("R_GSCMD")
   if (!force && firstOnly && length(pathnames) > 0L) {
-    return(pathnames[1L]);
+    return(pathnames[1L])
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Search for Ghostscript
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  OST <- .Platform$OS.type;
+  OST <- .Platform$OS.type
   if (OST == "windows") {
     # (1) Check environment variable 'GSC'
-    pathnames <- findGSBySysEnv("GSC");
+    pathnames <- findGSBySysEnv("GSC")
     # (2) Search executable on the system PATH
-    pathnames <- c(pathnames, findGSByWhich(c("gswin64c", "gswin32c")));
+    pathnames <- c(pathnames, findGSByWhich(c("gswin64c", "gswin32c")))
     # (3) Search known Windows locations
-    pathnames <- c(pathnames, findGSOnWindows());
+    pathnames <- c(pathnames, findGSOnWindows())
   } else {
     # Search executable on the system PATH
-    pathnames <- c(pathnames, findGSByWhich("gs"));
+    pathnames <- c(pathnames, findGSByWhich("gs"))
   }
 
 
@@ -576,13 +576,13 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Cleanup and normalize paths
   if (length(pathnames) > 0L) {
-    pathnames <- unique(pathnames);
-    pathnames <- normalizePath(pathnames);
+    pathnames <- unique(pathnames)
+    pathnames <- normalizePath(pathnames)
   }
 
   # Return only first one found?
   if (firstOnly && length(pathnames) > 0L) {
-    pathnames <- pathnames[1L];
+    pathnames <- pathnames[1L]
   }
 
 
@@ -591,19 +591,19 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (updateRGSCMD) {
     if (length(pathnames) > 0L) {
-      pathnameT <- pathnames[1L];
+      pathnameT <- pathnames[1L]
       if (OST == "windows" && exists("shortPathName", mode="function")) {
         # To please R CMD check
-        shortPathName <- NULL; rm(list="shortPathName");
-        pathnameT <- shortPathName(pathnameT);
+        shortPathName <- NULL; rm(list="shortPathName")
+        pathnameT <- shortPathName(pathnameT)
       }
-      Sys.setenv("R_GSCMD"=pathnameT);
+      Sys.setenv("R_GSCMD"=pathnameT)
     } else {
-      warning("R_GSCMD not set, because Ghostscript was not found.");
+      warning("R_GSCMD not set, because Ghostscript was not found.")
     }
   }
 
-  pathnames;
+  pathnames
 }, static=TRUE)
 
 
@@ -652,13 +652,13 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
 # @author
 #
 # \examples{
-#   fcn <- System$findGraphicsDevice();
+#   fcn <- System$findGraphicsDevice()
 #   if (identical(fcn, png)) {
-#     cat("PNG device found: png()");
+#     cat("PNG device found: png()")
 #   } else if (identical(fcn, bitmap)) {
-#     cat("PNG device found: bitmap()");
+#     cat("PNG device found: bitmap()")
 #   } else {
-#     cat("PNG device not found.");
+#     cat("PNG device not found.")
 #   }
 # }
 #
@@ -677,37 +677,37 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png), 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'devices':
-  devices <- as.list(devices);
+  devices <- as.list(devices)
   for (device in devices) {
     if (!is.function(device)) {
       throw("Argument 'devices' specifies a non-function element: ",
-                                                              mode(device));
+                                                              mode(device))
     }
   }
 
   # Argument 'maxCount':
-  maxCount <- Arguments$getInteger(maxCount, range=c(1,Inf));
+  maxCount <- Arguments$getInteger(maxCount, range=c(1,Inf))
 
   # Argument 'sleepInterval':
-  sleepInterval <- Arguments$getDouble(sleepInterval, range=c(0,60));
+  sleepInterval <- Arguments$getDouble(sleepInterval, range=c(0,60))
 
   # Argument 'findGhostscript':
-  findGhostscript <- Arguments$getLogical(findGhostscript);
+  findGhostscript <- Arguments$getLogical(findGhostscript)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for a valid ghostscript installation
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (findGhostscript)
-    System$findGhostscript();
+    System$findGhostscript()
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Temporary output file for testing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  file <- tempfile("findGraphicsDevice-testFile");
+  file <- tempfile("findGraphicsDevice-testFile")
   on.exit({
     if (file.exists(file)) {
-      file.remove(file);
+      file.remove(file)
     }
   })
 
@@ -719,18 +719,18 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png), 
     # Check capabilities
     if (identical(device, png)) {
       if (!capabilities("png"))
-        next;
+        next
     }
 
     if (identical(device, jpeg)) {
       if (!capabilities("jpeg"))
-        next;
+        next
     }
 
     tryCatch({
-      device(file);
-      plot(0);
-      dev.off();
+      device(file)
+      plot(0)
+      dev.off()
 
       # The following wait-and-poll code is typically only necessary for
       # the bitmap() device since it calls Ghostscript, which is called
@@ -738,22 +738,22 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png), 
       # dummy image file for 10 seconds in intervals of 0.1 seconds.
       # If not found by then, the device is considered not to be found.
       # Hopefully, this is never the case.
-      count <- 0L;
+      count <- 0L
       while (count < maxCount) {
         if (file.exists(file)) {
-          size <- file.info2(file)$size;
+          size <- file.info2(file)$size
           if (!is.na(size) && size > 0L) {
-            return(device);
+            return(device)
           }
         }
-        Sys.sleep(sleepInterval);
-        count <- count + 1L;
+        Sys.sleep(sleepInterval)
+        count <- count + 1L
       }
     }, error = function(error) {
-    });
+    })
   } # for (device in ...)
 
-  NULL;
+  NULL
 }, static=TRUE)
 
 
@@ -762,15 +762,15 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   isWindowsUncPath <- function(path, ...) {
-    (regexpr("^(//|\\\\)", path) != -1L);
+    (regexpr("^(//|\\\\)", path) != -1L)
   } # isWindowsUncPath()
 
   getWindowsDrivePattern <- function(fmtstr, ...) {
     # Windows drive letters
-    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Support also lower case
-    drives <- paste(c(drives, tolower(drives)), collapse="");
-    sprintf(fmtstr, drives);
+    drives <- paste(c(drives, tolower(drives)), collapse="")
+    sprintf(fmtstr, drives)
   } # getWindowsDrivePattern()
 
 
@@ -778,42 +778,42 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'drive':
-  drive <- Arguments$getCharacter(drive, length=c(1L,1L), nchar=2L);
-  pattern <- getWindowsDrivePattern("[%s]:");
+  drive <- Arguments$getCharacter(drive, length=c(1L,1L), nchar=2L)
+  pattern <- getWindowsDrivePattern("[%s]:")
   if (regexpr(pattern, toupper(drive)) == -1L) {
-    drive0 <- drive;
+    drive0 <- drive
     # Add a colon, in case user forgot
-    drive <- sprintf("%s:", drive);
+    drive <- sprintf("%s:", drive)
     if (regexpr(pattern, toupper(drive)) == -1L) {
-      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive0);
+      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive0)
     }
   }
 
   # Argument 'path':
   if (isWindowsUncPath(path)) {
-    path <- gsub("\\", "/", path, fixed=TRUE);
+    path <- gsub("\\", "/", path, fixed=TRUE)
     # Network drives cannot have trailing slashes
-    path <- gsub("[/\\\\]*$", "", path);
+    path <- gsub("[/\\\\]*$", "", path)
   } else {
-    path <- Arguments$getReadablePath(path, mustExist=TRUE);
+    path <- Arguments$getReadablePath(path, mustExist=TRUE)
   }
 
   # New path, if successful
-  newPath <- sprintf("%s/", drive);
+  newPath <- sprintf("%s/", drive)
 
   # Already mapped?
-  mapped <- System$getMappedDrivesOnWindows();
-  mappedTo <- mapped[drive];
+  mapped <- System$getMappedDrivesOnWindows()
+  mappedTo <- mapped[drive]
   if (!is.na(mappedTo)) {
     if (!isWindowsUncPath(path)) {
-      mappedTo <- Arguments$getReadablePath(mappedTo);
+      mappedTo <- Arguments$getReadablePath(mappedTo)
     }
     if (path != mappedTo) {
-      throw(sprintf("Drive letter %s is already mapped to another path ('%s'), which is different from the requested one: %s", drive, mappedTo, path));
+      throw(sprintf("Drive letter %s is already mapped to another path ('%s'), which is different from the requested one: %s", drive, mappedTo, path))
     }
 
     # If mapped to the same path, nothing to do
-    return(invisible(newPath));
+    return(invisible(newPath))
   }
 
   # UNC paths should be mapped by 'net',
@@ -821,27 +821,27 @@ setMethodS3("mapDriveOnWindows", "System", function(static, drive, path=getwd(),
   if (isWindowsUncPath(path)) {
     # Map using 'net use', which:
     #  (i) only recognized backslashes
-    pathT <- gsub("/", "\\", path, fixed=TRUE);
-    cmd <- sprintf("net use %s \"%s\"", toupper(drive), pathT);
-    res <- system(cmd, intern=FALSE);
+    pathT <- gsub("/", "\\", path, fixed=TRUE)
+    cmd <- sprintf("net use %s \"%s\"", toupper(drive), pathT)
+    res <- system(cmd, intern=FALSE)
     if (res != 0L) {
-      res <- "???";
+      res <- "???"
       throw(sprintf("Failed to map drive '%s' to path '%s': %s (using '%s')",
-                                                     drive, path, res, cmd));
+                                                     drive, path, res, cmd))
     }
   } else {
     # Map using 'subst'
-    cmd <- sprintf("subst %s \"%s\"", toupper(drive), path);
-    res <- system(cmd, intern=TRUE);
+    cmd <- sprintf("subst %s \"%s\"", toupper(drive), path)
+    res <- system(cmd, intern=TRUE)
     if (length(res) > 0L) {
       throw(sprintf("Failed to map drive '%s' to path '%s': %s (using '%s')",
-                                                     drive, path, res, cmd));
+                                                     drive, path, res, cmd))
     }
   }
 
 
   # Return new path
-  invisible(newPath);
+  invisible(newPath)
 }, static=TRUE)
 
 
@@ -851,15 +851,15 @@ setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   isWindowsUncPath <- function(path, ...) {
-    (regexpr("^(//|\\\\)", path) != -1L);
+    (regexpr("^(//|\\\\)", path) != -1L)
   } # isWindowsUncPath()
 
   getWindowsDrivePattern <- function(fmtstr, ...) {
     # Windows drive letters
-    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Support also lower case
-    drives <- paste(c(drives, tolower(drives)), collapse="");
-    sprintf(fmtstr, drives);
+    drives <- paste(c(drives, tolower(drives)), collapse="")
+    sprintf(fmtstr, drives)
   } # getWindowsDrivePattern()
 
 
@@ -867,79 +867,79 @@ setMethodS3("unmapDriveOnWindows", "System", function(static, drive, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'drive':
-  drive <- Arguments$getCharacter(drive, length=c(1L,1L), nchar=2L);
-  pattern <- getWindowsDrivePattern("[%s]:");
+  drive <- Arguments$getCharacter(drive, length=c(1L,1L), nchar=2L)
+  pattern <- getWindowsDrivePattern("[%s]:")
   if (regexpr(pattern, toupper(drive)) == -1L) {
-    drive0 <- drive;
+    drive0 <- drive
     # Add a colon, in case user forgot
-    drive <- sprintf("%s:", drive);
+    drive <- sprintf("%s:", drive)
     if (regexpr(pattern, toupper(drive)) == -1L) {
-      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive);
+      throw("Argument 'drive' is not a valid drive (e.g. 'Y:'): ", drive)
     }
   }
 
   # Get old paths
-  maps <- getMappedDrivesOnWindows(static);
-  oldPath <- maps[toupper(drive)];
+  maps <- getMappedDrivesOnWindows(static)
+  oldPath <- maps[toupper(drive)]
   if (is.na(oldPath)) {
-    return(invisible(NULL));
+    return(invisible(NULL))
   }
 
   # Unmap
   if (isWindowsUncPath(oldPath)) {
     # Unmap using 'net use'
-    cmd <- sprintf("net use /delete \"%s\"", toupper(drive));
-    res <- system(cmd, intern=FALSE);
+    cmd <- sprintf("net use /delete \"%s\"", toupper(drive))
+    res <- system(cmd, intern=FALSE)
     if (res != 0L) {
-      res <- "???";
+      res <- "???"
       throw(sprintf("Failed to unmap drive '%s': %s (using '%s')",
-                                                     drive, res, cmd));
+                                                     drive, res, cmd))
     }
   } else {
     # Unmap using 'subst'
-    cmd <- sprintf("subst \"%s\" /D", toupper(drive));
-    res <- system(cmd, intern=TRUE);
+    cmd <- sprintf("subst \"%s\" /D", toupper(drive))
+    res <- system(cmd, intern=TRUE)
     if (length(res) > 0L) {
       throw(sprintf("Failed to unmap drive '%s': %s (using '%s')",
-                                                     drive, res, cmd));
+                                                     drive, res, cmd))
     }
   }
 
   # Return old path
-  invisible(oldPath);
+  invisible(oldPath)
 }, static=TRUE)
 
 
 setMethodS3("getMappedDrivesOnWindows", "System", function(static, ...) {
   # (1) By 'subst'
-  mounts <- system("subst", intern=TRUE);
-  pattern <- "^(.:).*[ ]*=>[ ]*(.*)[ ]*";
-  drives <- gsub(pattern, "\\1", mounts);
-  paths <- gsub(pattern, "\\2", mounts);
-  paths <- trim(paths);
-  names(paths) <- drives;
-  paths1 <- paths;
+  mounts <- system("subst", intern=TRUE)
+  pattern <- "^(.:).*[ ]*=>[ ]*(.*)[ ]*"
+  drives <- gsub(pattern, "\\1", mounts)
+  paths <- gsub(pattern, "\\2", mounts)
+  paths <- trim(paths)
+  names(paths) <- drives
+  paths1 <- paths
 
   # (1) By 'net use'
-  mounts <- system("net use", intern=TRUE);
-  pattern <- "^(.*)[ ]+(.:)[ ]+(.*)[ ]+(.*)$";
-  mounts <- grep(pattern, mounts, value=TRUE);
-  drives <- gsub(pattern, "\\2", mounts);
-  paths <- gsub(pattern, "\\3", mounts);
-  paths <- trim(paths);
-  names(paths) <- drives;
-  paths2 <- paths;
+  mounts <- system("net use", intern=TRUE)
+  pattern <- "^(.*)[ ]+(.:)[ ]+(.*)[ ]+(.*)$"
+  mounts <- grep(pattern, mounts, value=TRUE)
+  drives <- gsub(pattern, "\\2", mounts)
+  paths <- gsub(pattern, "\\3", mounts)
+  paths <- trim(paths)
+  names(paths) <- drives
+  paths2 <- paths
 
-  paths <- c(paths1, paths2);
+  paths <- c(paths1, paths2)
 
   # Standardize
-  paths <- gsub("\\", "/", paths, fixed=TRUE);
+  paths <- gsub("\\", "/", paths, fixed=TRUE)
 
   # Order by drive letters
   if (length(paths) > 1L) {
-    o <- order(names(paths));
-    paths <- paths[o];
+    o <- order(names(paths))
+    paths <- paths[o]
   }
 
-  paths;
+  paths
 }, static=TRUE)

@@ -52,12 +52,12 @@ setConstructorS3("Assert", function(...) {
 # }
 #*/######################################################################### 
 setMethodS3("isScalar", "Assert", function(static, x, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (length(x) != 1)
-    throw("Argument '", name, "' is not a scalar.");
+    throw("Argument '", name, "' is not a scalar.")
   if (is.matrix(x))
-    throw("Argument '", name, "' is not a scalar.");
-  invisible(TRUE);
+    throw("Argument '", name, "' is not a scalar.")
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -90,12 +90,12 @@ setMethodS3("isScalar", "Assert", function(static, x, ...) {
 # }
 #*/######################################################################### 
 setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (!is.vector(x))
-    throw("Argument '", name, "' is not a vector.");
+    throw("Argument '", name, "' is not a vector.")
   if (!is.null(length) && length(x) != length)
-    throw("Argument '", name, "' is not a vector of length ", length, ": ", length(x));
-  invisible(TRUE);
+    throw("Argument '", name, "' is not a vector of length ", length, ": ", length(x))
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -129,19 +129,19 @@ setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
 # }
 #*/######################################################################### 
 setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (!is.matrix(x))
-    throw("Argument '", name, "' is not a matrix.");
+    throw("Argument '", name, "' is not a matrix.")
 
   if (!is.null(nrow) && nrow(x) != nrow) {
-    throw("Argument '", name, "' is not a matrix with ", nrow, " rows: ", nrow(x));
+    throw("Argument '", name, "' is not a matrix with ", nrow, " rows: ", nrow(x))
   }
 
   if (!is.null(ncol) && ncol(x) != ncol) {
-    throw("Argument '", name, "' is not a matrix with ", ncol, " columns: ", ncol(x));
+    throw("Argument '", name, "' is not a matrix with ", ncol, " columns: ", ncol(x))
   }
 
-  invisible(TRUE);
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -173,10 +173,10 @@ setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...)
 # }
 #*/######################################################################### 
 setMethodS3("inherits", "Assert", function(static, object, class, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (!inherits(object, class))
-    throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "));
-  invisible(TRUE);
+    throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "))
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -213,10 +213,10 @@ setMethodS3("inherits", "Assert", function(static, object, class, ...) {
 setMethodS3("check", "Assert", function(static, condition, message=NULL, ...) {
   if (!identical(condition, TRUE)) {
     if (is.null(message)) {
-      message <- paste(as.character(substitute(condition)), collapse=" ");
-      message <- paste("A condition was not met: ", message, sep="");
+      message <- paste(as.character(substitute(condition)), collapse=" ")
+      message <- paste("A condition was not met: ", message, sep="")
     }
-    throw(message);
+    throw(message)
   }
-  invisible(TRUE);
+  invisible(TRUE)
 }, static=TRUE)

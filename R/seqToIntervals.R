@@ -32,48 +32,48 @@
 #*/#########################################################################t
 setMethodS3("seqToIntervals", "default", function(idx, ...) {
   # Clean up sequence
-  idx <- as.integer(idx);
-  idx <- unique(idx);
-  idx <- sort(idx);
+  idx <- as.integer(idx)
+  idx <- unique(idx)
+  idx <- sort(idx)
 
-  n <- length(idx);
+  n <- length(idx)
   if (n == 0L) {
-    res <- matrix(NA_integer_, nrow=0L, ncol=2L);
-    colnames(res) <- c("from", "to");
-    return(res);
+    res <- matrix(NA_integer_, nrow=0L, ncol=2L)
+    colnames(res) <- c("from", "to")
+    return(res)
   }
 
 
   # Identify end points of intervals
-  d <- diff(idx);
-  d <- (d > 1);
-  d <- which(d);
-  nbrOfIntervals <- length(d) + 1;
+  d <- diff(idx)
+  d <- (d > 1)
+  d <- which(d)
+  nbrOfIntervals <- length(d) + 1
 
   # Allocate return matrix
-  res <- matrix(NA_integer_, nrow=nbrOfIntervals, ncol=2L);
-  colnames(res) <- c("from", "to");
+  res <- matrix(NA_integer_, nrow=nbrOfIntervals, ncol=2L)
+  colnames(res) <- c("from", "to")
 
-  fromValue <- idx[1];
-  toValue <- fromValue-1;
-  lastValue <- fromValue;
+  fromValue <- idx[1]
+  toValue <- fromValue-1
+  lastValue <- fromValue
 
-  count <- 1;
+  count <- 1
   for (kk in seq_along(idx)) {
-    value <- idx[kk];
+    value <- idx[kk]
     if (value - lastValue > 1) {
-      toValue <- lastValue;
-      res[count,] <- c(fromValue, toValue);
-      fromValue <- value;
-      count <- count + 1;
+      toValue <- lastValue
+      res[count,] <- c(fromValue, toValue)
+      fromValue <- value
+      count <- count + 1
     }
-    lastValue <- value;
+    lastValue <- value
   }
 
   if (toValue < fromValue) {
-    toValue <- lastValue;
-    res[count,] <- c(fromValue, toValue);
+    toValue <- lastValue
+    res[count,] <- c(fromValue, toValue)
   }
 
-  res;
+  res
 })

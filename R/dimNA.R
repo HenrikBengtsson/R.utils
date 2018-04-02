@@ -50,30 +50,30 @@ if (!exists("dimNA<-", mode="function")) {
 #*/###########################################################################
 setMethodS3("dimNA<-", "default", function(x, value) {
   # Argument 'x':
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'value':
   if (!is.null(value)) {
-    value <- as.integer(value);
-    dimStr <- sprintf("c(%s)", paste(value, collapse=", "));
+    value <- as.integer(value)
+    dimStr <- sprintf("c(%s)", paste(value, collapse=", "))
 
     # Infer one dimension automatically?
-    nas <- which(is.na(value));
+    nas <- which(is.na(value))
     if (length(nas) > 0) {
       if (length(nas) > 1) {
-        throw("Argument 'value' may only have one NA: ", dimStr);
+        throw("Argument 'value' may only have one NA: ", dimStr)
       }
-      value[nas] <- as.integer(n / prod(value[-nas]));
+      value[nas] <- as.integer(n / prod(value[-nas]))
     }
 
     # Validate the new dimension is compatible with the number of elements
     if (prod(value) != n) {
       stop("Argument 'dim' does not match the number of elements: ",
-           "prod(", dimStr, ") == ", prod(value), " does not equal ", n);
+           "prod(", dimStr, ") == ", prod(value), " does not equal ", n)
     }
   }
 
-  dim(x) <- value;
+  dim(x) <- value
 
-  invisible(x);
+  invisible(x)
 }) # dimNA<-()

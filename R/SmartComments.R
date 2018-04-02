@@ -53,7 +53,7 @@
 # @keyword IO
 #*/###########################################################################
 setConstructorS3("SmartComments", function(letter=NA, ...) {
-  letter <- as.character(letter);
+  letter <- as.character(letter)
   extend(Object(), "SmartComments",
     resetLetter = letter,
     letter = letter
@@ -90,7 +90,7 @@ setConstructorS3("SmartComments", function(letter=NA, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("reset", "SmartComments", function(this, ...) {
-  this$letter <- this$resetLetter;
+  this$letter <- this$resetLetter
 })
 
 
@@ -132,46 +132,46 @@ setMethodS3("reset", "SmartComments", function(this, ...) {
 #*/###########################################################################
 setMethodS3("parse", "SmartComments", function(this, lines, currLine, ..., letter=this$letter, pattern=NULL) {
   if (is.null(pattern))
-    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="");
+    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="")
 
   # Get next line
-  line <- lines[currLine];
+  line <- lines[currLine]
 
   if (is.na(line))
-    return(NULL);
+    return(NULL)
   if (regexpr(pattern, line) == -1)
-    return(NULL);
+    return(NULL)
 
-  indent <- gsub(pattern, "\\1", line);
-  cmd <- gsub(pattern, "\\3", line);
-  args <- gsub(pattern, "\\5", line);
-  args <- trim(args);
-  multiline <- (regexpr(" \\\\$", args) != -1);
+  indent <- gsub(pattern, "\\1", line)
+  cmd <- gsub(pattern, "\\3", line)
+  args <- gsub(pattern, "\\5", line)
+  args <- trim(args)
+  multiline <- (regexpr(" \\\\$", args) != -1)
 
-  currLine <- currLine + 1;
+  currLine <- currLine + 1
 
   # Peek ahead on the next lines to get the rest of 'args'
   while(multiline) {
     # Remove trailing ' \'
-    args <- gsub(" \\\\$", "", args);
-    args <- trim(args);
+    args <- gsub(" \\\\$", "", args)
+    args <- trim(args)
 
-    vcom  <- gsub(pattern, "\\2", lines[currLine]);
+    vcom  <- gsub(pattern, "\\2", lines[currLine])
     if (vcom != paste("#", letter, sep=""))
-      throw("Syntax error: Following line is not a VComment: ", lines[currLine]);
-    args2 <- gsub(pattern, "\\5", lines[currLine]);
-    lines[currLine] <- NA;
-    args2 <- trim(args2);
-    multiline <- (regexpr(" \\\\$", args2) != -1);
-    args <- paste(args, args2, sep=" ");
-    args <- trim(args);
+      throw("Syntax error: Following line is not a VComment: ", lines[currLine])
+    args2 <- gsub(pattern, "\\5", lines[currLine])
+    lines[currLine] <- NA
+    args2 <- trim(args2)
+    multiline <- (regexpr(" \\\\$", args2) != -1)
+    args <- paste(args, args2, sep=" ")
+    args <- trim(args)
 
-    currLine <- currLine + 1;
+    currLine <- currLine + 1
   }
 
   if (nchar(args) == 0)
-    args <- NULL;
-  list(indent=indent, cmd=cmd, args=args, currLine=currLine);
+    args <- NULL
+  list(indent=indent, cmd=cmd, args=args, currLine=currLine)
 }, protected=TRUE)
 
 
@@ -219,74 +219,74 @@ setMethodS3("parse", "SmartComments", function(this, lines, currLine, ..., lette
 #*/###########################################################################
 setMethodS3("compile", "SmartComments", function(this, lines, trim=TRUE, excludeComments=FALSE, ...) {
   # Reset the compiler
-  reset(this);
+  reset(this)
 
   if (length(lines) == 0)
-    return(NULL);
+    return(NULL)
 
   # 1. Get all comments-only lines
-  pattern <- "^[ \t]*#";
-  isComments <- (regexpr(pattern, lines) != -1);
-  idxComments <- which(isComments);
+  pattern <- "^[ \t]*#"
+  isComments <- (regexpr(pattern, lines) != -1)
+  idxComments <- which(isComments)
   if (length(idxComments) == 0)
-    return(lines);
+    return(lines)
 
   if (excludeComments) {
-    lines <- lines[!isComments];
+    lines <- lines[!isComments]
   } else {
-    comments <- lines[idxComments];
+    comments <- lines[idxComments]
     
     # 2. Among these, check for "Smart" comments.
-    letter <- this$letter;
-    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="");
-    idxSmartComments <- which(regexpr(pattern, comments) != -1);
+    letter <- this$letter
+    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="")
+    idxSmartComments <- which(regexpr(pattern, comments) != -1)
     if (length(idxSmartComments) == 0)
-      return(lines);
+      return(lines)
   
     # 3. Parse the "Smart" comments
-    smartComments <- comments[idxSmartComments];
+    smartComments <- comments[idxSmartComments]
   
-    currLine <- 1;
+    currLine <- 1
     while (currLine <= length(smartComments)) {
-      smartComment <- parse(this, smartComments, currLine, letter=letter, pattern=pattern);
+      smartComment <- parse(this, smartComments, currLine, letter=letter, pattern=pattern)
       if (is.null(smartComment)) {
-        throw("Internal error!");
-        currLine <- currLine + 1;
-        next;
+        throw("Internal error!")
+        currLine <- currLine + 1
+        next
       }
   
-      newLine <- convertComment(this, smartComment, .currLine=currLine, .line=trim(smartComments[currLine]));
+      newLine <- convertComment(this, smartComment, .currLine=currLine, .line=trim(smartComments[currLine]))
    
-      smartComments[currLine] <- newLine;
+      smartComments[currLine] <- newLine
    
-      nextLine <- smartComment$currLine;
+      nextLine <- smartComment$currLine
       if (nextLine > currLine+1)
-        smartComments[(currLine+1):(nextLine-1)] <- NA;
-      currLine <- nextLine;
+        smartComments[(currLine+1):(nextLine-1)] <- NA
+      currLine <- nextLine
     } # while()
   
   
     # Update all comment lines
-    comments[idxSmartComments] <- smartComments;
+    comments[idxSmartComments] <- smartComments
   
     # Update all lines
-    lines[idxComments] <- comments;
+    lines[idxComments] <- comments
   
     # Exclude removed lines, i.e. now NAs
-    lines <- lines[!is.na(lines)];
+    lines <- lines[!is.na(lines)]
   }
 
-  lines <- validate(this, lines);
+  lines <- validate(this, lines)
 
   if (trim) {
-    lines <- gsub("[ \t]*$", "", lines);
-    empty <- (nchar(lines) == 0);
+    lines <- gsub("[ \t]*$", "", lines)
+    empty <- (nchar(lines) == 0)
     multi <- (diff(c(TRUE, empty)*1) == 0)
-    keep <- !(empty & multi);
-    lines <- lines[keep];
+    keep <- !(empty & multi)
+    lines <- lines[keep]
   }
 
-  lines;
+  lines
 })
 
 
@@ -319,7 +319,7 @@ setMethodS3("compile", "SmartComments", function(this, lines, trim=TRUE, exclude
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("convertComment", "SmartComments", abstract=TRUE, protected=TRUE);
+setMethodS3("convertComment", "SmartComments", abstract=TRUE, protected=TRUE)
 
 
 
@@ -353,5 +353,5 @@ setMethodS3("convertComment", "SmartComments", abstract=TRUE, protected=TRUE);
 # @keyword programming
 #*/###########################################################################
 setMethodS3("validate", "SmartComments", function(this, lines, ...) {
-  lines;
+  lines
 }, protected=TRUE)

@@ -30,80 +30,80 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   readRdHelpTextPreR210 <- function(...) {
     stdoutPager <- function(con, ...) {
-      cat(readLines(con), sep="\n");
+      cat(readLines(con), sep="\n")
     }
     capture.output({
-      do.call(help, args=list(..., pager=stdoutPager));
-    });
+      do.call(help, args=list(..., pager=stdoutPager))
+    })
   } # readRdHelpTextPreR210()
 
   getHelpFile <- get(".getHelpFile", mode="function",
-                                              envir=getNamespace("utils"));
+                                              envir=getNamespace("utils"))
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'format':
-  format <- match.arg(format);
+  format <- match.arg(format)
 
   # Argument 'drop':
-  drop <- Arguments$getLogical(drop);
+  drop <- Arguments$getLogical(drop)
 
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For R versions before v2.10.0 only
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  rVer <- as.character(getRversion());
+  rVer <- as.character(getRversion())
   if (compareVersion(rVer, "2.10.0") < 0) {
     if (format == "text") {
-      res <- readRdHelpTextPreR210(...);
+      res <- readRdHelpTextPreR210(...)
       if (!drop) {
-        res <- list(res);
+        res <- list(res)
       }
-      return(res);
+      return(res)
     } else {
-      throw("Unsupported format for R v", rVer, ": ", format);
+      throw("Unsupported format for R v", rVer, ": ", format)
     }
   }
 
 
   # Find the help
-  x <- help(..., help_type="text");
+  x <- help(..., help_type="text")
 
   # Read the Rd file(s)
-  paths <- as.character(x);
-  rdList <- lapply(paths, FUN=getHelpFile);
+  paths <- as.character(x)
+  rdList <- lapply(paths, FUN=getHelpFile)
 
   if (format == "rd") {
-    res <- rdList;
+    res <- rdList
   } else {
     if (format == "text") {
-      fcn <- tools::Rd2txt;
+      fcn <- tools::Rd2txt
     } else if (format == "html") {
-      fcn <- tools::Rd2HTML;
+      fcn <- tools::Rd2HTML
     } else if (format == "latex") {
-      fcn <- tools::Rd2latex;
+      fcn <- tools::Rd2latex
     } else {
-      throw("Unsupported format: ", format);
+      throw("Unsupported format: ", format)
     }
 
     # Translate
     # To please R CMD check
-    bfr <- NULL; rm(list="bfr");
+    bfr <- NULL; rm(list="bfr")
     res <- lapply(rdList, FUN=function(rd) {
-      con <- textConnection("bfr", open="w", local=TRUE);
-      on.exit(close(con));
-      fcn(rd, out=con);
-      bfr;
-    });
+      con <- textConnection("bfr", open="w", local=TRUE)
+      on.exit(close(con))
+      fcn(rd, out=con)
+      bfr
+    })
   }
 
   # If only one item was found, should we return that and not a list?
   if (drop && length(res) == 1) {
-    res <- res[[1]];
+    res <- res[[1]]
   }
 
-  res;
+  res
 }) # readRdHelp()

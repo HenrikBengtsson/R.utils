@@ -32,12 +32,12 @@
 # @keyword package
 #*/########################################################################### 
 setMethodS3("isPackageLoaded", "default", function(package, version=NULL, ...) {
-  s <- search();
+  s <- search()
   if (is.null(version)) {
-    s <- sub("_[0-9.-]*", "", s);
+    s <- sub("_[0-9.-]*", "", s)
   } else {
-    package <- paste(package, version, sep="_");
+    package <- paste(package, version, sep="_")
   }
-  pattern <- sprintf("package:%s", package);
- (pattern %in% s);
+  pattern <- sprintf("package:%s", package)
+ (pattern %in% s)
 })

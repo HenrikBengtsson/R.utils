@@ -52,62 +52,62 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # Reference: http://ss64.com/nt/shortcut.html
   makeVBScript <- function(target, link, description=basename(target), ...) {
     # Arguments 'target':
-    target <- Arguments$getReadablePathname(target, mustExist=TRUE);
-    target <- getAbsolutePath(target);
+    target <- Arguments$getReadablePathname(target, mustExist=TRUE)
+    target <- getAbsolutePath(target)
 
     # Arguments 'link':
-    link <- getAbsolutePath(link);
+    link <- getAbsolutePath(link)
 
 
-    targetPath <- gsub("/", "\\\\", target);
-    linkFile <- gsub("/", "\\\\", link);
+    targetPath <- gsub("/", "\\\\", target)
+    linkFile <- gsub("/", "\\\\", link)
     if (isDirectory(targetPath)) {
-      workingDir <- targetPath;
+      workingDir <- targetPath
     } else {
-      workingDir <- dirname(targetPath);
+      workingDir <- dirname(targetPath)
     }
 
-    s <-      "Set oWS = WScript.CreateObject(\"WScript.Shell\")";
-    s <- c(s, sprintf("sLinkFile = \"%s.LNK\"", linkFile));
-    s <- c(s, "Set oLink = oWS.CreateShortcut(sLinkFile)");
-    s <- c(s, sprintf("oLink.TargetPath = \"%s\"", targetPath));
-#    s <- c(s, "oLink.Arguments = \"\"");
-    s <- c(s, sprintf("oLink.Description = \"%s\"", description));
-#    s <- c(s, "oLink.HotKey = \"\"");
-#    s <- c(s, sprintf("oLink.IconLocation = \"%s, 1\"", targetPath));
-#    s <- c(s, "oLink.WindowStyle = \"1\"");
-#    s <- c(s, sprintf("oLink.WorkingDirectory = \"%s\"", workingDir));
-    s <- c(s, "oLink.Save");
-    s <- paste(s, collapse="\n");
+    s <-      "Set oWS = WScript.CreateObject(\"WScript.Shell\")"
+    s <- c(s, sprintf("sLinkFile = \"%s.LNK\"", linkFile))
+    s <- c(s, "Set oLink = oWS.CreateShortcut(sLinkFile)")
+    s <- c(s, sprintf("oLink.TargetPath = \"%s\"", targetPath))
+#    s <- c(s, "oLink.Arguments = \"\"")
+    s <- c(s, sprintf("oLink.Description = \"%s\"", description))
+#    s <- c(s, "oLink.HotKey = \"\"")
+#    s <- c(s, sprintf("oLink.IconLocation = \"%s, 1\"", targetPath))
+#    s <- c(s, "oLink.WindowStyle = \"1\"")
+#    s <- c(s, sprintf("oLink.WorkingDirectory = \"%s\"", workingDir))
+    s <- c(s, "oLink.Save")
+    s <- paste(s, collapse="\n")
 
-    s;
+    s
   } # makeVBScript
 
   createWindowsShortcutViaVBScript <- function(pathname, target, ...) {
-    link <- gsub("[.](lnk|LNK)$", "", pathname);
+    link <- gsub("[.](lnk|LNK)$", "", pathname)
 
     # Generate VB code
-    pd <- packageDescription("R.utils");
-    pkgInfo <- sprintf("%s v%s", pd$Package, pd$Version);
-    description <- sprintf("Windows Shortcut link created by %s", pkgInfo);
-    code <- makeVBScript(target, link, description=description);
+    pd <- packageDescription("R.utils")
+    pkgInfo <- sprintf("%s v%s", pd$Package, pd$Version)
+    description <- sprintf("Windows Shortcut link created by %s", pkgInfo)
+    code <- makeVBScript(target, link, description=description)
 
-    tmpFile <- tempfile();
-    pathnameT <- sprintf("%s.vbs", tmpFile);
-    on.exit(file.remove(pathnameT));
-    cat(file=pathnameT, code);
-    cmd <- sprintf("cscript \"%s\"", pathnameT);
+    tmpFile <- tempfile()
+    pathnameT <- sprintf("%s.vbs", tmpFile)
+    on.exit(file.remove(pathnameT))
+    cat(file=pathnameT, code)
+    cmd <- sprintf("cscript \"%s\"", pathnameT)
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"));
+      shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"))
     }, error = function(ex) {
     })
 
     # Sanity check
     if (!isFile(pathname)) {
-      return(NULL);
+      return(NULL)
     }
 
-    pathname;
+    pathname
   } # createWindowsShortcutViaVBScript()
 
 
@@ -115,25 +115,25 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'overwrite':
-  overwrite <- Arguments$getLogical(overwrite);
+  overwrite <- Arguments$getLogical(overwrite)
 
   # Argument 'pathname':
   if (!overwrite && isFile(pathname)) {
     throw("Cannot create Windows Shortcut link. File already exists: ",
-                                                                 pathname);
+                                                                 pathname)
   }
 
   # Argument 'target':
-  target <- Arguments$getReadablePathname(target, mustExist=TRUE);
+  target <- Arguments$getReadablePathname(target, mustExist=TRUE)
 
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create Windows Shortcut link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  createWindowsShortcutViaVBScript(pathname, target=target);
+  createWindowsShortcutViaVBScript(pathname, target=target)
 
-  link <- gsub("[.](lnk|LNK)$", "", pathname);
+  link <- gsub("[.](lnk|LNK)$", "", pathname)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate correctness
@@ -141,21 +141,21 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # Try to read Windows shortcut (throws a parsing error if so)
   lnk <- tryCatch({
     # (i) Try using new reader...
-    readWindowsShellLink(pathname);
+    readWindowsShellLink(pathname)
   }, error = function(ex) {
     # (ii) ...using old reverse-enginered reader
-    readWindowsShortcut(pathname);
-  });
+    readWindowsShortcut(pathname)
+  })
 
-  target0 <- getAbsolutePath(target);
-  target1 <- Arguments$getReadablePathname(link);
-  target1 <- getAbsolutePath(target1);
+  target0 <- getAbsolutePath(target)
+  target1 <- Arguments$getReadablePathname(link)
+  target1 <- getAbsolutePath(target1)
 
   # AD HOC: It may happen that the case of the drive letters differ.
   if (tolower(target1) != tolower(target0)) {
-    throw("Failed to create a valid Windows Shortcut link. The link does not point the expected file: ", target1, " != ", target0);
+    throw("Failed to create a valid Windows Shortcut link. The link does not point the expected file: ", target1, " != ", target0)
   }
 
   # Return the LNK file
-  invisible(pathname);
+  invisible(pathname)
 }) # createWindowsShortcut()

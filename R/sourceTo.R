@@ -67,105 +67,105 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  lastSourced <- getOption("R.utils::sourceTo/lastSourced");
+  lastSourced <- getOption("R.utils::sourceTo/lastSourced")
   if (is.null(lastSourced)) {
-    lastSourced <- list();
-    options("R.utils::sourceTo/lastSourced"=lastSourced);
+    lastSourced <- list()
+    options("R.utils::sourceTo/lastSourced"=lastSourced)
   }
 
   if (is.character(file)) {
     # Argument 'path':
     if (!is.null(path)) {
-      file <- file.path(path, file);
+      file <- file.path(path, file)
     }
 
     # A URL to be sourced?
-    isUrl <- (length(grep("^(ftp|http|file)://", file)) > 0);
+    isUrl <- (length(grep("^(ftp|http|file)://", file)) > 0)
 
     if (!isUrl) {
       # Arguments 'file' & 'path':
-      file <- Arguments$getReadablePathname(file, mustExist=TRUE);
+      file <- Arguments$getReadablePathname(file, mustExist=TRUE)
 
-      absPathname <- getAbsolutePath(file);
+      absPathname <- getAbsolutePath(file)
       if (modifiedOnly) {
         # Check if file has been modified since last time.
-        lastSrcd <- lastSourced[[absPathname]];
+        lastSrcd <- lastSourced[[absPathname]]
         if (!is.null(lastSrcd) && (lastSrcd > lastModified(file))) {
-          return(invisible(NULL));
+          return(invisible(NULL))
         }
       }
-      lastSourced[[absPathname]] <- Sys.time();
+      lastSourced[[absPathname]] <- Sys.time()
     } # if (!isUrl)
 
     # Open file
-    fh <- file(file, open="r");
+    fh <- file(file, open="r")
 
     # Change R working directory temporarily?
     if (chdir && !isUrl) {
-      path <- dirname(file);
+      path <- dirname(file)
       if (path != ".") {
-        owd <- getwd();
-        on.exit(setwd(owd), add=TRUE);
-        setwd(path);
+        owd <- getwd()
+        on.exit(setwd(owd), add=TRUE)
+        setwd(path)
       }
     }
   } else {
-    fh <- file;
+    fh <- file
     if (!isOpen(fh, rw="read"))
-      open(fh, open="r");
+      open(fh, open="r")
   }
 
   # Close opened connections on exit
   on.exit({
     if (!is.null(fh)) {
-      close(fh);
-      fh <- NULL;
+      close(fh)
+      fh <- NULL
     }
-  }, add=TRUE);
+  }, add=TRUE)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # "main"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Read all lines from the connection
-  lines <- readLines(con=fh, warn=FALSE);
-  hooks <- getHook("sourceTo/onPreprocess");
+  lines <- readLines(con=fh, warn=FALSE)
+  hooks <- getHook("sourceTo/onPreprocess")
   if (length(hooks) > 0) {
     if (length(hooks) > 1)
-      throw("Only one hook can be set for this function: sourceTo/onPreprocess");
-    res <- callHooks("sourceTo/onPreprocess", lines=lines)[[1]];
+      throw("Only one hook can be set for this function: sourceTo/onPreprocess")
+    res <- callHooks("sourceTo/onPreprocess", lines=lines)[[1]]
     if (!is.null(res$result))
-      lines <- res$result;
+      lines <- res$result
   }
 
   if (length(lines) == 0) {
     # Nothing more to do.
-    return(NULL);
+    return(NULL)
   }
 
   if (!is.null(fh)) {
-    close(fh);
-    fh <- NULL;
-    fh <- textConnection(lines, open="r");
+    close(fh)
+    fh <- NULL
+    fh <- textConnection(lines, open="r")
   }
 
   # Wrap up the arguments to source
-  args <- list(file=fh, ...);
+  args <- list(file=fh, ...)
 
   # Override any 'local' argument
-  args$local <- local;
+  args$local <- local
 
   # Create a call expression to source(file=fh, ..., local=local)
   expr <- substitute({
     do.call(source, args)
-  }, list(args=args));
+  }, list(args=args))
 
   # Call source()
-  res <- eval(expr, envir=envir);
+  res <- eval(expr, envir=envir)
 
   # If successfully sourced, record last modification date.
   if (is.character(file) && !isUrl) {
-    options("R.utils::sourceTo/lastSourced"=lastSourced);
+    options("R.utils::sourceTo/lastSourced"=lastSourced)
   }
 
-  invisible(res);
+  invisible(res)
 }) # sourceTo()
