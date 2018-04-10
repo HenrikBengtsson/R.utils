@@ -5,10 +5,10 @@
 
 setConstructorS3("CmdArgsFunction", function(fcn=function() {}, output=print, ...) {
   # Argument 'fcn':
-  stopifnot(is.function(fcn))
+  stop_if_not(is.function(fcn))
 
   # Argument 'output':
-  stopifnot(is.function(output))
+  stop_if_not(is.function(output))
 
   attr(fcn, "output") <- output
   extend(fcn, "CmdArgsFunction")

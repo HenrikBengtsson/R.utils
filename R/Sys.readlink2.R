@@ -60,7 +60,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
 
     # Sanity check
     link <- gsub(pattern, "\\2", bfr)
-    stopifnot(identical(link, path))
+    stop_if_not(identical(link, path))
 
     # Extract the target
     target <- gsub(pattern, "\\3", bfr)

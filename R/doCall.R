@@ -68,7 +68,7 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
   }
 
   # Argument 'envir':
-  stopifnot(is.environment(envir))
+  stop_if_not(is.environment(envir))
 
 
   # Put all arguments in a list.

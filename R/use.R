@@ -314,7 +314,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
     version <- versionT
     version <- .parseVersion(version)
   }
-  stopifnot(is.null(version) || is.list(version))
+  stop_if_not(is.null(version) || is.list(version))
 
   pkg <- gsub(pattern, "\\1", pkg)
 

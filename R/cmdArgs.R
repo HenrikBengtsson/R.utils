@@ -144,7 +144,7 @@ cmdArg <- function(...) {
 
   # Argument 'name':
   name <- as.character(args$name)
-  stopifnot(length(name) == 1L)
+  stop_if_not(length(name) == 1L)
 
 
   # Call cmdArgs(names=name, defaults=list(<name>=default), ...)

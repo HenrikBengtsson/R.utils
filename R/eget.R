@@ -72,7 +72,7 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="d
 
   # Argument 'name':
   name <- as.character(args$name)
-  stopifnot(length(name) == 1L)
+  stop_if_not(length(name) == 1L)
 
   # Argument 'default':
   default <- args$default
@@ -87,7 +87,7 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="d
   if (is.list(envir)) {
   } else {
     envir <- as.environment(envir)
-    stopifnot(is.environment(envir))
+    stop_if_not(is.environment(envir))
   }
 
 
