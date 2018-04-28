@@ -269,7 +269,9 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       typesT <- types[names(argsT)]
       suppressWarnings({
         for (jj in seq_along(argsT)) {
-          argsT[[jj]] <- as(argsT[[jj]], Class=typesT[jj])
+          argT <- argsT[[jj]]
+          value <- as(argT, Class=typesT[jj])
+          if (length(value) != 1L || !is.na(value)) argsT[[jj]] <- value
         }
       })
       args[idxs] <- argsT
@@ -549,7 +551,18 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     } # if (adhoc)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (g) Prepend defaults, if not already specified
+    # (g) Corce arguments to known data types?
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (length(args) > 0L && length(defaults) + length(always) > 0L) {
+      # First to the 'always', then remaining to the 'defaults'.
+      types <- sapply(c(defaults, always), FUN=storage.mode)
+      keep <- !duplicated(names(types), fromLast=TRUE)
+      types <- types[keep]
+      args <- coerceAs(args, types=types)
+    }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # (h) Prepend defaults, if not already specified
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(defaults) > 0L) {
       # Any missing?
@@ -560,7 +573,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (h) Override by/append 'always' arguments?
+    # (i) Override by/append 'always' arguments?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(always) > 0L) {
       args <- c(args, always)
