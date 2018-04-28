@@ -1,4 +1,4 @@
-stop_if_not <- function(...) {
+.stop_if_not <- function(...) {
   res <- list(...)
   n <- length(res)
   if (n == 0L) return()

@@ -165,7 +165,7 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # WORKAROUND: The following will *not* evaluate in environment
   # 'envir' due to capture.output() *unless* we evaluate 'envir'
   # before.  This sanity check will do that. /HB 2011-11-23
-  stop_if_not(is.environment(envir))
+  .stop_if_not(is.environment(envir))
 
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r")

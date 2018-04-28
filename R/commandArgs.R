@@ -366,7 +366,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       }
 
       # Sanity check
-      stop_if_not(length(arg) == 1L)
+      .stop_if_not(length(arg) == 1L)
 
       # --<key>(=|:=)<value>
       pattern <- sprintf("^--(%s)(=|:=)(.*)$", keyPattern)

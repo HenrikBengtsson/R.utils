@@ -464,7 +464,7 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
   }
 
   # Argument 'envir':
-  stop_if_not(is.environment(envir))
+  .stop_if_not(is.environment(envir))
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -709,7 +709,7 @@ setMethodS3("parse", "GString", function(object, ...) {
 #*/###########################################################################
 setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
   # Argument 'envir':
-  stop_if_not(is.environment(envir))
+  .stop_if_not(is.environment(envir))
 
   # If there is no markup, then return alrady here.
   s <- unclass(object)

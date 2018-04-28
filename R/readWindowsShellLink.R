@@ -52,19 +52,19 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   intToBits <- function(x, n=NULL, names=NULL, rev=TRUE, ...) {
     # Argument 'x':
-    stop_if_not(is.integer(x))
-    stop_if_not(length(x) == 1L)
+    .stop_if_not(is.integer(x))
+    .stop_if_not(length(x) == 1L)
 
     # Argument 'n':
     if (!is.null(n)) {
-      stop_if_not(n > 0L)
+      .stop_if_not(n > 0L)
     }
 
     # Argument 'names':
     if (!is.null(names)) {
-      stop_if_not(is.character(names))
+      .stop_if_not(is.character(names))
       if (!is.null(n)) {
-        stop_if_not(length(names) == n)
+        .stop_if_not(length(names) == n)
       }
       n <- length(names)
     }
@@ -72,11 +72,11 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     # Get binary represenation
     x <- intToBin(x)
     x <- unlist(strsplit(x, split=""), use.names=FALSE)
-    stop_if_not(length(x) <= n)
+    .stop_if_not(length(x) <= n)
     x <- as.integer(x)
     x <- as.logical(x)
     x <- c(rep(FALSE, times=n-length(x)), x)
-    stop_if_not(length(x) == n)
+    .stop_if_not(length(x) == n)
     if (!is.null(names)) {
       x <- rev(x)
       names(x) <- names
@@ -89,7 +89,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
   } # intToBits()
 
   readBits <- function(con, n=32L, ...) {
-    stop_if_not(n %% 8 == 0)
+    .stop_if_not(n %% 8 == 0)
     nbrOfBytes <- n %/% 8L
     if (nbrOfBytes <= 2L) {
       x <- readBin(con=con, what=integer(), size=nbrOfBytes, n=1L, signed=FALSE, endian="little")
@@ -248,7 +248,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     flags <- intToBits(flags, names=keys)
 
     # Validation
-    stop_if_not(flags["IsUnicode"])
+    .stop_if_not(flags["IsUnicode"])
 
     flags
   } # parseLinkFlags()
@@ -289,15 +289,15 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
   parseShowCommand <- function(showCommand, ...) {
     # Argument 'showCommand':
-    stop_if_not(is.integer(showCommand))
-    stop_if_not(length(showCommand) == 1L)
+    .stop_if_not(is.integer(showCommand))
+    .stop_if_not(length(showCommand) == 1L)
     showCommand
   } # parseShowCommand()
 
   parseHotKey <- function(hotKey, ...) {
     # Argument 'hotKey':
-    stop_if_not(is.integer(hotKey))
-    stop_if_not(length(hotKey) == 1L)
+    .stop_if_not(is.integer(hotKey))
+    .stop_if_not(length(hotKey) == 1L)
 
     # Get binary represenation
     lowByte <- hotKey %% 256L
@@ -399,22 +399,22 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
   readLinkTargetIdList <- function(con, ...) {
     readIdList <- function(con, n) {
-      stop_if_not(n >= 2L)
+      .stop_if_not(n >= 2L)
       raw <- readRaw(con, n=n)
       terminalId <- raw[(n-1L):n]
-      stop_if_not(all(terminalId == 0L))
+      .stop_if_not(all(terminalId == 0L))
       raw <- raw[1:(n-2L)]
 
       # Parse 'itemIdList' into list of 'ItemId':s
       itemIdList <- list()
       idx <- 1L
       while(length(raw) > 0L) {
-        stop_if_not(length(raw) >= 2L)
+        .stop_if_not(length(raw) >= 2L)
         itemIdSize <- readWord(raw)
         raw <- raw[-(1:2)]
         nbrOfBytesToRead <- itemIdSize - 2L
         if (nbrOfBytesToRead > 0L) {
-          stop_if_not(length(raw) >= nbrOfBytesToRead)
+          .stop_if_not(length(raw) >= nbrOfBytesToRead)
           Data <- readRaw(raw, n=nbrOfBytesToRead)
           itemIdList[[idx]] <- Data
           raw <- raw[-(1:nbrOfBytesToRead)]
@@ -426,7 +426,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       } # while()
 
       # Sanity check
-      stop_if_not(length(raw) == 0L)
+      .stop_if_not(length(raw) == 0L)
 
 ##      itemIdList <- lapply(itemIdList, FUN=rawToChar)
       idList <- list(itemIdList=itemIdList, terminalId=terminalId)
@@ -460,11 +460,11 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
 
       nbrOfBytesRead <- 4*4L
 
-      stop_if_not(id$volumeIdSize > 0x00000010)
-      stop_if_not(id$volumeLabelOffset >= 0L)
-      stop_if_not(id$volumeLabelOffset < id$volumeIdSize)
-      stop_if_not(id$driveType >= 0L)
-      stop_if_not(id$driveType <= 6L)
+      .stop_if_not(id$volumeIdSize > 0x00000010)
+      .stop_if_not(id$volumeLabelOffset >= 0L)
+      .stop_if_not(id$volumeLabelOffset < id$volumeIdSize)
+      .stop_if_not(id$driveType >= 0L)
+      .stop_if_not(id$driveType <= 6L)
 
       if (id$volumeLabelOffset == 0x00000014) {
         id$volumeLabelOffsetUnicode <- readDWord(con)
@@ -490,7 +490,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       id$volumeLabel <- rawToChar(data)
 
       # Sanity check
-      stop_if_not(nbrOfBytesRead == id$volumeIdSize)
+      .stop_if_not(nbrOfBytesRead == id$volumeIdSize)
 
       id
     } # readVolumeId()
@@ -506,13 +506,13 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     )
     nbrOfBytesRead <- 7*4L
 
-    stop_if_not(info$size >= 0L)
-    stop_if_not(info$headerSize >= 0L)
-    stop_if_not(info$headerSize < info$size)
-    stop_if_not(info$volumeIdOffset < info$size)
-    stop_if_not(info$localBasePathOffset < info$size)
-    stop_if_not(info$commonNetworkRelativeLinkOffset < info$size)
-    stop_if_not(info$commonPathSuffixOffset < info$size)
+    .stop_if_not(info$size >= 0L)
+    .stop_if_not(info$headerSize >= 0L)
+    .stop_if_not(info$headerSize < info$size)
+    .stop_if_not(info$volumeIdOffset < info$size)
+    .stop_if_not(info$localBasePathOffset < info$size)
+    .stop_if_not(info$commonNetworkRelativeLinkOffset < info$size)
+    .stop_if_not(info$commonPathSuffixOffset < info$size)
 
     info$flags <- parseLinkInfoFlags(info$flags)
 
@@ -520,10 +520,10 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     if (info$flags["VolumeIdAndLocalBasePath"]) {
     } else {
       # Sanity checks
-      stop_if_not(info$volumeIdOffset == 0L)
-      stop_if_not(info$localBasePathOffset == 0L)
+      .stop_if_not(info$volumeIdOffset == 0L)
+      .stop_if_not(info$localBasePathOffset == 0L)
       if (info$headerSize >= 0x00000024) {
-        stop_if_not(info$localBasePathOffsetUnicode == 0L)
+        .stop_if_not(info$localBasePathOffsetUnicode == 0L)
       }
     }
 
@@ -531,7 +531,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     if (info$flags["CommonNetworkRelativeLinkAndPathSuffix"]) {
     } else {
       # Sanity checks
-      stop_if_not(info$commonNetworkRelativeLinkOffset == 0L)
+      .stop_if_not(info$commonNetworkRelativeLinkOffset == 0L)
     }
 
     # LocalBasePathOffsetUnicode (optional)
@@ -540,12 +540,12 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       nbrOfBytesRead <- nbrOfBytesRead + 4L
       # Sanity check
       if (info$flags["VolumeIdAndLocalBasePath"]) {
-        stop_if_not(info$localBasePathOffsetUnicode >= 0L)
+        .stop_if_not(info$localBasePathOffsetUnicode >= 0L)
       } else {
-        stop_if_not(info$localBasePathOffsetUnicode == 0L)
+        .stop_if_not(info$localBasePathOffsetUnicode == 0L)
       }
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # CommonPathSuffixOffsetUnicode (optional)
     if (info$headerSize >= 0x00000024) {
@@ -553,17 +553,17 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       nbrOfBytesRead <- nbrOfBytesRead + 4L
       # Sanity check
       if (info$flags["VolumeIdAndLocalBasePath"]) {
-        stop_if_not(info$commonPathSuffixOffsetUnicode >= 0L)
+        .stop_if_not(info$commonPathSuffixOffsetUnicode >= 0L)
       } else {
-        stop_if_not(info$commonPathSuffixOffsetUnicode == 0L)
+        .stop_if_not(info$commonPathSuffixOffsetUnicode == 0L)
       }
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # VolumeId (variable)
     if (info$flags["VolumeIdAndLocalBasePath"]) {
       offset <- info$volumeIdOffset - nbrOfBytesRead
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         readRaw(con, n=offset)
         nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -576,15 +576,15 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       }
       info$volumeId <- id
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # LocalBasePath (variable)
     if (info$flags["VolumeIdAndLocalBasePath"]) {
       offset <- info$localBasePathOffset
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         offset <- offset - nbrOfBytesRead
-        stop_if_not(offset >= 0L)
+        .stop_if_not(offset >= 0L)
         if (offset > 0L) {
           readRaw(con, n=offset)
           nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -602,7 +602,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
         info$localBasePath <- rawToChar(localBasePath)
       }
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # CommonNetworkRelativeLink (variable)
     if (info$flags["CommonNetworkRelativeLinkAndPathSuffix"]) {
@@ -621,30 +621,30 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
           networkProviderType            = readDWord(con)  # 4 bytes
         )
         # Validate
-        stop_if_not(link$size >= 0x00000014)
-        stop_if_not(link$netNameOffset >= 0L)
-        stop_if_not(link$deviceNameOffset >= 0L)
+        .stop_if_not(link$size >= 0x00000014)
+        .stop_if_not(link$netNameOffset >= 0L)
+        .stop_if_not(link$deviceNameOffset >= 0L)
 
         nbrOfBytesRead <- 5*4L
 
         link$flags <- parseCommonNetworkRelativeLinkFlags(link$flags)
 
         if (!link$flags["ValidDevice"]) {
-           stop_if_not(link$deviceNameOffset == 0L)
+           .stop_if_not(link$deviceNameOffset == 0L)
         }
 
         if (!link$flags["ValidNetType"]) {
-           stop_if_not(link$netProviderType == 0L)
+           .stop_if_not(link$netProviderType == 0L)
         }
 
         if (link$netNameOffset > 0x00000014) {
           link$netNameOffsetUnicode <- readDWord(con)
           nbrOfBytesRead <- nbrOfBytesRead + 4L
-          stop_if_not(link$netNameOffsetUnicode >= 0L)
+          .stop_if_not(link$netNameOffsetUnicode >= 0L)
 
           link$deviceNameOffsetUnicode <- readDWord(con)
           nbrOfBytesRead <- nbrOfBytesRead + 4L
-          stop_if_not(link$deviceNameOffsetUnicode >= 0L)
+          .stop_if_not(link$deviceNameOffsetUnicode >= 0L)
         }
 
         # NetName (variable)
@@ -658,9 +658,9 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
             }
           }
         }
-        stop_if_not(!is.null(nextOffset))
+        .stop_if_not(!is.null(nextOffset))
         offset <- link$netNameOffset - nbrOfBytesRead
-        stop_if_not(offset >= 0L)
+        .stop_if_not(offset >= 0L)
         if (offset > 0L) {
           readRaw(con, n=offset)
           nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -679,9 +679,9 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
               nextOffset <- link$size + 1L
             }
           }
-          stop_if_not(!is.null(nextOffset))
+          .stop_if_not(!is.null(nextOffset))
           offset <- link$deviceNameOffset - nbrOfBytesRead
-          stop_if_not(offset >= 0L)
+          .stop_if_not(offset >= 0L)
           if (offset > 0L) {
             readRaw(con, n=offset)
             nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -698,9 +698,9 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
           if (is.null(nextOffset)) {
             nextOffset <- link$size + 1L
           }
-          stop_if_not(!is.null(nextOffset))
+          .stop_if_not(!is.null(nextOffset))
           offset <- link$netNameOffsetUnicode - nbrOfBytesRead
-          stop_if_not(offset >= 0L)
+          .stop_if_not(offset >= 0L)
           if (offset > 0L) {
             readRaw(con, n=offset)
             nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -714,9 +714,9 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
         # DeviceNameOffsetUnicode (variable)
         if (!is.null(link$deviceNameOffsetUnicode)) {
           nextOffset <- link$size + 1L
-          stop_if_not(!is.null(nextOffset))
+          .stop_if_not(!is.null(nextOffset))
           offset <- link$deviceNameOffsetUnicode - nbrOfBytesRead
-          stop_if_not(offset >= 0L)
+          .stop_if_not(offset >= 0L)
           if (offset > 0L) {
             readRaw(con, n=offset)
             nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -731,7 +731,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       } # readCommonNetworkRelativeLink()
 
       offset <- info$commonNetworkRelativeLinkOffset - nbrOfBytesRead
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         readRaw(con, n=offset)
         nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -746,13 +746,13 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
         info$commonNetworkRelativeLink$deviceNameOffset <- NULL
       }
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # CommonPathSuffix (variable)
     offset <- info$commonPathSuffixOffset
     if (!is.null(offset) && (offset < info$size)) {
       offset <- offset - nbrOfBytesRead
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         readRaw(con, n=offset)
         nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -764,19 +764,19 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
           nextOffset <- info$size + 1L
         }
       }
-      stop_if_not(!is.null(nextOffset))
+      .stop_if_not(!is.null(nextOffset))
       n <- nextOffset - nbrOfBytesRead - 1L
       value <- readRaw(con, n=n)
       nbrOfBytesRead <- nbrOfBytesRead + n
       info$commonPathSuffix <- rawToChar(value)
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # LocalBasePathUnicode (variable)
     offset <- info$localBasePathOffsetUnicode
     if (!is.null(offset) && (offset < info$size)) {
       offset <- offset - nbrOfBytesRead
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         readRaw(con, n=offset)
         nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -785,19 +785,19 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       if (is.null(nextOffset)) {
         nextOffset <- info$size + 1L
       }
-      stop_if_not(!is.null(nextOffset))
+      .stop_if_not(!is.null(nextOffset))
       n <- nextOffset - nbrOfBytesRead - 1L
       value <- readRaw(con, n=n)
       nbrOfBytesRead <- nbrOfBytesRead + n
       info$localBasePathUnicode <- rawToChar(value)
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
     # CommonPathSuffixUnicode (variable)
     offset <- info$commonPathOffsetUnicode
     if (!is.null(offset) && (offset < info$size)) {
       offset <- offset - nbrOfBytesRead
-      stop_if_not(offset >= 0L)
+      .stop_if_not(offset >= 0L)
       if (offset > 0L) {
         readRaw(con, n=offset)
         nbrOfBytesRead <- nbrOfBytesRead + offset
@@ -808,9 +808,9 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
       nbrOfBytesRead <- nbrOfBytesRead + n
       info$commonPathSuffixUnicode <- rawToChar(value)
     }
-    stop_if_not(nbrOfBytesRead <= info$size)
+    .stop_if_not(nbrOfBytesRead <= info$size)
 
-    stop_if_not(nbrOfBytesRead == info$size)
+    .stop_if_not(nbrOfBytesRead == info$size)
 
     if (clean) {
       info$size <- NULL
@@ -835,7 +835,7 @@ setMethodS3("readWindowsShellLink", "default", function(con, clean=TRUE, verbose
     value <- value[1L,]
     value <- rawToChar(value)
     data$string <- value
-    stop_if_not(nchar(data$string) == data$countCharacters)
+    .stop_if_not(nchar(data$string) == data$countCharacters)
     if (clean) {
       data <- data$string
     }

@@ -7,12 +7,12 @@
   } # names()
 
   # Argument 'args':
-  stop_if_not(is.list(args))
+  .stop_if_not(is.list(args))
 
   # Argument 'defaults':
-  stop_if_not(is.list(defaults))
+  .stop_if_not(is.list(defaults))
   formals <- names(defaults)
-  stop_if_not(!is.null(formals))
+  .stop_if_not(!is.null(formals))
 
 
   # Split up named and unnamed arguments
