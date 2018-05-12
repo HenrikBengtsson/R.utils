@@ -62,13 +62,13 @@
 \author{Henrik Bengtsson}
 
 \examples{
-  fcn <- System$findGraphicsDevice();
+  fcn <- System$findGraphicsDevice()
   if (identical(fcn, png)) {
-    cat("PNG device found: png()");
+    cat("PNG device found: png()")
   } else if (identical(fcn, bitmap)) {
-    cat("PNG device found: bitmap()");
+    cat("PNG device found: bitmap()")
   } else {
-    cat("PNG device not found.");
+    cat("PNG device not found.")
   }
 }
 
