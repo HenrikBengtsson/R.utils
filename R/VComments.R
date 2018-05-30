@@ -118,7 +118,7 @@ setConstructorS3("VComments", function(letter="V", verboseName="verbose", ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("reset", "VComments", function(this, ...) {
-  NextMethod("reset")
+  NextMethod()
   this$verboseName <- this$resetVerboseName
 })
 

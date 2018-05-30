@@ -985,7 +985,7 @@ setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
   # So that print(this), which often called when 'this' is typed, works.
   args <- list(...)
   if (length(args) == 0) {
-    return(NextMethod("print"))
+    return(NextMethod())
   }
 
   # ...otherwise...

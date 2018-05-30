@@ -13,13 +13,13 @@ setMethodS3("print", "GenericSummary", function(x, ..., collapse="\n") {
 }, protected=TRUE)
 
 setMethodS3("c", "GenericSummary", function(x, ...) {
-  s <- NextMethod("c")
+  s <- NextMethod()
   class(s) <- class(x)
   s
 }, protected=TRUE)
 
 setMethodS3("[", "GenericSummary", function(x, i, ...) {
-  s <- NextMethod("[")
+  s <- NextMethod()
   class(s) <- class(x)
   s
 }, protected=TRUE)

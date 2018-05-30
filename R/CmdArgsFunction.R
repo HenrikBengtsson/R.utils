@@ -16,7 +16,7 @@ setConstructorS3("CmdArgsFunction", function(fcn=function() {}, output=print, ..
 
 setMethodS3("print", "CmdArgsFunction", function(x, ..., call=!interactive(), envir=parent.frame()) {
   # Nothing todo?
-  if (!call) return(NextMethod("print"))
+  if (!call) return(NextMethod())
 
   # Call function...
   res <- withVisible(cmdArgsCall(x, ..., envir=envir))
