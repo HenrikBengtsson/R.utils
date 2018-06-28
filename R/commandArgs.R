@@ -263,18 +263,20 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
   coerceAs <- function(args, types) {
     types <- types[types != "NULL"]
-    idxs <- which(is.element(names(args), names(types)))
-    if (length(idxs) > 0L) {
-      argsT <- args[idxs]
+    todo <- which(is.element(names(args), names(types)) &&
+                  !sapply(args, FUN = inherits, "CmdArgExpression"))
+    if (length(todo) > 0L) {
+      argsT <- args[todo]
       typesT <- types[names(argsT)]
       suppressWarnings({
         for (jj in seq_along(argsT)) {
           argT <- argsT[[jj]]
           value <- as(argT, Class=typesT[jj])
+          argsT[[jj]] <- value
           if (length(value) != 1L || !is.na(value)) argsT[[jj]] <- value
         }
       })
-      args[idxs] <- argsT
+      args[todo] <- argsT
     }
     args
   } # coerceAs()
@@ -499,9 +501,8 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
     argsT <- NULL; # Not needed anymore
 
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (e) Corce arguments to known data types?
+    # (e) Coerce arguments to known data types?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(args) > 0L && length(defaults) + length(always) > 0L) {
       # First to the 'always', then remaining to the 'defaults'.
@@ -512,7 +513,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (f) Ad hoc corcion of numerics?
+    # (f) Ad hoc coercion of numerics?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (adhoc && length(args) > 0L) {
       modes <- sapply(args, FUN=storage.mode)
@@ -551,7 +552,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     } # if (adhoc)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # (g) Corce arguments to known data types?
+    # (g) Coerce arguments to known data types?
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (length(args) > 0L && length(defaults) + length(always) > 0L) {
       # First to the 'always', then remaining to the 'defaults'.
