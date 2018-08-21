@@ -16,7 +16,8 @@
 # \value{
 #   \code{nullfile()} returns a @character string, which is \code{"/dev/null"}
 #   except on Windows where it is \code{"nul:"}.
-#   \code{nullcon()} returns a (binary) @connection to the NULL device.
+#   \code{nullcon()} returns a \emph{newly opened} (binary) @connection to
+#   the NULL device - make sure to close it when no longer needed.
 # }
 #
 # \seealso{
