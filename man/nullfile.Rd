@@ -9,20 +9,23 @@
 \name{nullfile}
 \alias{nullfile}
 
+\alias{nullcon}
 
-\title{Gets the pathname of the NULL device on the current platform}
+\title{Gets the pathname or a connection to the NULL device on the current platform}
 
 \description{
- Gets the pathname of the NULL device on the current platform.  On Windows, it returns \code{"NUL"}.  On all other
- platforms include Unix and macOS it returns \code{"/dev/null"}.
+ Gets the pathname or a connection to the NULL device on the current platform.
 }
 
 \usage{
   nullfile()
+  nullcon()
 }
 
 \value{
-  Returns a \code{\link[base]{character}} string.
+  \code{nullfile()} returns a \code{\link[base]{character}} string, which is \code{"/dev/null"}
+  except on Windows where it is \code{"NUL"}.
+  \code{nullcon()} returns a (binary) \code{\link[base:connections]{connection}} to the NULL device.
 }
 
 \author{Henrik Bengtsson}

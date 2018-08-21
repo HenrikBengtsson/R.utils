@@ -2,9 +2,11 @@
 Package: R.utils
 ================
 
-Version: 2.6.0-9000 [2018-06-28]
+Version: 2.6.0-9000 [2018-08-22]
 
- o ...
+NEW FEATURES:
+
+ o Added nullcon() that returns a (binary) connection to the nullfile().
 
 PERFORMANCE:
 

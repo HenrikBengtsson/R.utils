@@ -1,19 +1,22 @@
 #########################################################################/**
 # @RdocFunction nullfile
+# @alias nullcon
 #
-# @title "Gets the pathname of the NULL device on the current platform"
+# @title "Gets the pathname or a connection to the NULL device on the current platform"
 #
 # \description{
-#  @get "title".  On Windows, it returns \code{"NUL"}.  On all other
-#  platforms include Unix and macOS it returns \code{"/dev/null"}.
+#  @get "title".
 # }
 #
 # \usage{
 #   @usage nullfile
+#   @usage nullcon
 # }
 #
 # \value{
-#   Returns a @character string.
+#   \code{nullfile()} returns a @character string, which is \code{"/dev/null"}
+#   except on Windows where it is \code{"NUL"}.
+#   \code{nullcon()} returns a (binary) @connection to the NULL device.
 # }
 #
 # @author
@@ -27,3 +30,9 @@ nullfile <- function() {
     "/dev/null"
   )
 }
+
+nullcon <- local({
+  nullfile <- nullfile()
+  function() file(nullfile, open = "wb")
+})
+
