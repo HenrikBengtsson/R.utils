@@ -24,8 +24,13 @@
 
 \value{
   \code{nullfile()} returns a \code{\link[base]{character}} string, which is \code{"/dev/null"}
-  except on Windows where it is \code{"NUL"}.
+  except on Windows where it is \code{"nul:"}.
   \code{nullcon()} returns a (binary) \code{\link[base:connections]{connection}} to the NULL device.
+}
+
+\seealso{
+  In R (>= 3.6.0), there exists \code{base::nullfile()}, which is
+  identical to \code{R.utils::nullfile()}.
 }
 
 \author{Henrik Bengtsson}

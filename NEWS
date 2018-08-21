@@ -16,7 +16,6 @@ PERFORMANCE:
 BUG FIXES:
 
  o Rscript -e "R.utils::cmdArg(a=42L)" -a:=1:3 would set 'a' to NA_integer_.
-
  
 DEPRECATE AND DEFUNCT:
 

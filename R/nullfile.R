@@ -15,8 +15,13 @@
 #
 # \value{
 #   \code{nullfile()} returns a @character string, which is \code{"/dev/null"}
-#   except on Windows where it is \code{"NUL"}.
+#   except on Windows where it is \code{"nul:"}.
 #   \code{nullcon()} returns a (binary) @connection to the NULL device.
+# }
+#
+# \seealso{
+#   In R (>= 3.6.0), there exists \code{base::nullfile()}, which is
+#   identical to \code{R.utils::nullfile()}.
 # }
 #
 # @author
@@ -26,7 +31,7 @@
 #*/#########################################################################
 nullfile <- function() {
   switch(.Platform$OS.type,
-    windows="NUL",
+    windows="nul:",
     "/dev/null"
   )
 }
