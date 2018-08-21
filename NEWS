@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.6.0-9000 [2018-08-22]
+Version: 2.6.0-9000 [2018-08-21]
 
 NEW FEATURES:
 
@@ -22,6 +22,8 @@ DEPRECATE AND DEFUNCT:
  o arrayIndex() is now defunct. Instead use base::arrayInd().
 
  o Removed deprecated and ignored argument 'reset' of warnings() for Verbose.
+
+ o Assert$inherits() is deprecated - renamed to Assert$inheritsFrom().
  
 
 Version: 2.6.0 [2017-11-05]

@@ -6,11 +6,16 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Assert$inherits}
-\alias{Assert$inherits}
+ \name{Assert$inheritsFrom}
+\alias{Assert$inheritsFrom}
+\alias{inheritsFrom.Assert}
+\alias{Assert.inheritsFrom}
+\alias{inheritsFrom,Assert-method}
+ \alias{inheritsFrom}
+ \alias{Assert.inherits}
 \alias{inherits.Assert}
-\alias{Assert.inherits}
 \alias{inherits,Assert-method}
+
 
  \title{Static method asserting that an object inherits from of a certain class}
 
@@ -20,10 +25,10 @@
 
  \usage{
 ## Static method (use this):
-## Assert$inherits(object, class, ...)
+## Assert$inheritsFrom(object, class, ...)
 
 ## Don't use the below:
-\method{inherits}{Assert}(static, object, class, ...)
+\method{inheritsFrom}{Assert}(static, object, class, ...)
 }
 
  \arguments{

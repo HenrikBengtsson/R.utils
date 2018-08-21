@@ -146,7 +146,9 @@ setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...)
 
 
 #########################################################################/**
-# @RdocMethod inherits
+# @RdocMethod inheritsFrom
+# @alias inheritsFrom
+# @aliasmethod inherits
 #
 # @title "Static method asserting that an object inherits from of a certain class"
 # 
@@ -172,11 +174,16 @@ setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...)
 #   @seeclass
 # }
 #*/######################################################################### 
-setMethodS3("inherits", "Assert", function(static, object, class, ...) {
+setMethodS3("inheritsFrom", "Assert", function(static, object, class, ...) {
   name <- as.character(substitute(x))
   if (!inherits(object, class))
     throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "))
   invisible(TRUE)
+}, static=TRUE)
+
+setMethodS3("inherits", "Assert", function(static, object, class, ...) {
+  .Deprecated(msg = "Assert$inherits() is deprecated and has been renamed to Assert$inheritsFrom()")
+  inheritsFrom(static, object = object, class = class, ...)
 }, static=TRUE)
 
 
