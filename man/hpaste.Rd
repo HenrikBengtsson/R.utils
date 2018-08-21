@@ -71,7 +71,7 @@ printf("x = \%s.\n", hpaste(x), maxHead=3) # Default
 
 # It will never output 1, 2, 3, 4, ..., 6
 printf("x = \%s.\n", hpaste(x, maxHead=4))
-## x = 1, 2, 3, 4, 5 and 6.
+## x = 1, 2, 3, 4, 5, 6.
 
 # Showing the tail
 printf("x = \%s.\n", hpaste(x, maxHead=1, maxTail=2))
@@ -90,8 +90,8 @@ printf("y = \%s.\n", paste(y, collapse=", "))
 # Adding a special separator before the last element
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Change last separator
-printf("x = \%s.\n", hpaste(x, lastCollapse=" and "))
-## x = 1, 2, 3, 4, 5 and 6.
+printf("x = \%s.\n", hpaste(x, lastCollapse=", and "))
+## x = 1, 2, 3, 4, 5, and 6.
 
 
 
