@@ -19,7 +19,7 @@
 #    If \code{lastCollapse} is @NULL (default), it is corresponds
 #    to using the default collapse.}
 #  \item{maxHead, maxTail, abbreviate}{Non-negative @integers (also @Inf)
-#    specifying the maxium number of elements of the beginning and
+#    specifying the maximum number of elements of the beginning and
 #    then end of the vector to be outputted.  If \code{n = length(x)}
 #    is greater than \code{maxHead+maxTail+1}, then \code{x} is
 #    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},

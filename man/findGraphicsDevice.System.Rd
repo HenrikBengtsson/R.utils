@@ -46,7 +46,7 @@
   \item{devices}{A \code{\link[base]{list}} of graphics device driver \code{\link[base]{function}}s to be
     tested.}
   \item{maxCount}{The maximum number of subsequent tests for the
-    the existances of \code{bitmap()} generated image files.}
+    the existences of \code{bitmap()} generated image files.}
   \item{sleepInterval}{The time in seconds between above subsequent
     tests.}
   \item{findGhostscript}{If \code{\link[base:logical]{TRUE}}, Ghostscript, which is needed by

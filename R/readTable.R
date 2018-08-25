@@ -63,11 +63,11 @@
 #   \item{method}{If \code{"readLines"}, \code{(readLines())} is used
 #     internally to first only read rows of interest, which is then
 #     passed to \code{read.table()}.
-#     If \code{"intervals"}, contigous intervals are first identified in
+#     If \code{"intervals"}, contiguous intervals are first identified in
 #     the rows of interest.  These intervals are the read one by one
 #     using \code{read.table()}.
 #     The latter methods is faster and especially more memory efficient
-#     if the intervals are not too many, where as the former is prefered
+#     if the intervals are not too many, where as the former is preferred
 #     if many "scattered" rows are to be read.}
 #   \item{verbose}{A @logical or a @see "Verbose" object.}
 # }

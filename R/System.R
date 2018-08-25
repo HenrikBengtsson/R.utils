@@ -636,7 +636,7 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, fir
 #   \item{devices}{A @list of graphics device driver @functions to be
 #     tested.}
 #   \item{maxCount}{The maximum number of subsequent tests for the
-#     the existances of \code{bitmap()} generated image files.}
+#     the existences of \code{bitmap()} generated image files.}
 #   \item{sleepInterval}{The time in seconds between above subsequent
 #     tests.}
 #   \item{findGhostscript}{If @TRUE, Ghostscript, which is needed by

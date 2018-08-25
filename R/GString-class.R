@@ -24,7 +24,7 @@
 # @author
 #
 # \seealso{
-#   For conveniency, see functions @see "gstring" and @see "gcat".
+#   For convenience, see functions @see "gstring" and @see "gcat".
 # }
 #
 # @visibility public

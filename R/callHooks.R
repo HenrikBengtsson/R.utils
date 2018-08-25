@@ -25,7 +25,7 @@
 # @author
 #
 # \seealso{
-#   Internally, after retriving hook functions, @see "callHooks.list" is
+#   Internally, after retrieving hook functions, @see "callHooks.list" is
 #   called.
 # }
 #

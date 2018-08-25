@@ -26,7 +26,7 @@
 # }
 #
 # \details{
-#  This method immitates @see "utils::capture.output" with the major
+#  This method imitates @see "utils::capture.output" with the major
 #  difference that it captures strings via a @raw connection rather
 #  than via internal strings.  The latter becomes exponentially slow
 #  for large outputs [1,2].

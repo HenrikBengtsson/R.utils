@@ -65,7 +65,7 @@
  \item{skip}{If \code{\link[base:logical]{TRUE}} and the output file already exists,
    the output file is returned as is.}
  \item{overwrite}{If \code{\link[base:logical]{TRUE}} and the output file already exists,
-   the file is silently overwritting, otherwise an exception is
+   the file is silently overwritten, otherwise an exception is
    thrown (unless \code{skip} is \code{\link[base:logical]{TRUE}}).}
  \item{remove}{If \code{\link[base:logical]{TRUE}}, the input file is removed afterward,
    otherwise not.}

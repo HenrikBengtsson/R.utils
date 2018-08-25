@@ -11,7 +11,7 @@ if (!exists("dimNA<-", mode="function")) {
 # \alias{dimNA<-}
 # \alias{dimNA<-.default}
 #
-# @title "Sets the dimension of an object with the option to infer one dimension autmatically"
+# @title "Sets the dimension of an object with the option to infer one dimension automatically"
 #
 # \description{
 #  @get "title".

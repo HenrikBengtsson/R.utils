@@ -15,7 +15,7 @@
 #     to be moved.}
 #   \item{to}{The destination position like the \code{from} argument.}
 #   \item{where}{A @character string specify where in relation to the
-#     destination position the enviroment should be moved.}
+#     destination position the environment should be moved.}
 #   \item{...}{Not used.}
 # }
 #
@@ -103,7 +103,7 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   if (from == to)
     return(invisible())
 
-  # Get enviroment to be moved
+  # Get environment to be moved
   env <- pos.to.env(from)
 
   # Detach old position without side effects

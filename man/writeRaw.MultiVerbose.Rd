@@ -22,7 +22,7 @@
 }
 
  \arguments{
-  \item{...}{Additiona objects to be passed to \code{writeRaw()} for
+  \item{...}{Additional objects to be passed to \code{writeRaw()} for
      each \code{\link{Verbose}} object.}
  }
 

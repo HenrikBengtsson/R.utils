@@ -177,7 +177,7 @@ cat("\n")
 \author{Henrik Bengtsson}
 
 \seealso{
-  For conveniency, see functions \code{\link{gstring}}() and \code{\link{gcat}}().
+  For convenience, see functions \code{\link{gstring}}() and \code{\link{gcat}}().
 }
 
 

@@ -47,7 +47,7 @@
 \value{
   Returns a \code{\link[base]{logical}} indicating whether a successful file copy was
   completed or not, or equivalently.  In other words, \code{\link[base:logical]{TRUE}} is returned
-  if the file was succesfully copied, and \code{\link[base:logical]{FALSE}} if not.
+  if the file was successfully copied, and \code{\link[base:logical]{FALSE}} if not.
   If an error occurs, an informative exception is thrown.
   If the error occurs while renaming the temporary file to the final name,
   the temporary file will remain in the destination directory.

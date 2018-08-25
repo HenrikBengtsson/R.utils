@@ -12,10 +12,10 @@
 \alias{Assert.isVector}
 \alias{isVector,Assert-method}
 
- \title{Static method asserting thatan object is a vector}
+ \title{Static method asserting that an object is a vector}
 
  \description{
-   Static method asserting thatan object is a vector.
+   Static method asserting that an object is a vector.
  }
 
  \usage{

@@ -53,7 +53,7 @@
 #  \item{skip}{If @TRUE and the output file already exists,
 #    the output file is returned as is.}
 #  \item{overwrite}{If @TRUE and the output file already exists,
-#    the file is silently overwritting, otherwise an exception is
+#    the file is silently overwritten, otherwise an exception is
 #    thrown (unless \code{skip} is @TRUE).}
 #  \item{remove}{If @TRUE, the input file is removed afterward,
 #    otherwise not.}

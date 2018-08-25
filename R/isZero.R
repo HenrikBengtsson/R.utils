@@ -28,7 +28,7 @@
 #   \item{...}{Not used.}
 # }
 #
-# \value{Returns a @logical @vector indicating if the elments are zero or not.}
+# \value{Returns a @logical @vector indicating if the elements are zero or not.}
 #
 # @author
 #

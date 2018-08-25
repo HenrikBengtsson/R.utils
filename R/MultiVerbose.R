@@ -92,7 +92,7 @@ setMethodS3("as.list", "MultiVerbose", function(x, ...) {
 # @synopsis
 #
 # \arguments{
-#  \item{...}{Additiona objects to be passed to \code{writeRaw()} for
+#  \item{...}{Additional objects to be passed to \code{writeRaw()} for
 #     each @see "Verbose" object.}
 # }
 #

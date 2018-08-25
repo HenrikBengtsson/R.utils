@@ -19,13 +19,13 @@
 # }
 #
 # \value{
-#  Returns @TRUE if the directory was succesfully created,
+#  Returns @TRUE if the directory was successfully created,
 #  otherwise @FALSE.
 #  Note that if the directory already exists, @FALSE is returned.
 # }
 #
 # \section{Slow file systems}{
-#   On very rare occassions, we have observed on a large shared file
+#   On very rare occasions, we have observed on a large shared file
 #   system that if one tests for the existence of a directory immediately
 #   after creating it with @see "base::dir.create", it may appear not
 #   to be created.  We believe this is due to the fact that there is a

@@ -1,7 +1,7 @@
 #########################################################################/**
 # @RdocDefault seqToIntervals
 #
-# @title "Gets all contigous intervals of a vector of indices"
+# @title "Gets all contiguous intervals of a vector of indices"
 #
 # \description{
 #  @get "title".

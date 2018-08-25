@@ -30,13 +30,13 @@
 }
 
 \value{
- Returns \code{\link[base:logical]{TRUE}} if the directory was succesfully created,
+ Returns \code{\link[base:logical]{TRUE}} if the directory was successfully created,
  otherwise \code{\link[base:logical]{FALSE}}.
  Note that if the directory already exists, \code{\link[base:logical]{FALSE}} is returned.
 }
 
 \section{Slow file systems}{
-  On very rare occassions, we have observed on a large shared file
+  On very rare occasions, we have observed on a large shared file
   system that if one tests for the existence of a directory immediately
   after creating it with \code{\link[base]{dir.create}}(), it may appear not
   to be created.  We believe this is due to the fact that there is a

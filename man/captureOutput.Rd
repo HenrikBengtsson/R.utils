@@ -37,7 +37,7 @@ captureOutput(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()
 }
 
 \details{
- This method immitates \code{\link[utils]{capture.output}} with the major
+ This method imitates \code{\link[utils]{capture.output}} with the major
  difference that it captures strings via a \code{\link[base]{raw}} connection rather
  than via internal strings.  The latter becomes exponentially slow
  for large outputs [1,2].

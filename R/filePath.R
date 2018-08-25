@@ -21,7 +21,7 @@
 #      step.}
 #   \item{fsep}{the path separator to use.}
 #   \item{removeUps}{If @TRUE, relative paths, for instance "foo/bar/../"
-#      are shortend into "foo/", but also "./" are removed from the final
+#      are shortened into "foo/", but also "./" are removed from the final
 #      pathname, if possible.}
 #   \item{expandLinks}{A @character string. If \code{"none"}, Windows
 #      Shortcut files are ignored.  If \code{"local"}, the absolute target

@@ -16,7 +16,7 @@
 #   \item{FUN}{A @function that creates and writes to the pathname that
 #      is passed as the first argument.  This pathname is guaranteed
 #      to be a non-existing temporary pathname.}
-#   \item{...}{Additional argumentes passed to @see "pushTemporaryFile"
+#   \item{...}{Additional arguments passed to @see "pushTemporaryFile"
 #      and @see "popTemporaryFile".}
 #   \item{skip}{If @TRUE and a file with the same pathname already exists,
 #      nothing is done/written.}

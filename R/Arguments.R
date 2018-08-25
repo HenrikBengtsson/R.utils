@@ -806,7 +806,7 @@ setMethodS3("getCharacter", "Arguments", function(static, ..., length=c(0,1)) {
 #   \item{range}{Two @numerics for the allowed ranged. If @NULL, range is
 #     not checked.}
 #   \item{asMode}{A @character specifying the mode to coerce to.}
-#   \item{disallow}{A @character @vector specifying diallowed value sets,
+#   \item{disallow}{A @character @vector specifying disallowed value sets,
 #                     i.e. \code{"NA"}, \code{"NaN"}, and/or \code{"Inf"}.}
 #   \item{...}{Arguments passed to @method "getVector".}
 #   \item{.name}{A @character string for name used in error messages.}
@@ -1085,7 +1085,7 @@ setMethodS3("getIndex", "Arguments", function(static, ..., length=1) {
 #
 # \arguments{
 #   \item{x}{A @vector.}
-#   \item{disallow}{A @character @vector specifying diallowed value sets
+#   \item{disallow}{A @character @vector specifying disallowed value sets
 #      after coercing, i.e. \code{"NA"}.}
 #   \item{...}{Arguments passed to @method "getVector".}
 #   \item{.name}{A @character string for name used in error messages.}

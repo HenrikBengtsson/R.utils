@@ -28,7 +28,7 @@ setConstructorS3("Assert", function(...) {
 #########################################################################/**
 # @RdocMethod isScalar
 #
-# @title "Static method asserting thatan object is a single value"
+# @title "Static method asserting that an object is a single value"
 # 
 # \description{
 #   @get "title".
@@ -65,7 +65,7 @@ setMethodS3("isScalar", "Assert", function(static, x, ...) {
 #########################################################################/**
 # @RdocMethod isVector
 #
-# @title "Static method asserting thatan object is a vector"
+# @title "Static method asserting that an object is a vector"
 # 
 # \description{
 #   @get "title".
@@ -103,7 +103,7 @@ setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
 #########################################################################/**
 # @RdocMethod isMatrix
 #
-# @title "Static method asserting thatan object is a matrix"
+# @title "Static method asserting that an object is a matrix"
 # 
 # \description{
 #   @get "title".

@@ -24,7 +24,6 @@
 #    specify these via the URL.}
 #  \item{binary}{If @TRUE, the file is downloaded exactly "as is", that is,
 #    byte by byte (recommended).}
-#    which means it willand the downloaded file is empty, the file
 #  \item{dropEmpty}{If @TRUE and the downloaded file is empty, the file
 #    is ignored and @NULL is returned.}
 #  \item{verbose}{A @logical, @integer, or a @see "Verbose" object.}

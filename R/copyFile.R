@@ -35,7 +35,7 @@
 # \value{
 #   Returns a @logical indicating whether a successful file copy was
 #   completed or not, or equivalently.  In other words, @TRUE is returned
-#   if the file was succesfully copied, and @FALSE if not.
+#   if the file was successfully copied, and @FALSE if not.
 #   If an error occurs, an informative exception is thrown.
 #   If the error occurs while renaming the temporary file to the final name,
 #   the temporary file will remain in the destination directory.

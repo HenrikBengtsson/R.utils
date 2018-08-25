@@ -12,10 +12,10 @@
 \alias{Assert.isScalar}
 \alias{isScalar,Assert-method}
 
- \title{Static method asserting thatan object is a single value}
+ \title{Static method asserting that an object is a single value}
 
  \description{
-   Static method asserting thatan object is a single value.
+   Static method asserting that an object is a single value.
  }
 
  \usage{

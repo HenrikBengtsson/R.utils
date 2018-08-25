@@ -16,7 +16,7 @@
 #  \item{recursive}{If @TRUE, subdirectories are recursively sourced
 #        first, otherwise not.}
 #  \item{envir}{An @environment in which the code should be evaluated.}
-#  \item{onError}{If an error occures, the error may stop the job,
+#  \item{onError}{If an error occurs, the error may stop the job,
 #        give a warning, or silently be skipped.}
 #  \item{modifiedOnly}{If @TRUE, only files that are modified since the
 #        last time they were sourced are sourced, otherwise regardless.}

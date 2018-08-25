@@ -28,7 +28,7 @@
    \item{FUN}{A \code{\link[base]{function}} that creates and writes to the pathname that
       is passed as the first argument.  This pathname is guaranteed
       to be a non-existing temporary pathname.}
-   \item{...}{Additional argumentes passed to \code{\link{pushTemporaryFile}}()
+   \item{...}{Additional arguments passed to \code{\link{pushTemporaryFile}}()
       and \code{\link{popTemporaryFile}}().}
    \item{skip}{If \code{\link[base:logical]{TRUE}} and a file with the same pathname already exists,
       nothing is done/written.}

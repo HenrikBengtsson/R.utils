@@ -53,7 +53,7 @@
    \item{\link{Settings}}{[alpha] An Options class for reading and writing
            package settings.}
    \item{\link{ProgressBar}}{[beta] Text-based progress bar.}
-   \item{\link{FileProgressBar}}{[beta] A ProgressBar that reports progess
+   \item{\link{FileProgressBar}}{[beta] A ProgressBar that reports progress
            as file size.}
    \item{\link{System}}{[alpha] Methods for access to system.}
    \item{\link{Verbose}}{[alpha] A class for verbose and log output.

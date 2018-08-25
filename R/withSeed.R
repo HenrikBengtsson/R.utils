@@ -32,7 +32,7 @@
 # @examples "../incl/withSeed.Rex"
 #
 # \seealso{
-#   Internally, @see "base::set.seed" is used to set the random seet.
+#   Internally, @see "base::set.seed" is used to set the random seed.
 # }
 #
 # @keyword IO
