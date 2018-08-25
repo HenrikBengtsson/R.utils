@@ -2,7 +2,7 @@
 Package: R.utils
 ================
 
-Version: 2.6.0-9000 [2018-08-21]
+Version: 2.6.0-9000 [2018-08-25]
 
 NEW FEATURES:
 
@@ -19,12 +19,14 @@ BUG FIXES:
  
 DEPRECATE AND DEFUNCT:
 
- o arrayIndex() is now defunct. Instead use base::arrayInd().
+ o evalWithTimeout() is now defunct. Use withTimeout() instead.
+ 
+ o arrayIndex() is now defunct. Use base::arrayInd() instead.
+
+ o Assert$inherits() is deprecated - renamed to Assert$inheritsFrom().
 
  o Removed deprecated and ignored argument 'reset' of warnings() for Verbose.
 
- o Assert$inherits() is deprecated - renamed to Assert$inheritsFrom().
- 
 
 Version: 2.6.0 [2017-11-05]
 

@@ -141,12 +141,7 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
   })
 } # withTimeout()
 
-# BACKWARD COMPATIBILITY
-evalWithTimeout <- local({
-  fcn <- withTimeout
-  expr <- body(fcn)
-  expr <- expr[c(1:2, 2:length(expr))]
-  expr[[2]] <- quote(.Deprecated(msg = "R.utils::evalWithTimeout() is deprecated.  Instead, use R.utils::withTimeout()."))
-  body(fcn) <- expr
-  fcn
-})
+
+evalWithTimeout <- function(...) {
+  .Defunct(new = "R.utils::withTimeout()")
+}
