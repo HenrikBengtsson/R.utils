@@ -28,6 +28,12 @@
 |[DeepBlueR](problems.md#deepbluer) |1.6.0   |1     |        |     |
 |[osrmr](problems.md#osrmr)         |0.1.29  |1     |        |     |
 
+## Broken (1)
+
+|package                |version |error |warning |note |
+|:----------------------|:-------|:-----|:-------|:----|
+|[PGA](problems.md#pga) |1.10.1  |1     |__+1__  |2    |
+
 ## All (128)
 
 |package                                              |version  |error |warning |note |
@@ -64,8 +70,8 @@
 |[countyfloods](problems.md#countyfloods)             |0.1.0    |1     |        |1    |
 |[cRegulome](problems.md#cregulome)                   |0.1.1    |      |1       |1    |
 |[CVXR](problems.md#cvxr)                             |0.99     |      |        |1    |
-|[DatabaseConnector](problems.md#databaseconnector)   |2.1.4    |      |1       |1    |
-|[ddPCRclust](problems.md#ddpcrclust)                 |1.0.1    |      |        |2    |
+|[DatabaseConnector](problems.md#databaseconnector)   |2.1.4    |      |        |1    |
+|[ddPCRclust](problems.md#ddpcrclust)                 |1.0.1    |      |        |1    |
 |[DeepBlueR](problems.md#deepbluer)                   |1.6.0    |1     |        |     |
 |[DEGraph](problems.md#degraph)                       |1.32.0   |      |        |4    |
 |[demi](problems.md#demi)                             |1.1.2    |      |        |1    |
@@ -96,10 +102,10 @@
 |gofCopula                                            |0.2-3    |      |        |     |
 |[GSODR](problems.md#gsodr)                           |1.2.2    |      |1       |1    |
 |[hashFunction](problems.md#hashfunction)             |1.0      |      |        |1    |
-|[hoardeR](problems.md#hoarder)                       |0.9.2    |      |1       |     |
+|hoardeR                                              |0.9.2    |      |        |     |
 |[HyPhy](problems.md#hyphy)                           |1.0      |      |        |2    |
 |joinXL                                               |1.0.1    |      |        |     |
-|[kissDE](problems.md#kissde)                         |1.0.0    |      |        |1    |
+|kissDE                                               |1.0.0    |      |        |     |
 |listenv                                              |0.7.0    |      |        |     |
 |[LSPFP](problems.md#lspfp)                           |1.0.0    |      |        |1    |
 |mailR                                                |0.4.1    |      |        |     |
@@ -116,16 +122,16 @@
 |[openCyto](problems.md#opencyto)                     |1.18.0   |      |        |4    |
 |[osrmr](problems.md#osrmr)                           |0.1.29   |1     |        |     |
 |[paxtoolsr](problems.md#paxtoolsr)                   |1.14.0   |2     |1       |2    |
-|[PGA](problems.md#pga)                               |1.10.1   |1     |1       |2    |
+|[PGA](problems.md#pga)                               |1.10.1   |1     |__+1__  |2    |
 |[PhenotypeSimulator](problems.md#phenotypesimulator) |0.2.2    |      |1       |     |
 |phylotaR                                             |1.0.0    |      |        |     |
 |[PopGenReport](problems.md#popgenreport)             |3.0.0    |      |1       |     |
-|[Prostar](problems.md#prostar)                       |1.12.17  |      |        |1    |
+|Prostar                                              |1.12.17  |      |        |     |
 |[proteoQC](problems.md#proteoqc)                     |1.16.0   |      |1       |1    |
 |PSCBS                                                |0.64.0   |      |        |     |
 |[psichomics](problems.md#psichomics)                 |1.6.1    |2     |1       |2    |
 |[PubBias](problems.md#pubbias)                       |1.0      |      |        |3    |
-|[QDNAseq](problems.md#qdnaseq)                       |1.16.0   |      |1       |1    |
+|[QDNAseq](problems.md#qdnaseq)                       |1.16.0   |      |1       |     |
 |qrcode                                               |0.1.1    |      |        |     |
 |R.cache                                              |0.13.0   |      |        |     |
 |R.devices                                            |2.16.0   |      |        |     |

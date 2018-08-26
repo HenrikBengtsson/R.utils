@@ -556,20 +556,6 @@ Version: 2.1.4
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    ! LaTeX Error: File `titling.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'UsingDatabaseConnector.Rmd' failed with diagnostics:
-    Failed to compile UsingDatabaseConnector.tex. See UsingDatabaseConnector.log for more info.
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
@@ -588,32 +574,6 @@ Version: 1.0.1
     exportPlots: no visible binding for global variable ‘Cluster’
     Undefined global functions or variables:
       Cluster
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    
-        Task B: find peaks...
-    finished at 0.058 sec
-    
-    
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'ddPCRclust.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `authblk.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.228 \renewcommand
-                       \Authfont{\Large\bfseries\itshape}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
     ```
 
 # DeepBlueR
@@ -1204,25 +1164,25 @@ Version: 0.9.0
 *   checking re-building of vignette outputs ... WARNING
     ```
     ...
-      number of items to replace is not a multiple of replacement length
-    Warning in private$.dnames[[1]][rows] = rownames(data) :
-      number of items to replace is not a multiple of replacement length
-    Warning in private$.dnames[[1]][rows] = rownames(data) :
-      number of items to replace is not a multiple of replacement length
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'ClassDiagram.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `adjustbox.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
+    <to be read again> 
+                       8
+    l.2792 }
+    ! Illegal parameter number in definition of \pgfk@/handlers/.wrap 8 pgfmath arg
+    s/.@@body.
+    <to be read again> 
+                       9
+    l.2792 }
+    ! I can't find file `tikzlibraryarrows.meta.code.tex'.
+    <argument> ...nput tikzlibrary\pgf@temp .code.tex 
+                                                      \catcode `\@ =\csname tikz...
+    l.64 \usetikzlibrary{arrows.meta}
+                                     
     ! Emergency stop.
-    <read *> 
-             
-    l.57 \usepackage
-                    {xcolor}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
+    <argument> ...nput tikzlibrary\pgf@temp .code.tex 
+                                                      \catcode `\@ =\csname tikz...
+    l.64 \usetikzlibrary{arrows.meta}
+                                     
+    !  ==> Fatal error occurred, no o
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
@@ -1326,26 +1286,6 @@ Version: 1.0
       Namespace with empty importFrom: ‘utils’
     ```
 
-# hoardeR
-
-Version: 0.9.2
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    ! LaTeX Error: File `titling.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'hoardeR-vignette.Rmd' failed with diagnostics:
-    Failed to compile hoardeR-vignette.tex. See hoardeR-vignette.log for more info.
-    Execution halted
-    ```
-
 # HyPhy
 
 Version: 1.0
@@ -1377,38 +1317,6 @@ Version: 1.0
     Consider adding
       importFrom("stats", "dbinom", "dnbinom", "rbinom", "rnbinom", "runif")
     to your NAMESPACE file.
-    ```
-
-# kissDE
-
-Version: 1.0.0
-
-## In both
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Trying to fit models on data...
-    This can be a time-consuming step, so do not hesitate to have 
-        a look at the very well-written vignette !
-    Computing pvalues...
-    Computing size of the effect and last cutoffs...
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'kissDE.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `authblk.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.228 \renewcommand
-                       \Authfont{\Large\bfseries\itshape}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
     ```
 
 # LSPFP
@@ -1798,6 +1706,34 @@ Version: 1.14.0
 
 Version: 1.10.1
 
+## Newly broken
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    2b0abdec0000-2b0abe0c0000 rw-p 00000000 00:00 0 
+    2b0abe0c0000-2b0abe0c1000 ---p 00000000 00:00 0 
+    2b0abe0c1000-2b0abe2c1000 rw-p 00000000 00:00 0 
+    2b0abe2c1000-2b0abe2c2000 ---p 00000000 00:00 0 
+    2b0abe2c2000-2b0abe4c2000 rw-p 00000000 00:00 0 
+    2b0abf8d7000-2b0ac149f000 rw-p 00000000 00:00 0 
+    2b0ac4000000-2b0ac4084000 rw-p 00000000 00:00 0 
+    2b0ac4084000-2b0ac8000000 ---p 00000000 00:00 0 
+    2b0acc000000-2b0acc083000 rw-p 00000000 00:00 0 
+    2b0acc083000-2b0ad0000000 ---p 00000000 00:00 0 
+    2b0ad4000000-2b0ad4083000 rw-p 00000000 00:00 0 
+    2b0ad4083000-2b0ad8000000 ---p 00000000 00:00 0 
+    2b0adc000000-2b0adc083000 rw-p 00000000 00:00 0 
+    2b0adc083000-2b0ae0000000 ---p 00000000 00:00 0 
+    2b0ae4000000-2b0ae4083000 rw-p 00000000 00:00 0 
+    2b0ae4083000-2b0ae8000000 ---p 00000000 00:00 0 
+    2b0aec000000-2b0aec083000 rw-p 00000000 00:00 0 
+    2b0aec083000-2b0af0000000 ---p 00000000 00:00 0 
+    7ffdb42f8000-7ffdb436f000 rw-p 00000000 00:00 0                          [stack]
+    7ffdb4370000-7ffdb4372000 r-xp 00000000 00:00 0                          [vdso]
+    ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+    ```
+
 ## In both
 
 *   checking examples ... ERROR
@@ -1821,32 +1757,6 @@ Version: 1.10.1
     Error in if (!grepl(x = registry, pattern = "^\n*<MartRegistry>")) { : 
       argument is of length zero
     Calls: <Anonymous> -> listMarts
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Warning: Ignoring unknown aesthetics: position
-    Warning: Ignoring unknown aesthetics: position
-    INDEL(DB) didn't exist!
-    Warning: Ignoring unknown aesthetics: position
-    Warning: Ignoring unknown aesthetics: position
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'PGA.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `parnotes.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.201 \renewcommand
-                       {\parnotefmt}[1]{#1}% typeset as normal text^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
@@ -1911,34 +1821,6 @@ Version: 3.0.0
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘ecodist’ in Rd xrefs
-    ```
-
-# Prostar
-
-Version: 1.12.17
-
-## In both
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error in re-building vignettes:
-      ...
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'Prostar_UserManual.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `authblk.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.228 \renewcommand
-                       \Authfont{\Large\bfseries\itshape}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
     ```
 
 # proteoQC
@@ -2135,32 +2017,6 @@ Version: 1.16.0
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    34903488153109186.562.3707739814899850378113.7612694012349875327.394.3
-    FINISHED!
-    
-    Total time:0minutes
-    
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'QDNAseq.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `authblk.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.228 \renewcommand
-                       \Authfont{\Large\bfseries\itshape}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
     ```
 
 # RcisTarget
@@ -2597,17 +2453,9 @@ Version: 0.10.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'tmle-npvi.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `manfnt.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.59 \usepackage
-                    [textwidth=15cm, textheight=23cm]{geometry}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
+    !pdfTeX error: pdflatex (file manfnt.pfb): cannot open Type 1 font file for rea
+    ding
+     ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
