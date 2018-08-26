@@ -560,7 +560,7 @@ Version: 2.1.4
     ```
     Error in re-building vignettes:
       ...
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `titling.sty' not found.
     
     ! Emergency stop.
     <read *> 
@@ -595,13 +595,13 @@ Version: 1.0.1
     ...
     
         Task B: find peaks...
-    finished at 0.056 sec
+    finished at 0.058 sec
     
     
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'ddPCRclust.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `authblk.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -609,8 +609,8 @@ Version: 1.0.1
     ! Emergency stop.
     <read *> 
              
-    l.142 \definecolor
-                      {shadecolor}{RGB}{240,240,240}^^M
+    l.228 \renewcommand
+                       \Authfont{\Large\bfseries\itshape}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -780,10 +780,6 @@ Version: 1.18.0
     ```
     Error in re-building vignettes:
       ...
-    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
-      running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
     Downloading data to  /scratch/hb/DupChecker ...
     Dataset GSE1478 is downloading to /scratch/hb/DupChecker/GSE1478 ...
     Quitting from lines 84-100 (DupChecker.Rnw) 
@@ -850,10 +846,6 @@ Version: 1.6.1
     ```
     Error in re-building vignettes:
       ...
-    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
-      running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
     Quitting from lines 27-28 (eegc.Rnw) 
     Error: processing vignette 'eegc.Rnw' failed with diagnostics:
     there is no package called 'BiocStyle'
@@ -1213,14 +1205,14 @@ Version: 0.9.0
     ```
     ...
       number of items to replace is not a multiple of replacement length
-    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
-      running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Warning in private$.dnames[[1]][rows] = rownames(data) :
+      number of items to replace is not a multiple of replacement length
+    Warning in private$.dnames[[1]][rows] = rownames(data) :
+      number of items to replace is not a multiple of replacement length
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'ClassDiagram.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `pbox.sty' not found.
+    ! LaTeX Error: File `adjustbox.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1228,8 +1220,8 @@ Version: 0.9.0
     ! Emergency stop.
     <read *> 
              
-    l.56 \usepackage
-                    {adjustbox}^^M
+    l.57 \usepackage
+                    {xcolor}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -1344,7 +1336,7 @@ Version: 0.9.2
     ```
     Error in re-building vignettes:
       ...
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `titling.sty' not found.
     
     ! Emergency stop.
     <read *> 
@@ -1404,7 +1396,7 @@ Version: 1.0.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'kissDE.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `authblk.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1412,8 +1404,8 @@ Version: 1.0.0
     ! Emergency stop.
     <read *> 
              
-    l.142 \definecolor
-                      {shadecolor}{RGB}{240,240,240}^^M
+    l.228 \renewcommand
+                       \Authfont{\Large\bfseries\itshape}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -1843,7 +1835,7 @@ Version: 1.10.1
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'PGA.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `nowidow.sty' not found.
+    ! LaTeX Error: File `parnotes.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1851,8 +1843,8 @@ Version: 1.10.1
     ! Emergency stop.
     <read *> 
              
-    l.200 \RequirePackage
-                         {parnotes}^^M
+    l.201 \renewcommand
+                       {\parnotefmt}[1]{#1}% typeset as normal text^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -1934,7 +1926,7 @@ Version: 1.12.17
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'Prostar_UserManual.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `authblk.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1942,8 +1934,8 @@ Version: 1.12.17
     ! Emergency stop.
     <read *> 
              
-    l.142 \definecolor
-                      {shadecolor}{RGB}{240,240,240}^^M
+    l.228 \renewcommand
+                       \Authfont{\Large\bfseries\itshape}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -2148,7 +2140,7 @@ Version: 1.16.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    34903488153109186.562.3707742114899850378113.7612694012349875327.394.3
+    34903488153109186.562.3707739814899850378113.7612694012349875327.394.3
     FINISHED!
     
     Total time:0minutes
@@ -2156,7 +2148,7 @@ Version: 1.16.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'QDNAseq.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
+    ! LaTeX Error: File `authblk.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -2164,8 +2156,8 @@ Version: 1.16.0
     ! Emergency stop.
     <read *> 
              
-    l.142 \definecolor
-                      {shadecolor}{RGB}{240,240,240}^^M
+    l.228 \renewcommand
+                       \Authfont{\Large\bfseries\itshape}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -2447,10 +2439,6 @@ Version: 0.18.1
     ```
     Error in re-building vignettes:
       ...
-    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
-      running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
     Quitting from lines 86-91 (snplist.Rnw) 
     Error: processing vignette 'snplist.Rnw' failed with diagnostics:
     argument is of length zero
@@ -2604,12 +2592,8 @@ Version: 0.10.0
 
 *   checking re-building of vignette outputs ... WARNING
     ```
-    ...
+    Error in re-building vignettes:
       ...
-    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
-      running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'tmle-npvi.tex' failed.
     LaTeX errors:

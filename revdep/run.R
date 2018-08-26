@@ -41,10 +41,10 @@ check <- function() {
 
 todo <- function() {
   pkgs <- tryCatch(revdep_todo(), error = function(ex) NA)
-  if (length(pkgs) == 0) {
-    cat("There are no packages on the revdepcheck todo list\n")
-  } else if (is.na(pkgs)) {
+  if (length(pkgs) == 1L && is.na(pkgs)) {
     cat("Revdepcheck has not been initiated\n")
+  } else if (length(pkgs) == 0) {
+    cat("There are no packages on the revdepcheck todo list\n")
   } else {
     cat(sprintf("%d. %s\n", seq_along(pkgs), pkgs))
   }
