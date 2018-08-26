@@ -44,7 +44,7 @@ Version: 1.52.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.6Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
         libs   5.6Mb
     ```
@@ -167,13 +167,13 @@ Version: 0.3.6
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
       Please input y/n/Y/N!
-      /scratch/hb/Rtmp7V2kxD/destdir.initial not empty, overwrite?[y]
+      /scratch/hb/Rtmptb5GqC/destdir.initial not empty, overwrite?[y]
       More than 3 counts input, default is not to overwrite.
-      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmptb5GqC/destdir.initial existed, overwrite?[y]
       Please input y/n/Y/N!
-      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmptb5GqC/destdir.initial existed, overwrite?[y]
       Please input y/n/Y/N!
-      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmptb5GqC/destdir.initial existed, overwrite?[y]
       More than 3 counts input, default is not to overwrite.
       ══ testthat results  ═══════════════════════════════════════════════════════════
       OK: 58 SKIPPED: 0 FAILED: 1
@@ -217,6 +217,15 @@ Version: 0.1
 # bsseq
 
 Version: 1.16.1
+
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.2Mb
+      sub-directories of 1Mb or more:
+        data   6.7Mb
+    ```
 
 ## In both
 
@@ -369,15 +378,6 @@ Version: 0.1.0
 # CNEr
 
 Version: 1.16.1
-
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.2Mb
-      sub-directories of 1Mb or more:
-        extdata   4.0Mb
-    ```
 
 ## In both
 
@@ -595,13 +595,13 @@ Version: 1.0.1
     ...
     
         Task B: find peaks...
-    finished at 0.051 sec
+    finished at 0.056 sec
     
     
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'ddPCRclust.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
+    ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -609,8 +609,8 @@ Version: 1.0.1
     ! Emergency stop.
     <read *> 
              
-    l.95 \makeatletter
-                      ^^M
+    l.142 \definecolor
+                      {shadecolor}{RGB}{240,240,240}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -894,6 +894,15 @@ Version: 1.6.1
 # ELMER
 
 Version: 2.4.4
+
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.2Mb
+      sub-directories of 1Mb or more:
+        doc   6.0Mb
+    ```
 
 ## In both
 
@@ -1395,7 +1404,7 @@ Version: 1.0.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'kissDE.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
+    ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1403,8 +1412,8 @@ Version: 1.0.0
     ! Emergency stop.
     <read *> 
              
-    l.95 \makeatletter
-                      ^^M
+    l.142 \definecolor
+                      {shadecolor}{RGB}{240,240,240}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -1723,14 +1732,14 @@ Version: 1.14.0
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
-      2018-08-25 19:00:46,522 1733 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - Elements in the result model: 240
+      2018-08-26 02:19:26,432 1263 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - Elements in the result model: 240
       SBGN-PD Layout is running...
       success ratio: 0.8571428571428571
       enhanced ratio: 0.8571428571428571
-      Total execution time: 74 miliseconds.
-      2018-08-25 19:00:48,021 3232 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
-      2018-08-25 19:00:48,487 3698 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
-      2018-08-25 19:00:48,806 4017 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      Total execution time: 80 miliseconds.
+      2018-08-26 02:19:27,287 2118 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-26 02:19:27,926 2757 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-26 02:19:28,306 3137 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
       ══ testthat results  ═══════════════════════════════════════════════════════════
       OK: 33 SKIPPED: 11 FAILED: 2
       1. Error: getPc (@test_pathwayCommons.R#27) 
@@ -1753,8 +1762,8 @@ Version: 1.14.0
     
         toHTML
     
-    2018-08-25 19:00:55,423 768  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
-    2018-08-25 19:00:55,761 1106 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    2018-08-26 02:19:34,108 816  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    2018-08-26 02:19:34,282 990  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
     Quitting from lines 170-172 (using_paxtoolsr.Rmd) 
     Error: processing vignette 'using_paxtoolsr.Rmd' failed with diagnostics:
     Could not resolve host: www.pathwaycommons.org; Name or service not known
@@ -1834,7 +1843,7 @@ Version: 1.10.1
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'PGA.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
+    ! LaTeX Error: File `nowidow.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1842,8 +1851,8 @@ Version: 1.10.1
     ! Emergency stop.
     <read *> 
              
-    l.95 \makeatletter
-                      ^^M
+    l.200 \RequirePackage
+                         {parnotes}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -1925,7 +1934,7 @@ Version: 1.12.17
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'Prostar_UserManual.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
+    ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -1933,8 +1942,8 @@ Version: 1.12.17
     ! Emergency stop.
     <read *> 
              
-    l.95 \makeatletter
-                      ^^M
+    l.142 \definecolor
+                      {shadecolor}{RGB}{240,240,240}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
@@ -2147,7 +2156,7 @@ Version: 1.16.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'QDNAseq.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
+    ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -2155,61 +2164,10 @@ Version: 1.16.0
     ! Emergency stop.
     <read *> 
              
-    l.95 \makeatletter
-                      ^^M
+    l.142 \definecolor
+                      {shadecolor}{RGB}{240,240,240}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-# R.rsp
-
-Version: 0.42.0
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/include,recursive.R’ failed.
-    Last 13 lines of output:
-      
-      > 
-      > path <- system.file("rsp_tests", package="R.rsp")
-      > pathname <- file.path(path, "recursive.txt.rsp")
-      > print(pathname)
-      [1] "/wynton/scratch/henrik/repositories/R.utils/revdep/checks/R.rsp/new/R.rsp.Rcheck/R.rsp/rsp_tests/recursive.txt.rsp"
-      > 
-      > R.utils::evalWithTimeout({
-      +   res <- try({ rcat(file=pathname) })
-      +   stopifnot(inherits(res, "try-error"))
-      + }, timeout=30L)
-      Error: 'evalWithTimeout' is defunct.
-      Use 'R.utils::withTimeout()' instead.
-      See help("Defunct")
-      Execution halted
-    ```
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Error: processing vignette 'RSP_refcard.tex.rsp' failed with diagnostics:
-    Running 'texi2dvi' on 'RSP_refcard.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.34 \titlespacing
-                      {\section}{0pt}{2.0ex}{0.5ex}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
     Execution halted
     ```
 
@@ -2227,9 +2185,9 @@ Version: 1.0.2
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.6Mb
+      installed size is 12.1Mb
       sub-directories of 1Mb or more:
-        data   8.4Mb
+        data  11.8Mb
     ```
 
 # ReportingTools
