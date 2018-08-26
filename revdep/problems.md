@@ -49,17 +49,6 @@ Version: 1.52.0
         libs   5.6Mb
     ```
 
-# arc
-
-Version: 1.2
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘qCBA’
-    ```
-
 # aroma.core
 
 Version: 3.1.3
@@ -178,13 +167,13 @@ Version: 0.3.6
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
       Please input y/n/Y/N!
-      /scratch/hb/RtmpbDDYaj/destdir.initial not empty, overwrite?[y]
+      /scratch/hb/Rtmp7V2kxD/destdir.initial not empty, overwrite?[y]
       More than 3 counts input, default is not to overwrite.
-      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
       Please input y/n/Y/N!
-      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
       Please input y/n/Y/N!
-      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      /scratch/hb/Rtmp7V2kxD/destdir.initial existed, overwrite?[y]
       More than 3 counts input, default is not to overwrite.
       ══ testthat results  ═══════════════════════════════════════════════════════════
       OK: 58 SKIPPED: 0 FAILED: 1
@@ -220,7 +209,7 @@ Version: 0.1
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 18.2Mb
+      installed size is 18.4Mb
       sub-directories of 1Mb or more:
         libs  18.2Mb
     ```
@@ -256,12 +245,35 @@ Version: 4.2-0
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking DESCRIPTION meta-information ... NOTE
     ```
-    Package required but not available: ‘RMySQL’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Malformed Title field: should not end in a period.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    PredictivePowerCv: no visible global function definition for ‘sd’
+    ReadCausataCsv: no visible global function definition for ‘read.csv’
+    ToPmml.GlmnetModelDefinition: no visible global function definition for
+      ‘coef’
+    ToPmml.GlmnetModelDefinition: no visible global function definition for
+      ‘terms.formula’
+    ValidateModel: no visible global function definition for ‘predict’
+    predict.GlmnetModelDefinition: no visible global function definition
+      for ‘model.matrix’
+    predict.GlmnetModelDefinition: no visible binding for global variable
+      ‘contrasts’
+    predict.GlmnetModelDefinition: no visible global function definition
+      for ‘predict’
+    Undefined global functions or variables:
+      coef contrasts dbGetQuery median model.matrix na.omit predict
+      quantile read.csv sd terms.formula
+    Consider adding
+      importFrom("stats", "coef", "contrasts", "median", "model.matrix",
+                 "na.omit", "predict", "quantile", "sd", "terms.formula")
+      importFrom("utils", "read.csv")
+    to your NAMESPACE file.
     ```
 
 # cellbaseR
@@ -309,23 +321,36 @@ Version: 4.4.97
     Unknown packages ‘chemometrics’, ‘mvoutlier’ in Rd xrefs
     ```
 
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: ‘gsubfn’ ‘speaq’
-    ```
-
 # chillR
 
 Version: 0.70.6
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking examples ... ERROR
     ```
-    Package required but not available: ‘RMAWGEN’
+    ...
+    Running examples in ‘chillR-Ex.R’ failed
+    The error most likely occurred in:
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    > ### Name: getClimateWizardData
+    > ### Title: Extract climate data from the ClimateWizard database
+    > ### Aliases: getClimateWizardData
+    > ### Keywords: utility
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > getClimateWizardData(coordinates=c(longitude=10.613975,latitude=34.933439),
+    +   scenario="historical",
+    +   start_year=1970,
+    +   end_year=2000,
+    +   metric=c("CD18","R02"),
+    +   GCMs=c("bcc-csm1-1","BNU-ESM"))
+    Error in open.connection(con, "rb") : 
+      Could not resolve host: maprooms.ciat.cgiar.org; Name or service not known
+    Calls: getClimateWizardData ... fromJSON_string -> parseJSON -> parse_con -> open -> open.connection
+    Execution halted
     ```
 
 # ChocoLattes
@@ -344,6 +369,15 @@ Version: 0.1.0
 # CNEr
 
 Version: 1.16.1
+
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        extdata   4.0Mb
+    ```
 
 ## In both
 
@@ -426,20 +460,6 @@ Version: 1.16.1
     Unexported objects imported by ':::' calls:
       ‘BiocGenerics:::replaceSlots’ ‘S4Vectors:::make_zero_col_DataFrame’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-# CollapsABEL
-
-Version: 0.10.11
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘biganalytics’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # countyfloods
@@ -563,12 +583,37 @@ Version: 1.0.1
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
-    Package required but not available: ‘flowPeaks’
+    exportPlots: no visible binding for global variable ‘Cluster’
+    Undefined global functions or variables:
+      Cluster
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    ...
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+        Task B: find peaks...
+    finished at 0.051 sec
+    
+    
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'ddPCRclust.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 # DeepBlueR
@@ -761,18 +806,89 @@ Version: 1.18.0
     to your NAMESPACE file.
     ```
 
-# eiCompare
+# eegc
 
-Version: 2.1
+Version: 1.6.1
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking examples ... ERROR
     ```
-    Package required but not available: ‘ei’
+    ...
+    > keggenrich = functionEnrich(cate.gene, organism = "human", pAdjustMethod = "fdr",
+    +                             GO = FALSE, KEGG = TRUE, enrichResult = FALSE)
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      11.61% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      11.49% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      7.68% of input gene IDs are fail to map...
+    'select()' returned 1:many mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      7.16% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      6.75% of input gene IDs are fail to map...
+    Error in download.KEGG.Path(species) : 
+      'species' should be one of organisms listed in 'http://www.genome.jp/kegg/catalog/org_list.html'...
+    Calls: functionEnrich ... prepare_KEGG -> download_KEGG -> download.KEGG.Path
+    Execution halted
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Missing link or links in documentation object 'barplotEnrich.Rd':
+      ‘[DOSE]{barplot.enrichResult}’
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    See section 'Cross-references' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Quitting from lines 27-28 (eegc.Rnw) 
+    Error: processing vignette 'eegc.Rnw' failed with diagnostics:
+    there is no package called 'BiocStyle'
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    grnPlot: no visible global function definition for ‘legend’
+    markerScatter: no visible global function definition for
+      ‘colorRampPalette’
+    markerScatter: no visible global function definition for ‘plot’
+    markerScatter: no visible global function definition for ‘points’
+    markerScatter: no visible global function definition for ‘lm’
+    markerScatter: no visible global function definition for ‘abline’
+    markerScatter: no visible global function definition for ‘text’
+    markerScatter: no visible global function definition for ‘legend’
+    Undefined global functions or variables:
+      abline adjustcolor axis colorRampPalette control density dev.copy2pdf
+      legend lines lm model.matrix p.adjust par phyper plot points quantile
+      results text title treat
+    Consider adding
+      importFrom("grDevices", "adjustcolor", "colorRampPalette",
+                 "dev.copy2pdf")
+      importFrom("graphics", "abline", "axis", "legend", "lines", "par",
+                 "plot", "points", "text", "title")
+      importFrom("stats", "density", "lm", "model.matrix", "p.adjust",
+                 "phyper", "quantile")
+    to your NAMESPACE file.
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘BiocStyle’
     ```
 
 # ELMER
@@ -902,12 +1018,19 @@ Version: 1.2.1
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking for hidden files and directories ... NOTE
     ```
-    Packages required but not available: ‘TFBSTools’ ‘motifmatchr’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘ShortRead:::.ShortReadQQA’ ‘ShortRead:::.qa_adapterContamination’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # eudysbiome
@@ -1067,8 +1190,7 @@ Version: 0.1.0
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      ‘DiscreteInverseWeibull’ ‘DiscreteWeibull’ ‘ExtDist’ ‘fBasics’
-      ‘fExtremes’ ‘NormalLaplace’ ‘QRM’ ‘sadists’ ‘SkewHyperbolic’ ‘STAR’
+      ‘ExtDist’ ‘fExtremes’ ‘NormalLaplace’ ‘SkewHyperbolic’ ‘STAR’
       ‘VarianceGamma’
     ```
 
@@ -1209,12 +1331,18 @@ Version: 0.9.2
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Package required but not available: ‘GenomicTools’
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `framed.sty' not found.
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    ! Emergency stop.
+    <read *> 
+    
+    Error: processing vignette 'hoardeR-vignette.Rmd' failed with diagnostics:
+    Failed to compile hoardeR-vignette.tex. See hoardeR-vignette.log for more info.
+    Execution halted
     ```
 
 # HyPhy
@@ -1312,32 +1440,6 @@ Version: 1.4.0
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    Loading required package: BSgenome
-    Loading required package: Biostrings
-    Loading required package: XVector
-    
-    Attaching package: 'Biostrings'
-    
-    The following object is masked from 'package:DelayedArray':
-    
-        type
-    
-    The following object is masked from 'package:base':
-    
-        strsplit
-    
-    Loading required package: rtracklayer
-    Warning in .seqlengths_TwoBitFile(x) : End of file reading 4 bytes
-    Error: package or namespace load failed for 'BSgenome.Rnorvegicus.UCSC.rn6':
-     .onLoad failed in loadNamespace() for 'BSgenome.Rnorvegicus.UCSC.rn6', details:
-      call: .seqlengths_TwoBitFile(x)
-      error: UCSC library operation failed
-    Execution halted
-    ```
-
 *   checking data for ASCII and uncompressed saves ... WARNING
     ```
       
@@ -1352,32 +1454,6 @@ Version: 1.4.0
     ```
     Namespace in Imports field not imported from: 'utils'
       All declared Imports should be used.
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    
-    Attaching package: 'Biostrings'
-    
-    The following object is masked from 'package:DelayedArray':
-    
-        type
-    
-    The following object is masked from 'package:base':
-    
-        strsplit
-    
-    Loading required package: rtracklayer
-    Warning in .seqlengths_TwoBitFile(x) : End of file reading 4 bytes
-    
-    Error: processing vignette 'msgbsR_Vignette.Rnw' failed with diagnostics:
-     chunk 4 (label = run checkCuts with BSgenome) 
-    Error : package or namespace load failed for 'BSgenome.Rnorvegicus.UCSC.rn6':
-     .onLoad failed in loadNamespace() for 'BSgenome.Rnorvegicus.UCSC.rn6', details:
-      call: .seqlengths_TwoBitFile(x)
-      error: UCSC library operation failed
-    Execution halted
     ```
 
 # MSIseq
@@ -1475,12 +1551,10 @@ Version: 1.2.0
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Package required but not available: ‘smacof’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Namespace in Imports field not imported from: ‘devtools’
+      All declared Imports should be used.
     ```
 
 # neurobase
@@ -1649,14 +1723,14 @@ Version: 1.14.0
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
-      2018-08-25 16:20:31,696 1533 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - Elements in the result model: 240
+      2018-08-25 19:00:46,522 1733 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - Elements in the result model: 240
       SBGN-PD Layout is running...
       success ratio: 0.8571428571428571
       enhanced ratio: 0.8571428571428571
-      Total execution time: 78 miliseconds.
-      2018-08-25 16:20:32,995 2832 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
-      2018-08-25 16:20:33,506 3343 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
-      2018-08-25 16:20:34,040 3877 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      Total execution time: 74 miliseconds.
+      2018-08-25 19:00:48,021 3232 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-25 19:00:48,487 3698 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-25 19:00:48,806 4017 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
       ══ testthat results  ═══════════════════════════════════════════════════════════
       OK: 33 SKIPPED: 11 FAILED: 2
       1. Error: getPc (@test_pathwayCommons.R#27) 
@@ -1679,8 +1753,8 @@ Version: 1.14.0
     
         toHTML
     
-    2018-08-25 16:20:40,951 914  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
-    2018-08-25 16:20:41,163 1126 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    2018-08-25 19:00:55,423 768  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    2018-08-25 19:00:55,761 1106 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
     Quitting from lines 170-172 (using_paxtoolsr.Rmd) 
     Error: processing vignette 'using_paxtoolsr.Rmd' failed with diagnostics:
     Could not resolve host: www.pathwaycommons.org; Name or service not known
@@ -1833,12 +1907,9 @@ Version: 3.0.0
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking Rd cross-references ... WARNING
     ```
-    Packages required but not available: ‘pegas’ ‘mmod’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Unknown package ‘ecodist’ in Rd xrefs
     ```
 
 # Prostar
@@ -1847,41 +1918,31 @@ Version: 1.12.17
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking re-building of vignette outputs ... NOTE
     ```
-    Package required but not available: ‘DAPAR’
+    Error in re-building vignettes:
+      ...
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'Prostar_UserManual.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 # proteoQC
 
 Version: 1.16.0
-
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘proteoQC-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: labelRatio
-    > ### Title: Calculate the labeling efficiency of isobaric labeling data
-    > ### Aliases: labelRatio
-    > 
-    > ### ** Examples
-    > 
-    > mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
-    > unzip(mgf.zip)
-    > a <- labelRatio("test.mgf",reporter=2)
-    ........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Warning in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) :
-      port 11856 cannot be opened
-    Error in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) : 
-      cannot open the connection
-    Calls: labelRatio ... .local -> .bpfork -> .bpforkConnect -> socketConnection
-    Execution halted
-    ```
 
 ## In both
 
@@ -2078,7 +2139,7 @@ Version: 1.16.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    34903478153108186.562.3707747514899846378113.7612693912349872327.394.3
+    34903488153109186.562.3707742114899850378113.7612694012349875327.394.3
     FINISHED!
     
     Total time:0minutes
@@ -2104,6 +2165,30 @@ Version: 1.16.0
 # R.rsp
 
 Version: 0.42.0
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/include,recursive.R’ failed.
+    Last 13 lines of output:
+      
+      > 
+      > path <- system.file("rsp_tests", package="R.rsp")
+      > pathname <- file.path(path, "recursive.txt.rsp")
+      > print(pathname)
+      [1] "/wynton/scratch/henrik/repositories/R.utils/revdep/checks/R.rsp/new/R.rsp.Rcheck/R.rsp/rsp_tests/recursive.txt.rsp"
+      > 
+      > R.utils::evalWithTimeout({
+      +   res <- try({ rcat(file=pathname) })
+      +   stopifnot(inherits(res, "try-error"))
+      + }, timeout=30L)
+      Error: 'evalWithTimeout' is defunct.
+      Use 'R.utils::withTimeout()' instead.
+      See help("Defunct")
+      Execution halted
+    ```
 
 ## In both
 
@@ -2140,36 +2225,11 @@ Version: 1.0.2
       ‘doMC’ ‘doRNG’ ‘zoo’
     ```
 
-# rddapp
-
-Version: 1.1.0
-
-## In both
-
-*   checking tests ...
+*   checking installed package size ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > # library(AER)
-      > # library(sandwich)
-      > # library(lmtest)
-      > # library(Formula)
-      > library(rddapp)
-      > library(rdd)
-      Error in library(rdd) : there is no package called 'rdd'
-      Execution halted
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown packages ‘rdd’, ‘rddtools’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: ‘rdd’ ‘rddtools’
+      installed size is  8.6Mb
+      sub-directories of 1Mb or more:
+        data   8.4Mb
     ```
 
 # ReportingTools
@@ -2254,33 +2314,26 @@ Version: 1.18.1
     ```
     ...
     
-    
-    This is MALDIquant version 1.18
-    Quantitative Analysis of Mass Spectrometry Data
-     See '?MALDIquant' for more information about this package.
+    This is pRoloc version 1.20.1 
+      Visit https://lgatto.github.io/pRoloc/ to get started.
     
     
-    Attaching package: 'MALDIquant'
+    This is pRolocdata version 1.18.0.
+    Use 'pRolocdata()' to list available data sets.
+    Loading required package: msmsEDA
     
-    The following objects are masked from 'package:MSnbase':
+    Attaching package: 'e1071'
     
-        estimateNoise, intensity, isEmpty, mz
+    The following object is masked from 'package:MSnbase':
     
-    The following objects are masked from 'package:ProtGenerics':
+        impute
     
-        intensity, mass, mz, mz<-
-    
-    Quitting from lines 29-46 (RProtVis.Rmd) 
+    Warning in download.file(url = paste(reposURL, "VIEWS", sep = "/"), destfile = tmpf,  :
+      URL 'http://bioconductor.org/packages/3.7/bioc/VIEWS': status was 'Couldn't resolve host name'
+    Quitting from lines 81-84 (RProtVis.Rmd) 
     Error: processing vignette 'RProtVis.Rmd' failed with diagnostics:
-    there is no package called 'pRoloc'
+    cannot open URL 'http://bioconductor.org/packages/3.7/bioc/VIEWS'
     Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      ‘xcms’ ‘isobar’ ‘synapterdata’ ‘Rdisop’ ‘BRAIN’ ‘pRoloc’ ‘msmsTests’
-      ‘DEP’
     ```
 
 # ROI.models.miplib
@@ -2295,17 +2348,6 @@ Version: 0.0-1
     
     See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
     manual.
-    ```
-
-# RxODE
-
-Version: 0.7.2-5
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘rSymPy’
     ```
 
 # sdmpredictors
@@ -2493,15 +2535,6 @@ Version: 0.2.5
 
 Version: 2.8.3
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 10.6Mb
-      sub-directories of 1Mb or more:
-        doc   9.9Mb
-    ```
-
 ## In both
 
 *   checking examples ... ERROR
@@ -2572,11 +2605,6 @@ Version: 2.8.3
     Error: processing vignette 'analysis.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 67
     Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘dnet’
     ```
 
 *   checking R code for possible problems ... NOTE
