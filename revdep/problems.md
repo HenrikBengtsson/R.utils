@@ -1706,34 +1706,6 @@ Version: 1.14.0
 
 Version: 1.10.1
 
-## Newly broken
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    2b0abdec0000-2b0abe0c0000 rw-p 00000000 00:00 0 
-    2b0abe0c0000-2b0abe0c1000 ---p 00000000 00:00 0 
-    2b0abe0c1000-2b0abe2c1000 rw-p 00000000 00:00 0 
-    2b0abe2c1000-2b0abe2c2000 ---p 00000000 00:00 0 
-    2b0abe2c2000-2b0abe4c2000 rw-p 00000000 00:00 0 
-    2b0abf8d7000-2b0ac149f000 rw-p 00000000 00:00 0 
-    2b0ac4000000-2b0ac4084000 rw-p 00000000 00:00 0 
-    2b0ac4084000-2b0ac8000000 ---p 00000000 00:00 0 
-    2b0acc000000-2b0acc083000 rw-p 00000000 00:00 0 
-    2b0acc083000-2b0ad0000000 ---p 00000000 00:00 0 
-    2b0ad4000000-2b0ad4083000 rw-p 00000000 00:00 0 
-    2b0ad4083000-2b0ad8000000 ---p 00000000 00:00 0 
-    2b0adc000000-2b0adc083000 rw-p 00000000 00:00 0 
-    2b0adc083000-2b0ae0000000 ---p 00000000 00:00 0 
-    2b0ae4000000-2b0ae4083000 rw-p 00000000 00:00 0 
-    2b0ae4083000-2b0ae8000000 ---p 00000000 00:00 0 
-    2b0aec000000-2b0aec083000 rw-p 00000000 00:00 0 
-    2b0aec083000-2b0af0000000 ---p 00000000 00:00 0 
-    7ffdb42f8000-7ffdb436f000 rw-p 00000000 00:00 0                          [stack]
-    7ffdb4370000-7ffdb4372000 r-xp 00000000 00:00 0                          [vdso]
-    ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
-    ```
-
 ## In both
 
 *   checking examples ... ERROR

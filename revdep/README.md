@@ -28,12 +28,6 @@
 |[DeepBlueR](problems.md#deepbluer) |1.6.0   |1     |        |     |
 |[osrmr](problems.md#osrmr)         |0.1.29  |1     |        |     |
 
-## Broken (1)
-
-|package                |version |error |warning |note |
-|:----------------------|:-------|:-----|:-------|:----|
-|[PGA](problems.md#pga) |1.10.1  |1     |__+1__  |2    |
-
 ## All (128)
 
 |package                                              |version  |error |warning |note |
@@ -122,7 +116,7 @@
 |[openCyto](problems.md#opencyto)                     |1.18.0   |      |        |4    |
 |[osrmr](problems.md#osrmr)                           |0.1.29   |1     |        |     |
 |[paxtoolsr](problems.md#paxtoolsr)                   |1.14.0   |2     |1       |2    |
-|[PGA](problems.md#pga)                               |1.10.1   |1     |__+1__  |2    |
+|[PGA](problems.md#pga)                               |1.10.1   |1     |        |2    |
 |[PhenotypeSimulator](problems.md#phenotypesimulator) |0.2.2    |      |1       |     |
 |phylotaR                                             |1.0.0    |      |        |     |
 |[PopGenReport](problems.md#popgenreport)             |3.0.0    |      |1       |     |
