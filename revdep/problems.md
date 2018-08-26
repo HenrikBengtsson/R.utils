@@ -1,64 +1,12 @@
-# acc
-
-Version: 1.3.3
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Jaejoon Song <jjsong2@mdanderson.org>’
-    
-    Insufficient package version (submitted: 1.3.3, existing: 1.3.3)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# ACNE
-
-Version: 0.8.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.8.1, existing: 0.8.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# acnr
-
-Version: 1.0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Morgane Pierre-Jean <morgane.pierrejean@genopole.cnrs.fr>’
-    
-    Insufficient package version (submitted: 1.0.0, existing: 1.0.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # affxparser
 
-Version: 1.48.0
+Version: 1.52.0
 
 ## In both
 
 *   checking compiled code ... WARNING
     ```
     ...
-          ‘fusion_sdk/file/BPMAPFileWriter.o’
       Found ‘exit’, possibly from ‘exit’ (C)
         Objects: ‘fusion_sdk/util/Err.o’, ‘R_affx_clf_pgf_parser.o’
       Found ‘printf’, possibly from ‘printf’ (C)
@@ -76,26 +24,10 @@ Version: 1.48.0
         Object: ‘fusion_sdk/util/Util.o’
     
     Compiled code should not call entry points which might terminate R nor
-    write to stdout/stderr instead of to the console, nor the system RNG.
+    write to stdout/stderr instead of to the console, nor use Fortran I/O
+    nor system RNGs.
     
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    Found the following (possibly) invalid URLs:
-      URL: http://www.affymetrix.com/support/datasets.affx (moved to https://www.thermofisher.com/us/en/home/life-science/microarray-analysis/microarray-data-analysis/microarray-analysis-sample-data.html)
-        From: man/affxparser-package.Rd
-        Status: 503
-        Message: Service Unavailable
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking for portable file names ... NOTE
@@ -112,154 +44,27 @@ Version: 1.48.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.5Mb
+      installed size is  5.6Mb
       sub-directories of 1Mb or more:
-        libs  13.9Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘affy’
-    ```
-
-# alphahull
-
-Version: 2.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Beatriz Pateiro-Lopez <beatriz.pateiro@usc.es>’
-    
-    Insufficient package version (submitted: 2.1, existing: 2.1)
-    
-    CRAN repository db overrides:
-      License_restricts_use: yes
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+        libs   5.6Mb
     ```
 
 # arc
 
-Version: 1.1.2
-
-## Newly broken
-
-*   checking examples ... WARNING
-    ```
-    ...
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-      Warning: 'evalWithTimeout' is deprecated.
-    Deprecated functions may be defunct as soon as of the next release of
-    R.
-    See ?Deprecated.
-    ```
+Version: 1.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Tomas Kliegr <kliegr@gmail.com>’
-    
-    Insufficient package version (submitted: 1.1.2, existing: 1.1.2)
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.affymetrix
-
-Version: 3.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 3.1.0, existing: 3.1.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.apd
-
-Version: 0.6.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.6.0, existing: 0.6.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.cn
-
-Version: 1.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 1.6.1, existing: 1.6.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘qCBA’
     ```
 
 # aroma.core
 
-Version: 3.1.1
+Version: 3.1.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 3.1.1, existing: 3.1.1)
-    
-    Suggests or Enhances not in mainstream repositories:
-      sfit, expectile, HaarSeg, mpcbs
-    Availability using Additional_repositories specification:
-      sfit        yes   https://henrikbengtsson.github.io/drat
-      expectile   yes   http://r-forge.r-project.org          
-      HaarSeg     yes   http://r-forge.r-project.org          
-      mpcbs       yes   http://r-forge.r-project.org          
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -269,25 +74,9 @@ Version: 3.1.1
 
 # aroma.light
 
-Version: 3.6.0
+Version: 3.10.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    CRAN repository db overrides:
-      X-CRAN-Comment: This package is now available from Bioconductor only,
-        see
-        <http://www.bioconductor.org/packages/release/bioc/html/aroma.light.html>.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -295,15 +84,58 @@ Version: 3.6.0
       inst/rsp/.rspPlugins
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      inst/rsp/.rspPlugins
     ```
 
-*   checking top-level files ... NOTE
+# AUCell
+
+Version: 1.2.4
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Non-standard file/directory found at top level:
-      ‘revdep’
+    Error in re-building vignettes:
+      ...
+    No supplemental files found.
+    Check URL manually if in doubt
+    https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60361/suppl/
+    Quitting from lines 142-178 (AUCell.Rmd) 
+    Error: processing vignette 'AUCell.Rmd' failed with diagnostics:
+    a character vector argument expected
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking: ‘doMC’ ‘doRNG’
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' call to ‘rbokeh’ in package code.
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    .cellProps_plotTsne: warning in adjustcolor(colorPal(10), alpha = 0.8):
+      partial argument match of 'alpha' to 'alpha.f'
+    AUCell_createViewerApp : <anonymous>: no visible global function
+      definition for ‘%>%’
+    AUCell_createViewerApp : <anonymous>: no visible binding for global
+      variable ‘tsne1’
+    AUCell_createViewerApp : <anonymous>: no visible binding for global
+      variable ‘tsne2’
+    AUCell_createViewerApp : <anonymous>: no visible binding for global
+      variable ‘cell’
+    Undefined global functions or variables:
+      %>% cell tsne1 tsne2
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘reshape2’
     ```
 
 # awsjavasdk
@@ -312,188 +144,110 @@ Version: 0.2.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Russell Pierce <russell.pierce@zapier.com>’
-    
-    Insufficient package version (submitted: 0.2.0, existing: 0.2.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 80
-    ```
-
-# babel
-
-Version: 0.3-0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Adam B. Olshen <adam.olshen@ucsf.edu>’
-    
-    Insufficient package version (submitted: 0.3.0, existing: 0.3.0)
-    
-    This build time stamp is over a month old.
-    ```
-
-# bedr
-
-Version: 1.0.4
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-       -0, --zero-based           coordinates are zero-based
-       -b, --begin INT            column number for region start [4]
-       -c, --comment CHAR         skip comment lines starting with CHAR [null]
-       -C, --csi                  generate CSI index for VCF (default is TBI)
-       -e, --end INT              column number for region end (if no end, set INT to -b) [5]
-       -f, --force                overwrite existing index without asking
-       -m, --min-shift INT        set minimal interval size for CSI indices to 2^INT [14]
-       -p, --preset STR           gff, bed, sam, vcf
-       -s, --sequence INT         column number for sequence names (suppressed by -p) [1]
-       -S, --skip-lines INT       skip first INT lines [0]
-    
-    Querying and other options:
-       -h, --print-header         print also the header lines
-       -H, --only-header          print only the header lines
-       -l, --list-chroms          list chromosome names
-       -r, --reheader FILE        replace the header with the content of FILE
-       -R, --regions FILE         restrict to regions listed in the file
-       -T, --targets FILE         similar to -R but streams rather than index-jumps
-    
-       ERROR: Looks like tabix had a problemError in tabix(query.regions, cosmic.vcf.example, check.chr = FALSE) : 
-    Execution halted
-    ```
-
 *   checking tests ...
     ```
      ERROR
-    Running the tests in ‘tests/test.all.R’ failed.
+    Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
+      8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+      9: value[[3L]](cond)
+      10: isTRUE(e$handled)
+      11: e$handled
+      12: `$.Throwable`(e, "handled")
+      13: ._jobjRef_dollar(x[["jobj"]], name)
+      14: stop(sprintf("no field, method or inner class called '%s' ", name))
       
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 3 SKIPPED: 5 FAILED: 2
+      1. Error: Alternate install location (@test-awsjavasdk.R#62) 
+      2. Error: (unknown) (@test-awsjavasdk.R#70) 
       
-      2. Error: check tabix (@test.tabix.R#38) ---------------------------------------
-      
-      1: expect_equal(nrow(tabix(a.nochr, vcf, verbose = T, check.chr = FALSE)), NULL) at /home/hb/repositories/R.utils/revdep/checks/bedr/new/bedr.Rcheck/bedr/tests/test.tabix.R:38
-      2: compare(object, expected, ...)
-      3: nrow(tabix(a.nochr, vcf, verbose = T, check.chr = FALSE))
-      4: tabix(a.nochr, vcf, verbose = T, check.chr = FALSE)
-      5: stop()
-      
-      DONE ===========================================================================
-      Error: Test failures
-      In addition: Warning message:
-      Placing tests in `inst/tests/` is deprecated. Please use `tests/testthat/` instead 
+      Error: testthat unit tests failed
       Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Paul C. Boutros <Paul.Boutros@oicr.on.ca>’
-    
-    Insufficient package version (submitted: 1.0.4, existing: 1.0.4)
-    ```
-
-# bigstep
-
-Version: 0.7.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Piotr Szulc <piotr.michal.szulc@gmail.com>’
-    
-    Insufficient package version (submitted: 0.7.4, existing: 0.7.4)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 # BioInstaller
 
-Version: 0.2.2
+Version: 0.3.6
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking tests ...
     ```
-    Maintainer: ‘Jianfeng Li <lee_jianfeng@sjtu.edu.cn>’
-    
-    Insufficient package version (submitted: 0.2.2, existing: 0.2.2)
-    
-    Days since last update: 3
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      Please input y/n/Y/N!
+      /scratch/hb/RtmpbDDYaj/destdir.initial not empty, overwrite?[y]
+      More than 3 counts input, default is not to overwrite.
+      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      Please input y/n/Y/N!
+      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      Please input y/n/Y/N!
+      /scratch/hb/RtmpbDDYaj/destdir.initial existed, overwrite?[y]
+      More than 3 counts input, default is not to overwrite.
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 58 SKIPPED: 0 FAILED: 1
+      1. Error: initial (@test_install_utils.R#43) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt'
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt'
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt'
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt'
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt.gz'
+    trying URL 'https://raw.githubusercontent.com/Miachol/ftp/master/files/GRCh37_MT_ensGene.txt'
+    trying URL 'http://biocc.hrbmu.edu.cn/DiseaseEnhancer/RFunctions/diseaseEnh5.1.txt'
+    pandoc: Could not fetch https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/easy_project.png
+    FailedConnectionException2 "raw.githubusercontent.com" 443 True getAddrInfo: does not exist (Name or service not known)
+    Error: processing vignette 'plugins_of_BioInstaller_shiny.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 67
+    Execution halted
+    ```
+
+# BMSC
+
+Version: 0.1
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 18.2Mb
+      sub-directories of 1Mb or more:
+        libs  18.2Mb
     ```
 
 # bsseq
 
-Version: 1.12.2
+Version: 1.16.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking for missing documentation entries ... WARNING
     ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    Found the following (possibly) invalid URLs:
-      URL: http://www.bioinformatics.bbsrc.ac.uk/projects/bismark/RELEASE_NOTES.txt
-        From: man/read.bismark.Rd
-        Status: 403
-        Message: Forbidden
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze, manage and store bisulfite sequencing data’
-    ‘Analyze, Manage and Store Bisulfite Sequencing Data’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘bsseqData’
+    Undocumented S4 methods:
+      generic 'dimnames' and siglist 'arrayRealizationSink'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘HDF5Array’
-      All declared Imports should be used.
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘bsseqData’
-    ```
-
-# calmate
-
-Version: 0.12.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.12.1, existing: 0.12.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Unexported objects imported by ':::' calls:
+      ‘DelayedArray:::RealizationSink’
+      ‘DelayedArray:::get_max_block_length’
+      ‘DelayedArray:::get_spacings_for_linear_capped_length_blocks’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # Causata
@@ -502,79 +256,76 @@ Version: 4.2-0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Justin Hemann <justinh@causata.com>’
+    Package required but not available: ‘RMySQL’
     
-    Insufficient package version (submitted: 4.2.0, existing: 4.2.0)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analysis utilities for binary classification and Causata users.’
-    ‘Analysis Utilities for Binary Classification and Causata Users.’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Title field: should not end in a period.
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘integration_tests’
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # cellbaseR
 
-Version: 1.0.0
+Version: 1.4.0
 
 ## In both
 
-*   R CMD check timed out
-    
-
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Mohammed OE Abdallah <melsiddieg@gmail.com>’
+    Running examples in ‘cellbaseR-Ex.R’ failed
+    The error most likely occurred in:
     
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Lazy’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Querying annotation data from the high performance Cellbase web services’
-    ‘Querying Annotation Data from the High Performance Cellbase Web Services’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    > ### Name: AnnotateVcf,CellBaseR-method
+    > ### Title: AnnotateVcf
+    > ### Aliases: AnnotateVcf,CellBaseR-method AnnotateVcf
+    > 
+    > ### ** Examples
+    > 
+    > cb <- CellBaseR()
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Could not resolve host: bioinfo.hpc.cam.ac.uk; Name or service not known
+    Calls: CellBaseR ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 58-68 (cellbaseR.Rmd) 
+    Error: processing vignette 'cellbaseR.Rmd' failed with diagnostics:
+    Could not resolve host: bioinfo.hpc.cam.ac.uk; Name or service not known
+    Execution halted
     ```
 
 # ChemoSpec
 
-Version: 4.4.85
+Version: 4.4.97
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking Rd cross-references ... WARNING
     ```
-    Maintainer: ‘Bryan A. Hanson <hanson@depauw.edu>’
-    
-    Insufficient package version (submitted: 4.4.85, existing: 4.4.85)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Unknown packages ‘chemometrics’, ‘mvoutlier’ in Rd xrefs
     ```
 
-*   checking Rd cross-references ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Packages unavailable to check Rd xrefs: ‘chemometrics’, ‘mvoutlier’
+    Packages suggested but not available for checking: ‘gsubfn’ ‘speaq’
+    ```
+
+# chillR
+
+Version: 0.70.6
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘RMAWGEN’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # ChocoLattes
@@ -583,17 +334,6 @@ Version: 0.1.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Felipe Campelo <fcampelo@ufmg.br>’
-    
-    Insufficient package version (submitted: 0.1.0, existing: 0.1.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
@@ -601,34 +341,68 @@ Version: 0.1.0
       All declared Imports should be used.
     ```
 
-# civis
-
-Version: 1.0.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Patrick Miller <pmiller@civisanalytics.com>’
-    
-    Insufficient package version (submitted: 1.0.2, existing: 1.0.2)
-    
-    This build time stamp is over a month old.
-    ```
-
 # CNEr
 
-Version: 1.12.1
+Version: 1.16.1
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+      URL 'http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/chromInfo.txt.gz': status was 'Couldn't resolve host name'
+    Error in download.file(url = targetURL, destfile = targetFile, method = "auto",  : 
+      cannot open URL 'http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/chromInfo.txt.gz'
+    >   qSizesDanRer10 <- fetchChromSizes("danRer10")
+    Trying UCSC...
+    Warning in download.file(url = targetURL, destfile = targetFile, method = "auto",  :
+      URL 'http://hgdownload.cse.ucsc.edu/goldenPath/danRer10/database/chromInfo.txt.gz': status was 'Couldn't resolve host name'
+    Error in download.file(url = targetURL, destfile = targetFile, method = "auto",  : 
+      cannot open URL 'http://hgdownload.cse.ucsc.edu/goldenPath/danRer10/database/chromInfo.txt.gz'
+    >   
+    >   ## Axt object
+    >   windows <- c(50L, 50L, 50L)
+    >   identities <- c(45L, 48L, 49L)
+    >   CNEHg38DanRer10 <- ceScan(x=axtHg38DanRer10, tFilter=bedHg38,
+    +                             qFilter=bedDanRer10, 
+    +                             tSizes=qSizesHg38, qSizes=qSizesDanRer10,
+    +                             window=windows, identity=identities)
+    Error in ceScanAxt(x, tFilter = tFilter, qFilter = qFilter, tSizes = tSizes,  : 
+      tSizes must be provided or seqinfo is available in Axt object!
+    Calls: ceScan -> ceScan -> ceScanAxt
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      tSizes must be provided or seqinfo is available in Axt object!
+      1: ceScan(x = axtHg38DanRer10, tFilter = bedHg38, qFilter = bedDanRer10, tSizes = qSizesHg38, 
+             qSizes = qSizesDanRer10, window = windows, identity = identities) at testthat/test_ceScan.R:19
+      2: ceScan(x = axtHg38DanRer10, tFilter = bedHg38, qFilter = bedDanRer10, tSizes = qSizesHg38, 
+             qSizes = qSizesDanRer10, window = windows, identity = identities)
+      3: ceScanAxt(x, tFilter = tFilter, qFilter = qFilter, tSizes = tSizes, qSizes = qSizes, 
+             window = window, identity = identity)
+      4: stop("tSizes must be provided or seqinfo is available in Axt object!")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 83 SKIPPED: 1 FAILED: 1
+      1. Error: test_ceScan (@test_ceScan.R#19) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
 
 *   checking compiled code ... WARNING
     ```
-    File ‘CNEr/libs/CNEr.so’:
-      Found ‘abort’, possibly from ‘abort’ (C)
+    ...
         Object: ‘ucsc/errabort.o’
       Found ‘exit’, possibly from ‘exit’ (C)
         Objects: ‘ucsc/errabort.o’, ‘ucsc/pipeline.o’
+      Found ‘printf’, possibly from ‘printf’ (C)
+        Objects: ‘ceScan.o’, ‘ucsc/pipeline.o’
       Found ‘puts’, possibly from ‘printf’ (C), ‘puts’ (C)
         Object: ‘ucsc/pipeline.o’
       Found ‘rand’, possibly from ‘rand’ (C)
@@ -641,36 +415,10 @@ Version: 1.12.1
           ‘ucsc/os.o’
     
     Compiled code should not call entry points which might terminate R nor
-    write to stdout/stderr instead of to the console, nor the system RNG.
+    write to stdout/stderr instead of to the console, nor use Fortran I/O
+    nor system RNGs.
     
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ge Tan <ge_tan@live.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/utils.R
-        222: ### savefig: <e2><80><98>savefig<e2><80><99> saves figures to files with minimal surrounding white
-        223: ### space, suitable for inclusion in books and reports. <e2><80><98>savefig<e2><80><99> is
-        225: ### supported are eps, pdf and jpg. Default file format for <e2><80><98>savefig<e2><80><99>
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9326126 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 18.3Mb
-      sub-directories of 1Mb or more:
-        extdata  15.9Mb
-        libs      1.1Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -686,52 +434,44 @@ Version: 0.10.11
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Kaiyin Zhong <kindlychung@gmail.com>’
+    Package required but not available: ‘biganalytics’
     
-    Insufficient package version (submitted: 0.10.11, existing: 0.10.11)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # countyfloods
 
 Version: 0.1.0
 
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/countyfloods_test.R’ failed.
-    Last 13 lines of output:
-      + # fl <- time_series_flood(state = "Florida", start_date = "2017-09-08", end_date = "2017-09-25", filter_data = FALSE)
-      + # time_series_map(fl[[2]], filename = "C:/Users/rlammers/Desktop/Hurricane Photos/FL")
-      + #
-      + # #Hawaii
-      + # hi <- time_series_flood(state = "Hawaii", start_date = "2017-09-01", end_date = "2017-09-03", filter_data = FALSE)
-      + # time_series_map(hi[[1]])
-      + #
-      + # #Alaska
-      + # ak <- time_series_flood(state = "Alaska", start_date = "2017-09-01", end_date = "2017-09-01", filter_data = FALSE)
-      + # time_series_map(ak[[1]])
-      + }
-      Error in if (county_stats$state %in% c("puerto rico", "alaska", "hawaii")) { : 
-        the condition has length > 1
-      Calls: map_flood -> map_county
-      Execution halted
-    ```
-
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Rod Lammers <rodlammers@gmail.com>’
+    ...
+    The error most likely occurred in:
     
-    Insufficient package version (submitted: 0.1.0, existing: 0.1.0)
+    > ### Name: find_nws
+    > ### Title: Get National Weather Service (NWS) flood stage/discharge levels
+    > ###   for gages.
+    > ### Aliases: find_nws
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > va_counties <- get_county_cd("Virginia")
+    > va_gages <- get_gages(va_counties, start_date = "2015-01-01",
+    +                       end_date = "2015-12-31")
+    Error in curl::curl_fetch_memory(url, handle = handle): Could not resolve host: waterservices.usgs.gov; Name or service not known
+    Request failed [ERROR]. Retrying in 1 seconds...
+    Error in curl::curl_fetch_memory(url, handle = handle): Could not resolve host: waterservices.usgs.gov; Name or service not known
+    Request failed [ERROR]. Retrying in 1.5 seconds...
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Could not resolve host: waterservices.usgs.gov; Name or service not known
+    Calls: get_gages ... <Anonymous> -> getWebServiceData -> retryGetOrPost -> RETRY
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -740,80 +480,146 @@ Version: 0.1.0
       All declared Imports should be used.
     ```
 
-# DeepBlueR
+# cRegulome
 
-Version: 1.2.10
+Version: 0.1.1
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking re-building of vignette outputs ... WARNING
     ```
     ...
-    + 
-    +     experiment_names = deepblue_extract_names(experiments_list)
-    +     histones_datasets[[epigenetic_marks[[i]]]] = experiment_names
-    + }
-    Called method: deepblue_list_experiments
-    Reported status was: okay
-    Called method: deepblue_list_experiments
-    Reported status was: okay
-    Called method: deepblue_list_experiments
-    Reported status was: okay
-    > 
-    > deepblue_enrich_region_overlap(
-    +   query_id=filtered_query_id,
-    +   background_query=rg_10kb_tilling,
-    +   datasets=histones_datasets,
-    +   genome="grch38")
-    Called method: deepblue_enrich_region_overlap
-    Reported status was: error
-    Error in deepblue_enrich_region_overlap(query_id = filtered_query_id,  : 
-      Command enrich_region_overlap does not exists.
+    
+    
+    
+    clusterProfiler v3.8.1  For help: https://guangchuangyu.github.io/software/clusterProfiler
+    
+    If you use clusterProfiler in published research, please cite:
+    Guangchuang Yu, Li-Gen Wang, Yanyan Han, Qing-Yu He. clusterProfiler: an R package for comparing biological themes among gene clusters. OMICS: A Journal of Integrative Biology. 2012, 16(5):284-287.
+    
+    Attaching package: 'clusterProfiler'
+    
+    The following object is masked from 'package:igraph':
+    
+        simplify
+    
+    trying URL 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4393113/bin/pone.0122882.s001.xlsx'
+    Warning in download.file("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4393113/bin/pone.0122882.s001.xlsx",  :
+      URL 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4393113/bin/pone.0122882.s001.xlsx': status was 'Couldn't resolve host name'
+    Quitting from lines 44-55 (case_study.Rmd) 
+    Error: processing vignette 'case_study.Rmd' failed with diagnostics:
+    cannot open URL 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4393113/bin/pone.0122882.s001.xlsx'
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking dependencies in R code ... NOTE
     ```
-    Maintainer: ‘Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field is just the package name: provide a real title.
-    
-    This build time stamp is over a month old.
+    Namespaces in Imports field not imported from:
+      ‘AnnotationDbi’ ‘clusterProfiler’ ‘org.Hs.eg.db’
+      All declared Imports should be used.
     ```
 
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘logo.png’
-    ```
+# CVXR
 
-# DEGraph
-
-Version: 1.28.0
+Version: 0.99
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Laurent Jacob <laurent.jacob@gmail.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Two-sample tests on a graph’
-    ‘Two-Sample Tests on a Graph’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘Rglpk’
     ```
+
+# DatabaseConnector
+
+Version: 2.1.4
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    ! Emergency stop.
+    <read *> 
+    
+    Error: processing vignette 'UsingDatabaseConnector.Rmd' failed with diagnostics:
+    Failed to compile UsingDatabaseConnector.tex. See UsingDatabaseConnector.log for more info.
+    Execution halted
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘DatabaseConnectorJars’ ‘bit’
+      All declared Imports should be used.
+    ```
+
+# ddPCRclust
+
+Version: 1.0.1
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘flowPeaks’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# DeepBlueR
+
+Version: 1.6.0
+
+## In both
+
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/scratch/henrik/repositories/R.utils/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Error in function (type, msg, asError = TRUE)  : 
+  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Error : unable to load R code in package ‘DeepBlueR’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/wynton/scratch/henrik/repositories/R.utils/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+Error in function (type, msg, asError = TRUE)  : 
+  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Error : unable to load R code in package ‘DeepBlueR’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/wynton/scratch/henrik/repositories/R.utils/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+
+```
+# DEGraph
+
+Version: 1.32.0
+
+## In both
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -821,9 +627,6 @@ Version: 1.28.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -831,12 +634,6 @@ Version: 1.28.0
     Packages listed in more than one of Depends, Imports, Suggests, Enhances:
       ‘graph’ ‘KEGGgraph’ ‘lattice’ ‘RBGL’ ‘rrcov’ ‘Rgraphviz’ ‘NCIgraph’
     A package should be listed in only one of these fields.
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘incl’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -880,17 +677,6 @@ Version: 1.1.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Sten Ilmjarv <sten.ilmjarv@gmail.com>’
-    
-    Insufficient package version (submitted: 1.1.2, existing: 1.1.2)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     ...
@@ -917,87 +703,48 @@ Version: 1.1.2
     to your NAMESPACE file.
     ```
 
-# downsize
-
-Version: 0.2.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘William Michael Landau <will.landau@gmail.com>’
-    
-    Insufficient package version (submitted: 0.2.2, existing: 0.2.2)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# dplR
-
-Version: 1.6.6
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    ...
-              man/ffcsaps.Rd
-              man/gp.d2pith.Rd
-              man/gp.dbh.Rd
-              man/gp.po.Rd
-              man/gp.rwl.Rd
-              man/rcs.Rd
-        Status: Error
-        Message: libcurl error code 60:
-        	SSL certificate problem: unable to get local issuer certificate
-        	(Status without verification: OK)
-      URL: http://www.geo.uni-bremen.de/geomod/staff/mschulz/
-        From: man/print.redfit.Rd
-              man/redfit.Rd
-        Status: Error
-        Message: libcurl error code 60:
-        	SSL certificate problem: unable to get local issuer certificate
-        	(Status without verification: OK)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# drake
-
-Version: 4.3.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘William Michael Landau <will.landau@lilly.com>’
-    
-    Insufficient package version (submitted: 4.3.0, existing: 4.3.0)
-    ```
-
 # DupChecker
 
-Version: 1.14.0
+Version: 1.18.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘"Quanhu SHENG" <shengqh@gmail.com>’
+    Running examples in ‘DupChecker-Ex.R’ failed
+    The error most likely occurred in:
     
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘a package for checking high-throughput genomic data redundancy in meta-analysis’
-    ‘a Package for Checking High-Throughput Genomic Data Redundancy in Meta-Analysis’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    > ### Name: arrayExpressDownload
+    > ### Title: arrayExpressDownload
+    > ### Aliases: arrayExpressDownload
+    > 
+    > ### ** Examples
+    > 
+    > #download three datasets from ArrayExpress website
+    > rootDir<-paste0(dirname(tempdir()), "/DupChecker")
+    > dir.create(rootDir, showWarnings = FALSE)
+    > datatable<-arrayExpressDownload(datasets = c("E-MEXP-3872"), targetDir=rootDir, filePattern="cel$")
+    Dataset E-MEXP-3872 is downloading to /scratch/hb/DupChecker/E-MEXP-3872 ...
+    Error in function (type, msg, asError = TRUE)  : 
+      Could not resolve host: ftp.ebi.ac.uk; Name or service not known
+    Calls: arrayExpressDownload ... getFtpFilenames -> getURL -> curlPerform -> <Anonymous> -> fun
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Downloading data to  /scratch/hb/DupChecker ...
+    Dataset GSE1478 is downloading to /scratch/hb/DupChecker/GSE1478 ...
+    Quitting from lines 84-100 (DupChecker.Rnw) 
+    Error: processing vignette 'DupChecker.Rnw' failed with diagnostics:
+    Could not resolve host: ftp.ncbi.nlm.nih.gov; Name or service not known
+    Execution halted
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -1014,189 +761,185 @@ Version: 1.14.0
     to your NAMESPACE file.
     ```
 
-# edgar
-
-Version: 1.0.9
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Gunratan Lonare <lonare.gunratan@gmail.com>’
-    
-    Insufficient package version (submitted: 1.0.9, existing: 1.0.9)
-    
-    Found the following (possibly) invalid URLs:
-      URL: https://www.sec.gov/Archives/edgar/full-index/
-        From: man/getMasterIndex.Rd
-        Status: 404
-        Message: Not Found
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# eegc
-
-Version: 1.2.0
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Quitting from lines 28-29 (eegc.Rnw) 
-    Error: processing vignette 'eegc.Rnw' failed with diagnostics:
-    there is no package called 'BiocStyle'
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Xiaoyuan Zhou <zhouxiaoyuan@picb.ac.cn>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Engineering Evaluation by Gene Categorization (eegc)’
-    ‘Engineering Evaluation by Gene Categorization (Eegc)’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9344858 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.1Mb
-      sub-directories of 1Mb or more:
-        data  10.5Mb
-    ```
-
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    '::' or ':::' import not declared from: ‘BiocStyle’
-    ```
-
-# EEM
-
-Version: 1.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Vipavee Trivittayasil <vipavee.tri@gmail.com>’
-    
-    Insufficient package version (submitted: 1.1.1, existing: 1.1.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # eiCompare
 
 Version: 2.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Loren Collingwood <loren.collingwood@ucr.edu>’
+    Package required but not available: ‘ei’
     
-    Insufficient package version (submitted: 2.1, existing: 2.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # ELMER
 
-Version: 1.6.0
+Version: 2.4.4
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Simon Coetzee <Simon.Coetzee@cshs.org>’
+    ...
+    > 
+    > geneAnnot <- getTSS(TSS=list(upstream=0, downstream=0))
+    Request to BioMart web service failed.
+    The BioMart web service you're accessing may be down.
+    Check the following URL and see if this website is available:
+    http://www.ensembl.org:80/biomart/martservice?type=registry&requestid=biomaRt
+    Request to BioMart web service failed.
+    The BioMart web service you're accessing may be down.
+    Check the following URL and see if this website is available:
+    http://uswest.ensembl.org:80/biomart/martservice?type=registry&requestid=biomaRt
+    > probe <- GenomicRanges::GRanges(seqnames = c("chr1","chr2"), 
+    + range=IRanges::IRanges(start = c(16058489,236417627), end= c(16058489,236417627)), 
+    + name= c("cg18108049","cg17125141"))
+    > names(probe) <- c("cg18108049","cg17125141")
+    > NearbyGenes <- GetNearGenes(numFlankingGenes = 20,geneAnnot=geneAnnot,TRange=probe)
+    Searching for the 20 near genes
     
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
+      |                                                                            
+      |                                                                      |   0%Error: $ operator is invalid for atomic vectors
     
-    Uses the superseded package: ‘snow’
-    
-    Found the following (possibly) invalid URLs:
-      URL: https://tcga-data.nci.nih.gov/tcga/tcgaHome2.jsp
-        From: man/get450K.Rd
-              man/getClinic.Rd
-              man/getRNAseq.Rd
-              man/getTCGA.Rd
-        Status: Error
-        Message: libcurl error code 47:
-        	Maximum (20) redirects followed
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
+    Execution halted
     ```
 
-*   checking dependencies in R code ... NOTE
+*   checking tests ...
     ```
-    Packages in Depends field not imported from:
-      ‘ELMER.data’ ‘Homo.sapiens’
-      ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      7: NearGenes(Target = rownames(x), geneNum = numFlankingGenes, Gene = geneAnnot, TRange = TRange)
+      
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 57 SKIPPED: 0 FAILED: 7
+      1. Error: Mapping from entrez gene ID to emsemble gene ID is right (@test-data.R#23) 
+      2. Error: Supervised mode works (@test-get.pair.R#7) 
+      3. Error: Function uses correctly the permu.dir (@test-get.pair.R#51) 
+      4. Error: Gene expression is calculated (@test-get.pair.R#144) 
+      5. Error: Test if the results is right (@test-getTF.R#150) 
+      6. Error: It maps correctly to hg38 (@test-neargenes.R#11) 
+      7. Error: It maps correctly to hg19 (@test-neargenes.R#29) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking dependencies in R code ... WARNING
+    ```
+    '::' or ':::' import not declared from: 'data.table'
+    ':::' call which should be '::': 'TCGAbiolinks:::TCGAVisualize_volcano'
+      See the note in ?`:::` about the use of this operator.
+    Unexported objects imported by ':::' calls:
+      'TCGAbiolinks:::colDataPrepare' 'TCGAbiolinks:::get.GRCh.bioMart'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+      ...
+    Loading required package: ELMER.data
+    
+    Attaching package: 'dplyr'
+    
+    The following objects are masked from 'package:stats':
+    
+        filter, lag
+    
+    The following objects are masked from 'package:base':
+    
+        intersect, setdiff, setequal, union
+    
+    Request to BioMart web service failed.
+    The BioMart web service you're accessing may be down.
+    Check the following URL and see if this website is available:
+    http://feb2014.archive.ensembl.org:80/biomart/martservice?type=registry&requestid=biomaRt
+    Quitting from lines 53-57 (analysis_data_input.Rmd) 
+    Error: processing vignette 'analysis_data_input.Rmd' failed with diagnostics:
+    unable to find an inherited method for function 'promoters' for signature '"integer"'
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    heatmapGene: no visible global function definition for
+      'subsetByOverlaps'
+    heatmapGene: no visible binding for global variable 'mae'
+    motif.enrichment.plot: no visible binding for global variable 'y'
+    motif.enrichment.plot: no visible binding for global variable 'x'
+    motif.enrichment.plot: no visible binding for global variable 'z'
+    motif.enrichment.plot: no visible binding for global variable 'upperOR'
+    motif.enrichment.plot: no visible binding for global variable 'lowerOR'
+    motif.enrichment.plot: no visible binding for global variable 'motif'
+    motif.enrichment.plot: no visible binding for global variable 'OR'
+    scatter: no visible binding for global variable 'value'
+    scatter: no visible global function definition for 'cor.test'
+    scatter: no visible binding for global variable 'mae'
+    Undefined global functions or variables:
+      Gene GeneID Hugo_Symbol OR Probe TF Target cor.test fisher.test gr
+      hm450.hg38.manifest label lowerOR mae motif precede pvalue
+      subsetByOverlaps upperOR value write.table x y z
+    Consider adding
+      importFrom("stats", "cor.test", "fisher.test")
+      importFrom("utils", "write.table")
+    to your NAMESPACE file.
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘devtools’
+    ```
+
+# esATAC
+
+Version: 1.2.1
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: ‘TFBSTools’ ‘motifmatchr’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # eudysbiome
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Maintainer: ‘Xiaoyuan Zhou <zhouxiaoyuan@picb.ac.cn>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Cartesian plot and contingency test on 16S Microbial data’
-    ‘Cartesian Plot and Contingency Test on 16s Microbial Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# evclust
-
-Version: 1.0.3
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Thierry Denoeux <tdenoeux@utc.fr>’
-    
-    Insufficient package version (submitted: 1.0.3, existing: 1.0.3)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ...
+    assignTax: no visible global function definition for ‘unzip’
+    assignTax: no visible global function definition for ‘bunzip2’
+    contingencyTest: no visible global function definition for ‘combn’
+    contingencyTest : <anonymous>: no visible global function definition
+      for ‘chisq.test’
+    microAnnotate: no visible global function definition for ‘data’
+    microAnnotate: no visible binding for global variable ‘harmGenera’
+    tableSpecies: no visible global function definition for ‘read.table’
+    Undefined global functions or variables:
+      abline adjustcolor axis bunzip2 chisq.test colors combn data
+      dev.flush dev.hold download.file harmGenera mtext par plot points
+      read.table rect text title unzip
+    Consider adding
+      importFrom("grDevices", "adjustcolor", "colors", "dev.flush",
+                 "dev.hold")
+      importFrom("graphics", "abline", "axis", "mtext", "par", "plot",
+                 "points", "rect", "text", "title")
+      importFrom("stats", "chisq.test")
+      importFrom("utils", "combn", "data", "download.file", "read.table",
+                 "unzip")
+    to your NAMESPACE file.
     ```
 
 # ezknitr
@@ -1205,28 +948,12 @@ Version: 0.6
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Dean Attali <daattali@gmail.com>’
-    
-    Insufficient package version (submitted: 0.6, existing: 0.6)
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://ropensci.org/public_images/github_footer.png
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "ropensci.org" 80
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
       ...
-    pandoc: Could not fetch http://ropensci.org/public_images/github_footer.png
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "ropensci.org" 80
+    pandoc: Could not fetch https://travis-ci.org/ropenscilabs/ezknitr.svg?branch=master
+    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
     Error: processing vignette 'ezknitr.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 67
     Execution halted
@@ -1234,58 +961,115 @@ Version: 0.6
 
 # FGNet
 
-Version: 3.10.0
+Version: 3.14.0
 
 ## In both
 
 *   checking examples ... ERROR
     ```
-    ...
-    APC2    1   1   1   1   0   0   0   0   0   0   0   0   0   0    0    0   0   0
-    APC4    1   1   1   1   0   0   0   0   0   0   0   0   0   0    0    0   0   0
-    APC5    1   1   1   0   1   0   0   0   0   0   0   0   0   0    0    0   0   0
-          6.3 6.4 6.5 6.6 6.7
-    ADA2    0   0   0   0   0
-    APC1    0   0   0   0   0
-    APC11   0   0   0   0   0
-    APC2    0   0   0   1   0
-    APC4    0   0   0   0   0
-    APC5    0   0   0   0   0
+    Running examples in ‘FGNet-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: analyzeNetwork
+    > ### Title: Analyze Functional Network
+    > ### Aliases: analyzeNetwork
     > 
-    > functionalNetwork(incidMat)
-    >     
-    > # Term-based network
-    > incidMatTerms <- fea2incidMat(results, key="Terms")
-    > functionalNetwork(incidMatTerms, plotOutput="dynamic")
-    Warning: no DISPLAY variable so Tk is not available
-    Error in structure(.External(.C_dotTclObjv, objv), class = "tclObj") : 
-      [tcl] invalid command name "font".
-    Calls: functionalNetwork ... .tkplot.convert.font -> <Anonymous> -> tcl -> .Tcl.objv -> structure
+    > ### ** Examples
+    > 
+    > # Previous Steps
+    > jobID <- 3907019
+    > results <- fea_gtLinker_getResults(jobID)
+    Error in fea_gtLinker_getResults(jobID) : 
+      Either the web server URL is wrong or the server is down.
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking tests ...
     ```
-    Maintainer: ‘Sara Aibar <saibar@usal.es>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Functional Gene Networks derived from biological enrichment analyses’
-    ‘Functional Gene Networks Derived from Biological Enrichment Analyses’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6584956 bytes
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 13 lines of output:
+       
+      1 Test Suite : 
+      FGNet RUnit Tests - 2 test functions, 1 error, 0 failures
+      ERROR in test_fea_gtLinker_getResults: Error in fea_gtLinker_getResults(jobID = 1639610) : 
+        Either the web server URL is wrong or the server is down.
+      
+      Test files with failing tests
+      
+         test_getResults_gtLinker.R 
+           test_fea_gtLinker_getResults 
+      
+      
+      Error in BiocGenerics:::testPackage("FGNet") : 
+        unit tests failed for package FGNet
+      Execution halted
     ```
 
-*   checking installed package size ... NOTE
+*   checking re-building of vignette outputs ... WARNING
     ```
-      installed size is  7.5Mb
-      sub-directories of 1Mb or more:
-        doc   7.0Mb
+    ...
+    Loading required package: Biobase
+    Welcome to Bioconductor
+    
+        Vignettes contain introductory material; view with
+        'browseVignettes()'. To cite Bioconductor, see
+        'citation("Biobase")', and for packages 'citation("pkgname")'.
+    
+    Loading required package: IRanges
+    Loading required package: S4Vectors
+    
+    Attaching package: 'S4Vectors'
+    
+    The following object is masked from 'package:base':
+    
+        expand.grid
+    
+    
+    Quitting from lines 235-237 (FGNet.Rmd) 
+    Error: processing vignette 'FGNet.Rmd' failed with diagnostics:
+    Either the web server URL is wrong or the server is down.
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      gtkTextBufferGetText gtkTextBufferNew gtkTextBufferSetText
+      gtkTextViewGetBuffer gtkTextViewNewWithBuffer gtkTextViewSetBuffer
+      gtkVBox gtkVBoxNew gtkViewportNew gtkWidgetGetSensitive
+      gtkWidgetSetSensitive gtkWindowNew hclust image installed.packages
+      keys layout legend new pangoFontDescriptionFromString par
+      parseHTTPHeader parse_XMLfile plot plot_profile png postForm quantile
+      rainbow rawResults reactomeEXTID2PATHID reactomePATHID2EXTID
+      reactomePATHID2NAME read.csv read.table readList select
+      setAnnotationCategories setNames sigGenes title url.exists
+      write.table
+    Consider adding
+      importFrom("grDevices", "col2rgb", "dev.off", "png", "rainbow")
+      importFrom("graphics", "abline", "axis", "barplot", "box", "boxplot",
+                 "image", "layout", "legend", "par", "plot", "title")
+      importFrom("methods", "new")
+      importFrom("stats", "dist", "hclust", "quantile", "setNames")
+      importFrom("utils", "View", "browseURL", "data", "download.file",
+                 "installed.packages", "read.csv", "read.table",
+                 "write.table")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
+    ```
+
+# fitteR
+
+Version: 0.1.0
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘DiscreteInverseWeibull’ ‘DiscreteWeibull’ ‘ExtDist’ ‘fBasics’
+      ‘fExtremes’ ‘NormalLaplace’ ‘QRM’ ‘sadists’ ‘SkewHyperbolic’ ‘STAR’
+      ‘VarianceGamma’
     ```
 
 # ForecastFramework
@@ -1294,41 +1078,47 @@ Version: 0.9.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Joshua Kaminsky <jkaminsky@jhu.edu>’
+    ...
+      number of items to replace is not a multiple of replacement length
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'ClassDiagram.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `pbox.sty' not found.
     
-    Insufficient package version (submitted: 0.9.0, existing: 0.9.0)
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    This build time stamp is over a month old.
-    ```
-
-# freesurfer
-
-Version: 1.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    Insufficient package version (submitted: 1.6.1, existing: 1.6.1)
+    ! Emergency stop.
+    <read *> 
+             
+    l.56 \usepackage
+                    {adjustbox}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 # fslr
 
-Version: 2.12
+Version: 2.17.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    Insufficient package version (submitted: 2.12, existing: 2.12)
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    trying URL 'http://cmic.cs.ucl.ac.uk/camino//uploads/Tutorials/example_dwi.zip'
+    Quitting from lines 28-32 (dti_data.Rmd) 
+    Error: processing vignette 'dti_data.Rmd' failed with diagnostics:
+    cannot open URL 'http://cmic.cs.ucl.ac.uk/camino//uploads/Tutorials/example_dwi.zip'
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1338,117 +1128,68 @@ Version: 2.12
       All declared Imports should be used.
     ```
 
-# future.BatchJobs
-
-Version: 0.15.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.15.0, existing: 0.15.0)
-    
-    This build time stamp is over a month old.
-    ```
-
-# gdalUtils
-
-Version: 2.0.1.7
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Jonathan Asher Greenberg <gdalUtils@estarcion.net>’
-    
-    Insufficient package version (submitted: 2.0.1.7, existing: 2.0.1.7)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # gifti
 
-Version: 0.7.4
+Version: 0.7.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking tests ...
     ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    Insufficient package version (submitted: 0.7.4, existing: 0.7.4)
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/coveralls/muschellij2/gifti.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-# glue
-
-Version: 1.2.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Jim Hester <james.f.hester@gmail.com>’
-    
-    Insufficient package version (submitted: 1.2.0, existing: 1.2.0)
-    
-    Days since last update: 6
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      > library(gifti)
+      > 
+      > test_check("gifti")
+      trying URL 'http://johnmuschelli.com/gifti/BV_GIFTI.tar.gz'
+      ── 1. Error: reading gifti files (@test-reader.R#3)  ───────────────────────────
+      cannot open URL 'http://johnmuschelli.com/gifti/BV_GIFTI.tar.gz'
+      1: download_gifti_data(tdir) at testthat/test-reader.R:3
+      2: download.file(url = url, destfile = destfile)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 1 SKIPPED: 0 FAILED: 1
+      1. Error: reading gifti files (@test-reader.R#3) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
-*   checking top-level files ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/tidyverse/glue/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-# gofCopula
-
-Version: 0.2-3
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Simon Trimborn <simon.trimborn@wiwi.hu-berlin.de>’
-    
-    Insufficient package version (submitted: 0.2.3, existing: 0.2.3)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    trying URL 'http://johnmuschelli.com/gifti/BV_GIFTI.tar.gz'
+    Quitting from lines 43-46 (Reading_GIFTI_Files.Rmd) 
+    Error: processing vignette 'Reading_GIFTI_Files.Rmd' failed with diagnostics:
+    cannot open URL 'http://johnmuschelli.com/gifti/BV_GIFTI.tar.gz'
+    Execution halted
     ```
 
 # GSODR
 
-Version: 1.1.0
+Version: 1.2.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Adam Sparks <adamhsparks@gmail.com>’
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 87-90 (GSODR.Rmd) 
+    Error: processing vignette 'GSODR.Rmd' failed with diagnostics:
     
-    Insufficient package version (submitted: 1.1.0, existing: 1.1.0)
+    We've tried to get the file(s) you requested six
+    times, but the server is not responding, so we are
+    unable to process your request now.
+    Please try again later.
+    Execution halted
     ```
 
-*   checking top-level files ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://badges.ropensci.org/79_status.svg
-    TlsExceptionHostPort (HandshakeFailed (Error_Misc "unimplemented RSA signature hash type: HashSHA384")) "badges.ropensci.org" 443
+    Package suggested but not available for checking: ‘sf’
     ```
 
 # hashFunction
@@ -1457,38 +1198,9 @@ Version: 1.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Xiaowei Zhan <zhanxw@gmail.com>’
-    
-    Insufficient package version (submitted: 1.0, existing: 1.0)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A collection of non-cryptographic hash functions’
-    ‘A Collection of Non-Cryptographic Hash Functions’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking for code which exercises the package ... WARNING
-    ```
-    No examples, no tests, no vignettes
-    ```
-
 *   checking package namespace information ... NOTE
     ```
       Namespace with empty importFrom: ‘utils’
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘test’
     ```
 
 # hoardeR
@@ -1497,15 +1209,12 @@ Version: 0.9.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Daniel Fischer <daniel.fischer@luke.fi>’
+    Package required but not available: ‘GenomicTools’
     
-    Insufficient package version (submitted: 0.9.2, existing: 0.9.2)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # HyPhy
@@ -1513,32 +1222,6 @@ Version: 0.9.2
 Version: 1.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Nathaniel Malachi Hallinan <nmhallinan@gmail.com>’
-    
-    Insufficient package version (submitted: 1.0, existing: 1.0)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Macroevolutionary phylogentic analysis of species trees and gene trees’
-    ‘Macroevolutionary Phylogentic Analysis of Species Trees and Gene Trees’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Nathaniel Malachi Hallinan’
-      Authors@R: ‘Nathaniel Hallinan [aut, cre]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Nathaniel Malachi Hallinan <nmhallinan@gmail.com>’
-      Authors@R:  ‘Nathaniel Hallinan <nmhallinan@gmail.com>’
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -1567,42 +1250,35 @@ Version: 1.0
     to your NAMESPACE file.
     ```
 
-# joinXL
+# kissDE
 
-Version: 1.0.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Yvonne Glanville <yvonneglanville@gmail.com>’
-    
-    Insufficient package version (submitted: 1.0.1, existing: 1.0.1)
-    
-    This build time stamp is over a month old.
-    ```
-
-# listenv
-
-Version: 0.6.0
+Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... NOTE
     ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
+    ...
+    Trying to fit models on data...
+    This can be a time-consuming step, so do not hesitate to have 
+        a look at the very well-written vignette !
+    Computing pvalues...
+    Computing size of the effect and last cutoffs...
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'kissDE.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
     
-    Insufficient package version (submitted: 0.6.0, existing: 0.6.0)
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Error: processing vignette 'listenv.md.rsp' failed with diagnostics:
-    there is no package called ‘markdown’
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
@@ -1612,100 +1288,17 @@ Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Rafael Dellen <Rafael.Dellen@uni-duesseldorf.de>’
-    
-    Insufficient package version (submitted: 1.0.0, existing: 1.0.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘tcltk2’
       All declared Imports should be used.
     ```
 
-# mailR
-
-Version: 0.4.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Rahul Premraj <r.premraj+mailR@gmail.com>’
-    
-    Insufficient package version (submitted: 0.4.1, existing: 0.4.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# mcparallelDo
-
-Version: 1.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Russell S. Pierce <russell.s.pierce@gmail.com>’
-    
-    Insufficient package version (submitted: 1.1.0, existing: 1.1.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 80
-    ```
-
 # methylKit
 
-Version: 1.2.4
+Version: 1.6.1
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://dl.dropboxusercontent.com/u/1373164/methylKit_logo.png
-    StatusCodeException (Status {statusCode = 404, statusMessage = "Not Found"}) [("Server","nginx"),("Date","Sat, 04 Nov 2017 07:41:49 GMT"),("Content-Type","text/html"),("Transfer-Encoding","chunked"),("Connection","keep-alive"),("Vary","Accept-Encoding"),("X-Dropbox-Request-Id","e247046b0155c456514b526055b30119"),("X-Robots-Tag","noindex, nofollow, noimageindex"),("Strict-Transport-Security","max-age=15552000; includeSubDomains"),("Content-Encoding","gzip"),("X-Response-Body-Start","<!DOCTYPE html>\n<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n<title>Dropbox - 404</title>\n<link href=\"https://cfl.dropboxstatic.com/static/css/error.css\" rel=\"stylesheet\" type=\"text/css\"/>\n<link rel=\"shortcut icon\" href=\"https://cfl.dropboxstatic.com/static/images/favicon.ico\"/>\n\n</head>\n<body>\n<div class=\"figure\">\n<img src=\"https://cfl.dropboxstatic.com/static/images/publicfoldersunset.svg\" alt=\"Error: 404\"/>\n</div>\n<div id=\"errorbox\">\n<div class=\"public-folder-404\"> <h1 class=\"error_message\">File not found</h1> <br> <div class=\"message_body\"> Sorry, that file doesn&rsquo;t live here anymore. It might have been moved or made private. </div> <br> <a class=\"c-btn c-btn--primary public-folder-link\" href=\"https://www.dropbox.com\">Learn about Dropbox</a> </div>\n</div>\n<section class=\"footer-row\"><footer id=\"homepage-footer\" class=\"twelve-column dropbox-footer clearfix\"><nav><ul class=\"o-nav\"><li class=\"o-nav__header\">Dropbox</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/install\">Desktop app</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/mobile\">Mobile apps</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/plans?trigger=homepagefoot\">Plans</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/security\">Security</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Company</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/about\">About us</a></li><li class=\"o-nav__item\"><a href=\"https://bit.ly/dbxdotcomapps\">Jobs</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/news\">Press</a></li><li class=\"o-nav__item\"><a href=\"https://blogs.dropbox.com/dropbox\">Blog</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Support</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/help\">Help Center</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/contact\">Contact us</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/terms/cookies\">Cookies</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/privacy\">Privacy &amp; terms</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Community</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/developers\">Developers</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/referrals\">Referrals</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropboxforum.com\">Forum</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Connect</li><li class=\"o-nav__item\"><a href=\"https://twitter.com/dropbox\">Twitter</a></li><li class=\"o-nav__item\"><a href=\"https://www.facebook.com/Dropbox\">Facebook</a></li><li class=\"o-nav__item\"><a href=\"https://plus.google.com/+Dropbox/posts\">Google+</a></li><li class=\"o-nav__item\"><a href=\"https://www.youtube.com/user/dropbox\">YouTube</a></li></ul><ul class=\"o-nav\"><li class=\"o-nav__header\">Products</li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/pro\">Plus</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/business\">Business</a></li><li class=\"o-nav__item\"><a href=\"https://www.dropbox.com/enterprise\">Enterprise</a></li></ul></nav><div class=\"react-locale-selector-wrapper\"><div id=\"component1937679262106323703\"><div class=\"react-stub\"></div></div></div></footer></section>\n</body>\n</html>\n"),("X-Request-URL","GET https://dl.dropboxusercontent.com:443/u/1373164/methylKit_logo.png")] (CJ {expose = []})
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Altuna Akalin <aakalin@gmail.com>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘DNA methylation analysis from high-throughput bisulfite sequencing results’
-    ‘DNA Methylation Analysis from High-Throughput Bisulfite Sequencing Results’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        doc    1.6Mb
-        libs   1.7Mb
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -1713,45 +1306,37 @@ Version: 1.2.4
       All declared Imports should be used.
     ```
 
-# MPAgenomics
-
-Version: 1.1.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Samuel Blanck <samuel.blanck@inria.fr>’
-    
-    Insufficient package version (submitted: 1.1.2, existing: 1.1.2)
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/bivariateSignal.R
-        64: # etrange=c(2,36)#66 semble greff<c3><a9> #7 CN <c3><a9>trange
-      R/cghcall_private.R
-        140:     #TODO v<c3><a9>rifier pertinence correction bug avec segment extreme d'un seul point
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘R.devices’ ‘R.filesets’ ‘R.methodsS3’ ‘R.oo’ ‘aroma.affymetrix’
-      ‘aroma.cn’ ‘aroma.core’ ‘aroma.light’ ‘matrixStats’ ‘snowfall’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Unexported object imported by a ':::' call: ‘cghseg:::segmeanCO’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
 # msgbsR
 
-Version: 1.0.0
+Version: 1.4.0
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    Loading required package: BSgenome
+    Loading required package: Biostrings
+    Loading required package: XVector
+    
+    Attaching package: 'Biostrings'
+    
+    The following object is masked from 'package:DelayedArray':
+    
+        type
+    
+    The following object is masked from 'package:base':
+    
+        strsplit
+    
+    Loading required package: rtracklayer
+    Warning in .seqlengths_TwoBitFile(x) : End of file reading 4 bytes
+    Error: package or namespace load failed for 'BSgenome.Rnorvegicus.UCSC.rn6':
+     .onLoad failed in loadNamespace() for 'BSgenome.Rnorvegicus.UCSC.rn6', details:
+      call: .seqlengths_TwoBitFile(x)
+      error: UCSC library operation failed
+    Execution halted
+    ```
 
 *   checking data for ASCII and uncompressed saves ... WARNING
     ```
@@ -1759,33 +1344,8 @@ Version: 1.0.0
       Note: significantly better compression could be obtained
             by using R CMD build --resave-data
                    old_size new_size compress
-      ratdata.rda     318Kb    128Kb       xz
+      ratdata.rda     318Kb    125Kb       xz
       ratdata2.rda    287Kb    116Kb       xz
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Benjamin Mayne <benjamin.mayne@adelaide.edu.au>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘msgbsR: methylation sensitive genotyping by sequencing (MS-GBS) R functions’
-    ‘msgbsR: Methylation Sensitive Genotyping by Sequencing (MS-GBS) R Functions’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 16297733 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 16.1Mb
-      sub-directories of 1Mb or more:
-        extdata  15.2Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1794,51 +1354,72 @@ Version: 1.0.0
       All declared Imports should be used.
     ```
 
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    ...
+    
+    Attaching package: 'Biostrings'
+    
+    The following object is masked from 'package:DelayedArray':
+    
+        type
+    
+    The following object is masked from 'package:base':
+    
+        strsplit
+    
+    Loading required package: rtracklayer
+    Warning in .seqlengths_TwoBitFile(x) : End of file reading 4 bytes
+    
+    Error: processing vignette 'msgbsR_Vignette.Rnw' failed with diagnostics:
+     chunk 4 (label = run checkCuts with BSgenome) 
+    Error : package or namespace load failed for 'BSgenome.Rnorvegicus.UCSC.rn6':
+     .onLoad failed in loadNamespace() for 'BSgenome.Rnorvegicus.UCSC.rn6', details:
+      call: .seqlengths_TwoBitFile(x)
+      error: UCSC library operation failed
+    Execution halted
+    ```
+
 # MSIseq
 
 Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking R code for possible problems ... NOTE
+    ```
+    MSIseq.classify: no visible global function definition for ‘predict’
+    Undefined global functions or variables:
+      predict
+    Consider adding
+      importFrom("stats", "predict")
+    to your NAMESPACE file.
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
     ```
     ...
+    R.utils v2.6.0-9000 successfully loaded. See ?R.utils for help.
     
-    Insufficient package version (submitted: 1.0.0, existing: 1.0.0)
+    Attaching package: ‘R.utils’
     
-    Found the following (possibly) invalid URLs:
-      URL: https://tcga-data.nci.nih.gov/tcga/
-        From: man/NGStestdata.Rd
-              man/NGStestseqLen.Rd
-              man/NGStesttype.Rd
-              man/NGStrainclass.Rd
-              man/NGStraindata.Rd
-              man/NGStrainseqLen.Rd
-              man/NGStraintype.Rd
-              man/test.mutationNum.Rd
-              man/train.mutationNum.Rd
-        Status: Error
-        Message: libcurl error code 47:
-        	Maximum (20) redirects followed
+    The following object is masked from ‘package:utils’:
     
-    The Date field is over a month old.
+        timestamp
     
-    This build time stamp is over a month old.
-    ```
-
-# nandb
-
-Version: 0.2.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Rory Nolan <rorynoolan@gmail.com>’
+    The following objects are masked from ‘package:base’:
     
-    Insufficient package version (submitted: 0.2.1, existing: 0.2.1)
+        cat, commandArgs, getOption, inherits, isOpen, parse, warnings
     
-    This build time stamp is over a month old.
+    trying URL 'http://steverozen.net/data/Hg19repeats.rda'
+    Warning in download.file(url, file) :
+      URL 'http://steverozen.net/data/Hg19repeats.rda': status was 'Couldn't resolve host name'
+    
+    Error: processing vignette 'MSIseq.Rnw' failed with diagnostics:
+     chunk 3 (label = Hg19repeats) 
+    Error in download.file(url, file) : 
+      cannot open URL 'http://steverozen.net/data/Hg19repeats.rda'
+    Execution halted
     ```
 
 # net.security
@@ -1847,28 +1428,75 @@ Version: 0.3.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Humbert Costas <humbert.costas@gmail.com>’
+    Running examples in ‘net.security-Ex.R’ failed
+    The error most likely occurred in:
     
-    Insufficient package version (submitted: 0.3.0, existing: 0.3.0)
+    > ### Name: DataSetStatus
+    > ### Title: Shows data set basic information
+    > ### Aliases: DataSetStatus
+    > 
+    > ### ** Examples
+    > 
+    > DataSetStatus("cves")
+    [1] "-: CVES dataset:"
+    [1] " |- Last update for CVES dataset at 2017-06-10"
+    [1] " |- Data set with 1000 rows and 25 variables."
+    Error: failed to load external entity "http://cve.mitre.org/data/downloads/index.html#download"
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+         {
+             e = makeXMLError(msg, code, domain, line, col, level, filename, class)
+             dom = names(e$domain)
+             class(e) = c(names(e$code), sprintf("%s_Error", gsub("_FROM_", "_", dom)), class(e))
+             if (e$code == xmlParserErrors["XML_IO_LOAD_ERROR"]) 
+                 stop(e)
+         })("failed to load external entity \"http://cve.mitre.org/data/downloads/index.html#download\"\n", 
+             1549L, 8L, 0L, 0L, 1L, character(0))
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 11 SKIPPED: 0 FAILED: 1
+      1. Error: (unknown) (@test_cve.R#46) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+# networktools
+
+Version: 1.2.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘smacof’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # neurobase
 
-Version: 1.13.2
+Version: 1.26.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    Insufficient package version (submitted: 1.13.2, existing: 1.13.2)
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 189-219 (nifti_basics.Rmd) 
+    Error: processing vignette 'nifti_basics.Rmd' failed with diagnostics:
+    Could not resolve host: raw.githubusercontent.com; Name or service not known
+    Execution halted
     ```
 
 # NSA
@@ -1877,21 +1505,6 @@ Version: 0.0.32
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Maria Ortiz-Estevez <mortizest@gmail.com>’
-    
-    Insufficient package version (submitted: 0.0.32, existing: 0.0.32)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Post-normalization of total copy numbers’
-    ‘Post-Normalization of Total Copy Numbers’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -1899,12 +1512,6 @@ Version: 0.0.32
       ‘aroma.affymetrix’ ‘DNAcopy’
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘incl’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1916,137 +1523,43 @@ Version: 0.0.32
       for when this namespace is loaded but not attached.
     ```
 
-*   checking S3 generic/method consistency ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Found the following apparent S3 methods exported but not registered:
-      NSAByTotalAndFracB.matrix allocateOutputDataSets.NSANormalization
-      allocateOutputDataSets.SNPsNormalization
-      allocateOutputDataSets.SampleNormalization
-      as.character.NSANormalization as.character.SNPsNormalization
-      as.character.SampleNormalization findArraysTodo.NSANormalization
-      findArraysTodo.SampleNormalization findUnitsTodo.SNPsNormalization
-      fitNSA.matrix fitNSAcnPs.matrix getDataSets.NSANormalization
-      getDataSets.SNPsNormalization getDataSets.SampleNormalization
-      getName.NSANormalization getName.SNPsNormalization
-      getName.SampleNormalization getOutputDataSets.NSANormalization
-      getOutputDataSets.SNPsNormalization
-      getOutputDataSets.SampleNormalization getPath.NSANormalization
-      getPath.SNPsNormalization getPath.SampleNormalization
-      getRootPath.NSANormalization getRootPath.SNPsNormalization
-      getRootPath.SampleNormalization process.NSANormalization
-      process.SNPsNormalization process.SampleNormalization
-      sampleNByTotalAndFracB.numeric snpsNByTotalAndFracB.matrix
-    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-# oce
-
-Version: 0.9-22
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Dan Kelley <Dan.Kelley@Dal.Ca>’
-    
-    Insufficient package version (submitted: 0.9.22, existing: 0.9.22)
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        help   2.2Mb
-    ```
-
-# officer
-
-Version: 0.1.8
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘officer-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: slip_in_img
-    > ### Title: append an image
-    > ### Aliases: slip_in_img
-    > 
-    > ### ** Examples
-    > 
-    > library(magrittr)
-    > img.file <- file.path( Sys.getenv("R_HOME"), "doc", "html", "logo.jpg" )
-    > x <- read_docx() %>%
-    +   body_add_par("R logo: ", style = "Normal") %>%
-    +   slip_in_img(src = img.file, style = "strong", width = .3, height = .3)
-    Error: file.exists(src) is not TRUE
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘David Gohel <david.gohel@ardata.fr>’
-    
-    Insufficient package version (submitted: 0.1.8, existing: 0.1.8)
+    ...
+    setTags.SampleNormalization: no visible global function definition for
+      ‘trim’
+    snpsNByTotalAndFracB.matrix: no visible global function definition for
+      ‘throw’
+    snpsNByTotalAndFracB.matrix: no visible global function definition for
+      ‘str’
+    snpsNByTotalAndFracB.matrix: no visible global function definition for
+      ‘rowAlls’
+    Undefined global functions or variables:
+      AffymetrixCdfFile CNA Object approxfun aromaSettings byPath extend
+      extractMatrix findUnitsTodo getAsteriskTags getChipType getFile
+      getFullName getFullNames getGenomeInformation getName getNames
+      getPath getPathname getPathnames getPositions getRam getRootPath
+      getTags getUnitsOnChromosome hist median nbrOfFiles newInstance
+      packageDescription rowAlls rowMedians segment setTags str throw trim
+      verbose
+    Consider adding
+      importFrom("graphics", "hist")
+      importFrom("stats", "approxfun", "median")
+      importFrom("utils", "packageDescription", "str")
+    to your NAMESPACE file.
     ```
 
 # openCyto
 
-Version: 1.14.0
+Version: 1.18.0
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Warning in engine$weave(file, quiet = quiet, encoding = enc) :
-      The vignette engine knitr::rmarkdown is not available, because the rmarkdown package is not installed. Please install it.
-    Loading required package: flowWorkspace
-    Loading required package: flowCore
-    Loading required package: ncdfFlow
-    Loading required package: RcppArmadillo
-    Loading required package: BH
-    Quitting from lines 30-34 (HowToAutoGating.Rmd) 
-    Error: processing vignette 'HowToAutoGating.Rmd' failed with diagnostics:
-    there is no package called 'ggcyto'
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Mike Jiang <wjiang2@fhcrc.org>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Hierarchical Gating Pipeline for flow cytometry data’
-    ‘Hierarchical Gating Pipeline for Flow Cytometry Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
       ‘flowWorkspace’
     A package should be listed in only one of these fields.
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘example’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2059,24 +1572,126 @@ Version: 1.14.0
     Unexported objects imported by ':::' calls:
       ‘flowClust:::.ellipsePoints’ ‘flowStats:::drvkde’
       ‘flowStats:::warpSetNCDF’ ‘flowWorkspace:::.cpp_addGate’
-      ‘flowWorkspace:::.getAllDescendants’ ‘flowWorkspace:::trimWhiteSpace’
-      ‘lattice:::updateList’
+      ‘flowWorkspace:::.getAllDescendants’ ‘flowWorkspace:::isNegated’
+      ‘flowWorkspace:::trimWhiteSpace’ ‘lattice:::updateList’
       See the note in ?`:::` about the use of this operator.
     There are ::: calls to the package's namespace in its code. A package
       almost never needs to use ::: for its own objects:
       ‘groupBy’ ‘isCollapse’ ‘ppMethod’ ‘unlockNamespace’
     ```
 
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      ‘callNextMethod’
+    Undefined global functions or variables:
+      Subset abline as callNextMethod collapseDataForGating cov cov.wt
+      cutree density dist dnorm ellipsoidGate embed exprs exprs<- extends
+      filter filterList filters flowSet fsApply gating_args gating_method
+      hclust hist isMultiPops kmeans legend lines median na.omit new par
+      parameters<- parent points polygonGate pop predict preprocessing_args
+      preprocessing_method pt qchisq qf quantile rainbow rectangleGate sd
+      selectMethod smooth.spline text uniroot var weighted.mean
+    Consider adding
+      importFrom("grDevices", "rainbow")
+      importFrom("graphics", "abline", "hist", "legend", "lines", "par",
+                 "points", "text")
+      importFrom("methods", "as", "callNextMethod", "extends", "new",
+                 "selectMethod")
+      importFrom("stats", "cov", "cov.wt", "cutree", "density", "dist",
+                 "dnorm", "embed", "filter", "hclust", "kmeans", "median",
+                 "na.omit", "predict", "pt", "qchisq", "qf", "quantile",
+                 "sd", "smooth.spline", "uniroot", "var", "weighted.mean")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
+    ```
+
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
-    'library' or 'require' call not declared from: ‘ggcyto’
+    '::' or ':::' import not declared from: ‘gridExtra’
     ```
+
+# osrmr
+
+Version: 0.1.29
+
+## In both
+
+*   R CMD check timed out
+    
 
 # paxtoolsr
 
-Version: 1.10.0
+Version: 1.14.0
 
-## Newly fixed
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘paxtoolsr-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: downloadFile
+    > ### Title: Check Cache and Download File
+    > ### Aliases: downloadFile
+    > 
+    > ### ** Examples
+    > 
+    > downloadFile("http://google.com/", fileName="index.html", destDir=tempdir())
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Could not resolve host: google.com; Name or service not known
+    Calls: downloadFile ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      2018-08-25 16:20:31,696 1533 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - Elements in the result model: 240
+      SBGN-PD Layout is running...
+      success ratio: 0.8571428571428571
+      enhanced ratio: 0.8571428571428571
+      Total execution time: 78 miliseconds.
+      2018-08-25 16:20:32,995 2832 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-25 16:20:33,506 3343 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      2018-08-25 16:20:34,040 3877 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 33 SKIPPED: 11 FAILED: 2
+      1. Error: getPc (@test_pathwayCommons.R#27) 
+      2. Error: validate (@test_paxtools.R#41) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Loading required package: rJava
+    Loading required package: XML
+    
+    Attaching package: 'XML'
+    
+    The following object is masked from 'package:tools':
+    
+        toHTML
+    
+    2018-08-25 16:20:40,951 914  [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSif: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    2018-08-25 16:20:41,163 1126 [main] INFO  org.biopax.paxtools.PaxtoolsMain  - toSifnx: not blacklisting ubiquitous molecules (no blacklist.txt found)
+    Quitting from lines 170-172 (using_paxtoolsr.Rmd) 
+    Error: processing vignette 'using_paxtoolsr.Rmd' failed with diagnostics:
+    Could not resolve host: www.pathwaycommons.org; Name or service not known
+    Execution halted
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘jsonlite’
+      All declared Imports should be used.
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -2104,83 +1719,60 @@ Version: 1.10.0
     to your NAMESPACE file.
     ```
 
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-        From: man/validate.Rd
-        Status: 404
-        Message: Not Found
-      URL: http://www.pathwaycommons.org/pc2/help/formats.html
-        From: man/pcFormats.Rd
-        Status: 406
-        Message: Not Acceptable
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘PaxtoolsR: Access Pathways from Multiple Databases through BioPAX and Pathway Commons’
-    ‘PaxtoolsR: Access Pathways from Multiple Databases Through BioPAX and Pathway Commons’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 24477983 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 30.9Mb
-      sub-directories of 1Mb or more:
-        extdata   5.6Mb
-        java     24.5Mb
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘jsonlite’
-      All declared Imports should be used.
-    ```
-
 # PGA
 
-Version: 1.6.0
+Version: 1.10.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... ERROR
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Bo Wen <wenbo@genomics.cn>, Shaohang Xu <xsh.skye@gmail.com>’
+    Running examples in ‘PGA-Ex.R’ failed
+    The error most likely occurred in:
     
-    The maintainer field is invalid or specifies more than one person
-    
-    Conflicting package names (submitted: PGA, existing: pga [CRAN archive])
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    Package has FOSS license, installs .class/.jar but has no 'java' directory.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘An package for identification of novel peptides by customized database derived from RNA-Seq’
-    ‘An Package for Identification of Novel Peptides by Customized Database Derived from RNA-Seq’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    > ### Name: PrepareAnnotationEnsembl2
+    > ### Title: Prepare annotation from ENSEMBL
+    > ### Aliases: PrepareAnnotationEnsembl2
+    > 
+    > ### ** Examples
+    > 
+    > ensembl <- biomaRt::useMart("ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl",
+    +                     host="grch37.ensembl.org", path="/biomart/martservice",
+    +                     archive=FALSE)
+    Request to BioMart web service failed.
+    The BioMart web service you're accessing may be down.
+    Check the following URL and see if this website is available:
+    http://grch37.ensembl.org:80/biomart/martservice?type=registry&requestid=biomaRt
+    Error in if (!grepl(x = registry, pattern = "^\n*<MartRegistry>")) { : 
+      argument is of length zero
+    Calls: <Anonymous> -> listMarts
+    Execution halted
     ```
 
-*   checking installed package size ... NOTE
+*   checking re-building of vignette outputs ... WARNING
     ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        extdata   1.8Mb
+    ...
+    Warning: Ignoring unknown aesthetics: position
+    Warning: Ignoring unknown aesthetics: position
+    INDEL(DB) didn't exist!
+    Warning: Ignoring unknown aesthetics: position
+    Warning: Ignoring unknown aesthetics: position
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'PGA.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2191,19 +1783,48 @@ Version: 1.6.0
       See the note in ?`:::` about the use of this operator.
     ```
 
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    reportSNV: no visible binding for global variable ‘isUnique’
+    reportSNV: no visible binding for global variable ‘Index’
+    reportSNV: no visible binding for global variable ‘aaref’
+    reportSNV: no visible binding for global variable ‘aavar’
+    reportSNV: no visible binding for global variable ‘genename’
+    reportSNV: no visible binding for global variable ‘proname’
+    reportSNV: no visible binding for global variable ‘.SD’
+    reportSNV: no visible binding for global variable ‘ID’
+    reportSNV: no visible binding for global variable ‘Change’
+    reportSNV: no visible binding for global variable ‘aapos’
+    reportSNV: no visible binding for global variable ‘abc’
+    reportSNV: no visible binding for global variable ‘xyz’
+    Undefined global functions or variables:
+      . .I .N .SD CUFF_ID Change Class Evalue Frame Freq ID Index Mass
+      MutNum Query Qvalue Strand Substring Type aapos aaref aavar abc
+      alleleCount alleles charge chr chrom cumlen delta_da delta_ppm evalue
+      gene_name genename genome<- id isSAP isUnique junType jun_type label
+      miss mods mrnaAcc mz name output pep peptide pincoding position
+      pro_name proname prot protAcc protein rbindlist readAAStringSet
+      readDNAStringSet refbase rsid seqlengths seqlevels seqlevels<- subseq
+      transcript tx_name txid txname varbase writeXStringSet x xyz y
+    ```
+
 # PhenotypeSimulator
 
-Version: 0.1.3
+Version: 0.2.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Hannah Meyer <hannah@ebi.ac.uk>’
-    
-    Insufficient package version (submitted: 0.1.3, existing: 0.1.3)
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    pandoc-citeproc: Error parsing XML file plos-genetics.csl: FailedConnectionException2 "www.zotero.org" 80 False getAddrInfo: does not exist (Name or service not known)
+    pandoc: Error running filter /netapp/home/hb/apps/local/bin/pandoc-citeproc
+    Filter returned error status 1
+    Error: processing vignette 'Sample-scripts-external-genotype-simulation.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 83
+    Execution halted
     ```
 
 # PopGenReport
@@ -2212,25 +1833,55 @@ Version: 3.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Bernd Gruber <bernd.gruber@canberra.edu.au>’
+    Packages required but not available: ‘pegas’ ‘mmod’
     
-    Insufficient package version (submitted: 3.0.0, existing: 3.0.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking Rd cross-references ... NOTE
+# Prostar
+
+Version: 1.12.17
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    Package unavailable to check Rd xrefs: ‘ecodist’
+    Package required but not available: ‘DAPAR’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # proteoQC
 
-Version: 1.12.3
+Version: 1.16.0
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘proteoQC-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: labelRatio
+    > ### Title: Calculate the labeling efficiency of isobaric labeling data
+    > ### Aliases: labelRatio
+    > 
+    > ### ** Examples
+    > 
+    > mgf.zip <- system.file("extdata/mgf.zip", package = "proteoQC")
+    > unzip(mgf.zip)
+    > a <- labelRatio("test.mgf",reporter=2)
+    ........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................Warning in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) :
+      port 11856 cannot be opened
+    Error in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) : 
+      cannot open the connection
+    Calls: labelRatio ... .local -> .bpfork -> .bpforkConnect -> socketConnection
+    Execution halted
+    ```
 
 ## In both
 
@@ -2243,84 +1894,130 @@ Version: 1.12.3
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
     ...
-    
-    Package has FOSS license, installs .class/.jar but has no 'java' directory.
-    
-    Found the following (possibly) invalid URLs:
-      URL: http://CRAN.R-project.org/package=Nozzle.R1
-        From: inst/doc/proteoQC.html
-        Status: 200
-        Message: OK
-        CRAN URL not in canonical form
-      Canonical CRAN.R-project.org URLs use https.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘An R package for proteomics data quality control’
-    ‘An R Package for Proteomics Data Quality Control’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 5837430 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.0Mb
-      sub-directories of 1Mb or more:
-        doc       3.2Mb
-        extdata   4.0Mb
-    ```
-
-*   checking S3 generic/method consistency ... NOTE
-    ```
-    Found the following apparent S3 methods exported but not registered:
-      print.msQCres
-    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-# PSCBS
-
-Version: 0.63.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.63.0, existing: 0.63.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    plotMS2boxplot: no visible binding for global variable ‘techRep’
+    plotMS2boxplot: no visible binding for global variable ‘fraction’
+    plotMS2boxplot: no visible binding for global variable ‘MS2QC’
+    plotSampleIDResultErrorBar: no visible binding for global variable
+      ‘fraction’
+    plotSampleIDResultErrorBar: no visible binding for global variable
+      ‘val’
+    plotSampleIDResultErrorBar: no visible binding for global variable ‘se’
+    plotSampleVenn: no visible global function definition for ‘grid.draw’
+    plotTechRepVenn : <anonymous>: no visible global function definition
+      for ‘grid.draw’
+    qcHist: no visible binding for global variable ‘error’
+    qcHist: no visible binding for global variable ‘techRep’
+    qcHist: no visible binding for global variable ‘bioRep’
+    qcHist2: no visible binding for global variable ‘error’
+    qcHist2: no visible binding for global variable ‘fractile’
+    Undefined global functions or variables:
+      ..count.. Intensity MS1QC MS2QC TMT10 TMT6 Tag V1 V2 V3 V4 V5 bioRep
+      curenv delta error exprs fractile fraction grid.draw iTRAQ4 iTRAQ8
+      label peplength peptide_summary precursorCharge quantify ratio
+      readMgfData se techRep val x y
     ```
 
 # psichomics
 
-Version: 1.2.1
+Version: 1.6.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Nuno Saraiva-Agostinho <nunodanielagostinho@gmail.com>’
+    Running examples in ‘psichomics-Ex.R’ failed
+    The error most likely occurred in:
     
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    This build time stamp is over a month old.
+    > ### Name: parseFirebrowseMetadata
+    > ### Title: Query the Firebrowse web API for metadata
+    > ### Aliases: parseFirebrowseMetadata parseFirehoseMetadata
+    > ###   parseTCGAmetadata
+    > 
+    > ### ** Examples
+    > 
+    > psichomics:::parseFirebrowseMetadata("Dates")
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Could not resolve host: firebrowse.org; Name or service not known
+    Calls: <Anonymous> ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
+*   checking tests ...
     ```
-    Authors@R field gives persons with non-standard roles:
-      Nuno Barbosa-Morais [aut, led, ths]: led
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      IR
+      
+      MERGE3m
+      
+      MIC
+      
+      EXSK
+      
+      MULTI
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 1019 SKIPPED: 9 FAILED: 1
+      1. Error: Plot transcripts (@testGeneInfo.R#64) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+      |                                        |   0% 
+      |                                        |   0% 
+      |                                        |   0% 
+      |                                        |   0% 
+      |                                        |   0% 
+      |========================================| 100% 
+    Quitting from lines 189-197 (CLI_tutorial.Rmd) 
+    Error: processing vignette 'CLI_tutorial.Rmd' failed with diagnostics:
+    Could not resolve host: firebrowse.org; Name or service not known
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    prepareGeneQuantSTAR: no visible binding for global variable
+      ‘..strandedness’
+    prepareGeneQuantSTAR: no visible binding for '<<-' assignment to
+      ‘index’
+    prepareGeneQuantSTAR : <anonymous>: no visible binding for '<<-'
+      assignment to ‘index’
+    prepareGeneQuantSTAR : <anonymous>: no visible binding for global
+      variable ‘index’
+    prepareJunctionQuantSTAR: no visible binding for '<<-' assignment to
+      ‘index’
+    prepareJunctionQuantSTAR : <anonymous>: no visible binding for '<<-'
+      assignment to ‘index’
+    prepareJunctionQuantSTAR : <anonymous>: no visible binding for global
+      variable ‘index’
+    Undefined global functions or variables:
+      ..strandedness index
+    ```
+
+*   checking compiled code ... NOTE
+    ```
+    File ‘psichomics/libs/psichomics.so’:
+      Found ‘printf’, possibly from ‘printf’ (C)
+        Object: ‘psiFastCalc.o’
+      Found ‘putchar’, possibly from ‘putchar’ (C)
+        Object: ‘psiFastCalc.o’
+      Found ‘stdout’, possibly from ‘stdout’ (C)
+        Object: ‘psiFastCalc.o’
+    
+    Compiled code should not call entry points which might terminate R nor
+    write to stdout/stderr instead of to the console, nor use Fortran I/O
+    nor system RNGs.
+    
+    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
 # PubBias
@@ -2328,21 +2025,6 @@ Version: 1.2.1
 Version: 1.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Simon Thornley <sithor@gmail.com>’
-    
-    Insufficient package version (submitted: 1.0, existing: 1.0)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Performs simulation study to look for publication bias, using a technique described by Ioannidis and Trikalinos; Clin Trials. 2007;4(3):245-53.’
-    ‘Performs Simulation Study to Look for Publication Bias, using a Technique Described by Ioannidis and Trikalinos; Clin Trials. 2007;4(3):245-53.’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -2380,7 +2062,7 @@ Version: 1.0
 
 # QDNAseq
 
-Version: 1.12.0
+Version: 1.16.0
 
 ## In both
 
@@ -2393,266 +2075,212 @@ Version: 1.12.0
     Extensions’ manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking re-building of vignette outputs ... NOTE
     ```
-    Maintainer: ‘Daoud Sie <d.sie@vumc.nl>’
+    ...
+    34903478153108186.562.3707747514899846378113.7612693912349872327.394.3
+    FINISHED!
     
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
+    Total time:0minutes
     
-    Package has a FOSS license but eventually depends on the following
-    package which may restrict use:
-      CGHcall
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'QDNAseq.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
     
-    The Title field should be in title case, current version then in title case:
-    ‘Quantitative DNA sequencing for chromosomal aberrations’
-    ‘Quantitative DNA Sequencing for Chromosomal Aberrations’
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# qrcode
-
-Version: 0.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Victor Teh <victorteh@gmail.com>’
-    
-    Insufficient package version (submitted: 0.1.1, existing: 0.1.1)
-    
-    The Title field starts with the package name.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# R.cache
-
-Version: 0.12.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.12.0, existing: 0.12.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# R.devices
-
-Version: 2.15.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 2.15.1, existing: 2.15.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# R.filesets
-
-Version: 2.11.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 2.11.0, existing: 2.11.0)
-    
-    This build time stamp is over a month old.
-    ```
-
-# R.huge
-
-Version: 0.9.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 0.9.0, existing: 0.9.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# R.matlab
-
-Version: 3.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    Insufficient package version (submitted: 3.6.1, existing: 3.6.1)
-    
-    Found the following (possibly) invalid URLs:
-      URL: http://www.mathworks.com/matlabcentral/fileexchange/loadFile.do?objectId=5051
-        From: man/R.matlab-package.Rd
-        Status: Error
-        Message: libcurl error code 52:
-        	Empty reply from server
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 # R.rsp
 
-Version: 0.41.0
+Version: 0.42.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
+    Error in re-building vignettes:
+      ...
+    Error: processing vignette 'RSP_refcard.tex.rsp' failed with diagnostics:
+    Running 'texi2dvi' on 'RSP_refcard.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
     
-    Insufficient package version (submitted: 0.41.0, existing: 0.41.0)
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ! Emergency stop.
+    <read *> 
+             
+    l.34 \titlespacing
+                      {\section}{0pt}{2.0ex}{0.5ex}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Execution halted
     ```
 
-# ReporteRs
+# RcisTarget
 
-Version: 0.8.8
+Version: 1.0.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘David Gohel <david.gohel@lysis-consultants.fr>’
-    
-    Insufficient package version (submitted: 0.8.8, existing: 0.8.8)
-    
-    This build time stamp is over a month old.
+    Packages which this enhances but not available for checking:
+      ‘doMC’ ‘doRNG’ ‘zoo’
+    ```
+
+# rddapp
+
+Version: 1.1.0
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > # library(AER)
+      > # library(sandwich)
+      > # library(lmtest)
+      > # library(Formula)
+      > library(rddapp)
+      > library(rdd)
+      Error in library(rdd) : there is no package called 'rdd'
+      Execution halted
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown packages ‘rdd’, ‘rddtools’ in Rd xrefs
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking: ‘rdd’ ‘rddtools’
     ```
 
 # ReportingTools
 
-Version: 2.16.0
+Version: 2.20.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking R code for possible problems ... NOTE
     ```
-    Maintainer: ‘Jason A. Hackney <hackney.jason@gene.com>, Gabriel Becker <becker.gabe@gene.com>, Jessica L. Larson <larson.jessica@gmail.com>’
+    ...
+      'fData'
+    .marrayLM.to.html: no visible global function definition for
+      'featureNames'
+    .marrayLM.to.html: no visible global function definition for 'fData'
+    check.ids: no visible binding for global variable 'org.Hs.eg.db'
+    check.ids: no visible global function definition for 'keys'
+    custHeaderPanel : <anonymous>: no visible binding for global variable
+      'tags'
+    custHeaderPanel : <anonymous>: no visible global function definition
+      for 'HTML'
+    custHeaderPanel: no visible global function definition for 'tagList'
+    custHeaderPanel: no visible global function definition for 'tag'
+    custHeaderPanel: no visible global function definition for 'div'
+    custHeaderPanel: no visible global function definition for 'h1'
+    publish,trellis-HTMLReport: no visible binding for global variable
+      'htmlRep'
+    toReportDF,DESeqDataSet: no visible global function definition for
+      'mcols'
+    Undefined global functions or variables:
+      HTML columns description div exprs fData featureNames h1 htmlRep keys
+      keytype mcols org.Hs.eg.db tag tagList tags
+    ```
+
+# reproducible
+
+Version: 0.2.3
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘sf’
     
-    The maintainer field is invalid or specifies more than one person
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Tools for making reports in various formats’
-    ‘Tools for Making Reports in Various Formats’
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # RforProteomics
 
-Version: 1.14.0
+Version: 1.18.1
 
 ## In both
 
-*   checking sizes of PDF files under ‘inst/doc’ ... WARNING
-    ```
-      ‘gs+qpdf’ made some significant size reductions:
-         compacted ‘HUPO2014poster.pdf’ from 1127Kb to 791Kb
-      consider running tools::compactPDF(gs_quality = "ebook") on these files
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
     ...
-        CRAN URL not in canonical form
-      URL: http://sebastiangibb.de/research.html
-        From: inst/doc/RProtVis.html
-        Status: Error
-        Message: libcurl error code 6:
-        	Could not resolve host: sgibb.github.ioresearch.html
-      The canonical URL of the CRAN page for a package is 
-        https://CRAN.R-project.org/package=pkgname
-      The canonical URL of the CRAN page for a task view is 
-        https://CRAN.R-project.org/view=viewname
     
-    The Title field should be in title case, current version then in title case:
-    ‘Companion package to the 'Using R and Bioconductor for proteomics data analysis' publication’
-    ‘Companion Package to the 'Using R and Bioconductor for proteomics data analysis' Publication’
+    > ### Name: getThermoHelaPRTC
+    > ### Title: Dowload Thermo Hela PRTC data
+    > ### Aliases: getThermoHelaPRTC
+    > 
+    > ### ** Examples
+    > 
+    > getThermoHelaPRTC()
+    [1] "design.txt"                                 
+    [2] "swissprot_human_canonical_19_09_12.fasta.gz"
+    [3] "Thermo_Hela_PRTC_1.mgf.gz"                  
+    [4] "Thermo_Hela_PRTC_2.mgf.gz"                  
+    [5] "Thermo_Hela_PRTC_3.mgf.gz"                  
+    > getThermoHelaPRTC("design")
+    trying URL 'http://proteome.sysbiol.cam.ac.uk/lgatto/RforProteomics//design.txt'
+    Warning in download.file(src, destfile = dest, ...) :
+      URL 'http://proteome.sysbiol.cam.ac.uk/lgatto/RforProteomics//design.txt': status was 'Couldn't resolve host name'
+    Error in download.file(src, destfile = dest, ...) : 
+      cannot open URL 'http://proteome.sysbiol.cam.ac.uk/lgatto/RforProteomics//design.txt'
+    Calls: getThermoHelaPRTC -> mapply -> <Anonymous> -> download.file
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
     
-    The Description field should not start with the package name,
-      'This package' or similar.
     
-    This build time stamp is over a month old.
+    This is MALDIquant version 1.18
+    Quantitative Analysis of Mass Spectrometry Data
+     See '?MALDIquant' for more information about this package.
     
-    Size of tarball: 8490435 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.0Mb
-      sub-directories of 1Mb or more:
-        doc   7.1Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Laurent Gatto [aut, cre], Thomas Lin Pedersen [ctb], Sebastian Gibb [ctb], Vlad Petyuk [ctb]’
-      Authors@R: ‘Laurent Gatto [aut, cre], Sebastian Gibb [ctb], Vlad Petyuk [ctb], Thomas Pedersen Lin [ctb]’
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘external_data_store.txt’
-    ```
-
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    '::' or ':::' import not declared from: ‘AnnotationDbi’
-    ```
-
-# Rnightlights
-
-Version: 0.1.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Christopher Njuguna <chris.njuguna@gmail.com>’
     
-    Insufficient package version (submitted: 0.1.2, existing: 0.1.2)
+    Attaching package: 'MALDIquant'
     
-    The Date field is over a month old.
+    The following objects are masked from 'package:MSnbase':
     
-    This build time stamp is over a month old.
+        estimateNoise, intensity, isEmpty, mz
+    
+    The following objects are masked from 'package:ProtGenerics':
+    
+        intensity, mass, mz, mz<-
+    
+    Quitting from lines 29-46 (RProtVis.Rmd) 
+    Error: processing vignette 'RProtVis.Rmd' failed with diagnostics:
+    there is no package called 'pRoloc'
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘xcms’ ‘isobar’ ‘synapterdata’ ‘Rdisop’ ‘BRAIN’ ‘pRoloc’ ‘msmsTests’
+      ‘DEP’
     ```
 
 # ROI.models.miplib
@@ -2661,50 +2289,75 @@ Version: 0.0-1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Florian Schwendinger <FlorianSchwendinger@gmx.at>’
+    Package required but not available: ‘Rglpk’
     
-    Insufficient package version (submitted: 0.0.1, existing: 0.0.1)
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # RxODE
 
-Version: 0.6-1
+Version: 0.7.2-5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Wenping Wang <wwang8198@gmail.com>’
-    
-    Insufficient package version (submitted: 0.6.1, existing: 0.6.1)
+    Package suggested but not available for checking: ‘rSymPy’
     ```
 
 # sdmpredictors
 
-Version: 0.2.6
+Version: 0.2.8
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking tests ...
     ```
-    Maintainer: ‘Samuel Bosch <mail@samuelbosch.com>’
-    
-    Insufficient package version (submitted: 0.2.6, existing: 0.2.6)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      5: eval_bare(get_expr(quo), get_env(quo))
+      6: load_layers(c("BO_ph", "MS_bathy_21kya"), rasterstack = FALSE)
+      7: sapply(layercodes, get_layerpath)
+      8: lapply(X = X, FUN = FUN, ...)
+      9: FUN(X[[i]], ...)
+      10: utils::download.file(url, path, method = "auto", quiet = FALSE, mode = "wb")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 141 SKIPPED: 15 FAILED: 3
+      1. Failure: sysdata gets downloaded (@test_get_sysdata.R#42) 
+      2. Failure: sysdata gets downloaded (@test_get_sysdata.R#45) 
+      3. Error: load_layer handles special cases (@test_load.R#139) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
-*   checking top-level files ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/github/license/samuelbosch/blogbits.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
+    Error in re-building vignettes:
+      ...
+    Loading required package: raster
+    Loading required package: sp
+    Loading required package: rgdal
+    rgdal: version: 1.3-4, (SVN revision 766)
+     Geospatial Data Abstraction Library extensions to R successfully loaded
+     Loaded GDAL runtime: GDAL 1.11.4, released 2016/01/25
+     Path to GDAL shared files: /usr/share/gdal
+     GDAL binary built with GEOS: TRUE 
+     Loaded PROJ.4 runtime: Rel. 4.8.0, 6 March 2012, [PJ_VERSION: 480]
+     Path to PROJ.4 shared files: (autodetected)
+     Linking to sp version: 1.3-1 
+    Warning in utils::download.file(url, tmp, quiet = TRUE) :
+      URL 'http://www.lifewatch.be/sdmpredictors/sysdata.rda': status was 'Couldn't resolve host name'
+    trying URL 'http://www.lifewatch.be/sdmpredictors/BO_ph_lonlat.tif'
+    Quitting from lines 79-91 (quickstart.Rmd) 
+    Error: processing vignette 'quickstart.Rmd' failed with diagnostics:
+    cannot open URL 'http://www.lifewatch.be/sdmpredictors/BO_ph_lonlat.tif'
+    Execution halted
     ```
 
 # SDMTools
@@ -2713,30 +2366,9 @@ Version: 1.1-221
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    ...
-      URL: http://williams.best.vwh.net/avform.htm#Crs
-        From: man/distance.Rd
-        Status: Error
-        Message: libcurl error code 6:
-        	Could not resolve host: williams.best.vwh.net
-      URL: http://www.gnu.org/software/gsl/manual/html_node/Weighted-Samples.htmland
-        From: man/wt.mean.Rd
-        Status: 404
-        Message: Not Found
-      Spaces in an http[s] URL should probably be replaced by %20
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Species Distribution Modelling Tools: Tools for processing data associated with species distribution modelling exercises’
-    ‘Species Distribution Modelling Tools: Tools for Processing Data Associated with Species Distribution Modelling Exercises’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘adehabitat’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2773,243 +2405,204 @@ Version: 1.1-221
     to your NAMESPACE file.
     ```
 
-# SEMID
-
-Version: 0.3.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Luca Weihs <lucaw@uw.edu>’
-    
-    Insufficient package version (submitted: 0.3.1, existing: 0.3.1)
-    ```
-
 # SensusR
 
 Version: 2.2.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Matthew S. Gerber <gerber.matthew@gmail.com>’
-    
-    Insufficient package version (submitted: 2.2.0, existing: 2.2.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# simPATHy
-
-Version: 0.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Elisa Salviato <elisa.salviato.88@gmail.com>’
-    
-    Insufficient package version (submitted: 0.2, existing: 0.2)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ...
+    [1] "87% done merging data for SpeedDatum (14 of 16)."
+    [1] "93% done merging data for SpeedDatum (15 of 16)."
+    [1] "100% done merging data for SpeedDatum (16 of 16)."
+    [1] "Creating data frame for SpeedDatum."
+    [1] "100% done merging data for TelephonyDatum (1 of 1)."
+    [1] "Creating data frame for TelephonyDatum."
+    [1] "14% done merging data for WlanDatum (1 of 7)."
+    [1] "28% done merging data for WlanDatum (2 of 7)."
+    [1] "42% done merging data for WlanDatum (3 of 7)."
+    [1] "57% done merging data for WlanDatum (4 of 7)."
+    [1] "71% done merging data for WlanDatum (5 of 7)."
+    [1] "85% done merging data for WlanDatum (6 of 7)."
+    [1] "100% done merging data for WlanDatum (7 of 7)."
+    [1] "Creating data frame for WlanDatum."
+    > plot(data$LocationDatum)
+    Warning in download.file(url, destfile = tmp, quiet = !messaging, mode = "wb") :
+      URL 'http://maps.googleapis.com/maps/api/staticmap?center=38.0676352725243,-78.9510441850485&zoom=10&size=640x640&scale=2&maptype=terrain&language=en-EN&sensor=false': status was 'Couldn't resolve host name'
+    Error in download.file(url, destfile = tmp, quiet = !messaging, mode = "wb") : 
+      cannot open URL 'http://maps.googleapis.com/maps/api/staticmap?center=38.0676352725243,-78.9510441850485&zoom=10&size=640x640&scale=2&maptype=terrain&language=en-EN&sensor=false'
+    Calls: plot ... <Anonymous> -> ggmap -> get_map -> get_googlemap -> download.file
+    Execution halted
     ```
 
 # snplist
 
-Version: 0.18
+Version: 0.18.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Alexander Sibley <alexander.sibley@dm.duke.edu>’
-    
-    Insufficient package version (submitted: 0.18, existing: 0.18)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Quitting from lines 86-91 (snplist.Rnw) 
+    Error: processing vignette 'snplist.Rnw' failed with diagnostics:
+    argument is of length zero
+    Execution halted
     ```
 
 # SpaDES.core
-
-Version: 0.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Alex M Chubaty <alexander.chubaty@canada.ca>’
-    
-    Insufficient package version (submitted: 0.1.0, existing: 0.1.0)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘CircStats’ ‘RandomFields’ ‘grDevices’ ‘sp’
-      All declared Imports should be used.
-    ```
-
-# spm12r
-
-Version: 2.3.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    Insufficient package version (submitted: 2.3.1, existing: 2.3.1)
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘utils’
-      All declared Imports should be used.
-    ```
-
-# stplanr
-
-Version: 0.1.9
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Robin Lovelace <rob00x@gmail.com>’
-    
-    Insufficient package version (submitted: 0.1.9, existing: 0.1.9)
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘tmap’
-    ```
-
-# taxonomizr
 
 Version: 0.2.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Scott Sherrill-Mix <shescott@upenn.edu>’
+    Package required but not available: ‘reproducible’
     
-    Insufficient package version (submitted: 0.2.2, existing: 0.2.2)
+    Packages suggested but not available for checking: ‘sf’ ‘SpaDES.tools’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-# TBSSurvival
+# stplanr
 
-Version: 1.3
+Version: 0.2.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Cassio de Campos <cassiopc@acm.org>’
+    Packages required but not available: ‘lwgeom’ ‘sf’
     
-    Insufficient package version (submitted: 1.3, existing: 1.3)
+    Package suggested but not available for checking: ‘tmap’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # TCGAbiolinks
 
-Version: 2.5.9
+Version: 2.8.3
+
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 10.6Mb
+      sub-directories of 1Mb or more:
+        doc   9.9Mb
+    ```
 
 ## In both
 
 *   checking examples ... ERROR
     ```
-    ...
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    |NA                          |NA                                  |NA                   |NA                           |
-    Error in checkProjectInput(project) : 
-      Please set a valid project argument from the column id above. Project TCGA-ACC was not found.
-    Calls: GDCquery -> checkProjectInput
+    Running examples in ‘TCGAbiolinks-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: GDCdownload
+    > ### Title: Download GDC data
+    > ### Aliases: GDCdownload
+    > 
+    > ### ** Examples
+    > 
+    > query <- GDCquery(project = "TCGA-ACC",
+    +                  data.category =  "Copy number variation",
+    +                  legacy = TRUE,
+    +                  file.type = "hg19.seg",
+    +                  barcode = c("TCGA-OR-A5LR-01A-11D-A29H-01", "TCGA-OR-A5LJ-10A-01D-A29K-01"))
+    Error in value[[3L]](cond) : 
+      GDC server down, try to use this package later
+    Calls: GDCquery ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 41 SKIPPED: 0 FAILED: 13
+      1. Error: GDCdownload API method for one files is working  (@test-prepare-download.R#5) 
+      2. Error: getBarcodeInfo works (@test-prepare-download.R#17) 
+      3. Error: GDCprepare accepts more than one project (@test-prepare-download.R#29) 
+      4. Error: GDCquery can filter by data.category (@test-query.R#5) 
+      5. Error: GDCquery accepts more than one project (@test-query.R#11) 
+      6. Error: GDCquery can filter by sample.type (@test-query.R#23) 
+      7. Error: GDCquery can filter by barcode (@test-query.R#46) 
+      8. Error: GDCquery can filter copy number from legacy data by file type. Case: nocnv_hg18 (@test-query.R#72) 
+      9. Error: GDCquery can filter copy number from legacy data by file type. Case: hg18 (@test-query.R#81) 
+      1. ...
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
     ```
     ...
-        Message: Invalid URI scheme
-      URL: GO:cellular
-        From: inst/doc/tcgaBiolinks.html
-        Message: Invalid URI scheme
-      URL: GO:molecular
-        From: inst/doc/tcgaBiolinks.html
-        Message: Invalid URI scheme
-      URL: doi:10.1016/j.ccell.2016.04.002
-        From: inst/doc/tcgaBiolinks.html
-        Message: Invalid URI scheme (use \doi for DOIs in Rd markup)
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘TCGAbiolinks: An R/Bioconductor package for integrative analysis with GDC data’
-    ‘TCGAbiolinks: An R/Bioconductor Package for Integrative Analysis with GDC Data’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 44816700 bytes
+    ==================== DATA Summary ====================
+    ==================== END DATA Summary ====================
+    ==================== T test results ====================
+    ==================== END T test results ====================
+    ==================== DATA Summary ====================
+    ==================== END DATA Summary ====================
+    ==================== T test results ====================
+    ==================== END T test results ====================
+    ==================== DATA Summary ====================
+    ==================== END DATA Summary ====================
+    ==================== T test results ====================
+    ==================== END T test results ====================
+    ==================== DATA Summary ====================
+    ==================== END DATA Summary ====================
+    ==================== T test results ====================
+    ==================== END T test results ====================
+    pandoc: Could not fetch https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css
+    FailedConnectionException2 "maxcdn.bootstrapcdn.com" 443 True getAddrInfo: does not exist (Name or service not known)
+    Error: processing vignette 'analysis.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 67
+    Execution halted
     ```
 
-*   checking top-level files ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/badge/doi-10.1093/nar/gkv1507-green.svg?style=flat
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
+    Package suggested but not available for checking: ‘dnet’
     ```
 
-*   checking installed package size ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-      installed size is 61.0Mb
-      sub-directories of 1Mb or more:
-        R      1.1Mb
-        data   2.3Mb
-        doc   57.4Mb
+    ...
+    TCGAanalyze_analyseGRN: no visible global function definition for
+      ‘knnmi.cross’
+    TCGAanalyze_networkInference: no visible global function definition for
+      ‘c3net’
+    TCGAanalyze_networkInference: no visible global function definition for
+      ‘minet’
+    TCGAquery_recount2: no visible binding for global variable ‘rse_gene’
+    TCGAtumor_purity: no visible binding for global variable ‘Tumor.purity’
+    TCGAvisualize_SurvivalCoxNET: no visible global function definition for
+      ‘dNetInduce’
+    TCGAvisualize_SurvivalCoxNET: no visible global function definition for
+      ‘dNetPipeline’
+    TCGAvisualize_SurvivalCoxNET: no visible global function definition for
+      ‘dCommSignif’
+    TCGAvisualize_SurvivalCoxNET: no visible global function definition for
+      ‘visNet’
+    TCGAvisualize_oncoprint: no visible binding for global variable ‘value’
+    Undefined global functions or variables:
+      TabSubtypesCol_merged Tumor.purity barcode c3net clinical dCommSignif
+      dNetInduce dNetPipeline knnmi.cross limmacontrasts.fit
+      limmamakeContrasts minet portions rse_gene value visNet
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -3023,149 +2616,102 @@ Version: 0.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Pierre Neuvial <pierre.neuvial@genopole.cnrs.fr>’
+    ...
+      ...
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'tmle-npvi.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `manfnt.sty' not found.
     
-    Insufficient package version (submitted: 0.10.0, existing: 0.10.0)
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    Found the following (possibly) invalid URLs:
-      URL: http://CRAN.R-project.org/package=tmle.npvi
-        From: inst/CITATION
-        CRAN URL not in canonical form
-      URL: http://supportres.illumina.com/documents/myillumina/b78d361a-def5-4adb-ab38-e8990625f053/humanmethylation450_15017482_v1-2.csv
-        From: man/tcga2012brca.Rd
-        Status: 403
-        Message: Forbidden
-      Canonical CRAN.R-project.org URLs use https.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# ToPASeq
-
-Version: 1.10.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ivana Ihnatova <ihnatova@iba.muni.cz>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Package for Topology-based Pathway Analysis of RNASeq data’
-    ‘Package for Topology-Based Pathway Analysis of RNASeq Data’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ! Emergency stop.
+    <read *> 
+             
+    l.59 \usepackage
+                    [textwidth=15cm, textheight=23cm]{geometry}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
-*   checking for hidden files and directories ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Found the following hidden files and directories:
-      .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘Rplots.pdf’
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘DEGraph’ ‘plotrix’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    ...
+    tmle.npvi.: no visible global function definition for ‘update’
+    update.NPVI: no visible global function definition for ‘gaussian’
+    updateConv.NPVI: no visible global function definition for ‘tail’
+    updateGNonTab.NPVI : g1: no visible binding for global variable
+      ‘qlogis’
+    updateGNonTab.NPVI : g1: no visible binding for global variable
+      ‘plogis’
+    updateGTab.NPVI: no visible binding for global variable ‘qlogis’
+    updateGTab.NPVI: no visible binding for global variable ‘plogis’
+    updatePsi.NPVI: no visible global function definition for ‘str’
+    Undefined global functions or variables:
+      as.formula binomial dnorm gaussian glm head integrate model.matrix
+      optimize plogis pnorm qlogis qnorm quantile rnorm runif sd str tail
+      update var
+    Consider adding
+      importFrom("stats", "as.formula", "binomial", "dnorm", "gaussian",
+                 "glm", "integrate", "model.matrix", "optimize", "plogis",
+                 "pnorm", "qlogis", "qnorm", "quantile", "rnorm", "runif",
+                 "sd", "update", "var")
+      importFrom("utils", "head", "str", "tail")
+    to your NAMESPACE file.
     ```
 
 # Uniquorn
 
-Version: 1.4.2
+Version: 2.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘Uniquorn’ can be installed ... WARNING
     ```
-    Maintainer: ‘'Raik Otto' <raik.otto@hu-berlin.de>’
-    
-    Package duplicated from https://bioconductor.org/packages/3.5/bioc
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Identification of cancer cell lines based on their weighted mutational or variational fingerprint’
-    ‘Identification of Cancer Cell Lines Based on their Weighted Mutational or Variational Fingerprint’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Found the following significant warnings:
+      Note: possible error in 'create_bed_file(match_t, ': unused argument (manual_identifier_bed_file) 
+    See ‘/wynton/scratch/henrik/repositories/R.utils/revdep/checks/Uniquorn/new/Uniquorn.Rcheck/00install.out’ for details.
+    Information on the location(s) of code generating the ‘Note’s can be
+    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+    to ‘yes’.
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Raik Otto’
-      Authors@R: ‘Raik Otto [aut, cre]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘‘Raik Otto’ <raik.otto@hu-berlin.de>’
-      Authors@R:  ‘Raik Otto <raik.otto@hu-berlin.de>’
+    Malformed Description field: should contain one or more complete sentences.
     ```
 
-*   checking top-level files ... NOTE
-    ```
-    Non-standard file/directory found at top level:
-      ‘unitTests’
-    ```
-
-# vortexR
-
-Version: 1.1.4
-
-## In both
-
-*   checking examples ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
     ...
-    > ### Name: SSMD_matrix
-    > ### Title: Generate a SSMD matrix with all possible pairwise comparisons
-    > ### Aliases: SSMD_matrix
-    > 
-    > ### ** Examples
-    > 
-    > # Using Campbell et al. and Pacioni et al. example data.
-    > # See ?pacioni and ?campbell for more details on example data.
-    > require(vortexRdata)
-    Loading required package: vortexRdata
-    > 
-    > data("pac.clas")
-    > 
-    > SSMD_matrix(data=pac.clas, project="Pacioni_et_al",
-    + scenario="ST_Classic",
-    + params = c("PExtinct", "Nextant", "Het", "Nalleles"),
-    + yrs = c(60, 120), ST = FALSE, save2disk = FALSE)
-    Error in if (!yrs == "max" & !is.numeric(yrs)) stop("invalid value(s) for 'yrs' ") : 
-      the condition has length > 1
-    Calls: SSMD_matrix
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Carlo Pacioni <C.Pacioni@Murdoch.edu.au>’
-    
-    Insufficient package version (submitted: 1.1.4, existing: 1.1.4)
-    
-    This build time stamp is over a month old.
+    parse_ccle_genotype_data: no visible binding for global variable
+      ‘Index’
+    parse_cosmic_genotype_data: no visible binding for global variable
+      ‘position’
+    parse_cosmic_genotype_data: no visible binding for global variable
+      ‘.SD’
+    parse_cosmic_genotype_data: no visible binding for global variable
+      ‘Index’
+    show_contained_ccls: no visible binding for '<<-' assignment to
+      ‘ccls_all’
+    show_contained_ccls: no visible binding for global variable ‘ccls_all’
+    write_w0_and_split_w0_into_lower_weights: no visible binding for '<<-'
+      assignment to ‘g_mat_exclude’
+    write_w0_and_split_w0_into_lower_weights: no visible binding for global
+      variable ‘g_mat_exclude’
+    Undefined global functions or variables:
+      .SD Index Tumor_Sample_Barcode ccls_all g_mat_exclude output_file_xls
+      position res_table sig_vec sim_list tail vcf_fingerprint
+    Consider adding
+      importFrom("utils", "tail")
+    to your NAMESPACE file.
     ```
 
