@@ -51,51 +51,51 @@
 #*/###########################################################################
 eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="default", cmdArg=FALSE) {
   # Argument '...' => (name, default, ...)
-  pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL));
+  pargs <- .parseArgs(list(...), defaults=alist(name=, default=NULL))
 
   # Special short format, e.g. eget(n=42)?
-  args <- pargs$args;
+  args <- pargs$args
 
   if (!is.element("name", names(args))) {
-    argsT <- pargs$namedArgs;
+    argsT <- pargs$namedArgs
     if (length(argsT) == 0L) {
-      stop("Argument 'name' is missing (or NULL).");
+      stop("Argument 'name' is missing (or NULL).")
     }
-    args$name <- names(argsT)[1L];
-    default <- argsT[[1L]];
-    args$default <- default;
-    argsT <- argsT[-1L];
-    pargs$args <- args;
-    pargs$namedArgs <- argsT;
+    args$name <- names(argsT)[1L]
+    default <- argsT[[1L]]
+    args$default <- default
+    argsT <- argsT[-1L]
+    pargs$args <- args
+    pargs$namedArgs <- argsT
   }
-  args <- Reduce(c, pargs);
+  args <- Reduce(c, pargs)
 
   # Argument 'name':
-  name <- as.character(args$name);
-  stopifnot(length(name) == 1L);
+  name <- as.character(args$name)
+  .stop_if_not(length(name) == 1L)
 
   # Argument 'default':
-  default <- args$default;
+  default <- args$default
 
   # Set default according to corresponding command-line argument?
   if (cmdArg) {
-    defaultT <- cmdArg(...);
-    if (!is.null(defaultT)) default <- defaultT;
+    defaultT <- cmdArg(...)
+    if (!is.null(defaultT)) default <- defaultT
   }
 
   # Argument 'envir':
   if (is.list(envir)) {
   } else {
-    envir <- as.environment(envir);
-    stopifnot(is.environment(envir));
+    envir <- as.environment(envir)
+    .stop_if_not(is.environment(envir))
   }
 
 
   # Retrieve the variable, if available.
-  value <- default;
+  value <- default
   if (is.list(envir)) {
     if (is.element(name, names(envir))) {
-      value <- envir[[name]];
+      value <- envir[[name]]
     }
   } else {
     if (mode == "default") {
@@ -103,14 +103,14 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="d
       if (mode == "NULL") mode <- "any"
     }
     if (exists(name, mode=mode, envir=envir, inherits=inherits)) {
-      value <- get(name, mode=mode, envir=envir, inherits=inherits);
+      value <- get(name, mode=mode, envir=envir, inherits=inherits)
     }
   }
 
   # Coerce?
   if (coerce) {
     if (!identical(value, default) && !is.null(default)) {
-      value <- as(value, Class=class(default)[1L]);
+      value <- as(value, Class=class(default)[1L])
     }
   }
 
@@ -119,20 +119,5 @@ eget <- function(..., coerce=TRUE, envir=parent.frame(), inherits=FALSE, mode="d
 
 
 ecget <- function(..., envir=parent.frame()) {
-  eget(..., envir=envir, cmdArg=TRUE);
+  eget(..., envir=envir, cmdArg=TRUE)
 } # ecget()
-
-
-############################################################################
-# HISTORY:
-# 2015-01-31
-# o Now eget() uses inherits=FALSE (was TRUE) and mode="default"
-#   (was "any"), where "default" corresponds to the mode of argument
-#   'default', unless it's NULL when mode="any" is used.
-# 2014-01-27
-# o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would command-line argument
-#   'K=1' as the default (instead of K=2), eget("K", 2, cmdArgs=TRUE)
-#   would not.
-# 2013-03-20
-# o Created.
-############################################################################

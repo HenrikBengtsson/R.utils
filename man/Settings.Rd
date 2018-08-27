@@ -78,38 +78,38 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  \preformatted{
   .First.lib <- function(libname, pkgname) {
     # Write a welcome message when package is loaded
-    pkg <- Package(pkgname);
-    assign(pkgname, pkg, pos=getPosition(pkg));
+    pkg <- Package(pkgname)
+    assign(pkgname, pkg, pos=getPosition(pkg))
 
     # Read settings file ".<pkgname>Settings" and store it in package
     # variable '<pkgname>Settings'.
-    varname <- paste(pkgname, "Settings");
-    basename <- paste(".", varname, sep="");
-    settings <- Settings$loadAnywhere(basename, verbose=TRUE);
+    varname <- paste(pkgname, "Settings")
+    basename <- paste(".", varname, sep="")
+    settings <- Settings$loadAnywhere(basename, verbose=TRUE)
     if (is.null(settings))
-      settings <- Settings(basename);
-    assign(varname, settings, pos=getPosition(pkg));
+      settings <- Settings(basename)
+    assign(varname, settings, pos=getPosition(pkg))
 
     # Detach package when R finishes, which will save package settings too.
-    onSessionExit(function(...) detachPackage(pkgname));
+    onSessionExit(function(...) detachPackage(pkgname))
 
     packageStartupMessage(getName(pkg), " v", getVersion(pkg),
         " (", getDate(pkg), ") successfully loaded. See ?", pkgname,
-        " for help.\n", sep="");
+        " for help.\n", sep="")
   } # .First.lib()
  }
 
  \bold{.Last.lib():}
  \preformatted{
   .Last.lib <- function(libpath) {
-    pkgname <- "<package name>";
+    pkgname <- "<package name>"
 
     # Prompt and save package settings when package is detached.
-    varname <- paste(pkgname, "Settings", sep="");
+    varname <- paste(pkgname, "Settings", sep="")
     if (exists(varname)) {
-      settings <- get(varname);
+      settings <- get(varname)
       if (inherits(settings, "Settings"))
-        promptAndSave(settings);
+        promptAndSave(settings)
     }
   } # .Last.lib()
  }

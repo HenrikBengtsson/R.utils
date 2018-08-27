@@ -32,7 +32,7 @@
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}}.}
-  \item{disallow}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying diallowed value sets
+  \item{disallow}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying disallowed value sets
      after coercing, i.e. \code{"NA"}.}
   \item{...}{Arguments passed to @method "getVector".}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}

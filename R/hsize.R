@@ -37,9 +37,9 @@
 #*/###########################################################################
 setMethodS3("hsize", "numeric", function(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"), bytes=getOption("hsize.bytes", "B"), ...) {
   standard <- match.arg(standard, choices=c("IEC", "JEDEC", "SI"))
-  stopifnot(is.character(units), length(units) == 1L)
-  stopifnot(is.numeric(digits), length(digits) == 1L)
-  stopifnot(is.character(bytes), length(bytes) == 1L)
+  .stop_if_not(is.character(units), length(units) == 1L)
+  .stop_if_not(is.numeric(digits), length(digits) == 1L)
+  .stop_if_not(is.character(bytes), length(bytes) == 1L)
   nsizes <- length(sizes)
 
   kunits <- list(

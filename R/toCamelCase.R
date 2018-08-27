@@ -98,26 +98,3 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
 
   s
 }, private=TRUE)
-
-############################################################################
-# HISTORY:
-# 2015-01-12
-# o BUG FIX: toCamelCase("", preserveSameCase=TRUE) would give an error.
-# 2014-04-06
-# o BUG FIX: toCamelCase(character(0L)) gave an error.
-# 2012-09-21
-# o Made the below 2011-12-05 modification available via argument
-#   'preserveSameCase'.
-# 2011-12-05 (only internally)
-# o Now toCamelCase() makes all-upper-case words into same-case words,
-#   e.g. toCamelCase("HTML View") == "htmlView" (not "hTMLView").
-# 2007-04-03
-# o BUG FIX: toCamelCase(toCamelCase(s)) would not be equal to
-#   toCamelCase(s), but instead result in all lower case letters.
-# 2007-03-24
-# o Moved to R.utils from aroma.affymetrix.
-# 2007-01-14
-# o Added Rdoc comments.
-# 2006-09-15
-# o Created. Will probably end up in R.utils some day.
-############################################################################

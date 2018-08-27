@@ -34,15 +34,9 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("lastModified", "default", function(pathname, ...) {
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
   if (!file.exists(pathname))
-    return(0);
-  info <- file.info2(pathname);
-  info$mtime;
+    return(0)
+  info <- file.info2(pathname)
+  info$mtime
 })
-
-###########################################################################
-# HISTORY:
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

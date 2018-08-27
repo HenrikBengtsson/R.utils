@@ -144,7 +144,7 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
 
       # Look them up in among the known ones?
       reposT <- known[names]
-      stopifnot(length(reposT) == length(subs))
+      .stop_if_not(length(reposT) == length(subs))
       # Which can use?
       ok <- !is.na(reposT)
       reposT <- reposT[ok]
@@ -167,7 +167,7 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
   # Argument 'sets':
   # Nothing to do?
   if (is.null(sets)) return(getOption("repos"))
-  stopifnot(is.character(sets))
+  .stop_if_not(is.character(sets))
 
   # Argument 'where':
   where <- match.arg(where)
@@ -272,19 +272,8 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
   repos <- repos[!duplicated(keys)]
 
   # Sanity check
-  stopifnot(is.character(repos))
+  .stop_if_not(is.character(repos))
 
   # Return
   repos
 } # parseRepos()
-
-
-############################################################################
-# HISTORY:
-# 2014-08-24
-# o ROBUSTNESS: Now parseRepos(..., fallback=TRUE) uses a set of fallback
-#   CRAN repository in case '@CRAN@' is not set.  If done, it will give
-#   an informative warning message.
-# 2014-05-01
-# o Created.
-############################################################################

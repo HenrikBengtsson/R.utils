@@ -65,49 +65,49 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # dword - An 4-byte unsigned integer
   readByte <- function(con, n=1) {
     readBin(con=con, what=integer(), size=1, n=n,
-                                            signed=FALSE, endian="little");
+                                            signed=FALSE, endian="little")
 
   }
 
   # word - A 2-byte unsigned integer
   readWord <- function(con, n=1) {
     readBin(con=con, what=integer(), size=2, n=n,
-                                            signed=FALSE, endian="little");
+                                            signed=FALSE, endian="little")
 
   }
 
   # qword - A 4-byte unsigned integer (actually as signed integer)
   readDWord <- function(con, n=1) {
     readBin(con=con, what=integer(), size=4, n=n,
-                                            signed=TRUE, endian="little");
+                                            signed=TRUE, endian="little")
 
   }
 
   # qword - An 8-byte unsigned integer (actually as signed integer)
   readQWord <- function(con, n=1) {
     readBin(con=con, what=integer(), size=8, n=n,
-                                            signed=TRUE, endian="little");
+                                            signed=TRUE, endian="little")
 
   }
 
   readString <- function(con, nchars=-1, unicoded=FALSE) {
     if (nchars == -1) {
-      bfr <- c();
+      bfr <- c()
       while ((byte <- readByte(con)) != 0) {
-        bfr <- c(bfr, byte);
+        bfr <- c(bfr, byte)
       }
     } else {
       if (unicoded)
-        nchars <- 2*nchars;
-      bfr <- readByte(con, n=nchars);
+        nchars <- 2*nchars
+      bfr <- readByte(con, n=nchars)
     }
 
     # Since R does not support Unicoded strings, we (incorrectly) assume
     # (=hope) that it is only the unicode characters 0:255 that are used.
     if (unicoded)
-      bfr <- bfr[bfr != 0];
+      bfr <- bfr[bfr != 0]
 
-    paste(intToChar(bfr), collapse="");
+    paste(intToChar(bfr), collapse="")
   } # readString()
 
 
@@ -116,16 +116,16 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'con':
   if (is.character(con)) {
-    con <- file(con, open="");
+    con <- file(con, open="")
 
   }
 
   if (inherits(con, "connection")) {
     if (!isOpen(con)) {
-      open(con, open="rb");
+      open(con, open="rb")
       on.exit({
         if (inherits(con, "connection") && isOpen(con))
-          close(con);
+          close(con)
       })
     }
   }
@@ -186,104 +186,104 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     showWndValue     = readDWord(con),
     hotKey           = readDWord(con),
     unknown          = readDWord(con, n=2)
-  );
+  )
 
   if (verbose) {
-    message("File header read:");
-    message(paste(capture.output(header), collapse="\n"));
+    message("File header read:")
+    message(paste(capture.output(header), collapse="\n"))
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Assert and parse header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header$magic != 76) {
-    stop("File format error: Magic dword in header is not 0000004C (76): ", header$magic);
+    stop("File format error: Magic dword in header is not 0000004C (76): ", header$magic)
   }
 
-  knownGuid <- c(1,20,2,0,0,0,0,0,192,0,0,0,0,0,0,70);
+  knownGuid <- c(1,20,2,0,0,0,0,0,192,0,0,0,0,0,0,70)
   if (!all.equal(header$guid, knownGuid)) {
-    stop("File format error: Unknown GUID: ", paste(header$guid, collapse=","));
+    stop("File format error: Unknown GUID: ", paste(header$guid, collapse=","))
   }
 
-  flags <- intToBin(header$flags);
-  flags <- rev(strsplit(flags, split="")[[1]]);
-  flags <- as.integer(flags);
-  flags <- as.logical(flags);
-  knownFlagNames <- c("hasShellItemIdList", "pointsToFileOrDirectory", "hasDescription", "hasRelativePath", "hasWorkingDirectory", "hasCommandLineArguments", "hasCustomIcon", "unicodedStrings");
+  flags <- intToBin(header$flags)
+  flags <- rev(strsplit(flags, split="")[[1]])
+  flags <- as.integer(flags)
+  flags <- as.logical(flags)
+  knownFlagNames <- c("hasShellItemIdList", "pointsToFileOrDirectory", "hasDescription", "hasRelativePath", "hasWorkingDirectory", "hasCommandLineArguments", "hasCustomIcon", "unicodedStrings")
   if (length(flags) <= length(knownFlagNames)) {
-    flags <- c(flags, rep(FALSE, length.out=length(knownFlagNames)-length(flags)));
-    names(flags) <- knownFlagNames;
+    flags <- c(flags, rep(FALSE, length.out=length(knownFlagNames)-length(flags)))
+    names(flags) <- knownFlagNames
   } else {
-    extraFlags <- sprintf("unknown%d", 1:(length(flags)-length(knownFlagNames)));
-    names(flags) <- c(knownFlagNames, extraFlags);
+    extraFlags <- sprintf("unknown%d", 1:(length(flags)-length(knownFlagNames)))
+    names(flags) <- c(knownFlagNames, extraFlags)
     if (!is.element(length(extraFlags), c(0,2))) {
-    warning("Detected a possibly unsupported file format: There are unknown 'flags' in the Windows Shortcut link file: ", paste(paste(names(flags), flags, sep="="), collapse=", "));
+    warning("Detected a possibly unsupported file format: There are unknown 'flags' in the Windows Shortcut link file: ", paste(paste(names(flags), flags, sep="="), collapse=", "))
     }
   }
-  header$flags <- flags;
+  header$flags <- flags
 
   if (header$flags["pointsToFileOrDirectory"]) {
-    fileAttributes <- intToBin(header$fileAttributes);
-    fileAttributes <- rev(strsplit(fileAttributes, split="")[[1]]);
-    fileAttributes <- as.logical(as.integer(fileAttributes));
+    fileAttributes <- intToBin(header$fileAttributes)
+    fileAttributes <- rev(strsplit(fileAttributes, split="")[[1]])
+    fileAttributes <- as.logical(as.integer(fileAttributes))
     if (length(fileAttributes) > 13)
-      stop("File format error: Too many bits in flags in header: ", length(fileAttributes));
-    fileAttributes <- c(fileAttributes, rep(FALSE, length.out=13-length(fileAttributes)));
-    names(fileAttributes) <- c("isReadOnly", "isHidden", "isSystemFile", "isVolumeLabel", "isDirectory", "isModifiedSinceLastBackup", "isEncrypted", "isNormal", "isTemporary", "isSparseFile", "hasReparsePointData", "isCompressed", "isOffline");
-    header$fileAttributes <- fileAttributes;
+      stop("File format error: Too many bits in flags in header: ", length(fileAttributes))
+    fileAttributes <- c(fileAttributes, rep(FALSE, length.out=13-length(fileAttributes)))
+    names(fileAttributes) <- c("isReadOnly", "isHidden", "isSystemFile", "isVolumeLabel", "isDirectory", "isModifiedSinceLastBackup", "isEncrypted", "isNormal", "isTemporary", "isSparseFile", "hasReparsePointData", "isCompressed", "isOffline")
+    header$fileAttributes <- fileAttributes
   } else {
     # "If the target is not a file (see flags bit 1), then this is set
     #  to zero."
     if (!all(header$fileAttributes == 0)) {
-      stop("File format error: When shortcut is not pointing to a file or a directory all file attributes should be zero.");
+      stop("File format error: When shortcut is not pointing to a file or a directory all file attributes should be zero.")
     }
-    header$fileAttributes <- NA;
+    header$fileAttributes <- NA
   }
 
   if (header$fileLength < 0) {
-    stop("File format error: File length is negative: ", header$fileLength);
+    stop("File format error: File length is negative: ", header$fileLength)
   }
 
   if (header$flags["hasCustomIcon"]) {
   } else {
     if (header$iconNumber != 0)
-      stop("File format error: Expected zero icon number: ", header$iconNumber);
+      stop("File format error: Expected zero icon number: ", header$iconNumber)
   }
 
-  swNames <- c("SW_HIDE", "SW_NORMAL", "SW_SHOWMINIMIZED", "SW_SHOWMAXIMIZED", "SW_SHOWNOACTIVATE", "SW_SHOW", "SW_MINIMIZE", "SW_SHOWMINNOACTIVE", "SW_SHOWNA", "SW_RESTORE", "SW_SHOWDEFAULT");
+  swNames <- c("SW_HIDE", "SW_NORMAL", "SW_SHOWMINIMIZED", "SW_SHOWMAXIMIZED", "SW_SHOWNOACTIVATE", "SW_SHOW", "SW_MINIMIZE", "SW_SHOWMINNOACTIVE", "SW_SHOWNA", "SW_RESTORE", "SW_SHOWDEFAULT")
   if (header$showWndValue %in% 0:10) {
-    names(header$showWndValue) <- swNames[header$showWndValue+1];
+    names(header$showWndValue) <- swNames[header$showWndValue+1]
   } else {
-      stop("File format error: showWndValue in header is out of range [0:10]: ", header$showWndValue);
+      stop("File format error: showWndValue in header is out of range [0:10]: ", header$showWndValue)
   }
 
   if (!all(header$unknown == 0)) {
-    stop("File format error: Last 2 dwords in header are not zero: ", header$unknown, sep="");
+    stop("File format error: Last 2 dwords in header are not zero: ", header$unknown, sep="")
   }
 
-  lnk <- list(header=header);
+  lnk <- list(header=header)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # The Shell Item Id List
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header$flags["hasShellItemIdList"]) {
-    bytesToRead <- readWord(con);
+    bytesToRead <- readWord(con)
     if (verbose) {
-      message("bytesToRead=", bytesToRead);
+      message("bytesToRead=", bytesToRead)
     }
-    dummy <- readByte(con, n=bytesToRead);
-    bytesToRead <- 0;
+    dummy <- readByte(con, n=bytesToRead)
+    bytesToRead <- 0
 
     while(bytesToRead > 0) {
-      itemLength <- readWord(con);
+      itemLength <- readWord(con)
       if (verbose) {
-        message("itemLength=", itemLength);
+        message("itemLength=", itemLength)
       }
-      bytesToRead <- bytesToRead-2;
-      item <- readByte(con, n=itemLength-2);
-      print(paste(intToChar(item), collapse=""));
-      str(item);
-      bytesToRead <- bytesToRead-itemLength;
+      bytesToRead <- bytesToRead-2
+      item <- readByte(con, n=itemLength-2)
+      print(paste(intToChar(item), collapse=""))
+      str(item)
+      bytesToRead <- bytesToRead-itemLength
     }
   }
 
@@ -321,37 +321,37 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
     if (fileLocationInfo$flags %in% 0:3) {
     } else {
-      stop("File format error: Unknown volume flag: ", fileLocationInfo$flags);
+      stop("File format error: Unknown volume flag: ", fileLocationInfo$flags)
     }
-    flags <- intToBin(fileLocationInfo$flags);
-    flags <- rev(strsplit(flags, split="")[[1]]);
-    flags <- as.logical(as.integer(flags));
-    flags <- c(flags, rep(FALSE, length.out=2-length(flags)));
-    names(flags) <- c("availableOnLocalVolume", "availableOnNetworkShare");
-    fileLocationInfo$flags <- flags;
+    flags <- intToBin(fileLocationInfo$flags)
+    flags <- rev(strsplit(flags, split="")[[1]])
+    flags <- as.logical(as.integer(flags))
+    flags <- c(flags, rep(FALSE, length.out=2-length(flags)))
+    names(flags) <- c("availableOnLocalVolume", "availableOnNetworkShare")
+    fileLocationInfo$flags <- flags
 
     if (fileLocationInfo$flags["availableOnLocalVolume"] != TRUE) {
       "Random garbage when bit 0 is clear in volume flags" [1]
-#      fileLocationInfo$offsetLocalVolumeInfo <- NA;
-#      fileLocationInfo$offsetBasePathname <- NA;
+#      fileLocationInfo$offsetLocalVolumeInfo <- NA
+#      fileLocationInfo$offsetBasePathname <- NA
     }
 
     if (fileLocationInfo$flags["availableOnNetworkShare"] != TRUE) {
       "Random garbage when bit 1 is clear in volume flags" [1]
-#      fileLocationInfo$offsetNetworkVolumeInfo <- NA;
+#      fileLocationInfo$offsetNetworkVolumeInfo <- NA
     }
 
     if (fileLocationInfo$firstOffset != fileLocationInfo$.offset) {
-      warning("File format warning: First offset in File Location Info is not 0x1C (28): ", fileLocationInfo$firstOffset);
+      warning("File format warning: First offset in File Location Info is not 0x1C (28): ", fileLocationInfo$firstOffset)
       # Skip to first offset
-      skip <- fileLocationInfo$firstOffset-fileLocationInfo$.offset;
-      readBin(con, what=integer(), size=1, n=skip);
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
+      skip <- fileLocationInfo$firstOffset-fileLocationInfo$.offset
+      readBin(con, what=integer(), size=1, n=skip)
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip
     }
 
     if (verbose) {
-      message("File location info:");
-      message(paste(capture.output(fileLocationInfo), collapse="\n"));
+      message("File location info:")
+      message(paste(capture.output(fileLocationInfo), collapse="\n"))
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -366,13 +366,13 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnLocalVolume"]) {
       if (verbose) {
-        message("availableOnLocalVolume...");
+        message("availableOnLocalVolume...")
       }
 
       # Skip to local volume table
-      skip <- fileLocationInfo$offsetLocalVolumeInfo-fileLocationInfo$.offset;
-      readBin(con, what=integer(), size=1, n=skip);
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
+      skip <- fileLocationInfo$offsetLocalVolumeInfo-fileLocationInfo$.offset
+      readBin(con, what=integer(), size=1, n=skip)
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip
 
       table <- list(
         length             = readDWord(con),
@@ -381,42 +381,42 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         offsetName         = readDWord(con),
         volumeLabel        = "",                                 # To be read
         .offset            = 4*4
-      );
+      )
 
       if (table$typeOfVolume %in% 0:6) {
-        names(table$typeOfVolume) <- c("Unknown", "No root directory", "Removable", "Fixed", "Remote", "CD-ROM", "Ram drive")[table$typeOfVolume+1];
+        names(table$typeOfVolume) <- c("Unknown", "No root directory", "Removable", "Fixed", "Remote", "CD-ROM", "Ram drive")[table$typeOfVolume+1]
       } else {
-        stop("File format error: Unknown type of volume: ", table$typeOfVolume);
+        stop("File format error: Unknown type of volume: ", table$typeOfVolume)
       }
 
       if (table$offsetName != table$.offset) {
-        warning("File format warning: Offset to volume name in Local Volume Table is not 0x10 (16): ", table$offsetName);
+        warning("File format warning: Offset to volume name in Local Volume Table is not 0x10 (16): ", table$offsetName)
         # Skip to volume label
-        skip <- table$offsetName-table$.offset;
-        readBin(con, what=integer(), size=1, n=skip);
-        table$.offset <- table$.offset + skip;
+        skip <- table$offsetName-table$.offset
+        readBin(con, what=integer(), size=1, n=skip)
+        table$.offset <- table$.offset + skip
       }
 
-      table$volumeLabel <- readString(con);
-      table$.offset <- table$.offset + nchar(table$volumeLabel, type="chars") + 1;
+      table$volumeLabel <- readString(con)
+      table$.offset <- table$.offset + nchar(table$volumeLabel, type="chars") + 1
 
       if (table$.offset != table$length) {
-        stop("File format error: Length of structure did not match the number of bytes read.");
+        stop("File format error: Length of structure did not match the number of bytes read.")
       }
 
       # Update the offset for file location info
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + table$.offset;
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + table$.offset
 
       # Remove obsolete information
-      table$length <- NULL;
-      table$offsetName <- NULL;
-      table$.offset <- NULL;
+      table$length <- NULL
+      table$offsetName <- NULL
+      table$.offset <- NULL
 
-      fileLocationInfo$localVolumeTable <- table;
+      fileLocationInfo$localVolumeTable <- table
 
       if (verbose) {
-        message("File location info / Local Volume Table:");
-        message(paste(capture.output(fileLocationInfo$localVolumeTable), collapse="\n"));
+        message("File location info / Local Volume Table:")
+        message(paste(capture.output(fileLocationInfo$localVolumeTable), collapse="\n"))
       }
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -426,16 +426,16 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       #  base path string and the final path string." [1]
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Skip to base pathname
-      skip <- fileLocationInfo$offsetBasePathname-fileLocationInfo$.offset;
-      readBin(con, what=integer(), size=1, n=skip);
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
-      fileLocationInfo$basePathname <- readString(con);
+      skip <- fileLocationInfo$offsetBasePathname-fileLocationInfo$.offset
+      readBin(con, what=integer(), size=1, n=skip)
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip
+      fileLocationInfo$basePathname <- readString(con)
       fileLocationInfo$.offset <- fileLocationInfo$.offset +
-                      nchar(fileLocationInfo$basePathname, type="chars") + 1;
+                      nchar(fileLocationInfo$basePathname, type="chars") + 1
 
       if (verbose) {
-        message("basePathname='", fileLocationInfo$basePathname, "'");
-        message("availableOnLocalVolume...done");
+        message("basePathname='", fileLocationInfo$basePathname, "'")
+        message("availableOnLocalVolume...done")
       }
     }
 
@@ -458,13 +458,13 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnNetworkShare"]) {
       if (verbose) {
-        message("availableOnNetworkShare...");
+        message("availableOnNetworkShare...")
       }
 
       # Skip to local volume table
-      skip <- fileLocationInfo$offsetNetworkVolumeInfo-fileLocationInfo$.offset;
-      readBin(con, what=integer(), size=1, n=skip);
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
+      skip <- fileLocationInfo$offsetNetworkVolumeInfo-fileLocationInfo$.offset
+      readBin(con, what=integer(), size=1, n=skip)
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip
 
       table <- list(
         length             = readDWord(con),
@@ -474,42 +474,42 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         unknown3           = readDWord(con),
         networkShareName   = "",                                 # To be read
         .offset            = 5*4
-      );
+      )
 
       if (table$offsetName != table$.offset) {
-        warning("File format warning: Offset to network share name in Network Volume Table is not 0x14 (20): ", table$offsetName);
+        warning("File format warning: Offset to network share name in Network Volume Table is not 0x14 (20): ", table$offsetName)
         # Skip to volume label
-        readBin(con, what=integer(), size=1, n=table$offsetName-table$.offset);
+        readBin(con, what=integer(), size=1, n=table$offsetName-table$.offset)
       }
 
-      table$networkShareName <- readString(con);
-      table$.offset <- table$.offset + nchar(table$networkShareName, type="chars") + 1;
+      table$networkShareName <- readString(con)
+      table$.offset <- table$.offset + nchar(table$networkShareName, type="chars") + 1
 
       if (verbose) {
-        message("File location info / Network Volume Table:");
-        message(paste(capture.output(table), collapse="\n"));
+        message("File location info / Network Volume Table:")
+        message(paste(capture.output(table), collapse="\n"))
       }
 
 #      if (table$.offset != table$length) {
       if (table$.offset != table$unknown2) {
-        warning("File format warning: Length of table structure did not match the number of bytes read: ", table$.offset, " != ", table$unknown2);
+        warning("File format warning: Length of table structure did not match the number of bytes read: ", table$.offset, " != ", table$unknown2)
       }
 
       # Update the offset for file location info
-      fileLocationInfo$.offset <- fileLocationInfo$.offset + table$.offset;
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + table$.offset
 
       # Remove obsolete information
-      table$length <- NULL;
-      table$offsetName <- NULL;
-      table$unknown1 <- table$unknown2 <- table$unknown3 <- NULL;
-      table$.offset <- NULL;
+      table$length <- NULL
+      table$offsetName <- NULL
+      table$unknown1 <- table$unknown2 <- table$unknown3 <- NULL
+      table$.offset <- NULL
 
-      fileLocationInfo$networkVolumeTable <- table;
+      fileLocationInfo$networkVolumeTable <- table
 
       if (verbose) {
-        message("File location info / Network Volume Table:");
-        message(paste(capture.output(fileLocationInfo$networkVolumeTable), collapse="\n"));
-        message("availableOnNetworkShare...done");
+        message("File location info / Network Volume Table:")
+        message(paste(capture.output(fileLocationInfo$networkVolumeTable), collapse="\n"))
+        message("availableOnNetworkShare...done")
       }
     }
 
@@ -517,120 +517,82 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     # The remaining pathname on network system
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Skip to remaining pathname
-    skip <- fileLocationInfo$offsetRemainingPathname-fileLocationInfo$.offset;
-    readBin(con, what=integer(), size=1, n=skip);
-    fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
+    skip <- fileLocationInfo$offsetRemainingPathname-fileLocationInfo$.offset
+    readBin(con, what=integer(), size=1, n=skip)
+    fileLocationInfo$.offset <- fileLocationInfo$.offset + skip
 
-    fileLocationInfo$remainingPathname <- readString(con);
+    fileLocationInfo$remainingPathname <- readString(con)
     fileLocationInfo$.offset <- fileLocationInfo$.offset +
-               nchar(fileLocationInfo$remainingPathname, type="chars") + 1;
+               nchar(fileLocationInfo$remainingPathname, type="chars") + 1
 
 
     if (fileLocationInfo$length != fileLocationInfo$.offset) {
-      stop("File format error: Expected to read ", fileLocationInfo$length, " bytes in File Location Info structure, but read ", fileLocationInfo$.offset);
+      stop("File format error: Expected to read ", fileLocationInfo$length, " bytes in File Location Info structure, but read ", fileLocationInfo$.offset)
     }
 
     # Remove obsolete information
-    fileLocationInfo$length <- NULL;
-    fileLocationInfo$firstOffset <- NULL;
-    fileLocationInfo$offsetBasePathname <- NULL;
-    fileLocationInfo$offsetLocalVolumeInfo <- NULL;
-    fileLocationInfo$offsetNetworkVolumeInfo <- NULL;
-    fileLocationInfo$offsetRemainingPathname <- NULL;
-    fileLocationInfo$.offset <- NULL;
+    fileLocationInfo$length <- NULL
+    fileLocationInfo$firstOffset <- NULL
+    fileLocationInfo$offsetBasePathname <- NULL
+    fileLocationInfo$offsetLocalVolumeInfo <- NULL
+    fileLocationInfo$offsetNetworkVolumeInfo <- NULL
+    fileLocationInfo$offsetRemainingPathname <- NULL
+    fileLocationInfo$.offset <- NULL
 
-    lnk$fileLocationInfo <- fileLocationInfo;
+    lnk$fileLocationInfo <- fileLocationInfo
   } else {
-    lnk$fileLocationInfo <- NA;
+    lnk$fileLocationInfo <- NA
   } # if (header$flags["pointsToFileOrDirectory"])
 
-  unicoded <- header$flags["unicodedStrings"];
+  unicoded <- header$flags["unicodedStrings"]
 
   if (header$flags["hasDescription"]) {
-    nchars <- readWord(con);
-    lnk$description <- readString(con, nchars=nchars, unicoded=unicoded);
+    nchars <- readWord(con)
+    lnk$description <- readString(con, nchars=nchars, unicoded=unicoded)
   }
 
   if (header$flags["hasRelativePath"]) {
-    nchars <- readWord(con);
-    lnk$relativePath <- readString(con, nchars=nchars, unicoded=unicoded);
+    nchars <- readWord(con)
+    lnk$relativePath <- readString(con, nchars=nchars, unicoded=unicoded)
   }
 
   if (header$flags["hasWorkingDirectory"]) {
-    nchars <- readWord(con);
-    lnk$workingDirectory <- readString(con, nchars=nchars, unicoded=unicoded);
+    nchars <- readWord(con)
+    lnk$workingDirectory <- readString(con, nchars=nchars, unicoded=unicoded)
   }
 
   if (header$flags["hasCommandLineArguments"]) {
-    nchars <- readWord(con);
-    lnk$commandLineArguments <- readString(con, nchars=nchars, unicoded=unicoded);
+    nchars <- readWord(con)
+    lnk$commandLineArguments <- readString(con, nchars=nchars, unicoded=unicoded)
   }
 
   if (header$flags["hasCustomIcon"]) {
-    nbytes <- readWord(con);
-    lnk$iconFilename <- readString(con, nchars=nchars, unicoded=unicoded);
+    nbytes <- readWord(con)
+    lnk$iconFilename <- readString(con, nchars=nchars, unicoded=unicoded)
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # For convenience
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  value <- lnk$relativePath;
+  value <- lnk$relativePath
   if (!is.null(value)) {
-    lnk$relativePathname <- value;
+    lnk$relativePathname <- value
   }
 
   if (header$flags["pointsToFileOrDirectory"]) {
     if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
       lnk$pathname <- paste(lnk$fileLocationInfo$basePathname,
-                           lnk$fileLocationInfo$remainingPathname, sep="");
+                           lnk$fileLocationInfo$remainingPathname, sep="")
     }
 
     if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
       lnk$networkPathname <-
             paste(lnk$fileLocationInfo$networkVolumeTable$networkShareName,
-                     "\\", lnk$fileLocationInfo$remainingPathname, sep="");
+                     "\\", lnk$fileLocationInfo$remainingPathname, sep="")
     }
   } # if (header$flags["pointsToFileOrDirectory"])
 
 
-  lnk;
+  lnk
 }) # readWindowsShortcut()
-
-
-#############################################################################
-# HISTORY:
-# 2012-10-29
-# o Now readWindowsShortcut() returns list element 'relativePathname',
-#   which is identical to 'relativePath'.  This is just to be consistent
-#   with the new readWindowsShellLink().
-# 2011-09-24
-# o Internal readDWord() and readQWord() of readWindowsShortcut() would
-#   try read 4- and 8-byte integers as non-signed, which is not supported
-#   by base::readBin() and hence instead read as signed integers.
-# 2009-10-01
-# o Microsoft has released a document [7] describing the LNK file format.
-# 2009-05-14
-# o Added another reference to the Rdocs.
-# 2008-12-03
-# o BUG FIX: At least on Windows Vista, for some shortcut files that linked
-#   to a Windows network file system, there were more than the 8 known bits
-#   in the file flags.  This generated an error.  Known they are quitely
-#   accepted with a warning.
-# 2007-12-08
-# o CLEAN UP: Replaced all stop(paste()) with stop().
-# 2007-08-24
-# o BUG FIX: Inside if (header$flags["hasCustomIcon"]) {}, non-used variable
-#   'nbytes' was used instead of intended 'nchars'.
-# 2005-10-17
-# o BUG FIX: Had problems reading Network only links.  This was because it
-#   still read the local base pathname although it shouldn't.
-# 2005-05-27
-# o Moved to R.utils package.
-# 2004-07-25
-# o BUG FIX: If the logical flag 'availableOnNetworkShare' in
-#   'File Location Information flags' was FALSE, the internal vector 'flags'
-#   would be too short and names() would give an error.
-# 2004-06-28
-# o Created.
-#############################################################################

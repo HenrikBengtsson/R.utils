@@ -47,26 +47,17 @@
 setMethodS3("readTableIndex", "default", function(..., indexColumn=1, colClass="character", verbose=FALSE) {
   # Argument 'indexColumn':
   if (is.numeric(indexColumn)) {
-    indexColumn <- Arguments$getIndex(indexColumn);
+    indexColumn <- Arguments$getIndex(indexColumn)
   } else {
-    indexColumn <- Arguments$getCharacter(indexColumn);
+    indexColumn <- Arguments$getCharacter(indexColumn)
   }
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
 
   # Create column classes. readTable() will extend this to "NULL" if missing.
-  colClasses <- c(rep("NULL", times=indexColumn-1), colClass);
-  index <- readTable(..., colClasses=colClasses, defColClass="NULL", verbose=verbose);
+  colClasses <- c(rep("NULL", times=indexColumn-1), colClass)
+  index <- readTable(..., colClasses=colClasses, defColClass="NULL", verbose=verbose)
 
-  unname(index[[1]]);
+  unname(index[[1]])
 })
-
-
-############################################################################
-# HISTORY:
-# 2005-11-10
-# o BUG FIX: Method was declared static.
-# 2005-11-01
-# o Created.
-############################################################################

@@ -37,7 +37,7 @@
 #  This method utilizes @see "base::setTimeLimit" by first setting the
 #  timeout limits, then evaluating the expression that may or may not
 #  timeout.  The method is guaranteed to reset the timeout limits to be
-#  infitely long upon exiting, regardless whether it returns normally
+#  infinitely long upon exiting, regardless whether it returns normally
 #  or preemptively due to a timeout or an error.
 # }
 #
@@ -73,7 +73,7 @@
 #  calls that may take very long such as large object allocation and
 #  \code{rnorm(n)} where \code{n} is very large.
 #
-#  (*) Note that on Unux and macOS, \code{Sys.sleep(time)} will signal a
+#  (*) Note that on Unix and macOS, \code{Sys.sleep(time)} will signal a
 #      timeout error only \emph{after} \code{time} seconds passed,
 #      regardless of \code{timeout} limit (< \code{time}).
 # }
@@ -107,70 +107,41 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
     throw("Argument 'envir' is not a list: ", class(envir)[1L])
 
   # Argument 'cpu' and 'elapsed':
-  cpu <- Arguments$getNumeric(cpu, range=c(0,Inf));
-  elapsed <- Arguments$getNumeric(elapsed, range=c(0,Inf));
+  cpu <- Arguments$getNumeric(cpu, range=c(0,Inf))
+  elapsed <- Arguments$getNumeric(elapsed, range=c(0,Inf))
 
   # Argument 'onTimeout':
-  onTimeout <- match.arg(onTimeout);
+  onTimeout <- match.arg(onTimeout)
 
 
-  # Default result value
-  res <- invisible();
-
-  setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE);
+  setTimeLimit(cpu=cpu, elapsed=elapsed, transient=TRUE)
   on.exit({
-    setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE);
-  });
+    setTimeLimit(cpu=Inf, elapsed=Inf, transient=FALSE)
+  })
 
   tryCatch({
-    eval(expr, envir=envir);
+    eval(expr, envir=envir)
   }, error = function(ex) {
-    msg <- ex$message;
+    msg <- ex$message
     # Was it a timeout?
     pattern <- gettext("reached elapsed time limit", "reached CPU time limit", domain="R")
     pattern <- paste(pattern, collapse = "|")
     if (regexpr(pattern, msg) != -1L) {
-      ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed);
+      ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed)
       if (onTimeout == "error") {
-        throw(ex);
+        throw(ex)
       } else if (onTimeout == "warning") {
-        warning(getMessage(ex));
+        warning(getMessage(ex))
       } else if (onTimeout == "silent") {
       }
     } else {
       # Rethrow error
-      throw(ex);
+      throw(ex)
     }
   })
 } # withTimeout()
 
-# BACKWARD COMPATIBILITY
-evalWithTimeout <- local({
-  fcn <- withTimeout
-  expr <- body(fcn)
-  expr <- expr[c(1:2, 2:length(expr))]
-  expr[[2]] <- quote(.Deprecated(new = "withTimeout"))
-  body(fcn) <- expr
-  fcn
-})
 
-
-############################################################################
-# HISTORY:
-# 2012-10-09 [HB on Kauai]
-# o BUG FIX: evalWithTimeout() would not reset the time limits after
-#   returning. Thanks to Gregory Ryslik at Yale University for reporting
-#   on this.
-# 2011-12-30
-# o DOCUMENTATION: The help now explains that evalWithTimeout(readline())
-#   does not throw a timeout exception until after readline() returns.
-# 2011-12-16
-# o GENERALIZATION: evalWithTimeout() would fail to detect timeouts
-#   in non-English locales.
-# o Improved the Rd help.
-# o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.
-# 2010-12-07
-# o Added Rdoc comments with an example.
-# 2010-12-06
-# o Created.
-############################################################################
+evalWithTimeout <- function(...) {
+  .Defunct(new = "R.utils::withTimeout()")
+}

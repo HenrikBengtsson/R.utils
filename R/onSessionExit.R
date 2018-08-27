@@ -34,7 +34,7 @@
 #
 # \examples{\dontrun{
 #   onSessionExit(function(...) {
-#     message("Bye bye world!");
+#     message("Bye bye world!")
 #   })
 #
 #   quit()
@@ -50,19 +50,10 @@
 setMethodS3("onSessionExit", "default", function(fcn, action = c("prepend", "append", "replace"), ...) {
   # Argument 'fcn':
   if (!is.function(fcn))
-    throw("Argument 'fcn' is not a function: ", mode(fcn));
+    throw("Argument 'fcn' is not a function: ", mode(fcn))
 
   # Argument 'action':
-  action <- match.arg(action);
+  action <- match.arg(action)
 
-  setHook("onSessionExit", fcn, action=action);
+  setHook("onSessionExit", fcn, action=action)
 })
-
-
-############################################################################
-# HISTORY:
-# 2005-06-11
-# Now onSessionExit() prepends (and appends) hook functions by default.
-# 2005-06-10
-# o Created. Followed up with a query on r-devel for a better solution.
-############################################################################

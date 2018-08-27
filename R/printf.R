@@ -44,12 +44,5 @@
 # @keyword utilities
 #*/########################################################################### 
 setMethodS3("printf", "default", function(fmt, ..., sep="", file="") {
-  base::cat(base::sprintf(fmt, ...), file=file, sep=sep);
+  base::cat(base::sprintf(fmt, ...), file=file, sep=sep)
 })
-
-
-############################################################################
-# HISTORY:
-# 2006-06-09
-# o Created.
-############################################################################

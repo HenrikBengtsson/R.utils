@@ -26,7 +26,7 @@
     to be moved.}
   \item{to}{The destination position like the \code{from} argument.}
   \item{where}{A \code{\link[base]{character}} string specify where in relation to the
-    destination position the enviroment should be moved.}
+    destination position the environment should be moved.}
   \item{...}{Not used.}
 }
 

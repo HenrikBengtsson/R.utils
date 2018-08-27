@@ -6,7 +6,7 @@
 # \description{
 #  @classhierarchy
 #  
-#  @get "title" occuring when a set of R expressions executed did not
+#  @get "title" occurring when a set of R expressions executed did not
 #  finish in time.
 # }
 #
@@ -15,7 +15,7 @@
 # \arguments{
 #   \item{...}{Any arguments accepted by @see "Exception"}.
 #   \item{cpu, elapsed}{The maximum time the R expressions were allowed
-#     to be running before the timeout occured as measured in CPU time
+#     to be running before the timeout occurred as measured in CPU time
 #     and (physically) elapsed time.}
 # }
 #
@@ -37,7 +37,7 @@ setConstructorS3("TimeoutException", function(..., cpu=NA, elapsed=NA) {
   extend(Exception(...), "TimeoutException",
     cpu = cpu,
     elapsed = elapsed
-  );
+  )
 })
 
 ###########################################################################/**
@@ -70,15 +70,5 @@ setConstructorS3("TimeoutException", function(..., cpu=NA, elapsed=NA) {
 # \keyword{error}
 #*/###########################################################################  
 setMethodS3("getMessage", "TimeoutException", function(this, ...) {
-  sprintf("%s [cpu=%ss, elapsed=%ss]", this$.msg, this$cpu, this$elapsed);
+  sprintf("%s [cpu=%ss, elapsed=%ss]", this$.msg, this$cpu, this$elapsed)
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2010-12-07
-# o Added Rdoc comments.
-# 2010-12-06
-# o Created.
-############################################################################

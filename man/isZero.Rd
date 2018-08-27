@@ -39,7 +39,7 @@
   \item{...}{Not used.}
 }
 
-\value{Returns a \code{\link[base]{logical}} \code{\link[base]{vector}} indicating if the elments are zero or not.}
+\value{Returns a \code{\link[base]{logical}} \code{\link[base]{vector}} indicating if the elements are zero or not.}
 
 \author{Henrik Bengtsson}
 

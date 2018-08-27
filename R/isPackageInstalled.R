@@ -29,18 +29,7 @@
 #*/###########################################################################
 setMethodS3("isPackageInstalled", "default", function(package, ...) {
   suppressWarnings({
-    paths <- sapply(package, FUN=function(p) system.file(package=p));
-  });
-  (paths != "");
+    paths <- sapply(package, FUN=function(p) system.file(package=p))
+  })
+  (paths != "")
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-04-06
-# o Vectorized isPackageInstalled().
-# 2013-08-30
-# o Now isPackageInstalled() suppresses warnings.
-# 2009-01-11
-# o Created.
-############################################################################

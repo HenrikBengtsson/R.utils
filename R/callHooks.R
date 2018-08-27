@@ -25,7 +25,7 @@
 # @author
 #
 # \seealso{
-#   Internally, after retriving hook functions, @see "callHooks.list" is
+#   Internally, after retrieving hook functions, @see "callHooks.list" is
 #   called.
 # }
 #
@@ -33,30 +33,30 @@
 #*/###########################################################################
 setMethodS3("callHooks", "default", function(hookName, ..., removeCalledHooks=FALSE) {
   # Argument 'hookName':
-  hookName <- as.character(hookName);
+  hookName <- as.character(hookName)
   if (length(hookName) != 1) {
     throw("Argument 'hookName' must be a single character string: ",
-                                                            length(hookName));
+                                                            length(hookName))
   }
 
   # Argument 'removeCalledHooks':
-  removeCalledHooks <- as.logical(removeCalledHooks);
+  removeCalledHooks <- as.logical(removeCalledHooks)
 
-  hooks <- getHook(hookName);
+  hooks <- getHook(hookName)
   if (length(hooks) == 0)
-    return();
+    return()
 
   if (!is.list(hooks))
-    hooks <- list(hooks);
+    hooks <- list(hooks)
 
   if (removeCalledHooks) {
-    on.exit(setHook(hookName, hooks[failedHooks], action="replace"));
+    on.exit(setHook(hookName, hooks[failedHooks], action="replace"))
   }
 
-  res <- callHooks(hooks, ...);
-  failedHooks <- attr(res, "failedHooks");
+  res <- callHooks(hooks, ...)
+  failedHooks <- attr(res, "failedHooks")
 
-  invisible(res);
+  invisible(res)
 })
 
 
@@ -96,62 +96,48 @@ setMethodS3("callHooks", "default", function(hookName, ..., removeCalledHooks=FA
 #*/###########################################################################
 setMethodS3("callHooks", "list", function(hooks, ...) {
   # Argument 'hooks':
-  nhooks <- length(hooks);
+  nhooks <- length(hooks)
   if (nhooks == 0)
-    return();
+    return()
 
-  res <- vector(nhooks, mode="list");
+  res <- vector(nhooks, mode="list")
 
-  failedHooks <- rep(TRUE, times=nhooks);
-  hookNames <- character(nhooks);
+  failedHooks <- rep(TRUE, times=nhooks)
+  hookNames <- character(nhooks)
   for (kk in seq_len(nhooks)) {
     # Get the hook function
-    fcn <- hooks[[kk]];
-    tmp <- list(fcn=fcn, result=NULL, exception=NULL);
+    fcn <- hooks[[kk]]
+    tmp <- list(fcn=fcn, result=NULL, exception=NULL)
     if (is.character(fcn)) {
-      hookNames[[kk]] <- fcn;
+      hookNames[[kk]] <- fcn
       tryCatch({
-        fcn <- get(fcn, mode="function");
+        fcn <- get(fcn, mode="function")
       }, error = function(ex) {
-        tmp[["fcn"]] <<- NA;
-        tmp[["exception"]] <<- ex;
+        tmp[["fcn"]] <<- NA
+        tmp[["exception"]] <<- ex
       })
     }
 
     # Try to call the hook function
     if (!is.null(fcn)) {
       tryCatch({
-        result <- fcn(...);
-        tmp[["result"]] <- result;
-        failedHooks[kk] <- FALSE;
+        result <- fcn(...)
+        tmp[["result"]] <- result
+        failedHooks[kk] <- FALSE
       }, error = function(ex) {
-        tmp[["exception"]] <<- ex;
+        tmp[["exception"]] <<- ex
       })
     }
-    res[[kk]] <- tmp;
+    res[[kk]] <- tmp
   }
 
-  names(res) <- hookNames;
-  attr(res, "failedHooks") <- failedHooks;
+  names(res) <- hookNames
+  attr(res, "failedHooks") <- failedHooks
 
-  invisible(res);
+  invisible(res)
 })
 
 
 setMethodS3("callHooks", "function", function(hooks, ...) {
-  callHooks(list(hooks), ...);
+  callHooks(list(hooks), ...)
 })
-
-
-############################################################################
-# HISTORY:
-# 2006-04-13
-# o Added callHooks() for lists.  This way hook functions can be pre-fetched
-#   by name once if called multiple times.
-# 2005-06-15
-# o Now callHooks() returns a detailed list of hooks called, their return
-#   values and any exceptions caught.
-# o Added arguments '...', which are passed to the hook function.
-# 2005-06-10
-# o Created.
-############################################################################

@@ -32,48 +32,48 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   readlink <- function(path) {
-    if (!file.exists(path)) return(NA_character_);
+    if (!file.exists(path)) return(NA_character_)
 
     # Only files with zero size are candidates for symbolic file links
-    info <- file.info(path);
-    if (is.na(info$size) || info$size > 0) return("");
+    info <- file.info(path)
+    if (is.na(info$size) || info$size > 0) return("")
 
     # Temporarily change working directory
-    path <- normalizePath(path, mustWork=FALSE);
-    dir <- dirname(path);
-    opwd <- setwd(dir);
-    on.exit(setwd(opwd));
-    path <- basename(path);
+    path <- normalizePath(path, mustWork=FALSE)
+    dir <- dirname(path)
+    opwd <- setwd(dir)
+    on.exit(setwd(opwd))
+    path <- basename(path)
 
     # List all files
     bfr <- shell("dir", shell=Sys.getenv("COMSPEC"),
-                        mustWork=TRUE, intern=TRUE);
+                        mustWork=TRUE, intern=TRUE)
 
-    setwd(opwd);
+    setwd(opwd)
 
     # Search for symbolic file or directory links
-    pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path);
-    bfr <- grep(pattern, bfr, value=TRUE);
+    pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path)
+    bfr <- grep(pattern, bfr, value=TRUE)
 
     # Not a symbolic link?
-    if (length(bfr) == 0L) return("");
+    if (length(bfr) == 0L) return("")
 
     # Sanity check
-    link <- gsub(pattern, "\\2", bfr);
-    stopifnot(identical(link, path));
+    link <- gsub(pattern, "\\2", bfr)
+    .stop_if_not(identical(link, path))
 
     # Extract the target
-    target <- gsub(pattern, "\\3", bfr);
+    target <- gsub(pattern, "\\3", bfr)
 
     # Relative path?
     if (!isAbsolutePath(target)) {
       # Prepend working directory
-      target <- file.path(dir, target);
+      target <- file.path(dir, target)
       # Return the relative pathname, iff possible
-      target <- getRelativePath(target);
+      target <- getRelativePath(target)
     }
 
-    target;
+    target
   } # readlink()
 
 
@@ -81,26 +81,26 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'return':
-  what <- match.arg(what);
+  what <- match.arg(what)
 
 
   # Workaround for Windows?
   if (.Platform$OS.type == "windows") {
-    pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE);
+    pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE)
   } else {
-    pathsR <- Sys.readlink(paths);
+    pathsR <- Sys.readlink(paths)
   }
 
   # If target specify a filename without a path, append path
   if (what == "corrected") {
-    isRel <- !is.na(pathsR) & (pathsR != "") & !sapply(pathsR, FUN=isAbsolutePath);
+    isRel <- !is.na(pathsR) & (pathsR != "") & !sapply(pathsR, FUN=isAbsolutePath)
     if (any(isRel)) {
-      dirs <- dirname(paths[isRel]);
-      pathsR[isRel] <- file.path(dirs, pathsR[isRel]);
+      dirs <- dirname(paths[isRel])
+      pathsR[isRel] <- file.path(dirs, pathsR[isRel])
     }
   }
 
-  pathsR;
+  pathsR
 } # Sys.readlink2()
 
 
@@ -139,52 +139,38 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
 # @keyword internal
 #**/#######################################################################
 file.info2 <- function(...) {
-  info <- file.info(...);
+  info <- file.info(...)
 
   # Nothing todo?
   if (.Platform$OS.type != "windows") {
-    return(info);
+    return(info)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Workaround for symbolic file links on Windows
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Only files with zero size are candidates for symbolic links
-  idxs <- which(!is.na(info$size) & info$size == 0);
+  idxs <- which(!is.na(info$size) & info$size == 0)
 
   # Nothing todo?
-  if (length(idxs) == 0L) return(info);
+  if (length(idxs) == 0L) return(info)
 
   # Candidate pathnames
-  pathnames <- rownames(info)[idxs];
+  pathnames <- rownames(info)[idxs]
 
   # Translate
-  pathnames <- sapply(pathnames, FUN=Sys.readlink2);
+  pathnames <- sapply(pathnames, FUN=Sys.readlink2)
 
   # Drop non-symbolic links
-  keep <- (!is.na(pathnames) & nchar(pathnames, type="chars") > 0L);
-  pathnames <- pathnames[keep];
-  idxs <- idxs[keep];
+  keep <- (!is.na(pathnames) & nchar(pathnames, type="chars") > 0L)
+  pathnames <- pathnames[keep]
+  idxs <- idxs[keep]
 
   # Nothing todo?
-  if (length(idxs) == 0L) return(info);
+  if (length(idxs) == 0L) return(info)
 
   # Update file info for the targets (preserving the link names)
-  info[idxs,] <- file.info(pathnames);
+  info[idxs,] <- file.info(pathnames)
 
-  info;
+  info
 } # file.info2()
-
-
-############################################################################
-# HISTORY:
-# 2014-01-10
-# o Added argument 'what' to Sys.readlink2(), where what="corrected"
-#   makes sure to return the proper target path (not just the one
-#   relative to where the link lives).
-# 2014-01-06
-# o Added file.info2().
-# o Added Sys.readlink2().
-# o Created. See also R-devel thread 'file.info() on a file.symlink():ed
-#   file on Windows - is help correct?' on 2014-01-06.
-############################################################################

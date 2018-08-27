@@ -51,43 +51,35 @@ setMethodS3("subplots", "default", function(n=1, nrow=NULL, ncol=NULL,
                                                           byrow=TRUE, ...) {
   # If a vector was passed, then use the length of the vector for 'n'
   if (!missing(n) && length(n) > 1)
-    n <- length(n);
+    n <- length(n)
 
   if (!is.null(nrow) && !is.null(ncol) && !missing(n)) {
     if (n != nrow*ncol)
-      stop("Arguments 'nrow' and 'ncol' is incompatible with argument 'n'. Do you really want to specify all three?!");
+      stop("Arguments 'nrow' and 'ncol' is incompatible with argument 'n'. Do you really want to specify all three?!")
   }
 
   if (missing(n)) {
-    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow)
   } else {
     if (n == 1) {
       nrow <- ncol <- 1
     } else if (!is.null(nrow)) {
-      ncol <- ceiling(n / nrow);
+      ncol <- ceiling(n / nrow)
     } else if (!is.null(ncol)) {
-      nrow <- ceiling(n / ncol);
+      nrow <- ceiling(n / ncol)
     } else {
-      side <- sqrt(n);
-      nrow <- floor(side);
-        ncol <- ncol-1;
-      ncol <- ceiling(n / nrow);
+      side <- sqrt(n)
+      nrow <- floor(side)
+        ncol <- ncol-1
+      ncol <- ceiling(n / nrow)
       if (ncol - nrow > 1) {
-        nrow <- nrow+1;
-        ncol <- ceiling(n / nrow);
+        nrow <- nrow+1
+        ncol <- ceiling(n / nrow)
       }
     }
-    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow);
+    layout <- matrix(seq_len(nrow*ncol), nrow=nrow, ncol=ncol, byrow=byrow)
   }
 
-  layout(layout, ...);
-  invisible(layout);
+  layout(layout, ...)
+  invisible(layout)
 })
-
-
-############################################################################
-# HISTORY:
-# 2008-12-17
-# o Created by extracting it from subplots() of the Device class in the
-#   obsolete R.graphics package.
-############################################################################

@@ -26,7 +26,7 @@
 # }
 #
 # \details{
-#  This method immitates @see "utils::capture.output" with the major
+#  This method imitates @see "utils::capture.output" with the major
 #  difference that it captures strings via a @raw connection rather
 #  than via internal strings.  The latter becomes exponentially slow
 #  for large outputs [1,2].
@@ -56,36 +56,36 @@
 captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=parent.frame()) {
   # Argument 'file':
   # Default is to capture via a raw connection
-  if (is.null(file)) file <- raw(0L);
+  if (is.null(file)) file <- raw(0L)
 
   # It is still possible to capture via a string
-  if (identical(file, character(0L))) file <- NULL;
+  if (identical(file, character(0L))) file <- NULL
 
   # How to capture output?
   if (is.raw(file)) {
     # Via a temporary raw connection? [MUCH FASTER]
     res <- eval({
-      file <- rawConnection(raw(0L), open="w");
+      file <- rawConnection(raw(0L), open="w")
       on.exit({
-        if (!is.null(file)) close(file);
+        if (!is.null(file)) close(file)
       })
 
-      capture.output(expr, file=file);
+      capture.output(expr, file=file)
 
-      res <- rawConnectionValue(file);
-      close(file);
+      res <- rawConnectionValue(file)
+      close(file)
       file <- NULL; # Not needed anymore
 
       # Convert to character
-      res <- rawToChar(res);
+      res <- rawToChar(res)
 
       res
-    }, envir=envir, enclos=envir);
+    }, envir=envir, enclos=envir)
   } else {
     # Backward compatibility, i.e. capture to file
     res <- eval({
-      capture.output(expr, file=file, append=append);
-    }, envir=envir, enclos=envir);
+      capture.output(expr, file=file, append=append)
+    }, envir=envir, enclos=envir)
 
     return(invisible(res))
   }
@@ -101,18 +101,5 @@ captureOutput <- function(expr, file=NULL, append=FALSE, collapse=NULL, envir=pa
   ## Merge back using the collapse string?
   if (!is.null(collapse)) res <- paste(res, collapse=collapse)
 
-  res;
+  res
 } # captureOutput()
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-08
-# o captureOutput(..., collapse="\n") no longer appends newline at the end.
-# 2014-05-01
-# o Immitates arguments of capture.output() plus 'collapse'.
-# o Renamed to captureOutput().
-# 2014-02-03
-# o Added .captureViaRaw().
-# o Created.
-##############################################################################

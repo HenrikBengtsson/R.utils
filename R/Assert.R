@@ -28,7 +28,7 @@ setConstructorS3("Assert", function(...) {
 #########################################################################/**
 # @RdocMethod isScalar
 #
-# @title "Static method asserting thatan object is a single value"
+# @title "Static method asserting that an object is a single value"
 # 
 # \description{
 #   @get "title".
@@ -52,12 +52,12 @@ setConstructorS3("Assert", function(...) {
 # }
 #*/######################################################################### 
 setMethodS3("isScalar", "Assert", function(static, x, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (length(x) != 1)
-    throw("Argument '", name, "' is not a scalar.");
+    throw("Argument '", name, "' is not a scalar.")
   if (is.matrix(x))
-    throw("Argument '", name, "' is not a scalar.");
-  invisible(TRUE);
+    throw("Argument '", name, "' is not a scalar.")
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -65,7 +65,7 @@ setMethodS3("isScalar", "Assert", function(static, x, ...) {
 #########################################################################/**
 # @RdocMethod isVector
 #
-# @title "Static method asserting thatan object is a vector"
+# @title "Static method asserting that an object is a vector"
 # 
 # \description{
 #   @get "title".
@@ -90,12 +90,12 @@ setMethodS3("isScalar", "Assert", function(static, x, ...) {
 # }
 #*/######################################################################### 
 setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (!is.vector(x))
-    throw("Argument '", name, "' is not a vector.");
+    throw("Argument '", name, "' is not a vector.")
   if (!is.null(length) && length(x) != length)
-    throw("Argument '", name, "' is not a vector of length ", length, ": ", length(x));
-  invisible(TRUE);
+    throw("Argument '", name, "' is not a vector of length ", length, ": ", length(x))
+  invisible(TRUE)
 }, static=TRUE)
 
 
@@ -103,7 +103,7 @@ setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
 #########################################################################/**
 # @RdocMethod isMatrix
 #
-# @title "Static method asserting thatan object is a matrix"
+# @title "Static method asserting that an object is a matrix"
 # 
 # \description{
 #   @get "title".
@@ -129,24 +129,26 @@ setMethodS3("isVector", "Assert", function(static, x, length=NULL, ...) {
 # }
 #*/######################################################################### 
 setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...) {
-  name <- as.character(substitute(x));
+  name <- as.character(substitute(x))
   if (!is.matrix(x))
-    throw("Argument '", name, "' is not a matrix.");
+    throw("Argument '", name, "' is not a matrix.")
 
   if (!is.null(nrow) && nrow(x) != nrow) {
-    throw("Argument '", name, "' is not a matrix with ", nrow, " rows: ", nrow(x));
+    throw("Argument '", name, "' is not a matrix with ", nrow, " rows: ", nrow(x))
   }
 
   if (!is.null(ncol) && ncol(x) != ncol) {
-    throw("Argument '", name, "' is not a matrix with ", ncol, " columns: ", ncol(x));
+    throw("Argument '", name, "' is not a matrix with ", ncol, " columns: ", ncol(x))
   }
 
-  invisible(TRUE);
+  invisible(TRUE)
 }, static=TRUE)
 
 
 #########################################################################/**
-# @RdocMethod inherits
+# @RdocMethod inheritsFrom
+# @alias inheritsFrom
+# @aliasmethod inherits
 #
 # @title "Static method asserting that an object inherits from of a certain class"
 # 
@@ -172,11 +174,16 @@ setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...)
 #   @seeclass
 # }
 #*/######################################################################### 
-setMethodS3("inherits", "Assert", function(static, object, class, ...) {
-  name <- as.character(substitute(x));
+setMethodS3("inheritsFrom", "Assert", function(static, object, class, ...) {
+  name <- as.character(substitute(x))
   if (!inherits(object, class))
-    throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "));
-  invisible(TRUE);
+    throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "))
+  invisible(TRUE)
+}, static=TRUE)
+
+setMethodS3("inherits", "Assert", function(static, object, class, ...) {
+  .Deprecated(msg = "Assert$inherits() is deprecated and has been renamed to Assert$inheritsFrom()")
+  inheritsFrom(static, object = object, class = class, ...)
 }, static=TRUE)
 
 
@@ -213,25 +220,10 @@ setMethodS3("inherits", "Assert", function(static, object, class, ...) {
 setMethodS3("check", "Assert", function(static, condition, message=NULL, ...) {
   if (!identical(condition, TRUE)) {
     if (is.null(message)) {
-      message <- paste(as.character(substitute(condition)), collapse=" ");
-      message <- paste("A condition was not met: ", message, sep="");
+      message <- paste(as.character(substitute(condition)), collapse=" ")
+      message <- paste("A condition was not met: ", message, sep="")
     }
-    throw(message);
+    throw(message)
   }
-  invisible(TRUE);
+  invisible(TRUE)
 }, static=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2005-05-31
-# o Added Rdoc comments.
-# 2004-02-12
-# o Made the dimension arguments for isVector() and isMatrix() optional.
-# 2003-12-10
-# o Added inherits().
-# 2003-12-08
-# o Added check().
-# 2003-12-07
-# o Created.
-############################################################################

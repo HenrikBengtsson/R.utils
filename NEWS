@@ -2,6 +2,32 @@
 Package: R.utils
 ================
 
+Version: 2.7.0 [2018-08-26]
+
+NEW FEATURES:
+
+ o Added nullcon() that returns a (binary) connection to the nullfile().
+
+PERFORMANCE:
+
+ o readTable() no longer runs the garbage collector - was done so implicitly
+   through an internal system.time() call without using gcFirst = FALSE.
+
+BUG FIXES:
+
+ o Rscript -e "R.utils::cmdArg(a=42L)" -a:=1:3 would set 'a' to NA_integer_.
+ 
+DEPRECATE AND DEFUNCT:
+
+ o evalWithTimeout() is now defunct. Use withTimeout() instead.
+ 
+ o arrayIndex() is now defunct. Use base::arrayInd() instead.
+
+ o Assert$inherits() is deprecated - renamed to Assert$inheritsFrom().
+
+ o Removed deprecated and ignored argument 'reset' of warnings() for Verbose.
+
+
 Version: 2.6.0 [2017-11-05]
 
 NEW FEATURES:
@@ -19,7 +45,7 @@ NEW FEATURES:
 
  o All withNnn() functions gained argument 'substitute' making it possible to
    pass an expression object, e.g. withTimeout(expr, subsitute = FALSE, ...).
-   The expection is withCapture(), where, the now deprecated (see below),
+   The exception is withCapture(), where, the now deprecated (see below),
    argument 'substitute' means something else for legacy reasons.
 
 BUG FIXES:

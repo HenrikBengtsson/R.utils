@@ -30,46 +30,39 @@
 setMethodS3("intervalsToSeq", "matrix", function(fromTo, sort=FALSE, unique=FALSE, ...) {
   # Argument 'fromTo':
   if (ncol(fromTo) != 2) {
-    throw("Argument 'fromTo' is not a two-column matrix: ", ncol(fromTo));
+    throw("Argument 'fromTo' is not a two-column matrix: ", ncol(fromTo))
   }
   if (!is.numeric(fromTo)) {
-    throw("Argument 'fromTo' is not a numeric matrix: ", mode(fromTo));
+    throw("Argument 'fromTo' is not a numeric matrix: ", mode(fromTo))
   }
 
 
   # Pre-allocate result vector
-  ns <- fromTo[,2] - fromTo[,1] + as.integer(1);
-  n <- sum(ns);
-  res <- vector("integer", n);
+  ns <- fromTo[,2] - fromTo[,1] + as.integer(1)
+  n <- sum(ns)
+  res <- vector("integer", n)
 
-  offset <- as.integer(0);
+  offset <- as.integer(0)
   for (rr in seq_len(nrow(fromTo))) {
     # Sequence for current interval
-    idxs <- offset + 1:ns[rr];
-    res[idxs] <- fromTo[rr,1]:fromTo[rr,2];
+    idxs <- offset + 1:ns[rr]
+    res[idxs] <- fromTo[rr,1]:fromTo[rr,2]
     # Not needed anymore
-    idxs <- NULL;
+    idxs <- NULL
 
     # Next interval
-    offset <- offset + ns[rr];
+    offset <- offset + ns[rr]
   }
 
   # Return unique indices?
   if (unique) {
-    res <- unique(res);
+    res <- unique(res)
   }
 
   # Return sorted indices?
   if (sort) {
-    res <- sort(res);
+    res <- sort(res)
   }
 
-  res;
+  res
 })
-
-
-###########################################################################
-# HISTORY:
-# 2008-07-01
-# o Created.
-###########################################################################

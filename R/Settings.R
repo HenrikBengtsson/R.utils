@@ -34,38 +34,38 @@
 #  \preformatted{
 #   .First.lib <- function(libname, pkgname) {
 #     # Write a welcome message when package is loaded
-#     pkg <- Package(pkgname);
-#     assign(pkgname, pkg, pos=getPosition(pkg));
+#     pkg <- Package(pkgname)
+#     assign(pkgname, pkg, pos=getPosition(pkg))
 #
 #     # Read settings file ".<pkgname>Settings" and store it in package
 #     # variable '<pkgname>Settings'.
-#     varname <- paste(pkgname, "Settings");
-#     basename <- paste(".", varname, sep="");
-#     settings <- Settings$loadAnywhere(basename, verbose=TRUE);
+#     varname <- paste(pkgname, "Settings")
+#     basename <- paste(".", varname, sep="")
+#     settings <- Settings$loadAnywhere(basename, verbose=TRUE)
 #     if (is.null(settings))
-#       settings <- Settings(basename);
-#     assign(varname, settings, pos=getPosition(pkg));
+#       settings <- Settings(basename)
+#     assign(varname, settings, pos=getPosition(pkg))
 #
 #     # Detach package when R finishes, which will save package settings too.
-#     onSessionExit(function(...) detachPackage(pkgname));
+#     onSessionExit(function(...) detachPackage(pkgname))
 #
 #     packageStartupMessage(getName(pkg), " v", getVersion(pkg),
 #         " (", getDate(pkg), ") successfully loaded. See ?", pkgname,
-#         " for help.\n", sep="");
+#         " for help.\n", sep="")
 #   } # .First.lib()
 #  }
 #
 #  \bold{.Last.lib():}
 #  \preformatted{
 #   .Last.lib <- function(libpath) {
-#     pkgname <- "<package name>";
+#     pkgname <- "<package name>"
 #
 #     # Prompt and save package settings when package is detached.
-#     varname <- paste(pkgname, "Settings", sep="");
+#     varname <- paste(pkgname, "Settings", sep="")
 #     if (exists(varname)) {
-#       settings <- get(varname);
+#       settings <- get(varname)
 #       if (inherits(settings, "Settings"))
-#         promptAndSave(settings);
+#         promptAndSave(settings)
 #     }
 #   } # .Last.lib()
 #  }
@@ -84,7 +84,7 @@ setConstructorS3("Settings", function(basename=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'basename':
   if (!is.null(basename)) {
-    basename <- as.character(basename);
+    basename <- as.character(basename)
   }
 
   extend(Options(...), "Settings",
@@ -125,7 +125,7 @@ setConstructorS3("Settings", function(basename=NULL, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getLoadedPathname", "Settings", function(this, ...) {
-  this$.loadedPathname;
+  this$.loadedPathname
 })
 
 
@@ -159,12 +159,12 @@ setMethodS3("getLoadedPathname", "Settings", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isModified", "Settings", function(this, ...) {
-  file <- getLoadedPathname(this);
+  file <- getLoadedPathname(this)
   if (is.null(file))
-    return(FALSE);
+    return(FALSE)
 
-  settingsOnFile <- Settings$load(file);
-  !equals(this, settingsOnFile);
+  settingsOnFile <- Settings$load(file)
+  !equals(this, settingsOnFile)
 })
 
 
@@ -203,12 +203,12 @@ setMethodS3("isModified", "Settings", function(this, ...) {
 setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", "~"), ...) {
   # Search for the settings file
   for (path in paths) {
-    pathname <- filePath(path, basename);
+    pathname <- filePath(path, basename)
     if (file.exists(pathname))
-      return(pathname);
+      return(pathname)
   }
 
-  return(NULL);
+  return(NULL)
 }, static=TRUE)
 
 
@@ -254,20 +254,20 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'path':
-  path <- as.character(path);
+  path <- as.character(path)
   if (!isDirectory(path))
-    throw("Argument 'path' is not a directory: ", path);
+    throw("Argument 'path' is not a directory: ", path)
 
   # Get file location
   if (is.null(file))
-    file <- this$.loadedPathname;
+    file <- this$.loadedPathname
   if (is.null(file))
-    file <- filePath(path, this$.basename);
+    file <- filePath(path, this$.basename)
 
   # Save Object
-  save(this, file=file, ...);
+  save(this, file=file, ...)
 
-  invisible(file);
+  invisible(file)
 })
 
 
@@ -312,33 +312,33 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
   if (is.null(file)) {
-    file <- static$.basename;
+    file <- static$.basename
   }
 
   if (inherits(file, "connection")) {
   } else {
-    file <- as.character(file);
+    file <- as.character(file)
     if (!file.exists(file)) {
-      file <- findSettings(static, basename=file, ...);
+      file <- findSettings(static, basename=file, ...)
       if (is.null(file))
-        return(NULL);
+        return(NULL)
     }
   }
 
-  settings <- NULL;
+  settings <- NULL
   tryCatch({
-    settings <- Settings$load(file=file);
-    settings$.loadedPathname <- getAbsolutePath(file);
+    settings <- Settings$load(file=file)
+    settings$.loadedPathname <- getAbsolutePath(file)
     if (verbose) {
       message("Loaded settings: ", file, " (",
-               format(lastModified(file), "%Y-%m-%d %H:%M:%S"), ")");
+               format(lastModified(file), "%Y-%m-%d %H:%M:%S"), ")")
     }
   }, error = function(ex) {
     if (verbose)
-      message("Failed to load settings: ", file);
+      message("Failed to load settings: ", file)
   })
 
-  settings;
+  settings
 })
 
 
@@ -387,65 +387,43 @@ setMethodS3("promptAndSave", "Settings", function(this, saveOption="saveSettings
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'saveOption':
-  saveOption <- as.character(saveOption);
+  saveOption <- as.character(saveOption)
   if (length(saveOption) != 1) {
     throw("Argument 'saveOption' should be a single character string: ",
-                                       paste(saveOption, collapse=", "));
+                                       paste(saveOption, collapse=", "))
   }
 
   # Check if settings have been updated since last read.
   if (!isModified(this))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  answer <- getOption(this, saveOption, "prompt");
+  answer <- getOption(this, saveOption, "prompt")
   if (answer == "prompt" && interactive()) {
     # Prompt user...
-    msg <- "Do you wish to save modified";
+    msg <- "Do you wish to save modified"
     if (!is.null(settingsName))
-      msg <- paste(msg, settingsName);
-    msg <- paste(msg, "settings?");
-    msg <- paste(msg, "[y/N]: ");
+      msg <- paste(msg, settingsName)
+    msg <- paste(msg, "settings?")
+    msg <- paste(msg, "[y/N]: ")
 
-    answer <- readline(msg);
-    answer <- tolower(answer);
-    neverAskAgain <- (regexpr("!$", answer) != -1);
+    answer <- readline(msg)
+    answer <- tolower(answer)
+    neverAskAgain <- (regexpr("!$", answer) != -1)
     if (neverAskAgain) {
-      answer <- gsub("!$", "", answer);
+      answer <- gsub("!$", "", answer)
       if (answer %in% c("y", "yes")) {
-        answer <- "yes";
+        answer <- "yes"
       } else {
-        answer <- "no";
+        answer <- "no"
       }
-      setOption(this, saveOption, answer);
+      setOption(this, saveOption, answer)
     }
   }
 
   if (answer %in% c("y", "yes")) {
-    saveAnywhere(this, ...);
-    invisible(TRUE);
+    saveAnywhere(this, ...)
+    invisible(TRUE)
   } else {
-    invisible(FALSE);
+    invisible(FALSE)
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2013-04-18
-# o Now the verbose output of loadAnywhere() for Settings is sent
-#   to standard error (was standard output).
-# 2006-02-22
-# o saveAnywhere() now returns the pathname where the settings were saved.
-# o Rdoc: Fixed a missing link in saveAnywhere().
-# 2005-10-20
-# o Update loadAnywhere() so that it works on objects too for which the
-#   default basename is the static basename.
-# 2005-06-11
-# o Added last modified date in loading message.
-# 2005-06-01
-# o Added isModified().
-# o Added Rdoc comments.
-# 2005-05-31
-# o Created.
-############################################################################

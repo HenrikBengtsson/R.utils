@@ -46,56 +46,44 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
   if (is.function(.fcn)) {
   } else if (is.character(.fcn)) {
   } else {
-    stop("Argument '.fcn' must be a character string: ", mode(.fcn));
+    stop("Argument '.fcn' must be a character string: ", mode(.fcn))
   }
 
   # Argument '.functions':
   # Backward compatibility. /HB 2014-01-27
   if (is.character(.functions)) {
-    .functions <- as.list(.functions);
+    .functions <- as.list(.functions)
   }
   if (!is.list(.functions)) {
-    stop("Argument '.functions' must be a list: ", mode(.functions));
+    stop("Argument '.functions' must be a list: ", mode(.functions))
   }
   for (kk in seq_along(.functions)) {
-    fcn <- .functions[[kk]];
-    if (is.function(fcn)) next;
+    fcn <- .functions[[kk]]
+    if (is.function(fcn)) next
     if (!exists(fcn, mode="function")) {
-      stop("Argument '.functions' specifies a non-existing function: ", fcn);
+      stop("Argument '.functions' specifies a non-existing function: ", fcn)
     }
-    fcn <- get(fcn, mode="function");
-    .functions[[kk]] <- fcn;
+    fcn <- get(fcn, mode="function")
+    .functions[[kk]] <- fcn
   }
 
   # Argument 'envir':
-  stopifnot(is.environment(envir));
+  .stop_if_not(is.environment(envir))
 
 
   # Put all arguments in a list.
-  args <- c(list(...), args);
+  args <- c(list(...), args)
 
   # Keep only arguments part accepted by a set of known functions
   if (.ignoreUnusedArgs && length(.functions) > 0L) {
     fcnArgs <- lapply(.functions, FUN=function(fcn) {
-      names(formals(fcn));
+      names(formals(fcn))
     })
-    fcnArgs <- unlist(fcnArgs, use.names=FALSE);
-    keep <- intersect(names(args), fcnArgs);
-    args <- args[keep];
+    fcnArgs <- unlist(fcnArgs, use.names=FALSE)
+    keep <- intersect(names(args), fcnArgs)
+    args <- args[keep]
   }
 
-  args <- c(args, alwaysArgs);
-  do.call(.fcn, args=args, envir=envir);
+  args <- c(args, alwaysArgs)
+  do.call(.fcn, args=args, envir=envir)
 }) # doCall()
-
-############################################################################
-# HISTORY:
-# 2014-01-27
-# o ROBUSTNESS: Now argument '.fcn' can also contain functions in
-#   addition to names of functions.
-# o doCall() gained argument 'envir', which also means that the new
-#   behavior is to evaluate the call within the calling frame.  It now
-#   also accepts call a function object in addition to a name of a function.
-# 2004-12-28
-# o Created.
-############################################################################

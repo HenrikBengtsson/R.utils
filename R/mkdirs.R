@@ -19,13 +19,13 @@
 # }
 #
 # \value{
-#  Returns @TRUE if the directory was succesfully created,
+#  Returns @TRUE if the directory was successfully created,
 #  otherwise @FALSE.
 #  Note that if the directory already exists, @FALSE is returned.
 # }
 #
 # \section{Slow file systems}{
-#   On very rare occassions, we have observed on a large shared file
+#   On very rare occasions, we have observed on a large shared file
 #   system that if one tests for the existence of a directory immediately
 #   after creating it with @see "base::dir.create", it may appear not
 #   to be created.  We believe this is due to the fact that there is a
@@ -153,23 +153,3 @@ setMethodS3("mkdirs", "default", function(pathname, mustWork=FALSE, maxTries=5L,
 
   TRUE
 })
-
-###########################################################################
-# HISTORY:
-# 2015-12-08
-# o Added arguments 'mustWork' and 'maxTries'.
-# 2014-09-01
-# o BUG FIX: mkdirs() could return "object 'res' not found" error.
-# 2012-10-19
-# o mkdirs(path) could generate a warning if the path was created
-#   by another process as a race condition.  Now it always checks to
-#   see if the directory already exists just before trying to create
-#   the directory.
-# 2005-08-01
-# o mkdirs() tries to create directory with relative path if absolute
-#   path fails. This sometimes works when the file permission are missing.
-# 2005-07-19
-# o Added internal check for valid parent directory.
-# 2005-05-29
-# o Created by copying code in the File class of the R.io package.
-###########################################################################

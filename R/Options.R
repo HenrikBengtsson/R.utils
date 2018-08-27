@@ -45,7 +45,7 @@ setConstructorS3("Options", function(options=list(), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'options':
   if (!is.list(options))
-    throw("Argument 'options' must be a list: ", mode(options));
+    throw("Argument 'options' must be a list: ", mode(options))
 
   extend(Object(), "Options",
     .options = options
@@ -83,10 +83,10 @@ setConstructorS3("Options", function(options=list(), ...) {
 #*/###########################################################################
 setMethodS3("as.character", "Options", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  s <- paste(class(this)[1], ": ", nbrOfOptions(this), " options set.", sep="");
-  s;
+  s <- paste(class(this)[1], ": ", nbrOfOptions(this), " options set.", sep="")
+  s
 })
 
 
@@ -117,9 +117,9 @@ setMethodS3("as.character", "Options", function(x, ...) {
 #*/#########################################################################
 setMethodS3("as.list", "Options", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  as.list(this$.options);
+  as.list(this$.options)
 })
 
 
@@ -155,33 +155,33 @@ setMethodS3("equals", "Options", function(this, other, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   equals.list <- function(list1, list2) {
     if (length(list1) != length(list2))
-      return(FALSE);
+      return(FALSE)
 
     for (kk in seq_along(list1)) {
-      obj1 <- list1[[kk]];
-      obj2 <- list2[[kk]];
+      obj1 <- list1[[kk]]
+      obj2 <- list2[[kk]]
       if (is.list(obj1)) {
-        comp <- equals.list(obj1, obj2);
+        comp <- equals.list(obj1, obj2)
       } else {
-        comp <- equals(obj1, obj2);
+        comp <- equals(obj1, obj2)
       }
       if (!comp)
-        return(comp);
+        return(comp)
     } # for (kk ...)
 
-    TRUE;
+    TRUE
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Main comparison
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!inherits(other, "Options"))
-    return(FALSE);
+    return(FALSE)
 
-  list1 <- as.list(this);
-  list2 <- as.list(other);
+  list1 <- as.list(this)
+  list2 <- as.list(other)
 
-  equals.list(list1, list2);
+  equals.list(list1, list2)
 })
 
 
@@ -217,13 +217,13 @@ setMethodS3("equals", "Options", function(this, other, ...) {
 #*/###########################################################################
 setMethodS3("str", "Options", function(object, header=paste(class(this)[1], ":\n", sep=""), ...) {
   # To please R CMD check
-  this <- object;
+  this <- object
 
-  cat(header);
-  res <- list();
+  cat(header)
+  res <- list()
   for (name in names(this))
-    res[[name]] <- getOption(this, name);
-  str(res);
+    res[[name]] <- getOption(this, name)
+  str(res)
 })
 
 
@@ -254,9 +254,9 @@ setMethodS3("str", "Options", function(object, header=paste(class(this)[1], ":\n
 #*/#########################################################################
 setMethodS3("names", "Options", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  names(getLeaves(this, ...));
+  names(getLeaves(this, ...))
 })
 
 
@@ -292,25 +292,25 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getLeaves <- function(list, ...) {
     if (length(list) == 0)
-      return(NULL);
+      return(NULL)
 
-    names <- names(list);
+    names <- names(list)
 
-    isList <- unlist(lapply(list, FUN=is.list));
-    leafs <- list[!isList];
-    trees <- list[isList];
-    treeNames <- names(trees);
+    isList <- unlist(lapply(list, FUN=is.list))
+    leafs <- list[!isList]
+    trees <- list[isList]
+    treeNames <- names(trees)
     for (kk in seq_along(trees)) {
-      tree <- trees[[kk]];
-      treeName <- treeNames[kk];
-      treeLeaves <- getLeaves(tree, ...);
-      names(treeLeaves) <- paste(treeName, names(treeLeaves), sep="/");
-      leafs <- c(leafs, treeLeaves);
+      tree <- trees[[kk]]
+      treeName <- treeNames[kk]
+      treeLeaves <- getLeaves(tree, ...)
+      names(treeLeaves) <- paste(treeName, names(treeLeaves), sep="/")
+      leafs <- c(leafs, treeLeaves)
     }
-    leafs;
+    leafs
   }
 
-  getLeaves(as.list(this));
+  getLeaves(as.list(this))
 })
 
 
@@ -341,7 +341,7 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
 # @keyword programming
 #*/#########################################################################
 setMethodS3("nbrOfOptions", "Options", function(this, ...) {
-  length(names(this));
+  length(names(this))
 })
 
 
@@ -378,51 +378,51 @@ setMethodS3("nbrOfOptions", "Options", function(this, ...) {
 #*/#########################################################################
 setMethodS3("hasOption", "Options", function(this, pathname, ...) {
   if (length(pathname) > 1) {
-    res <- c();
+    res <- c()
     for (kk in seq_along(pathname))
-      res[kk] <- hasOption(this, pathname[kk]);
-    names(res) <- pathname;
-    return(res);
+      res[kk] <- hasOption(this, pathname[kk])
+    names(res) <- pathname
+    return(res)
   }
 
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
 
   if (length(pathname) != 1) {
     throw("Argument 'pathname' must be a single character string: ",
-                                           paste(pathname, collapse=", "));
+                                           paste(pathname, collapse=", "))
   }
 
   if (regexpr("\\.", pathname) != -1) {
-    throw("Argument 'pathname' must not contain a period: ", pathname);
+    throw("Argument 'pathname' must not contain a period: ", pathname)
   }
 
-  pathname <- unlist(strsplit(pathname, split="/"));
+  pathname <- unlist(strsplit(pathname, split="/"))
 
   if (any(nchar(pathname, type="chars") == 0))
-    throw("Argument 'pathname' contains a zero length elements.");
+    throw("Argument 'pathname' contains a zero length elements.")
 
-  cur <- as.list(this);
+  cur <- as.list(this)
   if (length(cur) == 0)
-    return(FALSE);
+    return(FALSE)
 
-  depth <- length(pathname);
+  depth <- length(pathname)
   for (kk in seq_len(depth)) {
-    key <- pathname[kk];
-    keys <- names(cur);
+    key <- pathname[kk]
+    keys <- names(cur)
     if (key %in% keys) {
-      cur <- cur[[key]];
+      cur <- cur[[key]]
       if (kk == depth)
-        return(TRUE);
+        return(TRUE)
     } else {
-      return(FALSE);
+      return(FALSE)
     }
 
     if (!is.list(cur))
-      break;
+      break
   }
 
-  FALSE;
+  FALSE
 })
 
 
@@ -463,58 +463,58 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
 #*/#########################################################################
 setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=NULL, ...) {
   if (length(pathname) > 1) {
-    defaultValue <- rep(defaultValue, length.out=length(pathname));
-    res <- list();
+    defaultValue <- rep(defaultValue, length.out=length(pathname))
+    res <- list()
     for (kk in seq_along(pathname))
-      res[[kk]] <- getOption(this, pathname[kk], defaultValue[kk]);
-    names(res) <- pathname;
-    return(res);
+      res[[kk]] <- getOption(this, pathname[kk], defaultValue[kk])
+    names(res) <- pathname
+    return(res)
   }
 
   if (is.null(pathname))
-    return(as.list(this));
+    return(as.list(this))
 
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
 
   if (length(pathname) != 1) {
     throw("Argument 'pathname' must be a single character string: ",
-                                           paste(pathname, collapse=", "));
+                                           paste(pathname, collapse=", "))
   }
 
 #  if (regexpr("\\.", pathname) != -1) {
-#    throw("Argument 'pathname' must not contain a period: ", pathname);
+#    throw("Argument 'pathname' must not contain a period: ", pathname)
 #  }
 
-  pathname <- unlist(strsplit(pathname, split="/"));
+  pathname <- unlist(strsplit(pathname, split="/"))
 
   if (any(nchar(pathname, type="chars") == 0))
-    throw("Argument 'pathname' contains a zero length elements.");
+    throw("Argument 'pathname' contains a zero length elements.")
 
-  cur <- as.list(this);
+  cur <- as.list(this)
   if (length(pathname) == 0)
-    return(cur);
+    return(cur)
 
   if (length(cur) == 0)
-    return(defaultValue);
+    return(defaultValue)
 
-  depth <- length(pathname);
+  depth <- length(pathname)
   for (kk in seq_len(depth)) {
-    key <- pathname[kk];
-    keys <- names(cur);
+    key <- pathname[kk]
+    keys <- names(cur)
     if (key %in% keys) {
-      cur <- cur[[key]];
+      cur <- cur[[key]]
       if (kk == depth)
-        return(cur);
+        return(cur)
     } else {
-      return(defaultValue);
+      return(defaultValue)
     }
 
     if (!is.list(cur))
-      break;
+      break
   }
 
-  defaultValue;
+  defaultValue
 })
 
 
@@ -557,71 +557,44 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   setOptionList <- function(list, path, value) {
     if (length(path) == 1) {
-      list[[path]] <- value;
+      list[[path]] <- value
     } else {
-      name <- path[1];
+      name <- path[1]
       if (!is.list(list[[name]]))
-        list[[name]] <- list();
-      list[[name]] <- setOptionList(list[[name]], path[-1], value);
+        list[[name]] <- list()
+      list[[name]] <- setOptionList(list[[name]], path[-1], value)
     }
-    list;
+    list
   } # setOptionList()
 
 
   # Argument 'pathname':
-  pathname <- as.character(pathname);
+  pathname <- as.character(pathname)
 
   if (length(pathname) != 1) {
     throw("Argument 'pathname' must be a single character string: ",
-                                           paste(pathname, collapse=", "));
+                                           paste(pathname, collapse=", "))
   }
 
 #  if (regexpr("\\.", pathname) != -1) {
-#    throw("Argument 'pathname' must not contain a period: ", pathname);
+#    throw("Argument 'pathname' must not contain a period: ", pathname)
 #  }
 
-  oldValue <- getOption(this, pathname);
+  oldValue <- getOption(this, pathname)
 
   # If option is already set, should it be overwritten.
   if (!is.null(oldValue) && !overwrite)
-    return(invisible(oldValue));
+    return(invisible(oldValue))
 
-  pathname <- unlist(strsplit(pathname, split="/"));
+  pathname <- unlist(strsplit(pathname, split="/"))
 
   if (any(nchar(pathname, type="chars") == 0))
-    throw("Argument 'pathname' contains a zero length elements.");
+    throw("Argument 'pathname' contains a zero length elements.")
 
   if (is.null(this$.options))
-    this$.options <- list();
+    this$.options <- list()
 
-  this$.options <- setOptionList(this$.options, pathname, value);
+  this$.options <- setOptionList(this$.options, pathname, value)
 
-  invisible(oldValue);
+  invisible(oldValue)
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2006-02-22
-# o BUG FIX: getLeaves() would give an error for Options with an option
-#   tree with branches, i.e. not a single straight path.
-# 2005-10-20
-# o BUG FIX: getLeaves() would give an error for empty Options objects.
-# 2005-09-23
-# o Now the options are always retrieved via as.list(this).  This makes
-#   it easier to override this class to dynamically retrieve options, say
-#   via options().
-# 2005-06-03
-# o Added getLeaves().
-# 2005-06-01
-# o Added argument 'overwrite' to setOption().
-# o Added equals().
-# o Added Rdoc comments.
-# o Removed the read() and write() methods. Use load() and save() instead.
-# 2005-05-26
-# o Added support to query multiple options in has-/getOption().
-# o Created. Needed an flexible API to deal with settings in the R.matlab
-#   package.
-############################################################################

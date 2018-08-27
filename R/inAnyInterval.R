@@ -28,14 +28,7 @@
 # @keyword "programming"
 #*/#########################################################################  
 setMethodS3("inAnyInterval", "numeric", function(...) {
-  idxs <- mapToIntervals(...);
-  idxs <- is.finite(idxs);
-  idxs;
+  idxs <- mapToIntervals(...)
+  idxs <- is.finite(idxs)
+  idxs
 }) # inAnyInterval()
-
-
-###########################################################################
-# HISTORY:
-# 2008-09-20
-# o Created.
-###########################################################################

@@ -49,7 +49,7 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  This method utilizes \code{\link[base]{setTimeLimit}}() by first setting the
  timeout limits, then evaluating the expression that may or may not
  timeout.  The method is guaranteed to reset the timeout limits to be
- infitely long upon exiting, regardless whether it returns normally
+ infinitely long upon exiting, regardless whether it returns normally
  or preemptively due to a timeout or an error.
 }
 
@@ -85,7 +85,7 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  calls that may take very long such as large object allocation and
  \code{rnorm(n)} where \code{n} is very large.
 
- (*) Note that on Unux and macOS, \code{Sys.sleep(time)} will signal a
+ (*) Note that on Unix and macOS, \code{Sys.sleep(time)} will signal a
      timeout error only \emph{after} \code{time} seconds passed,
      regardless of \code{timeout} limit (< \code{time}).
 }

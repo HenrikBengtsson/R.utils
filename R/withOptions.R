@@ -75,15 +75,3 @@ withOptions <- function(expr, ..., args=list(), substitute=TRUE, envir=parent.fr
 
   eval(expr, envir=envir)
 } # withOptions()
-
-
-############################################################################
-# HISTORY:
-# 2014-09-15
-# o ROBUSTNESS: Now withOptions() also resets the the options at entry
-#   even if no explicit options were specified.  This covers the case
-#   when the 'expr' changes the options, e.g.
-#   withOptions({ options(width=10); str(letter) }).
-# 2014-05-01
-# o Created.
-############################################################################

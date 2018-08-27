@@ -38,16 +38,7 @@
 # NOTE: This must not be an S3 method, because we must *not* dispatch
 # on '...'; if done, then any expression therein is evaluated.
 env <- function(..., hash=FALSE, parent=parent.frame(), size=29L) {
-  envir <- new.env(hash=hash, parent=parent, size=size);
-  evalq(..., envir=envir);
-  envir;
+  envir <- new.env(hash=hash, parent=parent, size=size)
+  evalq(..., envir=envir)
+  envir
 } # env()
-
-###########################################################################
-# HISTORY:
-# 2011-03-10
-# o Renamed to env().  Ideally it should be environment() but that is
-#   already taken by a 'base' function.
-# 2011-03-09
-# o Added newEnvEval().
-###########################################################################

@@ -41,71 +41,64 @@ setMethodS3("renameFile", "default", function(pathname, newPathname, overwrite=F
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
-  pathname <- Arguments$getCharacter(pathname, nchar=c(1,512));
-  pathname <- Arguments$getWritablePathname(pathname, mustExist=TRUE);
+  pathname <- Arguments$getCharacter(pathname, nchar=c(1,512))
+  pathname <- Arguments$getWritablePathname(pathname, mustExist=TRUE)
 
   # Argument 'newPathname':
-  newPathname <- Arguments$getCharacter(newPathname, nchar=c(1,512));
+  newPathname <- Arguments$getCharacter(newPathname, nchar=c(1,512))
   # Special case: Source is a file and destination is an existing directory?
   if (isFile(pathname) && isDirectory(newPathname)) {
     newPathname <- file.path(newPathname, basename(pathname))
   }
   newPathname <- Arguments$getWritablePathname(newPathname,
-                                                    mustNotExist=!overwrite);
+                                                    mustNotExist=!overwrite)
 
   if (newPathname == pathname) {
-    throw("Cannot rename file. Source and target are identical: ", pathname);
+    throw("Cannot rename file. Source and target are identical: ", pathname)
   }
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
-  isDir <- isDirectory(pathname);
-  pType <- if (isDir) "directory" else "file";
-  pExists <- if (isDir) isDirectory else isFile;
+  isDir <- isDirectory(pathname)
+  pType <- if (isDir) "directory" else "file"
+  pExists <- if (isDir) isDirectory else isFile
 
-  verbose && enterf(verbose, "Renaming %s safely", pType);
-  verbose && cat(verbose, "Pathname: ", pathname);
-  verbose && cat(verbose, "New pathname: ", newPathname);
+  verbose && enterf(verbose, "Renaming %s safely", pType)
+  verbose && cat(verbose, "Pathname: ", pathname)
+  verbose && cat(verbose, "New pathname: ", newPathname)
 
   if (overwrite && pExists(newPathname)) {
-    newPathnameB <- pushBackupFile(newPathname, verbose=verbose);
+    newPathnameB <- pushBackupFile(newPathname, verbose=verbose)
     on.exit({
-      popBackupFile(newPathnameB, verbose=verbose);
-    });
+      popBackupFile(newPathnameB, verbose=verbose)
+    })
   }
 
-  verbose && enter(verbose, "Renaming file using file.rename()");
-  res <- file.rename(pathname, newPathname);
-  verbose && cat(verbose, "Result: ", res);
+  verbose && enter(verbose, "Renaming file using file.rename()")
+  res <- file.rename(pathname, newPathname)
+  verbose && cat(verbose, "Result: ", res)
   if (!res) {
-    throw(sprintf("Failed to rename %s: %s -> %s", pType, pathname, newPathname));
+    throw(sprintf("Failed to rename %s: %s -> %s", pType, pathname, newPathname))
   }
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  verbose && enter(verbose, "Validating");
+  verbose && enter(verbose, "Validating")
   if (!pExists(newPathname)) {
-    throw(sprintf("Failed to rename %s (target does not exist): %s -> %s", pType, pathname, newPathname));
+    throw(sprintf("Failed to rename %s (target does not exist): %s -> %s", pType, pathname, newPathname))
   }
 
   if (pExists(pathname)) {
-    throw(sprintf("Failed to rename %s (source still exists): %s -> %s", pType, pathname, newPathname));
+    throw(sprintf("Failed to rename %s (source still exists): %s -> %s", pType, pathname, newPathname))
   }
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  TRUE;
+  TRUE
 }) # renameFile()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Created from copyFile.R.
-############################################################################

@@ -47,56 +47,49 @@ setMethodS3("mapToIntervals", "numeric", function(x, intervals, includeLower=TRU
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    throw("Argument 'x' is not numeric: ", mode(x)[1]);
+    throw("Argument 'x' is not numeric: ", mode(x)[1])
   }
 
   # Argument 'intervals':
   if (length(intervals) %% 2 != 0) {
     throw("Argument 'intervals' does not contain an even number of values: ",
-                                                          length(intervals));
+                                                          length(intervals))
   }
-  asMatrix <- is.matrix(intervals);
+  asMatrix <- is.matrix(intervals)
   if (!asMatrix) {
-    intervals <- matrix(intervals, ncol=2, byrow=TRUE);
+    intervals <- matrix(intervals, ncol=2, byrow=TRUE)
   } else if (ncol(intervals) != 2) {
     throw("Argument 'intervals' is not a matrix with two columns: ",
-                                                        ncol(intervals));
+                                                        ncol(intervals))
   }
 
 
   # Setup test function
   if (includeLower && includeUpper) {
     isInside <- function(x, interval, ...) {
-      (interval[1] <= x & x <= interval[2]);
+      (interval[1] <= x & x <= interval[2])
     }
   } else if (includeLower && !includeUpper) {
     isInside <- function(x, interval, ...) {
-      (interval[1] <= x & x < interval[2]);
+      (interval[1] <= x & x < interval[2])
     }
   } else if (!includeLower && includeUpper) {
     isInside <- function(x, interval, ...) {
-      (interval[1] < x & x <= interval[2]);
+      (interval[1] < x & x <= interval[2])
     }
   } else if (!includeLower && !includeUpper) {
     isInside <- function(x, interval, ...) {
-      (interval[1] < x & x < interval[2]);
+      (interval[1] < x & x < interval[2])
     }
   }
 
-  map <- rep(NA_integer_, times=length(x));
-  nbrOfIntervals <- nrow(intervals);
+  map <- rep(NA_integer_, times=length(x))
+  nbrOfIntervals <- nrow(intervals)
   for (kk in seq_len(nbrOfIntervals)) {
-    rr <- (nbrOfIntervals - kk + 1L);
-    ll <- isInside(x, intervals[rr,]);
-    map[ll] <- rr;
+    rr <- (nbrOfIntervals - kk + 1L)
+    ll <- isInside(x, intervals[rr,])
+    map[ll] <- rr
   }
 
-  map;
+  map
 }) # mapToIntervals()
-
-
-###########################################################################
-# HISTORY:
-# 2008-09-20
-# o Created.
-###########################################################################

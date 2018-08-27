@@ -35,7 +35,7 @@
 # \value{
 #   Returns a @logical indicating whether a successful file copy was
 #   completed or not, or equivalently.  In other words, @TRUE is returned
-#   if the file was succesfully copied, and @FALSE if not.
+#   if the file was successfully copied, and @FALSE if not.
 #   If an error occurs, an informative exception is thrown.
 #   If the error occurs while renaming the temporary file to the final name,
 #   the temporary file will remain in the destination directory.
@@ -68,21 +68,21 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=FALS
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'srcPathname':
-  srcPathname <- Arguments$getCharacter(srcPathname, nchar=c(1,512));
+  srcPathname <- Arguments$getCharacter(srcPathname, nchar=c(1,512))
 
   # Argument 'destPathname':
-  destPathname <- Arguments$getCharacter(destPathname, nchar=c(1,512));
+  destPathname <- Arguments$getCharacter(destPathname, nchar=c(1,512))
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
-  verbose && enter(verbose, "Copying file safely");
-  verbose && cat(verbose, "Source: ", srcPathname);
+  verbose && enter(verbose, "Copying file safely")
+  verbose && cat(verbose, "Source: ", srcPathname)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Special case: Copying to an existing directory?
@@ -90,22 +90,22 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=FALS
   if (isDirectory(destPathname)) {
     destPath <- destPathname
     destPath <- Arguments$getWritablePath(destPath)
-    verbose && cat(verbose, "Destination directory: ", destPath);
+    verbose && cat(verbose, "Destination directory: ", destPath)
     destPathname <- file.path(destPath, basename(srcPathname))
   }
-  verbose && cat(verbose, "Destination: ", destPathname);
+  verbose && cat(verbose, "Destination: ", destPathname)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Initial validation
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!isFile(srcPathname)) {
-    throw("Failed to copy file. No such file: ", srcPathname);
+    throw("Failed to copy file. No such file: ", srcPathname)
   }
 
   if (srcPathname == destPathname) {
     throw("Failed to copy file. Source and destination are identical: ",
-                                                           srcPathname);
+                                                           srcPathname)
   }
 
 
@@ -114,92 +114,76 @@ setMethodS3("copyFile", "default", function(srcPathname, destPathname, skip=FALS
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (isFile(destPathname)) {
     # Nothing to do?
-    if (skip) return(FALSE);
+    if (skip) return(FALSE)
 
     # Overwrite or not?
     if (!overwrite) {
-      throw("Failed to copy file. Destination file already exists (with skip=FALSE, overwrite=FALSE): ", destPathname);
+      throw("Failed to copy file. Destination file already exists (with skip=FALSE, overwrite=FALSE): ", destPathname)
     }
   }
 
 
   # 1. Copy to a temporary file
-  verbose && enter(verbose, "Copying to temporary file using file.copy()");
-  tmpPathname <- paste(destPathname, "tmp", sep=".");
+  verbose && enter(verbose, "Copying to temporary file using file.copy()")
+  tmpPathname <- paste(destPathname, "tmp", sep=".")
   if (isFile(tmpPathname)) {
-    throw("Failed to copy file. Temporary copy file exists: ", tmpPathname);
+    throw("Failed to copy file. Temporary copy file exists: ", tmpPathname)
   }
 
   # Setup arguments to file.copy()
-  args <- list(from=srcPathname, to=tmpPathname, ...);
+  args <- list(from=srcPathname, to=tmpPathname, ...)
 
   # Keep only named arguments
-  args <- args[nzchar(names(args))];
+  args <- args[nzchar(names(args))]
 
   # Keep only arguments known to file.copy()
-  args <- args[is.element(names(args), names(formals(file.copy)))];
+  args <- args[is.element(names(args), names(formals(file.copy)))]
 
   # Call file.copy()
-  res <- do.call(file.copy, args=args);
+  res <- do.call(file.copy, args=args)
 
   # Failed to copy?
   if (!res) {
-    throw("Failed to copy file: ", srcPathname, " -> ", tmpPathname);
+    throw("Failed to copy file: ", srcPathname, " -> ", tmpPathname)
   }
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
   # 2. Overwrite?
   if (isFile(destPathname)) {
-    verbose && enter(verbose, "Removing existing destination file");
-    res <- file.remove(destPathname);
+    verbose && enter(verbose, "Removing existing destination file")
+    res <- file.remove(destPathname)
     if (!res)
-      throw("Cannot overwrite file: ", destPathname);
-    verbose && exit(verbose);
+      throw("Cannot overwrite file: ", destPathname)
+    verbose && exit(verbose)
   }
 
   # 3. Rename temporary file
-  verbose && enter(verbose, "Renaming temporary file to destination name");
-  res <- file.rename(tmpPathname, destPathname);
+  verbose && enter(verbose, "Renaming temporary file to destination name")
+  res <- file.rename(tmpPathname, destPathname)
   if (!res) {
     throw("Failed to rename temporary file: ",
-                                        tmpPathname, " -> ", destPathname);
+                                        tmpPathname, " -> ", destPathname)
   }
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
   # 4. Make sure it is file
   if (!isFile(destPathname)) {
-    throw("Failed to copy file: ", destPathname);
+    throw("Failed to copy file: ", destPathname)
   }
 
   if (validate) {
-    verbose && enter(verbose, "Validating destination file");
+    verbose && enter(verbose, "Validating destination file")
     # 5. Validate file size
-    srcSize <- file.info2(srcPathname)$size;
-    destSize <- file.info2(destPathname)$size;
+    srcSize <- file.info2(srcPathname)$size
+    destSize <- file.info2(destPathname)$size
     if (!identical(srcSize, destSize)) {
       throw("File copy got a different size than the source file: ",
-                                                 destSize, " !=", srcSize);
+                                                 destSize, " !=", srcSize)
     }
-    verbose && exit(verbose);
+    verbose && exit(verbose)
   } # if (validate)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  TRUE;
+  TRUE
 }) # copyFile()
-
-
-############################################################################
-# HISTORY:
-# 2014-01-06
-# o For backward compatibilities, argument 'skip' of fileCopy() defaults
-#   to FALSE, but may be changed to skip=!overwrite in a future version.
-# o Added argument 'validate' to fileCopy().
-# o Added argument 'skip' to fileCopy() and added more documentation.
-# o fileCopy() now passes arguments '...' to base::file.copy().  Thanks
-#   Taku Tokuyasu (UCSF) for reporting on this.
-# 2007-11-26
-# o Renamed from fileCopy() to be consistent with copyDirectory().
-# 2007-09-15
-# o Created.
-############################################################################

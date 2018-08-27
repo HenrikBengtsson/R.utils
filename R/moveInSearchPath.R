@@ -15,7 +15,7 @@
 #     to be moved.}
 #   \item{to}{The destination position like the \code{from} argument.}
 #   \item{where}{A @character string specify where in relation to the
-#     destination position the enviroment should be moved.}
+#     destination position the environment should be moved.}
 #   \item{...}{Not used.}
 # }
 #
@@ -48,7 +48,7 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Please R CMD check
-  attachX <- base::attach;
+  attachX <- base::attach
 
   # WORKAROUND for R (<= 3.1.0)
   if (getRversion() <= "3.1.0") {
@@ -58,9 +58,9 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
     # it be stderr?' on 2014-04-06.
     # This was patched in R v3.1.0 r65385 (2014-04-08)
     attachX <- function(...) {
-      msg <- capture.output({ res <- base::attach(...) });
-      if (length(msg) > 0L) cat(msg, sep="\n", file=stderr());
-      invisible(res);
+      msg <- capture.output({ res <- base::attach(...) })
+      if (length(msg) > 0L) cat(msg, sep="\n", file=stderr())
+      invisible(res)
     }
   }
 
@@ -68,83 +68,58 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the current search path
-  searchPath <- search();
-  nPath <- length(searchPath);
+  searchPath <- search()
+  nPath <- length(searchPath)
 
   # Argument 'from':
   if (is.character(from)) {
-    name <- from;
-    from <- match(name, searchPath);
+    name <- from
+    from <- match(name, searchPath)
     if (is.na(from))
-      throw("Argument 'from' specifies an environment not in the search path: ", name);
+      throw("Argument 'from' specifies an environment not in the search path: ", name)
   } else {
-    from <- Arguments$getIndices(from, range=c(2, nPath));
+    from <- Arguments$getIndices(from, range=c(2, nPath))
   }
 
   # Argument 'to':
   if (is.character(to)) {
-    name <- to;
-    to <- match(to, searchPath);
+    name <- to
+    to <- match(to, searchPath)
     if (is.na(to))
-      throw("Argument 'to' specifies an environment not in the search path: ", name);
+      throw("Argument 'to' specifies an environment not in the search path: ", name)
   } else {
-    to <- Arguments$getIndices(to, range=c(2, nPath));
+    to <- Arguments$getIndices(to, range=c(2, nPath))
   }
 
   # Argument 'where':
-  where <- match.arg(where);
+  where <- match.arg(where)
   if (where == "after")
-    to <- to + 1;
+    to <- to + 1
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Move the environment
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Nothing to do?
   if (from == to)
-    return(invisible());
+    return(invisible())
 
-  # Get enviroment to be moved
-  env <- pos.to.env(from);
+  # Get environment to be moved
+  env <- pos.to.env(from)
 
   # Detach old position without side effects
-  .detachPlain(from);
+  .detachPlain(from)
 
   if (to > from)
-    to <- to - 1;
+    to <- to - 1
 
   # Attach at new position
-  attachX(env, pos=to, name=attr(env, "name"));
+  attachX(env, pos=to, name=attr(env, "name"))
 
   # Restore attributes (patch for bug in attach()? /HB 2007-09-17)
-  attrs <- attributes(env);
-  env <- as.environment(attr(env, "name"));
-  attributes(env) <- attrs;
+  attrs <- attributes(env)
+  env <- as.environment(attr(env, "name"))
+  attributes(env) <- attrs
 
   # Return the name of the environment moved.
-  invisible(attr(env, "name"));
+  invisible(attr(env, "name"))
 })
-
-
-############################################################################
-# HISTORY:
-# 2014-04-06
-# o WORKAROUND: moveInSearchPath() redirects any messages that
-#   base::attach() sends to stdout to stderr.
-# 2012-12-18
-# o R CMD check for R devel no longer gives a NOTE about attach().
-# 2012-09-12
-# o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
-#   .Internal(detach(...)) but instead .detachPlain() which in turn
-#   calls base::detach() in such a way that neither detach hook nor
-#   .Last.lib() are called.
-# 2007-09-17
-# o BUG FIX: moveInSearchPath() would make the package environment loose
-#   the 'path' attribute, which is for instance needed by
-#   packageDescription().  Now moveInSearchPath() makes sure to set all
-#   attributes on a moved package environment to what it used to be.
-#   BTW, is this a bug in base::attach()?  Reported to r-devel 2007-09-17.
-# 2007-03-24
-# o Moved to R.utils from aroma.affymetrix.
-# 2007-03-06
-# o Created.
-############################################################################

@@ -24,7 +24,7 @@
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code to be preprocessed.}
   \item{trim}{If \code{\link[base:logical]{TRUE}}, trailing whitespace characters are removed from
-     every line of code, and contigous empty lines are replaced with a
+     every line of code, and contiguous empty lines are replaced with a
      single empty line.}
   \item{excludeComments}{If \code{\link[base:logical]{TRUE}}, comments in the input lines, that is,
      also smart comments, are excluded.}

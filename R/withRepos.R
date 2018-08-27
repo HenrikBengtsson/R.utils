@@ -67,10 +67,3 @@ withRepos <- function(expr, repos="[[mainstream]]", ..., substitute=TRUE, envir=
   # Evaluate expression
   eval(expr, envir=envir)
 } # withOptions()
-
-
-############################################################################
-# HISTORY:
-# 2014-05-01
-# o Created.
-############################################################################

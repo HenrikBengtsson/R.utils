@@ -42,15 +42,3 @@ setMethodS3("loadToEnv", "default", function(file, ..., envir = new.env()) {
   })
   envir
 }, private=TRUE) # loadToEnv()
-
-
-##############################################################################
-# HISTORY:
-# 2009-12-19
-# o Added argument envir=new.env() to loadToEnv().
-# 2007-03-24
-# o Moved to R.utils from aroma.affymetrix.
-# 2006-11-24
-# o Created from Object.R in the R.oo package. This will probably be moved
-#   to either R.oo or R.utils later.
-##############################################################################

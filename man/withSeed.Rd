@@ -63,7 +63,7 @@ print(y)
 }
 
 \seealso{
-  Internally, \code{\link[base]{set.seed}}() is used to set the random seet.
+  Internally, \code{\link[base]{set.seed}}() is used to set the random seed.
 }
 
 

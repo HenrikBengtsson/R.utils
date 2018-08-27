@@ -33,53 +33,43 @@ queryRCmdCheck <- function(...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Evidences for R CMD check is running
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  evidences <- list();
+  evidences <- list()
 
   # Command line arguments
-  args <- base::commandArgs();
-  evidences[["vanilla"]] <- is.element("--vanilla", args);
+  args <- base::commandArgs()
+  evidences[["vanilla"]] <- is.element("--vanilla", args)
 
   # Check the working directory
-  pwd <- getwd();
-  dirname <- basename(pwd);
-  parent <- basename(dirname(pwd));
-  pattern <- ".+[.]Rcheck$";
+  pwd <- getwd()
+  dirname <- basename(pwd)
+  parent <- basename(dirname(pwd))
+  pattern <- ".+[.]Rcheck$"
 
   # Is 'R CMD check' checking tests?
   evidences[["tests"]] <- (
     (regexpr(pattern, parent) != -1) && 
     (regexpr("^tests(|_.*)$", dirname) != -1)
-  );
+  )
 
   # Is the current working directory as expected?
-  evidences[["pwd"]] <- (evidences[["tests"]] || (regexpr(pattern, dirname) != -1));
+  evidences[["pwd"]] <- (evidences[["tests"]] || (regexpr(pattern, dirname) != -1))
 
   # Is 'R CMD check' checking examples?
-  evidences[["examples"]] <- is.element("CheckExEnv", search());
+  evidences[["examples"]] <- is.element("CheckExEnv", search())
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Conclusions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!evidences$vanilla || !evidences$pwd) {
-    res <- "notRunning";
+    res <- "notRunning"
   } else if (evidences$tests) {
-    res <- "checkingTests";
+    res <- "checkingTests"
   } else if (evidences$examples) {
-    res <- "checkingExamples";
+    res <- "checkingExamples"
   } else {
-    res <- "notRunning";
+    res <- "notRunning"
   }
 
-  res;
+  res
 } # queryRCmdCheck()
-
-
-############################################################################
-# HISTORY:
-# 2012-11-06
-# o BUG FIX: queryRCmdCheck() did not detect "tests" evidences when
-#   'R CMD check' was testing multiple architectures.
-# 2011-11-03
-# o Created.
-############################################################################

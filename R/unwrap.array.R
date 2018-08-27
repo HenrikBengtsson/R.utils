@@ -54,94 +54,94 @@ setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), dro
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.array(x) && !is.matrix(x))
-    throw("Argument 'x' is not an array or a matrix: ", class(x)[1]);
-  dim <- dim(x);
-  ndims <- length(dim);
+    throw("Argument 'x' is not an array or a matrix: ", class(x)[1])
+  dim <- dim(x)
+  ndims <- length(dim)
 
   # Argument 'split':
   if (is.character(split)) {
     split <- unlist(lapply(split, FUN=function(s) {
-      Arguments$getRegularExpression(s);
-    }));
+      Arguments$getRegularExpression(s)
+    }))
 
     # Create split functions
     split <- lapply(split, FUN=function(s) {
-      function(names, ...) strsplit(names, split=s, ...);
+      function(names, ...) strsplit(names, split=s, ...)
     })
   } else if (is.list(split)) {
     if (length(split) != ndims) {
-      throw("Length of argument 'split' (a list) does not match the number of dimensions of argument 'x': ", length(split), " != ", ndims);
+      throw("Length of argument 'split' (a list) does not match the number of dimensions of argument 'x': ", length(split), " != ", ndims)
     }
     for (fcn in split) {
       if (!is.function(fcn) && !is.null(fcn))
-        throw("Argument 'split' is a list, but does not contain functions.");
+        throw("Argument 'split' is a list, but does not contain functions.")
     }
   } else {
-    throw("Argument 'split' is not an array: ", class(split)[1]);
+    throw("Argument 'split' is not an array: ", class(split)[1])
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Get the new dimension names
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  dimnames <- dimnames(x);
+  dimnames <- dimnames(x)
 
-  dimnames2 <- list();
+  dimnames2 <- list()
   for (kk in 1:ndims) {
-    fcn <- split[[kk]];
+    fcn <- split[[kk]]
 
-    dnames <- dimnames[[kk]];
+    dnames <- dimnames[[kk]]
     if (is.null(dnames))
-      throw("Can not unwrap arrays with missing dimension names: dimension #", kk);
+      throw("Can not unwrap arrays with missing dimension names: dimension #", kk)
 
     if (is.function(fcn)) {
-      snames <- fcn(dnames, ...);
+      snames <- fcn(dnames, ...)
     } else if (is.null(fcn)) {
-      snames <- dnames;
+      snames <- dnames
     }
 
     if (is.character(snames) && is.vector(snames)) {
-      snames <- matrix(snames, ncol=1);
-      ulen <- ncol(snames);
+      snames <- matrix(snames, ncol=1)
+      ulen <- ncol(snames)
     } else if (is.matrix(snames)) {
-      ulen <- ncol(snames);
+      ulen <- ncol(snames)
     } else if (is.list(snames)) {
-      len <- unlist(lapply(snames, FUN=length));
-      ulen <- unique(len);
+      len <- unlist(lapply(snames, FUN=length))
+      ulen <- unique(len)
       if (length(ulen) != 1) {
-        throw("Failed to split names for dimension ", kk, ", because it resulted in unequal number of parts: ", snames);
+        throw("Failed to split names for dimension ", kk, ", because it resulted in unequal number of parts: ", snames)
       }
-      snames <- unlist(snames);
-      snames <- matrix(snames, nrow=length(snames), ncol=ulen, byrow=TRUE);
+      snames <- unlist(snames)
+      snames <- matrix(snames, nrow=length(snames), ncol=ulen, byrow=TRUE)
     } else {
-      throw("Failed to split names for dimension ", kk, ", because split function returned an unsupported data type: ", class(snames)[1]);
+      throw("Failed to split names for dimension ", kk, ", because split function returned an unsupported data type: ", class(snames)[1])
     }
 
-    dnames <- list();
+    dnames <- list()
     for (ll in 1:ulen)
-      dnames[[ll]] <- unique(snames[,ll]);
+      dnames[[ll]] <- unique(snames[,ll])
 
-    dimnames2 <- c(dimnames2, dnames);
+    dimnames2 <- c(dimnames2, dnames)
   }
 
-  dim2 <- unlist(lapply(dimnames2, FUN=length));
+  dim2 <- unlist(lapply(dimnames2, FUN=length))
 
   # Drop dimensions of length one?
   if (drop) {
-    keep <- (dim2 > 1);
-    dim2 <- dim2[keep];
-    dimnames2 <- dimnames2[keep];
+    keep <- (dim2 > 1)
+    dim2 <- dim2[keep]
+    dimnames2 <- dimnames2[keep]
   }
 
   # Now, reshape the array
-  dim(x) <- dim2;
-  dimnames(x) <- dimnames2;
+  dim(x) <- dim2
+  dimnames(x) <- dimnames2
 
-  x;
+  x
 })
 
 setMethodS3("unwrap", "matrix", function(x, ...) {
-  unwrap.array(x, ...);
+  unwrap.array(x, ...)
 })
 
 setMethodS3("unwrap", "data.frame", function(x, ...) {
@@ -161,26 +161,14 @@ setMethodS3("unwrap", "data.frame", function(x, ...) {
 
 setMethodS3("unwrap", "default", function(x, ...) {
   if (is.vector(x) && !is.list(x)) {
-    dim <- c(length(x), 1);
-    dimnames <- list(names(x), "dummy");
-    dim(x) <- dim;
-    dimnames(x) <- dimnames;
+    dim <- c(length(x), 1)
+    dimnames <- list(names(x), "dummy")
+    dim(x) <- dim
+    dimnames(x) <- dimnames
     # Not needed anymore
-    dim <- dimnames <- NULL;
-    unwrap(x, ...);
+    dim <- dimnames <- NULL
+    unwrap(x, ...)
   } else {
-    throw("Do not know how to unwrap object: ", class(x)[1]);
+    throw("Do not know how to unwrap object: ", class(x)[1])
   }
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2005-12-05
-# o Added unwrap() for data frames.
-# 2005-11-23
-# o Added a default unwrap() to unwrap vector too.
-# 2005-11-12
-# o Created.
-############################################################################

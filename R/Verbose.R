@@ -105,30 +105,30 @@
 setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...) {
   if (is.character(con)) {
     if (removeFile && isFile(con))
-      file.remove(con);
+      file.remove(con)
   } else if (inherits(con, "connection")) {
   } else if (!is.null(con)) {
-    stop("Unknown type on argument 'con': ", class(con));
+    stop("Unknown type on argument 'con': ", class(con))
   }
 
   if (!is.numeric(threshold) || length(threshold) != 1)
-    throw("Argument 'threshold' must be a single numeric value.");
+    throw("Argument 'threshold' must be a single numeric value.")
 
   # Argument 'threshold':
-  threshold <- as.numeric(threshold);
+  threshold <- as.numeric(threshold)
 
   # Argument 'asGString':
-  asGString <- as.logical(asGString);
+  asGString <- as.logical(asGString)
 
   # Argument 'timestamp':
-  timestamp <- as.logical(timestamp);
+  timestamp <- as.logical(timestamp)
 
   # Argument 'core':
   if (!is.logical(core))
-    throw("Argument 'core' is not logical: ", mode(core));
+    throw("Argument 'core' is not logical: ", mode(core))
 
   # Argument 'on':
-  on <- as.logical(on);
+  on <- as.logical(on)
 
   extend(Object(core), "Verbose",
     .timestamp       = timestamp,
@@ -177,13 +177,13 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGStri
 #*/###########################################################################
 setMethodS3("as.character", "Verbose", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
   s <- paste(class(this)[1], ": isOn()=", isOn(this), ",
-                                         threshold=", this$threshold, sep="");
-  s <- paste(s, ", timestamp=", this$.timestamp, sep="");
-  s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="");
-  s;
+                                         threshold=", this$threshold, sep="")
+  s <- paste(s, ", timestamp=", this$.timestamp, sep="")
+  s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="")
+  s
 })
 
 
@@ -215,21 +215,21 @@ setMethodS3("as.character", "Verbose", function(x, ...) {
 # @keyword programming
 #*/#########################################################################
 setMethodS3("equals", "Verbose", function(this, other, ...) {
-  res <- FALSE;
+  res <- FALSE
   if (!inherits(other, "Verbose")) {
-    attr(res, "reason") <- "Not same class";
-    return(res);
+    attr(res, "reason") <- "Not same class"
+    return(res)
   }
 
-  fields <- getFields(this, private=TRUE);
+  fields <- getFields(this, private=TRUE)
   for (field in fields) {
     if (!equals(this[[field]], other[[field]])) {
-      attr(res, "reason") <- field;
-      return(res);
+      attr(res, "reason") <- field
+      return(res)
     }
   }
 
-  TRUE;
+  TRUE
 }, protected=TRUE)
 
 
@@ -314,10 +314,10 @@ setMethodS3("setThreshold", "Verbose", function(this, threshold, ...) {
 #*/###########################################################################
 setMethodS3("setDefaultLevel", "Verbose", function(this, level, ...) {
   if (is.na(as.numeric(level)))
-    throw("Invalid value on argument 'level': ", level);
-  oldLevel <- this$defaultLevel;
-  this$defaultLevel <- as.numeric(level);
-  invisible(oldLevel);
+    throw("Invalid value on argument 'level': ", level)
+  oldLevel <- this$defaultLevel
+  this$defaultLevel <- as.numeric(level)
+  invisible(oldLevel)
 })
 
 
@@ -351,7 +351,7 @@ setMethodS3("setDefaultLevel", "Verbose", function(this, level, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getThreshold", "Verbose", function(this, ...) {
-  threshold <- this$threshold;
+  threshold <- this$threshold
 
   # Assert that threshold is within the valid range.  This is part of the
   # transition of move from negative to positive verbose levels:
@@ -360,16 +360,16 @@ setMethodS3("getThreshold", "Verbose", function(this, ...) {
   # 3. Much later, disallow all negative values for a long time.
   # 4. Possibly, allow negative values after all this.
   # /HB 2011-09-18
-  validRange <- getOption("R.utils::Verbose/validThresholdRanges", c(-Inf,Inf));
+  validRange <- getOption("R.utils::Verbose/validThresholdRanges", c(-Inf,Inf))
   if (!is.null(validRange)) {
-    validRange <- Arguments$getDoubles(validRange, length=c(2,2));
+    validRange <- Arguments$getDoubles(validRange, length=c(2,2))
     if (threshold < validRange[1] || threshold > validRange[2]) {
       throw(sprintf("The threshold is out of the valid range [%s,%s]: %s",
-                                    validRange[1], validRange[2], threshold));
+                                    validRange[1], validRange[2], threshold))
     }
   }
 
-  threshold;
+  threshold
 })
 
 
@@ -404,7 +404,7 @@ setMethodS3("getThreshold", "Verbose", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isVisible", "Verbose", function(this, level=this$defaultLevel, ...) {
-  isOn(this) && (is.null(level) || level > this$threshold);
+  isOn(this) && (is.null(level) || level > this$threshold)
 })
 
 
@@ -439,9 +439,9 @@ setMethodS3("isVisible", "Verbose", function(this, level=this$defaultLevel, ...)
 #*/###########################################################################
 setMethodS3("as.logical", "Verbose", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  isVisible(this, level=this$defaultLevel);
+  isVisible(this, level=this$defaultLevel)
 })
 
 
@@ -476,8 +476,8 @@ setMethodS3("as.logical", "Verbose", function(x, ...) {
 #*/###########################################################################
 setMethodS3("as.double", "Verbose", function(x, ...) {
   # To please R CMD check
-  this <- x;
-  getThreshold(this, ...);
+  this <- x
+  getThreshold(this, ...)
 })
 
 
@@ -512,8 +512,8 @@ setMethodS3("as.double", "Verbose", function(x, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("on", "Verbose", function(this, ...) {
-  this$.ignore <- FALSE;
-  invisible(TRUE);
+  this$.ignore <- FALSE
+  invisible(TRUE)
 })
 
 
@@ -546,8 +546,8 @@ setMethodS3("on", "Verbose", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("off", "Verbose", function(this, ...) {
-  this$.ignore <- TRUE;
-  invisible(FALSE);
+  this$.ignore <- TRUE
+  invisible(FALSE)
 })
 
 
@@ -580,7 +580,7 @@ setMethodS3("off", "Verbose", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isOn", "Verbose", function(this, ...) {
-  !as.logical(this$.ignore);
+  !as.logical(this$.ignore)
 })
 
 
@@ -618,22 +618,22 @@ setMethodS3("isOn", "Verbose", function(this, ...) {
 #*/###########################################################################
 setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  msg <- paste(..., sep="");
+  msg <- paste(..., sep="")
   if (this$asGString) {
     if (length(msg) > 1) {
       msg <- sapply(msg, FUN=function(s) {
-        as.character(GString(s));
-      });
+        as.character(GString(s))
+      })
     } else {
-      msg <- as.character(GString(msg));
+      msg <- as.character(GString(msg))
     }
   }
 
-  cat(file=this$.con, append=TRUE, msg);
+  cat(file=this$.con, append=TRUE, msg)
 
-  invisible(TRUE);
+  invisible(TRUE)
 }, protected=TRUE)
 
 
@@ -676,25 +676,25 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
 #*/###########################################################################
 setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  indent <- paste(rep(" ", length.out=this$indentPos), collapse="");
-  msg <- paste(..., sep=sep);
-  msg <- paste(indent, msg, sep="");
+  indent <- paste(rep(" ", length.out=this$indentPos), collapse="")
+  msg <- paste(..., sep=sep)
+  msg <- paste(indent, msg, sep="")
   if (timestamp) {
-    fmt <- this$.timestampFormat;
+    fmt <- this$.timestampFormat
     if (is.function(fmt)) {
-      stamp <- fmt();
+      stamp <- fmt()
     } else {
-      stamp <- format(Sys.time(), fmt);
+      stamp <- format(Sys.time(), fmt)
     }
     msg <- paste(stamp, msg, sep="")
   }
   if (newline)
-    msg <- paste(msg, "\n", sep="");
+    msg <- paste(msg, "\n", sep="")
 
   # Write output
-  writeRaw(this, msg);
+  writeRaw(this, msg)
 })
 
 
@@ -731,9 +731,9 @@ setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=th
 #*/###########################################################################
 setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  cat(this, sprintf(fmtstr, ...), newline=FALSE, timestamp=timestamp);
+  cat(this, sprintf(fmtstr, ...), newline=FALSE, timestamp=timestamp)
 })
 
 
@@ -778,18 +778,18 @@ setMethodS3("printf", "Verbose", function(this, fmtstr, ..., level=this$defaultL
 # @keyword programming
 #*/###########################################################################
 setMethodS3("enter", "Verbose", function(this, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel) {
-  msg <- paste(..., sep=sep);
-  msg <- as.character(GString(msg));
-  cat(this, msg, suffix, sep=sep, level=level);
-  this$.stack <- c(this$.stack, msg);
-  this$.stackLevel <- c(this$.stackLevel, level);
-  this$indentPos <- this$indentPos + indent;
-  invisible(TRUE);
+  msg <- paste(..., sep=sep)
+  msg <- as.character(GString(msg))
+  cat(this, msg, suffix, sep=sep, level=level)
+  this$.stack <- c(this$.stack, msg)
+  this$.stackLevel <- c(this$.stackLevel, level)
+  this$indentPos <- this$indentPos + indent
+  invisible(TRUE)
 })
 
 
 setMethodS3("enterf", "Verbose", function(this, fmtstr, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel) {
-  enter(this, sprintf(fmtstr, ...), indent=indent, sep=sep, suffix=suffix, level=level);
+  enter(this, sprintf(fmtstr, ...), indent=indent, sep=sep, suffix=suffix, level=level)
 })
 
 
@@ -829,40 +829,40 @@ setMethodS3("enterf", "Verbose", function(this, fmtstr, ..., indent=this$indentS
 # @keyword programming
 #*/###########################################################################
 setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL) {
-  args <- list(...);
+  args <- list(...)
 
   # Argument 'indent'
   if (this$indentPos + indent < 0) {
     throw("Cannot exit(): Argument 'indent' makes 'indentPos' negative: ",
-                                                    this$indentPos + indent);
+                                                    this$indentPos + indent)
   }
 
-  len <- length(this$.stack);
+  len <- length(this$.stack)
 
   # Balance check
   if (length(len) == 0) {
-    throw("Internal error:  Cannot exit(). Unbalanced enter()/exit() stack - it is already empty.");
+    throw("Internal error:  Cannot exit(). Unbalanced enter()/exit() stack - it is already empty.")
   }
 
-  lastMsg <- this$.stack[len];
-  this$.stack <- this$.stack[-len];
-  lastLevel <- this$.stackLevel[len];
-  this$.stackLevel <- this$.stackLevel[-len];
+  lastMsg <- this$.stack[len]
+  this$.stack <- this$.stack[-len]
+  lastLevel <- this$.stackLevel[len]
+  this$.stackLevel <- this$.stackLevel[-len]
 
-  this$indentPos <- this$indentPos + indent;
+  this$indentPos <- this$indentPos + indent
 
   if (length(args) == 0) {
-    msg <- lastMsg;
+    msg <- lastMsg
   } else {
-    msg <- paste(..., sep=sep);
+    msg <- paste(..., sep=sep)
   }
 
   if (is.null(level))
-    level <- lastLevel;
+    level <- lastLevel
 
-  cat(this, msg, suffix, sep="", level=level);
+  cat(this, msg, suffix, sep="", level=level)
 
-  invisible(TRUE);
+  invisible(TRUE)
 })
 
 
@@ -898,13 +898,13 @@ setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep=
 #*/###########################################################################
 setMethodS3("more", "Verbose", function(this, dThreshold=1, ...) {
   # Clone first!
-  res <- clone(this);
+  res <- clone(this)
 
   # Decrease the threshold
-  res$threshold <- res$threshold - dThreshold;
+  res$threshold <- res$threshold - dThreshold
 
   # Return the clone
-  res;
+  res
 })
 
 
@@ -939,13 +939,13 @@ setMethodS3("more", "Verbose", function(this, dThreshold=1, ...) {
 #*/###########################################################################
 setMethodS3("less", "Verbose", function(this, dThreshold=1, ...) {
   # Clone first!
-  res <- clone(this);
+  res <- clone(this)
 
   # Increase the threshold
-  res$threshold <- res$threshold + dThreshold;
+  res$threshold <- res$threshold + dThreshold
 
   # Return the clone
-  res;
+  res
 })
 
 
@@ -980,16 +980,16 @@ setMethodS3("less", "Verbose", function(this, dThreshold=1, ...) {
 #*/###########################################################################
 setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
   # So that print(this), which often called when 'this' is typed, works.
-  args <- list(...);
+  args <- list(...)
   if (length(args) == 0) {
-    return(NextMethod("print"));
+    return(NextMethod())
   }
 
   # ...otherwise...
-  capture(this, print(...), level=level);
+  capture(this, print(...), level=level)
 })
 
 
@@ -1026,12 +1026,12 @@ setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
 #*/###########################################################################
 setMethodS3("str", "Verbose", function(object, ..., level=this$defaultLevel) {
   # To please R CMD check
-  this <- object;
+  this <- object
 
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  capture(this, str(...));
+  capture(this, str(...))
 })
 
 
@@ -1066,12 +1066,12 @@ setMethodS3("str", "Verbose", function(object, ..., level=this$defaultLevel) {
 #*/###########################################################################
 setMethodS3("summary", "Verbose", function(object, ..., level=this$defaultLevel) {
   # To please R CMD check
-  this <- object;
+  this <- object
 
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  capture(this, print(summary(...)));
+  capture(this, print(summary(...)))
 })
 
 
@@ -1105,9 +1105,9 @@ setMethodS3("summary", "Verbose", function(object, ..., level=this$defaultLevel)
 #*/###########################################################################
 setMethodS3("evaluate", "Verbose", function(this, fun, ..., level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  print(this, fun(...));
+  print(this, fun(...))
 })
 
 
@@ -1141,45 +1141,45 @@ setMethodS3("evaluate", "Verbose", function(this, fun, ..., level=this$defaultLe
 #*/###########################################################################
 setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  args <- substitute(list(...))[-1];
+  args <- substitute(list(...))[-1]
 
   bfr <- NULL;  # To please R CMD check R v2.6.0.
-  file <- textConnection("bfr", "w", local=TRUE);
-  sink(file);
+  file <- textConnection("bfr", "w", local=TRUE)
+  sink(file)
   on.exit({
-    sink();
-    close(file);
+    sink()
+    close(file)
   })
 
-  pf <- parent.frame();
+  pf <- parent.frame()
   evalVis <- function(expr) {
-    withVisible(eval(expr, pf));
+    withVisible(eval(expr, pf))
   }
 
   for (kk in seq_along(args)) {
-    expr <- args[[kk]];
+    expr <- args[[kk]]
     if (mode(expr) == "expression") {
-      tmp <- lapply(expr, FUN=evalVis);
+      tmp <- lapply(expr, FUN=evalVis)
     } else if (mode(expr) == "call") {
-      tmp <- list(evalVis(expr));
+      tmp <- list(evalVis(expr))
     } else if (mode(expr) == "name") {
-      tmp <- list(evalVis(expr));
+      tmp <- list(evalVis(expr))
     } else {
-      stop("Bad argument");
+      stop("Bad argument")
     }
     for (item in tmp) {
       if (item$visible)
-         print(item$value);
+         print(item$value)
     }
   }
 
-  indent <- paste(rep(" ", length.out=this$indentPos), collapse="");
-  bfr2 <- paste(indent, bfr, sep="");
-  bfr2 <- paste(bfr2, collapse="\n");
-  bfr2 <- paste(bfr2, "\n", sep="");
-  writeRaw(this, bfr2);
+  indent <- paste(rep(" ", length.out=this$indentPos), collapse="")
+  bfr2 <- paste(indent, bfr, sep="")
+  bfr2 <- paste(bfr2, collapse="\n")
+  bfr2 <- paste(bfr2, "\n", sep="")
+  writeRaw(this, bfr2)
 })
 
 
@@ -1214,13 +1214,13 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 #*/###########################################################################
 setMethodS3("newline", "Verbose", function(this, n=1, ..., level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
   if (n < 0)
-    stop("Argument 'n' must be zero or greater: ", n);
+    stop("Argument 'n' must be zero or greater: ", n)
   if (n > 0)
-    writeRaw(this, paste(rep("\n", n), collapse=""));
-  invisible(TRUE);
+    writeRaw(this, paste(rep("\n", n), collapse=""))
+  invisible(TRUE)
 })
 
 
@@ -1257,13 +1257,13 @@ setMethodS3("newline", "Verbose", function(this, n=1, ..., level=this$defaultLev
 #*/###########################################################################
 setMethodS3("ruler", "Verbose", function(this, char="-", toColumn=this$rightMargin, length=toColumn-this$indentPos, level=this$defaultLevel, ...) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  char <- as.character(char);
-  char <- strsplit(char, split="")[[1]];
-  ruler <- rep(char, length.out=length);
-  ruler <- paste(ruler, collapse="");
-  cat(this, ruler);
+  char <- as.character(char)
+  char <- strsplit(char, split="")[[1]]
+  ruler <- rep(char, length.out=length)
+  ruler <- paste(ruler, collapse="")
+  cat(this, ruler)
 })
 
 
@@ -1304,19 +1304,19 @@ setMethodS3("ruler", "Verbose", function(this, char="-", toColumn=this$rightMarg
 #*/###########################################################################
 setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix=paste(char, paste(rep(" ", max(padding, 1)), collapse=""), sep=""), level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  ruler(this, char=char);
-
-  for (kk in seq_len(padding))
-    writeRaw(this, prefix, "\n");
-
-  cat(this, prefix, ..., sep="", collapse="\n");
+  ruler(this, char=char)
 
   for (kk in seq_len(padding))
-    writeRaw(this, prefix, "\n");
+    writeRaw(this, prefix, "\n")
 
-  ruler(this, char=char);
+  cat(this, prefix, ..., sep="", collapse="\n")
+
+  for (kk in seq_len(padding))
+    writeRaw(this, prefix, "\n")
+
+  ruler(this, char=char)
 })
 
 
@@ -1351,11 +1351,11 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 #*/###########################################################################
 setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(this), ...) {
   if (is.function(format)) {
-    stamp <- format();
+    stamp <- format()
   } else {
-    stamp <- format(Sys.time(), format);
+    stamp <- format(Sys.time(), format)
   }
-  cat(this, stamp, ...);
+  cat(this, stamp, ...)
 })
 
 
@@ -1389,7 +1389,7 @@ setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(thi
 # @keyword programming
 #*/###########################################################################
 setMethodS3("getTimestampFormat", "Verbose", function(this, ...) {
-  this$.timestampFormat;
+  this$.timestampFormat
 })
 
 
@@ -1427,12 +1427,12 @@ setMethodS3("getTimestampFormat", "Verbose", function(this, ...) {
 #*/###########################################################################
 setMethodS3("setTimestampFormat", "Verbose", function(this, format="%Y%m%d %H:%M:%S|", ...) {
   if (!is.function(format))
-    format <- as.character(format);
+    format <- as.character(format)
 
-  oldValue <- this$.timestampFormat;
-  this$.timestampFormat <- format;
+  oldValue <- this$.timestampFormat
+  this$.timestampFormat <- format
 
-  invisible(oldValue);
+  invisible(oldValue)
 })
 
 
@@ -1467,15 +1467,15 @@ setMethodS3("setTimestampFormat", "Verbose", function(this, format="%Y%m%d %H:%M
 # @keyword programming
 #*/###########################################################################
 setMethodS3("timestampOn", "Verbose", function(this, ...) {
-  oldStatus <- this$.timestamp;
-  this$.timestamp <- TRUE;
-  invisible(oldStatus);
+  oldStatus <- this$.timestamp
+  this$.timestamp <- TRUE
+  invisible(oldStatus)
 })
 
 setMethodS3("timestampOff", "Verbose", function(this, ...) {
-  oldStatus <- this$.timestamp;
-  this$.timestamp <- FALSE;
-  invisible(oldStatus);
+  oldStatus <- this$.timestamp
+  this$.timestamp <- FALSE
+  invisible(oldStatus)
 })
 
 
@@ -1496,7 +1496,6 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 # \arguments{
 #  \item{title}{A @character string to be outputted before the warnings, if
 #    they exists.}
-#  \item{reset}{(deprecated) Ignored.}
 #  \item{...}{Arguments passed to @seemethod "cat".}
 #  \item{level}{A @numeric value to be compared to the threshold.}
 # }
@@ -1513,20 +1512,18 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel) {
+setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", ..., level=this$defaultLevel) {
   if (!isVisible(this, level))
-    return(invisible(FALSE));
+    return(invisible(FALSE))
 
-  if (!missing(reset)) .Deprecated(msg="Argument 'reset' to warnings() for Verbose is deprecated and ignored. Please don't use anymore.")
-  
   if (exists("last.warning", envir=.GlobalEnv)) {
     if (!is.null(title))
-      cat(this, title);
-    txt <- paste(capture.output(base::warnings()), collapse="\n");
-    cat(this, txt, ..., level=level);
+      cat(this, title)
+    txt <- paste(capture.output(base::warnings()), collapse="\n")
+    cat(this, txt, ..., level=level)
   }
 
-  invisible(TRUE);
+  invisible(TRUE)
 })
 
 
@@ -1563,145 +1560,36 @@ setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", re
 #*/###########################################################################
 setMethodS3("pushState", "Verbose", function(this, ...) {
   if (is.null(this$.stackState))
-    this$.stackState <- list();
+    this$.stackState <- list()
 
   stack <- list(
     stack      = this$.stack,
     stackLevel = this$.stackLevel
   )
 
-  this$.stackState <- c(this$.stackState, list(stack));
-  invisible(TRUE);
+  this$.stackState <- c(this$.stackState, list(stack))
+  invisible(TRUE)
 })
 
 
 setMethodS3("popState", "Verbose", function(this, ...) {
   if (length(this$.stackState) == 0)
-    throw("Stack empty!");
+    throw("Stack empty!")
 
-  n <- length(this$.stackState);
-  stack <- this$.stackState[[n]];
+  n <- length(this$.stackState)
+  stack <- this$.stackState[[n]]
 
-  this$.stackState <- this$.stackState[-n];
+  this$.stackState <- this$.stackState[-n]
 
-  fromN <- length(this$.stack);
-  toN <- length(stack$stack);
+  fromN <- length(this$.stack)
+  toN <- length(stack$stack)
 
   if (fromN > toN) {
     for (kk in seq(from=fromN, to=toN+1, by=-1))
-      exit(this);
+      exit(this)
   } else {
-    this$.stack <- stack$stack;
-    this$.stackLevel <- stack$stackLevel;
+    this$.stack <- stack$stack
+    this$.stackLevel <- stack$stackLevel
   }
-  invisible(TRUE);
+  invisible(TRUE)
 })
-
-
-
-
-
-############################################################################
-# HISTORY:
-# 2014-04-02
-# o BUG FIX: str() and summary() for Verbose did not acknowledge
-#   argument 'level'.
-# 2012-07-27
-# o Added enterf() to Verbose, which is an sprintf-like enter().
-# 2012-02-29
-# o CLEANUP: Now capture() for Verbose uses withVisible() instead of
-#   an .Internal(eval.with.vis()) call.
-# 2012-01-11
-# o BUG FIX: writeRaw() for Verbose would throw error "Trying to coerce
-#   more than one character string to a GString, which is not supported."
-#   iff passing a vector of strings.
-# 2011-09-18
-# o Added a range test internally to getThreshold(), where the valid range
-#   can be set via as an R option.
-# 2010-03-08
-# o Added argument 'timestamp' to printf() for Verbose so that the
-#   timestamp can be turned off/on explicitly as for cat().
-# 2009-05-30
-# o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
-#   in order to be mapped.
-# 2008-11-22
-# o STABILITY: Added balance and sanity checks for exit() of Verbose.
-# 2007-05-26
-# o Made equals() of Verbose protected.
-# 2007-03-28
-# o BUG FIX: Argument 'format' of timestamp() defaulted to
-#   getTimestampFormat(thos) - 'thos' not 'this'.
-# 2006-09-19
-# o Added Rdoc comments for the less() and the more() methods.
-# 2006-09-14
-# o Added trial versions of less() and more().  Have not though about
-#   side-effects of cloning the Verbose object, e.g. writing to file etc.
-# 2006-09-12
-# o Created a list with an empty list() in pushState().  This generated
-#   warnings, but not errors.
-# 2006-07-17
-# o The capture() method in Verbose modified a text connection while it was
-#   still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for
-#   pointing this out.
-# 2006-03-30
-# o Removed auxillary argument 'obj' which was added two days ago.  It was
-#   a bug in a recent revision of R v2.3.0 devel that caused it.
-# 2006-03-28
-# o Had to add auxillary argument 'obj' to print(), str() and summary(),
-#   otherwise errors like "Error in str.default() : argument "object" is
-#   missing, with no default" was generated.
-# 2006-03-27
-# o Added as.double().
-# 2005-12-02
-# o BUG FIX: The function of on() and off() were swapped.
-# o Added automatic (optional) timestamping.  Updated example to show this.
-# 2005-09-06
-# o Added option 'asGString' to Verbose constructor.
-# 2005-07-06
-# o BUG FIX: print() did not pass argument 'level' to capture().
-# o Calling GString() in enter() to immediately evaluate GStrings.
-#   Otherwise these will not be correct when calling exit().
-# o Added resetWarnings() and warnings().
-# 2005-06-28
-# o BUG FIX: setDefaultLevel() would not set new value nor return the old.
-# 2005-06-23
-# o Now the default output connection is stderr() and not stdout().
-# 2005-06-22
-# o Added timestamp().
-# o Added setDefaultLevel().
-# o Now argument 'level' defaults to 'level=this$defaultLevel' and not
-#   'level=0'.
-# 2005-06-18
-# o Added push- and popState() to push and pop current indent depth etc
-#   set by enter() and exit().  This makes it possible to assure the
-#   correct depth when entering and exiting function regardless of they
-#   return naturally or via exceptions.
-# o Added capture().
-# 2005-06-16
-# o Added argument 'removeFile' to constructor.
-# 2005-06-11
-# o Now all output messages returns TRUE or FALSE.
-# 2005-06-10
-# o Now the core of a Verbose object, that is the value of the reference
-#   variable, is a logical value, which default to TRUE. This makes it
-#   possible to use the reference variable in logical tests, which might
-#   speed up code a bit, e.g. verbose && enter(verbose, "Loading"). It
-#   also makes it possible to set verbose to FALSE to turn of verbosing.
-# o Added 'stackLevel' to be used by automatic exit calls.
-# 2005-06-09
-# o Added a help section on 'output levels'.
-# o Now isVisible() requires 'level' > 'threshold', not >=. This makes all
-#   methods to output nothing by default at the default threshold.
-# 2005-06-01
-# o Added equals().
-# 2005-05-31
-# o Added as.logical().
-# 2005-05-26
-# o Added Rdoc comments taken from Verbose in R.matlab.
-# o Added support for a threshold much like the one in the Verbose class in
-#   the R.matlab package.
-# 2005-05-25
-# o Added a set of stand-alone functions for instance used R.matlab.
-# 2003-12-07
-# o Created.
-############################################################################

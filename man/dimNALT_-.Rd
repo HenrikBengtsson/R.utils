@@ -12,10 +12,10 @@
 \alias{dimNA<-}
 \alias{dimNA<-.default}
 
-\title{Sets the dimension of an object with the option to infer one dimension autmatically}
+\title{Sets the dimension of an object with the option to infer one dimension automatically}
 
 \description{
- Sets the dimension of an object with the option to infer one dimension autmatically.
+ Sets the dimension of an object with the option to infer one dimension automatically.
  If one of the elements in the dimension \code{\link[base]{vector}} is \code{\link[base]{NA}}, then its value
  is inferred from the length of the object and the other elements in the
  dimension vector.  If the inferred dimension is not an \code{\link[base]{integer}}, an

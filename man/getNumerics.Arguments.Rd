@@ -35,7 +35,7 @@
   \item{range}{Two \code{\link[base]{numeric}}s for the allowed ranged. If \code{\link[base]{NULL}}, range is
     not checked.}
   \item{asMode}{A \code{\link[base]{character}} specifying the mode to coerce to.}
-  \item{disallow}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying diallowed value sets,
+  \item{disallow}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying disallowed value sets,
                     i.e. \code{"NA"}, \code{"NaN"}, and/or \code{"Inf"}.}
   \item{...}{Arguments passed to @method "getVector".}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}

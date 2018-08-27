@@ -46,7 +46,7 @@
  }
 
  \details{
-   If the indicies in \code{unlist(map)} is in a non-increasing order,
+   If the indices in \code{unlist(map)} is in a non-increasing order,
    \link[base:aperm]{aperm()} will be called, which requires reshuffling
    of array elements in memory.  In all other cases, the reshaping of the
    array does not require this, but only fast modifications of

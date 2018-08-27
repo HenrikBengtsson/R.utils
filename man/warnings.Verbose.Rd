@@ -20,13 +20,12 @@
 }
 
 \usage{
-\method{warnings}{Verbose}(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel)
+\method{warnings}{Verbose}(this, title="Warnings detected:", ..., level=this$defaultLevel)
 }
 
 \arguments{
  \item{title}{A \code{\link[base]{character}} string to be outputted before the warnings, if
    they exists.}
- \item{reset}{(deprecated) Ignored.}
  \item{...}{Arguments passed to \code{\link[R.utils:cat.Verbose]{*cat}()}.}
  \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
 }

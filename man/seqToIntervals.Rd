@@ -10,10 +10,10 @@
 \alias{seqToIntervals.default}
 \alias{seqToIntervals}
 
-\title{Gets all contigous intervals of a vector of indices}
+\title{Gets all contiguous intervals of a vector of indices}
 
 \description{
- Gets all contigous intervals of a vector of indices.
+ Gets all contiguous intervals of a vector of indices.
 }
 
 \usage{

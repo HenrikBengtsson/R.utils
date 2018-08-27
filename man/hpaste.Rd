@@ -32,7 +32,7 @@
    If \code{lastCollapse} is \code{\link[base]{NULL}} (default), it is corresponds
    to using the default collapse.}
  \item{maxHead, maxTail, abbreviate}{Non-negative \code{\link[base]{integer}}s (also \code{\link[base:is.finite]{Inf}})
-   specifying the maxium number of elements of the beginning and
+   specifying the maximum number of elements of the beginning and
    then end of the vector to be outputted.  If \code{n = length(x)}
    is greater than \code{maxHead+maxTail+1}, then \code{x} is
    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
@@ -71,7 +71,7 @@ printf("x = \%s.\n", hpaste(x), maxHead=3) # Default
 
 # It will never output 1, 2, 3, 4, ..., 6
 printf("x = \%s.\n", hpaste(x, maxHead=4))
-## x = 1, 2, 3, 4, 5 and 6.
+## x = 1, 2, 3, 4, 5, 6.
 
 # Showing the tail
 printf("x = \%s.\n", hpaste(x, maxHead=1, maxTail=2))
@@ -90,8 +90,8 @@ printf("y = \%s.\n", paste(y, collapse=", "))
 # Adding a special separator before the last element
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Change last separator
-printf("x = \%s.\n", hpaste(x, lastCollapse=" and "))
-## x = 1, 2, 3, 4, 5 and 6.
+printf("x = \%s.\n", hpaste(x, lastCollapse=", and "))
+## x = 1, 2, 3, 4, 5, and 6.
 
 
 

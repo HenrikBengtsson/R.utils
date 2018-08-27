@@ -133,7 +133,8 @@ S3method("wrap", "array")
 
 # Assert
 S3method("check", "Assert")
-S3method("inherits", "Assert")
+S3method("inheritsFrom", "Assert")
+S3method("inherits", "Assert")  ## DEPRECATED
 S3method("isMatrix", "Assert")
 S3method("isScalar", "Assert")
 S3method("isVector", "Assert")

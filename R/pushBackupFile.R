@@ -50,82 +50,75 @@ setMethodS3("pushBackupFile", "default", function(filename, path=NULL, suffix=".
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'isFile':
-  isFile <- Arguments$getLogical(isFile);
+  isFile <- Arguments$getLogical(isFile)
 
   # Argument 'onMissing':
-  onMissing <- match.arg(onMissing);
+  onMissing <- match.arg(onMissing)
 
   # Argument 'overwrite':
-  overwrite <- Arguments$getLogical(overwrite);
+  overwrite <- Arguments$getLogical(overwrite)
 
   # Argument 'filename' & 'path':
   pathname <- Arguments$getWritablePathname(filename, path=path, 
-                                mustExist=(isFile && (onMissing == "error")));
+                                mustExist=(isFile && (onMissing == "error")))
 
   # Argument 'suffix':
-  suffix <- Arguments$getCharacter(suffix);
+  suffix <- Arguments$getCharacter(suffix)
 
   # Argument 'copy':
-  copy <- Arguments$getLogical(copy);
+  copy <- Arguments$getLogical(copy)
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
   # If file does not exist, returns NULL?
   if ((onMissing == "ignore") && !isFile(pathname)) {
-    return(invisible(NULL));
+    return(invisible(NULL))
   }
 
-  verbose && enter(verbose, "Adding backup suffix from file");
-  verbose && cat(verbose, "Pathname: ", pathname);
-  verbose && cat(verbose, "Suffix: ", suffix);
-  verbose && cat(verbose, "Rename existing file?: ", (isFile && !copy));
+  verbose && enter(verbose, "Adding backup suffix from file")
+  verbose && cat(verbose, "Pathname: ", pathname)
+  verbose && cat(verbose, "Suffix: ", suffix)
+  verbose && cat(verbose, "Rename existing file?: ", (isFile && !copy))
   
-  pathnameB <- sprintf("%s%s", pathname, suffix);
-  verbose && cat(verbose, "Backup pathname: ", pathnameB);
+  pathnameB <- sprintf("%s%s", pathname, suffix)
+  verbose && cat(verbose, "Backup pathname: ", pathnameB)
 
-  pathnameB <- Arguments$getWritablePathname(pathnameB, mustNotExist=!overwrite);
+  pathnameB <- Arguments$getWritablePathname(pathnameB, mustNotExist=!overwrite)
   if (overwrite && isFile(pathnameB)) {
-    file.remove(pathnameB);
+    file.remove(pathnameB)
   }
 
   if (isFile) {
     if (copy) {
-      verbose && enter(verbose, "Copy existing file");
-      res <- copyFile(pathname, pathnameB);
-      verbose && cat(verbose, "Result: ", res);
-      verbose && exit(verbose);
+      verbose && enter(verbose, "Copy existing file")
+      res <- copyFile(pathname, pathnameB)
+      verbose && cat(verbose, "Result: ", res)
+      verbose && exit(verbose)
     } else {
-      verbose && enter(verbose, "Renaming existing file");
-      res <- file.rename(pathname, pathnameB);
-      verbose && cat(verbose, "Result: ", res);
-      verbose && exit(verbose);
+      verbose && enter(verbose, "Renaming existing file")
+      res <- file.rename(pathname, pathnameB)
+      verbose && cat(verbose, "Result: ", res)
+      verbose && exit(verbose)
     }
   
     if (!isFile(pathnameB)) {
-      throw("Failed to copy/rename file (final file does not exist): ", pathname, " -> ", pathnameB);
+      throw("Failed to copy/rename file (final file does not exist): ", pathname, " -> ", pathnameB)
     }
 
     if (!copy) {
       if (isFile(pathname)) {
-        throw("Failed to rename file (file still exists): ", pathname, " -> ", pathnameB);
+        throw("Failed to rename file (file still exists): ", pathname, " -> ", pathnameB)
       }
     }
   } # if (isFile)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  pathnameB;
+  pathnameB
 }) # pushBackupFile()
-
-
-############################################################################
-# HISTORY:
-# 2011-03-01
-# o Created from pushTemporaryFile.R.
-############################################################################

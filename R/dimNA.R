@@ -11,7 +11,7 @@ if (!exists("dimNA<-", mode="function")) {
 # \alias{dimNA<-}
 # \alias{dimNA<-.default}
 #
-# @title "Sets the dimension of an object with the option to infer one dimension autmatically"
+# @title "Sets the dimension of an object with the option to infer one dimension automatically"
 #
 # \description{
 #  @get "title".
@@ -50,45 +50,30 @@ if (!exists("dimNA<-", mode="function")) {
 #*/###########################################################################
 setMethodS3("dimNA<-", "default", function(x, value) {
   # Argument 'x':
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'value':
   if (!is.null(value)) {
-    value <- as.integer(value);
-    dimStr <- sprintf("c(%s)", paste(value, collapse=", "));
+    value <- as.integer(value)
+    dimStr <- sprintf("c(%s)", paste(value, collapse=", "))
 
     # Infer one dimension automatically?
-    nas <- which(is.na(value));
+    nas <- which(is.na(value))
     if (length(nas) > 0) {
       if (length(nas) > 1) {
-        throw("Argument 'value' may only have one NA: ", dimStr);
+        throw("Argument 'value' may only have one NA: ", dimStr)
       }
-      value[nas] <- as.integer(n / prod(value[-nas]));
+      value[nas] <- as.integer(n / prod(value[-nas]))
     }
 
     # Validate the new dimension is compatible with the number of elements
     if (prod(value) != n) {
       stop("Argument 'dim' does not match the number of elements: ",
-           "prod(", dimStr, ") == ", prod(value), " does not equal ", n);
+           "prod(", dimStr, ") == ", prod(value), " does not equal ", n)
     }
   }
 
-  dim(x) <- value;
+  dim(x) <- value
 
-  invisible(x);
+  invisible(x)
 }) # dimNA<-()
-
-
-
-############################################################################
-# HISTORY:
-# 2013-09-15
-# o TYPO: An error message of dimNA<-() was referring to 'files' rather
-#   than to 'elements.
-# 2009-06-08
-# o Added Rdoc comments.
-# o The generic function automatically created for dimNA<-() has arguments
-#   '...', which is not valid (anymore?) for replacement functions.
-# 2009-06-03
-# o Created.
-############################################################################

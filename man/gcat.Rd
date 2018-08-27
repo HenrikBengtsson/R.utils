@@ -25,7 +25,7 @@
  \item{...}{\code{\link[base]{character}} strings passed to \code{\link{gstring}}().}
   \item{file}{A \code{\link[base:connections]{connection}}, or a pathname where to direct the output.
               If \code{""}, the output is sent to the standard output.}
-  \item{append}{Only applied if \code{file} specifies a pathname;
+  \item{append}{Only applied if \code{file} specifies a pathname
     If \code{\link[base:logical]{TRUE}}, then the output is appended to the file, otherwise
     the files content is overwritten.}
  \item{envir}{The \code{\link[base]{environment}} in which the \code{\link{GString}} is evaluated.}

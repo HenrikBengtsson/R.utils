@@ -28,7 +28,7 @@
 #   \item{...}{Not used.}
 # }
 #
-# \value{Returns a @logical @vector indicating if the elments are zero or not.}
+# \value{Returns a @logical @vector indicating if the elements are zero or not.}
 #
 # @author
 #
@@ -44,22 +44,13 @@
 #*/#########################################################################
 setMethodS3("isZero", "default", function(x, neps=1, eps=.Machine$double.eps, ...) {
   if (is.character(eps)) {
-    eps <- match.arg(eps, choices=c("double.eps", "single.eps"));
+    eps <- match.arg(eps, choices=c("double.eps", "single.eps"))
     if (eps == "double.eps") {
-      eps <- .Machine$double.eps;
+      eps <- .Machine$double.eps
     } else if (eps == "single.eps") {
-      eps <- sqrt(.Machine$double.eps);
+      eps <- sqrt(.Machine$double.eps)
     }
   }
 
-  (abs(x) < neps*eps);
+  (abs(x) < neps*eps)
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2003-02-20
-# o Created!
-############################################################################

@@ -77,108 +77,87 @@ setMethodS3("patchCode", "default", function(paths=NULL, recursive=TRUE, suppres
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(paths)) {
-    paths <- getOption("R_PATCHES");
+    paths <- getOption("R_PATCHES")
     if (is.null(paths)) {
-      paths <- Sys.getenv("R_PATCHES");
+      paths <- Sys.getenv("R_PATCHES")
       if (is.null(paths)) {
-        paths <- "~/R-patches/";
+        paths <- "~/R-patches/"
       }
     }
   }
-  paths <- as.character(paths);
-  paths <- unlist(strsplit(paths, split="[;]"));
+  paths <- as.character(paths)
+  paths <- unlist(strsplit(paths, split="[;]"))
   if (is.null(paths) || length(paths) == 0 || identical(paths, "")) {
-    paths <- ".";
+    paths <- "."
   }
 
   # Number of files sourced.
-  count <- 0;
+  count <- 0
 
   # Loaded packages
-  loadedPackages <- gsub("package:", "", search()[-1]);
+  loadedPackages <- gsub("package:", "", search()[-1])
 
   # Installed packages
 #    installedPackages <- library()$results[,"Package"];  # Too slow!
-  installedPackages <- NULL;
+  installedPackages <- NULL
   for (libpath in .libPaths())
-    installedPackages <- c(installedPackages, list.files(libpath));
+    installedPackages <- c(installedPackages, list.files(libpath))
 
   # Regular expression to match source code files.
-  pattern <- paste(knownExtensions, collapse="|");
-  pattern <- paste("\\.(", pattern, ")$", collapse="", sep="");
+  pattern <- paste(knownExtensions, collapse="|")
+  pattern <- paste("\\.(", pattern, ")$", collapse="", sep="")
 
 #  if (verbose) {
-#    message("Patch paths: ", paste(paths, collapse=", "));
+#    message("Patch paths: ", paste(paths, collapse=", "))
 #  }
 
   # For each path in the list of paths, ...
   for (path in paths) {
     # Get all files and directories in the current path
-    pathnames <- list.files(path=path, full.names=TRUE);
-    excl <- grep("patchAll.R", pathnames);
+    pathnames <- list.files(path=path, full.names=TRUE)
+    excl <- grep("patchAll.R", pathnames)
     if (length(excl))
-      pathnames <- pathnames[-excl];
+      pathnames <- pathnames[-excl]
 
     # For each file or directory...
     for (pathname in pathnames) {
-      isDirectory <- isDirectory(pathname);
-      isSourceCodeFile <- (regexpr(pattern, pathname) != -1);
+      isDirectory <- isDirectory(pathname)
+      isSourceCodeFile <- (regexpr(pattern, pathname) != -1)
 
       if (!isDirectory && isSourceCodeFile) {
         # ...for each R source file...
         if (verbose)
-          message("Patching ", pathname);
+          message("Patching ", pathname)
         if (suppressWarnings) {
-          suppressWarnings(source(pathname));
+          suppressWarnings(source(pathname))
         } else {
-          source(pathname);
+          source(pathname)
         }
-        count <- count + 1;
+        count <- count + 1
       } else if (isDirectory && recursive) {
         # ...for each directory...
-        pkgname <- basename(pathname);
-        isPkgLoaded <- (pkgname %in% loadedPackages);
-        isPkgInstalled <- (pkgname %in% installedPackages);
+        pkgname <- basename(pathname)
+        isPkgLoaded <- (pkgname %in% loadedPackages)
+        isPkgInstalled <- (pkgname %in% installedPackages)
         if (isPkgLoaded || !isPkgInstalled) {
           if (verbose) {
             if (isPkgInstalled) {
-              message("Loaded and installed package found: ", pkgname);
+              message("Loaded and installed package found: ", pkgname)
             } else {
-              message("Non-installed package found: ", pkgname);
+              message("Non-installed package found: ", pkgname)
             }
           }
           count <- count + patchCode(pathname, recursive=recursive,
                      suppressWarnings=suppressWarnings,
-                     knownExtensions=knownExtensions, verbose=verbose);
+                     knownExtensions=knownExtensions, verbose=verbose)
         } else {
           if (verbose)
-            message("Ignore non-loaded package: ", pkgname);
+            message("Ignore non-loaded package: ", pkgname)
         }
       }
     } # for (pathname in pathnames)
   } # for (path in paths)
 
   # Return nothing.
-  invisible(count);
+  invisible(count)
 }) # patchCode()
-
-
-###########################################################################
-# HISTORY:
-# 2014-01-06
-# o CLEANUP: Now patchCode() uses isDirectory() instead of file.info().
-# 2005-02-20
-# o Added '...' to please R CMD check.
-# 2005-01-22
-# o Moved into R.basic. Added Rdoc comments. Now looking for system
-#   environment variable R_PATCHES as the default patch path.
-# 2004-07-12
-# o Added argument 'verbose'.
-# 2004-05-22
-# o Recreated from memory after HDD crash. Instead of using library() to
-#   get all installed packages it is faster to list all files in the
-#   .libPaths(). This is good enough for this "patch all" script.
-# o Argh. HDD crash on my laptop. Totally dead! Impossible to restore
-#   anything. I think I can recover most stuff from backups, but not
-#   everything.
-###########################################################################

@@ -12,10 +12,10 @@
 \alias{Assert.isMatrix}
 \alias{isMatrix,Assert-method}
 
- \title{Static method asserting thatan object is a matrix}
+ \title{Static method asserting that an object is a matrix}
 
  \description{
-   Static method asserting thatan object is a matrix.
+   Static method asserting that an object is a matrix.
  }
 
  \usage{

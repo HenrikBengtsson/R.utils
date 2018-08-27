@@ -81,7 +81,7 @@ cat("Erroneous hooks: ", sum(isErroneous), "\n");
 \author{Henrik Bengtsson}
 
 \seealso{
-  Internally, after retriving hook functions, \code{\link{callHooks.list}}() is
+  Internally, after retrieving hook functions, \code{\link{callHooks.list}}() is
   called.
 }
 

@@ -48,70 +48,61 @@ setMethodS3("popTemporaryFile", "default", function(filename, path=NULL, suffix=
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'isFile':
-  isFile <- Arguments$getLogical(isFile);
+  isFile <- Arguments$getLogical(isFile)
 
   # Argument 'filename' & 'path':
   pathnameT <- Arguments$getWritablePathname(filename, path=path, 
-                                     mustExist=isFile, mustNotExist=!isFile);
+                                     mustExist=isFile, mustNotExist=!isFile)
 
   # Argument 'suffix':
-  suffix <- Arguments$getCharacter(suffix);
+  suffix <- Arguments$getCharacter(suffix)
 
   # Argument 'verbose':
-  verbose <- Arguments$getVerbose(verbose);
+  verbose <- Arguments$getVerbose(verbose)
   if (verbose) {
-    pushState(verbose);
-    on.exit(popState(verbose));
+    pushState(verbose)
+    on.exit(popState(verbose))
   }
 
 
-  verbose && enter(verbose, "Dropping temporary suffix from file");
+  verbose && enter(verbose, "Dropping temporary suffix from file")
 
-  verbose && cat(verbose, "Temporary pathname: ", pathnameT);
-  verbose && cat(verbose, "Suffix: ", suffix);
+  verbose && cat(verbose, "Temporary pathname: ", pathnameT)
+  verbose && cat(verbose, "Suffix: ", suffix)
   
   # Drop suffix from temporary pathname
-  pattern <- sprintf("%s$", suffix);
-  pattern <- gsub(".", "\\.", pattern, fixed=TRUE);
-  pattern <- gsub("[\\$]+$", "$", pattern);
-  pattern <- Arguments$getRegularExpression(pattern);
-  verbose && cat(verbose, "Regular expression for suffix: ", pattern);
+  pattern <- sprintf("%s$", suffix)
+  pattern <- gsub(".", "\\.", pattern, fixed=TRUE)
+  pattern <- gsub("[\\$]+$", "$", pattern)
+  pattern <- Arguments$getRegularExpression(pattern)
+  verbose && cat(verbose, "Regular expression for suffix: ", pattern)
 
   # Assert that suffix exists in the temporary pathname
   if (!regexpr(pattern, "", pathnameT) == -1) {
-    throw(sprintf("Cannot rename temporary pathname. The specified temporary pathname does not contain the specified suffix ('%s'): %s", suffix, pathnameT));
+    throw(sprintf("Cannot rename temporary pathname. The specified temporary pathname does not contain the specified suffix ('%s'): %s", suffix, pathnameT))
   }
 
-  pathname <- gsub(pattern, "", pathnameT);
-  verbose && cat(verbose, "Pathname: ", pathname);
+  pathname <- gsub(pattern, "", pathnameT)
+  verbose && cat(verbose, "Pathname: ", pathname)
 
-  pathname <- Arguments$getWritablePathname(pathname, mustNotExist=TRUE);
+  pathname <- Arguments$getWritablePathname(pathname, mustNotExist=TRUE)
 
   if (isFile) {
-    verbose && enter(verbose, "Renaming existing file");
+    verbose && enter(verbose, "Renaming existing file")
 
-    res <- file.rename(pathnameT, pathname);
-    verbose && cat(verbose, "Result: ", res);
-    verbose && exit(verbose);
+    res <- file.rename(pathnameT, pathname)
+    verbose && cat(verbose, "Result: ", res)
+    verbose && exit(verbose)
 
     if (!isFile(pathname)) {
-      throw("Failed to rename temporary file (final file does not exist): ", pathnameT, " -> ", pathname);
+      throw("Failed to rename temporary file (final file does not exist): ", pathnameT, " -> ", pathname)
     }
     if (isFile(pathnameT)) {
-      throw("Failed to rename temporary file (temporary file still exists): ", pathnameT, " -> ", pathname);
+      throw("Failed to rename temporary file (temporary file still exists): ", pathnameT, " -> ", pathname)
     }
   } # if (isFile)
 
-  verbose && exit(verbose);
+  verbose && exit(verbose)
 
-  pathname;
+  pathname
 }) # popTemporaryFile()
-
-
-
-############################################################################
-# HISTORY:
-# 2011-02-28
-# o Added popTemporaryFile().
-# o Created.
-############################################################################

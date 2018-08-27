@@ -39,7 +39,7 @@ extends \link[R.oo]{Exception}\cr
 
 
 
-  TimeoutException represents timeout errors occuring when a set of R expressions executed did not
+  TimeoutException represents timeout errors occurring when a set of R expressions executed did not
   finish in time.
  }
 
@@ -50,7 +50,7 @@ TimeoutException(..., cpu=NA, elapsed=NA)
  \arguments{
    \item{...}{Any arguments accepted by \code{\link{Exception}}}.
    \item{cpu, elapsed}{The maximum time the R expressions were allowed
-     to be running before the timeout occured as measured in CPU time
+     to be running before the timeout occurred as measured in CPU time
      and (physically) elapsed time.}
  }
 
