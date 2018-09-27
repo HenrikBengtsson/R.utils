@@ -222,7 +222,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   }
 
   if (is.null(res)) {
-    throw("Failed to create file link: ", link, "[.lnk] -> ", target)
+    throw("Failed to create file link (methods attempted: ",
+          paste(sQuote(methods), collapse = ", "), "): ",
+	  link, "[.lnk] -> ", target)
   }
 
   res
