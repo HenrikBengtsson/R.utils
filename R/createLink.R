@@ -222,7 +222,11 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   }
 
   if (is.null(res)) {
-    throw(sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target)))
+    if (length(methods) == 0) {
+      throw(sprintf("Failed to create file link (because 'methods' was empty; current working directory: %s): %s[.lnk] -> %s", sQuote(getwd()), sQuote(link), sQuote(target)))
+    } else {
+      throw(sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target)))
+    }
   }
 
   res

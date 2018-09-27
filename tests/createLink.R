@@ -3,7 +3,7 @@ verbose <- Verbose(threshold=-1)
 
 options(warn = 1L)
 
-pathname <- file.path(tempdir(), "foo.txt")
+pathname <- tempfile("foo_", fileext = ".txt")
 pathname <- getAbsolutePath(pathname)
 cat(file=pathname, "Hello world!\n")
 
@@ -15,6 +15,8 @@ link <- basename(pathname)
 tryCatch({
   linkR <- createLink(link=link, target=pathname)
   verbose && cat(verbose, "Link returned: ", linkR)
+  linkR <- normalizePath(linkR)
+  link <- normalizePath(link)
   if (linkR != link) {
     throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link));
   }
@@ -32,6 +34,8 @@ for (method in methods) {
   tryCatch({
     linkR <- createLink(link=link, target=pathname, method=method)
     verbose && cat(verbose, "Link returned: ", linkR)
+    linkR <- normalizePath(linkR)
+    link <- normalizePath(link)
     if (linkR != link) {
       throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link));
     }
