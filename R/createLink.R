@@ -97,7 +97,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
         equal <- identical(tolower(resA), tolower(target))
       }
       if (!equal) {
-        warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)))
+        warning(sprintf("Existing link (%s; current working directory: %s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(getwd()), sQuote(resA), sQuote(target)))
       }
 
       # If a Windows Shortcut, avoid returning the target.
@@ -109,7 +109,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       return(res)
     }
     if (!overwrite) {
-      throw("Cannot create link. Link file already exists: ", link)
+      throw(sprintf("Cannot create link. Link file already exists: %s (current working directory: %s)", sQuote(link), sQuote(getwd())))
     }
   }
 
@@ -222,9 +222,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   }
 
   if (is.null(res)) {
-    throw("Failed to create file link (methods attempted: ",
-          paste(sQuote(methods), collapse = ", "), "): ",
-	  link, "[.lnk] -> ", target)
+    throw(sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target)))
   }
 
   res
