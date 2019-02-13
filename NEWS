@@ -5,6 +5,8 @@ Version: 2.7.0-9000 [2018-09-27]
 
 NEW FEATURES:
 
+ * createWindowsShortcut() gained argument 'mustWork'.
+ 
  * When createLink() fails, the error message now also report on the methods
    attempted.
  

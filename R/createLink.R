@@ -154,6 +154,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   # Default result
   res <- NULL
 
+  conditions <- list()
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Unix: Try to create a symbolic link
@@ -164,7 +165,8 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       file.symlink(from=targetF, to=link)
       res <- Arguments$getReadablePathname(link, mustExist=TRUE)
       attr(res, "linkType") <- "unix-symlink"
-    }, warning = function(ex) {
+    }, warning = function(w) {
+      conditions[["unix-symlink"]] <<- w
     })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
@@ -195,6 +197,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       res <- Arguments$getReadablePathname(link, mustExist=TRUE)
       attr(res, "linkType") <- "windows-ntfs-symlink"
     }, error = function(ex) {
+      conditions[["windows-ntfs-symlink"]] <<- ex
     })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
@@ -208,12 +211,13 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   if (is.element("windows-shortcut", methods)) {
     tryCatch({
       pathname <- sprintf("%s.LNK", link)
-      createWindowsShortcut(pathname, target=target, overwrite=overwrite)
+      createWindowsShortcut(pathname, target=target, overwrite=overwrite, mustWork=TRUE)
       res <- Arguments$getReadablePathname(link, mustExist=TRUE)
       # Make sure to return the link and not the target
       res <- link
       attr(res, "linkType") <- "windows-shortcut"
     }, error = function(ex) {
+      conditions[["windows-shortcut"]] <<- ex
     })
     if (!is.null(res)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
@@ -225,7 +229,15 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     if (length(methods) == 0) {
       throw(sprintf("Failed to create file link (because 'methods' was empty; current working directory: %s): %s[.lnk] -> %s", sQuote(getwd()), sQuote(link), sQuote(target)))
     } else {
-      throw(sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target)))
+      msg <- sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target))
+      if (length(conditions) > 0) {
+        classes <- sapply(conditions, FUN = function(cond) class(cond)[1])
+        reasons <- lapply(conditions, FUN = conditionMessage)
+        details <- sprintf("%s produced %s: %s", names(conditions), classes, sQuote(reasons))
+        details <- paste(details, collapse = "; ")
+	msg <- sprintf("%s\nWarnings and errors captured: %s", msg, details)
+      }
+      throw(msg)
     }
   }
 

@@ -13,7 +13,7 @@
 \title{Creates a Microsoft Windows Shortcut (.lnk file)}
 
 \usage{
-\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)
+\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, mustWork=FALSE, ...)
 }
 
 \description{
@@ -27,6 +27,8 @@
     point to.}
   \item{overwrite}{If \code{\link[base:logical]{TRUE}}, an existing link file is overwritten,
     otherwise not.}
+  \item{mustWork}{If \code{\link[base:logical]{TRUE}}, an error is produced if the Windows Shortcut
+    link is not created, otherwise not.}
   \item{...}{Not used.}
 }
 
