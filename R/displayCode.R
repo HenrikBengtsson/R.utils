@@ -106,7 +106,7 @@ setMethodS3("displayCode", "default", function(con=NULL, code=NULL, numerate=TRU
     }
   }
 
-  if (!is.null(highlight) && is.na(highlight)) {
+  if (!is.null(highlight) && all(is.na(highlight))) {
     highlight <- NULL
   } else {
     highlight <- unique(as.integer(highlight))

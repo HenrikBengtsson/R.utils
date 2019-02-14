@@ -263,7 +263,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
   coerceAs <- function(args, types) {
     types <- types[types != "NULL"]
-    todo <- which(is.element(names(args), names(types)) &&
+    todo <- which(is.element(names(args), names(types)) &
                   !sapply(args, FUN = inherits, "CmdArgExpression"))
     if (length(todo) > 0L) {
       argsT <- args[todo]

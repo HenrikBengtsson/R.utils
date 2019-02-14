@@ -12,6 +12,9 @@ NEW FEATURES:
  
 BUG FIXES:
 
+ * displayCode(), commandArgs() and toCamelCase() used && and || on logical
+   vectors that could have be of length different than one.
+ 
  * createWindowsShortcut() and createLink(method="windows-shortcut") failed to
    create Windows Shortcut links because filePath(..., expandLinks = "any")
    did not expand Windows Shortcut links.  This bug was introduced in

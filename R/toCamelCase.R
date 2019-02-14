@@ -53,7 +53,7 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
   if (preserveSameCase) {
     s <- lapply(s, FUN=function(s) {
       # Nothing to do?
-      if (length(s) == 0L || is.na(s)) return(s)
+      if (length(s) == 0L || identical(s, NA_character_)) return(s)
 
       # (a) Don't change case on all-upper case words
       sU <- toupper(s)
@@ -81,7 +81,7 @@ setMethodS3("toCamelCase", "default", function(s, capitalize=FALSE, preserveSame
     s <- unlist(s)
   } else {
     s <- lapply(s, FUN=function(s) {
-      if (length(s) == 0L || is.na(s)) return(s)
+      if (length(s) == 0L || identical(s, NA_character_)) return(s)
 
       s2 <- tolower(s)
       isUpperCase <- (!s %in% s2)
