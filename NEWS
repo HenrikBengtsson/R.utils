@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.7.0-9000 [2019-02-13]
+Version: 2.8.0 [2019-02-13]
 
 NEW FEATURES:
 
@@ -13,7 +13,7 @@ NEW FEATURES:
 BUG FIXES:
 
  * displayCode(), commandArgs() and toCamelCase() used && and || on logical
-   vectors that could have be of length different than one.
+   vectors that might not necessarily be of length one.
  
  * createWindowsShortcut() and createLink(method="windows-shortcut") failed to
    create Windows Shortcut links because filePath(..., expandLinks = "any")
