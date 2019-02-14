@@ -100,13 +100,24 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
     cat(file=pathnameT, code)
     cmd <- sprintf("cscript \"%s\"", pathnameT)
     res <- tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"))
+      res <- shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"))
+      status <- attr(res, "status")
+      if (!is.null(status)) {
+        msg <- sprintf("Shell command %s had status %d (using shell %s): %s", sQuote(cmd), status, sQuote(Sys.getenv("COMSPEC")), paste(res, collapse = "; "))
+	throw(msg)
+      }
+      res
     }, error = identity)
+
+    if (inherits(res, "error")) {
+      msg <- sprintf("An error occurred when calling VBScript (%s) to create Windows Shortcut link %s. The reason was: %s", sQuote(cmd), sQuote(pathname), conditionMessage(res))
+      throw(msg)
+    }
 
     # Sanity check
     if (!isFile(pathname)) {
       if (!mustWork) return(NULL)
-      msg <- sprintf("Failed to create Windows Shortcut link %s (via VBScript)", sQuote(pathname))
+      msg <- sprintf("Failed to create Windows Shortcut link %s via VBScript (%s)", sQuote(pathname), sQuote(cmd))
       if (inherits(res, "error")) {
         msg <- sprintf("%s. The reason was: %s", msg, conditionMessage(res))
       } else if (inherits(res, "character")) {
