@@ -4,10 +4,11 @@
 ^.svn
 ^.git
 ^.make
-INSTALL[.]md
-OVERVIEW[.]md
-README[.]md
-CONDUCT[.]md
+^INSTALL[.]md$
+^OVERVIEW[.]md$
+^README[.]md$
+^CONDUCT[.]md$
+^docs/
 
 #----------------------------
 # devtools
@@ -42,6 +43,7 @@ Rplots.pdf$
 ^[.]devel
 ^[.]test
 ^[.]check
+^[.]local
 ^.*[.]tar[.]gz$
 
 #----------------------------
@@ -50,6 +52,9 @@ Rplots.pdf$
 ^[.]BatchJobs[.]R$
 [.]future
 
+#----------------------------
+# Miscellaneous
+#----------------------------
+^.ghi
+^.issues
 
-^.*\.Rproj$
-^\.Rproj\.user$
