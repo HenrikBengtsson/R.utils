@@ -224,12 +224,13 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   # Treat C:/, C:\\, ... special
   pattern <- getWindowsDrivePattern("^[%s]:[/\\]$")
-  if (regexpr(pattern, pathname) != -1L)
+  if (regexpr(pattern, pathname) != -1L) {
     pathname <- gsub("\\\\", "/", pathname)
-    # Undo Windows drive mapping?
-    if (unmap) pathname <- unmapOnWindows(pathname)
-    return(pathname)
-
+  }
+  
+  # Undo Windows drive mapping?
+  if (unmap) pathname <- unmapOnWindows(pathname)
+  
   # Requires that the 'pathname' is a absolute pathname.
   pathname0 <- pathname
 

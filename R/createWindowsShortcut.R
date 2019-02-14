@@ -16,6 +16,8 @@
 #     point to.}
 #   \item{overwrite}{If @TRUE, an existing link file is overwritten,
 #     otherwise not.}
+#   \item{mustWork}{If @TRUE, an error is produced if the Windows Shortcut
+#     link is not created, otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
@@ -45,12 +47,12 @@
 # @keyword file
 # @keyword IO
 #*/###########################################################################
-setMethodS3("createWindowsShortcut", "default", function(pathname, target, overwrite=FALSE, ...) {
+setMethodS3("createWindowsShortcut", "default", function(pathname, target, overwrite=FALSE, mustWork=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Reference: http://ss64.com/nt/shortcut.html
-  makeVBScript <- function(target, link, description=basename(target), ...) {
+  makeVBScript <- function(target, link, description=basename(target)) {
     # Arguments 'target':
     target <- Arguments$getReadablePathname(target, mustExist=TRUE)
     target <- getAbsolutePath(target)
@@ -83,7 +85,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
     s
   } # makeVBScript
 
-  createWindowsShortcutViaVBScript <- function(pathname, target, ...) {
+  createWindowsShortcutViaVBScript <- function(pathname, target, mustWork = FALSE) {
     link <- gsub("[.](lnk|LNK)$", "", pathname)
 
     # Generate VB code
@@ -97,14 +99,31 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
     on.exit(file.remove(pathnameT))
     cat(file=pathnameT, code)
     cmd <- sprintf("cscript \"%s\"", pathnameT)
-    tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"))
-    }, error = function(ex) {
-    })
+    res <- tryCatch({
+      res <- shell(cmd, intern=TRUE, mustWork=TRUE, shell=Sys.getenv("COMSPEC"))
+      status <- attr(res, "status")
+      if (!is.null(status)) {
+        msg <- sprintf("Shell command %s had status %d (using shell %s): %s", sQuote(cmd), status, sQuote(Sys.getenv("COMSPEC")), paste(res, collapse = "; "))
+	throw(msg)
+      }
+      res
+    }, error = identity)
+
+    if (inherits(res, "error")) {
+      msg <- sprintf("An error occurred when calling VBScript (%s) to create Windows Shortcut link %s. The reason was: %s", sQuote(cmd), sQuote(pathname), conditionMessage(res))
+      throw(msg)
+    }
 
     # Sanity check
     if (!isFile(pathname)) {
-      return(NULL)
+      if (!mustWork) return(NULL)
+      msg <- sprintf("Failed to create Windows Shortcut link %s via VBScript (%s)", sQuote(pathname), sQuote(cmd))
+      if (inherits(res, "error")) {
+        msg <- sprintf("%s. The reason was: %s", msg, conditionMessage(res))
+      } else if (inherits(res, "character")) {
+        msg <- sprintf("%s. The reason was: %s", msg, paste(res, collapse="; "))
+      }
+      throw(msg)
     }
 
     pathname
@@ -116,6 +135,9 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite)
+
+  # Argument 'mustWork':
+  mustWork <- Arguments$getLogical(mustWork)
 
   # Argument 'pathname':
   if (!overwrite && isFile(pathname)) {
@@ -131,7 +153,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create Windows Shortcut link
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  createWindowsShortcutViaVBScript(pathname, target=target)
+  createWindowsShortcutViaVBScript(pathname, target=target, mustWork=mustWork)
 
   link <- gsub("[.](lnk|LNK)$", "", pathname)
 
@@ -148,7 +170,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   })
 
   target0 <- getAbsolutePath(target)
-  target1 <- Arguments$getReadablePathname(link)
+  target1 <- Arguments$getReadablePathname(link, mustWork=mustWork)
   target1 <- getAbsolutePath(target1)
 
   # AD HOC: It may happen that the case of the drive letters differ.

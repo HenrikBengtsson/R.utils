@@ -87,29 +87,29 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   links <- c(link, sprintf("%s.LNK", link))
   if (any(file.exists(links))) {
     if (skip) {
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      pathnameL <- Arguments$getReadablePathname(link, mustExist=TRUE)
 
-      resA <- getAbsolutePath(Sys.readlink2(res, what="corrected"))
-      equal <- identical(resA, target)
+      pathnameLA <- getAbsolutePath(Sys.readlink2(pathnameL, what="corrected"))
+      equal <- identical(pathnameLA, target)
       # Be more forgiving on Windows system, i.e. assume a
       # case-insensitive file system
       if (!equal && (.Platform$OS.type == "windows")) {
-        equal <- identical(tolower(resA), tolower(target))
+        equal <- identical(tolower(pathnameLA), tolower(target))
       }
       if (!equal) {
-        warning(sprintf("Existing link (%s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(resA), sQuote(target)))
+        warning(sprintf("Existing link (%s; current working directory: %s) was skipped, but it links to different target file than requested: %s != %s", sQuote(link), sQuote(getwd()), sQuote(pathnameLA), sQuote(target)))
       }
 
       # If a Windows Shortcut, avoid returning the target.
       if (file.exists(links[2L]) && !file.exists(link)) {
-        res <- link
-        attr(res, "linkType") <- "windows-shortcut"
+        pathnameL <- link
+        attr(pathnameL, "linkType") <- "windows-shortcut"
       }
 
-      return(res)
+      return(pathnameL)
     }
     if (!overwrite) {
-      throw("Cannot create link. Link file already exists: ", link)
+      throw(sprintf("Cannot create link. Link file already exists: %s (current working directory: %s)", sQuote(link), sQuote(getwd())))
     }
   }
 
@@ -152,8 +152,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 
   # Default result
-  res <- NULL
+  pathnameL <- NULL
 
+  conditions <- list()
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Unix: Try to create a symbolic link
@@ -162,18 +163,19 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     targetF <- getAbsolutePath(target)
     tryCatch({
       file.symlink(from=targetF, to=link)
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
-      attr(res, "linkType") <- "unix-symlink"
-    }, warning = function(ex) {
+      pathnameL <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      attr(pathnameL, "linkType") <- "unix-symlink"
+    }, warning = function(w) {
+      conditions[["unix-symlink"]] <<- w
     })
-    if (!is.null(res)) {
+    if (!is.null(pathnameL)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res)
+      return(pathnameL)
     }
 
     # Cleanup, in case something was created but the link is not
     # working, which can happen on Windows.  If it worked, then
-    # 'res' should be non-NULL above.
+    # 'pathnameL' should be non-NULL above.
     if (file.exists(link)) {
       file.remove(link)
     }
@@ -191,14 +193,20 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       cmd <- sprintf("mklink \"%s\" \"%s\"", link, target)
     }
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"))
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
-      attr(res, "linkType") <- "windows-ntfs-symlink"
+      res <- shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=FALSE, shell=Sys.getenv("COMSPEC"))
+      status <- attr(res, "status")
+      if (!is.null(status)) {
+        msg <- sprintf("Shell command %s had status %d (using shell %s): %s", sQuote(cmd), status, sQuote(Sys.getenv("COMSPEC")), paste(res, collapse = "; "))
+	throw(msg)
+      }
+      pathnameL <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      attr(pathnameL, "linkType") <- "windows-ntfs-symlink"
     }, error = function(ex) {
+      conditions[["windows-ntfs-symlink"]] <<- ex
     })
-    if (!is.null(res)) {
+    if (!is.null(pathnameL)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res)
+      return(pathnameL)
     }
   }
 
@@ -208,22 +216,35 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   if (is.element("windows-shortcut", methods)) {
     tryCatch({
       pathname <- sprintf("%s.LNK", link)
-      createWindowsShortcut(pathname, target=target, overwrite=overwrite)
-      res <- Arguments$getReadablePathname(link, mustExist=TRUE)
+      createWindowsShortcut(pathname, target=target, overwrite=overwrite, mustWork=TRUE)
+      pathnameL <- Arguments$getReadablePathname(link, mustExist=TRUE)
       # Make sure to return the link and not the target
-      res <- link
-      attr(res, "linkType") <- "windows-shortcut"
+      pathnameL <- link
+      attr(pathnameL, "linkType") <- "windows-shortcut"
     }, error = function(ex) {
+      conditions[["windows-shortcut"]] <<- ex
     })
-    if (!is.null(res)) {
+    if (!is.null(pathnameL)) {
       if (overwrite) linksS <- NULL;  # Don't undo above "overwrite"
-      return(res)
+      return(pathnameL)
     }
   }
 
-  if (is.null(res)) {
-    throw("Failed to create file link: ", link, "[.lnk] -> ", target)
+  if (is.null(pathnameL)) {
+    if (length(methods) == 0) {
+      throw(sprintf("Failed to create file link (because 'methods' was empty; current working directory: %s): %s[.lnk] -> %s", sQuote(getwd()), sQuote(link), sQuote(target)))
+    } else {
+      msg <- sprintf("Failed to create file link (methods attempted: %s; current working directory: %s): %s[.lnk] -> %s", paste(sQuote(methods), collapse = ", "), sQuote(getwd()), sQuote(link), sQuote(target))
+      if (length(conditions) > 0) {
+        classes <- sapply(conditions, FUN = function(cond) class(cond)[1])
+        reasons <- lapply(conditions, FUN = conditionMessage)
+        details <- sprintf("%s produced %s: %s", names(conditions), classes, sQuote(reasons))
+        details <- paste(details, collapse = "; ")
+	msg <- sprintf("%s\nWarnings and errors captured: %s", msg, details)
+      }
+      throw(msg)
+    }
   }
 
-  res
+  pathnameL
 }) # createLink()

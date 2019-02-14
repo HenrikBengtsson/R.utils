@@ -129,7 +129,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
       reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args")
     }
 
-    # a) Unix (and OSX?!? /HB 2011-09-14)
+    # a) Unix (and macOS?!? /HB 2011-09-14)
     if ("unix" %in% os) {
       reservedArgs <- c(reservedArgs, "--no-readline", "--debugger-args=(.*)", "--debugger=(.*)", "-d", "--gui=(.*)", "-g", "--interactive", "--arch=(.*)")
       if (rVer >= "3.0.0") {
@@ -263,7 +263,7 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
 
   coerceAs <- function(args, types) {
     types <- types[types != "NULL"]
-    todo <- which(is.element(names(args), names(types)) &&
+    todo <- which(is.element(names(args), names(types)) &
                   !sapply(args, FUN = inherits, "CmdArgExpression"))
     if (length(todo) > 0L) {
       argsT <- args[todo]

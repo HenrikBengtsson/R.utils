@@ -113,7 +113,7 @@ stopifnot(identical(z,x))
 
 cat("\nWrap and unwrap a randomly sized and shaped array 'x2':\n")
 maxdim <- 5
-dim <- sample(1:maxdim, size=sample(2:maxdim))
+dim <- sample(1:maxdim, size=sample(2:maxdim, size=1))
 ndim <- length(dim)
 dimnames <- list()
 for (kk in 1:ndim)
