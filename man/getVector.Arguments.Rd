@@ -29,7 +29,7 @@
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.}
   \item{length}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length two or more. If two, it
-    is the minimum and maximum length of \code{x}. Elsewise it is the
+    is the minimum and maximum length of \code{x}. Otherwise, it is the
     set of possible lengths of \code{x}.}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}
   \item{...}{Not used.}

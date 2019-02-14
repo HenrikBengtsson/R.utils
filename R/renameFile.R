@@ -15,7 +15,7 @@
 # \arguments{
 #   \item{pathname}{The pathname of the file to be renamed.}
 #   \item{newPathname}{The new pathname.
-#    If an emph{existing directory} and the source is a file, then the
+#    If an \emph{existing directory} and the source is a file, then the
 #    destination becomes \code{file.path(newPathname, basename(pathname))}.}
 #   \item{overwrite}{If @TRUE and there exists a file with new pathname,
 #    then it is overwritten.}

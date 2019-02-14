@@ -61,7 +61,7 @@ setConstructorS3("Arguments", function(...) {
 #     `abcdefghijklmnopqrstuvwxyz{|}~  (31)
 #   }
 #   This class of filenames has been extensively tested on for
-#   cross-platform support on Microsoft Windows, OSX and various
+#   cross-platform support on Microsoft Windows, macOS, and various
 #   Unix flavors.
 # }
 #
@@ -617,7 +617,7 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
 # \arguments{
 #   \item{x}{A single @vector.}
 #   \item{length}{A @numeric @vector of length two or more. If two, it
-#     is the minimum and maximum length of \code{x}. Elsewise it is the
+#     is the minimum and maximum length of \code{x}. Otherwise, it is the
 #     set of possible lengths of \code{x}.}
 #   \item{.name}{A @character string for name used in error messages.}
 #   \item{...}{Not used.}

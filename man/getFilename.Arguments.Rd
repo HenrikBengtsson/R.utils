@@ -57,7 +57,7 @@
     `abcdefghijklmnopqrstuvwxyz{|}~  (31)
   }
   This class of filenames has been extensively tested on for
-  cross-platform support on Microsoft Windows, OSX and various
+  cross-platform support on Microsoft Windows, macOS, and various
   Unix flavors.
 }
 
