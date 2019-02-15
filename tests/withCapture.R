@@ -47,9 +47,10 @@ bfr <- withCapture({ x <- a }, replace=list(a="abc"))
 print(bfr)
 stopifnot(bfr == '> x <- "abc"\n')
 
-bfr <- withCapture({ x <- a }, substitute=list(a="abc"))
-print(bfr)
-stopifnot(bfr == '> x <- "abc"\n')
+res <- tryCatch({
+  withCapture({ x <- a }, substitute=list(a="abc"))
+}, error = identity)
+stopifnot(inherits(res, "error"))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

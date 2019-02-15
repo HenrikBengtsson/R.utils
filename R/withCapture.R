@@ -26,7 +26,7 @@
 #      is appended at the end.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
-#   \item{substitute}{(to be deprecated) use \code{replace} instead.}
+#   \item{substitute}{(defunct) use \code{replace} instead.}
 #   \item{envir}{The @environment in which the expression is evaluated.}
 # }
 #
@@ -51,10 +51,8 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Substitute?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  ## 'substitute' will become deprecated in favor of 'replace'.
   if (!missing(substitute) && missing(replace)) {
-    .Deprecated(msg = "Argument 'substitute' of R.utils::withCapture() has been renamed to 'replace'.")
-    replace <- substitute
+    .Defunct(msg = "Argument 'substitute' of R.utils::withCapture() has been renamed to 'replace'.")
   }
   
   # (a) Substitute by "constant" symbols?

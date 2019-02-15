@@ -9,7 +9,6 @@
 \name{withTimeout}
 \alias{withTimeout}
 
-\alias{evalWithTimeout}
 
 \title{Evaluate an R expression and interrupts it if it takes too long}
 

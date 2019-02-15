@@ -1,6 +1,5 @@
 ###########################################################################/**
 # @RdocFunction withTimeout
-# @alias evalWithTimeout
 #
 # @title "Evaluate an R expression and interrupts it if it takes too long"
 #
@@ -139,9 +138,4 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
       throw(ex)
     }
   })
-} # withTimeout()
-
-
-evalWithTimeout <- function(...) {
-  .Defunct(new = "R.utils::withTimeout()")
 }

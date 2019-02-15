@@ -40,7 +40,7 @@ withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
      is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
-  \item{substitute}{(to be deprecated) use \code{replace} instead.}
+  \item{substitute}{(defunct) use \code{replace} instead.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 

@@ -182,8 +182,7 @@ setMethodS3("inheritsFrom", "Assert", function(static, object, class, ...) {
 }, static=TRUE)
 
 setMethodS3("inherits", "Assert", function(static, object, class, ...) {
-  .Deprecated(msg = "Assert$inherits() is deprecated and has been renamed to Assert$inheritsFrom()")
-  inheritsFrom(static, object = object, class = class, ...)
+  .Defunct(new = "Assert$inheritsFrom()")
 }, static=TRUE)
 
 
