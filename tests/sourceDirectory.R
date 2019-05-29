@@ -1,6 +1,5 @@
-#library("R.utils")
+library("R.utils")
 
-devtools::load_all()
 x = 1
 
 # Test that modifiedOnly works for recursive subdirectories
