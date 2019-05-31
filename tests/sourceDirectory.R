@@ -23,6 +23,7 @@ for (kk in 1:2) {
   stopifnot(x == 3L)
 }
 
+Sys.sleep(1)
 touchFile(pathname)
 
 for (kk in 1:2) {
@@ -49,6 +50,7 @@ sourceDirectory(path, modifiedOnly = TRUE)
 message("x = ", x)
 stopifnot(x == 6L)
 
+Sys.sleep(1)
 touchFile(pathname)
 
 for (kk in 1:2) {
