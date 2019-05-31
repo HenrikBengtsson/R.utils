@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.8.0-9000 [2019-05-30]
+Version: 2.8.0-9000 [2019-05-31]
 
  * ...
 
@@ -19,6 +19,8 @@ BUG FIXES:
  * sourceDirectory() did not respect argument 'modifiedOnly'.  Thanks to
    Anton Krasikov for the report and the fix.
 
+ * createLink() could produce a spurious warning on MS Windows.
+ 
 
 Version: 2.8.0 [2019-02-13]
 
