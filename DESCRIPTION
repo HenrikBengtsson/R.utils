@@ -20,4 +20,3 @@ License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/HenrikBengtsson/R.utils
 BugReports: https://github.com/HenrikBengtsson/R.utils/issues
-RoxygenNote: 6.1.0

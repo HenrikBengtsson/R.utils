@@ -1,11 +1,62 @@
 library("R.utils")
 
-x <- 1
+## Create a test folder with R scripts
+path <- file.path(tempdir(), "R.utils")
+dir.create(path, recursive = TRUE, showWarnings = FALSE)
 
-# Test that modifiedOnly works for recursive subdirectories
+pathname <- file.path(path, "increment_x.R")
+cat(file = pathname, "x <- x + 1L\n")
 
-sourceDirectory('sourceDirectoryDir/', modifiedOnly = FALSE)
-stopifnot(identical(x, 2))
+x <- 0L
 
-sourceDirectory('sourceDirectoryDir/', modifiedOnly = FALSE)
-stopifnot(identical(x, 3))
+source(pathname)
+message("x = ", x)
+stopifnot(x == 1L)
+
+source(pathname)
+message("x = ", x)
+stopifnot(x == 2L)
+
+for (kk in 1:2) {
+  sourceTo(pathname, modifiedOnly = TRUE)
+  message("x = ", x)
+  stopifnot(x == 3L)
+}
+
+touchFile(pathname)
+
+for (kk in 1:2) {
+  sourceTo(pathname, modifiedOnly = TRUE)
+  message("x = ", x)
+  stopifnot(x == 4L)
+}
+
+sourceTo(pathname, modifiedOnly = FALSE)
+message("x = ", x)
+stopifnot(x == 5L)
+
+for (kk in 1:2) {
+  sourceDirectory(path, modifiedOnly = TRUE)
+  message("x = ", x)
+  stopifnot(x == 5L)
+}
+
+sourceDirectory(path, modifiedOnly = FALSE)
+message("x = ", x)
+stopifnot(x == 6L)
+
+sourceDirectory(path, modifiedOnly = TRUE)
+message("x = ", x)
+stopifnot(x == 6L)
+
+touchFile(pathname)
+
+for (kk in 1:2) {
+  sourceDirectory(path, modifiedOnly = TRUE)
+  message("x = ", x)
+  stopifnot(x == 7L)
+}
+
+
+## Cleanup
+#unlink(path, recursive = TRUE)

@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.8.0-9000 [2019-02-14]
+Version: 2.8.0-9000 [2019-05-30]
 
  * ...
 
@@ -13,6 +13,11 @@ DEPRECATE AND DEFUNCT:
  * Assert$inherits() is defunct - use Assert$inheritsFrom() instead.
 
  * Argument 'substitute' of withCapture() is defunct - use 'replace' instead.
+ 
+BUG FIXES:
+
+ * sourceDirectory() did not respect argument 'modifiedOnly'.  Thanks to
+   Anton Krasikov for the report and the fix.
 
 
 Version: 2.8.0 [2019-02-13]
