@@ -1989,15 +1989,16 @@ Run `revdep_details(,"fitteR")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking package dependencies ... NOTE
     ```
-    Package required but not available: ‘maxLik’
-    
-    Packages suggested but not available for checking:
-      'ExtDist', 'hermite', 'ihs'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Package suggested but not available for checking: ‘ExtDist’
+    ```
+
+*   checking whether package ‘fitteR’ can be installed ... NOTE
+    ```
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/fitteR/new/fitteR.Rcheck/00install.out’ for details.
     ```
 
 # fpmoutliers
@@ -3149,12 +3150,16 @@ Run `revdep_details(,"PopGenReport")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘PopGenReport’ can be installed ... NOTE
     ```
-    Package required but not available: ‘vegan’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/PopGenReport/new/PopGenReport.Rcheck/00install.out’ for details.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘ecodist’
     ```
 
 # primirTSS
@@ -3222,12 +3227,11 @@ Run `revdep_details(,"profileplyr")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘profileplyr’ can be installed ... NOTE
     ```
-    Package required but not available: ‘EnrichedHeatmap’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/profileplyr/new/profileplyr.Rcheck/00install.out’ for details.
     ```
 
 # Prostar
@@ -3907,14 +3911,64 @@ Run `revdep_details(,"ReportingTools")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking tests ...
     ```
-    Package required but not available: ‘GOstats’
-    
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 13 lines of output:
+           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_DESeqResults.R 
+      
+         test_GeneSets.R 
+           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_GeneSets.R 
+      
+         test_HyperGResults.R 
+           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_HyperGResults.R 
+      
+         test_MArrayLM.R 
+           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_MArrayLM.R 
+      
+      
+      Error in BiocGenerics:::testPackage("ReportingTools") : 
+        unit tests failed for package ReportingTools
+      Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
     Package suggested but not available for checking: ‘hgu95av2.db’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    ```
+
+*   checking whether package ‘ReportingTools’ can be installed ... NOTE
+    ```
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/00install.out’ for details.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      'fData'
+    .marrayLM.to.html: no visible global function definition for
+      'featureNames'
+    .marrayLM.to.html: no visible global function definition for 'fData'
+    check.ids: no visible binding for global variable 'org.Hs.eg.db'
+    check.ids: no visible global function definition for 'keys'
+    custHeaderPanel : <anonymous>: no visible binding for global variable
+      'tags'
+    custHeaderPanel : <anonymous>: no visible global function definition
+      for 'HTML'
+    custHeaderPanel: no visible global function definition for 'tagList'
+    custHeaderPanel: no visible global function definition for 'tag'
+    custHeaderPanel: no visible global function definition for 'div'
+    custHeaderPanel: no visible global function definition for 'h1'
+    publish,trellis-HTMLReport: no visible binding for global variable
+      'htmlRep'
+    toReportDF,DESeqDataSet: no visible global function definition for
+      'mcols'
+    Undefined global functions or variables:
+      HTML columns description div exprs fData featureNames h1 htmlRep keys
+      keytype mcols org.Hs.eg.db tag tagList tags
     ```
 
 # reproducible
@@ -4006,12 +4060,11 @@ Run `revdep_details(,"ROI.models.miplib")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘ROI.models.miplib’ can be installed ... NOTE
     ```
-    Package required but not available: ‘Rglpk’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/ROI.models.miplib/new/ROI.models.miplib.Rcheck/00install.out’ for details.
     ```
 
 # RRphylo
@@ -4029,12 +4082,18 @@ Run `revdep_details(,"RRphylo")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘RRphylo’ can be installed ... NOTE
     ```
-    Packages required but not available: 'picante', 'vegan'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/RRphylo/new/RRphylo.Rcheck/00install.out’ for details.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘data.tree’ ‘penalized’
+      All declared Imports should be used.
     ```
 
 # ruta
@@ -4252,12 +4311,11 @@ Run `revdep_details(,"shinyEventLogger")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘shinyEventLogger’ can be installed ... NOTE
     ```
-    Package required but not available: ‘mongolite’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following notes/warnings:
+      Non-staged installation was used
+    See ‘/home/hb/repositories/R.utils/revdep/checks/shinyEventLogger/new/shinyEventLogger.Rcheck/00install.out’ for details.
     ```
 
 # simPATHy
