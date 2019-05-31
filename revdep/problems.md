@@ -3916,26 +3916,21 @@ Run `revdep_details(,"ReportingTools")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 13 lines of output:
+      ERROR in /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_DESeqResults.R: Error while sourcing  /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_DESeqResults.R : Error in .requirePackage(package) : 
+        unable to find required package 'DESeq'
+      
+      Test files with failing tests
+      
+         test_DESeqDataSet.R 
+           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_DESeqDataSet.R 
+      
+         test_DESeqResults.R 
            /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_DESeqResults.R 
-      
-         test_GeneSets.R 
-           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_GeneSets.R 
-      
-         test_HyperGResults.R 
-           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_HyperGResults.R 
-      
-         test_MArrayLM.R 
-           /home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/ReportingTools/unitTests/test_MArrayLM.R 
       
       
       Error in BiocGenerics:::testPackage("ReportingTools") : 
         unit tests failed for package ReportingTools
       Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘hgu95av2.db’
     ```
 
 *   checking whether package ‘ReportingTools’ can be installed ... NOTE
@@ -4427,37 +4422,6 @@ Run `revdep_details(,"stplanr")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: route_dodgr
-    > ### Title: Route on local data using the dodgr package
-    > ### Aliases: route_dodgr
-    > 
-    > ### ** Examples
-    > 
-    > # from <- geo_code("pedallers arms leeds")
-    > from <- c(-1.5327, 53.8006)
-    > # to <- geo_code("gzing")
-    > to <- c(-1.5279, 53.8044)
-    > # next 4 lines recreate `stplanr::osm_net_example`
-    > # pts <- rbind(from, to)
-    > # colnames(pts) <- c("X", "Y")
-    > # net <- dodgr::dodgr_streetnet(pts = rbind(from, to), expand = 0.1)
-    > # osm_net_example <- net[c("highway", "name", "lanes", "maxspeed")]
-    > r <- route_dodgr(from, to, net = osm_net_example)
-    Error in loadNamespace(name) : there is no package called ‘dodgr’
-    Calls: route_dodgr ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
-    Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘dodgr’
-    ```
-
 *   checking whether package ‘stplanr’ can be installed ... NOTE
     ```
     Found the following notes/warnings:
@@ -4615,30 +4579,6 @@ Run `revdep_details(,"TCGAutils")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘TCGAutils-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: imputeAssay
-    > ### Title: This function imputes assays values inside a
-    > ###   'MultiAssayExperiment'
-    > ### Aliases: imputeAssay
-    > 
-    > ### ** Examples
-    > 
-    > library(curatedTCGAData)
-    Error in library(curatedTCGAData) : 
-      there is no package called ‘curatedTCGAData’
-    Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'curatedTCGAData', 'RTCGAToolbox'
-    ```
-
 *   checking whether package ‘TCGAutils’ can be installed ... NOTE
     ```
     Found the following notes/warnings:
@@ -4651,11 +4591,6 @@ Run `revdep_details(,"TCGAutils")` for more info
     Unexported objects imported by ':::' calls:
       ‘BiocGenerics:::replaceSlots’ ‘GenomicRanges:::.normarg_field’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘RTCGAToolbox’
     ```
 
 # TFEA.ChIP

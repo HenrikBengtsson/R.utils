@@ -157,7 +157,7 @@
 |[RCy3](problems.md#rcy3)                             |2.4.0          |      |        |4        |
 |[rddapp](problems.md#rddapp)                         |1.1.0          |      |        |1        |
 |[rdwd](problems.md#rdwd)                             |1.1.0          |      |        |2        |
-|[ReportingTools](problems.md#reportingtools)         |2.24.0         |1     |        |3        |
+|[ReportingTools](problems.md#reportingtools)         |2.24.0         |1     |        |2        |
 |[reproducible](problems.md#reproducible)             |0.2.8          |      |        |1        |
 |[restez](problems.md#restez)                         |1.0.0          |1     |        |         |
 |RforProteomics                                       |?              |      |        |         |
@@ -175,11 +175,11 @@
 |[snplist](problems.md#snplist)                       |0.18.1         |      |        |1        |
 |[SpaDES.core](problems.md#spadescore)                |0.2.5          |      |1       |         |
 |[spm12r](problems.md#spm12r)                         |2.8.1          |      |        |1        |
-|[stplanr](problems.md#stplanr)                       |0.2.10         |1     |        |2        |
+|[stplanr](problems.md#stplanr)                       |0.2.10         |      |        |1        |
 |[taxonomizr](problems.md#taxonomizr)                 |0.5.3          |      |        |1        |
 |[TBSSurvival](problems.md#tbssurvival)               |1.3            |      |        |1        |
 |[TCGAbiolinks](problems.md#tcgabiolinks)             |2.12.1         |      |1       |6        |
-|[TCGAutils](problems.md#tcgautils)                   |1.4.0          |1     |        |4        |
+|[TCGAutils](problems.md#tcgautils)                   |1.4.0          |      |        |2        |
 |[TFEA.ChIP](problems.md#tfeachip)                    |1.4.0          |1     |        |1        |
 |[tmle.npvi](problems.md#tmlenpvi)                    |0.10.0         |      |        |2        |
 |[TNBC.CMS](problems.md#tnbccms)                      |1.0.0          |      |        |1        |
