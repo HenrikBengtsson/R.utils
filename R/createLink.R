@@ -88,11 +88,11 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
   if (any(file.exists(links))) {
     if (skip) {
       pathnameL <- Arguments$getReadablePathname(link, mustExist=TRUE)
-      equal <- identical(pathnameLA, target)
+      equal <- identical(pathnameL, target)
       # Be more forgiving on Windows system, i.e. assume a
       # case-insensitive file system
       if (!equal && (.Platform$OS.type == "windows")) {
-        equal <- identical(tolower(pathnameLA), tolower(target))
+        equal <- identical(tolower(pathnameL), tolower(target))
       }
 
       if (!equal) {
