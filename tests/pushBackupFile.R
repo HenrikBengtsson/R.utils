@@ -31,4 +31,4 @@ cat(file=pathname, "File v2\n");
 pathnameR <- popBackupFile(pathnameB, verbose=TRUE);
 print(pathnameR);
 
-
+file.remove(pathname)
