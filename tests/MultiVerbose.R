@@ -13,9 +13,9 @@ for (kk in 1:10) {
   printf(verbose, "step %d\n", kk)
   if (kk == 2) {
     cat(verbose, "Turning ON automatic timestamps")
-    timestampOn(verbose);
+    timestampOn(verbose)
   } else if (kk == 4) {
-    timestampOff(verbose);
+    timestampOff(verbose)
     cat(verbose, "Turned OFF automatic timestamps")
     cat(verbose, "Turning OFF verbose messages for steps ", kk, "-6")
     off(verbose)

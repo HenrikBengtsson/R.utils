@@ -122,13 +122,13 @@ print(x)
 ndim2 <- sample(1:(ndim-1), size=1)
 
 # Create a random map for joining dimensions
-splits <- NULL;
+splits <- NULL
 if (ndim > 2)
   splits <- sort(sample(2:(ndim-1), size=ndim2-1))
-splits <- c(0, splits, ndim);
-map <- list();
+splits <- c(0, splits, ndim)
+map <- list()
 for (kk in 1:ndim2)
-  map[[kk]] <- (splits[kk]+1):splits[kk+1];
+  map[[kk]] <- (splits[kk]+1):splits[kk+1]
 
 cat("\nRandom 'map':\n")
 print(map)

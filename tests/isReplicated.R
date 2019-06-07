@@ -42,7 +42,7 @@ t <- system.time({
 print(sum(s))
 
 t0 <- system.time({
-  s0 <- !(x %in% x[duplicated(x)]);
+  s0 <- !(x %in% x[duplicated(x)])
 })
 print(t/t0)
 stopifnot(all(s == s0))

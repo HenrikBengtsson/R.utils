@@ -18,7 +18,7 @@ tryCatch({
   linkR <- normalizePath(linkR)
   link <- normalizePath(link)
   if (linkR != link) {
-    throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link));
+    throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link))
   }
 }, error = function(ex) {
   verbose && cat(verbose, "Failed to create link: ", ex$message)
@@ -37,7 +37,7 @@ for (method in methods) {
     linkR <- normalizePath(linkR)
     link <- normalizePath(link)
     if (linkR != link) {
-      throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link));
+      throw("Requested and returned link are not the same: ", sQuote(linkR), " != ", sQuote(link))
     }
   }, error = function(ex) {
     verbose && cat(verbose, "Failed to create link: ", ex$message)

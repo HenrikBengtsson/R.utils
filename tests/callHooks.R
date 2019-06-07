@@ -39,9 +39,9 @@ setHook("randomNumber", .GlobalEnv) # Not a function
 
 res <- callHooks("randomNumber", n=1, removeCalledHooks=TRUE)
 str(res)
-cat("Number of hooks: ", length(res), "\n");
-isErroneous <- unlist(lapply(res, FUN=function(x) !is.null(x$exception)));
-cat("Erroneous hooks: ", sum(isErroneous), "\n");
+cat("Number of hooks: ", length(res), "\n")
+isErroneous <- unlist(lapply(res, FUN=function(x) !is.null(x$exception)))
+cat("Erroneous hooks: ", sum(isErroneous), "\n")
 
 
 
