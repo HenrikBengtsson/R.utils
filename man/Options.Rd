@@ -101,11 +101,11 @@ cat("graphics/cex =", cex, "\n")  # Returns 3
 
 # Query multiple options with multiple default values
 multi <- getOption(local, c("graphics/cex", "graphics/pch"), c(1,2))
-print(multi);
+print(multi)
 
 # Check existance of multiple options
 has <- hasOption(local, c("graphics/cex", "graphics/pch"))
-print(has);
+print(has)
 
 # Get a subtree of options
 graphics <- getOption(local, "graphics")

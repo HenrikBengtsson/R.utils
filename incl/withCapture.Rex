@@ -1,15 +1,15 @@
 print(withCapture({
- n <- 3;
- n;
+ n <- 3
+ n
 
  for (kk in 1:3) {
-   printf("Iteration #%d\n", kk);
+   printf("Iteration #%d\n", kk)
  }
 
- print(Sys.time());
+ print(Sys.time())
 
- type <- "horse";
- type;
+ type <- "horse"
+ type
 }))
 
 ## > n <- 3
