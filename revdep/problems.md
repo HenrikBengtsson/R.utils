@@ -1,95 +1,3 @@
-# acc
-
-<details>
-
-* Version: 1.3.3
-* Source code: https://github.com/cran/acc
-* Date/Publication: 2016-12-16 23:29:38
-* Number of recursive dependencies: 58
-
-Run `revdep_details(,"acc")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘acc’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/acc/new/acc.Rcheck/00install.out’ for details.
-    ```
-
-# ACNE
-
-<details>
-
-* Version: 0.8.1
-* Source code: https://github.com/cran/ACNE
-* URL: https://github.com/HenrikBengtsson/ACNE
-* BugReports: https://github.com/HenrikBengtsson/ACNE/issues
-* Date/Publication: 2015-10-27 08:09:51
-* Number of recursive dependencies: 23
-
-Run `revdep_details(,"ACNE")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ACNE’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ACNE/new/ACNE.Rcheck/00install.out’ for details.
-    ```
-
-# acnr
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/acnr
-* URL: https://github.com/mpierrejean/acnr
-* BugReports: https://github.com/mpierrejean/acnr/issues
-* Date/Publication: 2017-04-18 09:58:15 UTC
-* Number of recursive dependencies: 29
-
-Run `revdep_details(,"acnr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘acnr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/acnr/new/acnr.Rcheck/00install.out’ for details.
-    ```
-
-# ActivityIndex
-
-<details>
-
-* Version: 0.3.6
-* Source code: https://github.com/cran/ActivityIndex
-* Date/Publication: 2018-12-31 22:10:21 UTC
-* Number of recursive dependencies: 31
-
-Run `revdep_details(,"ActivityIndex")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ActivityIndex’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ActivityIndex/new/ActivityIndex.Rcheck/00install.out’ for details.
-    ```
-
 # affxparser
 
 <details>
@@ -145,13 +53,6 @@ Run `revdep_details(,"affxparser")` for more info
     See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘affxparser’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/affxparser/new/affxparser.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 16.8Mb
@@ -162,61 +63,6 @@ Run `revdep_details(,"affxparser")` for more info
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘affy’
-    ```
-
-# alphahull
-
-<details>
-
-* Version: 2.1
-* Source code: https://github.com/cran/alphahull
-* Date/Publication: 2016-02-15 13:47:04
-* Number of recursive dependencies: 52
-
-Run `revdep_details(,"alphahull")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking R code for possible problems ... NOTE
-    ```
-    areaahull: no visible global function definition for ‘evalWithTimeout’
-    Undefined global functions or variables:
-      evalWithTimeout
-    ```
-
-## In both
-
-*   checking whether package ‘alphahull’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/alphahull/new/alphahull.Rcheck/00install.out’ for details.
-    ```
-
-# arc
-
-<details>
-
-* Version: 1.2
-* Source code: https://github.com/cran/arc
-* URL: https://github.com/kliegr/arc
-* BugReports: https://github.com/kliegr/arc/issues
-* Date/Publication: 2018-04-18 13:23:29 UTC
-* Number of recursive dependencies: 9
-
-Run `revdep_details(,"arc")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘arc’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/arc/new/arc.Rcheck/00install.out’ for details.
     ```
 
 # aroma.affymetrix
@@ -236,13 +82,6 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
 
 ## In both
 
-*   checking whether package ‘aroma.affymetrix’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/aroma.affymetrix/new/aroma.affymetrix.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.8Mb
@@ -256,54 +95,6 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
     ```
     Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
       could not find function "setGeneric"
-    ```
-
-# aroma.apd
-
-<details>
-
-* Version: 0.6.0
-* Source code: https://github.com/cran/aroma.apd
-* URL: URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.apd
-* BugReports: https://github.com/HenrikBengtsson/aroma.apd/issues
-* Date/Publication: 2015-02-25 00:49:33
-* Number of recursive dependencies: 5
-
-Run `revdep_details(,"aroma.apd")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘aroma.apd’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/aroma.apd/new/aroma.apd.Rcheck/00install.out’ for details.
-    ```
-
-# aroma.cn
-
-<details>
-
-* Version: 1.6.1
-* Source code: https://github.com/cran/aroma.cn
-* URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.cn
-* BugReports: https://github.com/HenrikBengtsson/aroma.cn/issues
-* Date/Publication: 2015-10-28 00:08:16
-* Number of recursive dependencies: 23
-
-Run `revdep_details(,"aroma.cn")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘aroma.cn’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/aroma.cn/new/aroma.cn.Rcheck/00install.out’ for details.
     ```
 
 # aroma.core
@@ -327,13 +118,6 @@ Run `revdep_details(,"aroma.core")` for more info
     ```
     Packages suggested but not available for checking:
       'sfit', 'expectile', 'HaarSeg', 'mpcbs'
-    ```
-
-*   checking whether package ‘aroma.core’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/aroma.core/new/aroma.core.Rcheck/00install.out’ for details.
     ```
 
 # aroma.light
@@ -361,21 +145,14 @@ Run `revdep_details(,"aroma.light")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘aroma.light’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/aroma.light/new/aroma.light.Rcheck/00install.out’ for details.
-    ```
-
 # AUCell
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.6.1
 * Source code: https://github.com/cran/AUCell
 * URL: http://scenic.aertslab.org
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-06-05
 * Number of recursive dependencies: 159
 
 Run `revdep_details(,"AUCell")` for more info
@@ -388,13 +165,6 @@ Run `revdep_details(,"AUCell")` for more info
     ```
     Packages which this enhances but not available for checking:
       'doMC', 'doRNG'
-    ```
-
-*   checking whether package ‘AUCell’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/AUCell/new/AUCell.Rcheck/00install.out’ for details.
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -434,74 +204,6 @@ Run `revdep_details(,"AUCell")` for more info
     '::' or ':::' import not declared from: ‘reshape2’
     ```
 
-# awsjavasdk
-
-<details>
-
-* Version: 0.2.0
-* Source code: https://github.com/cran/awsjavasdk
-* URL: https://github.com/zapier/awsjavasdk
-* BugReports: https://github.com/zapier/awsjavasdk/issues
-* Date/Publication: 2017-01-01 10:09:07
-* Number of recursive dependencies: 39
-
-Run `revdep_details(,"awsjavasdk")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘awsjavasdk’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/awsjavasdk/new/awsjavasdk.Rcheck/00install.out’ for details.
-    ```
-
-# babel
-
-<details>
-
-* Version: 0.3-0
-* Source code: https://github.com/cran/babel
-* Date/Publication: 2016-06-23 09:05:13
-* Number of recursive dependencies: 13
-
-Run `revdep_details(,"babel")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘babel’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/babel/new/babel.Rcheck/00install.out’ for details.
-    ```
-
-# bedr
-
-<details>
-
-* Version: 1.0.7
-* Source code: https://github.com/cran/bedr
-* Date/Publication: 2019-04-01 18:50:02 UTC
-* Number of recursive dependencies: 35
-
-Run `revdep_details(,"bedr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘bedr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/bedr/new/bedr.Rcheck/00install.out’ for details.
-    ```
-
 # bigstep
 
 <details>
@@ -518,13 +220,6 @@ Run `revdep_details(,"bigstep")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘bigstep’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/bigstep/new/bigstep.Rcheck/00install.out’ for details.
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -548,13 +243,6 @@ Run `revdep_details(,"BioInstaller")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘BioInstaller’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/BioInstaller/new/BioInstaller.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -581,13 +269,6 @@ Run `revdep_details(,"biomartr")` for more info
 
 ## In both
 
-*   checking whether package ‘biomartr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/biomartr/new/biomartr.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘fs’
@@ -608,13 +289,6 @@ Run `revdep_details(,"BMSC")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘BMSC’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/BMSC/new/BMSC.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -643,13 +317,6 @@ Run `revdep_details(,"bsseq")` for more info
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘bsseqData’
-    ```
-
-*   checking whether package ‘bsseq’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/bsseq/new/bsseq.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -684,30 +351,6 @@ Run `revdep_details(,"bsseq")` for more info
     Package unavailable to check Rd xrefs: ‘bsseqData’
     ```
 
-# calmate
-
-<details>
-
-* Version: 0.12.1
-* Source code: https://github.com/cran/calmate
-* URL: https://github.com/HenrikBengtsson/calmate/
-* BugReports: https://github.com/HenrikBengtsson/calmate/issues
-* Date/Publication: 2015-10-27 08:09:53
-* Number of recursive dependencies: 20
-
-Run `revdep_details(,"calmate")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘calmate’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/calmate/new/calmate.Rcheck/00install.out’ for details.
-    ```
-
 # Causata
 
 <details>
@@ -723,13 +366,6 @@ Run `revdep_details(,"Causata")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘Causata’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/Causata/new/Causata.Rcheck/00install.out’ for details.
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -762,52 +398,22 @@ Run `revdep_details(,"Causata")` for more info
     to your NAMESPACE file.
     ```
 
-# cellbaseR
-
-<details>
-
-* Version: 1.8.0
-* Source code: https://github.com/cran/cellbaseR
-* URL: https://github.com/melsiddieg/cellbaseR
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 132
-
-Run `revdep_details(,"cellbaseR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘cellbaseR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/cellbaseR/new/cellbaseR.Rcheck/00install.out’ for details.
-    ```
-
 # ChemoSpec
 
 <details>
 
-* Version: 5.0.229
+* Version: 5.1.9
 * Source code: https://github.com/cran/ChemoSpec
 * URL: https://bryanhanson.github.io/ChemoSpec/
 * BugReports: https://github.com/bryanhanson/ChemoSpec/issues
-* Date/Publication: 2019-03-01 05:20:12 UTC
-* Number of recursive dependencies: 129
+* Date/Publication: 2019-06-09 18:50:03 UTC
+* Number of recursive dependencies: 135
 
 Run `revdep_details(,"ChemoSpec")` for more info
 
 </details>
 
 ## In both
-
-*   checking whether package ‘ChemoSpec’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ChemoSpec/new/ChemoSpec.Rcheck/00install.out’ for details.
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -818,12 +424,12 @@ Run `revdep_details(,"ChemoSpec")` for more info
 
 <details>
 
-* Version: 0.2.19
+* Version: 0.3.166
 * Source code: https://github.com/cran/ChemoSpec2D
 * URL: https://github.com/bryanhanson/ChemoSpec2D
 * BugReports: https://github.com/bryanhanson/ChemoSpec2D/issues
-* Date/Publication: 2019-03-01 05:20:03 UTC
-* Number of recursive dependencies: 35
+* Date/Publication: 2019-06-09 17:50:02 UTC
+* Number of recursive dependencies: 101
 
 Run `revdep_details(,"ChemoSpec2D")` for more info
 
@@ -831,38 +437,9 @@ Run `revdep_details(,"ChemoSpec2D")` for more info
 
 ## In both
 
-*   checking whether package ‘ChemoSpec2D’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ChemoSpec2D/new/ChemoSpec2D.Rcheck/00install.out’ for details.
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘ChemoSpec’
-    ```
-
-# chillR
-
-<details>
-
-* Version: 0.70.17
-* Source code: https://github.com/cran/chillR
-* Date/Publication: 2019-05-26 08:00:03 UTC
-* Number of recursive dependencies: 88
-
-Run `revdep_details(,"chillR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘chillR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/chillR/new/chillR.Rcheck/00install.out’ for details.
+    Packages suggested but not available for checking: 'mlrMBO', 'smoof', 'mlr'
     ```
 
 # ChocoLattes
@@ -880,64 +457,11 @@ Run `revdep_details(,"ChocoLattes")` for more info
 
 ## In both
 
-*   checking whether package ‘ChocoLattes’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ChocoLattes/new/ChocoLattes.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
       ‘knitr’ ‘tools’
       All declared Imports should be used.
-    ```
-
-# cifti
-
-<details>
-
-* Version: 0.4.5
-* Source code: https://github.com/cran/cifti
-* Date/Publication: 2018-02-01 23:25:24 UTC
-* Number of recursive dependencies: 82
-
-Run `revdep_details(,"cifti")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘cifti’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/cifti/new/cifti.Rcheck/00install.out’ for details.
-    ```
-
-# civis
-
-<details>
-
-* Version: 1.6.1
-* Source code: https://github.com/cran/civis
-* URL: https://github.com/civisanalytics/civis-r
-* BugReports: https://github.com/civisanalytics/civis-r/issues
-* Date/Publication: 2019-02-12 20:30:03 UTC
-* Number of recursive dependencies: 100
-
-Run `revdep_details(,"civis")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘civis’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/civis/new/civis.Rcheck/00install.out’ for details.
     ```
 
 # CNEr
@@ -983,13 +507,6 @@ Run `revdep_details(,"CNEr")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘CNEr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/CNEr/new/CNEr.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 20.2Mb
@@ -1004,30 +521,6 @@ Run `revdep_details(,"CNEr")` for more info
     Unexported objects imported by ':::' calls:
       ‘BiocGenerics:::replaceSlots’ ‘S4Vectors:::make_zero_col_DataFrame’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-# CollapsABEL
-
-<details>
-
-* Version: 0.10.11
-* Source code: https://github.com/cran/CollapsABEL
-* URL: https://bitbucket.org/kindlychung/collapsabel2/overview
-* BugReports: https://bitbucket.org/kindlychung/collapsabel2/issues
-* Date/Publication: 2016-12-11 20:35:07
-* Number of recursive dependencies: 99
-
-Run `revdep_details(,"CollapsABEL")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘CollapsABEL’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/CollapsABEL/new/CollapsABEL.Rcheck/00install.out’ for details.
     ```
 
 # countyfloods
@@ -1045,11 +538,9 @@ Run `revdep_details(,"countyfloods")` for more info
 
 ## In both
 
-*   checking whether package ‘countyfloods’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/countyfloods/new/countyfloods.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘hurricaneexposure’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1058,63 +549,15 @@ Run `revdep_details(,"countyfloods")` for more info
       All declared Imports should be used.
     ```
 
-# cRegulome
-
-<details>
-
-* Version: 0.3.1
-* Source code: https://github.com/cran/cRegulome
-* URL: https://github.com/ropensci/cRegulome
-* BugReports: https://github.com/ropensci/cRegulome/issues
-* Date/Publication: 2019-05-25 04:20:02 UTC
-* Number of recursive dependencies: 121
-
-Run `revdep_details(,"cRegulome")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘cRegulome’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/cRegulome/new/cRegulome.Rcheck/00install.out’ for details.
-    ```
-
-# cTRAP
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/cTRAP
-* URL: https://github.com/nuno-agostinho/cTRAP
-* BugReports: https://github.com/nuno-agostinho/cTRAP/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 118
-
-Run `revdep_details(,"cTRAP")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘cTRAP’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/cTRAP/new/cTRAP.Rcheck/00install.out’ for details.
-    ```
-
 # CVXR
 
 <details>
 
-* Version: 0.99-5
+* Version: 0.99-6
 * Source code: https://github.com/cran/CVXR
 * URL: https://cvxr.rbind.io, https://anqif.github.io/CVXR
 * BugReports: https://github.com/anqif/CVXR/issues
-* Date/Publication: 2019-05-13 19:20:08 UTC
+* Date/Publication: 2019-06-02 03:40:08 UTC
 * Number of recursive dependencies: 43
 
 Run `revdep_details(,"CVXR")` for more info
@@ -1123,21 +566,9 @@ Run `revdep_details(,"CVXR")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘Rglpk’
-    ```
-
-*   checking whether package ‘CVXR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/CVXR/new/CVXR.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.4Mb
+      installed size is 10.3Mb
       sub-directories of 1Mb or more:
         R      1.8Mb
         libs   6.5Mb
@@ -1160,11 +591,9 @@ Run `revdep_details(,"data.table")` for more info
 
 ## In both
 
-*   checking whether package ‘data.table’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/data.table/new/data.table.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘nanotime’
     ```
 
 # DatabaseConnector
@@ -1184,11 +613,9 @@ Run `revdep_details(,"DatabaseConnector")` for more info
 
 ## In both
 
-*   checking whether package ‘DatabaseConnector’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/DatabaseConnector/new/DatabaseConnector.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘aws.s3’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1214,49 +641,11 @@ Run `revdep_details(,"datapackage.r")` for more info
 
 ## In both
 
-*   checking whether package ‘datapackage.r’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/datapackage.r/new/datapackage.r.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
       ‘future’ ‘iterators’ ‘readr’
       All declared Imports should be used.
-    ```
-
-# ddPCRclust
-
-<details>
-
-* Version: 1.4.0
-* Source code: https://github.com/cran/ddPCRclust
-* URL: https://github.com/bgbrink/ddPCRclust
-* BugReports: https://github.com/bgbrink/ddPCRclust/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 141
-
-Run `revdep_details(,"ddPCRclust")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ddPCRclust’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ddPCRclust/new/ddPCRclust.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    exportPlots: no visible binding for global variable ‘Cluster’
-    Undefined global functions or variables:
-      Cluster
     ```
 
 # DeepBlueR
@@ -1273,13 +662,6 @@ Run `revdep_details(,"DeepBlueR")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘DeepBlueR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
-    ```
 
 *   checking Rd files ... NOTE
     ```
@@ -1309,13 +691,6 @@ Run `revdep_details(,"DEGraph")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘DEGraph’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/DEGraph/new/DEGraph.Rcheck/00install.out’ for details.
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Packages listed in more than one of Depends, Imports, Suggests, Enhances:
@@ -1330,32 +705,6 @@ Run `revdep_details(,"DEGraph")` for more info
       for when this namespace is loaded but not attached.
     Unexported object imported by a ':::' call: ‘graph:::getIndices’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    twoSampleFromGraph: no visible global function definition for ‘rnorm’
-    writeAdjacencyMatrix2KGML: no visible binding for global variable
-      ‘Arguments’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘pushState’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘popState’
-    writeAdjacencyMatrix2KGML : <anonymous>: no visible global function
-      definition for ‘na.omit’
-    Undefined global functions or variables:
-      Arguments ProgressBar as enter exit heat.colors increase na.omit
-      phyper pnorm popState pushState quantile reset rnorm str
-      translateNCI2GeneID var
-    Consider adding
-      importFrom("grDevices", "heat.colors")
-      importFrom("methods", "as")
-      importFrom("stats", "na.omit", "phyper", "pnorm", "quantile", "rnorm",
-                 "var")
-      importFrom("utils", "str")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
     ```
 
 # demi
@@ -1373,13 +722,6 @@ Run `revdep_details(,"demi")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘demi’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/demi/new/demi.Rcheck/00install.out’ for details.
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -1413,30 +755,6 @@ Run `revdep_details(,"demi")` for more info
     to your NAMESPACE file.
     ```
 
-# downsize
-
-<details>
-
-* Version: 0.2.2
-* Source code: https://github.com/cran/downsize
-* URL: https://github.com/wlandau/downsize
-* BugReports: https://github.com/wlandau/downsize/issues
-* Date/Publication: 2017-04-03 06:17:14 UTC
-* Number of recursive dependencies: 29
-
-Run `revdep_details(,"downsize")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘downsize’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/downsize/new/downsize.Rcheck/00install.out’ for details.
-    ```
-
 # dplR
 
 <details>
@@ -1453,20 +771,18 @@ Run `revdep_details(,"dplR")` for more info
 
 ## In both
 
-*   checking whether package ‘dplR’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/dplR/new/dplR.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘tikzDevice’
     ```
 
 # DropletUtils
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.4.1
 * Source code: https://github.com/cran/DropletUtils
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-05-31
 * Number of recursive dependencies: 65
 
 Run `revdep_details(,"DropletUtils")` for more info
@@ -1475,76 +791,11 @@ Run `revdep_details(,"DropletUtils")` for more info
 
 ## In both
 
-*   checking whether package ‘DropletUtils’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/DropletUtils/new/DropletUtils.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 27.4Mb
       sub-directories of 1Mb or more:
         libs  26.3Mb
-    ```
-
-# DupChecker
-
-<details>
-
-* Version: 1.22.0
-* Source code: https://github.com/cran/DupChecker
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 16
-
-Run `revdep_details(,"DupChecker")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘DupChecker’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/DupChecker/new/DupChecker.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    arrayExpressDownload: no visible global function definition for
-      ‘download.file’
-    geoDownload: no visible global function definition for ‘download.file’
-    geoDownload: no visible global function definition for ‘untar’
-    getFtpFilenames: no visible global function definition for ‘read.table’
-    Undefined global functions or variables:
-      download.file read.table untar
-    Consider adding
-      importFrom("utils", "download.file", "read.table", "untar")
-    to your NAMESPACE file.
-    ```
-
-# edgar
-
-<details>
-
-* Version: 2.0.1
-* Source code: https://github.com/cran/edgar
-* Date/Publication: 2019-03-22 10:00:09 UTC
-* Number of recursive dependencies: 15
-
-Run `revdep_details(,"edgar")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘edgar’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/edgar/new/edgar.Rcheck/00install.out’ for details.
     ```
 
 # eegc
@@ -1570,13 +821,6 @@ Run `revdep_details(,"eegc")` for more info
     See section 'Cross-references' in the 'Writing R Extensions' manual.
     ```
 
-*   checking whether package ‘eegc’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/eegc/new/eegc.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 11.2Mb
@@ -1584,80 +828,9 @@ Run `revdep_details(,"eegc")` for more info
         data  10.5Mb
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    grnPlot: no visible global function definition for ‘legend’
-    markerScatter: no visible global function definition for
-      ‘colorRampPalette’
-    markerScatter: no visible global function definition for ‘plot’
-    markerScatter: no visible global function definition for ‘points’
-    markerScatter: no visible global function definition for ‘lm’
-    markerScatter: no visible global function definition for ‘abline’
-    markerScatter: no visible global function definition for ‘text’
-    markerScatter: no visible global function definition for ‘legend’
-    Undefined global functions or variables:
-      abline adjustcolor axis colorRampPalette control density dev.copy2pdf
-      legend lines lm model.matrix p.adjust par phyper plot points quantile
-      results text title treat
-    Consider adding
-      importFrom("grDevices", "adjustcolor", "colorRampPalette",
-                 "dev.copy2pdf")
-      importFrom("graphics", "abline", "axis", "legend", "lines", "par",
-                 "plot", "points", "text", "title")
-      importFrom("stats", "density", "lm", "model.matrix", "p.adjust",
-                 "phyper", "quantile")
-    to your NAMESPACE file.
-    ```
-
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘BiocStyle’
-    ```
-
-# EEM
-
-<details>
-
-* Version: 1.1.1
-* Source code: https://github.com/cran/EEM
-* URL: https://github.com/chengvt/EEM
-* Date/Publication: 2016-04-21 13:47:18
-* Number of recursive dependencies: 51
-
-Run `revdep_details(,"EEM")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘EEM’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/EEM/new/EEM.Rcheck/00install.out’ for details.
-    ```
-
-# eiCompare
-
-<details>
-
-* Version: 2.1
-* Source code: https://github.com/cran/eiCompare
-* Date/Publication: 2017-06-16 17:59:02 UTC
-* Number of recursive dependencies: 66
-
-Run `revdep_details(,"eiCompare")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘eiCompare’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/eiCompare/new/eiCompare.Rcheck/00install.out’ for details.
     ```
 
 # ELMER
@@ -1673,19 +846,7 @@ Run `revdep_details(,"ELMER")` for more info
 
 </details>
 
-## Newly fixed
-
-*   R CMD check timed out
-    
-
 ## In both
-
-*   checking whether package ‘ELMER’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ELMER/new/ELMER.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -1723,11 +884,47 @@ Run `revdep_details(,"enrichTF")` for more info
 
 ## In both
 
-*   checking whether package ‘enrichTF’ can be installed ... NOTE
+*   checking examples ... ERROR
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/enrichTF/new/enrichTF.Rcheck/00install.out’ for details.
+    Running examples in ‘enrichTF-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: GenBackground
+    > ### Title: Generate background regions and reset the size of foreground
+    > ###   regions
+    > ### Aliases: GenBackground enrichGenBackground,Step-method
+    > ###   enrichGenBackground genBackground
+    > 
+    > ### ** Examples
+    > 
+    > setGenome("testgenome") #Use "hg19","hg38",etc. for your application
+    Configure bsgenome ...
+    Error in get_data_annotation_contrib_url(type) : 
+      Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+    Calls: setGenome ... checkAndInstallBSgenome -> <Anonymous> -> get_data_annotation_contrib_url
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      3: FUN(X[[i]], ...)
+      4: cai()
+      5: runWithFinishCheck(func = checkAndInstallBSgenomeTestgenome, refName = "bsgenome")
+      6: func(NULL)
+      7: checkAndInstallBSgenome(refFilePath, genome)
+      8: BSgenome::available.genomes()
+      9: get_data_annotation_contrib_url(type)
+      10: stop("Install 'BiocManager' from CRAN to get 'BioCann' contrib.url")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 0 SKIPPED: 0 WARNINGS: 0 FAILED: 1
+      1. Error: test whole pipeline (@test-pipe.R#8) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
 # esATAC
@@ -1755,13 +952,6 @@ Run `revdep_details(,"esATAC")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘esATAC’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/esATAC/new/esATAC.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 13.3Mb
@@ -1776,122 +966,6 @@ Run `revdep_details(,"esATAC")` for more info
     Unexported objects imported by ':::' calls:
       ‘ShortRead:::.ShortReadQQA’ ‘ShortRead:::.qa_adapterContamination’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-# eudysbiome
-
-<details>
-
-* Version: 1.14.0
-* Source code: https://github.com/cran/eudysbiome
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 25
-
-Run `revdep_details(,"eudysbiome")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘eudysbiome’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/eudysbiome/new/eudysbiome.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    assignTax: no visible global function definition for ‘unzip’
-    assignTax: no visible global function definition for ‘bunzip2’
-    contingencyTest: no visible global function definition for ‘combn’
-    contingencyTest : <anonymous>: no visible global function definition
-      for ‘chisq.test’
-    microAnnotate: no visible global function definition for ‘data’
-    microAnnotate: no visible binding for global variable ‘harmGenera’
-    tableSpecies: no visible global function definition for ‘read.table’
-    Undefined global functions or variables:
-      abline adjustcolor axis bunzip2 chisq.test colors combn data
-      dev.flush dev.hold download.file harmGenera mtext par plot points
-      read.table rect text title unzip
-    Consider adding
-      importFrom("grDevices", "adjustcolor", "colors", "dev.flush",
-                 "dev.hold")
-      importFrom("graphics", "abline", "axis", "mtext", "par", "plot",
-                 "points", "rect", "text", "title")
-      importFrom("stats", "chisq.test")
-      importFrom("utils", "combn", "data", "download.file", "read.table",
-                 "unzip")
-    to your NAMESPACE file.
-    ```
-
-# evclust
-
-<details>
-
-* Version: 1.0.3
-* Source code: https://github.com/cran/evclust
-* Date/Publication: 2016-09-04 13:29:43
-* Number of recursive dependencies: 28
-
-Run `revdep_details(,"evclust")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘evclust’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/evclust/new/evclust.Rcheck/00install.out’ for details.
-    ```
-
-# ezknitr
-
-<details>
-
-* Version: 0.6
-* Source code: https://github.com/cran/ezknitr
-* URL: https://github.com/ropenscilabs/ezknitr
-* BugReports: https://github.com/ropenscilabs/ezknitr/issues
-* Date/Publication: 2016-09-16 07:13:44
-* Number of recursive dependencies: 29
-
-Run `revdep_details(,"ezknitr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ezknitr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ezknitr/new/ezknitr.Rcheck/00install.out’ for details.
-    ```
-
-# FAMoS
-
-<details>
-
-* Version: 0.2.0
-* Source code: https://github.com/cran/FAMoS
-* Date/Publication: 2019-05-26 09:40:03 UTC
-* Number of recursive dependencies: 43
-
-Run `revdep_details(,"FAMoS")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘FAMoS’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/FAMoS/new/FAMoS.Rcheck/00install.out’ for details.
     ```
 
 # FGNet
@@ -1938,40 +1012,12 @@ Run `revdep_details(,"FGNet")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘RDAVIDWebService’
+    Package suggested but not available for checking: ‘gage’
     ```
 
-*   checking whether package ‘FGNet’ can be installed ... NOTE
+*   checking Rd cross-references ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/FGNet/new/FGNet.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      gtkTextBufferGetStartIter gtkTextBufferGetText gtkTextBufferNew
-      gtkTextBufferSetText gtkTextViewGetBuffer gtkTextViewNewWithBuffer
-      gtkTextViewSetBuffer gtkVBox gtkVBoxNew gtkViewportNew
-      gtkWidgetGetSensitive gtkWidgetSetSensitive gtkWindowNew hclust image
-      install.packages installed.packages keys layout legend new
-      pangoFontDescriptionFromString par parseHTTPHeader parse_XMLfile plot
-      plot_profile png postForm quantile rainbow rawResults
-      reactomeEXTID2PATHID reactomePATHID2EXTID reactomePATHID2NAME
-      read.csv read.table readList select setAnnotationCategories setNames
-      sigGenes title url.exists write.table
-    Consider adding
-      importFrom("grDevices", "col2rgb", "dev.off", "png", "rainbow")
-      importFrom("graphics", "abline", "axis", "barplot", "box", "boxplot",
-                 "image", "layout", "legend", "par", "plot", "title")
-      importFrom("methods", "new")
-      importFrom("stats", "dist", "hclust", "quantile", "setNames")
-      importFrom("utils", "View", "browseURL", "data", "download.file",
-                 "install.packages", "installed.packages", "read.csv",
-                 "read.table", "write.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    Package unavailable to check Rd xrefs: ‘gage’
     ```
 
 # fitteR
@@ -1987,112 +1033,19 @@ Run `revdep_details(,"fitteR")` for more info
 
 </details>
 
+## Newly fixed
+
+*   R CMD check timed out
+    
+
 ## In both
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘ExtDist’
-    ```
-
-*   checking whether package ‘fitteR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/fitteR/new/fitteR.Rcheck/00install.out’ for details.
-    ```
-
-# fpmoutliers
-
-<details>
-
-* Version: 0.1.0
-* Source code: https://github.com/cran/fpmoutliers
-* URL: https://github.com/jaroslav-kuchar/fpmoutliers
-* BugReports: https://github.com/jaroslav-kuchar/fpmoutliers/issues
-* Date/Publication: 2017-11-22 09:25:49 UTC
-* Number of recursive dependencies: 27
-
-Run `revdep_details(,"fpmoutliers")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘fpmoutliers’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/fpmoutliers/new/fpmoutliers.Rcheck/00install.out’ for details.
-    ```
-
-# freesurfer
-
-<details>
-
-* Version: 1.6.1
-* Source code: https://github.com/cran/freesurfer
-* BugReports: https://github.com/muschellij2/freesurfer/issues
-* Date/Publication: 2017-10-10 14:20:36 UTC
-* Number of recursive dependencies: 76
-
-Run `revdep_details(,"freesurfer")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘freesurfer’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/freesurfer/new/freesurfer.Rcheck/00install.out’ for details.
-    ```
-
-# fslr
-
-<details>
-
-* Version: 2.22.0
-* Source code: https://github.com/cran/fslr
-* BugReports: https://github.com/muschellij2/fslr/issues
-* Date/Publication: 2018-11-19 21:50:19 UTC
-* Number of recursive dependencies: 38
-
-Run `revdep_details(,"fslr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘fslr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/fslr/new/fslr.Rcheck/00install.out’ for details.
-    ```
-
-# future.BatchJobs
-
-<details>
-
-* Version: 0.16.1
-* Source code: https://github.com/cran/future.BatchJobs
-* URL: https://github.com/HenrikBengtsson/future.BatchJobs
-* BugReports: https://github.com/HenrikBengtsson/future.BatchJobs/issues
-* Date/Publication: 2019-01-04 12:00:03 UTC
-* Number of recursive dependencies: 35
-
-Run `revdep_details(,"future.BatchJobs")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘future.BatchJobs’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/future.BatchJobs/new/future.BatchJobs.Rcheck/00install.out’ for details.
+    Packages suggested but not available for checking:
+      'actuar', 'emdbook', 'ExtDist', 'FatTailsR', 'flexsurv', 'gb',
+      'GeneralizedHyperbolic', 'gld', 'NormalLaplace', 'ParetoPosStable',
+      'sadists', 'SkewHyperbolic', 'VarianceGamma'
     ```
 
 # gdalUtils
@@ -2113,82 +1066,6 @@ Run `revdep_details(,"gdalUtils")` for more info
 *   R CMD check timed out
     
 
-*   checking whether package ‘gdalUtils’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/gdalUtils/new/gdalUtils.Rcheck/00install.out’ for details.
-    ```
-
-# geno2proteo
-
-<details>
-
-* Version: 0.0.3
-* Source code: https://github.com/cran/geno2proteo
-* Date/Publication: 2018-01-24 12:25:39 UTC
-* Number of recursive dependencies: 14
-
-Run `revdep_details(,"geno2proteo")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘geno2proteo’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/geno2proteo/new/geno2proteo.Rcheck/00install.out’ for details.
-    ```
-
-# gifti
-
-<details>
-
-* Version: 0.7.5
-* Source code: https://github.com/cran/gifti
-* BugReports: https://github.com/muschellij2/gifti/issues
-* Date/Publication: 2018-02-01 22:21:05 UTC
-* Number of recursive dependencies: 78
-
-Run `revdep_details(,"gifti")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘gifti’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/gifti/new/gifti.Rcheck/00install.out’ for details.
-    ```
-
-# glue
-
-<details>
-
-* Version: 1.3.1
-* Source code: https://github.com/cran/glue
-* URL: https://github.com/tidyverse/glue
-* BugReports: https://github.com/tidyverse/glue/issues
-* Date/Publication: 2019-03-12 22:30:02 UTC
-* Number of recursive dependencies: 75
-
-Run `revdep_details(,"glue")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘glue’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/glue/new/glue.Rcheck/00install.out’ for details.
-    ```
-
 # gofCopula
 
 <details>
@@ -2204,11 +1081,12 @@ Run `revdep_details(,"gofCopula")` for more info
 
 ## In both
 
-*   checking whether package ‘gofCopula’ can be installed ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/gofCopula/new/gofCopula.Rcheck/00install.out’ for details.
+    Packages required but not available: 'copula', 'VineCopula'
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # GSODR
@@ -2228,11 +1106,26 @@ Run `revdep_details(,"GSODR")` for more info
 
 ## In both
 
-*   checking whether package ‘GSODR’ can be installed ... NOTE
+*   checking tests ...
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/GSODR/new/GSODR.Rcheck/00install.out’ for details.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+                 message("\nThere are no files for station ID ", station, " in ", yr, ".\n")
+             }
+         })
+      4: map(.x, .f, ...)
+      5: .f(.x[[i]], ...)
+      6: retry_cfm(year_url, handle = dir_list_handle)
+      7: stop(call. = FALSE, "\nWe've tried to get the file(s) you requested six\n", "times, but the server is not responding, so we are\n", 
+             "unable to process your request now.\n", "Please try again later.\n")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 29 SKIPPED: 5 WARNINGS: 0 FAILED: 1
+      1. Error: unique stations are returned, tempdir() is cleaned up on exit (@test-get_GSOD.R#197) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
 # hashFunction
@@ -2255,13 +1148,6 @@ Run `revdep_details(,"hashFunction")` for more info
       Namespace with empty importFrom: ‘utils’
     ```
 
-*   checking whether package ‘hashFunction’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/hashFunction/new/hashFunction.Rcheck/00install.out’ for details.
-    ```
-
 # hoardeR
 
 <details>
@@ -2277,42 +1163,11 @@ Run `revdep_details(,"hoardeR")` for more info
 
 ## In both
 
-*   checking whether package ‘hoardeR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/hoardeR/new/hoardeR.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
       ‘knitr’ ‘rmarkdown’
       All declared Imports should be used.
-    ```
-
-# homologene
-
-<details>
-
-* Version: 1.4.68.19.3.27
-* Source code: https://github.com/cran/homologene
-* URL: https://github.com/oganm/homologene
-* BugReports: https://github.com/oganm/homologene/issues
-* Date/Publication: 2019-03-28 23:10:03 UTC
-* Number of recursive dependencies: 31
-
-Run `revdep_details(,"homologene")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘homologene’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/homologene/new/homologene.Rcheck/00install.out’ for details.
     ```
 
 # HyPhy
@@ -2330,86 +1185,12 @@ Run `revdep_details(,"HyPhy")` for more info
 
 ## In both
 
-*   checking whether package ‘HyPhy’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/HyPhy/new/HyPhy.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Packages in Depends field not imported from:
       ‘R.utils’ ‘ape’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    requiprobable: no visible global function definition for ‘extract’
-    requiprobable : make.tree: no visible global function definition for
-      ‘extract’
-    requiprobable : make.tree: no visible global function definition for
-      ‘runif’
-    rgenetree: no visible global function definition for ‘dbinom’
-    rgenetree: no visible global function definition for ‘dnbinom’
-    rgenetree: no visible global function definition for ‘runif’
-    rgenetree: no visible global function definition for ‘rbinom’
-    rgenetree: no visible global function definition for ‘rnbinom’
-    Undefined global functions or variables:
-      dbinom dnbinom extract rbinom rnbinom runif
-    Consider adding
-      importFrom("stats", "dbinom", "dnbinom", "rbinom", "rnbinom", "runif")
-    to your NAMESPACE file.
-    ```
-
-# joinXL
-
-<details>
-
-* Version: 1.0.1
-* Source code: https://github.com/cran/joinXL
-* URL: http://github.com/yvonneglanville/joinXL
-* BugReports: http://github.com/yvonneglanville/joinXL/issues
-* Date/Publication: 2016-09-19 01:45:37
-* Number of recursive dependencies: 47
-
-Run `revdep_details(,"joinXL")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘joinXL’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/joinXL/new/joinXL.Rcheck/00install.out’ for details.
-    ```
-
-# listenv
-
-<details>
-
-* Version: 0.7.0
-* Source code: https://github.com/cran/listenv
-* URL: https://github.com/HenrikBengtsson/listenv
-* BugReports: https://github.com/HenrikBengtsson/listenv/issues
-* Date/Publication: 2018-01-21 21:55:48 UTC
-* Number of recursive dependencies: 8
-
-Run `revdep_details(,"listenv")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘listenv’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/listenv/new/listenv.Rcheck/00install.out’ for details.
     ```
 
 # LSPFP
@@ -2427,64 +1208,10 @@ Run `revdep_details(,"LSPFP")` for more info
 
 ## In both
 
-*   checking whether package ‘LSPFP’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/LSPFP/new/LSPFP.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘tcltk2’
       All declared Imports should be used.
-    ```
-
-# mailR
-
-<details>
-
-* Version: 0.4.1
-* Source code: https://github.com/cran/mailR
-* URL: https://github.com/rpremraj/mailR
-* Date/Publication: 2015-01-14 01:51:35
-* Number of recursive dependencies: 8
-
-Run `revdep_details(,"mailR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘mailR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/mailR/new/mailR.Rcheck/00install.out’ for details.
-    ```
-
-# mcparallelDo
-
-<details>
-
-* Version: 1.1.0
-* Source code: https://github.com/cran/mcparallelDo
-* URL: https://github.com/drknexus/mcparallelDo
-* BugReports: https://github.com/drknexus/mcparallelDo/issues
-* Date/Publication: 2016-07-24 19:43:57
-* Number of recursive dependencies: 25
-
-Run `revdep_details(,"mcparallelDo")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘mcparallelDo’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/mcparallelDo/new/mcparallelDo.Rcheck/00install.out’ for details.
     ```
 
 # methylKit
@@ -2503,11 +1230,9 @@ Run `revdep_details(,"methylKit")` for more info
 
 ## In both
 
-*   checking whether package ‘methylKit’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/methylKit/new/methylKit.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘genomation’
     ```
 
 *   checking installed package size ... NOTE
@@ -2550,13 +1275,6 @@ Run `revdep_details(,"msgbsR")` for more info
       ratdata2.rda    287Kb    116Kb       xz
     ```
 
-*   checking whether package ‘msgbsR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/msgbsR/new/msgbsR.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 16.1Mb
@@ -2570,36 +1288,32 @@ Run `revdep_details(,"msgbsR")` for more info
       All declared Imports should be used.
     ```
 
-# MSIseq
+# NCIgraph
 
 <details>
 
-* Version: 1.0.0
-* Source code: https://github.com/cran/MSIseq
-* Date/Publication: 2015-06-15 16:26:10
-* Number of recursive dependencies: 9
+* Version: 1.32.0
+* Source code: https://github.com/cran/NCIgraph
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 27
 
-Run `revdep_details(,"MSIseq")` for more info
+Run `revdep_details(,"NCIgraph")` for more info
 
 </details>
 
 ## In both
 
-*   checking whether package ‘MSIseq’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/MSIseq/new/MSIseq.Rcheck/00install.out’ for details.
+    Package which this enhances but not available for checking: ‘DEGraph’
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking for hidden files and directories ... NOTE
     ```
-    MSIseq.classify: no visible global function definition for ‘predict’
-    Undefined global functions or variables:
-      predict
-    Consider adding
-      importFrom("stats", "predict")
-    to your NAMESPACE file.
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
     ```
 
 # net.security
@@ -2630,13 +1344,6 @@ Run `revdep_details(,"net.security")` for more info
       No dataset created in 'envir'
     ```
 
-*   checking whether package ‘net.security’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/net.security/new/net.security.Rcheck/00install.out’ for details.
-    ```
-
 # netboost
 
 <details>
@@ -2662,13 +1369,6 @@ Run `revdep_details(,"netboost")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘netboost’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/netboost/new/netboost.Rcheck/00install.out’ for details.
-    ```
-
 *   checking for GNU extensions in Makefiles ... NOTE
     ```
     GNU make is a SystemRequirements.
@@ -2683,7 +1383,7 @@ Run `revdep_details(,"netboost")` for more info
 * URL: https://CRAN.R-project.org/package=networktools
 * BugReports: http://github.com/paytonjjones/networktools/issues
 * Date/Publication: 2019-05-20 18:50:09 UTC
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 150
 
 Run `revdep_details(,"networktools")` for more info
 
@@ -2691,34 +1391,12 @@ Run `revdep_details(,"networktools")` for more info
 
 ## In both
 
-*   checking whether package ‘networktools’ can be installed ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/networktools/new/networktools.Rcheck/00install.out’ for details.
-    ```
-
-# neurobase
-
-<details>
-
-* Version: 1.27.6
-* Source code: https://github.com/cran/neurobase
-* BugReports: https://github.com/muschellij2/neurobase/issues
-* Date/Publication: 2018-11-20 17:10:03 UTC
-* Number of recursive dependencies: 70
-
-Run `revdep_details(,"neurobase")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘neurobase’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/neurobase/new/neurobase.Rcheck/00install.out’ for details.
+    Packages required but not available: 'qgraph', 'smacof'
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # nlmixr
@@ -2736,13 +1414,6 @@ Run `revdep_details(,"nlmixr")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘nlmixr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/nlmixr/new/nlmixr.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -2769,11 +1440,9 @@ Run `revdep_details(,"oce")` for more info
 
 ## In both
 
-*   checking whether package ‘oce’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/oce/new/oce.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘marmap’
     ```
 
 *   checking installed package size ... NOTE
@@ -2786,13 +1455,18 @@ Run `revdep_details(,"oce")` for more info
         libs   5.2Mb
     ```
 
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘marmap’
+    ```
+
 # openCyto
 
 <details>
 
-* Version: 1.22.0
+* Version: 1.22.2
 * Source code: https://github.com/cran/openCyto
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-06-03
 * Number of recursive dependencies: 102
 
 Run `revdep_details(,"openCyto")` for more info
@@ -2861,13 +1535,6 @@ Run `revdep_details(,"openCyto")` for more info
     Extensions’ manual.
     ```
 
-*   checking whether package ‘openCyto’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/openCyto/new/openCyto.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  6.7Mb
@@ -2908,38 +1575,11 @@ Run `revdep_details(,"openCyto")` for more info
     File ‘openCyto/R/pluginFramework.R’:
       unlockBinding(methodName, ENV)
       unlockBinding(methodName, ENV)
-    
-    Error in setClass("curv1Filter", representation = representation(bwFac = "numeric",  : 
-      could not find function "setClass"
-    Error: unable to load R code in package ‘flowStats’
-    Execution halted
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘gridExtra’
-    ```
-
-# osrmr
-
-<details>
-
-* Version: 0.1.35
-* Source code: https://github.com/cran/osrmr
-* Date/Publication: 2019-01-14 15:30:03 UTC
-* Number of recursive dependencies: 32
-
-Run `revdep_details(,"osrmr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘osrmr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/osrmr/new/osrmr.Rcheck/00install.out’ for details.
     ```
 
 # paxtoolsr
@@ -2957,13 +1597,6 @@ Run `revdep_details(,"paxtoolsr")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘paxtoolsr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/paxtoolsr/new/paxtoolsr.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3006,13 +1639,6 @@ Run `revdep_details(,"PGA")` for more info
 
 ## In both
 
-*   checking whether package ‘PGA’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/PGA/new/PGA.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.7Mb
@@ -3026,32 +1652,6 @@ Run `revdep_details(,"PGA")` for more info
       ‘biomaRt:::martBM’ ‘biomaRt:::martDataset’ ‘biomaRt:::martHost’
       ‘customProDB:::makeTranscriptDbFromBiomart_archive’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    reportSNV: no visible binding for global variable ‘isUnique’
-    reportSNV: no visible binding for global variable ‘Index’
-    reportSNV: no visible binding for global variable ‘aaref’
-    reportSNV: no visible binding for global variable ‘aavar’
-    reportSNV: no visible binding for global variable ‘genename’
-    reportSNV: no visible binding for global variable ‘proname’
-    reportSNV: no visible binding for global variable ‘.SD’
-    reportSNV: no visible binding for global variable ‘ID’
-    reportSNV: no visible binding for global variable ‘Change’
-    reportSNV: no visible binding for global variable ‘aapos’
-    reportSNV: no visible binding for global variable ‘abc’
-    reportSNV: no visible binding for global variable ‘xyz’
-    Undefined global functions or variables:
-      . .I .N .SD CUFF_ID Change Class Evalue Frame Freq ID Index Mass
-      MutNum Query Qvalue Strand Substring Type aapos aaref aavar abc
-      alleleCount alleles charge chr chrom cumlen delta_da delta_ppm evalue
-      gene_name genename genome<- id isSAP isUnique junType jun_type label
-      miss mods mrnaAcc mz name output pep peptide pincoding position
-      pro_name proname prot protAcc protein rbindlist readAAStringSet
-      readDNAStringSet refbase rsid seqlengths seqlevels seqlevels<- subseq
-      transcript tx_name txid txname varbase writeXStringSet x xyz y
     ```
 
 # PhenotypeSimulator
@@ -3071,67 +1671,12 @@ Run `revdep_details(,"PhenotypeSimulator")` for more info
 
 ## In both
 
-*   checking whether package ‘PhenotypeSimulator’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/PhenotypeSimulator/new/PhenotypeSimulator.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.7Mb
       sub-directories of 1Mb or more:
         doc       1.5Mb
         extdata   3.1Mb
-    ```
-
-# phylotaR
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/phylotaR
-* URL: https://github.com/ropensci/phylotaR#readme
-* BugReports: https://github.com/ropensci/phylotaR/issues
-* Date/Publication: 2018-07-31 15:50:03 UTC
-* Number of recursive dependencies: 69
-
-Run `revdep_details(,"phylotaR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘phylotaR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/phylotaR/new/phylotaR.Rcheck/00install.out’ for details.
-    ```
-
-# plinkQC
-
-<details>
-
-* Version: 0.2.1
-* Source code: https://github.com/cran/plinkQC
-* URL: https://github.com/HannahVMeyer/plinkQC
-* BugReports: https://github.com/HannahVMeyer/plinkQC/issues
-* Date/Publication: 2019-03-01 21:50:15 UTC
-* Number of recursive dependencies: 71
-
-Run `revdep_details(,"plinkQC")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘plinkQC’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/plinkQC/new/plinkQC.Rcheck/00install.out’ for details.
     ```
 
 # PopGenReport
@@ -3150,97 +1695,18 @@ Run `revdep_details(,"PopGenReport")` for more info
 
 ## In both
 
-*   checking whether package ‘PopGenReport’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/PopGenReport/new/PopGenReport.Rcheck/00install.out’ for details.
-    ```
-
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘ecodist’
-    ```
-
-# primirTSS
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/primirTSS
-* URL: https://github.com/ipumin/primirTSS
-* BugReports: http://github.com/ipumin/primirTSS/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 155
-
-Run `revdep_details(,"primirTSS")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘primirTSS’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/primirTSS/new/primirTSS.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    plot_primiRNA_track: no visible binding for global variable
-      ‘symbol_name’
-    plot_primiRNA_track: no visible binding for global variable
-      ‘stem_loop_p1’
-    plot_primiRNA_track: no visible binding for global variable
-      ‘stem_loop_p2’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_id’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_p1’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_p2’
-    plot_primiRNA_track: no visible binding for global variable ‘tss_p1’
-    plot_primiRNA_track: no visible binding for global variable ‘tss_p2’
-    require_fa: no visible binding for global variable ‘arrow’
-    tss_filter: no visible binding for global variable ‘gene_id’
-    tss_filter: no visible binding for global variable ‘new_info’
-    tss_filter: no visible binding for global variable ‘predicted_tss’
-    tss_filter: no visible binding for global variable ‘tss_type’
-    Undefined global functions or variables:
-      TF TF_class arrow can_tss dhs_p1 dhs_p2 e_p_rank end1 eponine_rank
-      gene_id gene_p1 gene_p2 histone_p1_flank histone_p2_flank loci
-      mir_name new_info phast_rank predicted_tss previous seqname start1
-      stem_loop_p1 stem_loop_p2 symbol_name tss_p1 tss_p2 tss_type
-    ```
-
-# profileplyr
-
-<details>
-
-* Version: 1.0.1
-* Source code: https://github.com/cran/profileplyr
-* Date/Publication: 2019-05-12
-* Number of recursive dependencies: 168
-
-Run `revdep_details(,"profileplyr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘profileplyr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/profileplyr/new/profileplyr.Rcheck/00install.out’ for details.
     ```
 
 # Prostar
 
 <details>
 
-* Version: 1.16.1
+* Version: 1.16.5
 * Source code: https://github.com/cran/Prostar
-* Date/Publication: 2019-05-29
+* Date/Publication: 2019-06-07
 * Number of recursive dependencies: 254
 
 Run `revdep_details(,"Prostar")` for more info
@@ -3253,8 +1719,6 @@ Run `revdep_details(,"Prostar")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    Found the following additional notes/warnings:
-      Non-staged installation was used
     See ‘/home/hb/repositories/R.utils/revdep/checks/Prostar/new/Prostar.Rcheck/00install.out’ for details.
     ```
 
@@ -3273,13 +1737,6 @@ Run `revdep_details(,"proteoQC")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘proteoQC’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/proteoQC/new/proteoQC.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3323,30 +1780,6 @@ Run `revdep_details(,"proteoQC")` for more info
       readMgfData se techRep val x y
     ```
 
-# PSCBS
-
-<details>
-
-* Version: 0.65.0
-* Source code: https://github.com/cran/PSCBS
-* URL: https://github.com/HenrikBengtsson/PSCBS
-* BugReports: https://github.com/HenrikBengtsson/PSCBS/issues
-* Date/Publication: 2019-05-05 22:40:09 UTC
-* Number of recursive dependencies: 75
-
-Run `revdep_details(,"PSCBS")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘PSCBS’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/PSCBS/new/PSCBS.Rcheck/00install.out’ for details.
-    ```
-
 # psichomics
 
 <details>
@@ -3363,13 +1796,6 @@ Run `revdep_details(,"psichomics")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘psichomics’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/psichomics/new/psichomics.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3393,13 +1819,6 @@ Run `revdep_details(,"PubBias")` for more info
 
 ## In both
 
-*   checking whether package ‘PubBias’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/PubBias/new/PubBias.Rcheck/00install.out’ for details.
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Malformed Title field: should not end in a period.
@@ -3411,49 +1830,6 @@ Run `revdep_details(,"PubBias")` for more info
       ‘R.utils’ ‘rmeta’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ChisqTest_expect: no visible global function definition for ‘pchisq’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘meta.MH’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘txtProgressBar’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘setTxtProgressBar’
-    test.one.treated: no visible global function definition for
-      ‘fisher.test’
-    test_one: no visible global function definition for ‘rbinom’
-    test_one: no visible global function definition for ‘fisher.test’
-    Undefined global functions or variables:
-      fisher.test meta.MH pchisq rbinom setTxtProgressBar txtProgressBar
-    Consider adding
-      importFrom("stats", "fisher.test", "pchisq", "rbinom")
-      importFrom("utils", "setTxtProgressBar", "txtProgressBar")
-    to your NAMESPACE file.
-    ```
-
-# pubtatordb
-
-<details>
-
-* Version: 0.1.3
-* Source code: https://github.com/cran/pubtatordb
-* Date/Publication: 2019-03-13 16:00:03 UTC
-* Number of recursive dependencies: 60
-
-Run `revdep_details(,"pubtatordb")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘pubtatordb’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/pubtatordb/new/pubtatordb.Rcheck/00install.out’ for details.
     ```
 
 # QDNAseq
@@ -3482,179 +1858,6 @@ Run `revdep_details(,"QDNAseq")` for more info
     Extensions’ manual.
     ```
 
-*   checking whether package ‘QDNAseq’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/QDNAseq/new/QDNAseq.Rcheck/00install.out’ for details.
-    ```
-
-# qrcode
-
-<details>
-
-* Version: 0.1.1
-* Source code: https://github.com/cran/qrcode
-* Date/Publication: 2015-08-23 23:27:47
-* Number of recursive dependencies: 7
-
-Run `revdep_details(,"qrcode")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘qrcode’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/qrcode/new/qrcode.Rcheck/00install.out’ for details.
-    ```
-
-# R.cache
-
-<details>
-
-* Version: 0.13.0
-* Source code: https://github.com/cran/R.cache
-* URL: https://github.com/HenrikBengtsson/R.cache
-* BugReports: https://github.com/HenrikBengtsson/R.cache/issues
-* Date/Publication: 2018-01-04 16:55:43 UTC
-* Number of recursive dependencies: 4
-
-Run `revdep_details(,"R.cache")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.cache’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.cache/new/R.cache.Rcheck/00install.out’ for details.
-    ```
-
-# R.devices
-
-<details>
-
-* Version: 2.16.0
-* Source code: https://github.com/cran/R.devices
-* URL: https://github.com/HenrikBengtsson/R.devices
-* BugReports: https://github.com/HenrikBengtsson/R.devices/issues
-* Date/Publication: 2018-07-21 12:30:03 UTC
-* Number of recursive dependencies: 8
-
-Run `revdep_details(,"R.devices")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.devices’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.devices/new/R.devices.Rcheck/00install.out’ for details.
-    ```
-
-# R.filesets
-
-<details>
-
-* Version: 2.13.0
-* Source code: https://github.com/cran/R.filesets
-* URL: https://github.com/HenrikBengtsson/R.filesets, http://www.aroma-project.org/
-* BugReports: https://github.com/HenrikBengtsson/R.filesets/issues
-* Date/Publication: 2019-04-18 05:10:04 UTC
-* Number of recursive dependencies: 6
-
-Run `revdep_details(,"R.filesets")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.filesets’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.filesets/new/R.filesets.Rcheck/00install.out’ for details.
-    ```
-
-# R.huge
-
-<details>
-
-* Version: 0.9.0
-* Source code: https://github.com/cran/R.huge
-* URL: https://github.com/HenrikBengtsson/R.huge
-* BugReports: https://github.com/HenrikBengtsson/R.huge/issues
-* Date/Publication: 2015-02-22 20:52:32
-* Number of recursive dependencies: 3
-
-Run `revdep_details(,"R.huge")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.huge’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.huge/new/R.huge.Rcheck/00install.out’ for details.
-    ```
-
-# R.matlab
-
-<details>
-
-* Version: 3.6.2
-* Source code: https://github.com/cran/R.matlab
-* URL: https://github.com/HenrikBengtsson/R.matlab
-* BugReports: https://github.com/HenrikBengtsson/R.matlab/issues
-* Date/Publication: 2018-09-27 07:30:03 UTC
-* Number of recursive dependencies: 6
-
-Run `revdep_details(,"R.matlab")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.matlab’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.matlab/new/R.matlab.Rcheck/00install.out’ for details.
-    ```
-
-# R.rsp
-
-<details>
-
-* Version: 0.43.1
-* Source code: https://github.com/cran/R.rsp
-* URL: https://github.com/HenrikBengtsson/R.rsp
-* BugReports: https://github.com/HenrikBengtsson/R.rsp/issues
-* Date/Publication: 2019-02-05 23:11:50 UTC
-* Number of recursive dependencies: 18
-
-Run `revdep_details(,"R.rsp")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘R.rsp’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/R.rsp/new/R.rsp.Rcheck/00install.out’ for details.
-    ```
-
 # radtools
 
 <details>
@@ -3670,11 +1873,26 @@ Run `revdep_details(,"radtools")` for more info
 
 ## In both
 
-*   checking whether package ‘radtools’ can be installed ... NOTE
+*   checking tests ...
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/radtools/new/radtools.Rcheck/00install.out’ for details.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      1. Error: NIfTI import (@test_image_import_nifti.R#7) 
+      2. Error: NIfTI metadata (@test_metadata_nifti.R#6) 
+      3. Error: View slice - for CRAN (@test_view.R#15) 
+      
+      Error: testthat unit tests failed
+      In addition: Warning messages:
+      1: In dir.create(outdir_nifti, recursive = TRUE) :
+        '/tmp/hb/RtmpXTqCuX' already exists
+      2: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.hdr.gz': HTTP status was '502 Bad Gateway'
+      3: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.img.gz': HTTP status was '502 Bad Gateway'
+      4: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.nii.gz': HTTP status was '502 Bad Gateway'
+      Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3682,30 +1900,6 @@ Run `revdep_details(,"radtools")` for more info
     Namespaces in Imports field not imported from:
       ‘R.utils’ ‘TCIApathfinder’ ‘xfun’
       All declared Imports should be used.
-    ```
-
-# rCBA
-
-<details>
-
-* Version: 0.4.3
-* Source code: https://github.com/cran/rCBA
-* URL: https://github.com/jaroslav-kuchar/rCBA
-* BugReports: https://github.com/jaroslav-kuchar/rCBA/issues
-* Date/Publication: 2019-05-29 21:50:03 UTC
-* Number of recursive dependencies: 8
-
-Run `revdep_details(,"rCBA")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘rCBA’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/rCBA/new/rCBA.Rcheck/00install.out’ for details.
     ```
 
 # RcisTarget
@@ -3779,13 +1973,6 @@ Run `revdep_details(,"RcisTarget")` for more info
       'doMC', 'doRNG', 'zoo'
     ```
 
-*   checking whether package ‘RcisTarget’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  6.2Mb
@@ -3798,11 +1985,11 @@ Run `revdep_details(,"RcisTarget")` for more info
 
 <details>
 
-* Version: 2.4.0
+* Version: 2.4.2
 * Source code: https://github.com/cran/RCy3
 * URL: https://github.com/cytoscape/RCy3
 * BugReports: https://github.com/cytoscape/RCy3/issues
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-06-09
 * Number of recursive dependencies: 39
 
 Run `revdep_details(,"RCy3")` for more info
@@ -3819,48 +2006,11 @@ Run `revdep_details(,"RCy3")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking whether package ‘RCy3’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/RCy3/new/RCy3.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 13.2Mb
       sub-directories of 1Mb or more:
         doc  11.2Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    createNetworkFromDataFrames: no visible binding for global variable
-      ‘SUID’
-    Undefined global functions or variables:
-      SUID
-    ```
-
-# rddapp
-
-<details>
-
-* Version: 1.1.0
-* Source code: https://github.com/cran/rddapp
-* Date/Publication: 2018-04-26 03:39:19 UTC
-* Number of recursive dependencies: 138
-
-Run `revdep_details(,"rddapp")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘rddapp’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/rddapp/new/rddapp.Rcheck/00install.out’ for details.
     ```
 
 # rdwd
@@ -3880,11 +2030,9 @@ Run `revdep_details(,"rdwd")` for more info
 
 ## In both
 
-*   checking whether package ‘rdwd’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/rdwd/new/rdwd.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘OSMscale’
     ```
 
 *   checking installed package size ... NOTE
@@ -3933,63 +2081,6 @@ Run `revdep_details(,"ReportingTools")` for more info
       Execution halted
     ```
 
-*   checking whether package ‘ReportingTools’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ReportingTools/new/ReportingTools.Rcheck/00install.out’ for details.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      'fData'
-    .marrayLM.to.html: no visible global function definition for
-      'featureNames'
-    .marrayLM.to.html: no visible global function definition for 'fData'
-    check.ids: no visible binding for global variable 'org.Hs.eg.db'
-    check.ids: no visible global function definition for 'keys'
-    custHeaderPanel : <anonymous>: no visible binding for global variable
-      'tags'
-    custHeaderPanel : <anonymous>: no visible global function definition
-      for 'HTML'
-    custHeaderPanel: no visible global function definition for 'tagList'
-    custHeaderPanel: no visible global function definition for 'tag'
-    custHeaderPanel: no visible global function definition for 'div'
-    custHeaderPanel: no visible global function definition for 'h1'
-    publish,trellis-HTMLReport: no visible binding for global variable
-      'htmlRep'
-    toReportDF,DESeqDataSet: no visible global function definition for
-      'mcols'
-    Undefined global functions or variables:
-      HTML columns description div exprs fData featureNames h1 htmlRep keys
-      keytype mcols org.Hs.eg.db tag tagList tags
-    ```
-
-# reproducible
-
-<details>
-
-* Version: 0.2.8
-* Source code: https://github.com/cran/reproducible
-* URL: http://reproducible.predictiveecology.org, https://github.com/PredictiveEcology/reproducible
-* BugReports: https://github.com/PredictiveEcology/reproducible/issues
-* Date/Publication: 2019-03-18 18:20:03 UTC
-* Number of recursive dependencies: 108
-
-Run `revdep_details(,"reproducible")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘reproducible’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/reproducible/new/reproducible.Rcheck/00install.out’ for details.
-    ```
-
 # restez
 
 <details>
@@ -4015,51 +2106,41 @@ Run `revdep_details(,"restez")` for more info
     manual.
     ```
 
-# Rnightlights
+# RforProteomics
 
 <details>
 
-* Version: 0.2.3
-* Source code: https://github.com/cran/Rnightlights
-* URL: https://github.com/chrisvwn/Rnightlights
-* BugReports: https://github.com/chrisvwn/Rnightlights/issues
-* Date/Publication: 2018-10-13 23:00:03 UTC
-* Number of recursive dependencies: 107
+* Version: 1.22.0
+* Source code: https://github.com/cran/RforProteomics
+* URL: http://lgatto.github.com/RforProteomics/
+* Date/Publication: 2019-05-07
+* Number of recursive dependencies: 259
 
-Run `revdep_details(,"Rnightlights")` for more info
+Run `revdep_details(,"RforProteomics")` for more info
 
 </details>
 
 ## In both
 
-*   checking whether package ‘Rnightlights’ can be installed ... NOTE
+*   checking whether package ‘RforProteomics’ can be installed ... WARNING
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/Rnightlights/new/Rnightlights.Rcheck/00install.out’ for details.
+    Found the following significant warnings:
+      Warning: replacing previous import ‘MSnbase::plot’ by ‘graphics::plot’ when loading ‘RforProteomics’
+    See ‘/home/hb/repositories/R.utils/revdep/checks/RforProteomics/new/RforProteomics.Rcheck/00install.out’ for details.
     ```
 
-# ROI.models.miplib
-
-<details>
-
-* Version: 0.0-2
-* Source code: https://github.com/cran/ROI.models.miplib
-* URL: http://R-Forge.R-project.org/projects/roi
-* Date/Publication: 2019-01-25 13:10:03 UTC
-* Number of recursive dependencies: 7
-
-Run `revdep_details(,"ROI.models.miplib")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ROI.models.miplib’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ROI.models.miplib/new/ROI.models.miplib.Rcheck/00install.out’ for details.
+    Packages suggested but not available for checking:
+      'isobar', 'MALDIquantForeign', 'synapter', 'synapterdata', 'BRAIN',
+      'pRoloc', 'MSGFplus', 'MSGFgui', 'DEP'
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.6Mb
+      sub-directories of 1Mb or more:
+        doc  10.7Mb
     ```
 
 # RRphylo
@@ -4077,42 +2158,11 @@ Run `revdep_details(,"RRphylo")` for more info
 
 ## In both
 
-*   checking whether package ‘RRphylo’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/RRphylo/new/RRphylo.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
       ‘data.tree’ ‘penalized’
       All declared Imports should be used.
-    ```
-
-# ruta
-
-<details>
-
-* Version: 1.1.0
-* Source code: https://github.com/cran/ruta
-* URL: https://github.com/fdavidcl/ruta
-* BugReports: https://github.com/fdavidcl/ruta/issues
-* Date/Publication: 2019-03-18 13:10:02 UTC
-* Number of recursive dependencies: 44
-
-Run `revdep_details(,"ruta")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ruta’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/ruta/new/ruta.Rcheck/00install.out’ for details.
     ```
 
 # RxODE
@@ -4137,13 +2187,6 @@ Run `revdep_details(,"RxODE")` for more info
     Package suggested but not available for checking: ‘installr’
     ```
 
-*   checking whether package ‘RxODE’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/RxODE/new/RxODE.Rcheck/00install.out’ for details.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 19.3Mb
@@ -4157,30 +2200,6 @@ Run `revdep_details(,"RxODE")` for more info
     Namespaces in Imports field not imported from:
       ‘R.utils’ ‘n1qn1’
       All declared Imports should be used.
-    ```
-
-# sdmpredictors
-
-<details>
-
-* Version: 0.2.8
-* Source code: https://github.com/cran/sdmpredictors
-* URL: http://www.samuelbosch.com/p/sdmpredictors.html
-* BugReports: https://github.com/lifewatch/sdmpredictors/issues
-* Date/Publication: 2018-07-19 12:40:03 UTC
-* Number of recursive dependencies: 56
-
-Run `revdep_details(,"sdmpredictors")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘sdmpredictors’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/sdmpredictors/new/sdmpredictors.Rcheck/00install.out’ for details.
     ```
 
 # SDMTools
@@ -4204,113 +2223,12 @@ Run `revdep_details(,"SDMTools")` for more info
     Package suggested but not available for checking: ‘adehabitat’
     ```
 
-*   checking whether package ‘SDMTools’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/SDMTools/new/SDMTools.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     'library' or 'require' calls in package code:
       ‘raster’ ‘sp’
       Please use :: or requireNamespace() instead.
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ConnCompLabel: no visible global function definition for ‘setValues’
-    SigDiff: no visible global function definition for ‘setValues’
-    asc.from.raster: no visible global function definition for ‘getValues’
-    aspect: no visible global function definition for ‘setValues’
-    grid.area: no visible global function definition for ‘setValues’
-    grid.perimeter: no visible global function definition for ‘setValues’
-    lcmw: no visible global function definition for ‘setValues’
-    raster.from.asc: no visible global function definition for ‘raster’
-    raster.from.asc: no visible global function definition for
-      ‘projection<-’
-    raster.from.asc: no visible global function definition for ‘setValues’
-    slope: no visible global function definition for ‘setValues’
-    sp.from.asc: no visible global function definition for ‘CRS’
-    sp.from.asc: no visible global function definition for ‘GridTopology’
-    sp.from.asc: no visible global function definition for
-      ‘SpatialGridDataFrame’
-    Undefined global functions or variables:
-      CRS GridTopology SpatialGridDataFrame getValues projection<- raster
-      setValues
-    ```
-
-# SEMID
-
-<details>
-
-* Version: 0.3.2
-* Source code: https://github.com/cran/SEMID
-* URL: https://github.com/Lucaweihs/SEMID
-* BugReports: https://github.com/Lucaweihs/SEMID/issues
-* Date/Publication: 2019-05-21 07:30:11 UTC
-* Number of recursive dependencies: 17
-
-Run `revdep_details(,"SEMID")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘SEMID’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/SEMID/new/SEMID.Rcheck/00install.out’ for details.
-    ```
-
-# SensusR
-
-<details>
-
-* Version: 2.3.1
-* Source code: https://github.com/cran/SensusR
-* URL: https://predictive-technology-laboratory.github.io/sensus/
-* Date/Publication: 2019-02-01 18:03:27 UTC
-* Number of recursive dependencies: 59
-
-Run `revdep_details(,"SensusR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘SensusR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/SensusR/new/SensusR.Rcheck/00install.out’ for details.
-    ```
-
-# shinyEventLogger
-
-<details>
-
-* Version: 0.1.1
-* Source code: https://github.com/cran/shinyEventLogger
-* URL: https://github.com/kalimu/shinyEventLogger#readme, https://kalimu.github.io/project/shinyeventlogger/
-* BugReports: https://github.com/kalimu/shinyEventLogger/issues
-* Date/Publication: 2019-02-22 10:20:03 UTC
-* Number of recursive dependencies: 95
-
-Run `revdep_details(,"shinyEventLogger")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘shinyEventLogger’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/shinyEventLogger/new/shinyEventLogger.Rcheck/00install.out’ for details.
     ```
 
 # simPATHy
@@ -4328,33 +2246,9 @@ Run `revdep_details(,"simPATHy")` for more info
 
 ## In both
 
-*   checking whether package ‘simPATHy’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/simPATHy/new/simPATHy.Rcheck/00install.out’ for details.
-    ```
-
-# snplist
-
-<details>
-
-* Version: 0.18.1
-* Source code: https://github.com/cran/snplist
-* Date/Publication: 2017-12-11 19:12:03 UTC
-* Number of recursive dependencies: 47
-
-Run `revdep_details(,"snplist")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘snplist’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/snplist/new/snplist.Rcheck/00install.out’ for details.
+    Packages suggested but not available for checking: 'clipper', 'topologyGSA'
     ```
 
 # SpaDES.core
@@ -4378,8 +2272,6 @@ Run `revdep_details(,"SpaDES.core")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    Found the following additional notes/warnings:
-      Non-staged installation was used
     See ‘/home/hb/repositories/R.utils/revdep/checks/SpaDES.core/new/SpaDES.core.Rcheck/00install.out’ for details.
     ```
 
@@ -4398,81 +2290,10 @@ Run `revdep_details(,"spm12r")` for more info
 
 ## In both
 
-*   checking whether package ‘spm12r’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/spm12r/new/spm12r.Rcheck/00install.out’ for details.
-    ```
-
-# stplanr
-
-<details>
-
-* Version: 0.2.10
-* Source code: https://github.com/cran/stplanr
-* URL: https://github.com/ropensci/stplanr, https://ropensci.github.io/stplanr/
-* BugReports: https://github.com/ropensci/stplanr/issues
-* Date/Publication: 2019-05-18 08:40:03 UTC
-* Number of recursive dependencies: 110
-
-Run `revdep_details(,"stplanr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘stplanr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/stplanr/new/stplanr.Rcheck/00install.out’ for details.
-    ```
-
-# taxonomizr
-
-<details>
-
-* Version: 0.5.3
-* Source code: https://github.com/cran/taxonomizr
-* BugReports: https://github.com/sherrillmix/taxonomizr/issues
-* Date/Publication: 2019-04-22 15:40:02 UTC
-* Number of recursive dependencies: 40
-
-Run `revdep_details(,"taxonomizr")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘taxonomizr’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/taxonomizr/new/taxonomizr.Rcheck/00install.out’ for details.
-    ```
-
-# TBSSurvival
-
-<details>
-
-* Version: 1.3
-* Source code: https://github.com/cran/TBSSurvival
-* URL: http://code.google.com/p/tbssurvival/
-* Date/Publication: 2017-01-05 14:45:36
-* Number of recursive dependencies: 12
-
-Run `revdep_details(,"TBSSurvival")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘TBSSurvival’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/TBSSurvival/new/TBSSurvival.Rcheck/00install.out’ for details.
+    Packages suggested but not available for checking:
+      'kirby21.t1', 'kirby21.fmri'
     ```
 
 # TCGAbiolinks
@@ -4492,6 +2313,28 @@ Run `revdep_details(,"TCGAbiolinks")` for more info
 
 ## In both
 
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      LGm2   NA   NA        NA        NA
+      LGm4   NA   NA        NA 0.9217168
+      LGm5   NA   NA 0.9217168        NA
+        groups      Mean    Median       Max       Min
+      1  alive 0.3594683 0.3594683 0.3594683 0.3594683
+      2   dead 0.3589557 0.3608853 0.4099433 0.3240056
+            alive dead
+      alive    NA   NA
+      dead     NA   NA
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 66 SKIPPED: 0 WARNINGS: 0 FAILED: 1
+      1. Error: GDCprepare accepts more than one project (@test-prepare-download.R#35) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
@@ -4506,13 +2349,6 @@ Run `revdep_details(,"TCGAbiolinks")` for more info
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking: 'sesame', 'pathview'
-    ```
-
-*   checking whether package ‘TCGAbiolinks’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/TCGAbiolinks/new/TCGAbiolinks.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -4579,13 +2415,6 @@ Run `revdep_details(,"TCGAutils")` for more info
 
 ## In both
 
-*   checking whether package ‘TCGAutils’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/TCGAutils/new/TCGAutils.Rcheck/00install.out’ for details.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -4623,11 +2452,9 @@ Run `revdep_details(,"TFEA.ChIP")` for more info
       Execution halted
     ```
 
-*   checking whether package ‘TFEA.ChIP’ can be installed ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/TFEA.ChIP/new/TFEA.ChIP.Rcheck/00install.out’ for details.
+    Package suggested but not available for checking: ‘rcompanion’
     ```
 
 # tmle.npvi
@@ -4644,13 +2471,6 @@ Run `revdep_details(,"tmle.npvi")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘tmle.npvi’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/tmle.npvi/new/tmle.npvi.Rcheck/00install.out’ for details.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -4678,28 +2498,6 @@ Run `revdep_details(,"tmle.npvi")` for more info
     to your NAMESPACE file.
     ```
 
-# TNBC.CMS
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/TNBC.CMS
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 114
-
-Run `revdep_details(,"TNBC.CMS")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘TNBC.CMS’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/TNBC.CMS/new/TNBC.CMS.Rcheck/00install.out’ for details.
-    ```
-
 # uavRst
 
 <details>
@@ -4715,40 +2513,70 @@ Run `revdep_details(,"uavRst")` for more info
 
 ## In both
 
-*   checking whether package ‘uavRst’ can be installed ... NOTE
+*   checking whether package ‘uavRst’ can be installed ... ERROR
     ```
-    Found the following notes/warnings:
-      Non-staged installation was used
+    Installation failed.
     See ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00install.out’ for details.
     ```
 
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘tmaptools’
-    ```
+## Installation
 
-# understandBPMN
+### Devel
 
-<details>
+```
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/uavRst’
 
-* Version: 1.1.0
-* Source code: https://github.com/cran/understandBPMN
-* Date/Publication: 2018-06-08 15:15:35 UTC
-* Number of recursive dependencies: 72
+```
+### CRAN
 
-Run `revdep_details(,"understandBPMN")` for more info
+```
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/uavRst’
 
-</details>
-
-## In both
-
-*   checking whether package ‘understandBPMN’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/understandBPMN/new/understandBPMN.Rcheck/00install.out’ for details.
-    ```
-
+```
 # Uniquorn
 
 <details>
@@ -4763,13 +2591,6 @@ Run `revdep_details(,"Uniquorn")` for more info
 </details>
 
 ## In both
-
-*   checking whether package ‘Uniquorn’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/Uniquorn/new/Uniquorn.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4807,29 +2628,5 @@ Run `revdep_details(,"Uniquorn")` for more info
     Consider adding
       importFrom("utils", "tail")
     to your NAMESPACE file.
-    ```
-
-# vortexR
-
-<details>
-
-* Version: 1.1.6
-* Source code: https://github.com/cran/vortexR
-* URL: https://github.com/carlopacioni/vortexR/
-* BugReports: https://github.com/carlopacioni/vortexR/issues
-* Date/Publication: 2019-02-06 12:50:03 UTC
-* Number of recursive dependencies: 106
-
-Run `revdep_details(,"vortexR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘vortexR’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/vortexR/new/vortexR.Rcheck/00install.out’ for details.
     ```
 

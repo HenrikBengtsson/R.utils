@@ -16,200 +16,82 @@ Run `revdep_details(,"gdalUtils")` for more info
 *   R CMD check timed out
     
 
-*   checking whether package ‘gdalUtils’ can be installed ... NOTE
-    ```
-    Found the following notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.utils/revdep/checks/gdalUtils/new/gdalUtils.Rcheck/00install.out’ for details.
-    ```
-
-# RforProteomics
+# uavRst
 
 <details>
 
-* Version: 
-* Source code: ???
-* URL: https://github.com/HenrikBengtsson/R.utils
-* BugReports: https://github.com/HenrikBengtsson/R.utils/issues
-* Number of recursive dependencies: 0
+* Version: 0.5-2
+* Source code: https://github.com/cran/uavRst
+* Date/Publication: 2018-12-09 14:20:06 UTC
+* Number of recursive dependencies: 198
 
-Run `revdep_details(,"")` for more info
+Run `revdep_details(,"uavRst")` for more info
 
 </details>
 
-## Error before installation
+## In both
+
+*   checking whether package ‘uavRst’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
 
 ### Devel
 
 ```
-
-
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/BRAIN_1.30.0.tar.gz'
-Content type 'application/x-gzip' length 2019979 bytes (1.9 MB)
-==================================================
-downloaded 1.9 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/cleaver_1.22.0.tar.gz'
-Content type 'application/x-gzip' length 331082 bytes (323 KB)
-==================================================
-downloaded 323 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/DEP_1.6.0.tar.gz'
-Content type 'application/x-gzip' length 3375461 bytes (3.2 MB)
-==================================================
-downloaded 3.2 MB
-
-trying URL 'https://cloud.r-project.org/src/contrib/fpc_2.2-1.tar.gz'
-Content type 'application/x-gzip' length 197009 bytes (192 KB)
-==================================================
-downloaded 192 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/Heatplus_2.30.0.tar.gz'
-Content type 'application/x-gzip' length 873118 bytes (852 KB)
-==================================================
-downloaded 852 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/hpar_1.26.0.tar.gz'
-Content type 'application/x-gzip' length 7722081 bytes (7.4 MB)
-==================================================
-downloaded 7.4 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/IPPD_1.32.0.tar.gz'
-Content type 'application/x-gzip' length 1673768 bytes (1.6 MB)
-==================================================
-downloaded 1.6 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/isobar_1.30.0.tar.gz'
-Content type 'application/x-gzip' length 3080460 bytes (2.9 MB)
-==================================================
-downloaded 2.9 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MLInterfaces_1.64.0.tar.gz'
-Content type 'application/x-gzip' length 1070516 bytes (1.0 MB)
-==================================================
-downloaded 1.0 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/data/experiment/src/contrib/msdata_0.24.0.tar.gz'
-Content type 'application/x-gzip' length 406038351 bytes (387.2 MB)
-==================================================
-downloaded 387.2 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MSGFgui_1.18.0.tar.gz'
-Content type 'application/x-gzip' length 2277509 bytes (2.2 MB)
-==================================================
-downloaded 2.2 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MSGFplus_1.18.0.tar.gz'
-Content type 'application/x-gzip' length 52729 bytes (51 KB)
-==================================================
-downloaded 51 KB
-
-trying URL 'https://cloud.r-project.org/src/contrib/PolynomF_2.0-0.tar.gz'
-Content type 'application/x-gzip' length 373886 bytes (365 KB)
-==================================================
-downloaded 365 KB
-
-trying URL 'https://cloud.r-project.org/src/contrib/prabclus_2.2-7.1.tar.gz'
-Content type 'application/x-gzip' length 166663 bytes (162 KB)
-==================================================
-downloaded 162 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/pRoloc_1.24.0.tar.gz'
-Content type 'application/x-gzip' length 9891084 bytes (9.4 MB)
-==================================================
-downloaded 9.4 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/data/experiment/src/contrib/pRolocdata_1.22.0.tar.gz'
-Content type 'application/x-gzip' length 138259695 bytes (131.9 MB)
-==========
-
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/uavRst’
 
 ```
 ### CRAN
 
 ```
-
-
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/BRAIN_1.30.0.tar.gz'
-Content type 'application/x-gzip' length 2019979 bytes (1.9 MB)
-==================================================
-downloaded 1.9 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/cleaver_1.22.0.tar.gz'
-Content type 'application/x-gzip' length 331082 bytes (323 KB)
-==================================================
-downloaded 323 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/DEP_1.6.0.tar.gz'
-Content type 'application/x-gzip' length 3375461 bytes (3.2 MB)
-==================================================
-downloaded 3.2 MB
-
-trying URL 'https://cloud.r-project.org/src/contrib/fpc_2.2-1.tar.gz'
-Content type 'application/x-gzip' length 197009 bytes (192 KB)
-==================================================
-downloaded 192 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/Heatplus_2.30.0.tar.gz'
-Content type 'application/x-gzip' length 873118 bytes (852 KB)
-==================================================
-downloaded 852 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/hpar_1.26.0.tar.gz'
-Content type 'application/x-gzip' length 7722081 bytes (7.4 MB)
-==================================================
-downloaded 7.4 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/IPPD_1.32.0.tar.gz'
-Content type 'application/x-gzip' length 1673768 bytes (1.6 MB)
-==================================================
-downloaded 1.6 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/isobar_1.30.0.tar.gz'
-Content type 'application/x-gzip' length 3080460 bytes (2.9 MB)
-==================================================
-downloaded 2.9 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MLInterfaces_1.64.0.tar.gz'
-Content type 'application/x-gzip' length 1070516 bytes (1.0 MB)
-==================================================
-downloaded 1.0 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/data/experiment/src/contrib/msdata_0.24.0.tar.gz'
-Content type 'application/x-gzip' length 406038351 bytes (387.2 MB)
-==================================================
-downloaded 387.2 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MSGFgui_1.18.0.tar.gz'
-Content type 'application/x-gzip' length 2277509 bytes (2.2 MB)
-==================================================
-downloaded 2.2 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/MSGFplus_1.18.0.tar.gz'
-Content type 'application/x-gzip' length 52729 bytes (51 KB)
-==================================================
-downloaded 51 KB
-
-trying URL 'https://cloud.r-project.org/src/contrib/PolynomF_2.0-0.tar.gz'
-Content type 'application/x-gzip' length 373886 bytes (365 KB)
-==================================================
-downloaded 365 KB
-
-trying URL 'https://cloud.r-project.org/src/contrib/prabclus_2.2-7.1.tar.gz'
-Content type 'application/x-gzip' length 166663 bytes (162 KB)
-==================================================
-downloaded 162 KB
-
-trying URL 'https://bioconductor.org/packages/3.9/bioc/src/contrib/pRoloc_1.24.0.tar.gz'
-Content type 'application/x-gzip' length 9891084 bytes (9.4 MB)
-==================================================
-downloaded 9.4 MB
-
-trying URL 'https://bioconductor.org/packages/3.9/data/experiment/src/contrib/pRolocdata_1.22.0.tar.gz'
-Content type 'application/x-gzip' length 138259695 bytes (131.9 MB)
-==========
-
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/uavRst’
 
 ```
