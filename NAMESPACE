@@ -134,7 +134,7 @@ S3method("wrap", "array")
 # Assert
 S3method("check", "Assert")
 S3method("inheritsFrom", "Assert")
-S3method("inherits", "Assert")  ## DEPRECATED
+S3method("inherits", "Assert")  ## DEFUNCT
 S3method("isMatrix", "Assert")
 S3method("isScalar", "Assert")
 S3method("isVector", "Assert")
@@ -165,7 +165,6 @@ S3method("writeDataFrame", "data.frame")
 
 # default
 S3method("addFinalizerToLast", "default")
-S3method("arrayIndex", "default")
 S3method("bunzip2", "default")
 S3method("bzip2", "default")
 S3method("callHooks", "default")
@@ -245,7 +244,6 @@ S3method("reassignInPackage", "default")
 S3method("removeDirectory", "default")
 S3method("renameFile", "default")
 S3method("resample", "default")
-S3method("resetWarnings", "default")
 S3method("saveObject", "default")
 S3method("seqToHumanReadable", "default")
 S3method("seqToIntervals", "default")

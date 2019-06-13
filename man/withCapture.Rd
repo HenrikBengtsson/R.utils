@@ -40,7 +40,7 @@ withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
      is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
-  \item{substitute}{(to be deprecated) use \code{replace} instead.}
+  \item{substitute}{(defunct) use \code{replace} instead.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 
@@ -50,17 +50,17 @@ withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
 
 \examples{
 print(withCapture({
- n <- 3;
- n;
+ n <- 3
+ n
 
  for (kk in 1:3) {
-   printf("Iteration #\%d\n", kk);
+   printf("Iteration #\%d\n", kk)
  }
 
- print(Sys.time());
+ print(Sys.time())
 
- type <- "horse";
- type;
+ type <- "horse"
+ type
 }))
 
 ## > n <- 3

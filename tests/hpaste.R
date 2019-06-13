@@ -49,17 +49,17 @@ printf("x = %s.\n", hpaste(x, lastCollapse=" and "))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 s1 <- hpaste(x, maxHead=Inf)
 s2 <- paste(x, collapse=", ")
-printf("s = %s.\n", s1);
+printf("s = %s.\n", s1)
 stopifnot(identical(s1, s2))
 
 s1 <- hpaste('<', x, '>', maxHead=Inf)
 s2 <- paste('<', x, '>', sep="", collapse=", ")
-printf("s = %s.\n", s1);
+printf("s = %s.\n", s1)
 stopifnot(identical(s1, s2))
 
 s1 <- hpaste(x, y, z, sep="/", maxHead=Inf)
 s2 <- paste(x, y, z, sep="/", collapse=", ")
-printf("s = %s.\n", s1);
+printf("s = %s.\n", s1)
 stopifnot(identical(s1, s2))
 
 s1 <- hpaste(x, collapse=NULL, maxHead=Inf)

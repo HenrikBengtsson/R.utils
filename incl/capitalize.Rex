@@ -1,5 +1,5 @@
 
-words <- strsplit("Hello wOrld", " ")[[1]];
+words <- strsplit("Hello wOrld", " ")[[1]]
 cat(paste(toupper(words), collapse=" "), "\n")      # "HELLO WORLD"
 cat(paste(tolower(words), collapse=" "), "\n")      # "hello world"
 cat(paste(capitalize(words), collapse=" "), "\n")   # "Hello WOrld"

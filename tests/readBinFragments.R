@@ -22,7 +22,7 @@ x <- readBinFragments(pathname, what="integer", size=size, signed=FALSE, idxs=id
 stopifnot(identical(x, data[idxs]))
 print(x)
 # Read every 16:th byte in a connection starting with the 6th.
-idxs <- idxs + 5L;
+idxs <- idxs + 5L
 x <- readBinFragments(pathname, what="integer", size=size, signed=FALSE, idxs=idxs)
 stopifnot(identical(x, data[idxs]))
 print(x)
@@ -63,7 +63,7 @@ stopifnot(identical(x, data[idxs]))
 print(x)
 
 # Read every 16:th byte in a connection starting with the 6th.
-idxs <- idxs + 5L;
+idxs <- idxs + 5L
 x <- readBinFragments(con, what="integer", size=size, signed=FALSE, idxs=idxs, origin="start")
 stopifnot(identical(x, data[idxs]))
 print(x)

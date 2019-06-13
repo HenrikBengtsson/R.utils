@@ -4,7 +4,7 @@ assertEqual <- function(a, b) {
   a <- gsub("\\", "/", a, fixed=TRUE)
   b <- gsub("\\", "/", b, fixed=TRUE)
   if (a != b) {
-    throw("The two paths/pathnames differ: ", sQuote(a), " != ", sQuote(b));
+    throw("The two paths/pathnames differ: ", sQuote(a), " != ", sQuote(b))
   }
 } # assertEqual()
 

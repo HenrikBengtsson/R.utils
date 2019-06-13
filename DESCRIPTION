@@ -1,5 +1,5 @@
 Package: R.utils
-Version: 2.8.0
+Version: 2.9.0
 Depends:
   R (>= 2.14.0),
   R.oo (>= 1.22.0)
@@ -20,4 +20,3 @@ License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/HenrikBengtsson/R.utils
 BugReports: https://github.com/HenrikBengtsson/R.utils/issues
-RoxygenNote: 6.1.0

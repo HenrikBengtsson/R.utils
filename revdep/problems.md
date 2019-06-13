@@ -1,6 +1,17 @@
 # affxparser
 
-Version: 1.54.0
+<details>
+
+* Version: 1.56.0
+* Source code: https://github.com/cran/affxparser
+* URL: https://github.com/HenrikBengtsson/affxparser
+* BugReports: https://github.com/HenrikBengtsson/affxparser/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 4
+
+Run `revdep_details(,"affxparser")` for more info
+
+</details>
 
 ## In both
 
@@ -44,9 +55,9 @@ Version: 1.54.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.4Mb
+      installed size is 16.8Mb
       sub-directories of 1Mb or more:
-        libs  15.7Mb
+        libs  16.0Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -56,7 +67,18 @@ Version: 1.54.0
 
 # aroma.affymetrix
 
-Version: 3.1.1
+<details>
+
+* Version: 3.1.1
+* Source code: https://github.com/cran/aroma.affymetrix
+* URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.affymetrix
+* BugReports: https://github.com/HenrikBengtsson/aroma.affymetrix/issues
+* Date/Publication: 2018-04-16 18:53:05 UTC
+* Number of recursive dependencies: 74
+
+Run `revdep_details(,"aroma.affymetrix")` for more info
+
+</details>
 
 ## In both
 
@@ -64,26 +86,54 @@ Version: 3.1.1
     ```
       installed size is  5.8Mb
       sub-directories of 1Mb or more:
-        R             2.2Mb
+        R             2.3Mb
         help          1.1Mb
         testScripts   1.3Mb
     ```
 
+*   checking dependencies in R code ... NOTE
+    ```
+    Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
+      could not find function "setGeneric"
+    ```
+
 # aroma.core
 
-Version: 3.1.3
+<details>
+
+* Version: 3.1.3
+* Source code: https://github.com/cran/aroma.core
+* URL: https://github.com/HenrikBengtsson/aroma.core, http://www.aroma-project.org/
+* BugReports: https://github.com/HenrikBengtsson/aroma.core/issues
+* Date/Publication: 2018-05-03 13:41:54 UTC
+* Number of recursive dependencies: 45
+
+Run `revdep_details(,"aroma.core")` for more info
+
+</details>
 
 ## In both
 
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      ‘expectile’ ‘HaarSeg’ ‘mpcbs’
+      'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
 # aroma.light
 
-Version: 3.12.0
+<details>
+
+* Version: 3.14.0
+* Source code: https://github.com/cran/aroma.light
+* URL: https://github.com/HenrikBengtsson/aroma.light, http://www.aroma-project.org
+* BugReports: https://github.com/HenrikBengtsson/aroma.light/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 6
+
+Run `revdep_details(,"aroma.light")` for more info
+
+</details>
 
 ## In both
 
@@ -97,16 +147,24 @@ Version: 3.12.0
 
 # AUCell
 
-Version: 1.4.1
+<details>
+
+* Version: 1.6.1
+* Source code: https://github.com/cran/AUCell
+* URL: http://scenic.aertslab.org
+* Date/Publication: 2019-06-05
+* Number of recursive dependencies: 159
+
+Run `revdep_details(,"AUCell")` for more info
+
+</details>
 
 ## In both
 
-*   R CMD check timed out
-    
-
 *   checking package dependencies ... NOTE
     ```
-    Packages which this enhances but not available for checking: ‘doMC’ ‘doRNG’
+    Packages which this enhances but not available for checking:
+      'doMC', 'doRNG'
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -118,8 +176,6 @@ Version: 1.4.1
 
 *   checking R code for possible problems ... NOTE
     ```
-    .cellProps_plotTsne: warning in adjustcolor(colorPal(10), alpha = 0.8):
-      partial argument match of 'alpha' to 'alpha.f'
     AUCell_createViewerApp : <anonymous>: no visible global function
       definition for ‘%>%’
     AUCell_createViewerApp : <anonymous>: no visible binding for global
@@ -128,8 +184,14 @@ Version: 1.4.1
       variable ‘tsne2’
     AUCell_createViewerApp : <anonymous>: no visible binding for global
       variable ‘cell’
+    orderAUC: no visible global function definition for ‘as.dist’
+    orderAUC: no visible global function definition for ‘cor’
+    orderAUC: no visible global function definition for ‘hclust’
     Undefined global functions or variables:
-      %>% cell tsne1 tsne2
+      %>% as.dist cell cor hclust tsne1 tsne2
+    Consider adding
+      importFrom("stats", "as.dist", "cor", "hclust")
+    to your NAMESPACE file.
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -137,9 +199,25 @@ Version: 1.4.1
     Package unavailable to check Rd xrefs: ‘SingleCellExperiment’
     ```
 
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘reshape2’
+    ```
+
 # bigstep
 
-Version: 1.0.0
+<details>
+
+* Version: 1.0.1
+* Source code: https://github.com/cran/bigstep
+* URL: http://github.com/pmszulc/bigstep
+* BugReports: http://github.com/pmszulc/bigstep/issues
+* Date/Publication: 2019-03-21 17:33:30 UTC
+* Number of recursive dependencies: 68
+
+Run `revdep_details(,"bigstep")` for more info
+
+</details>
 
 ## In both
 
@@ -151,7 +229,18 @@ Version: 1.0.0
 
 # BioInstaller
 
-Version: 0.3.7
+<details>
+
+* Version: 0.3.7
+* Source code: https://github.com/cran/BioInstaller
+* URL: https://github.com/JhuangLab/BioInstaller
+* BugReports: https://github.com/JhuangLab/BioInstaller/issues
+* Date/Publication: 2018-11-20 15:50:09 UTC
+* Number of recursive dependencies: 112
+
+Run `revdep_details(,"BioInstaller")` for more info
+
+</details>
 
 ## In both
 
@@ -163,65 +252,92 @@ Version: 0.3.7
         extdata   8.7Mb
     ```
 
+# biomartr
+
+<details>
+
+* Version: 0.9.0
+* Source code: https://github.com/cran/biomartr
+* URL: https://github.com/ropensci/biomartr
+* BugReports: https://github.com/ropensci/biomartr/issues
+* Date/Publication: 2019-05-21 17:40:02 UTC
+* Number of recursive dependencies: 98
+
+Run `revdep_details(,"biomartr")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘fs’
+      All declared Imports should be used.
+    ```
+
 # BMSC
 
-Version: 0.1.1
+<details>
+
+* Version: 0.2.0
+* Source code: https://github.com/cran/BMSC
+* Date/Publication: 2019-04-16 15:25:42 UTC
+* Number of recursive dependencies: 81
+
+Run `revdep_details(,"BMSC")` for more info
+
+</details>
 
 ## In both
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 64.8Mb
+      installed size is 89.2Mb
       sub-directories of 1Mb or more:
-        libs  64.5Mb
+        libs  88.9Mb
     ```
 
 # bsseq
 
-Version: 1.18.0
+<details>
+
+* Version: 1.20.0
+* Source code: https://github.com/cran/bsseq
+* URL: https://github.com/kasperdanielhansen/bsseq
+* BugReports: https://github.com/kasperdanielhansen/bsseq/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 99
+
+Run `revdep_details(,"bsseq")` for more info
+
+</details>
 
 ## In both
 
-*   checking tests ...
+*   checking package dependencies ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      > test_check("bsseq")
-      ── 1. Error: Expected parallelisation backends work with in-memory realization b
-      BatchJobsParam() requires the 'BatchJobs' package
-      1: BSmooth(bsseq_test, BPPARAM = BatchJobsParam(2, progressbar = FALSE)) at testthat/test_BSmooth.R:64
-      2: is(BPPARAM, "SnowParam")
-      3: BatchJobsParam(2, progressbar = FALSE)
-      4: stop("BatchJobsParam() requires the 'BatchJobs' package")
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 135 SKIPPED: 6 FAILED: 1
-      1. Error: Expected parallelisation backends work with in-memory realization backend (@test_BSmooth.R#64) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-      Error while shutting down parallel: unable to terminate some child processes
+    Package suggested but not available for checking: ‘bsseqData’
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.6Mb
+      installed size is 12.1Mb
       sub-directories of 1Mb or more:
         data   6.5Mb
         doc    1.9Mb
-        libs   1.1Mb
+        libs   2.6Mb
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
+    Missing object imported by a ':::' call: ‘DelayedArray:::.normarg_grid’
     Unexported objects imported by ':::' calls:
-      ‘BiocGenerics:::replaceSlots’ ‘DelayedArray:::.normarg_grid’
+      ‘BiocGenerics:::replaceSlots’
       ‘DelayedArray:::get_verbose_block_processing’
       ‘GenomicRanges:::.extract_groups_from_GenomicRanges’
       ‘GenomicRanges:::.get_circle_length’
       ‘GenomicRanges:::extraColumnSlotNames’ ‘HDF5Array:::.create_dir’
-      ‘HDF5Array:::.shorten_h5_paths’
+      ‘HDF5Array:::.replace_dir’ ‘HDF5Array:::.shorten_assay2h5_links’
       ‘IRanges:::.shift_ranges_in_groups_to_first_circle’
       ‘S4Vectors:::make_zero_col_DataFrame’ ‘S4Vectors:::new_DataFrame’
       ‘S4Vectors:::normalize_names_replacement_value’
@@ -230,9 +346,24 @@ Version: 1.18.0
       See the note in ?`:::` about the use of this operator.
     ```
 
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘bsseqData’
+    ```
+
 # Causata
 
-Version: 4.2-0
+<details>
+
+* Version: 4.2-0
+* Source code: https://github.com/cran/Causata
+* URL: www.causata.com
+* Date/Publication: 2016-12-05 18:28:46
+* Number of recursive dependencies: 62
+
+Run `revdep_details(,"Causata")` for more info
+
+</details>
 
 ## In both
 
@@ -269,7 +400,18 @@ Version: 4.2-0
 
 # ChemoSpec
 
-Version: 5.0.225
+<details>
+
+* Version: 5.1.9
+* Source code: https://github.com/cran/ChemoSpec
+* URL: https://bryanhanson.github.io/ChemoSpec/
+* BugReports: https://github.com/bryanhanson/ChemoSpec/issues
+* Date/Publication: 2019-06-09 18:50:03 UTC
+* Number of recursive dependencies: 135
+
+Run `revdep_details(,"ChemoSpec")` for more info
+
+</details>
 
 ## In both
 
@@ -280,18 +422,38 @@ Version: 5.0.225
 
 # ChemoSpec2D
 
-Version: 0.2.0
+<details>
+
+* Version: 0.3.166
+* Source code: https://github.com/cran/ChemoSpec2D
+* URL: https://github.com/bryanhanson/ChemoSpec2D
+* BugReports: https://github.com/bryanhanson/ChemoSpec2D/issues
+* Date/Publication: 2019-06-09 17:50:02 UTC
+* Number of recursive dependencies: 101
+
+Run `revdep_details(,"ChemoSpec2D")` for more info
+
+</details>
 
 ## In both
 
-*   checking Rd cross-references ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Package unavailable to check Rd xrefs: ‘ChemoSpec’
+    Packages suggested but not available for checking: 'mlrMBO', 'smoof', 'mlr'
     ```
 
 # ChocoLattes
 
-Version: 0.1.0
+<details>
+
+* Version: 0.1.0
+* Source code: https://github.com/cran/ChocoLattes
+* Date/Publication: 2017-04-29 14:44:28 UTC
+* Number of recursive dependencies: 75
+
+Run `revdep_details(,"ChocoLattes")` for more info
+
+</details>
 
 ## In both
 
@@ -304,7 +466,18 @@ Version: 0.1.0
 
 # CNEr
 
-Version: 1.18.1
+<details>
+
+* Version: 1.20.0
+* Source code: https://github.com/cran/CNEr
+* URL: https://github.com/ge11232002/CNEr
+* BugReports: https://github.com/ge11232002/CNEr/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 139
+
+Run `revdep_details(,"CNEr")` for more info
+
+</details>
 
 ## In both
 
@@ -352,9 +525,23 @@ Version: 1.18.1
 
 # countyfloods
 
-Version: 0.1.0
+<details>
+
+* Version: 0.1.0
+* Source code: https://github.com/cran/countyfloods
+* Date/Publication: 2017-10-26 03:22:55 UTC
+* Number of recursive dependencies: 80
+
+Run `revdep_details(,"countyfloods")` for more info
+
+</details>
 
 ## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘hurricaneexposure’
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -364,28 +551,72 @@ Version: 0.1.0
 
 # CVXR
 
-Version: 0.99-2
+<details>
+
+* Version: 0.99-6
+* Source code: https://github.com/cran/CVXR
+* URL: https://cvxr.rbind.io, https://anqif.github.io/CVXR
+* BugReports: https://github.com/anqif/CVXR/issues
+* Date/Publication: 2019-06-02 03:40:08 UTC
+* Number of recursive dependencies: 43
+
+Run `revdep_details(,"CVXR")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 10.3Mb
+      sub-directories of 1Mb or more:
+        R      1.8Mb
+        libs   6.5Mb
+    ```
+
+# data.table
+
+<details>
+
+* Version: 1.12.2
+* Source code: https://github.com/cran/data.table
+* URL: http://r-datatable.com
+* BugReports: https://github.com/Rdatatable/data.table/issues
+* Date/Publication: 2019-04-07 10:05:02 UTC
+* Number of recursive dependencies: 23
+
+Run `revdep_details(,"data.table")` for more info
+
+</details>
 
 ## In both
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘Rglpk’
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 10.2Mb
-      sub-directories of 1Mb or more:
-        R      1.8Mb
-        libs   6.4Mb
+    Package suggested but not available for checking: ‘nanotime’
     ```
 
 # DatabaseConnector
 
-Version: 2.2.1
+<details>
+
+* Version: 2.3.0
+* Source code: https://github.com/cran/DatabaseConnector
+* URL: https://ohdsi.github.io/DatabaseConnector, https://github.com/OHDSI/DatabaseConnector
+* BugReports: https://github.com/OHDSI/DatabaseConnector/issues
+* Date/Publication: 2019-02-21 15:20:13 UTC
+* Number of recursive dependencies: 61
+
+Run `revdep_details(,"DatabaseConnector")` for more info
+
+</details>
 
 ## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘aws.s3’
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -393,27 +624,44 @@ Version: 2.2.1
       All declared Imports should be used.
     ```
 
-# ddPCRclust
+# datapackage.r
 
-Version: 1.2.0
+<details>
+
+* Version: 0.1.1
+* Source code: https://github.com/cran/datapackage.r
+* URL: https://github.com/frictionlessdata/datapackage-r
+* BugReports: https://github.com/frictionlessdata/datapackage-r/issues
+* Date/Publication: 2019-05-20 16:40:03 UTC
+* Number of recursive dependencies: 97
+
+Run `revdep_details(,"datapackage.r")` for more info
+
+</details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    exportPlots: no visible binding for global variable ‘Cluster’
-    Undefined global functions or variables:
-      Cluster
+    Namespaces in Imports field not imported from:
+      ‘future’ ‘iterators’ ‘readr’
+      All declared Imports should be used.
     ```
 
 # DeepBlueR
 
-Version: 1.8.0
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/DeepBlueR
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 137
+
+Run `revdep_details(,"DeepBlueR")` for more info
+
+</details>
 
 ## In both
-
-*   R CMD check timed out
-    
 
 *   checking Rd files ... NOTE
     ```
@@ -422,7 +670,16 @@ Version: 1.8.0
 
 # DEGraph
 
-Version: 1.34.0
+<details>
+
+* Version: 1.36.0
+* Source code: https://github.com/cran/DEGraph
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 41
+
+Run `revdep_details(,"DEGraph")` for more info
+
+</details>
 
 ## In both
 
@@ -450,37 +707,27 @@ Version: 1.34.0
       See the note in ?`:::` about the use of this operator.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    twoSampleFromGraph: no visible global function definition for ‘rnorm’
-    writeAdjacencyMatrix2KGML: no visible binding for global variable
-      ‘Arguments’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘pushState’
-    writeAdjacencyMatrix2KGML: no visible global function definition for
-      ‘popState’
-    writeAdjacencyMatrix2KGML : <anonymous>: no visible global function
-      definition for ‘na.omit’
-    Undefined global functions or variables:
-      Arguments ProgressBar as enter exit heat.colors increase na.omit
-      phyper pnorm popState pushState quantile reset rnorm str
-      translateNCI2GeneID var
-    Consider adding
-      importFrom("grDevices", "heat.colors")
-      importFrom("methods", "as")
-      importFrom("stats", "na.omit", "phyper", "pnorm", "quantile", "rnorm",
-                 "var")
-      importFrom("utils", "str")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
-    ```
-
 # demi
 
-Version: 1.1.2
+<details>
+
+* Version: 1.1.2
+* Source code: https://github.com/cran/demi
+* URL: http://biit.cs.ut.ee/demi
+* Date/Publication: 2015-02-13 20:22:57
+* Number of recursive dependencies: 111
+
+Run `revdep_details(,"demi")` for more info
+
+</details>
 
 ## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
+      could not find function "setGeneric"
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -508,34 +755,63 @@ Version: 1.1.2
     to your NAMESPACE file.
     ```
 
-# DupChecker
+# dplR
 
-Version: 1.20.0
+<details>
+
+* Version: 1.6.9
+* Source code: https://github.com/cran/dplR
+* URL: https://r-forge.r-project.org/projects/dplr/
+* Date/Publication: 2018-11-05 09:50:03 UTC
+* Number of recursive dependencies: 79
+
+Run `revdep_details(,"dplR")` for more info
+
+</details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    arrayExpressDownload: no visible global function definition for
-      ‘download.file’
-    geoDownload: no visible global function definition for ‘download.file’
-    geoDownload: no visible global function definition for ‘untar’
-    getFtpFilenames: no visible global function definition for ‘read.table’
-    Undefined global functions or variables:
-      download.file read.table untar
-    Consider adding
-      importFrom("utils", "download.file", "read.table", "untar")
-    to your NAMESPACE file.
+    Package suggested but not available for checking: ‘tikzDevice’
+    ```
+
+# DropletUtils
+
+<details>
+
+* Version: 1.4.1
+* Source code: https://github.com/cran/DropletUtils
+* Date/Publication: 2019-05-31
+* Number of recursive dependencies: 65
+
+Run `revdep_details(,"DropletUtils")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 27.4Mb
+      sub-directories of 1Mb or more:
+        libs  26.3Mb
     ```
 
 # eegc
 
-Version: 1.8.1
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/eegc
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 156
+
+Run `revdep_details(,"eegc")` for more info
+
+</details>
 
 ## In both
-
-*   R CMD check timed out
-    
 
 *   checking Rd cross-references ... WARNING
     ```
@@ -552,132 +828,119 @@ Version: 1.8.1
         data  10.5Mb
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking for unstated dependencies in vignettes ... NOTE
     ```
-    ...
-    grnPlot: no visible global function definition for ‘legend’
-    markerScatter: no visible global function definition for
-      ‘colorRampPalette’
-    markerScatter: no visible global function definition for ‘plot’
-    markerScatter: no visible global function definition for ‘points’
-    markerScatter: no visible global function definition for ‘lm’
-    markerScatter: no visible global function definition for ‘abline’
-    markerScatter: no visible global function definition for ‘text’
-    markerScatter: no visible global function definition for ‘legend’
-    Undefined global functions or variables:
-      abline adjustcolor axis colorRampPalette control density dev.copy2pdf
-      legend lines lm model.matrix p.adjust par phyper plot points quantile
-      results text title treat
-    Consider adding
-      importFrom("grDevices", "adjustcolor", "colorRampPalette",
-                 "dev.copy2pdf")
-      importFrom("graphics", "abline", "axis", "legend", "lines", "par",
-                 "plot", "points", "text", "title")
-      importFrom("stats", "density", "lm", "model.matrix", "p.adjust",
-                 "phyper", "quantile")
-    to your NAMESPACE file.
+    '::' or ':::' import not declared from: ‘BiocStyle’
     ```
 
 # ELMER
 
-Version: 2.6.1
+<details>
+
+* Version: 2.8.0
+* Source code: https://github.com/cran/ELMER
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 203
+
+Run `revdep_details(,"ELMER")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 83.5Mb
+      sub-directories of 1Mb or more:
+        doc  82.9Mb
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    addMutCol: no visible binding for global variable 'Hugo_Symbol'
+    calcDistNearestTSS: no visible binding for global variable
+      'DistanceTSS'
+    getRegionNearGenes : f: no visible binding for global variable 'Side'
+    getRegionNearGenes: no visible binding for global variable 'ID'
+    getTFtargets: no visible binding for global variable 'TF'
+    Undefined global functions or variables:
+      DistanceTSS Hugo_Symbol ID Side TF
+    ```
+
+# enrichTF
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/enrichTF
+* URL: https://github.com/wzthu/enrichTF
+* BugReports: https://github.com/wzthu/enrichTF/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 115
+
+Run `revdep_details(,"enrichTF")` for more info
+
+</details>
 
 ## In both
 
 *   checking examples ... ERROR
     ```
-    ...
-    > 
-    > data <- ELMER:::getdata("elmer.data.example")
-    > pair <- data.frame(Probe = c("cg19403323","cg19403323", "cg26403223"),
-    +                    GeneID = c("ENSG00000196878", "ENSG00000009790", "ENSG00000009790" ),
-    +                    Symbol = c("TRAF3IP3","LAMB3","LAMB3"),
-    +                    Raw.p =c(0.001,0.00001,0.001),
-    +                    Pe = c(0.001,0.00001,0.001))
-    > schematic.plot(data,
-    +                group.col = "definition",
-    +                group1 = "Primary solid Tumor",
-    +                group2 = "Solid Tissue Normal",
-    +                pair = pair,
-    +                byProbe = "cg19403323")
-    Searching for the 20 near genes
-    Identifying gene position for each probe
+    Running examples in ‘enrichTF-Ex.R’ failed
+    The error most likely occurred in:
     
-      |                                                                            
-      |                                                                      |   0%
-      |                                                                            
-      |======================================================================| 100%Error: GenomicInteractions package is needed for this function to work. Please install it.
+    > ### Name: GenBackground
+    > ### Title: Generate background regions and reset the size of foreground
+    > ###   regions
+    > ### Aliases: GenBackground enrichGenBackground,Step-method
+    > ###   enrichGenBackground genBackground
+    > 
+    > ### ** Examples
+    > 
+    > setGenome("testgenome") #Use "hg19","hg38",etc. for your application
+    Configure bsgenome ...
+    Error in get_data_annotation_contrib_url(type) : 
+      Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+    Calls: setGenome ... checkAndInstallBSgenome -> <Anonymous> -> get_data_annotation_contrib_url
     Execution halted
     ```
 
-*   R CMD check timed out
-    
-
-*   checking dependencies in R code ... WARNING
+*   checking tests ...
     ```
-    '::' or ':::' import not declared from: 'progress'
-    ':::' calls which should be '::':
-      'TCGAbiolinks:::colDataPrepare' 'TCGAbiolinks:::get.GRCh.bioMart'
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Codoc mismatches from documentation object 'get.enriched.motif':
-    get.enriched.motif
-      Code: function(data, probes.motif, probes, min.motif.quality = "DS",
-                     background.probes, pvalue = 0.05, lower.OR = 1.1,
-                     min.incidence = 10, dir.out = "./", label = NULL, save
-                     = TRUE, plot.title = "")
-      Docs: function(data, probes.motif, probes, min.motif.quality = "DS",
-                     background.probes, pvalue = 0.05, lower.OR = 1.1,
-                     min.incidence = 10, dir.out = "./", label = NULL, save
-                     = TRUE, plot.title = NULL)
-      Mismatches in argument default values:
-        Name: 'plot.title' Code: "" Docs: NULL
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘GenomicInteractions’
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 44.1Mb
-      sub-directories of 1Mb or more:
-        doc  43.6Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    getRegionNearGenes : f: no visible binding for global variable 'Side'
-    getRegionNearGenes: no visible binding for global variable 'ID'
-    getTFtargets: no visible binding for global variable 'TF'
-    heatmapGene: no visible global function definition for
-      'subsetByOverlaps'
-    heatmapGene: no visible binding for global variable 'mae'
-    motif.enrichment.plot: no visible binding for global variable 'y'
-    motif.enrichment.plot: no visible binding for global variable 'x'
-    motif.enrichment.plot: no visible binding for global variable 'z'
-    motif.enrichment.plot: no visible binding for global variable 'upperOR'
-    motif.enrichment.plot: no visible binding for global variable 'lowerOR'
-    motif.enrichment.plot: no visible binding for global variable 'motif'
-    motif.enrichment.plot: no visible binding for global variable 'OR'
-    scatter: no visible binding for global variable 'value'
-    scatter: no visible binding for global variable 'mae'
-    scatter.plot: no visible binding for global variable 'ID'
-    scatter.plot: no visible binding for global variable 'GeneID'
-    Undefined global functions or variables:
-      DistanceTSS Gene GeneID Hugo_Symbol ID OR Probe Side Sides TF
-      ensembl_gene_id label lowerOR mae motif pvalue subsetByOverlaps
-      upperOR value x y z
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      3: FUN(X[[i]], ...)
+      4: cai()
+      5: runWithFinishCheck(func = checkAndInstallBSgenomeTestgenome, refName = "bsgenome")
+      6: func(NULL)
+      7: checkAndInstallBSgenome(refFilePath, genome)
+      8: BSgenome::available.genomes()
+      9: get_data_annotation_contrib_url(type)
+      10: stop("Install 'BiocManager' from CRAN to get 'BioCann' contrib.url")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 0 SKIPPED: 0 WARNINGS: 0 FAILED: 1
+      1. Error: test whole pipeline (@test-pipe.R#8) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
 # esATAC
 
-Version: 1.4.2
+<details>
+
+* Version: 1.6.1
+* Source code: https://github.com/cran/esATAC
+* URL: https://github.com/wzthu/esATAC
+* BugReports: https://github.com/wzthu/esATAC/issues
+* Date/Publication: 2019-05-15
+* Number of recursive dependencies: 184
+
+Run `revdep_details(,"esATAC")` for more info
+
+</details>
 
 ## In both
 
@@ -705,41 +968,19 @@ Version: 1.4.2
       See the note in ?`:::` about the use of this operator.
     ```
 
-# eudysbiome
-
-Version: 1.12.0
-
-## In both
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    assignTax: no visible global function definition for ‘unzip’
-    assignTax: no visible global function definition for ‘bunzip2’
-    contingencyTest: no visible global function definition for ‘combn’
-    contingencyTest : <anonymous>: no visible global function definition
-      for ‘chisq.test’
-    microAnnotate: no visible global function definition for ‘data’
-    microAnnotate: no visible binding for global variable ‘harmGenera’
-    tableSpecies: no visible global function definition for ‘read.table’
-    Undefined global functions or variables:
-      abline adjustcolor axis bunzip2 chisq.test colors combn data
-      dev.flush dev.hold download.file harmGenera mtext par plot points
-      read.table rect text title unzip
-    Consider adding
-      importFrom("grDevices", "adjustcolor", "colors", "dev.flush",
-                 "dev.hold")
-      importFrom("graphics", "abline", "axis", "mtext", "par", "plot",
-                 "points", "rect", "text", "title")
-      importFrom("stats", "chisq.test")
-      importFrom("utils", "combn", "data", "download.file", "read.table",
-                 "unzip")
-    to your NAMESPACE file.
-    ```
-
 # FGNet
 
-Version: 3.16.0
+<details>
+
+* Version: 3.18.0
+* Source code: https://github.com/cran/FGNet
+* URL: http://www.cicancer.org
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 105
+
+Run `revdep_details(,"FGNet")` for more info
+
+</details>
 
 ## In both
 
@@ -769,55 +1010,136 @@ Version: 3.16.0
     Execution halted
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    ...
-      gtkTextBufferGetStartIter gtkTextBufferGetText gtkTextBufferNew
-      gtkTextBufferSetText gtkTextViewGetBuffer gtkTextViewNewWithBuffer
-      gtkTextViewSetBuffer gtkVBox gtkVBoxNew gtkViewportNew
-      gtkWidgetGetSensitive gtkWidgetSetSensitive gtkWindowNew hclust image
-      install.packages installed.packages keys layout legend new
-      pangoFontDescriptionFromString par parseHTTPHeader parse_XMLfile plot
-      plot_profile png postForm quantile rainbow rawResults
-      reactomeEXTID2PATHID reactomePATHID2EXTID reactomePATHID2NAME
-      read.csv read.table readList select setAnnotationCategories setNames
-      sigGenes title url.exists write.table
-    Consider adding
-      importFrom("grDevices", "col2rgb", "dev.off", "png", "rainbow")
-      importFrom("graphics", "abline", "axis", "barplot", "box", "boxplot",
-                 "image", "layout", "legend", "par", "plot", "title")
-      importFrom("methods", "new")
-      importFrom("stats", "dist", "hclust", "quantile", "setNames")
-      importFrom("utils", "View", "browseURL", "data", "download.file",
-                 "install.packages", "installed.packages", "read.csv",
-                 "read.table", "write.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    Package suggested but not available for checking: ‘gage’
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘gage’
     ```
 
 # fitteR
 
-Version: 0.1.0
+<details>
+
+* Version: 0.1.0
+* Source code: https://github.com/cran/fitteR
+* Date/Publication: 2017-12-11 14:27:45 UTC
+* Number of recursive dependencies: 188
+
+Run `revdep_details(,"fitteR")` for more info
+
+</details>
+
+## Newly fixed
+
+*   R CMD check timed out
+    
 
 ## In both
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘ExtDist’
+    Packages suggested but not available for checking:
+      'actuar', 'emdbook', 'ExtDist', 'FatTailsR', 'flexsurv', 'gb',
+      'GeneralizedHyperbolic', 'gld', 'NormalLaplace', 'ParetoPosStable',
+      'sadists', 'SkewHyperbolic', 'VarianceGamma'
     ```
 
 # gdalUtils
 
-Version: 2.0.1.14
+<details>
+
+* Version: 2.0.1.14
+* Source code: https://github.com/cran/gdalUtils
+* Date/Publication: 2018-04-23 03:23:04 UTC
+* Number of recursive dependencies: 11
+
+Run `revdep_details(,"gdalUtils")` for more info
+
+</details>
 
 ## In both
 
 *   R CMD check timed out
     
 
+# gofCopula
+
+<details>
+
+* Version: 0.2-4
+* Source code: https://github.com/cran/gofCopula
+* Date/Publication: 2018-10-17 16:00:03 UTC
+* Number of recursive dependencies: 43
+
+Run `revdep_details(,"gofCopula")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: 'copula', 'VineCopula'
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# GSODR
+
+<details>
+
+* Version: 1.3.2
+* Source code: https://github.com/cran/GSODR
+* URL: https://github.com/ropensci/GSODR, https://ropensci.github.io/GSODR/
+* BugReports: https://github.com/ropensci/GSODR/issues
+* Date/Publication: 2019-01-18 23:10:43 UTC
+* Number of recursive dependencies: 133
+
+Run `revdep_details(,"GSODR")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+                 message("\nThere are no files for station ID ", station, " in ", yr, ".\n")
+             }
+         })
+      4: map(.x, .f, ...)
+      5: .f(.x[[i]], ...)
+      6: retry_cfm(year_url, handle = dir_list_handle)
+      7: stop(call. = FALSE, "\nWe've tried to get the file(s) you requested six\n", "times, but the server is not responding, so we are\n", 
+             "unable to process your request now.\n", "Please try again later.\n")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 29 SKIPPED: 5 WARNINGS: 0 FAILED: 1
+      1. Error: unique stations are returned, tempdir() is cleaned up on exit (@test-get_GSOD.R#197) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
 # hashFunction
 
-Version: 1.0
+<details>
+
+* Version: 1.0
+* Source code: https://github.com/cran/hashFunction
+* Date/Publication: 2013-03-25 14:21:08
+* Number of recursive dependencies: 4
+
+Run `revdep_details(,"hashFunction")` for more info
+
+</details>
 
 ## In both
 
@@ -828,7 +1150,16 @@ Version: 1.0
 
 # hoardeR
 
-Version: 0.9.4-2
+<details>
+
+* Version: 0.9.4-2
+* Source code: https://github.com/cran/hoardeR
+* Date/Publication: 2019-02-12 08:23:21 UTC
+* Number of recursive dependencies: 60
+
+Run `revdep_details(,"hoardeR")` for more info
+
+</details>
 
 ## In both
 
@@ -841,7 +1172,16 @@ Version: 0.9.4-2
 
 # HyPhy
 
-Version: 1.0
+<details>
+
+* Version: 1.0
+* Source code: https://github.com/cran/HyPhy
+* Date/Publication: 2012-07-30 04:09:01
+* Number of recursive dependencies: 7
+
+Run `revdep_details(,"HyPhy")` for more info
+
+</details>
 
 ## In both
 
@@ -853,28 +1193,18 @@ Version: 1.0
       for when this namespace is loaded but not attached.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    requiprobable: no visible global function definition for ‘extract’
-    requiprobable : make.tree: no visible global function definition for
-      ‘extract’
-    requiprobable : make.tree: no visible global function definition for
-      ‘runif’
-    rgenetree: no visible global function definition for ‘dbinom’
-    rgenetree: no visible global function definition for ‘dnbinom’
-    rgenetree: no visible global function definition for ‘runif’
-    rgenetree: no visible global function definition for ‘rbinom’
-    rgenetree: no visible global function definition for ‘rnbinom’
-    Undefined global functions or variables:
-      dbinom dnbinom extract rbinom rnbinom runif
-    Consider adding
-      importFrom("stats", "dbinom", "dnbinom", "rbinom", "rnbinom", "runif")
-    to your NAMESPACE file.
-    ```
-
 # LSPFP
 
-Version: 1.0.0
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/LSPFP
+* Date/Publication: 2016-05-19 16:35:29
+* Number of recursive dependencies: 13
+
+Run `revdep_details(,"LSPFP")` for more info
+
+</details>
 
 ## In both
 
@@ -886,17 +1216,32 @@ Version: 1.0.0
 
 # methylKit
 
-Version: 1.8.1
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/methylKit
+* URL: http://code.google.com/p/methylkit/
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 102
+
+Run `revdep_details(,"methylKit")` for more info
+
+</details>
 
 ## In both
 
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘genomation’
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  8.0Mb
       sub-directories of 1Mb or more:
         R      1.2Mb
         doc    1.4Mb
-        libs   1.8Mb
+        libs   3.9Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -907,7 +1252,16 @@ Version: 1.8.1
 
 # msgbsR
 
-Version: 1.6.1
+<details>
+
+* Version: 1.8.0
+* Source code: https://github.com/cran/msgbsR
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 156
+
+Run `revdep_details(,"msgbsR")` for more info
+
+</details>
 
 ## In both
 
@@ -934,75 +1288,260 @@ Version: 1.6.1
       All declared Imports should be used.
     ```
 
-# MSIseq
+# NCIgraph
 
-Version: 1.0.0
+<details>
+
+* Version: 1.32.0
+* Source code: https://github.com/cran/NCIgraph
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 27
+
+Run `revdep_details(,"NCIgraph")` for more info
+
+</details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    MSIseq.classify: no visible global function definition for ‘predict’
-    Undefined global functions or variables:
-      predict
-    Consider adding
-      importFrom("stats", "predict")
-    to your NAMESPACE file.
+    Package which this enhances but not available for checking: ‘DEGraph’
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+# net.security
+
+<details>
+
+* Version: 0.3.0
+* Source code: https://github.com/cran/net.security
+* URL: https://github.com/r-net-tools/net.security
+* Date/Publication: 2017-06-25 15:54:33 UTC
+* Number of recursive dependencies: 43
+
+Run `revdep_details(,"net.security")` for more info
+
+</details>
+
+## In both
+
+*   checking contents of ‘data’ directory ... WARNING
+    ```
+    Output for data("capec.sample", package = "net.security"):
+      No dataset created in 'envir'
+    Output for data("cpes.sample", package = "net.security"):
+      No dataset created in 'envir'
+    Output for data("cves.sample", package = "net.security"):
+      No dataset created in 'envir'
+    Output for data("cwes.sample", package = "net.security"):
+      No dataset created in 'envir'
+    ```
+
+# netboost
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/netboost
+* URL: https://github.com/PascalSchlosser/netboost
+* BugReports: https://github.com/PascalSchlosser/netboost/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 98
+
+Run `revdep_details(,"netboost")` for more info
+
+</details>
+
+## In both
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking for GNU extensions in Makefiles ... NOTE
+    ```
+    GNU make is a SystemRequirements.
     ```
 
 # networktools
 
-Version: 1.2.0
+<details>
+
+* Version: 1.2.1
+* Source code: https://github.com/cran/networktools
+* URL: https://CRAN.R-project.org/package=networktools
+* BugReports: http://github.com/paytonjjones/networktools/issues
+* Date/Publication: 2019-05-20 18:50:09 UTC
+* Number of recursive dependencies: 150
+
+Run `revdep_details(,"networktools")` for more info
+
+</details>
 
 ## In both
 
-*   checking dependencies in R code ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Namespace in Imports field not imported from: ‘devtools’
-      All declared Imports should be used.
+    Packages required but not available: 'qgraph', 'smacof'
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # nlmixr
 
-Version: 1.0.0-7
+<details>
+
+* Version: 1.1.0-9
+* Source code: https://github.com/cran/nlmixr
+* URL: https://github.com/nlmixrdevelopment/nlmixr
+* Date/Publication: 2019-05-31 16:50:05 UTC
+* Number of recursive dependencies: 150
+
+Run `revdep_details(,"nlmixr")` for more info
+
+</details>
 
 ## In both
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.3Mb
+      installed size is 21.4Mb
       sub-directories of 1Mb or more:
-        libs  12.5Mb
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘PreciseSums’ ‘numDeriv’
-      All declared Imports should be used.
+        doc    1.0Mb
+        libs  18.2Mb
     ```
 
 # oce
 
-Version: 1.0-1
+<details>
+
+* Version: 1.0-1
+* Source code: https://github.com/cran/oce
+* URL: https://dankelley.github.io/oce
+* BugReports: https://github.com/dankelley/oce/issues
+* Date/Publication: 2018-10-04 16:00:03 UTC
+* Number of recursive dependencies: 80
+
+Run `revdep_details(,"oce")` for more info
+
+</details>
 
 ## In both
 
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘marmap’
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.1Mb
+      installed size is 12.9Mb
       sub-directories of 1Mb or more:
         R      2.1Mb
         doc    1.5Mb
         help   2.5Mb
-        libs   5.4Mb
+        libs   5.2Mb
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘marmap’
     ```
 
 # openCyto
 
-Version: 1.20.2
+<details>
+
+* Version: 1.22.2
+* Source code: https://github.com/cran/openCyto
+* Date/Publication: 2019-06-03
+* Number of recursive dependencies: 102
+
+Run `revdep_details(,"openCyto")` for more info
+
+</details>
 
 ## In both
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setClass("curv1Filter", representation = representation(bwFac = "numeric",  : 
+      could not find function "setClass"
+    Error: unable to load R code in package ‘flowStats’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+        gs
+    
+    Codoc mismatches from documentation object 'remove_pop':
+    remove_pop
+      Code: function(gs)
+      Docs: function(GatingSet)
+      Argument names in code not in docs:
+        gs
+      Argument names in docs not in code:
+        GatingSet
+      Mismatches in argument names:
+        Position: 1 Code: gs Docs: GatingSet
+    remove_pop
+      Code: function(gs)
+      Docs: function(GatingSetList)
+      Argument names in code not in docs:
+        gs
+      Argument names in docs not in code:
+        GatingSetList
+      Mismatches in argument names:
+        Position: 1 Code: gs Docs: GatingSetList
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'add_pop_init'
+      ‘GatingSet’ ‘GatingSetList’
+    
+    Documented arguments not in \usage in documentation object 'gate_tail':
+      ‘method’ ‘auto_tol’ ‘adjust’
+    
+    Undocumented arguments in documentation object 'remove_pop'
+      ‘GatingSet’ ‘GatingSetList’
+    Documented arguments not in \usage in documentation object 'remove_pop':
+      ‘gs’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.7Mb
+      sub-directories of 1Mb or more:
+        doc    2.4Mb
+        libs   3.2Mb
+    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -1032,28 +1571,10 @@ Version: 1.20.2
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-      ‘callNextMethod’
-    Undefined global functions or variables:
-      Subset abline as callNextMethod collapseDataForGating cov cov.wt
-      cutree density dist dnorm ellipsoidGate embed exprs exprs<- extends
-      filter filterList filters flowSet fsApply gating_args gating_method
-      hclust hist isMultiPops kmeans legend lines median na.omit new par
-      parameters<- parent points polygonGate pop predict preprocessing_args
-      preprocessing_method pt qchisq qf quantile rainbow rectangleGate sd
-      selectMethod smooth.spline text uniroot var weighted.mean
-    Consider adding
-      importFrom("grDevices", "rainbow")
-      importFrom("graphics", "abline", "hist", "legend", "lines", "par",
-                 "points", "text")
-      importFrom("methods", "as", "callNextMethod", "extends", "new",
-                 "selectMethod")
-      importFrom("stats", "cov", "cov.wt", "cutree", "density", "dist",
-                 "dnorm", "embed", "filter", "hclust", "kmeans", "median",
-                 "na.omit", "predict", "pt", "qchisq", "qf", "quantile",
-                 "sd", "smooth.spline", "uniroot", "var", "weighted.mean")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    Found the following possibly unsafe calls:
+    File ‘openCyto/R/pluginFramework.R’:
+      unlockBinding(methodName, ENV)
+      unlockBinding(methodName, ENV)
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -1063,7 +1584,17 @@ Version: 1.20.2
 
 # paxtoolsr
 
-Version: 1.16.0
+<details>
+
+* Version: 1.18.0
+* Source code: https://github.com/cran/paxtoolsr
+* URL: https://github.com/BioPAX/paxtoolsr
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 88
+
+Run `revdep_details(,"paxtoolsr")` for more info
+
+</details>
 
 ## In both
 
@@ -1095,21 +1626,72 @@ Version: 1.16.0
 
 # PGA
 
-Version: 1.12.1
+<details>
+
+* Version: 1.14.0
+* Source code: https://github.com/cran/PGA
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 110
+
+Run `revdep_details(,"PGA")` for more info
+
+</details>
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Package required but not available: ‘rTANDEM’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is  5.7Mb
+      sub-directories of 1Mb or more:
+        extdata   1.8Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘biomaRt:::martBM’ ‘biomaRt:::martDataset’ ‘biomaRt:::martHost’
+      ‘customProDB:::makeTranscriptDbFromBiomart_archive’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+# PhenotypeSimulator
+
+<details>
+
+* Version: 0.3.3
+* Source code: https://github.com/cran/PhenotypeSimulator
+* URL: https://github.com/HannahVMeyer/PhenotypeSimulator
+* BugReports: https://github.com/HannahVMeyer/PhenotypeSimulator/issues
+* Date/Publication: 2019-05-15 15:40:03 UTC
+* Number of recursive dependencies: 68
+
+Run `revdep_details(,"PhenotypeSimulator")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.7Mb
+      sub-directories of 1Mb or more:
+        doc       1.5Mb
+        extdata   3.1Mb
     ```
 
 # PopGenReport
 
-Version: 3.0.4
+<details>
+
+* Version: 3.0.4
+* Source code: https://github.com/cran/PopGenReport
+* URL: https://github.com/green-striped-gecko/PopGenReport
+* Date/Publication: 2019-02-04 12:13:23 UTC
+* Number of recursive dependencies: 105
+
+Run `revdep_details(,"PopGenReport")` for more info
+
+</details>
 
 ## In both
 
@@ -1118,69 +1700,122 @@ Version: 3.0.4
     Package unavailable to check Rd xrefs: ‘ecodist’
     ```
 
-# primirTSS
+# Prostar
 
-Version: 1.0.1
+<details>
+
+* Version: 1.16.5
+* Source code: https://github.com/cran/Prostar
+* Date/Publication: 2019-06-07
+* Number of recursive dependencies: 254
+
+Run `revdep_details(,"Prostar")` for more info
+
+</details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking whether package ‘Prostar’ can be installed ... WARNING
     ```
-    ...
-    plot_primiRNA_track: no visible binding for global variable
-      ‘symbol_name’
-    plot_primiRNA_track: no visible binding for global variable
-      ‘stem_loop_p1’
-    plot_primiRNA_track: no visible binding for global variable
-      ‘stem_loop_p2’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_id’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_p1’
-    plot_primiRNA_track: no visible binding for global variable ‘gene_p2’
-    plot_primiRNA_track: no visible binding for global variable ‘tss_p1’
-    plot_primiRNA_track: no visible binding for global variable ‘tss_p2’
-    require_fa: no visible binding for global variable ‘arrow’
-    tss_filter: no visible binding for global variable ‘gene_id’
-    tss_filter: no visible binding for global variable ‘new_info’
-    tss_filter: no visible binding for global variable ‘predicted_tss’
-    tss_filter: no visible binding for global variable ‘tss_type’
-    Undefined global functions or variables:
-      TF TF_class arrow can_tss dhs_p1 dhs_p2 e_p_rank end1 eponine_rank
-      gene_id gene_p1 gene_p2 histone_p1_flank histone_p2_flank loci
-      mir_name new_info phast_rank predicted_tss previous seqname start1
-      stem_loop_p1 stem_loop_p2 symbol_name tss_p1 tss_p2 tss_type
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/home/hb/repositories/R.utils/revdep/checks/Prostar/new/Prostar.Rcheck/00install.out’ for details.
     ```
 
-# psichomics
+# proteoQC
 
-Version: 1.8.1
+<details>
+
+* Version: 1.20.0
+* Source code: https://github.com/cran/proteoQC
+* URL: https://github.com/wenbostar/proteoQC
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 121
+
+Run `revdep_details(,"proteoQC")` for more info
+
+</details>
 
 ## In both
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.6Mb
+      installed size is  8.1Mb
       sub-directories of 1Mb or more:
-        doc   5.6Mb
+        doc       3.3Mb
+        extdata   4.0Mb
     ```
 
-*   checking compiled code ... NOTE
+*   checking S3 generic/method consistency ... NOTE
     ```
-    File ‘psichomics/libs/psichomics.so’:
-      Found ‘putchar’, possibly from ‘putchar’ (C)
-        Object: ‘psiFastCalc.o’
-      Found ‘stdout’, possibly from ‘stdout’ (C)
-        Object: ‘psiFastCalc.o’
-    
-    Compiled code should not call entry points which might terminate R nor
-    write to stdout/stderr instead of to the console, nor use Fortran I/O
-    nor system RNGs.
-    
-    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+    Found the following apparent S3 methods exported but not registered:
+      print.msQCres
+    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    plotMS2boxplot: no visible binding for global variable ‘techRep’
+    plotMS2boxplot: no visible binding for global variable ‘fraction’
+    plotMS2boxplot: no visible binding for global variable ‘MS2QC’
+    plotSampleIDResultErrorBar: no visible binding for global variable
+      ‘fraction’
+    plotSampleIDResultErrorBar: no visible binding for global variable
+      ‘val’
+    plotSampleIDResultErrorBar: no visible binding for global variable ‘se’
+    plotSampleVenn: no visible global function definition for ‘grid.draw’
+    plotTechRepVenn : <anonymous>: no visible global function definition
+      for ‘grid.draw’
+    qcHist: no visible binding for global variable ‘error’
+    qcHist: no visible binding for global variable ‘techRep’
+    qcHist: no visible binding for global variable ‘bioRep’
+    qcHist2: no visible binding for global variable ‘error’
+    qcHist2: no visible binding for global variable ‘fractile’
+    Undefined global functions or variables:
+      ..count.. Intensity MS1QC MS2QC TMT10 TMT6 Tag V1 V2 V3 V4 V5 bioRep
+      curenv delta error exprs fractile fraction grid.draw iTRAQ4 iTRAQ8
+      label peplength peptide_summary precursorCharge quantify ratio
+      readMgfData se techRep val x y
+    ```
+
+# psichomics
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/psichomics
+* URL: https://github.com/nuno-agostinho/psichomics
+* BugReports: https://github.com/nuno-agostinho/psichomics/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 226
+
+Run `revdep_details(,"psichomics")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  8.1Mb
+      sub-directories of 1Mb or more:
+        doc   5.1Mb
     ```
 
 # PubBias
 
-Version: 1.0
+<details>
+
+* Version: 1.0
+* Source code: https://github.com/cran/PubBias
+* Date/Publication: 2013-11-21 06:48:21
+* Number of recursive dependencies: 4
+
+Run `revdep_details(,"PubBias")` for more info
+
+</details>
 
 ## In both
 
@@ -1197,30 +1832,20 @@ Version: 1.0
       for when this namespace is loaded but not attached.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ChisqTest_expect: no visible global function definition for ‘pchisq’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘meta.MH’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘txtProgressBar’
-    plot_chase_observed_expected: no visible global function definition for
-      ‘setTxtProgressBar’
-    test.one.treated: no visible global function definition for
-      ‘fisher.test’
-    test_one: no visible global function definition for ‘rbinom’
-    test_one: no visible global function definition for ‘fisher.test’
-    Undefined global functions or variables:
-      fisher.test meta.MH pchisq rbinom setTxtProgressBar txtProgressBar
-    Consider adding
-      importFrom("stats", "fisher.test", "pchisq", "rbinom")
-      importFrom("utils", "setTxtProgressBar", "txtProgressBar")
-    to your NAMESPACE file.
-    ```
-
 # QDNAseq
 
-Version: 1.18.0
+<details>
+
+* Version: 1.20.0
+* Source code: https://github.com/cran/QDNAseq
+* URL: https://github.com/ccagc/QDNAseq
+* BugReports: https://github.com/ccagc/QDNAseq/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 66
+
+Run `revdep_details(,"QDNAseq")` for more info
+
+</details>
 
 ## In both
 
@@ -1233,9 +1858,64 @@ Version: 1.18.0
     Extensions’ manual.
     ```
 
+# radtools
+
+<details>
+
+* Version: 1.0.6
+* Source code: https://github.com/cran/radtools
+* Date/Publication: 2019-04-28 20:50:06 UTC
+* Number of recursive dependencies: 91
+
+Run `revdep_details(,"radtools")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      1. Error: NIfTI import (@test_image_import_nifti.R#7) 
+      2. Error: NIfTI metadata (@test_metadata_nifti.R#6) 
+      3. Error: View slice - for CRAN (@test_view.R#15) 
+      
+      Error: testthat unit tests failed
+      In addition: Warning messages:
+      1: In dir.create(outdir_nifti, recursive = TRUE) :
+        '/tmp/hb/RtmpXTqCuX' already exists
+      2: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.hdr.gz': HTTP status was '502 Bad Gateway'
+      3: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.img.gz': HTTP status was '502 Bad Gateway'
+      4: In download.file(url, destfile) :
+        cannot open URL 'https://nifti.nimh.nih.gov/nifti-1/data/avg152T1_LR_nifti.nii.gz': HTTP status was '502 Bad Gateway'
+      Execution halted
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘R.utils’ ‘TCIApathfinder’ ‘xfun’
+      All declared Imports should be used.
+    ```
+
 # RcisTarget
 
-Version: 1.2.1
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/RcisTarget
+* URL: http://scenic.aertslab.org
+* BugReports: https://github.com/aertslab/RcisTarget/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 113
+
+Run `revdep_details(,"RcisTarget")` for more info
+
+</details>
 
 ## In both
 
@@ -1279,7 +1959,7 @@ Version: 1.2.1
              "To install it, run:\t install.packages('zoo')")
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 45 SKIPPED: 0 FAILED: 1
+      OK: 45 SKIPPED: 0 WARNINGS: 0 FAILED: 1
       1. Error: RcisTarget workflow tests (@test_RcisTarget.R#258) 
       
       Error: testthat unit tests failed
@@ -1287,33 +1967,34 @@ Version: 1.2.1
       Error while shutting down parallel: unable to terminate some child processes
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Quitting from lines 323-327 (RcisTarget.Rmd) 
-    Error: processing vignette 'RcisTarget.Rmd' failed with diagnostics:
-    Package 'zoo' is required to calculate the aproximate RCC distributions.To install it, run:	 install.packages('zoo')
-    Execution halted
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages which this enhances but not available for checking:
-      ‘doMC’ ‘doRNG’ ‘zoo’
+      'doMC', 'doRNG', 'zoo'
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.0Mb
+      installed size is  6.2Mb
       sub-directories of 1Mb or more:
-        data  13.4Mb
-        doc    1.2Mb
+        data   4.4Mb
+        doc    1.4Mb
     ```
 
 # RCy3
 
-Version: 2.2.6
+<details>
+
+* Version: 2.4.2
+* Source code: https://github.com/cran/RCy3
+* URL: https://github.com/cytoscape/RCy3
+* BugReports: https://github.com/cytoscape/RCy3/issues
+* Date/Publication: 2019-06-09
+* Number of recursive dependencies: 39
+
+Run `revdep_details(,"RCy3")` for more info
+
+</details>
 
 ## In both
 
@@ -1327,22 +2008,54 @@ Version: 2.2.6
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.8Mb
+      installed size is 13.2Mb
       sub-directories of 1Mb or more:
-        doc  10.8Mb
+        doc  11.2Mb
     ```
 
-*   checking R code for possible problems ... NOTE
+# rdwd
+
+<details>
+
+* Version: 1.1.0
+* Source code: https://github.com/cran/rdwd
+* URL: https://github.com/brry/rdwd
+* BugReports: https://github.com/brry/rdwd/issues
+* Date/Publication: 2019-05-31 08:50:03 UTC
+* Number of recursive dependencies: 80
+
+Run `revdep_details(,"rdwd")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
     ```
-    createNetworkFromDataFrames: no visible binding for global variable
-      ‘SUID’
-    Undefined global functions or variables:
-      SUID
+    Package suggested but not available for checking: ‘OSMscale’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.4Mb
+      sub-directories of 1Mb or more:
+        R      2.2Mb
+        data   1.0Mb
+        doc    2.9Mb
     ```
 
 # ReportingTools
 
-Version: 2.22.1
+<details>
+
+* Version: 2.24.0
+* Source code: https://github.com/cran/ReportingTools
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 153
+
+Run `revdep_details(,"ReportingTools")` for more info
+
+</details>
 
 ## In both
 
@@ -1368,69 +2081,140 @@ Version: 2.22.1
       Execution halted
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      'fData'
-    .marrayLM.to.html: no visible global function definition for
-      'featureNames'
-    .marrayLM.to.html: no visible global function definition for 'fData'
-    check.ids: no visible binding for global variable 'org.Hs.eg.db'
-    check.ids: no visible global function definition for 'keys'
-    custHeaderPanel : <anonymous>: no visible binding for global variable
-      'tags'
-    custHeaderPanel : <anonymous>: no visible global function definition
-      for 'HTML'
-    custHeaderPanel: no visible global function definition for 'tagList'
-    custHeaderPanel: no visible global function definition for 'tag'
-    custHeaderPanel: no visible global function definition for 'div'
-    custHeaderPanel: no visible global function definition for 'h1'
-    publish,trellis-HTMLReport: no visible binding for global variable
-      'htmlRep'
-    toReportDF,DESeqDataSet: no visible global function definition for
-      'mcols'
-    Undefined global functions or variables:
-      HTML columns description div exprs fData featureNames h1 htmlRep keys
-      keytype mcols org.Hs.eg.db tag tagList tags
-    ```
+# restez
 
-# ROI.models.miplib
+<details>
 
-Version: 0.0-2
+* Version: 1.0.0
+* Source code: https://github.com/cran/restez
+* URL: https://github.com/ropensci/restez#readme
+* BugReports: https://github.com/ropensci/restez/issues
+* Date/Publication: 2018-11-26 20:00:12 UTC
+* Number of recursive dependencies: 66
+
+Run `revdep_details(,"restez")` for more info
+
+</details>
 
 ## In both
 
 *   checking package dependencies ... ERROR
     ```
-    Package required but not available: ‘Rglpk’
+    Package required but not available: ‘MonetDBLite’
     
     See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
     manual.
     ```
 
-# RxODE
+# RforProteomics
 
-Version: 0.8.0-9
+<details>
+
+* Version: 1.22.0
+* Source code: https://github.com/cran/RforProteomics
+* URL: http://lgatto.github.com/RforProteomics/
+* Date/Publication: 2019-05-07
+* Number of recursive dependencies: 259
+
+Run `revdep_details(,"RforProteomics")` for more info
+
+</details>
 
 ## In both
 
+*   checking whether package ‘RforProteomics’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘MSnbase::plot’ by ‘graphics::plot’ when loading ‘RforProteomics’
+    See ‘/home/hb/repositories/R.utils/revdep/checks/RforProteomics/new/RforProteomics.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      'isobar', 'MALDIquantForeign', 'synapter', 'synapterdata', 'BRAIN',
+      'pRoloc', 'MSGFplus', 'MSGFgui', 'DEP'
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.6Mb
+      installed size is 11.6Mb
       sub-directories of 1Mb or more:
-        doc    1.6Mb
-        libs  13.1Mb
+        doc  10.7Mb
+    ```
+
+# RRphylo
+
+<details>
+
+* Version: 2.0.3
+* Source code: https://github.com/cran/RRphylo
+* Date/Publication: 2019-02-25 14:40:03 UTC
+* Number of recursive dependencies: 145
+
+Run `revdep_details(,"RRphylo")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘data.tree’ ‘penalized’
+      All declared Imports should be used.
+    ```
+
+# RxODE
+
+<details>
+
+* Version: 0.9.0-6
+* Source code: https://github.com/cran/RxODE
+* URL: https://nlmixrdevelopment.github.io/RxODE/
+* BugReports: https://github.com/nlmixrdevelopment/RxODE/issues
+* Date/Publication: 2019-05-30 22:00:03 UTC
+* Number of recursive dependencies: 117
+
+Run `revdep_details(,"RxODE")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘installr’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 19.3Mb
+      sub-directories of 1Mb or more:
+        doc    2.5Mb
+        libs  15.7Mb
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘n1qn1’
+    Namespaces in Imports field not imported from:
+      ‘R.utils’ ‘n1qn1’
       All declared Imports should be used.
     ```
 
 # SDMTools
 
-Version: 1.1-221
+<details>
+
+* Version: 1.1-221.1
+* Source code: https://github.com/cran/SDMTools
+* URL: http://www.rforge.net/SDMTools/
+* Date/Publication: 2019-04-18 15:38:30 UTC
+* Number of recursive dependencies: 8
+
+Run `revdep_details(,"SDMTools")` for more info
+
+</details>
 
 ## In both
 
@@ -1447,40 +2231,42 @@ Version: 1.1-221
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
     ```
 
-*   checking R code for possible problems ... NOTE
+# simPATHy
+
+<details>
+
+* Version: 0.2
+* Source code: https://github.com/cran/simPATHy
+* Date/Publication: 2016-09-21 07:27:43
+* Number of recursive dependencies: 101
+
+Run `revdep_details(,"simPATHy")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
     ```
-    ...
-    quick.map: no visible global function definition for ‘image’
-    raster.from.asc: no visible global function definition for ‘raster’
-    raster.from.asc: no visible global function definition for
-      ‘projection<-’
-    raster.from.asc: no visible global function definition for ‘setValues’
-    slope: no visible global function definition for ‘setValues’
-    sp.from.asc: no visible global function definition for ‘CRS’
-    sp.from.asc: no visible global function definition for ‘GridTopology’
-    sp.from.asc: no visible global function definition for
-      ‘SpatialGridDataFrame’
-    Undefined global functions or variables:
-      CRS GridTopology SpatialGridDataFrame aggregate contour getValues
-      gray heat.colors image na.omit pnorm polygon projection<- quantile
-      rainbow raster rect sd segments setValues terrain.colors text
-    Consider adding
-      importFrom("grDevices", "gray", "heat.colors", "rainbow",
-                 "terrain.colors")
-      importFrom("graphics", "contour", "image", "polygon", "rect",
-                 "segments", "text")
-      importFrom("stats", "aggregate", "na.omit", "pnorm", "quantile", "sd")
-    to your NAMESPACE file.
+    Packages suggested but not available for checking: 'clipper', 'topologyGSA'
     ```
 
 # SpaDES.core
 
-Version: 0.2.4
+<details>
+
+* Version: 0.2.5
+* Source code: https://github.com/cran/SpaDES.core
+* URL: http://spades-core.predictiveecology.org/, https://github.com/PredictiveEcology/SpaDES.core
+* BugReports: https://github.com/PredictiveEcology/SpaDES.core/issues
+* Date/Publication: 2019-03-19 05:43:37 UTC
+* Number of recursive dependencies: 151
+
+Run `revdep_details(,"SpaDES.core")` for more info
+
+</details>
 
 ## In both
-
-*   R CMD check timed out
-    
 
 *   checking whether package ‘SpaDES.core’ can be installed ... WARNING
     ```
@@ -1489,34 +2275,101 @@ Version: 0.2.4
     See ‘/home/hb/repositories/R.utils/revdep/checks/SpaDES.core/new/SpaDES.core.Rcheck/00install.out’ for details.
     ```
 
+# spm12r
+
+<details>
+
+* Version: 2.8.1
+* Source code: https://github.com/cran/spm12r
+* Date/Publication: 2019-01-09 12:50:03 UTC
+* Number of recursive dependencies: 44
+
+Run `revdep_details(,"spm12r")` for more info
+
+</details>
+
+## In both
+
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘RandomFields’
+    Packages suggested but not available for checking:
+      'kirby21.t1', 'kirby21.fmri'
     ```
 
 # TCGAbiolinks
 
-Version: 2.10.3
+<details>
+
+* Version: 2.12.1
+* Source code: https://github.com/cran/TCGAbiolinks
+* URL: https://github.com/BioinformaticsFMRP/TCGAbiolinks
+* BugReports: https://github.com/BioinformaticsFMRP/TCGAbiolinks/issues
+* Date/Publication: 2019-05-16
+* Number of recursive dependencies: 251
+
+Run `revdep_details(,"TCGAbiolinks")` for more info
+
+</details>
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      LGm2   NA   NA        NA        NA
+      LGm4   NA   NA        NA 0.9217168
+      LGm5   NA   NA 0.9217168        NA
+        groups      Mean    Median       Max       Min
+      1  alive 0.3594683 0.3594683 0.3594683 0.3594683
+      2   dead 0.3589557 0.3608853 0.4099433 0.3240056
+            alive dead
+      alive    NA   NA
+      dead     NA   NA
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 66 SKIPPED: 0 WARNINGS: 0 FAILED: 1
+      1. Error: GDCprepare accepts more than one project (@test-prepare-download.R#35) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘PCBC_stemSig’
+    Undocumented data sets:
+      ‘PCBC_stemSig’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking: 'sesame', 'pathview'
+    ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 98.5Mb
+      installed size is 98.7Mb
       sub-directories of 1Mb or more:
         R      1.6Mb
-        data   3.5Mb
+        data   3.6Mb
         doc   93.2Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      ‘move’
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     ...
-      ‘c3net’
-    TCGAanalyze_networkInference: no visible global function definition for
       ‘minet’
     TCGAquery_recount2: no visible binding for global variable ‘rse_gene’
     TCGAtumor_purity: no visible binding for global variable ‘Tumor.purity’
@@ -1532,15 +2385,55 @@ Version: 2.10.3
     readExonQuantification: no visible binding for global variable ‘exon’
     readExonQuantification: no visible binding for global variable
       ‘coordinates’
+    readIDATDNAmethylation: no visible global function definition for
+      ‘openSesame’
     Undefined global functions or variables:
       Tumor.purity barcode c3net clinical coordinates dCommSignif
       dNetInduce dNetPipeline exon knnmi.cross limmacontrasts.fit
-      limmamakeContrasts minet portions rse_gene value visNet
+      limmamakeContrasts minet openSesame portions rse_gene value visNet
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘DT’
+    'library' or 'require' call not declared from: ‘DT’
+    ```
+
+# TCGAutils
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/TCGAutils
+* BugReports: https://github.com/waldronlab/TCGAutils/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 176
+
+Run `revdep_details(,"TCGAutils")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘BiocGenerics:::replaceSlots’ ‘GenomicRanges:::.normarg_field’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # TFEA.ChIP
 
-Version: 1.2.3
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/TFEA.ChIP
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 154
+
+Run `revdep_details(,"TFEA.ChIP")` for more info
+
+</details>
 
 ## In both
 
@@ -1548,34 +2441,34 @@ Version: 1.2.3
     ```
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
-    Last 13 lines of output:
-          'browseVignettes()'. To cite Bioconductor, see
-          'citation("Biobase")', and for packages 'citation("pkgname")'.
+    Complete output:
+      > BiocGenerics:::testPackage(pkgname = "TFEA.ChIP")
       
-      
-      Attaching package: 'AnnotationDbi'
-      
-      The following object is masked from 'package:dplyr':
-      
-          select
-      
-      
+      Because of space limitations, TFEA.ChIPs internal database only includes ChIP-seq experiments from the ENCODE project. 
+      To download the full ReMap database, as well as other ready-to-use databases, visit https://github.com/LauraPS1/TFEA.ChIP_downloads
       Error in library("RUnit", quietly = TRUE) : 
         there is no package called 'RUnit'
       Calls: <Anonymous> -> library
       Execution halted
     ```
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... NOTE
     ```
-      installed size is  5.0Mb
-      sub-directories of 1Mb or more:
-        data   4.5Mb
+    Package suggested but not available for checking: ‘rcompanion’
     ```
 
 # tmle.npvi
 
-Version: 0.10.0
+<details>
+
+* Version: 0.10.0
+* Source code: https://github.com/cran/tmle.npvi
+* Date/Publication: 2015-05-22 18:59:02
+* Number of recursive dependencies: 42
+
+Run `revdep_details(,"tmle.npvi")` for more info
+
+</details>
 
 ## In both
 
@@ -1607,33 +2500,103 @@ Version: 0.10.0
 
 # uavRst
 
-Version: 0.5-2
+<details>
+
+* Version: 0.5-2
+* Source code: https://github.com/cran/uavRst
+* Date/Publication: 2018-12-09 14:20:06 UTC
+* Number of recursive dependencies: 198
+
+Run `revdep_details(,"uavRst")` for more info
+
+</details>
 
 ## In both
 
-*   checking Rd cross-references ... NOTE
+*   checking whether package ‘uavRst’ can be installed ... ERROR
     ```
-    Package unavailable to check Rd xrefs: ‘tmaptools’
+    Installation failed.
+    See ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/new/uavRst.Rcheck/uavRst’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘uavRst’ ...
+** package ‘uavRst’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c brewCppFun.cpp -o brewCppFun.o
+g++ -std=gnu++11 -I"/home/hb/software/R-devel/R-3-6-branch/lib/R/include" -DNDEBUG  -I"/home/hb/repositories/R.utils/revdep/library/uavRst/Rcpp/include" -I/usr/local/include  -fpic  -g -O2  -c mapviewCppFun.cpp -o mapviewCppFun.o
+g++ -std=gnu++11 -shared -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -L/usr/local/lib -o uavRst.so RcppExports.o brewCppFun.o mapviewCppFun.o -L/home/hb/software/R-devel/R-3-6-branch/lib/R/lib -lR
+installing to /home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/00LOCK-uavRst/00new/uavRst/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+ERROR: hard-coded installation path: please report to the package maintainer and use ‘--no-staged-install’
+* removing ‘/home/hb/repositories/R.utils/revdep/checks/uavRst/old/uavRst.Rcheck/uavRst’
+
+```
 # Uniquorn
 
-Version: 2.2.1
+<details>
+
+* Version: 2.4.0
+* Source code: https://github.com/cran/Uniquorn
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 85
+
+Run `revdep_details(,"Uniquorn")` for more info
+
+</details>
 
 ## In both
-
-*   checking whether package ‘Uniquorn’ can be installed ... WARNING
-    ```
-    Found the following significant warnings:
-      Warning: replacing previous import ‘GenomicRanges::shift’ by ‘data.table::shift’ when loading ‘Uniquorn’
-    See ‘/home/hb/repositories/R.utils/revdep/checks/Uniquorn/new/Uniquorn.Rcheck/00install.out’ for details.
-    ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.2Mb
+      installed size is  7.7Mb
       sub-directories of 1Mb or more:
-        extdata   4.1Mb
+        extdata   6.5Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -1644,12 +2607,11 @@ Version: 2.2.1
 *   checking R code for possible problems ... NOTE
     ```
     ...
-    parse_ccle_genotype_data: no visible binding for global variable
-      ‘Tumor_Sample_Barcode’
-    parse_ccle_genotype_data: no visible binding for global variable
-      ‘Index’
-    parse_cosmic_genotype_data: no visible binding for global variable
       ‘position’
+    parse_cosmic_genotype_data: no visible global function definition for
+      ‘data.table’
+    parse_cosmic_genotype_data: no visible binding for global variable
+      ‘.SD’
     parse_cosmic_genotype_data: no visible binding for global variable
       ‘Index’
     show_contained_ccls: no visible binding for '<<-' assignment to
@@ -1660,8 +2622,9 @@ Version: 2.2.1
     write_w0_and_split_w0_into_lower_weights: no visible binding for global
       variable ‘g_mat_exclude’
     Undefined global functions or variables:
-      Index Tumor_Sample_Barcode ccls_all g_mat_exclude output_file_xls
-      position res_table sig_vec sim_list tail vcf_fingerprint
+      .SD Index Tumor_Sample_Barcode ccls_all data.table fread
+      g_mat_exclude output_file_xls position res_table sig_vec sim_list
+      tail vcf_fingerprint
     Consider adding
       importFrom("utils", "tail")
     to your NAMESPACE file.

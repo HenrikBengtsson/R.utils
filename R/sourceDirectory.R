@@ -87,7 +87,8 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
         verbose && cat(verbose, "Entering: ", pathname)
         sourcedFiles <- c(sourcedFiles,
           sourceDirectory(pathname, pattern=pattern, recursive=recursive,
-                       envir=envir, onError=onError, verbose=verbose, ...)
+                       envir=envir, onError=onError, verbose=verbose, modifiedOnly=modifiedOnly,
+                       ...)
         )
 
       }

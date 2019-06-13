@@ -24,5 +24,5 @@ use("tools (>= 2.5.0), graphics (>= 2.5.0)")
 tryCatch({
   use("NonExistingPackage", install=FALSE)
 }, error = function(ex) {
-  print(ex);
+  print(ex)
 })

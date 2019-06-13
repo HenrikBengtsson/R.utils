@@ -50,3 +50,4 @@ bfr3 <- readLines("foobar.txt.tmp")
 cat(bfr3, sep="\n")
 
 file.remove("foobar.txt.tmp")
+file.remove("foobar.txt")

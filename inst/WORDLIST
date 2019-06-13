@@ -79,7 +79,6 @@ LF
 licence
 lnk
 LNK
-Lund
 macOS
 maxValue
 MSDN
@@ -144,6 +143,7 @@ timestampOff
 timestampOn
 toAsciiRegExprPattern
 toFileListTree
+toLatex
 UNC
 unindents
 unmaps

@@ -1,6 +1,25 @@
 Package: R.utils
 ================
 
+Version: 2.9.0 [2019-06-11]
+ 
+BUG FIXES:
+
+ * sourceDirectory() did not respect argument 'modifiedOnly'.  Thanks to
+   Anton Krasikov for the report and the fix.
+
+ * createLink() could produce a spurious warning on MS Windows.
+
+DEPRECATE AND DEFUNCT:
+
+ * Previously defunct arrayIndex(), evalWithTimeout(), and resetWarnings()
+   have been removed.
+ 
+ * Assert$inherits() is defunct - use Assert$inheritsFrom() instead.
+
+ * Argument 'substitute' of withCapture() is defunct - use 'replace' instead.
+ 
+
 Version: 2.8.0 [2019-02-13]
 
 NEW FEATURES:
@@ -88,7 +107,7 @@ DEPRECATE AND DEFUNCT:
 
  * Argument 'substitute' of withCapture() has been renamed to 'replace'.
    Code that calls withCapture(..., substitute = ...) will still work, but
-   the use of 'subsitute' is deprecated and will later become defunct.
+   the use of 'substitute' is deprecated and will later become defunct.
    The purpose of this change of argument name is so that the meaning of
    'substitute' can be harmonized with the other withNnn() functions.
 

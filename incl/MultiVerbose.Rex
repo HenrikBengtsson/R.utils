@@ -1,6 +1,6 @@
 # Output to both standard output and to log file
 stdoutLog <- Verbose(threshold=-1)
-fileLog <- Verbose("foo.log", threshold=-1)
+fileLog <- Verbose(file.path(tempdir(), "foo.log"), threshold=-1)
 verbose <- MultiVerbose(list(stdoutLog, fileLog), threshold=-1)
 
 
@@ -11,9 +11,9 @@ for (kk in 1:10) {
   printf(verbose, "step %d\n", kk)
   if (kk == 2) {
     cat(verbose, "Turning ON automatic timestamps")
-    timestampOn(verbose);
+    timestampOn(verbose)
   } else if (kk == 4) {
-    timestampOff(verbose);
+    timestampOff(verbose)
     cat(verbose, "Turned OFF automatic timestamps")
     cat(verbose, "Turning OFF verbose messages for steps ", kk, "-6")
     off(verbose)
