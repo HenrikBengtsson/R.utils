@@ -18,7 +18,7 @@
 
 \usage{
 \method{doCall}{default}(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=list(.fcn),
-  .ignoreUnusedArgs=TRUE, envir=parent.frame())
+  .ignoreUnusedArgs=TRUE, .warnUnusedArgs=FALSE, envir=parent.frame())
 }
 
 \arguments{
@@ -33,12 +33,21 @@
    can be used to control which arguments are passed.}
  \item{.ignoreUnusedArgs}{If \code{\link[base:logical]{TRUE}}, arguments that are not accepted by the
    function, will not be passed to it. Otherwise, all arguments are passed.}
+ \item{.warnUnusedArgs}{If \code{\link[base:logical]{TRUE}} and if there are unused arguments that
+   actually are ignored (not counting alwaysArgs) then a warning will be
+   issued listing the names of the unused arguments.}
  \item{envir}{An \code{\link[base]{environment}} in which to evaluate the call.}
 }
 
 \examples{
   doCall("plot", x=1:10, y=sin(1:10), col="red", dummyArg=54,
          alwaysArgs=list(xlab="x", ylab="y"),
+         .functions=c("plot", "plot.xy"))
+
+# Same as above but will now warn about unused arguments.
+
+  doCall("plot", x=1:10, y=sin(1:10), col="red", dummyArg=54,
+         alwaysArgs=list(xlab="x", ylab="y"), .warnUnusedArgs=TRUE,
          .functions=c("plot", "plot.xy"))
 }
 
