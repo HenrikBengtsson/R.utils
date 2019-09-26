@@ -21,9 +21,8 @@
 #    can be used to control which arguments are passed.}
 #  \item{.ignoreUnusedArgs}{If @TRUE, arguments that are not accepted by the
 #    function, will not be passed to it. Otherwise, all arguments are passed.}
-#  \item{.warnUnusedArgs}{If @TRUE and if there are unused arguments that 
-#    actually are ignored (not counting alwaysArgs) then a warning will be 
-#    issued listing the names of the unused arguments.}
+#  \item{.onUnusedArgs}{What to do if there are unused args being ignored. Can
+#    be one of 'ignore' (default), 'warning', and 'error'.}
 #  \item{envir}{An @environment in which to evaluate the call.}
 # }
 #
@@ -35,8 +34,14 @@
 # # Same as above but will now warn about unused arguments.
 #
 #   doCall("plot", x=1:10, y=sin(1:10), col="red", dummyArg=54,
-#          alwaysArgs=list(xlab="x", ylab="y"), .warnUnusedArgs=TRUE,
+#          alwaysArgs=list(xlab="x", ylab="y"), .onUnusedArgs='warn',
 #          .functions=c("plot", "plot.xy"))
+# 
+# \dontrun{
+#   doCall("plot", x=1:10, y=sin(1:10), col="red", dummyArg=54,
+#          alwaysArgs=list(xlab="x", ylab="y"), .onUnusedArgs='error',
+#          .functions=c("plot", "plot.xy"))
+#  }
 # }
 #
 # \seealso{
@@ -47,7 +52,7 @@
 #
 # @keyword programming
 #*/#########################################################################
-setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=list(.fcn), .ignoreUnusedArgs=TRUE, .warnUnusedArgs=FALSE, envir=parent.frame()) {
+setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL, .functions=list(.fcn), .ignoreUnusedArgs=TRUE, .onUnusedArgs=c("ignore","warn","error"), envir=parent.frame()) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -75,6 +80,8 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
     fcn <- get(fcn, mode="function")
     .functions[[kk]] <- fcn
   }
+  
+  .onUnusedArgs = match.arg(.onUnusedArgs)
 
   # Argument 'envir':
   .stop_if_not(is.environment(envir))
@@ -91,11 +98,13 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
     fcnArgs <- unlist(fcnArgs, use.names=FALSE)
     keep <- intersect(names(args), fcnArgs)
     args <- args[keep]
-    if (.warnUnusedArgs) {
+    if (.onUnusedArgs != "ignore") {
       reject <- setdiff(names(args), setdiff(fcnArgs, alwaysArgs))
       if (length(reject) > 0L) {
-        warning("The following arguments have been ignored:\n",
-                paste0(reject, collapse = ", "))}
+        message <- paste("The following arguments are not used:\n",
+                         paste0(reject, collapse=", "))
+        if (.onUnusedArgs == "warn") warning(message) else stop(message)
+      }
     }
   }
 
