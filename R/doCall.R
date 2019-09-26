@@ -97,7 +97,6 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
     })
     fcnArgs <- unlist(fcnArgs, use.names=FALSE)
     keep <- intersect(names(args), fcnArgs)
-    args <- args[keep]
     if (.onUnusedArgs != "ignore") {
       reject <- setdiff(names(args), setdiff(fcnArgs, alwaysArgs))
       if (length(reject) > 0L) {
@@ -106,6 +105,7 @@ setMethodS3("doCall", "default", function(.fcn, ..., args=NULL, alwaysArgs=NULL,
         if (.onUnusedArgs == "warn") warning(message) else stop(message)
       }
     }
+    args <- args[keep]
   }
 
   args <- c(args, alwaysArgs)
