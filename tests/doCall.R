@@ -69,7 +69,7 @@ options(warn = options.warn.bak)
 ## Standard use-case with non-primitive function, errors
 err1 <- try(doCall(diag, args = list(x = 4, nrow = 3, ncol = 2,fake1 = 42),
                    .ignoreUnusedArgs = FALSE), silent = TRUE)
-stopifnot(err1 == "Error in (function (x = 1, nrow, ncol)  : unused argument (fake1 = 42)\n")
+stopifnot(grepl("unused argument \\(fake1 = 42\\)", err1))
 err2 <- try(doCall(diag, args = list(x = 4, nrow = 3, ncol = 2,fake1 = 42),
                    .ignoreUnusedArgs = TRUE, .onUnusedArgs = 'error'), silent=TRUE)
 stopifnot(err2 == "Error in doCall.default(diag, args = list(x = 4, nrow = 3, ncol = 2, fake1 = 42),  : \n  The following arguments are not used:\n fake1\n")
