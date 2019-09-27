@@ -79,4 +79,4 @@ err3 <- try(doCall(diag, args = list(x = 4, nrow = 3, ncol = 2, fake1 = 42,
 stopifnot(err3 == "Error in doCall.default(diag, args = list(x = 4, nrow = 3, ncol = 2, fake1 = 42,  : \n  The following arguments are not used:\n fake1, fake2\n")
 
 ## Cleanup
-#rm(err1,err2,err3,diag3,diag432,dc1diag432, dc2diag432, options.warn.bak)
+rm(err1,err2,err3,diag3,diag432,dc1diag432, dc2diag432, options.warn.bak)
