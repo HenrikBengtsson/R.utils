@@ -38,37 +38,53 @@
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-withSeed <- function(expr, seed, ..., substitute=TRUE, envir=parent.frame()) {
-  # Argument 'expr':
-  if (substitute) expr <- substitute(expr)
-
-  # Argument 'envir':
-  if (!is.environment(envir))
-    throw("Argument 'envir' is not a list: ", class(envir)[1L])
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Record entry seed
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  env <- globalenv()
-  oseed <- env$.Random.seed
-  # Restore on exit
-  on.exit({
-    if (is.null(oseed)) {
-      rm(list=".Random.seed", envir=env)
-    } else {
-      assign(".Random.seed", value=oseed, envir=env)
+withSeed <- local({
+  if (getRversion() < "3.0.0") {
+    set.seed <- function(seed, ...) {
+      ## Re-initialize the RNG state?
+      if (is.null(seed)) {
+        if (exists(".Random.seed", envir=globalenv(), inherits=FALSE)) {
+          rm(list=".Random.seed", envir=globalenv(), inherits=FALSE)
+        }
+        sample.int(1L)
+        return(invisible())
+      }
+      base::set.seed(seed=seed, ...)
     }
-  })
+  }
 
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Set temporary seed
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  set.seed(seed=seed, ...)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Evaluate expression
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  eval(expr, envir=envir)
-} # withSeed()
+  function(expr, seed, ..., substitute=TRUE, envir=parent.frame()) {
+    # Argument 'expr':
+    if (substitute) expr <- substitute(expr)
+  
+    # Argument 'envir':
+    if (!is.environment(envir))
+      throw("Argument 'envir' is not a list: ", class(envir)[1L])
+  
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Record entry seed
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    env <- globalenv()
+    oseed <- env$.Random.seed
+    # Restore on exit
+    on.exit({
+      if (is.null(oseed)) {
+        rm(list=".Random.seed", envir=env, inherits=FALSE)
+      } else {
+        assign(".Random.seed", value=oseed, envir=env, inherits=FALSE)
+      }
+    })
+  
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Set temporary seed
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    set.seed(seed=seed, ...)
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Evaluate expression
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    eval(expr, envir=envir)
+  } # withSeed()
+})

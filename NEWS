@@ -3,6 +3,10 @@ Package: R.utils
 
 Version: 2.9.0-9000 [2019-12-03]
 
+NEW FEATURES:
+
+ * Now withSeed(..., seed = NULL) also works for R (< 3.0.0).
+ 
 BUG FIXES:
 
  * wrap() for arrays used a list - not a numeric vector - to assign dimensions.
