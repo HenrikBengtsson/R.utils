@@ -117,7 +117,7 @@ setMethodS3("wrap", "array", function(x, map=list(NA), sep=".", ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Calculate the dimension sizes of the new array
   dim <- dim(x)
-  dim2 <- lapply(map, FUN=function(ii) prod(dim[ii]))
+  dim2 <- unlist(lapply(map, FUN=function(ii) prod(dim[ii])), use.names = FALSE)
 
   # Generate the new dimension names.
   # Note that the values in array 'x' are stored such that the *leftmost*
