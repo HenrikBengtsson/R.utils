@@ -5,6 +5,8 @@ Version: 2.9.0-9000 [2019-12-03]
 
 NEW FEATURES:
 
+ * fileAccess(..., mode = 2) will no longer update the .Random.seed.
+
  * Now withSeed(..., seed = NULL) also works for R (< 3.0.0).
  
 BUG FIXES:
