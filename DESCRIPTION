@@ -1,8 +1,8 @@
 Package: R.utils
-Version: 2.9.0
+Version: 2.9.1
 Depends:
   R (>= 2.14.0),
-  R.oo (>= 1.22.0)
+  R.oo (>= 1.23.0)
 Imports:
   methods,
   utils,

@@ -148,18 +148,23 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       # (a) Generate a random filename that does not already exist
       path <- pathname
       pathname <- NULL
-      for (n in 1:16) {
-        repeat {
-          chars <- sample(c(base::letters, base::LETTERS), size=n)
-          filename <- paste(chars, collapse="")
-          pathname <- file.path(path, filename)
-          if (!file.exists(pathname))
-            break
-          pathname <- NULL
-        }
-        if (!is.null(pathname))
-          break
-      } # for (n ...)
+      ## Produce random filename *without* changing the global RNG state
+      withSeed({
+        for (n in 1:16) {
+          for (k in 1:50) {
+            chars <- sample(c(base::letters, base::LETTERS), size=n)
+            filename <- paste(chars, collapse="")
+            pathname <- file.path(path, filename)
+            if (!file.exists(pathname)) break
+            pathname <- NULL
+          }
+          if (!is.null(pathname)) break
+        } # for (n ...)
+      }, seed = NULL)
+      if (is.null(pathname)) {
+        stop("Failed to produce a non-existing random filename in folder ",
+	     sQuote(path))
+      }
 
       # (b) Try to open the random filename for writing
       faSafe <- -1L

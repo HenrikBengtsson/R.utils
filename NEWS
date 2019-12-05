@@ -1,6 +1,21 @@
 Package: R.utils
 ================
 
+Version: 2.9.1 [2019-12-05]
+
+BUG FIXES:
+
+ * wrap() for arrays used a list - not a numeric vector - to assign dimensions.
+   This would produce an error in R (>= 4.0.0).
+
+ * withSeed(..., seed = NULL) did not work for R (< 3.0.0).
+ 
+ * fileAccess(..., mode = 2) would update .Random.seed.
+
+ * fileAccess(path, mode = 2) could end up in an end less loop if the 'path'
+   folder contained all files of 'a, b, ..., z, A, B, ... Z'.
+ 
+
 Version: 2.9.0 [2019-06-11]
  
 BUG FIXES:

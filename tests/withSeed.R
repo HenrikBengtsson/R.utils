@@ -46,3 +46,10 @@ str(res)
 stopifnot(all.equal(res$value, 1))
 stopifnot(!res$visible)
 stopifnot(all.equal(x, 1))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# With RNG state reset
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- withSeed(sample.int(100L, size=1L), seed=NULL)
+
