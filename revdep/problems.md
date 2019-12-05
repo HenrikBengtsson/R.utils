@@ -989,32 +989,6 @@ Run `revdep_details(,"eegc")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-                if (any(z)) 
-                    D[, j] <- A[, !z, drop = FALSE] %*% B[!z, j, 
-                      drop = FALSE]
-                else D[, j] <- A %*% B[, j]
-            }
-            dimnames(D) <- list(rownames(A), colnames(B))
-        }
-        else {
-            D <- A %*% B
-        }
-        D
-    }
-    <bytecode: 0x55a1128b6108>
-    <environment: namespace:limma>
-     --- function search by body ---
-    Function .zeroDominantMatrixMult in namespace limma has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in HasZero && HasNA : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: diffGene -> contrasts.fit -> .zeroDominantMatrixMult
-    Execution halted
-    ```
-
 *   checking whether the package can be unloaded cleanly ... WARNING
     ```
     Error in getFromNamespace(".initial", "GOSemSim") : 
@@ -1106,32 +1080,6 @@ Run `revdep_details(,"ELMER")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-            restCols <- setdiff(colnames(box), c("x1", "x2", "y1", 
-                "y2", "cx1", "cx2", "cy1", "cy2", "textX", "textY"))
-            tags <- sapply(restCols, function(x) {
-                tmp <- as.character(box[, x])
-                names(tmp) <- rownames(coords)
-                tmp
-            }, simplify = FALSE)
-            tags$title <- identifier(GdObject)
-            ImageMap(coords = coords, tags = tags)
-        }
-        else NULL
-        imageMap(GdObject) <- im
-        return(invisible(GdObject))
-    }
-    <environment: namespace:Gviz>
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in .dpOrDefault(GdObject, ".__hasAnno", FALSE) && !is.null(bartext) &&  : 
-      'length(x) = 60 > 1' in coercion to 'logical(1)'
-    Calls: schematic.plot
-    Execution halted
-    ```
 
 *   checking whether the package can be unloaded cleanly ... WARNING
     ```
@@ -1343,32 +1291,6 @@ Run `revdep_details(,"enrichTF")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-        }
-        else {
-            path2name <- as.data.frame(path2name)
-            path2name <- path2name[!is.na(path2name[, 1]), ]
-            path2name <- path2name[!is.na(path2name[, 2]), ]
-            path2name <- unique(path2name)
-            PATH2NAME <- as.character(path2name[, 2])
-            names(PATH2NAME) <- as.character(path2name[, 1])
-            assign("PATHID2NAME", PATH2NAME, envir = Anno_clusterProfiler_Env)
-        }
-        return(Anno_clusterProfiler_Env)
-    }
-    <environment: namespace:DOSE>
-     --- function search by body ---
-    Function build_Anno in namespace clusterProfiler has this body.
-    Function build_Anno in namespace DOSE has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in missing(path2name) || is.null(path2name) || is.na(path2name) : 
-      'length(x) = 90100 > 1' in coercion to 'logical(1)'
-    Calls: geneOntology ... processing -> <Anonymous> -> get_GO_data -> build_Anno
-    Execution halted
-    ```
 
 *   checking whether the package can be unloaded cleanly ... WARNING
     ```
@@ -1617,6 +1539,9 @@ Run `revdep_details(,"fitteR")` for more info
 *   checking examples ... ERROR
     ```
     ...
+                        ncol = ncol(AllStarts))
+                      AllStarts <- cbind(V, v)
+                    }
                 }
                 colnames(AllStarts) <- args
                 fits <- dofit(X, AllStarts, Package, dst, constraints = constraints)
@@ -1629,15 +1554,12 @@ Run `revdep_details(,"fitteR")` for more info
         REPORT[["fitting"]] <- REPORT0
         return(REPORT)
     }
-    <bytecode: 0x561a15abc3c8>
+    <bytecode: 0x55d82bed53c8>
     <environment: namespace:fitteR>
      --- function search by body ---
     Function fitter in namespace fitteR has this body.
      ----------- END OF FAILURE REPORT -------------- 
-    Error in !is.na(posList[[Package]]) && !(dst %in% posList[[Package]]) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: fitter
-    Execution halted
+    Fatal error: length > 1 in coercion to logical
     ```
 
 *   checking whether the package can be unloaded cleanly ... WARNING
@@ -1865,32 +1787,6 @@ Run `revdep_details(,"KnowSeq")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-        nd <- nodes(object)
-        if (is.character(index)) 
-            index <- match(index, nd)
-        if (is.na(index) || index < 0 || index > length(nd)) 
-            stop("vertex is not in graph: ", sQuote(initI))
-        edges(object)[index]
-    }
-    <bytecode: 0x561363ec1de0>
-    <environment: namespace:graph>
-    
-    Signatures:
-            object     index      
-    target  "graphNEL" "character"
-    defined "graphNEL" "ANY"      
-     --- function search by body ---
-    S4 Method adj:graph defined in namespace graph with signature graphNEL#ANY has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in is.na(index) || index < 0 : 
-      'length(x) = 4227 > 1' in coercion to 'logical(1)'
-    Calls: geneOntologyEnrichment ... buildLevels -> getGraphRoot -> sapply -> adj -> adj
-    Execution halted
-    ```
-
 *   checking for code/documentation mismatches ... WARNING
     ```
     Codoc mismatches from documentation object 'dataPlot':
@@ -1971,21 +1867,21 @@ Run `revdep_details(,"listenv")` for more info
      ERROR
     Running the tests in ‘tests/parse_env_subset,dimensions.R’ failed.
     Last 13 lines of output:
+          }
+          stopifnot(is.environment(res$envir))
+          stopifnot(is.character(res$name))
           stopifnot(is.null(res$subset) || is.list(res$subset))
           stopifnot(is.null(res$idx) || all(is.numeric(res$idx)))
           stopifnot(is.logical(res$exists), !anyNA(res$exists))
           stopifnot(length(res$exists) == length(res$idx))
           res
       }
-      <bytecode: 0x55f6bd8fb430>
+      <bytecode: 0x564ad96ff440>
       <environment: namespace:listenv>
        --- function search by body ---
       Function parse_env_subset in namespace listenv has this body.
        ----------- END OF FAILURE REPORT -------------- 
-      Error in subset_kk >= 1 && subset_kk <= dim[kk] : 
-        'length(x) = 3 > 1' in coercion to 'logical(1)'
-      Calls: parse_env_subset
-      Execution halted
+      Fatal error: length > 1 in coercion to logical
     ```
 
 # LSPFP
@@ -2051,6 +1947,9 @@ Run `revdep_details(,"methylKit")` for more info
 *   checking examples ... ERROR
     ```
     ...
+        pr = prcomp(mat, scale. = FALSE, center = FALSE)
+        pr$rotation[, comp] = 0
+        res = pr$x %*% t(pr$rotation)
         res = (scale(res, center = (-centers/scales), scale = 1/scales))
         attr(res, "scaled:center") <- NULL
         attr(res, "scaled:scale") <- NULL
@@ -2058,7 +1957,7 @@ Run `revdep_details(,"methylKit")` for more info
         res[res < 0] = 0
         reconstruct(res, mBase, save.db = save.db, ... = ...)
     }
-    <bytecode: 0x55ca6a0be030>
+    <bytecode: 0x5556697fe520>
     <environment: namespace:methylKit>
     
     Signatures:
@@ -2068,10 +1967,7 @@ Run `revdep_details(,"methylKit")` for more info
      --- function search by body ---
     S4 Method removeComp:methylKit defined in namespace methylKit with signature methylBase has this body.
      ----------- END OF FAILURE REPORT -------------- 
-    Error in is.na(comp) || is.null(comp) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: removeComp -> removeComp
-    Execution halted
+    Fatal error: length > 1 in coercion to logical
     ```
 
 *   checking installed package size ... NOTE
@@ -2347,32 +2243,6 @@ Run `revdep_details(,"oce")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-     ----------- FAILURE REPORT -------------- 
-     --- failure: length > 1 in coercion to logical ---
-     --- srcref --- 
-    : 
-     --- package (from environment) --- 
-    package:oce
-     --- call from context --- 
-    NULL
-     --- call from argument --- 
-    2 == stn[["salinityBottleFlag"]] && 2 != stn[["salinityFlag"]]
-     --- R stacktrace ---
-    
-     --- value of length: 24 type: logical ---
-     [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-    [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-     --- function from context --- 
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in 2 == stn[["salinityBottleFlag"]] && 2 != stn[["salinityFlag"]] : 
-      'length(x) = 24 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 14.4Mb
@@ -2608,32 +2478,6 @@ Run `revdep_details(,"PGA")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    where 1: tandem(param)
-    where 2: runTandem(spectra = spectra, fasta = db.files, outdir = iddir, 
-        varmod = varmod, fixmod = fixmod, maxCharge = maxCharge, 
-        enzyme = enzyme, cpu = cpu, ti = ti, tol = tol, tolu = tolu, 
-        itol = itol, itolu = itolu, miss = miss)
-    where 3: easyRun(gtfFile = gtffile, vcfFile = vcffile, bedFile = bedfile, 
-        spectra = msfile, annotation_path = annotation, genome = Hsapiens, 
-        cpu = 6, enzyme = "[KR]|[X]", varmod = "15.994915@M", itol = 0.05, 
-        fixmod = "57.021464@C", tol = 10, tolu = "ppm", itolu = "Daltons", 
-        miss = 2, maxCharge = 8, ti = FALSE, xmx = 1)
-    
-     --- value of length: 3 type: logical ---
-         taxon format  URL
-    [1,]  TRUE   TRUE TRUE
-     --- function from context --- 
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in col %in% names(input) && !is.na(eval(substitute(input$COL, list(COL = col)))) : 
-      'length(x) = 3 > 1' in coercion to 'logical(1)'
-    Calls: easyRun -> runTandem -> tandem
-    Execution halted
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3480,32 +3324,6 @@ Run `revdep_details(,"signatureSearchData")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-                if (any(z)) 
-                    D[, j] <- A[, !z, drop = FALSE] %*% B[!z, j, 
-                      drop = FALSE]
-                else D[, j] <- A %*% B[, j]
-            }
-            dimnames(D) <- list(rownames(A), colnames(B))
-        }
-        else {
-            D <- A %*% B
-        }
-        D
-    }
-    <bytecode: 0x55d600eb62f0>
-    <environment: namespace:limma>
-     --- function search by body ---
-    Function .zeroDominantMatrixMult in namespace limma has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in HasZero && HasNA : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: runLimma -> <Anonymous> -> .zeroDominantMatrixMult
-    Execution halted
-    ```
-
 *   checking whether the package can be unloaded cleanly ... WARNING
     ```
     Error in getFromNamespace(".initial", "GOSemSim") : 
@@ -3666,6 +3484,9 @@ Run `revdep_details(,"TBSSurvival")` for more info
 *   checking examples ... ERROR
     ```
     ...
+                attr(out$x, "plot") <- 3
+            }
+            out$run.time <- .gettime() - initial.time
             if (verbose) 
                 cat(" ", out$log.lik, "TIME:", out$run.time, "\n")
         }
@@ -3678,15 +3499,12 @@ Run `revdep_details(,"TBSSurvival")` for more info
         }
         return(out)
     }
-    <bytecode: 0x561ffb5623d0>
+    <bytecode: 0x560c2a4863e0>
     <environment: namespace:TBSSurvival>
      --- function search by body ---
     Function .tbs.survreg in namespace TBSSurvival has this body.
      ----------- END OF FAILURE REPORT -------------- 
-    Error in valik > -Inf || is.na(est) : 
-      'length(x) = 6 > 1' in coercion to 'logical(1)'
-    Calls: tbs.survreg.mle -> fn.aux -> .tbs.survreg
-    Execution halted
+    Fatal error: length > 1 in coercion to logical
     ```
 
 *   checking tests ...
@@ -3694,40 +3512,40 @@ Run `revdep_details(,"TBSSurvival")` for more info
      ERROR
     Running the tests in ‘tests/simple.r’ failed.
     Last 13 lines of output:
+          else {
+              if (verbose) 
+                  cat(" failed\n")
               out$convergence <- FALSE
               out$run.time <- .gettime() - initial.time
               cat(paste(method, ": It was not possible to find a feasible solution\n"))
           }
           return(out)
       }
-      <bytecode: 0x564b62a486c0>
+      <bytecode: 0x55de783ee6d0>
       <environment: namespace:TBSSurvival>
        --- function search by body ---
       Function .tbs.survreg in namespace TBSSurvival has this body.
        ----------- END OF FAILURE REPORT -------------- 
-      Error in valik > -Inf || is.na(est) : 
-        'length(x) = 6 > 1' in coercion to 'logical(1)'
-      Calls: tbs.survreg.mle -> fn.aux -> .tbs.survreg
-      Execution halted
+      Fatal error: length > 1 in coercion to logical
     ```
 
 *   checking running R code from vignettes ...
     ```
-      ‘TBSSurvival.Rnw’using ‘UTF-8’... failed
+      ‘TBSSurvival.Rnw’using ‘UTF-8’... failed to complete the test
      ERROR
     Errors in running code in vignettes:
     when running code in ‘TBSSurvival.Rnw’
       ...
+        return(out)
     }
-    <bytecode: 0x5637b4745930>
+    <bytecode: 0x558e8ec07940>
     <environment: namespace:TBSSurvival>
      --- function search by body ---
     Function .tbs.survreg in namespace TBSSurvival has this body.
      ----------- END OF FAILURE REPORT -------------- 
+    Fatal error: length > 1 in coercion to logical
     
-      When sourcing ‘TBSSurvival.R’:
-    Error: 'length(x) = 6 > 1' in coercion to 'logical(1)'
-    Execution halted
+    ... incomplete output.  Crash?
     ```
 
 # TCGAbiolinks
@@ -3989,7 +3807,6 @@ Run `revdep_details(,"TFEA.ChIP")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
     Running examples in ‘TFEA.ChIP-Ex.R’ failed
     The error most likely occurred in:
     
@@ -4005,11 +3822,10 @@ Run `revdep_details(,"TFEA.ChIP")` for more info
     
     [1] "64102" "8813"  "57147" "2268"  "3075"  "2519"  "2729" 
     > GeneID2entrez(c('Mcm6', 'Rpl7', 'Itch' ), mode ="m2m")
-    Error in .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking) : 
-      reached elapsed time limit
-    Error in GeneID2entrez(c("Mcm6", "Rpl7", "Itch"), mode = "m2m") : 
-      We are having trouble reaching biomaRt.
-    Please, try again later.
+    Cache found
+    Error in biomaRt::getBM(attributes = c("ensembl_gene_id", "mgi_symbol",  : 
+      Multiple cache results found
+    Calls: GeneID2entrez -> <Anonymous>
     Execution halted
     ```
 

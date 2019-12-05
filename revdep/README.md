@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2019-12-04                   |
+|date     |2019-12-05                   |
 
 # Dependencies
 
@@ -84,11 +84,11 @@
 |dwdradar                                               |0.2.0          |      |        |     |
 |[Eagle](problems.md#eagle)                             |2.1.1          |      |        |1    |
 |edgar                                                  |2.0.2          |      |        |     |
-|[eegc](problems.md#eegc)                               |1.12.0         |1     |3       |4    |
+|[eegc](problems.md#eegc)                               |1.12.0         |      |3       |4    |
 |EEM                                                    |1.1.1          |      |        |     |
 |eiCompare                                              |2.1            |      |        |     |
-|[ELMER](problems.md#elmer)                             |2.10.0         |1     |6       |4    |
-|[enrichTF](problems.md#enrichtf)                       |1.2.3          |1     |2       |2    |
+|[ELMER](problems.md#elmer)                             |2.10.0         |      |6       |4    |
+|[enrichTF](problems.md#enrichtf)                       |1.2.3          |      |2       |2    |
 |[esATAC](problems.md#esatac)                           |1.8.0          |      |1       |4    |
 |[eudysbiome](problems.md#eudysbiome)                   |1.16.0         |      |        |1    |
 |evclust                                                |1.0.3          |      |        |     |
@@ -114,7 +114,7 @@
 |[HyPhy](problems.md#hyphy)                             |1.0            |      |        |2    |
 |[imagefluency](problems.md#imagefluency)               |0.2.1          |      |        |1    |
 |joinXL                                                 |1.0.1          |      |        |     |
-|[KnowSeq](problems.md#knowseq)                         |1.0.0          |1     |1       |1    |
+|[KnowSeq](problems.md#knowseq)                         |1.0.0          |      |1       |1    |
 |[link2GI](problems.md#link2gi)                         |0.4-0          |      |        |1    |
 |[listenv](problems.md#listenv)                         |0.7.0          |1     |        |     |
 |[LSPFP](problems.md#lspfp)                             |1.0.0          |      |        |1    |
@@ -130,12 +130,12 @@
 |neurobase                                              |1.27.11        |      |        |     |
 |[nhdplusTools](problems.md#nhdplustools)               |0.3.11         |      |        |1    |
 |[nlmixr](problems.md#nlmixr)                           |1.1.1-3        |      |        |1    |
-|[oce](problems.md#oce)                                 |1.1-1          |1     |        |1    |
+|[oce](problems.md#oce)                                 |1.1-1          |      |        |1    |
 |[openCyto](problems.md#opencyto)                       |1.24.0         |      |3       |6    |
 |osrmr                                                  |0.1.35         |      |        |     |
 |[pathfindR](problems.md#pathfindr)                     |1.4.1          |      |        |1    |
 |[paxtoolsr](problems.md#paxtoolsr)                     |1.20.0         |      |        |3    |
-|[PGA](problems.md#pga)                                 |1.16.0         |1     |        |3    |
+|[PGA](problems.md#pga)                                 |1.16.0         |      |        |3    |
 |[PhenotypeSimulator](problems.md#phenotypesimulator)   |0.3.3          |      |        |1    |
 |phylotaR                                               |1.0.0          |      |        |     |
 |plinkQC                                                |0.3.0          |      |        |     |
@@ -176,7 +176,7 @@
 |SensusR                                                |2.3.1          |      |        |     |
 |shinyEventLogger                                       |0.1.1          |      |        |     |
 |[shinymanager](problems.md#shinymanager)               |1.0            |      |        |1    |
-|[signatureSearchData](problems.md#signaturesearchdata) |1.0.0          |1     |2       |3    |
+|[signatureSearchData](problems.md#signaturesearchdata) |1.0.0          |      |2       |3    |
 |[simPATHy](problems.md#simpathy)                       |0.3            |      |        |1    |
 |[simpleSingleCell](problems.md#simplesinglecell)       |1.10.1         |      |        |2    |
 |snplist                                                |0.18.1         |      |        |     |
