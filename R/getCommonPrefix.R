@@ -1,4 +1,4 @@
-getCommonPrefix <- function(strs, suffix=FALSE, ...) {
+ getCommonPrefix <- function(strs, suffix=FALSE, ...) {
   # Split strings into character vectors
   nchars <- sapply(strs, FUN=nchar)
   chars <- strsplit(strs, split="")
