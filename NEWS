@@ -1,6 +1,13 @@
 Package: R.utils
 ================
 
+Version: 2.9.2 [2019-12-07]
+
+ * CRAN POLICY CRAN: The help example for FileProgressBar and its package
+   tests wrote to the user's home directory. They are now writing to a
+   temporary directory instead.
+
+
 Version: 2.9.1 [2019-12-05]
 
 BUG FIXES:
