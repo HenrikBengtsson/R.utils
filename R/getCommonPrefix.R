@@ -9,7 +9,7 @@
   }
 
   # Put the characters into a matrix
-  naValue <- as.character(NA)
+  naValue <- NA_character_
   data <- matrix(naValue, nrow=length(chars), ncol=max(nchars))
   for (kk in seq_along(chars)) {
     cc <- seq_len(nchars[kk])
