@@ -118,7 +118,10 @@ commandArgs <- function(trailingOnly=FALSE, asValues=FALSE, defaults=NULL, alway
     rVer <- getRversion()
 
     # General arguments
-    if (rVer >= "2.13.0") {
+    if (rVer >= "4.0.0") {
+      # According to R v4.0.0:
+      reservedArgs <- c("--help", "-h", "--version", "--encoding=(.*)", "--encoding (.*)", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f (.*)", "--file=(.*)", "-e (.*)", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "--no-echo", "-q", "--slave", "--verbose", "--args")
+    } else if (rVer >= "2.13.0") {
       # According to R v2.13.1:
       reservedArgs <- c("--help", "-h", "--version", "--encoding=(.*)", "--encoding (.*)", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f (.*)", "--file=(.*)", "-e (.*)", "--min-vsize=(.*)", "--max-vsize=(.*)", "--min-nsize=(.*)", "--max-nsize=(.*)", "--max-ppsize=(.*)", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args")
     } else if (rVer >= "2.7.0") {

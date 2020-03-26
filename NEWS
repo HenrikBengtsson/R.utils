@@ -1,9 +1,11 @@
 Package: R.utils
 ================
 
-Version: 2.9.2-9000 [2019-12-14]
+Version: 2.9.2-9000 [2020-03-26]
 
- * ...
+NEW FEATURES:
+
+ * R.utils::commandArgs() recognizes new '--no-echo' option in R (>= 4.0.0).
  
 
 Version: 2.9.2 [2019-12-07]
