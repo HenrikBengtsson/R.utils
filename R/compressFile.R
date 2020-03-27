@@ -16,12 +16,12 @@
 # @alias gunzip.default
 # @alias isGzipped
 # @alias isGzipped.default
-# %% @alias xz
-# %% @alias xz.default
-# %% @alias unxz
-# %% @alias unxz.default
-# %% @alias isXzipped
-# %% @alias isXzipped.default
+# @alias xz
+# @alias xz.default
+# @alias unxz
+# @alias unxz.default
+# @alias isXzipped
+# @alias isXzipped.default
 #
 # @title "Compressing and decompressing files"
 #
@@ -325,13 +325,9 @@ setMethodS3("gzip", "default", function(filename, ..., ext="gz", FUN=gzfile) {
   compressFile(filename=filename, ..., ext=ext, FUN=FUN)
 })
 
-## NOTE: Let's wait with and xz()/unxz(), because tests on Windows gives
-## "Warning message: In readBin(inn, what = raw(0L), size = 1L, n = BFR.SIZE) :
-##  lzma decoder format error". /HB 2015-02-01
-
-## setMethodS3("xz", "default", function(filename, ..., ext="xz", FUN=bzfile) {
-##   compressFile(filename=filename, ..., ext=ext, FUN=FUN)
-## })
+setMethodS3("xz", "default", function(filename, ..., ext="xz", FUN=bzfile) {
+  compressFile(filename=filename, ..., ext=ext, FUN=FUN)
+})
 
 
 setMethodS3("bunzip2", "default", function(filename, ..., ext="bz2", FUN=bzfile) {
@@ -342,9 +338,9 @@ setMethodS3("gunzip", "default", function(filename, ..., ext="gz", FUN=gzfile) {
   decompressFile(filename=filename, ..., ext=ext, FUN=FUN)
 })
 
-## setMethodS3("unxz", "default", function(filename, ..., ext="xz", FUN=xzfile) {
-##   decompressFile(filename=filename, ..., ext=ext, FUN=FUN)
-## })
+setMethodS3("unxz", "default", function(filename, ..., ext="xz", FUN=xzfile) {
+  decompressFile(filename=filename, ..., ext=ext, FUN=FUN)
+})
 
 
 setMethodS3("isBzipped", "default", function(..., ext="bz2", fileClass="bzfile") {
@@ -355,6 +351,6 @@ setMethodS3("isGzipped", "default", function(..., ext="gz", fileClass="gzfile") 
   isCompressedFile(..., ext=ext, fileClass=fileClass)
 })
 
-## setMethodS3("isXzipped", "default", function(..., ext="xz", fileClass="xzfile") {
-##   isCompressedFile(..., ext=ext, fileClass=fileClass)
-## })
+setMethodS3("isXzipped", "default", function(..., ext="xz", fileClass="xzfile") {
+  isCompressedFile(..., ext=ext, fileClass=fileClass)
+})

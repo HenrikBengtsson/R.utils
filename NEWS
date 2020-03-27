@@ -6,6 +6,8 @@ Version: 2.9.2-9000 [2020-03-26]
 NEW FEATURES:
 
  * R.utils::commandArgs() recognizes new '--no-echo' option in R (>= 4.0.0).
+
+ * Add xz(), unxz(), and isXzipped().
  
 BUG FIXES:
 

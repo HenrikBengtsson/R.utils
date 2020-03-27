@@ -25,12 +25,12 @@
 \alias{gunzip.default}
 \alias{isGzipped}
 \alias{isGzipped.default}
-%% \alias{xz}
-%% \alias{xz.default}
-%% \alias{unxz}
-%% \alias{unxz.default}
-%% \alias{isXzipped}
-%% \alias{isXzipped.default}
+\alias{xz}
+\alias{xz.default}
+\alias{unxz}
+\alias{unxz.default}
+\alias{isXzipped}
+\alias{isXzipped.default}
 
 \title{Compressing and decompressing files}
 
