@@ -7,6 +7,12 @@ NEW FEATURES:
 
  * R.utils::commandArgs() recognizes new '--no-echo' option in R (>= 4.0.0).
  
+BUG FIXES:
+
+ * R.utils::getAbsolutePath("~/../Documents", expandTilde = TRUE) would adjust
+   for '..' before adjusting for '~' resulting in an incorrect path.  Thanks
+   to Dean Attali for reporting on this.
+   
 
 Version: 2.9.2 [2019-12-07]
 

@@ -109,7 +109,6 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     pathname <- c(workDirectory, pathname, name)
     pathname <- paste(pathname, sep="", collapse=.Platform$file.sep)
   }
-  pathname <- filePath(pathname, removeUps=TRUE)
 
   if (expandTilde) {
     ## Can we replace this with base::path.expand()? /HB 2014-09-16
@@ -118,6 +117,9 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     filename <- basename(pathname)
     pathname <- file.path(path, filename)
   }
+
+  ## Drop '..' components if possible
+  pathname <- filePath(pathname, removeUps=TRUE)
 
   # Especially expandTilde=TRUE may add an extra slash ('/').
   # Replace all replicated slashes ('/') with single ones, except
