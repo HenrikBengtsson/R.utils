@@ -1,9 +1,11 @@
 #!/bin/bash
-## Example: qsub -pe smp 24 -l mem_free=30G revdep/run.sge
+## Example: qsub -pe smp 24 revdep/run.sge
 #$ -S /bin/bash
-#$ -R yes  # SGE host reservation, highly recommended
-#$ -cwd    # Current working directory
-#$ -j y    # Join STDERR and STDOUT
+#$ -R yes          # SGE host reservation, highly recommended
+#$ -cwd            # Current working directory
+#$ -j y            # Join STDERR and STDOUT
+#$ -l mem_free=2G  # 2 GiB RAM per core
 
+module load CBI
 module load r
 Rscript revdep/run.R
