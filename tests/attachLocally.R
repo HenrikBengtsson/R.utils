@@ -22,7 +22,7 @@ stopifnot(identical(keys, ls(envir=env)))
 for (key in keys) stopifnot(identical(get(key), env[[key]]))
 
 # A data.frame
-df <- data.frame(a=1, b=base::letters)
+df <- data.frame(a=1, b=base::letters, stringsAsFactors=FALSE)
 keys <- attachLocally(df)
 stopifnot(identical(keys, names(df)))
 for (key in keys) stopifnot(identical(get(key), df[[key]]))
