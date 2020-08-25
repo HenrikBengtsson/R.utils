@@ -102,11 +102,11 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
   } # reposKnownToR()
 
   reposCustom <- function() {
-    c("braju.com"="http://braju.com/R")
+    c("braju.com"="https://braju.com/R")
   } # reposCustom()
 
   reposFallback <- function() {
-    c("CRAN"="http://cran.r-project.org")
+    c("CRAN"="https://cran.r-project.org")
   } # reposCustom()
 
   reposAll <- function() {

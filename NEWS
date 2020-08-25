@@ -3,10 +3,14 @@ Package: R.utils
 
 Version: 2.10.1 [2020-08-25]
 
+NEW FEATURES:
+
+ * Updated legacy function useRepos() to use HTTPS instead of HTTP.
+ 
 DOCUMENTATION:
 
  * Update URLs with 301 redirects. Most of them where HTTP to HTTPS redirects.
- 
+
 
 Version: 2.10.0 [2020-08-24]
 
