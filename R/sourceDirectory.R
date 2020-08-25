@@ -111,7 +111,8 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|
       readable <- (sapply(files, FUN=file.access, mode=4) == 0)
       bytes <- sapply(files, FUN=function(x) file.info(x)$size)
       df <- data.frame(filename=basename(files), bytes=bytes,
-                                        readable=readable, row.names=NULL)
+                       readable=readable, row.names=NULL,
+                       stringsAsFactors = FALSE)
       print(verbose, df)
       # Not needed anymore
       df <- bytes <- readable <- NULL

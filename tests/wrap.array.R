@@ -33,7 +33,7 @@ stopifnot(identical(z2, z))
 x3 <- matrix(1:27, nrow=3L, ncol=9L)
 rownames(x3) <- LETTERS[1:3]
 colnames(x3) <- letters[1:9]
-x3b <- as.data.frame(x3)
+x3b <- as.data.frame(x3, stringsAsFactors=FALSE)
 
 y3 <- wrap(x3)
 print(y3)
@@ -46,7 +46,7 @@ stopifnot(identical(y3b,y3))
 z3 <- unwrap(y3)
 stopifnot(identical(z3,x3))
 
-y3b <- as.data.frame(y3)
+y3b <- as.data.frame(y3, stringsAsFactors=FALSE)
 z3b <- unwrap(y3b)
 stopifnot(identical(z3b,x3))
 

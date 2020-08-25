@@ -7,7 +7,8 @@ data <- data.frame(
   index = 1:n,
   symbol = letters[1:n],
   x = runif(n),
-  y = rnorm(n)
+  y = rnorm(n),
+  stringsAsFactors=FALSE
 )
 
 # Write to tab-delimited file (using a connection)

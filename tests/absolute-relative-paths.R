@@ -21,6 +21,11 @@ warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 pathR <- getRelativePath("~", caseSensitive=TRUE)
 print(pathR)
 
+pathA <- getAbsolutePath("~/../Documents", expandTilde=TRUE)
+pathA0 <- file.path(getParent(pathH), "Documents")
+utils::str(list(pathA = pathA, pathA0 = pathA0))
+stopifnot(pathA == pathA0)
+
 pathA <- getAbsolutePath("/tmp/", expandTilde=TRUE)
 print(pathA)
 stopifnot(identical(pathA, "/tmp"))

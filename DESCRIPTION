@@ -1,5 +1,5 @@
 Package: R.utils
-Version: 2.9.2
+Version: 2.10.0
 Depends:
   R (>= 2.14.0),
   R.oo (>= 1.23.0)
@@ -7,7 +7,7 @@ Imports:
   methods,
   utils,
   tools,
-  R.methodsS3 (>= 1.7.1)
+  R.methodsS3 (>= 1.8.0)
 Suggests:
   digest (>= 0.6.10)
 Title: Various Programming Utilities
