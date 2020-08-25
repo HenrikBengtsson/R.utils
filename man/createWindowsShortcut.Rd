@@ -94,7 +94,7 @@ for (kk in seq_along(targets)) {
 
 \references{
   [1] Create a windows shortcut (.LNK file), SS64.com,
-      http://ss64.com/nt/shortcut.html \cr
+      \url{https://ss64.com/nt/shortcut.html} \cr
 }
 
 

@@ -57,7 +57,7 @@
 # MORE REFERENCES:
 # An Unofficial Guide to the URL File Format, \url{http://www.cyanwerks.com/file-format-url.html} (contains info about Hotkeys)
 # xxmklink - create a shortcut, http://www.xxcopy.com/xxcopy38.htm
-# FILExt, \url{http://filext.com/detaillist.php?extdetail=LNK}, 2005.
+# FILExt, \url{https://filext.com/file-extension/LNK}, 2005.
 setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions

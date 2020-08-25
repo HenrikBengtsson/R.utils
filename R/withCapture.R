@@ -134,7 +134,7 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
     # WORKAROUND: Put standalone 'else':s together with previous statement.
     # This solves the problem described in R help thread "deparse() and the
     # 'else' statement" by Yihui Xie on 2009-11-09
-    # [http://tolstoy.newcastle.edu.au/R/e8/help/09/11/4204.html], where
+    # [https://stat.ethz.ch/pipermail/r-help/2009-November/410758.html], where
     # deparse puts 'else' on a new line iff if-else statement is enclosed
     # in an { ... } expression, e.g.
     # cat(deparse(substitute({if (T) 1 else 2})), sep="\n") gives:
