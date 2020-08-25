@@ -323,7 +323,7 @@ setMethodS3("parseDebian", "System", function(this, text=NULL, file=NULL, keys=N
 # }
 #
 # \examples{\dontrun{
-#   System$openBrowser("http://www.r-project.org/")
+#   System$openBrowser("https://www.r-project.org/")
 # }}
 #
 # @author

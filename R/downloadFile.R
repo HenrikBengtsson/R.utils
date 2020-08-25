@@ -41,7 +41,7 @@
 # }
 #
 # \examples{\dontrun{
-#  pathname <- downloadFile("http://www.r-project.org/index.html", path="www.r-project.org/")
+#  pathname <- downloadFile("https://www.r-project.org/index.html", path="www.r-project.org/")
 #  print(pathname)
 # }}
 #
