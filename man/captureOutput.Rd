@@ -78,11 +78,11 @@ for (n in c(10e3, 20e3, 30e3, 40e3)) {
 
 \references{
  [1] R-devel thread 'capture.output(): Using a rawConnection() [linear]
-     instead of textConnection() [exponential]?', 2014-02-03.
+     instead of textConnection() [exponential]?', 2014-02-04.
      \url{https://stat.ethz.ch/pipermail/r-devel/2014-February/068349.html}
  [2] JottR blog post 'PERFORMANCE: captureOutput() is much faster than
      capture.output()', 2015-05-26.
-     \url{http://www.jottr.org/2014/05/captureOutput.html}
+     \url{https://www.jottr.org/2014/05/26/captureoutput/}
 }
 
 
