@@ -119,7 +119,7 @@ print(fileAccess(pathname, mode=4))
      on Nov 26, 2008.
      \url{https://stat.ethz.ch/pipermail/r-devel/2008-December/051461.html}\cr
  [2] Filesystem permissions, Wikipedia, 2010.
-     \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
+     \url{https://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 }
 
 \author{Henrik Bengtsson}
