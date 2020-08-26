@@ -1,6 +1,13 @@
-# CRAN submission R.utils 2.10.0
+# CRAN submission R.utils 2.10.1
 
-on 2020-08-24
+on 2020-08-25
+
+This submission fixes the incorrect URLs in R.utils 2.10.0 submitted yesterday.  I'm sorry for that broken submission.
+
+Thank you
+
+
+Submission of R.utils 2.10.1 on 2020-08-24
 
 I've verified that this submission does not cause issues for the 178 reverse package dependencies available on CRAN and Bioconductor.
 
