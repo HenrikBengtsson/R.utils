@@ -62,7 +62,8 @@
 }
 
 \references{
-  [1] Microsoft, \emph{Naming Files, Paths, and Namespaces} (Section 'Windows Naming Conventions'), 2012. \url{http://msdn.microsoft.com/en-us/library/aa365247.aspx#naming_conventions}.
+  [1] Microsoft, \emph{Naming Files, Paths, and Namespaces}, 2018.
+      \url{https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file}.
 }
 
 \author{Henrik Bengtsson}

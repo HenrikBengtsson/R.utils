@@ -323,7 +323,7 @@ setMethodS3("parseDebian", "System", function(this, text=NULL, file=NULL, keys=N
 # }
 #
 # \examples{\dontrun{
-#   System$openBrowser("http://www.r-project.org/")
+#   System$openBrowser("https://www.r-project.org/")
 # }}
 #
 # @author
@@ -475,12 +475,12 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #
 # \references{
 #  [1] \emph{How to use Ghostscript}, Ghostscript, 2013
-#      \url{http://ghostscript.com/doc/current/Use.htm}\cr
+#      \url{https://ghostscript.com/doc/current/Use.htm}\cr
 #  [2] \emph{Environment variable}, Wikipedia, 2013.
-#      \url{http://www.wikipedia.org/wiki/Environment_variable}\cr
+#      \url{https://en.wikipedia.org/wiki/Environment_variable}\cr
 #  [3] \emph{Environment.SpecialFolder Enumeration},
-#      Microsoft Developer Network, 2013.
-#      \url{http://msdn.microsoft.com/en-us/library/system.environment.specialfolder.aspx}\cr
+#      Microsoft, 2013.
+#      \url{https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder}\cr
 # }
 #
 # \seealso{

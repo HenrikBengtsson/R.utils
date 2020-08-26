@@ -66,7 +66,7 @@ stopifnot(identical(md5a, md5b))
   [1] R-devel mailing list thread
       \emph{Unix-like touch to update modification timestamp of file?},
       started on 2008-02-26.
-      \url{http://stat.ethz.ch/pipermail/r-devel/2008-February/048542.html}\cr
+      \url{https://stat.ethz.ch/pipermail/r-devel/2008-February/048542.html}\cr
 }
 
 

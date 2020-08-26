@@ -47,7 +47,7 @@ stopifnot(n == n2);
 
 \references{
   [1] Page \emph{Newline}, Wikipedia, July 2008.
-      \url{http://en.wikipedia.org/wiki/Newline}
+      \url{https://en.wikipedia.org/wiki/Newline}
 }
 
 

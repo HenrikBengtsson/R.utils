@@ -54,7 +54,7 @@
 #
 # \references{
 #   Ben Garrett, \emph{Windows File Junctions, Symbolic Links and Hard Links},
-#   September 2009 [\url{http://goo.gl/R21AC}]\cr
+#   September 2009 [\url{http://devtidbits.com/2009/09/07/windows-file-junctions-symbolic-links-and-hard-links/}]\cr
 # }
 #
 # @keyword file

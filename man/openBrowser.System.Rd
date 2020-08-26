@@ -73,7 +73,7 @@
 }
 
 \examples{\dontrun{
-  System$openBrowser("http://www.r-project.org/")
+  System$openBrowser("https://www.r-project.org/")
 }}
 
 \author{Henrik Bengtsson}
