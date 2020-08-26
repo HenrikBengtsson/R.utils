@@ -37,13 +37,13 @@
 #   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.\cr
 #   [2] Hager J, \emph{The Windows Shortcut File Format}
 #       (as reverse-engineered by), version 1.0.\cr
-#   [3] Microsoft Developer Network, \emph{IShellLink Interface}, 2008.
-#       \url{http://msdn2.microsoft.com/en-us/library/bb774950.aspx} \cr
+#   [3] Microsoft Developer Network, \emph{IShellLink Interface}, 2018.
+#       \url{https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinka} \cr
 #   [4] Andrews D, \emph{Parsing Windows Shortcuts (lnk) files in java},
 #       comp.lang.java.help, Aug 1999.
-#       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
+#       \url{https://groups.google.com/d/topic/comp.lang.java.help/ouFHsH1UgKI} \cr
 #   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
-#       April 2008. \url{http://wiki.tcl.tk/1844} \cr
+#       April 2008. \url{https://wiki.tcl-lang.org/1844} \cr
 #   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com,
 #       April 24, 2009. \cr
 #       \url{https://web.archive.org/web/20110817051855/http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html} (was http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html)\cr
@@ -57,7 +57,7 @@
 # MORE REFERENCES:
 # An Unofficial Guide to the URL File Format, \url{http://www.cyanwerks.com/file-format-url.html} (contains info about Hotkeys)
 # xxmklink - create a shortcut, http://www.xxcopy.com/xxcopy38.htm
-# FILExt, \url{http://filext.com/detaillist.php?extdetail=LNK}, 2005.
+# FILExt, \url{https://filext.com/file-extension/LNK}, 2005.
 setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions

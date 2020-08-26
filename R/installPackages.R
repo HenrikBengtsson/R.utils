@@ -32,8 +32,8 @@
 #
 # \examples{\dontrun{
 #  installPackages("R.rsp")
-#  installPackages("http://cran.r-project.org/src/contrib/Archive/R.rsp/R.rsp_0.8.2.tar.gz")
-#  installPackages("http://cran.r-project.org/bin/windows/contrib/r-release/R.rsp_0.9.17.zip")
+#  installPackages("https://cran.r-project.org/src/contrib/Archive/R.rsp/R.rsp_0.8.2.tar.gz")
+#  installPackages("https://cran.r-project.org/bin/windows/contrib/4.0/R.rsp_0.44.0.zip")
 # }}
 #
 # @author

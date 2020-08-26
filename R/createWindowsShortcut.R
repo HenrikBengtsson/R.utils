@@ -41,7 +41,7 @@
 #
 # \references{
 #   [1] Create a windows shortcut (.LNK file), SS64.com,
-#       http://ss64.com/nt/shortcut.html \cr
+#       \url{https://ss64.com/nt/shortcut.html} \cr
 # }
 #
 # @keyword file
@@ -51,7 +51,7 @@ setMethodS3("createWindowsShortcut", "default", function(pathname, target, overw
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Reference: http://ss64.com/nt/shortcut.html
+  # Reference: [1]
   makeVBScript <- function(target, link, description=basename(target)) {
     # Arguments 'target':
     target <- Arguments$getReadablePathname(target, mustExist=TRUE)
