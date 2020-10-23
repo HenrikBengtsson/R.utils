@@ -1,5 +1,7 @@
 library("R.utils")
 
+oopts <- options(prompt = "> ")
+
 print(withCapture({
  n <- 3
  n
@@ -118,3 +120,5 @@ print(bfr)
 bfr <- withCapture({})
 print(bfr)
 stopifnot(length(bfr) == 0L)
+
+options(oopts)
