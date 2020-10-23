@@ -32,11 +32,11 @@ stopifnot(all.equal(args, args0, check.attributes=FALSE))
 #
 #   list(R=NA, DATAPATH="../data" args=TRUE, root="do da",
 #        foo="bar", details=TRUE, a="2")
-args <- commandArgs(asValue=TRUE)
+args <- commandArgs(asValues=TRUE)
 str(args)
 
 # Turn arguments into R variables
-args <- commandArgs(asValue=TRUE, excludeReserved=TRUE)[-1]
+args <- commandArgs(asValues=TRUE, excludeReserved=TRUE)[-1]
 keys <- attachLocally(args)
 cat("Command-line arguments attached to global environment:\n");
 print(keys);

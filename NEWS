@@ -5,6 +5,9 @@ Version: 2.10.1-9000 [2020-10-23]
 
 BUG FIXES:
 
+ * gcDLLs() produced a "In sprintf(...) : argument not used by format" warning
+   when giving an error message on what DLLs it failed to unload.
+ 
  * Arguments$getVector() could produce an error on "argument is missing, with
    no default" while trying to signal an assertion error.
 
