@@ -112,7 +112,7 @@ gcDLLs <- function(gc = TRUE, quiet = TRUE) {
 
     ## Failed to unload?
     if (inherits(res, "simpleError")) {
-      msg <- sprintf("Failed to unload stray DLL %s (%s): ", sQuote(name), path, conditionMessage(res))
+      msg <- sprintf("Failed to unload stray DLL %s (%s): %s", sQuote(name), path, conditionMessage(res))
       warning(msg)
     } else if (!quiet) {
       message(sprintf("Unloaded stray DLL: %s (%s)", sQuote(name), path))
