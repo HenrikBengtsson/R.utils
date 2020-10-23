@@ -69,12 +69,12 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 # Insert multiple vectors at multiple indices at once
 x0 <- c(1:4, 8:11, 13:15)
 
-x <- insert(x0, at=c(5,9), values=list(5:7,12))
+x <- insert(x0, ats=c(5,9), values=list(5:7,12))
 print(x)
 Ex <- 1:max(x)
 stopifnot(identical(as.double(x),as.double(Ex)))
 
-x <- insert(x0, at=c(5,9,12), values=list(5:7,12,16:18))
+x <- insert(x0, ats=c(5,9,12), values=list(5:7,12,16:18))
 print(x)
 Ex <- 1:max(x)
 stopifnot(identical(as.double(x),as.double(Ex)))
