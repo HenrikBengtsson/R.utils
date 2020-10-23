@@ -1,10 +1,13 @@
 Package: R.utils
 ================
 
-Version: 2.10.1-9000 [2020-08-26]
+Version: 2.10.1-9000 [2020-10-23]
 
- * ...
- 
+BUG FIXES:
+
+ * Arguments$getVector() could produce an error on "argument is missing, with
+   no default" while trying to signal an assertion error.
+
 
 Version: 2.10.1 [2020-08-25]
 
