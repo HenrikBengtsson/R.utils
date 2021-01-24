@@ -58,8 +58,8 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   if (any(duplicated(ats)))
     throw("Argument 'ats' contains duplicated indices: ", paste(ats, collapse=", "))
 
-  if (!is.vector(values))
-    throw("Argument 'values' is not a vector: ", class(values))
+  if (!is.vector(values) && !is.list(values))
+    throw("Argument 'values' is not a vector or a list: ", class(values))
 
   # Argument 'useNames':
   useNames <- as.logical(useNames)
