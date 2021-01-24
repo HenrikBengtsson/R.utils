@@ -77,9 +77,16 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   # Group 'ats'?
   dups <- duplicated(ats)
   if (any(dups)) {
-    values <- by(values, INDICES = ats, FUN = identity)
-    ats <- ats[!dups]
-    alen <- length(ats)
+    uats <- ats[!dups]
+    alen <- length(uats)
+    t <- vector("list", length = alen)
+    for (kk in seq_len(alen)) {
+      at <- uats[[kk]]
+      t[[kk]] <- values[which(at == ats)]
+    }
+    ats <- uats
+    values <- t
+    at <- t <- uats <- NULL
     vlen <- length(values)
     if (vlen != alen) {
       throw("Argument 'ats' and argument 'values' are of different lengths: ",
