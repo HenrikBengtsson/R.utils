@@ -55,11 +55,15 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
   if (any(ats < 1 | ats > len+1))
     throw("Argument 'ats' contains indices out of range: ", paste(ats, collapse=", "))
 
-  if (any(duplicated(ats)))
-    throw("Argument 'ats' contains duplicated indices: ", paste(ats, collapse=", "))
+  if (!is.vector(values) && !is.list(values))
+    throw("Argument 'values' is not a vector or a list: ", class(values))
 
-  if (!is.vector(values))
-    throw("Argument 'values' is not a vector: ", class(values))
+  alen <- length(ats)
+  vlen <- length(values)
+  if (vlen != alen && alen > 1L && vlen > 1L) {
+    throw("Argument 'ats' and argument 'values' are of different lengths: ",
+          alen, " != ", vlen)
+  }
 
   # Argument 'useNames':
   useNames <- as.logical(useNames)
@@ -70,20 +74,43 @@ setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...)
     useNames <- (!is.null(names))
   }
 
+  # Group 'ats'?
+  dups <- duplicated(ats)
+  if (any(dups)) {
+    uats <- ats[!dups]
+    alen <- length(uats)
+    t <- vector("list", length = alen)
+    for (kk in seq_len(alen)) {
+      at <- uats[[kk]]
+      t[[kk]] <- values[which(at == ats)]
+    }
+    ats <- uats
+    values <- t
+    at <- t <- uats <- NULL
+    vlen <- length(values)
+    if (vlen != alen) {
+      throw("Argument 'ats' and argument 'values' are of different lengths: ",
+            alen, " != ", vlen)
+    }
+  }
+  dups <- NULL
+
   if (!is.list(values)) {
-    if (length(ats) == 1) {
+    if (alen == 1L) {
       values <- list(values)
+      vlen <- 1L
     } else {
       values <- as.list(values)
     }
   }
 
-  if (length(ats) != length(values)) {
-    if (length(values) == 1) {
-      values <- rep(values, length.out=length(ats))
+  if (alen != vlen) {
+    if (vlen == 1L) {
+      values <- rep(values, length.out=alen)
+      vlen <- alen
     } else {
-      throw("Argument 'ats' and argument 'values' has different lengths: ",
-                                       length(ats), " != ", length(values))
+      throw("Argument 'ats' and argument 'values' are of different lengths: ",
+            alen, " != ", vlen)
     }
   }
 

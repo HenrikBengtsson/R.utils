@@ -1,8 +1,16 @@
 Package: R.utils
 ================
 
-Version: 2.10.1-9000 [2020-10-23]
+Version: 2.10.1-9000 [2021-01-24]
 
+NEW FEATURES:
+
+ * Now insert() support duplicates in 'ats', which then results in the
+   corresponding 'values' being inserted in order at those duplicated indices.
+
+ * Relaxed insert() to accept a 'values' argument that is a list but not
+   necessarily a formal vector.
+ 
 BUG FIXES:
 
  * gcDLLs() produced a "In sprintf(...) : argument not used by format" warning

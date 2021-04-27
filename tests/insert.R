@@ -37,15 +37,31 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 # Insert multiple vectors at multiple indices at once
 x0 <- c(1:4, 8:11, 13:15)
 
-x <- insert(x0, at=c(5,9), values=list(5:7,12))
+x <- insert(x0, ats=c(5,9), values=list(5:7,12))
 print(x)
 Ex <- 1:max(x)
 stopifnot(identical(as.double(x),as.double(Ex)))
 
-x <- insert(x0, at=c(5,9,12), values=list(5:7,12,16:18))
+x <- insert(x0, ats=c(5,9,12), values=list(5:7,12,16:18))
 print(x)
 Ex <- 1:max(x)
 stopifnot(identical(as.double(x),as.double(Ex)))
+
+
+# Insert with duplicated locations (which requires grouping)
+x <- letters[1:6]
+ats <- c(1L, 1L, 4L)
+values <- LETTERS[1:3]
+y0 <- c("A", "B", "a", "b", "c", "C", "d", "e", "f")
+y <- insert(x, ats = ats, values = values)
+print(y)
+stopifnot(identical(y, y0))
+
+ats <- c(1L, 4L)
+values <- list(LETTERS[1:2], LETTERS[3])
+y <- insert(x, ats = ats, values = values)
+print(y)
+stopifnot(identical(y, y0))
 
 
 # Insert missing indices
@@ -62,5 +78,3 @@ stopifnot(identical(as.double(x),as.double(Ex)))
 x <- 1:10
 res <- try(y <- insert(x, ats=1:2, values=1:3), silent=TRUE)
 stopifnot(inherits(res, "try-error"))
-
-
