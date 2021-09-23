@@ -8,6 +8,7 @@
 ^OVERVIEW[.]md$
 ^README[.]md$
 ^CONDUCT[.]md$
+^CONTRIBUTING[.]md$
 ^docs/
 
 #----------------------------
@@ -57,4 +58,3 @@ Rplots.pdf$
 #----------------------------
 ^.ghi
 ^.issues
-
