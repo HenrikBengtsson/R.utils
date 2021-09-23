@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.10.1-9000 [2021-04-27]
+Version: 2.10.1-9001 [2021-09-23]
 
 NEW FEATURES:
 
@@ -22,6 +22,9 @@ BUG FIXES:
  * Arguments$getVector() could produce an error on "argument is missing, with
    no default" while trying to signal an assertion error.
 
+ * intToHex() and intToOct() would no longer pad with zero on recent R-devel
+   (to become R 4.2.0) versions.
+ 
 
 Version: 2.10.1 [2020-08-25]
 

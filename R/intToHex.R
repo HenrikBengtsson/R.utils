@@ -115,7 +115,7 @@ intToBin <- function(x) {
 intToHex <- function(x) {
   y <- as.integer(x)
   class(y) <- "hexmode"
-  y <- as.character(y)
+  y <- format(y)
   dim(y) <- dim(x)
   y
 }
@@ -123,7 +123,7 @@ intToHex <- function(x) {
 intToOct <- function(x) {
   y <- as.integer(x)
   class(y) <- "octmode"
-  y <- as.character(y)
+  y <- format(y)
   dim(y) <- dim(x)
   y
 }
