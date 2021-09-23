@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.10.1-9000 [2021-01-24]
+Version: 2.10.1-9000 [2021-04-27]
 
 NEW FEATURES:
 
@@ -10,6 +10,9 @@ NEW FEATURES:
 
  * Relaxed insert() to accept a 'values' argument that is a list but not
    necessarily a formal vector.
+
+ * Now queryRCmdCheck() sets environment variable R_CMD_CHECK=true if it
+   detects 'R CMD check' is running.
  
 BUG FIXES:
 
