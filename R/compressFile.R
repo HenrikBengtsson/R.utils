@@ -298,9 +298,6 @@ setMethodS3("isCompressedFile", "default", function(filename, method=c("extensio
   # Argument 'ext':
   ext <- as.character(ext)
 
-  # Argument 'fileClass':
-  fileClass <- as.character(fileClass)
-
   # Argument 'filename':
   filename <- Arguments$getReadablePathname(filename, mustExist=(method == "content"))
 
@@ -309,6 +306,8 @@ setMethodS3("isCompressedFile", "default", function(filename, method=c("extensio
   } else if (method == "content") {
     con <- file(filename)
     on.exit(close(con))
+    # Argument 'fileClass':
+    fileClass <- as.character(fileClass)
     res <- (summary(con)$class == fileClass)
   }
 
