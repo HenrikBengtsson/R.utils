@@ -1,5 +1,6 @@
 ########################################################################/**
-# @RdocFunction as.character.binmode
+# @RdocFunction format.binmode
+# @alias as.character.binmode
 #
 # @title "Converts a binary/octal/hexadecimal number into a string"
 #
@@ -8,7 +9,7 @@
 # }
 #
 # \usage{
-#  @usage as.character,binmode
+#  @usage format,binmode
 # }
 #
 # \arguments{
@@ -23,7 +24,7 @@
 # @author
 #
 # \seealso{
-#   \code{as.character.octmode()}, cf. @see "base::octmode".
+#   \code{format.octmode()}, cf. @see "base::octmode".
 #   @see "intToBin" (incl. \code{intToOct()} and \code{intToHex()}).
 # }
 #
@@ -31,7 +32,7 @@
 # @keyword character
 # @keyword programming
 #*/########################################################################
-setMethodS3("as.character", "binmode", function(x, ...) {
+setMethodS3("format", "binmode", function(x, ...) {
   isna <- is.na(x)
   y <- x[!isna]
   ans0 <- character(length = length(y))
@@ -54,6 +55,8 @@ setMethodS3("as.character", "binmode", function(x, ...) {
   ans
 })
 
+
+setMethodS3("as.character", "binmode", function(x, ...) format(x, ...))
 
 
 

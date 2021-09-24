@@ -13,6 +13,8 @@ NEW FEATURES:
 
  * Now queryRCmdCheck() sets environment variable R_CMD_CHECK=true if it
    detects 'R CMD check' is running.
+
+ * Added format() for 'binmode'.
  
 BUG FIXES:
 
