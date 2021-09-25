@@ -43,6 +43,18 @@ printf("x = %s.\n", hpaste(x, lastCollapse=" and "))
 ## x = 1, 2, 3, 4, 5 and 6.
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Empty input
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+s <- hpaste(integer(0))
+stopifnot(identical(s, character(0L)))
+
+s <- hpaste(integer(0), empty = "")
+stopifnot(identical(s, ""))
+
+s <- hpaste(integer(0), empty = NA_character_)
+stopifnot(identical(s, NA_character_))
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Backward compatibility with paste()

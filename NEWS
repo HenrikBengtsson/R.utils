@@ -1,7 +1,7 @@
 Package: R.utils
 ================
 
-Version: 2.10.1-9001 [2021-09-23]
+Version: 2.10.1-9002 [2021-09-25]
 
 NEW FEATURES:
 
@@ -15,6 +15,9 @@ NEW FEATURES:
    detects 'R CMD check' is running.
 
  * Added format() for 'binmode'.
+
+ * hpaste() gained argument 'empty', which can be used to control what to
+   return in case the output is of length zero.
  
 BUG FIXES:
 
