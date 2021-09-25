@@ -37,6 +37,8 @@
    is greater than \code{maxHead+maxTail+1}, then \code{x} is
    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
    and \code{x[(n-maxTail+1):n]}.}
+ \item{empty}{A \code{\link[base]{character}} string, or \code{character(0)} (default),
+   to be returned in case the result is of length zero.}
 }
 
 \value{
