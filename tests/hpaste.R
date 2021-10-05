@@ -15,7 +15,7 @@ printf("x = %s.\n", hpaste(x))
 printf("x = %s.\n", hpaste(x, maxHead=2))
 ## x = 1, 2, ..., 6.
 
-printf("x = %s.\n", hpaste(x), maxHead=3) # Default
+printf("x = %s.\n", hpaste(x, maxHead=3)) # Default
 ## x = 1, 2, 3, ..., 6.
 
 # It will never output 1, 2, 3, 4, ..., 6
@@ -42,6 +42,18 @@ printf("y = %s.\n", paste(y, collapse=", "))
 printf("x = %s.\n", hpaste(x, lastCollapse=" and "))
 ## x = 1, 2, 3, 4, 5 and 6.
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Empty input
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+s <- hpaste(integer(0))
+stopifnot(identical(s, character(0L)))
+
+s <- hpaste(integer(0), empty = "")
+stopifnot(identical(s, ""))
+
+s <- hpaste(integer(0), empty = NA_character_)
+stopifnot(identical(s, NA_character_))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

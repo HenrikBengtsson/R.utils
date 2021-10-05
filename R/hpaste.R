@@ -24,6 +24,8 @@
 #    is greater than \code{maxHead+maxTail+1}, then \code{x} is
 #    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
 #    and \code{x[(n-maxTail+1):n]}.}
+#  \item{empty}{A @character string, or \code{character(0)} (default),
+#    to be returned in case the result is of length zero.}
 # }
 #
 # \value{
@@ -45,12 +47,16 @@
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...") {
+setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollapse=NULL, maxHead=if (missing(lastCollapse)) 3 else Inf, maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...", empty = character(0L)) {
   # Argument 'maxHead':
   maxHead <- Arguments$getNumeric(maxHead, range=c(0, Inf))
 
   # Argument 'maxTail':
   maxTail <- Arguments$getNumeric(maxTail, range=c(0, Inf))
+
+  # Argument 'empty':
+  if (is.null(empty)) empty <- character(0L)
+  stopifnot(is.character(empty), length(empty) <= 1L)
 
   if (is.null(lastCollapse)) {
     lastCollapse <- collapse
@@ -62,7 +68,7 @@ setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollap
   n <- length(x)
 
   # Nothing todo?
-  if (n == 0) return(x)
+  if (n == 0) return(empty)
   if (is.null(collapse)) return(x)
 
   # Abbreviate?
@@ -72,6 +78,9 @@ setMethodS3("hpaste", "default", function(..., sep="", collapse=", ", lastCollap
     x <- c(head, abbreviate, tail)
     n <- length(x)
   }
+
+  # Nothing todo?
+  if (n == 0) return(empty)
 
   if (!is.null(collapse) && n > 1) {
     if (lastCollapse == collapse) {

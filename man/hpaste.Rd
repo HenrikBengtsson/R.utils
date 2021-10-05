@@ -19,7 +19,7 @@
 \usage{
 \method{hpaste}{default}(..., sep="", collapse=", ", lastCollapse=NULL,
   maxHead=if (missing(lastCollapse)) 3 else Inf,
-  maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...")
+  maxTail=if (is.finite(maxHead)) 1 else Inf, abbreviate="...", empty=character(0L))
 }
 
 \arguments{
@@ -37,6 +37,8 @@
    is greater than \code{maxHead+maxTail+1}, then \code{x} is
    truncated to consist of \code{x[1:maxHead]}, \code{abbreviate},
    and \code{x[(n-maxTail+1):n]}.}
+ \item{empty}{A \code{\link[base]{character}} string, or \code{character(0)} (default),
+   to be returned in case the result is of length zero.}
 }
 
 \value{
@@ -66,7 +68,7 @@ printf("x = \%s.\n", hpaste(x))
 printf("x = \%s.\n", hpaste(x, maxHead=2))
 ## x = 1, 2, ..., 6.
 
-printf("x = \%s.\n", hpaste(x), maxHead=3) # Default
+printf("x = \%s.\n", hpaste(x, maxHead=3)) # Default
 ## x = 1, 2, 3, ..., 6.
 
 # It will never output 1, 2, 3, 4, ..., 6

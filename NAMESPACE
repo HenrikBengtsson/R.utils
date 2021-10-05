@@ -140,6 +140,7 @@ S3method("isScalar", "Assert")
 S3method("isVector", "Assert")
 
 # binmode
+S3method("format", "binmode")
 S3method("as.character", "binmode")
 
 # CapturedEvaluation

@@ -30,13 +30,13 @@
 # @author
 #*/########################################################################### 
 queryRCmdCheck <- function(...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Evidences for R CMD check is running
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   evidences <- list()
 
+  # Memoization
+  evidences[["R_CMD_CHECK"]] <- isTRUE(as.logical(Sys.getenv("R_CMD_CHECK")))
+
   # Command line arguments
-  args <- base::commandArgs()
+  args <- commandArgs()
   evidences[["vanilla"]] <- is.element("--vanilla", args)
 
   # Check the working directory
@@ -61,7 +61,9 @@ queryRCmdCheck <- function(...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Conclusions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!evidences$vanilla || !evidences$pwd) {
+  if (evidences$R_CMD_CHECK) {
+    res <- "R_CMD_CHECK"
+  } else if (!evidences$vanilla || !evidences$pwd) {
     res <- "notRunning"
   } else if (evidences$tests) {
     res <- "checkingTests"
@@ -71,5 +73,12 @@ queryRCmdCheck <- function(...) {
     res <- "notRunning"
   }
 
+  # Make it stick
+  if (res != "notRunning") {
+    Sys.setenv(R_CMD_CHECK = "true")
+  }
+
+  attr(res, "evidences") <- evidences
+  
   res
-} # queryRCmdCheck()
+}

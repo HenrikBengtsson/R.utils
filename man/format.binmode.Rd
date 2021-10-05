@@ -6,9 +6,10 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{as.character.binmode}
-\alias{as.character.binmode}
+\name{format.binmode}
+\alias{format.binmode}
 
+\alias{as.character.binmode}
 
 \title{Converts a binary/octal/hexadecimal number into a string}
 
@@ -17,7 +18,7 @@
 }
 
 \usage{
- \method{as.character}{binmode}(x, ...)
+ \method{format}{binmode}(x, ...)
 }
 
 \arguments{
@@ -32,7 +33,7 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{as.character.octmode()}, cf. \code{\link[base]{octmode}}.
+  \code{format.octmode()}, cf. \code{\link[base]{octmode}}.
   \code{\link{intToBin}}() (incl. \code{intToOct()} and \code{intToHex()}).
 }
 

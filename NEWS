@@ -1,6 +1,36 @@
 Package: R.utils
 ================
 
+Version: 2.11.0 [2021-09-25]
+
+NEW FEATURES:
+
+ * Now insert() support duplicates in 'ats', which then results in the
+   corresponding 'values' being inserted in order at those duplicated indices.
+
+ * Relaxed insert() to accept a 'values' argument that is a list but not
+   necessarily a formal vector.
+
+ * Now queryRCmdCheck() sets environment variable R_CMD_CHECK=true if it
+   detects 'R CMD check' is running.
+
+ * Added format() for 'binmode'.
+
+ * hpaste() gained argument 'empty', which can be used to control what to
+   return in case the output is of length zero.
+ 
+BUG FIXES:
+
+ * gcDLLs() produced a "In sprintf(...) : argument not used by format" warning
+   when giving an error message on what DLLs it failed to unload.
+ 
+ * Arguments$getVector() could produce an error on "argument is missing, with
+   no default" while trying to signal an assertion error.
+
+ * intToHex() and intToOct() would no longer pad with zero on recent R-devel
+   (to become R 4.2.0) versions.
+ 
+
 Version: 2.10.1 [2020-08-25]
 
 NEW FEATURES:
@@ -9,7 +39,7 @@ NEW FEATURES:
  
 DOCUMENTATION:
 
- * Update URLs with 301 redirects. Most of them where HTTP to HTTPS redirects.
+ * Update URLs with 301 redirects. Most of them were HTTP to HTTPS redirects.
 
 
 Version: 2.10.0 [2020-08-24]

@@ -670,7 +670,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
   } else {
     if (!is.element(xlen, length)) {
       throw(sprintf("Number of elements in argument '%s' is not in {%s}: %d",
-                                 .name, seqToHumanReadable(length), xlen, ))
+                                   .name, seqToHumanReadable(length), xlen))
     }
   }
 
