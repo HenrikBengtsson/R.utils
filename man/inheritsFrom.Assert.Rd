@@ -12,10 +12,6 @@
 \alias{Assert.inheritsFrom}
 \alias{inheritsFrom,Assert-method}
  \alias{inheritsFrom}
- \alias{Assert.inherits}
-\alias{inherits.Assert}
-\alias{inherits,Assert-method}
-
 
  \title{Static method asserting that an object inherits from of a certain class}
 

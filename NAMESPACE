@@ -92,7 +92,6 @@ export(.Last.lib)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # From 006.fixVarArgs.R
 S3method("isOpen", "default")
-S3method("inherits", "default")
 S3method("parse", "default")
 S3method("cat", "default")
 S3method("getOption", "default")
@@ -134,7 +133,6 @@ S3method("wrap", "array")
 # Assert
 S3method("check", "Assert")
 S3method("inheritsFrom", "Assert")
-S3method("inherits", "Assert")  ## DEFUNCT
 S3method("isMatrix", "Assert")
 S3method("isScalar", "Assert")
 S3method("isVector", "Assert")
@@ -203,7 +201,6 @@ S3method("gunzip", "default")
 S3method("gzip", "default")
 S3method("hasUrlProtocol", "default")
 S3method("hpaste", "default")
-S3method("inherits", "default")
 S3method("insert", "default")
 S3method("installPackages", "default")
 S3method("isAbsolutePath", "default")

@@ -1,6 +1,14 @@
 Package: R.utils
 ================
 
+Version: 2.11.0-9000 [2021-10-04]
+
+DEPRECATE AND DEFUNCT:
+
+ * Removed Asserts$inherits() and S3 generic inherits(), which have been
+   defunct since R.utils 2.9.0. Use Asserts$inheritsFrom() instead.
+   
+
 Version: 2.11.0 [2021-09-25]
 
 NEW FEATURES:

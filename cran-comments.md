@@ -2,7 +2,7 @@
 
 on 2021-09-25
 
-I've verified this submission has no negative impact on any of the 219 reverse package dependencies available on CRAN and Bioconductor.
+This submission addresses a recent R-devel change to as.character() for 'hexmode' and 'octmode'. I've verified that this submission has no negative impact on any of the 219 reverse package dependencies available on CRAN and Bioconductor.
 
 Thank you
 

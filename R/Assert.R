@@ -148,7 +148,6 @@ setMethodS3("isMatrix", "Assert", function(static, x, nrow=NULL, ncol=NULL, ...)
 #########################################################################/**
 # @RdocMethod inheritsFrom
 # @alias inheritsFrom
-# @aliasmethod inherits
 #
 # @title "Static method asserting that an object inherits from of a certain class"
 # 
@@ -179,10 +178,6 @@ setMethodS3("inheritsFrom", "Assert", function(static, object, class, ...) {
   if (!inherits(object, class))
     throw("Argument '", name, "' does not inherit from class '", class, "': ", paste(class(class), collapse=", "))
   invisible(TRUE)
-}, static=TRUE)
-
-setMethodS3("inherits", "Assert", function(static, object, class, ...) {
-  .Defunct(new = "Assert$inheritsFrom()")
 }, static=TRUE)
 
 
