@@ -20,8 +20,7 @@
 \usage{
 withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
   output=code, ..., max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
-  newline=getOption("withCapture/newline", TRUE), collapse="\n", substitute=replace,
-  envir=parent.frame())
+  newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame())
 }
 
 \arguments{
@@ -40,7 +39,6 @@ withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
      is appended at the end.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
-  \item{substitute}{(defunct) use \code{replace} instead.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}
 }
 
