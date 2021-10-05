@@ -1,17 +1,10 @@
-# CRAN submission R.utils 2.10.1
+# CRAN submission R.utils 2.11.0
 
-on 2020-08-25
+on 2021-09-25
 
-This submission fixes the incorrect URLs in R.utils 2.10.0 submitted yesterday.  I'm sorry for that broken submission.
+I've verified this submission has no negative impact on any of the 219 reverse package dependencies available on CRAN and Bioconductor.
 
 Thank you
-
-
-Submission of R.utils 2.10.1 on 2020-08-24
-
-I've verified that this submission does not cause issues for the 178 reverse package dependencies available on CRAN and Bioconductor.
-
-Thanks in advance
 
 
 ## Notes not sent to CRAN
@@ -20,13 +13,13 @@ Thanks in advance
 
 The package has been verified using `R CMD check --as-cran` on:
 
-| R version   | GitHub Actions | Travis CI | AppVeyor CI | Rhub      | Win-builder | Other  |
-| ----------- | -------------- | --------- | ----------- | --------- | ----------- | ------ |
-| 3.3.3       | L              |           |             |           |             |        |
-| 3.4.4       | L              |           |             |           |             |        |
-| 3.5.3       | L              |           |             |           |             |        |
-| 3.6.3       | L              | L, M      |             |    S (32) |             |        |
-| 4.0.2       | L, M, W        | L, M      | W           |           |             |        |
-| devel       |       W        | L, M      | W (32 & 64) | W         | W           |        |
+| R version | GitHub | R-hub    | win-builder |
+| --------- | ------ | -------- | ----------- |
+| 3.4.x     | L      |          |             |
+| 3.5.x     | L      |          |             |
+| 3.6.x     | L      |          |             |
+| 4.0.x     | L      |          |             |
+| 4.1.x     | L M W  | L M1 S   | W           |
+| devel     | L M W  | L      W | W           |
 
-*Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows.  Architecture: 32 = 32-bit, 64 = 64-bit*
+*Legend: OS: L = Linux, S = Solaris, M = macOS, M1 = macOS M1, W = Windows*
