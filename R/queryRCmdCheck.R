@@ -39,21 +39,21 @@ queryRCmdCheck <- function(...) {
   args <- commandArgs()
   evidences[["vanilla"]] <- is.element("--vanilla", args)
 
-  # Check the working directory
-  pwd <- getwd()
-  dirname <- basename(pwd)
-  parent <- basename(dirname(pwd))
-  pattern <- ".+[.]Rcheck$"
-
-  # Is 'R CMD check' checking tests?
-  evidences[["tests"]] <- (
-    (regexpr(pattern, parent) != -1) && 
-    (regexpr("^tests(|_.*)$", dirname) != -1)
-  )
-
-  # Is the current working directory as expected?
-  evidences[["pwd"]] <- (evidences[["tests"]] || (regexpr(pattern, dirname) != -1))
-
+  # Check the working directory; any components containing <pkg>.Rcheck/tests
+  evidences[["pwd"]] <- FALSE
+  path <- getwd()
+  last_path <- ""
+  while (path != last_path) {
+    last_path <- path
+    if (basename(path) == "tests") {
+      if (grepl(".+[.]Rcheck$", dirname(path))) {
+        evidences[["pwd"]] <- TRUE
+	break
+      }
+    }
+    path <- dirname(path)
+  }
+  
   # Is 'R CMD check' checking examples?
   evidences[["examples"]] <- is.element("CheckExEnv", search())
 
@@ -63,12 +63,12 @@ queryRCmdCheck <- function(...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (evidences$R_CMD_CHECK) {
     res <- "R_CMD_CHECK"
-  } else if (!evidences$vanilla || !evidences$pwd) {
+  } else if (!evidences[["vanilla"]]) {
     res <- "notRunning"
-  } else if (evidences$tests) {
-    res <- "checkingTests"
-  } else if (evidences$examples) {
+  } else if (evidences[["examples"]]) {
     res <- "checkingExamples"
+  } else if (evidences[["pwd"]]) {
+    res <- "checkingTests"
   } else {
     res <- "notRunning"
   }
@@ -79,6 +79,20 @@ queryRCmdCheck <- function(...) {
   }
 
   attr(res, "evidences") <- evidences
-  
+
+  if (isTRUE(as.logical(Sys.getenv("R_R_CACHE_DEBUG")))) {
+    file <- file.path("~", ".cache", "R", sprintf("R.cache-%d.log", Sys.getpid()))
+    dir.create(file, recursive = TRUE, showWarnings = FALSE)
+    cat(paste(utils::capture.output({
+      cat(sprintf("Call: %s\n", paste(commandArgs(), collapse = " ")))
+      cat(sprintf("PID: %s\n", Sys.getpid()))
+      cat(sprintf("pwd: %s\n", getwd()))
+      cat(sprintf("search(): %s\n", paste(sQuote(search()), collapse = ", ")))
+      cat(sprintf("R_CMD_CHECK: %s\n", sQuote(Sys.getenv("R_CMD_CHECK", NA_character_))))
+      cat(sprintf("queryRCmdCheck(): %s\n", sQuote(queryRCmdCheck())))
+      cat("-------------\n")
+    }), collapse = "\n"), "\n", file = file)
+  }
+
   res
 }
