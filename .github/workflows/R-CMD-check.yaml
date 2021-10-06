@@ -76,8 +76,11 @@ jobs:
 
       - name: Install 'rcmdcheck'
         run: |
-          Rscript -e 'remotes::install_cran("curl")'
-          Rscript -e 'remotes::install_cran("rmdcheck")'
+          remotes::install_cran("curl")
+          if (!require("curl")) quit(save = "no", status = 1L)
+          remotes::install_cran("rcmdcheck")
+          if (!require("rcmdcheck")) quit(save = "no", status = 1L)
+        shell: Rscript {0}
 
       - name: Session info
         run: |
@@ -85,6 +88,7 @@ jobs:
           capabilities()
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
+          library(rcmdcheck)
         shell: Rscript {0}
 
       - name: Check
