@@ -60,7 +60,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
-      - name: Install system dependencies
+      - name: Install R package system dependencies
         if: runner.os == 'Linux'
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
@@ -69,22 +69,22 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
 
-      - name: Install 'rcmdcheck'
-        run: |
-          tryCatch(remotes::install_cran("rcmdcheck"), error = function(e) { message("BOOM!"); quit(save = "no", status = 1L) })
-        shell: Rscript {0}
-
       - name: Install R package dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
 
+      - name: Install 'rcmdcheck'
+        run: |
+          Rscript -e 'remotes::install_cran("curl")'
+          Rscript -e 'remotes::install_cran("rmdcheck")'
+
       - name: Session info
         run: |
           options(width = 100)
+          capabilities()
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
-          capabilities()
         shell: Rscript {0}
 
       - name: Check
