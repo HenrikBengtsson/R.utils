@@ -45,7 +45,7 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
-      - name: Query dependencies
+      - name: Query R package dependencies
         run: |
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
@@ -71,7 +71,7 @@ jobs:
 
       - name: Install 'rcmdcheck'
         run: |
-          remotes::install_cran("rcmdcheck")
+          tryCatch(remotes::install_cran("rcmdcheck"), error = function(e) { message("BOOM!"); quit(save = "no", status = 1L) })
         shell: Rscript {0}
 
       - name: Install R package dependencies
