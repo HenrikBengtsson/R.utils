@@ -1,3 +1,71 @@
+# ACNE
+
+<details>
+
+* Version: 0.8.1
+* GitHub: https://github.com/HenrikBengtsson/ACNE
+* Source code: https://github.com/cran/ACNE
+* Date/Publication: 2015-10-27 08:09:51
+* Number of recursive dependencies: 25
+
+Run `revdep_details(, "ACNE")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking whether package ‘ACNE’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/ACNE/new/ACNE.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘ACNE’ ...
+** package ‘ACNE’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘R.devices’:
+ object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘ACNE’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/ACNE/new/ACNE.Rcheck/ACNE’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ACNE’ ...
+** package ‘ACNE’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Warning message:
+In .requireBiocPackage("affxparser", neededBy = getName(pkg)) :
+  Package 'affxparser' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. https://www.bioconductor.org/
+** help
+...
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+Warning in .requireBiocPackage("affxparser", neededBy = getName(pkg)) :
+  Package 'affxparser' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. https://www.bioconductor.org/
+** testing if installed package can be loaded from final location
+Warning in .requireBiocPackage("affxparser", neededBy = getName(pkg)) :
+  Package 'affxparser' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. https://www.bioconductor.org/
+** testing if installed package keeps a record of temporary installation path
+* DONE (ACNE)
+
+
+```
 # acroname
 
 <details>
@@ -80,7 +148,7 @@ Run `revdep_details(, "affxparser")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 18.8Mb
+      installed size is 18.4Mb
       sub-directories of 1Mb or more:
         libs  17.6Mb
     ```
@@ -146,17 +214,131 @@ Run `revdep_details(, "aroma.affymetrix")` for more info
 
 </details>
 
-## In both
+## Newly broken
+
+*   checking whether package ‘aroma.affymetrix’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.affymetrix/new/aroma.affymetrix.Rcheck/00install.out’ for details.
+    ```
+
+## Newly fixed
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.0Mb
+      installed size is  7.6Mb
       sub-directories of 1Mb or more:
-        R             4.0Mb
-        help          2.1Mb
+        R             3.8Mb
+        help          1.9Mb
         testScripts   1.1Mb
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘aroma.affymetrix’ ...
+** package ‘aroma.affymetrix’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘R.devices’:
+ object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘aroma.affymetrix’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.affymetrix/new/aroma.affymetrix.Rcheck/aroma.affymetrix’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘aroma.affymetrix’ ...
+** package ‘aroma.affymetrix’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+...
+The following object is masked _by_ package:aroma.affymetrix:
+
+    writeCdf
+
+The following object is masked from package:R.utils:
+
+    findFiles
+
+** testing if installed package keeps a record of temporary installation path
+* DONE (aroma.affymetrix)
+
+
+```
+# aroma.cn
+
+<details>
+
+* Version: 1.6.1
+* GitHub: https://github.com/HenrikBengtsson/aroma.cn
+* Source code: https://github.com/cran/aroma.cn
+* Date/Publication: 2015-10-28 00:08:16
+* Number of recursive dependencies: 25
+
+Run `revdep_details(, "aroma.cn")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking whether package ‘aroma.cn’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.cn/new/aroma.cn.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘aroma.cn’ ...
+** package ‘aroma.cn’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘R.devices’:
+ object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘aroma.cn’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.cn/new/aroma.cn.Rcheck/aroma.cn’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘aroma.cn’ ...
+** package ‘aroma.cn’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (aroma.cn)
+
+
+```
 # aroma.core
 
 <details>
@@ -171,6 +353,14 @@ Run `revdep_details(, "aroma.core")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking whether package ‘aroma.core’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.core/new/aroma.core.Rcheck/00install.out’ for details.
+    ```
+
 ## In both
 
 *   checking package dependencies ... NOTE
@@ -179,6 +369,46 @@ Run `revdep_details(, "aroma.core")` for more info
       'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘aroma.core’ ...
+** package ‘aroma.core’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘R.devices’:
+ object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘aroma.core’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/aroma.core/new/aroma.core.Rcheck/aroma.core’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘aroma.core’ ...
+** package ‘aroma.core’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Warning in setGenericS3.default(name, export = exportGeneric, envir = envir,  :
+  Renamed the preexisting function write to write.default, which was defined in environment base.
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (aroma.core)
+
+
+```
 # aroma.light
 
 <details>
@@ -271,6 +501,50 @@ Run `revdep_details(, "autonomics")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘autonomics-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: analyze
+    > ### Title: Analyze
+    > ### Aliases: analyze
+    > 
+    > ### ** Examples
+    > 
+    > require(magrittr)
+    Loading required package: magrittr
+    > file <- download_data('atkin18.metabolon.xlsx')
+    > object <- read_metabolon(file, plot=FALSE)
+    Error: `path` must be a string
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       5.   ├─autonomics::guess_maxquant_quantity(file)
+       6.   └─autonomics:::guess_maxquant_quantity.character(file)
+      ── Error (test_4_plot.R:5:5): (code run outside of `test_that()`) ──────────────
+      Error: `path` must be a string
+      Backtrace:
+          █
+       1. ├─autonomics::read_metabolon(file, fit = "limma", plot = FALSE) test_4_plot.R:5:4
+    ...
+       1. └─autonomics::read_proteingroups(file, fit = "limma", plot = FALSE) test_8_fit.R:93:4
+       2.   ├─autonomics::.read_maxquant(...)
+       3.   │ └─assertive.sets::assert_is_subset(quantity, names(MAXQUANT_PATTERNS_QUANTITY))
+       4.   │   └─assertive.base::assert_engine(...)
+       5.   ├─autonomics::guess_maxquant_quantity(file)
+       6.   └─autonomics:::guess_maxquant_quantity.character(file)
+      
+      [ FAIL 17 | WARN 1 | SKIP 0 | PASS 53 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
@@ -304,13 +578,6 @@ Run `revdep_details(, "autonomics")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        doc   3.8Mb
-    ```
-
 # BANDITS
 
 <details>
@@ -329,7 +596,7 @@ Run `revdep_details(, "BANDITS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.3Mb
+      installed size is  8.6Mb
       sub-directories of 1Mb or more:
         doc       1.0Mb
         extdata   1.3Mb
@@ -352,72 +619,6 @@ Run `revdep_details(, "BANDITS")` for more info
       p x
     ```
 
-# bedr
-
-<details>
-
-* Version: 1.0.7
-* GitHub: NA
-* Source code: https://github.com/cran/bedr
-* Date/Publication: 2019-04-01 18:50:02 UTC
-* Number of recursive dependencies: 52
-
-Run `revdep_details(, "bedr")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘bedr-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: bedr
-    > ### Title: Main bedtools wrapper function.
-    > ### Aliases: bedr
-    > ### Keywords: bedtools bedops tabix region interval bed
-    > 
-    > ### ** Examples
-    > 
-    ...
-    }
-    <bytecode: 0x5361708>
-    <environment: namespace:bedr>
-     --- function search by body ---
-    Function bedr in namespace bedr has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in input.files != "" && deleteTmpDir == TRUE : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: bedr
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘Using-bedr.Rmd’ using rmarkdown
-     ----------- FAILURE REPORT -------------- 
-     --- failure: length > 1 in coercion to logical ---
-     --- srcref --- 
-    : 
-     --- package (from environment) --- 
-    bedr
-     --- call from context --- 
-    bedr(engine = "bedtools", input = list(a = x, b = y), method = "subtract", 
-    ...
-    Quitting from lines 175-191 (Using-bedr.Rmd) 
-    Error: processing vignette 'Using-bedr.Rmd' failed with diagnostics:
-    'length(x) = 2 > 1' in coercion to 'logical(1)'
-    --- failed re-building ‘Using-bedr.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Using-bedr.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # bigsnpr
 
 <details>
@@ -436,7 +637,7 @@ Run `revdep_details(, "bigsnpr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.4Mb
+      installed size is 13.7Mb
       sub-directories of 1Mb or more:
         libs  11.5Mb
     ```
@@ -505,7 +706,7 @@ Run `revdep_details(, "biscuiteer")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
-    See ‘/scratch/henrik/R.utils/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
     ```
 
 *   checking re-building of vignette outputs ... WARNING
@@ -526,7 +727,7 @@ Run `revdep_details(, "biscuiteer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
         data      1.1Mb
         extdata   3.4Mb
@@ -586,8 +787,9 @@ Run `revdep_details(, "bsseq")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.8Mb
+      installed size is  8.6Mb
       sub-directories of 1Mb or more:
+        R      1.8Mb
         data   1.9Mb
         doc    1.9Mb
         libs   2.7Mb
@@ -613,6 +815,66 @@ Run `revdep_details(, "bsseq")` for more info
     Package unavailable to check Rd xrefs: ‘bsseqData’
     ```
 
+# calmate
+
+<details>
+
+* Version: 0.12.1
+* GitHub: https://github.com/HenrikBengtsson/calmate
+* Source code: https://github.com/cran/calmate
+* Date/Publication: 2015-10-27 08:09:53
+* Number of recursive dependencies: 22
+
+Run `revdep_details(, "calmate")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking whether package ‘calmate’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/calmate/new/calmate.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘calmate’ ...
+** package ‘calmate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘R.devices’:
+ object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘calmate’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/calmate/new/calmate.Rcheck/calmate’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘calmate’ ...
+** package ‘calmate’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (calmate)
+
+
+```
 # CB2
 
 <details>
@@ -631,7 +893,7 @@ Run `revdep_details(, "CB2")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.8Mb
+      installed size is  6.7Mb
       sub-directories of 1Mb or more:
         data      1.6Mb
         extdata   1.1Mb
@@ -785,7 +1047,7 @@ Run `revdep_details(, "CINdex")` for more info
     ```
       installed size is 33.9Mb
       sub-directories of 1Mb or more:
-        data  32.9Mb
+        data  33.0Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -829,22 +1091,22 @@ Run `revdep_details(, "circRNAprofiler")` for more info
     Running examples in ‘circRNAprofiler-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: annotateRepeats
-    > ### Title: Annotate repetitive elements
-    > ### Aliases: annotateRepeats
+    > ### Name: liftBSJcoords
+    > ### Title: LiftOver back-spliced junction coordinates
+    > ### Aliases: liftBSJcoords
     > 
     > ### ** Examples
     > 
-    > # Load data frame containing detected back-spliced junctions
+    > # Load a data frame containing detected back-spliced junctions
     ...
-    The following object is masked from ‘package:base’:
-    
-        strsplit
-    
+    > data("mergedBSJunctions")
+    > 
+    > # LiftOver the first 10 back-spliced junction coordinates
+    > liftedBSJcoords <- liftBSJcoords(mergedBSJunctions[1:10,], map = "hg19ToMm9")
     snapshotDate(): 2021-05-18
     Error: Corrupt Cache: index file
       See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      cache: /scratch/henrik/revdepcheck.extras/R.utils/revdep/cache/R/AnnotationHub
       filename: annotationhub.index.rds
     Execution halted
     ```
@@ -869,7 +1131,7 @@ Run `revdep_details(, "circRNAprofiler")` for more info
        3.     └─AnnotationHub::.Hub(...)
        4.       └─AnnotationHub:::.db_create_index(hub)
       
-      [ FAIL 1 | WARN 5 | SKIP 0 | PASS 254 ]
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 255 ]
       Error: Test failures
       Execution halted
     ```
@@ -984,9 +1246,9 @@ Run `revdep_details(, "CNEr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 21.0Mb
+      installed size is 20.4Mb
       sub-directories of 1Mb or more:
-        R         1.5Mb
+        R         1.0Mb
         doc       1.9Mb
         extdata  15.9Mb
         libs      1.2Mb
@@ -1035,7 +1297,7 @@ Run `revdep_details(, "CNVgears")` for more info
     ```
       installed size is  8.1Mb
       sub-directories of 1Mb or more:
-        data      3.4Mb
+        data      3.5Mb
         extdata   3.6Mb
     ```
 
@@ -1132,9 +1394,9 @@ Run `revdep_details(, "cTRAP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is 11.3Mb
       sub-directories of 1Mb or more:
-        data   4.3Mb
+        data   8.3Mb
         doc    1.9Mb
     ```
 
@@ -1147,10 +1409,10 @@ Run `revdep_details(, "cTRAP")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.14.2
 * GitHub: https://github.com/Rdatatable/data.table
 * Source code: https://github.com/cran/data.table
-* Date/Publication: 2021-02-21 06:00:02 UTC
+* Date/Publication: 2021-09-27 16:30:02 UTC
 * Number of recursive dependencies: 31
 
 Run `revdep_details(, "data.table")` for more info
@@ -1452,7 +1714,7 @@ Run `revdep_details(, "DropletUtils")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 26.0Mb
+      installed size is 25.9Mb
       sub-directories of 1Mb or more:
         libs  24.6Mb
     ```
@@ -1484,6 +1746,72 @@ Run `revdep_details(, "Eagle")` for more info
       sub-directories of 1Mb or more:
         libs       15.7Mb
         shiny_app   1.1Mb
+    ```
+
+# ecochange
+
+<details>
+
+* Version: 2.2
+* GitHub: NA
+* Source code: https://github.com/cran/ecochange
+* Date/Publication: 2021-09-08 13:10:02 UTC
+* Number of recursive dependencies: 108
+
+Run `revdep_details(, "ecochange")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘ecochange-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: echanges
+    > ### Title: Ecosystem changes
+    > ### Aliases: echanges
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    +     )
+    [1] "'eco' has length > 1: matching names of 'eco' with values in 'change_vals'..."
+    >     
+    >     ## Function 'plotebv' allows comparing rasters using a common scale bar:
+    >     suppressWarnings(
+    +     plotebv(def)
+    + )
+    Error in (function (classes, fdef, mtable)  : 
+      unable to find an inherited method for function ‘xmin’ for signature ‘"Extent"’
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘ecochange_vignette.Rmd’ using rmarkdown
+    Loading required package: ecochange
+    Loading required package: raster
+    Loading required package: sp
+    Loading required package: rgeos
+    rgeos version: 0.5-8, (SVN revision 679)
+     GEOS runtime version: 3.9.1-CAPI-1.14.2 
+     Please note that rgeos will be retired by the end of 2023,
+    plan transition to sf functions using GEOS at your earliest convenience.
+    ...
+    Quitting from lines 63-66 (ecochange_vignette.Rmd) 
+    Error: processing vignette 'ecochange_vignette.Rmd' failed with diagnostics:
+    unable to find an inherited method for function 'xmin' for signature '"Extent"'
+    --- failed re-building ‘ecochange_vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘ecochange_vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # eegc
@@ -1535,9 +1863,9 @@ Run `revdep_details(, "eegc")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.6Mb
+      installed size is 27.6Mb
       sub-directories of 1Mb or more:
-        data  10.5Mb
+        data  26.5Mb
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -1563,7 +1891,7 @@ Run `revdep_details(, "ELMER")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 75.6Mb
+      installed size is 75.4Mb
       sub-directories of 1Mb or more:
         doc  74.9Mb
     ```
@@ -1698,9 +2026,9 @@ Run `revdep_details(, "EpiNow2")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 169.0Mb
+      installed size is 169.1Mb
       sub-directories of 1Mb or more:
-        help    1.1Mb
+        help    1.4Mb
         libs  166.7Mb
     ```
 
@@ -1762,6 +2090,7 @@ Run `revdep_details(, "esATAC")` for more info
     ```
       installed size is 13.4Mb
       sub-directories of 1Mb or more:
+        R         1.0Mb
         doc       3.4Mb
         extdata   5.1Mb
         libs      3.6Mb
@@ -1825,10 +2154,10 @@ Run `revdep_details(, "fastai")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.3Mb
+      installed size is  6.0Mb
       sub-directories of 1Mb or more:
         doc    3.0Mb
-        help   2.0Mb
+        help   1.8Mb
     ```
 
 # FCPS
@@ -1849,9 +2178,9 @@ Run `revdep_details(, "FCPS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is 11.1Mb
       sub-directories of 1Mb or more:
-        data   2.5Mb
+        data   6.5Mb
         doc    3.5Mb
     ```
 
@@ -1929,14 +2258,14 @@ Run `revdep_details(, "FRASER")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘FRASER.Rnw’ using knitr
-    Sat Sep 25 18:55:39 2021: Start counting the split reads ...
-    Sat Sep 25 18:55:40 2021: Count split reads for sample: sample1
-    Sat Sep 25 18:55:43 2021: Count split reads for sample: sample2
-    Sat Sep 25 18:55:44 2021: Count split reads for sample: sample3
-    Sat Sep 25 18:55:45 2021 : count ranges need to be merged ...
-    Sat Sep 25 18:55:46 2021: Create splice site indices ...
-    Sat Sep 25 18:55:47 2021: Writing split counts to folder: /scratch/henrik/RtmpcHqxFk/savedObjects/Data_Analysis/splitCounts
-    Sat Sep 25 18:55:47 2021: Identifying introns with read count <= 20 in all samples...
+    Tue Oct  5 15:01:21 2021: Start counting the split reads ...
+    Tue Oct  5 15:01:21 2021: Count split reads for sample: sample1
+    Tue Oct  5 15:01:23 2021: Count split reads for sample: sample2
+    Tue Oct  5 15:01:23 2021: Count split reads for sample: sample3
+    Tue Oct  5 15:01:24 2021 : count ranges need to be merged ...
+    Tue Oct  5 15:01:24 2021: Create splice site indices ...
+    Tue Oct  5 15:01:24 2021: Writing split counts to folder: /scratch/henrik/RtmpNnLjKw/savedObjects/Data_Analysis/splitCounts
+    Tue Oct  5 15:01:25 2021: Identifying introns with read count <= 20 in all samples...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -1952,9 +2281,9 @@ Run `revdep_details(, "FRASER")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.9Mb
+      installed size is 10.3Mb
       sub-directories of 1Mb or more:
-        R      1.6Mb
+        R      3.0Mb
         doc    1.6Mb
         libs   4.8Mb
     ```
@@ -2058,7 +2387,7 @@ Run `revdep_details(, "GCSscore")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.2Mb
+      installed size is 12.1Mb
       sub-directories of 1Mb or more:
         extdata  11.6Mb
     ```
@@ -2157,7 +2486,7 @@ Run `revdep_details(, "HiCBricks")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.8Mb
+      installed size is  7.6Mb
       sub-directories of 1Mb or more:
         doc       4.4Mb
         extdata   2.2Mb
@@ -2176,33 +2505,6 @@ Run `revdep_details(, "HiCBricks")` for more info
 Run `revdep_details(, "HiCDCPlus")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘HiCDCPlus.Rmd’ using rmarkdown
-    Loading required package: BSgenome
-    Loading required package: BiocGenerics
-    Loading required package: parallel
-    
-    Attaching package: 'BiocGenerics'
-    
-    The following objects are masked from 'package:parallel':
-    
-    ...
-    Quitting from lines 158-197 (HiCDCPlus.Rmd) 
-    Error: processing vignette 'HiCDCPlus.Rmd' failed with diagnostics:
-    cons memory exhausted (limit reached?)
-    --- failed re-building ‘HiCDCPlus.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘HiCDCPlus.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 ## In both
 
@@ -2255,9 +2557,9 @@ Run `revdep_details(, "homologene")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.4Mb
       sub-directories of 1Mb or more:
-        data   6.1Mb
+        data   6.3Mb
     ```
 
 # HyPhy
@@ -2363,9 +2665,31 @@ Run `revdep_details(, "KnowSeq")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘KnowSeq-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: DEGsToDiseases
+    > ### Title: DEGsToDiseases obtains the information about what diseases are
+    > ###   related to the DEGs indicated by parameter.
+    > ### Aliases: DEGsToDiseases
+    > 
+    > ### ** Examples
+    > 
+    > diseases <- DEGsToDiseases(c("KRT19","BRCA1"),getEvidences = FALSE)
+    Getting annotation of the Homo Sapiens...
+    Using reference genome 38.
+    Obtaining related diseases with the DEGs from targetValidation platform...
+    Error in currentGene[j, 1] <- response$target$associatedDiseases$rows[[j]]$disease$name : 
+      number of items to replace is not a multiple of replacement length
+    Calls: DEGsToDiseases
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.4Mb
+      installed size is 11.2Mb
       sub-directories of 1Mb or more:
         doc       5.7Mb
         extdata   5.1Mb
@@ -2404,7 +2728,7 @@ Run `revdep_details(, "KnowSeq")` for more info
 * GitHub: https://github.com/philips-software/latrend
 * Source code: https://github.com/cran/latrend
 * Date/Publication: 2021-04-14 13:50:10 UTC
-* Number of recursive dependencies: 200
+* Number of recursive dependencies: 202
 
 Run `revdep_details(, "latrend")` for more info
 
@@ -2416,7 +2740,7 @@ Run `revdep_details(, "latrend")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/scratch/henrik/R.utils/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -2462,6 +2786,31 @@ Run `revdep_details(, "logger")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘Intro.Rmd’ using rmarkdown
+    --- finished re-building ‘Intro.Rmd’
+    
+    --- re-building ‘anatomy.Rmd’ using rmarkdown
+    WARN [2021-10-05 15:10:03] I am a higher level log message that is very likely to be printed
+    --- finished re-building ‘anatomy.Rmd’
+    
+    --- re-building ‘customize_logger.Rmd’ using rmarkdown
+    Quitting from lines 226-230 (customize_logger.Rmd) 
+    ...
+    --- finished re-building ‘r_packages.Rmd’
+    
+    --- re-building ‘write_custom_extensions.Rmd’ using rmarkdown
+    --- finished re-building ‘write_custom_extensions.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘customize_logger.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘botor’
@@ -2494,14 +2843,6 @@ Run `revdep_details(, "MACSQuantifyR")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.0Mb
-      sub-directories of 1Mb or more:
-        doc       3.2Mb
-        extdata   1.5Mb
-    ```
-
 # maftools
 
 <details>
@@ -2520,7 +2861,7 @@ Run `revdep_details(, "maftools")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 17.7Mb
+      installed size is 17.5Mb
       sub-directories of 1Mb or more:
         doc       7.2Mb
         extdata   6.8Mb
@@ -2581,7 +2922,7 @@ Run `revdep_details(, "metaboliteIDmapping")` for more info
 *   checking whether package ‘metaboliteIDmapping’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/scratch/henrik/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -2604,12 +2945,12 @@ Run `revdep_details(, "metaboliteIDmapping")` for more info
   call: NULL
   error: Corrupt Cache: index file
   See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
+  cache: /scratch/henrik/revdepcheck.extras/R.utils/revdep/cache/R/AnnotationHub
   filename: annotationhub.index.rds
 Error: loading failed
 Execution halted
 ERROR: loading failed
-* removing ‘/scratch/henrik/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
 
 
 ```
@@ -2631,12 +2972,12 @@ ERROR: loading failed
   call: NULL
   error: Corrupt Cache: index file
   See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
+  cache: /scratch/henrik/revdepcheck.extras/R.utils/revdep/cache/R/AnnotationHub
   filename: annotationhub.index.rds
 Error: loading failed
 Execution halted
 ERROR: loading failed
-* removing ‘/scratch/henrik/R.utils/revdep/checks/metaboliteIDmapping/old/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/metaboliteIDmapping/old/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
 
 
 ```
@@ -2683,7 +3024,7 @@ Run `revdep_details(, "MethReg")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      Error: values must be length 1,
+      Error in `vapply(all_objects, nrow, integer(1L), USE.NAMES = FALSE)`: values must be length 1,
        but FUN(X[[2]]) result is length 0
       Backtrace:
           █
@@ -2698,17 +3039,17 @@ Run `revdep_details(, "MethReg")` for more info
        17. └─base::.handleSimpleError(...)
        18.   └─base:::h(simpleError(msg, call))
       
-      [ FAIL 3 | WARN 4 | SKIP 0 | PASS 163 ]
+      [ FAIL 3 | WARN 4 | SKIP 1 | PASS 163 ]
       Error: Test failures
       Execution halted
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.1Mb
+      installed size is  7.2Mb
       sub-directories of 1Mb or more:
-        R      2.6Mb
-        data   1.9Mb
+        R      2.7Mb
+        data   2.0Mb
         doc    2.3Mb
     ```
 
@@ -2750,9 +3091,9 @@ Run `revdep_details(, "methylKit")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.1Mb
+      installed size is  8.9Mb
       sub-directories of 1Mb or more:
-        R      3.0Mb
+        R      1.8Mb
         doc    1.4Mb
         libs   4.2Mb
     ```
@@ -2845,9 +3186,9 @@ Run `revdep_details(, "mirTarRnaSeq")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  8.2Mb
       sub-directories of 1Mb or more:
-        data   4.5Mb
+        data   7.3Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -2870,7 +3211,7 @@ Run `revdep_details(, "mirTarRnaSeq")` for more info
 * GitHub: https://github.com/saezlab/mistyR
 * Source code: https://github.com/cran/mistyR
 * Date/Publication: 2021-07-22
-* Number of recursive dependencies: 182
+* Number of recursive dependencies: 184
 
 Run `revdep_details(, "mistyR")` for more info
 
@@ -3041,7 +3382,7 @@ Run `revdep_details(, "nearBynding")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.1Mb
+      installed size is  9.0Mb
       sub-directories of 1Mb or more:
         extdata   8.1Mb
     ```
@@ -3120,7 +3461,7 @@ Run `revdep_details(, "netboost")` for more info
 * GitHub: https://github.com/NabarunD/NPMLEmix
 * Source code: https://github.com/cran/NPMLEmix
 * Date/Publication: 2020-12-06 05:50:02 UTC
-* Number of recursive dependencies: 142
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "NPMLEmix")` for more info
 
@@ -3158,12 +3499,12 @@ Run `revdep_details(, "oce")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.2Mb
+      installed size is 18.9Mb
       sub-directories of 1Mb or more:
-        R      3.9Mb
+        R      3.8Mb
         data   1.0Mb
         doc    2.0Mb
-        help   4.7Mb
+        help   4.5Mb
         libs   6.9Mb
     ```
 
@@ -3175,7 +3516,7 @@ Run `revdep_details(, "oce")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/openCyto
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 135
+* Number of recursive dependencies: 136
 
 Run `revdep_details(, "openCyto")` for more info
 
@@ -3193,11 +3534,11 @@ Run `revdep_details(, "openCyto")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.9Mb
+      installed size is  7.4Mb
       sub-directories of 1Mb or more:
-        R      1.5Mb
+        R      1.0Mb
         doc    2.6Mb
-        libs   3.5Mb
+        libs   3.6Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3235,10 +3576,10 @@ Run `revdep_details(, "openCyto")` for more info
 
 <details>
 
-* Version: 1.12.11
+* Version: 1.12.13
 * GitHub: https://github.com/Roleren/ORFik
 * Source code: https://github.com/cran/ORFik
-* Date/Publication: 2021-08-29
+* Date/Publication: 2021-09-30
 * Number of recursive dependencies: 157
 
 Run `revdep_details(, "ORFik")` for more info
@@ -3247,43 +3588,17 @@ Run `revdep_details(, "ORFik")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘ORFik-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: find_url_ebi
-    > ### Title: Locates and check if fastq files exists in ebi
-    > ### Aliases: find_url_ebi
-    > 
-    > ### ** Examples
-    > 
-    > # Test the 3 ways to get fastq files from EBI
-    ...
-    > # Both single end and paired end data
-    > 
-    > # Most common: SRR(3 first)/0(2 last)/whole
-    > # Single
-    > ORFik:::find_url_ebi("SRR10503056")
-    Finding optimal download urls from ebi...
-    Error in download.file(input, tmpFile, method = method, mode = "wb", quiet = !showProgress) : 
-      cannot open URL 'http://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRR10503056&result=read_run&fields=run_accession,fastq_ftp'
-    Calls: <Anonymous> -> find_url_ebi_safe
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.0Mb
+      installed size is 10.6Mb
       sub-directories of 1Mb or more:
+        R      1.8Mb
         doc    4.0Mb
         libs   2.9Mb
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
-    ':::' call which should be '::': ‘biomartr:::getGFF’
-      See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘GenomicFeatures:::.merge_seqinfo_and_infer_missing_seqlengths’
       ‘IRanges:::regroupBySupergroup’ ‘S4Vectors:::normarg_mcols’
@@ -3312,9 +3627,8 @@ Run `revdep_details(, "pagoda2")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.2Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
-        R      1.5Mb
         libs   7.5Mb
     ```
 
@@ -3344,7 +3658,7 @@ Run `revdep_details(, "paxtoolsr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 33.7Mb
+      installed size is 33.6Mb
       sub-directories of 1Mb or more:
         doc       1.9Mb
         extdata   6.9Mb
@@ -3377,7 +3691,7 @@ Run `revdep_details(, "PhenotypeSimulator")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         doc       1.5Mb
         extdata   3.1Mb
@@ -3405,6 +3719,45 @@ Run `revdep_details(, "PopGenReport")` for more info
     Package unavailable to check Rd xrefs: ‘ecodist’
     ```
 
+# portfolioBacktest
+
+<details>
+
+* Version: 0.3.0
+* GitHub: https://github.com/dppalomar/portfolioBacktest
+* Source code: https://github.com/cran/portfolioBacktest
+* Date/Publication: 2021-09-21 13:10:14 UTC
+* Number of recursive dependencies: 124
+
+Run `revdep_details(, "portfolioBacktest")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(portfolioBacktest)
+      > 
+      > test_check("portfolioBacktest")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure (test-stockDataDownload.R:9:3): the embedded SP500 symbols are the same ──
+      as.numeric(lapply(stockData, mean)) not equivalent to as.numeric(colMeans(stockDataDownload_check)).
+      1/6 mismatches
+      [6] 41.8 - 41.8 == 2.21e-06
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 67 ]
+      Error: Test failures
+      In addition: Warning message:
+      In for (elt in name) { :
+        closing unused connection 5 (https://query2.finance.yahoo.com/v7/finance/download/NOT_SYMBOL?period1=0&period2=2592000&interval=1d&events=history&crumb=TMfpVSWPhoB)
+      Execution halted
+    ```
+
 # pRecipe
 
 <details>
@@ -3424,7 +3777,7 @@ Run `revdep_details(, "pRecipe")` for more info
 *   checking whether package ‘pRecipe’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/scratch/henrik/R.utils/revdep/checks/pRecipe/new/pRecipe.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/pRecipe/new/pRecipe.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -3438,7 +3791,7 @@ Run `revdep_details(, "pRecipe")` for more info
 ** R
 ** inst
 ** byte-compile and prepare package for lazy loading
-sh: line 1: 43286 Aborted                 R_TESTS= '/software/c4/cbi/software/R-4.1.1-gcc8/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/RtmpqB0iAJ/filea8fe234e68eb'
+sh: line 1: 12865 Aborted                 R_TESTS= '/software/c4/cbi/software/R-4.1.1-gcc8/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/RtmpQzrCLg/file322b4ad8699c'
 Warning! ***HDF5 library version mismatched error***
 The HDF5 header files used to compile this application do not match
 the version used by the HDF5 library to which this application is linked.
@@ -3452,7 +3805,7 @@ the version used by the HDF5 library to which this application is linked.
     Optimization instrumentation: no
 Bye...
 ERROR: lazy loading failed for package ‘pRecipe’
-* removing ‘/scratch/henrik/R.utils/revdep/checks/pRecipe/new/pRecipe.Rcheck/pRecipe’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/pRecipe/new/pRecipe.Rcheck/pRecipe’
 
 
 ```
@@ -3465,7 +3818,7 @@ ERROR: lazy loading failed for package ‘pRecipe’
 ** R
 ** inst
 ** byte-compile and prepare package for lazy loading
-sh: line 1: 42626 Aborted                 R_TESTS= '/software/c4/cbi/software/R-4.1.1-gcc8/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/RtmpVitrcb/filea665568ff8e9'
+sh: line 1: 12803 Aborted                 R_TESTS= '/software/c4/cbi/software/R-4.1.1-gcc8/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmp2O2k6j/file31ed2c1e8614'
 Warning! ***HDF5 library version mismatched error***
 The HDF5 header files used to compile this application do not match
 the version used by the HDF5 library to which this application is linked.
@@ -3479,7 +3832,7 @@ the version used by the HDF5 library to which this application is linked.
     Optimization instrumentation: no
 Bye...
 ERROR: lazy loading failed for package ‘pRecipe’
-* removing ‘/scratch/henrik/R.utils/revdep/checks/pRecipe/old/pRecipe.Rcheck/pRecipe’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/pRecipe/old/pRecipe.Rcheck/pRecipe’
 
 
 ```
@@ -3510,14 +3863,6 @@ Run `revdep_details(, "primirTSS")` for more info
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.4Mb
-      sub-directories of 1Mb or more:
-        R         2.0Mb
-        extdata   3.1Mb
     ```
 
 # Prostar
@@ -3586,6 +3931,33 @@ Run `revdep_details(, "psichomics")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+        |                                        |   0% 
+        |========                                |  20% 
+        |================                        |  40% 
+        |========================                |  60% 
+        |================================        |  80% 
+        |========================================| 100% 
+        |                                        |   0% 
+    ...
+      Backtrace:
+          █
+       1. └─psichomics:::checkDiscardCvgPSIvalues(vals, samples = 20, events = 15) testDiscardLowCoveragePSIs.R:72:4
+       2.   └─testthat::expect_true(nrow(filter) == 0 || noNAs || is.na(unique(filter[toNA]))) testDiscardLowCoveragePSIs.R:50:4
+       3.     └─testthat::quasi_label(enquo(object), label, arg = "object")
+       4.       └─rlang::eval_bare(expr, quo_get_env(quo))
+      
+      [ FAIL 1 | WARN 0 | SKIP 1 | PASS 1460 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking examples ... ERROR
@@ -3608,43 +3980,17 @@ Run `revdep_details(, "psichomics")` for more info
     snapshotDate(): 2021-05-18
     Error: Corrupt Cache: index file
       See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      cache: /scratch/henrik/revdepcheck.extras/R.utils/revdep/cache/R/AnnotationHub
       filename: annotationhub.index.rds
     Execution halted
     ```
 
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        |                                        |   0% 
-        |========                                |  20% 
-        |================                        |  40% 
-        |========================                |  60% 
-        |================================        |  80% 
-        |========================================| 100% 
-        |                                        |   0% 
-    ...
-      Backtrace:
-          █
-       1. └─psichomics:::checkDiscardCvgPSIvalues(vals, samples = 4, events = 2) testDiscardLowCoveragePSIs.R:71:4
-       2.   └─testthat::expect_true(nrow(filter) == 0 || noNAs || is.na(unique(filter[toNA]))) testDiscardLowCoveragePSIs.R:50:4
-       3.     └─testthat::quasi_label(enquo(object), label, arg = "object")
-       4.       └─rlang::eval_bare(expr, quo_get_env(quo))
-      
-      [ FAIL 1 | WARN 0 | SKIP 1 | PASS 1458 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.8Mb
+      installed size is  9.5Mb
       sub-directories of 1Mb or more:
-        R      2.0Mb
+        R      1.8Mb
         doc    4.3Mb
-        help   1.2Mb
         libs   1.9Mb
     ```
 
@@ -3798,6 +4144,128 @@ Run `revdep_details(, "QGameTheory")` for more info
       'LazyData' is specified without a 'data' directory
     ```
 
+# R.devices
+
+<details>
+
+* Version: 2.17.0
+* GitHub: https://github.com/HenrikBengtsson/R.devices
+* Source code: https://github.com/cran/R.devices
+* Date/Publication: 2021-01-19 18:30:06 UTC
+* Number of recursive dependencies: 8
+
+Run `revdep_details(, "R.devices")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking whether package ‘R.devices’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/R.devices/new/R.devices.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘R.devices’ ...
+** package ‘R.devices’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘R.devices’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/R.devices/new/R.devices.Rcheck/R.devices’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘R.devices’ ...
+** package ‘R.devices’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (R.devices)
+
+
+```
+# R.rsp
+
+<details>
+
+* Version: 0.44.0
+* GitHub: https://github.com/HenrikBengtsson/R.rsp
+* Source code: https://github.com/cran/R.rsp
+* Date/Publication: 2020-07-09 16:20:02 UTC
+* Number of recursive dependencies: 18
+
+Run `revdep_details(, "R.rsp")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking whether package ‘R.rsp’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/R.rsp/new/R.rsp.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘R.rsp’ ...
+** package ‘R.rsp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** exec
+** inst
+** byte-compile and prepare package for lazy loading
+Error: object ‘inherits’ is not exported by 'namespace:R.utils'
+Execution halted
+ERROR: lazy loading failed for package ‘R.rsp’
+* removing ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/R.rsp/new/R.rsp.Rcheck/R.rsp’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘R.rsp’ ...
+** package ‘R.rsp’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** exec
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (R.rsp)
+
+
+```
 # rbiom
 
 <details>
@@ -3856,15 +4324,133 @@ Run `revdep_details(, "RcisTarget")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking examples ... ERROR
     ```
-    Package required but not available: ‘arrow’
+    Running examples in ‘RcisTarget-Ex.R’ failed
+    The error most likely occurred in:
     
+    > ### Name: addSignificantGenes
+    > ### Title: Add significant genes
+    > ### Aliases: addSignificantGenes addSignificantGenes,list-method
+    > ###   addSignificantGenes,character-method
+    > ###   addSignificantGenes,GeneSet-method
+    > ###   addSignificantGenes,GeneSetCollection-method getSignificantGenes
+    > ###   getSignificantGenes,list-method getSignificantGenes,character-method
+    ...
+    > motifEnrichmentTable_wGenes <- addSignificantGenes(motifEnrichmentTable,
+    +                                        genesFormat="geneList",
+    +                                        plotCurve=TRUE,
+    +                                        geneSets=geneLists,
+    +                                        rankings=motifRankings,
+    +                                        method="aprox")
+    Error in .getSignificantGenes(geneSet = geneSet, rankings = rankings,  : 
+      Package 'zoo' is required to calculate the aproximate RCC distributions.To install it, run:	 install.packages('zoo')
+    Calls: addSignificantGenes ... .addSignificantGenes -> lapply -> FUN -> .getSignificantGenes
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(RcisTarget)
+      > 
+      > test_check("RcisTarget")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error (test_RcisTarget.R:258:3): RcisTarget workflow tests ──────────────────
+      Error in `.getSignificantGenes(geneSet = geneSet, rankings = rankings, 
+    ...
+       3.     ├─RcisTarget::addSignificantGenes(...) test_RcisTarget.R:57:2
+       4.     └─RcisTarget::addSignificantGenes(...)
+       5.       └─RcisTarget:::.addSignificantGenes(...)
+       6.         └─base::lapply(...)
+       7.           └─RcisTarget:::FUN(X[[i]], ...)
+       8.             └─RcisTarget:::.getSignificantGenes(...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 45 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'getDbRegionsLoc'
+      ‘indexCol’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘RcisTarget_MainTutorial.Rmd’ using rmarkdown
+    Quitting from lines 305-309 (RcisTarget_MainTutorial.Rmd) 
+    Error: processing vignette 'RcisTarget_MainTutorial.Rmd' failed with diagnostics:
+    Package 'zoo' is required to calculate the aproximate RCC distributions.To install it, run:	 install.packages('zoo')
+    --- failed re-building ‘RcisTarget_MainTutorial.Rmd’
+    
+    --- re-building ‘Tutorial_AnalysisOfGenomicRegions.Rmd’ using rmarkdown
+    trying URL 'https://gbiomed.kuleuven.be/apps/lcb/i-cisTarget/examples/input_files/human/peaks/Encode_GATA1_peaks.bed'
+    ...
+    --- finished re-building ‘Tutorial_AnalysisOfGenomicRegions.Rmd’
+    
+    --- re-building ‘Tutorial_AnalysisWithBackground.Rmd’ using rmarkdown
+    --- finished re-building ‘Tutorial_AnalysisWithBackground.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘RcisTarget_MainTutorial.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
     Packages which this enhances but not available for checking:
       'doMC', 'doRNG', 'zoo'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 12.3Mb
+      sub-directories of 1Mb or more:
+        data   8.2Mb
+        doc    3.1Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘feather’
+      All declared Imports should be used.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    convertToTargetRegions: no visible global function definition for
+      ‘isClass’
+    convertToTargetRegions: no visible global function definition for
+      ‘findOverlaps’
+    convertToTargetRegions: no visible global function definition for
+      ‘pintersect’
+    convertToTargetRegions: no visible global function definition for
+      ‘subjectHits’
+    convertToTargetRegions: no visible global function definition for
+      ‘width’
+    convertToTargetRegions: no visible global function definition for
+      ‘elementMetadata’
+    Undefined global functions or variables:
+      elementMetadata findOverlaps isClass pintersect subjectHits width
+    Consider adding
+      importFrom("methods", "isClass")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
     ```
 
 # Rcwl
@@ -3881,23 +4467,23 @@ Run `revdep_details(, "Rcwl")` for more info
 
 </details>
 
-## In both
+## Newly broken
 
 *   checking tests ...
     ```
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
+    Last 50 lines of output:
       > library(Rcwl)
       Loading required package: yaml
       Loading required package: S4Vectors
       Loading required package: stats4
       Loading required package: BiocGenerics
       Loading required package: parallel
+      
     ...
-      ── Error (test_all.R:6:1): (code run outside of `test_that()`) ─────────────────
-      Error: error in running command
+          file.path(yml_outdir, paste0(yml_prefix, ".yml"))), stdout = stdout, 
+          stderr = stderr, ...)`: error in running command
       Backtrace:
           █
        1. └─Rcwl::runCWL(echo) test_all.R:6:0
@@ -3908,30 +4494,10 @@ Run `revdep_details(, "Rcwl")` for more info
       Execution halted
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘Rcwl.Rmd’ using rmarkdown
-    Loading required package: yaml
-    Loading required package: S4Vectors
-    Loading required package: stats4
-    Loading required package: BiocGenerics
-    Loading required package: parallel
+## In both
+
+*   R CMD check timed out
     
-    Attaching package: 'BiocGenerics'
-    
-    ...
-    Quitting from lines 122-127 (Rcwl.Rmd) 
-    Error: processing vignette 'Rcwl.Rmd' failed with diagnostics:
-    error in running command
-    --- failed re-building ‘Rcwl.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Rcwl.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -3945,7 +4511,7 @@ Run `revdep_details(, "Rcwl")` for more info
     ```
     Found the following notes/warnings:
       Non-staged installation was used
-    See ‘/scratch/henrik/R.utils/revdep/checks/Rcwl/new/Rcwl.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/Rcwl/new/Rcwl.Rcheck/00install.out’ for details.
     ```
 
 # RCy3
@@ -3974,7 +4540,7 @@ Run `revdep_details(, "RCy3")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 14.5Mb
       sub-directories of 1Mb or more:
         doc  11.7Mb
     ```
@@ -3997,9 +4563,9 @@ Run `revdep_details(, "rdwd")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  8.3Mb
       sub-directories of 1Mb or more:
-        R      6.6Mb
+        R      6.8Mb
         data   1.1Mb
     ```
 
@@ -4028,15 +4594,42 @@ Run `revdep_details(, "read.gt3x")` for more info
 
 <details>
 
-* Version: 1.2.5
+* Version: 1.2.6
 * GitHub: https://github.com/LieberInstitute/recount3
 * Source code: https://github.com/cran/recount3
-* Date/Publication: 2021-09-16
+* Date/Publication: 2021-09-28
 * Number of recursive dependencies: 193
 
 Run `revdep_details(, "recount3")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘recount3-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: create_rse
+    > ### Title: Create a recount3 RangedSummarizedExperiment gene or exon object
+    > ### Aliases: create_rse
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    2021-10-05 16:14:15 caching file sra.recount_pred.SRP009615.MD.gz.
+    2021-10-05 16:14:15 downloading and reading the feature information.
+    2021-10-05 16:14:16 caching file human.exon_sums.G026.gtf.gz.
+    adding rname 'http://duffel.rail.bio/recount3/human/annotations/exon_sums/human.exon_sums.G026.gtf.gz'
+    2021-10-05 16:14:50 downloading and reading the counts: 12 samples across 1299686 features.
+    2021-10-05 16:14:51 caching file sra.exon_sums.SRP009615.G026.gz.
+    Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+      no lines available in input
+    Calls: create_rse ... create_rse_manual -> read_counts -> read.delim -> read.table
+    Execution halted
+    ```
 
 ## In both
 
@@ -4066,6 +4659,31 @@ Run `revdep_details(, "recountmethylation")` for more info
 
 ## In both
 
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/test-getdb_h5se_test.R’ failed.
+    Complete output:
+      > testthat::context("Test HDF5-SummarizedExperiment download")
+      > 
+      > testthat::test_that("Database download and object properties", {
+      +     dldn <- tempdir()
+      +     h5se.dat <- recountmethylation::getdb_h5se_test(dfp = dldn)
+      +     testthat::expect_that(h5se.dat, testthat::is_a("GenomicRatioSet"))
+      +     testthat::expect_that(minfi::pData(h5se.dat), 
+    ...
+      
+      ── Error (???): Database download and object properties ────────────────────────
+      Error in `getAnnotationObject(object)`: cannot load annotation package IlluminaHumanMethylation450kanno.ilmn12.hg19
+      Backtrace:
+       1. testthat::expect_that(minfi::getAnnotation(h5se.dat), testthat::is_a("DFrame"))
+       6. minfi::getAnnotation(h5se.dat)
+       7. minfi::getAnnotationObject(object)
+      
+      Error: Test failed
+      Execution halted
+    ```
+
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error(s) in re-building vignettes:
@@ -4073,10 +4691,10 @@ Run `revdep_details(, "recountmethylation")` for more info
     Warning in eval(expr, envir, enclos) : NAs introduced by coercion
     Warning in cor.test.default(mdf$predage, mdf$chron.age, method = "spearman") :
       Cannot compute exact p-value with ties
-    The magick package is required to crop "/scratch/henrik/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-13-1.png" but not available.
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-13-1.png" but not available.
     `geom_smooth()` using formula 'y ~ x'
-    The magick package is required to crop "/scratch/henrik/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-14-1.png" but not available.
-    The magick package is required to crop "/scratch/henrik/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-21-1.png" but not available.
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-14-1.png" but not available.
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/recountmethylation/new/recountmethylation.Rcheck/vign_test/recountmethylation/vignettes/recountmethylation_data_analyses_files/figure-html/unnamed-chunk-21-1.png" but not available.
     Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
     ...
     Quitting from lines 280-282 (recountmethylation_users_guide.Rmd) 
@@ -4160,7 +4778,7 @@ Run `revdep_details(, "RforProteomics")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘MSnbase::plot’ by ‘graphics::plot’ when loading ‘RforProteomics’
-    See ‘/scratch/henrik/R.utils/revdep/checks/RforProteomics/new/RforProteomics.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/RforProteomics/new/RforProteomics.Rcheck/00install.out’ for details.
     ```
 
 *   checking re-building of vignette outputs ... WARNING
@@ -4176,9 +4794,9 @@ Run `revdep_details(, "RforProteomics")` for more info
     The following objects are masked from 'package:parallel':
     
     ...
-    File ./figures/isobar-fig.png not found in resource path
+    Quitting from lines 376-384 (RforProteomics.Rmd) 
     Error: processing vignette 'RforProteomics.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 99
+    invalid 'description' argument
     --- failed re-building ‘RforProteomics.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -4225,8 +4843,8 @@ Run `revdep_details(, "RNAseq123")` for more info
     Loading required package: stats4
     ...
     
-    The magick package is required to crop "/scratch/henrik/R.utils/revdep/checks/RNAseq123/new/RNAseq123.Rcheck/vign_test/RNAseq123/vignettes/limmaWorkflow_CHN_files/figure-html/heatmap-1.png" but not available.
-    The magick package is required to crop "/scratch/henrik/R.utils/revdep/checks/RNAseq123/new/RNAseq123.Rcheck/vign_test/RNAseq123/vignettes/limmaWorkflow_CHN_files/figure-html/barcodeplot-1.png" but not available.
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/RNAseq123/new/RNAseq123.Rcheck/vign_test/RNAseq123/vignettes/limmaWorkflow_CHN_files/figure-html/heatmap-1.png" but not available.
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/RNAseq123/new/RNAseq123.Rcheck/vign_test/RNAseq123/vignettes/limmaWorkflow_CHN_files/figure-html/barcodeplot-1.png" but not available.
     --- finished re-building ‘limmaWorkflow_CHN.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -4283,7 +4901,7 @@ Run `revdep_details(, "RRphylo")` for more info
     ```
       installed size is  5.6Mb
       sub-directories of 1Mb or more:
-        data   1.8Mb
+        data   2.0Mb
         doc    2.6Mb
     ```
 
@@ -4411,9 +5029,12 @@ Run `revdep_details(, "sigminer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.1Mb
+      installed size is  8.3Mb
       sub-directories of 1Mb or more:
+        R         1.8Mb
+        data      1.0Mb
         extdata   2.7Mb
+        help      1.2Mb
         libs      1.2Mb
     ```
 
@@ -4471,13 +5092,13 @@ Run `revdep_details(, "simpleSingleCell")` for more info
     > 
     > tmp <- tempfile(fileext=".Rmd")
     ...
-    processing file: file7ffa3d7adcc0.Rmd
+    processing file: file4f3336199f3a.Rmd
     label: unnamed-chunk-1 (with options) 
     List of 2
      $ echo   : logi FALSE
      $ results: chr "asis"
     
-    Quitting from lines 2-3 (file7ffa3d7adcc0.Rmd) 
+    Quitting from lines 2-3 (file4f3336199f3a.Rmd) 
     Error in loadNamespace(x) : there is no package called 'rebook'
     Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
     Execution halted
@@ -4522,7 +5143,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
         extdata   1.5Mb
     ```
@@ -4548,13 +5169,13 @@ Run `revdep_details(, "systemPipeShiny")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      create a new R6
-      ══ Skipped tests ═══════════════════════════════════════════════════════════════
       • On CRAN (1)
       • Skip on checks (1)
       
       ══ Failed tests ════════════════════════════════════════════════════════════════
       ── Error (test-01sps_core.R:27:1): (code run outside of `test_that()`) ─────────
+      <packageNotFoundError/error/condition>
+      Error in `loadNamespace(x)`: there is no package called 'markdown'
     ...
         9. │ │   └─rlang::dots_list(...)
        10. │ └─htmltools::includeMarkdown("https://raw.githubusercontent.com/lz100/systemPipeShiny/master/NEWS.md")
@@ -4587,7 +5208,7 @@ Run `revdep_details(, "systemPipeShiny")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.7Mb
+      installed size is  5.5Mb
       sub-directories of 1Mb or more:
         app   1.2Mb
         doc   3.4Mb
@@ -4623,7 +5244,7 @@ Run `revdep_details(, "TBSSurvival")` for more info
     > # Alloy - T7987: data extracted from Meeker and Escobar (1998), pp. 131.
     ...
     }
-    <bytecode: 0x62cabc0>
+    <bytecode: 0x5e79310>
     <environment: namespace:TBSSurvival>
      --- function search by body ---
     Function .tbs.survreg in namespace TBSSurvival has this body.
@@ -4648,7 +5269,7 @@ Run `revdep_details(, "TBSSurvival")` for more info
               aux <- .test.tbs(out$lambda, out$xi, out$beta, x, time, 
     ...
       }
-      <bytecode: 0xa6ffb30>
+      <bytecode: 0xb9e2958>
       <environment: namespace:TBSSurvival>
        --- function search by body ---
       Function .tbs.survreg in namespace TBSSurvival has this body.
@@ -4667,7 +5288,7 @@ Run `revdep_details(, "TBSSurvival")` for more info
     when running code in ‘TBSSurvival.Rnw’
       ...
     }
-    <bytecode: 0xb07c2e0>
+    <bytecode: 0xa07e418>
     <environment: namespace:TBSSurvival>
      --- function search by body ---
     Function .tbs.survreg in namespace TBSSurvival has this body.
@@ -4749,13 +5370,13 @@ Run `revdep_details(, "TCGAbiolinks")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
+        |=================================================================     |  93%
         |                                                                            
-        |================================================================      |  91%
+        |==================================================================    |  94%
         |                                                                            
-        |================================================================      |  92%
+        |==================================================================    |  95%
         |                                                                            
-        |=================================================================     |  92%
-        |                                                                            
+        |===================================================================   |  95%
     ...
         6. │     └─base::lapply(pieces, .fun, ...)
         7. │       └─TCGAbiolinks:::FUN(X[[i]], ...)
@@ -4764,7 +5385,7 @@ Run `revdep_details(, "TCGAbiolinks")` for more info
        10. │             └─base::eval(cols[[col]], .data, parent.frame())
        11. └─base::as.data.frame(.)
       
-      [ FAIL 2 | WARN 4 | SKIP 0 | PASS 95 ]
+      [ FAIL 2 | WARN 4 | SKIP 2 | PASS 95 ]
       Error: Test failures
       Execution halted
     ```
@@ -4795,16 +5416,16 @@ Run `revdep_details(, "TCGAbiolinks")` for more info
     -------------------
     Downloading data for project TCGA-ACC
     GDCdownload will download 7 files. A total of 160.95 KB
-    Downloading as: Sat_Sep_25_21_25_33_2021.tar.gz
+    Downloading as: Tue_Oct__5_16_55_47_2021.tar.gz
     New names:
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 103.1Mb
+      installed size is 105.5Mb
       sub-directories of 1Mb or more:
-        R      2.3Mb
-        data   6.3Mb
+        R      3.8Mb
+        data   7.3Mb
         doc   94.2Mb
     ```
 
@@ -5140,7 +5761,7 @@ Run `revdep_details(, "ViSEAGO")` for more info
     Found the following significant warnings:
       Note: possible error in 'listEnsembl(host = host, ': unused argument (host = host) 
       Warning: replacing previous import ‘data.table::set’ by ‘dendextend::set’ when loading ‘ViSEAGO’
-    See ‘/scratch/henrik/R.utils/revdep/checks/ViSEAGO/new/ViSEAGO.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/R.utils/revdep/checks/ViSEAGO/new/ViSEAGO.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -5167,7 +5788,7 @@ Run `revdep_details(, "ViSEAGO")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 17.1Mb
+      installed size is 16.8Mb
       sub-directories of 1Mb or more:
         doc       4.4Mb
         extdata  10.6Mb
@@ -5216,7 +5837,7 @@ Run `revdep_details(, "wrProteo")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.4Mb
+      installed size is  6.7Mb
       sub-directories of 1Mb or more:
         doc       3.3Mb
         extdata   2.4Mb
