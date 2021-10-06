@@ -32,6 +32,9 @@ NEW FEATURES:
  
 BUG FIXES:
 
+ * queryRCmdCheck() failed to identify when 'R CMD check' was running test
+   scripts located in a subfolder under tests/, e.g. tests/testthat/.
+
  * gcDLLs() produced a "In sprintf(...) : argument not used by format" warning
    when giving an error message on what DLLs it failed to unload.
  
