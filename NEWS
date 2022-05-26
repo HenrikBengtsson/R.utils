@@ -1,7 +1,11 @@
 Package: R.utils
 ================
 
-Version: 2.11.0-9000 [2021-10-04]
+Version: 2.11.0-9001 [2022-05-26]
+
+NEW FEATURES:
+
+ * Added support for lists and data frames to tempvar().
 
 DEPRECATE AND DEFUNCT:
 

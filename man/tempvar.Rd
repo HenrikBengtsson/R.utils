@@ -13,7 +13,7 @@
 \title{Gets a unique non-existing temporary variable name}
 
 \description{
- Gets a unique non-existing temporary variable name and optionally assigns it an initial value.
+ Gets a unique non-existing temporary variable name, and optionally assigns it an initial value.
 }
 
 \usage{
@@ -24,8 +24,10 @@ tempvar(prefix="var", value, envir=parent.frame(), inherits=FALSE)
   \item{prefix}{A \code{\link[base]{character}} string specifying the prefix of the
     temporary variable name.}
   \item{value}{(optional) If given, a variable with the temporary
-    name is assigned this value.}
-  \item{envir}{An \code{\link[base]{environment}} where the variable should exist.}
+    name is assigned this value.  Only works if \code{envir} is an
+    environment.}
+  \item{envir}{An \code{\link[base]{environment}}, a named \code{\link[base]{list}}, or a named \code{\link[base]{data.frame}},
+    whose elements the temporary variable should not clash with.}
   \item{inherits}{A \code{\link[base]{logical}} specifying whether the enclosing frames
     of the environment should be searched or not.}
 }
