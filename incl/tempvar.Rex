@@ -12,5 +12,5 @@ name <- tempvar(prefix=".hidden")
 print(name)
 
 # Get a temporary variable for a data.frame
-name <- tempvar(envir = mtcars)
+name <- tempvar(envir = datasets::mtcars)
 print(name)

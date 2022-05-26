@@ -9,11 +9,11 @@ NEW FEATURES:
 
 DEPRECATE AND DEFUNCT:
 
- * Removed Asserts$inherits() and S3 generic inherits(), which have been
-   defunct since R.utils 2.9.0. Use Asserts$inheritsFrom() instead.
+ * Remove defunct Asserts$inherits() and S3 generic inherits(). Use
+   Asserts$inheritsFrom() instead.
 
- * Remove defunct argument 'substitute' from withCapture() - use argument
-   'replace' instead.
+ * Remove defunct argument 'substitute' from withCapture(). Use
+   argument 'replace' instead.
 
 
 Version: 2.11.0 [2021-09-25]

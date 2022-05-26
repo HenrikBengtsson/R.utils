@@ -9,6 +9,7 @@ Imports:
   tools,
   R.methodsS3 (>= 1.8.1)
 Suggests:
+  datasets,
   digest (>= 0.6.10)
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
