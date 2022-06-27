@@ -91,7 +91,7 @@ BUG FIXES:
  
  * fileAccess(..., mode = 2) would update .Random.seed.
 
- * fileAccess(path, mode = 2) could end up in an end less loop if the 'path'
+ * fileAccess(path, mode = 2) could end up in an endless loop if the 'path'
    folder contained all files of 'a, b, ..., z, A, B, ... Z'.
  
 
