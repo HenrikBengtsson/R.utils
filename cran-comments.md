@@ -6,6 +6,10 @@ I've verified that this submission does not cause issues for the 248 reverse pac
 
 Thanks in advance
 
+# Take 2
+
+Shaved off 1.0 seconds from example("withTimeout", package = "R.utils") to lower the risk of running beyond five seconds, which happened with the previous submission.
+
 
 ## Notes not sent to CRAN
 
