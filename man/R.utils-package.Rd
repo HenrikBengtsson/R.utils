@@ -78,7 +78,6 @@ Standard R Code, Proceedings of the 3rd International Workshop on Distributed
 Statistical Computing (DSC 2003), ISSN 1609-395X, Hornik, K.; Leisch, F. & Zeileis,
 A. (ed.), 2003
 }
-\emph{}
 
 }
 

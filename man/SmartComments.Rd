@@ -59,17 +59,17 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 }
 
 \details{
- A "smart" source-code comment is an \R comment, which start with a '\#',
+ A "smart" source-code comment is an \R comment, which start with a '#',
  but is followed by a single letter, then a single symbol and a second
- '\#' and then an option character string, and there must not be any code
+ '#' and then an option character string, and there must not be any code
  before the comment on the same line. In summary, a smart comment line
- has format: \code{<white spaces>\#<letter><symbol>\# <some text>}.
+ has format: \code{<white spaces>#<letter><symbol># <some text>}.
 
  Example code with two smart comments (VComments):
  \preformatted{
    x <- 2
-   \#V1\# threshold=-1
-   \#Vc\# A v-comment log message
+   #V1# threshold=-1
+   #Vc# A v-comment log message
    cat("Hello world")
  }
  which after compilation becomes

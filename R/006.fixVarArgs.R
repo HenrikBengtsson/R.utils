@@ -10,12 +10,6 @@ setMethodS3("getOption", "default", function(...) {
   base::getOption(...)
 })
 
-# USED TO DO: inherits <- appendVarArgs(inherits)
-inherits <- function(...) UseMethod("inherits")
-setMethodS3("inherits", "default", function(...) {
-  base::inherits(...)
-})
-
 # USED TO DO: isOpen <- appendVarArgs(isOpen)
 isOpen <- function(...) UseMethod("isOpen")
 setMethodS3("isOpen", "default", function(...) {

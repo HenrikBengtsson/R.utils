@@ -113,7 +113,7 @@ res <- NULL
 tryCatch({
   res <- withTimeout({
     foo()
-  }, timeout = 1.08)
+  }, timeout = 0.75)
 }, TimeoutException = function(ex) {
   message("Timeout. Skipping.")
 })
@@ -125,13 +125,13 @@ tryCatch({
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
   foo()
-}, timeout = 1.08, onTimeout = "warning")
+}, timeout = 0.75, onTimeout = "warning")
 
 
 # The same using an expression object
 expr <- quote(foo())
 res <- withTimeout(expr, substitute = FALSE,
-                   timeout = 1.08, onTimeout = "warning")
+                   timeout = 0.75, onTimeout = "warning")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -140,7 +140,7 @@ res <- withTimeout(expr, substitute = FALSE,
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- withTimeout({
   foo()
-}, timeout = 1.08, onTimeout = "silent")
+}, timeout = 0.75, onTimeout = "silent")
 }
 
 \seealso{

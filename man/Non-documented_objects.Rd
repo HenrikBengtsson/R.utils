@@ -31,8 +31,6 @@
 \alias{getReadablePathname}
 \alias{getReadablePathnames}
 \alias{getWritablePathname}
-\alias{inherits}
-\alias{inherits.default}
 \alias{getReadablePath}
 \alias{getRegularExpression}
 \alias{getWritablePath}

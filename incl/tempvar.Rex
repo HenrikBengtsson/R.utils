@@ -10,3 +10,7 @@ str(get(name))
 # Get a temporary variable with custom prefix
 name <- tempvar(prefix=".hidden")
 print(name)
+
+# Get a temporary variable for a data.frame
+name <- tempvar(envir = datasets::mtcars)
+print(name)
