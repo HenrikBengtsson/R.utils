@@ -1,6 +1,10 @@
 # Version (development version)
 
- * ...
+## Bug Fixes()
+
+ * `parseRepos()` would produce `"Error in get(".read_repositories",
+   envir = ns) : object '.read_repositories' not found"` in 
+   R-devel (>= rev 83148).
 
 
 # Version 2.12.0 [2022-06-27]
