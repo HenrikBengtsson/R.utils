@@ -2,8 +2,9 @@
 
 ## Documentation
 
- * Documented the limitation that `withTimeout()` fail to detect the
-   timeout error if the language is temporarily switched during evaluation.
+ * Documented the limitation that `withTimeout()` may fail to detect
+   the timeout error if the language is temporarily switched during
+   evaluation.
 
 ## Bug Fixes()
 

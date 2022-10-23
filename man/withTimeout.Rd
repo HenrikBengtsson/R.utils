@@ -110,6 +110,11 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  message for timeout errors.  Because of this, \code{withTimeout()} fails
  to detect the timeout error (and therefore also deescalate it to a
  warning in this example).
+
+ \emph{Comment}: This appears to only fail on MS Windows and macOS,
+ whereas on Linux, \code{withTimeout()} appears to work, but it is
+ unknown why there is a difference between operating systems in this
+ case.
 }
 
 \author{Henrik Bengtsson}
