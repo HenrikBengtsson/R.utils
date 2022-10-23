@@ -39,10 +39,11 @@ assertEqual(path, "..")
 path <- filePath("C:/foo/..")
 assertEqual(path, "C:/")
 
-## BUG: https://github.com/HenrikBengtsson/R.utils/issues/119
-res <- tryCatch({
-  path <- filePath("/tmp/../../..", removeUps = TRUE)
-}, error = identity)
-stopifnot(inherits(res, "error"))
+path <- filePath("/tmp/../../..")
+assertEqual(path, "/../..")
+
+path <- filePath("C:/../../..")
+assertEqual(path, "C:/../../..")
+
 
 
