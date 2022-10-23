@@ -58,7 +58,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            any::rcmdcheck
+            any::V8        ## needed by R CMD check on R (>= 4.3.0)
           needs: check
 
       - name: Session info
