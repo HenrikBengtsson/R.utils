@@ -1,5 +1,10 @@
 # Version (development version)
 
+## Documentation
+
+ * Documented the limitation that `withTimeout()` fail to detect the
+   timeout error if the language is temporarily switched during evaluation.
+
 ## Bug Fixes()
 
  * `withTimeout()` did not return NULL on timeouts when `onTimeout`

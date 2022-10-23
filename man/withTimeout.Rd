@@ -52,7 +52,7 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  or preemptively due to a timeout or an error.
 }
 
-\section{Non-supported cases}{
+\section{Known limitation: Not everything can be timed out}{
  In order to understand when this function works and when it does not,
  it is useful to know that it utilizes R's built-in time-out mechanism,
  which sets the limits on what is possible and not.
@@ -87,6 +87,29 @@ withTimeout(expr, substitute=TRUE, envir=parent.frame(), timeout, cpu=timeout,
  (*) Note that on Unix and macOS, \code{Sys.sleep(time)} will signal a
      timeout error only \emph{after} \code{time} seconds passed,
      regardless of \code{timeout} limit (< \code{time}).
+}
+
+\section{Known limitation: May fail when temporarily switching language}{
+ \code{withTimeout()} does \emph{not} handle the case when the expression
+ evaluated \emph{temporarily} switches the language used by R, e.g.
+ assume we run in a non-French locale and call:
+
+ \preformatted{
+ withTimeout({
+   olang <- Sys.getenv("LANGUAGE")
+   on.exit(Sys.setenv(LANGUAGE=olang))
+   Sys.setenv(LANGUAGE="fr")
+   repeat Sys.sleep(0.1)
+ }, timeout = 1.0, onTimeout = "warning")
+ }
+
+ In this case, the error message produced by \code{\link[base]{setTimeLimit}}() is
+ in French, i.e. `la limite de temps est atteinte`.  However, when
+ \code{withTimeout()} inspects this message, it can \emph{not} know that
+ French was used, and will therefore not check against the French template
+ message for timeout errors.  Because of this, \code{withTimeout()} fails
+ to detect the timeout error (and therefore also deescalate it to a
+ warning in this example).
 }
 
 \author{Henrik Bengtsson}
