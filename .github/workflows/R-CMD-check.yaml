@@ -10,7 +10,7 @@ jobs:
 
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) ${{ matrix.config.label }}
 
     strategy:
       fail-fast: false
@@ -58,7 +58,6 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          working-directory: r
           extra-packages: any::rcmdcheck
           needs: check
 
@@ -74,7 +73,6 @@ jobs:
         if: runner.os != 'Windows'
         run: |
           rcmdcheck::rcmdcheck(
-            path = "r",
             args = "--as-cran",
             error_on = "note",
             check_dir = "check"
