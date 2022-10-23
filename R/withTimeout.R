@@ -131,7 +131,9 @@ withTimeout <- function(expr, substitute=TRUE, envir=parent.frame(), timeout, cp
         throw(ex)
       } else if (onTimeout == "warning") {
         warning(getMessage(ex))
+        NULL
       } else if (onTimeout == "silent") {
+        NULL
       }
     } else {
       # Rethrow error

@@ -2,6 +2,9 @@
 
 ## Bug Fixes()
 
+ * `withTimeout()` did not return NULL on timeouts when `onTimeout`
+   was `"warning"` or `"silent"`.
+ 
  * `parseRepos()` would produce `"Error in get(".read_repositories",
    envir = ns) : object '.read_repositories' not found"` in 
    R-devel (>= rev 83148).
