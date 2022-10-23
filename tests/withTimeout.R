@@ -194,6 +194,9 @@ res <- tryCatch({
 }, warning=function(ex) {
   cat("Timeout warning (", ex$message, "). Skipping.\n", sep="")
   TRUE
+}, error=function(ex) {
+  warning("withTimeout() fails to detect timeouts when the language is temporarily switched")
+  FALSE
 })
 print(res)
 
