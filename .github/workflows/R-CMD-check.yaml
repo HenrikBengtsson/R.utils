@@ -26,6 +26,8 @@ jobs:
           - {os: ubuntu-20.04,   r: 'oldrel-1' }
           - {os: ubuntu-20.04,   r: 'oldrel-2' }
           - {os: ubuntu-20.04,   r: '3.4'      }
+          - {os: windows-latest, r: 'release'  , language: fr,    label: fr    }
+          - {os: macOS-latest,   r: 'release'  , language: fr,    label: fr    }
           - {os: ubuntu-20.04,   r: 'release'  , language: ko,    label: ko    }
           - {os: ubuntu-20.04,   r: 'release'  , language: zh_CN, label: zh_CN }
           - {os: ubuntu-20.04,   r: 'release'  , language: zh_TW, label: zh_TW }

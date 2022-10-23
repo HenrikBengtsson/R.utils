@@ -183,5 +183,20 @@ local({
 })
 
 
+message("withTimeout() - switching language inside function")
+res <- tryCatch({
+  res <- withTimeout({
+    olang <- Sys.getenv("LANGUAGE")
+    on.exit(Sys.setenv(LANGUAGE=olang))
+    Sys.setenv(LANGUAGE="fr")
+    foo()
+  }, timeout=1.08, onTimeout="warning")
+}, warning=function(ex) {
+  cat("Timeout warning (", ex$message, "). Skipping.\n", sep="")
+  TRUE
+})
+stopifnot(isTRUE(res))
+
+
 # Undo
 options(oopts)
