@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9002</span>
       </span>
     </div>
 
@@ -103,8 +103,8 @@
  infinitely long upon exiting, regardless whether it returns normally
  or preemptively due to a timeout or an error.</p>
     </div>
-    <div id="non-supported-cases">
-    <h2>Non-supported cases</h2>
+    <div id="known-limitation-not-everything-can-be-timed-out">
+    <h2>Known limitation: Not everything can be timed out</h2>
     <p>In order to understand when this function works and when it does not,
  it is useful to know that it utilizes R's built-in time-out mechanism,
  which sets the limits on what is possible and not.
@@ -133,6 +133,28 @@
 <p>(*) Note that on Unix and macOS, <code>Sys.sleep(time)</code> will signal a
      timeout error only <em>after</em> <code>time</code> seconds passed,
      regardless of <code>timeout</code> limit (&lt; <code>time</code>).</p>
+    </div>
+    <div id="known-limitation-may-fail-when-temporarily-switching-language">
+    <h2>Known limitation: May fail when temporarily switching language</h2>
+    <p><code>withTimeout()</code> does <em>not</em> handle the case when the expression
+ evaluated <em>temporarily</em> switches the language used by R, e.g.
+ assume we run in a non-French locale and call:</p>
+<p></p><div class="sourceCode"><pre><code><span></span>
+<span> <span class="fu"><a href="../reference/withTimeout.html">withTimeout</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>   <span class="va">olang</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"LANGUAGE"</span><span class="op">)</span></span>
+<span>   <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>LANGUAGE<span class="op">=</span><span class="va">olang</span><span class="op">)</span><span class="op">)</span></span>
+<span>   <span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>LANGUAGE<span class="op">=</span><span class="st">"fr"</span><span class="op">)</span></span>
+<span>   <span class="kw">repeat</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span> <span class="op">}</span>, timeout <span class="op">=</span> <span class="fl">1.0</span>, onTimeout <span class="op">=</span> <span class="st">"warning"</span><span class="op">)</span></span>
+<span> </span></code></pre></div>
+
+<p>In this case, the error message produced by <code><a href="https://rdrr.io/r/base/setTimeLimit.html" class="external-link">setTimeLimit</a></code>() is
+ in French, i.e. `la limite de temps est atteinte`.  However, when
+ <code>withTimeout()</code> inspects this message, it can <em>not</em> know that
+ French was used, and will therefore not check against the French template
+ message for timeout errors.  Because of this, <code>withTimeout()</code> fails
+ to detect the timeout error (and therefore also deescalate it to a
+ warning in this example).</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -209,7 +231,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>reached elapsed time limit [cpu=0.75s, elapsed=0.75s]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -227,6 +248,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>reached elapsed time limit [cpu=0.75s, elapsed=0.75s]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -248,6 +271,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
 </code></pre></div>
     </div>
   </div>
@@ -262,7 +286,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>
