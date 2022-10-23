@@ -56,11 +56,12 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      ## Note, R CMD check on R (>= 4.3.0) needs V8
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
             any::rcmdcheck
-            any::V8        ## needed by R CMD check on R (>= 4.3.0)
+            any::V8
           needs: check
 
       - name: Session info
