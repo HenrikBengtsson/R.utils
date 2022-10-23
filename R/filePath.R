@@ -152,7 +152,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
     # Remove ".." and its parent by reading from the left(!)
     pos <- 2L
-    while (pos <= length(components)) {
+    while (pos >= 2L && pos <= length(components)) {
       if (components[pos] == ".." && components[pos-1L] != "..") {
         # Remove the ".." and its parent
         if (verbose) {
@@ -165,6 +165,10 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       }
     }
 
+    if (length(components) == 1L && components == "..") {
+      stop("Non-existing, or invalid, path: ", sQuote(pathname))
+    }
+    
     pathname <- components
     if (!split) {
       pathname <- paste(pathname, collapse=fsep)

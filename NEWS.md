@@ -8,6 +8,12 @@
 
 ## Bug Fixes()
 
+ * `filePath()` could produce `Error in if (components[pos] == ".." &&
+   components[pos - 1L] != "..") { : missing value where TRUE/FALSE
+   needed` when there were too many `..` components in the specified
+   path.  Now it gives a more informative error message,
+   e.g. `Non-existing, or invalid, path: '/tmp/../../..'`.
+ 
  * `withTimeout()` did not return NULL on timeouts when `onTimeout`
    was `"warning"` or `"silent"`.
  
