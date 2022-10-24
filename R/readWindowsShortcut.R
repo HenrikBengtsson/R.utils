@@ -38,7 +38,7 @@
 #   [2] Hager J, \emph{The Windows Shortcut File Format}
 #       (as reverse-engineered by), version 1.0.\cr
 #   [3] Microsoft Developer Network, \emph{IShellLink Interface}, 2018.
-#       \url{https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinka} \cr
+#       \url{https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinka} \cr
 #   [4] Andrews D, \emph{Parsing Windows Shortcuts (lnk) files in java},
 #       comp.lang.java.help, Aug 1999.
 #       \url{https://groups.google.com/d/topic/comp.lang.java.help/ouFHsH1UgKI} \cr

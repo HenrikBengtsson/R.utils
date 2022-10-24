@@ -49,8 +49,8 @@
 \author{Henrik Bengtsson}
 
 \references{
- [1] \emph{How to use Ghostscript}, Ghostscript, 2013
-     \url{https://ghostscript.com/doc/current/Use.htm}\cr
+ [1] \emph{How to use Ghostscript}, Ghostscript, 2022
+     \url{https://ghostscript.com/docs/9.55.0/Use.htm}\cr
  [2] \emph{Environment variable}, Wikipedia, 2013.
      \url{https://en.wikipedia.org/wiki/Environment_variable}\cr
  [3] \emph{Environment.SpecialFolder Enumeration},

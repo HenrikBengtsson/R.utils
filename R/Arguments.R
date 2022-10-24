@@ -67,7 +67,7 @@ setConstructorS3("Arguments", function(...) {
 #
 # \references{
 #   [1] Microsoft, \emph{Naming Files, Paths, and Namespaces}, 2018.
-#       \url{https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file}.
+#       \url{https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file}.
 # }
 #
 # @author
