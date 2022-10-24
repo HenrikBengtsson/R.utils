@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9005</span>
       </span>
     </div>
 
@@ -51,11 +51,13 @@
 <h2 class="page-header" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
 <h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
-<ul><li>Documented the limitation that <code><a href="../reference/withTimeout.html">withTimeout()</a></code> fail to detect the timeout error if the language is temporarily switched during evaluation.</li>
+<ul><li><p>Documented the limitation that <code><a href="../reference/withTimeout.html">withTimeout()</a></code> may fail to detect the timeout error if the language is temporarily switched during evaluation.</p></li>
+<li><p>Updated moved and broken URLs in help pages.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug Fixes()<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
-<ul><li><p><code><a href="../reference/withTimeout.html">withTimeout()</a></code> did not return NULL on timeouts when <code>onTimeout</code> was <code>"warning"</code> or <code>"silent"</code>.</p></li>
+<ul><li><p><code><a href="../reference/filePath.html">filePath()</a></code> could produce <code>Error in if (components[pos] == ".." &amp;&amp;    components[pos - 1L] != "..") { : missing value where TRUE/FALSE    needed</code> when there were too many <code>..</code> components in the specified path, e.g. <code>filePath("C:/foo/../bar/../..")</code>. Now it returns the maximum pruned path, e.g. <code>"C:/.."</code>.</p></li>
+<li><p><code><a href="../reference/withTimeout.html">withTimeout()</a></code> did not return NULL on timeouts when <code>onTimeout</code> was <code>"warning"</code> or <code>"silent"</code>.</p></li>
 <li><p><code><a href="../reference/useRepos.html">parseRepos()</a></code> would produce <code>"Error in get(".read_repositories",    envir = ns) : object '.read_repositories' not found"</code> in R-devel (&gt;= rev 83148).</p></li>
 </ul></div>
 </div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9005</span>
       </span>
     </div>
 
@@ -155,6 +155,10 @@
  message for timeout errors.  Because of this, <code>withTimeout()</code> fails
  to detect the timeout error (and therefore also deescalate it to a
  warning in this example).</p>
+<p><em>Comment</em>: This appears to only fail on MS Windows and macOS,
+ whereas on Linux, <code>withTimeout()</code> appears to work, but it is
+ unknown why there is a difference between operating systems in this
+ case.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -210,7 +214,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Timeout. Skipping.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -231,6 +234,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>reached elapsed time limit [cpu=0.75s, elapsed=0.75s]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -249,7 +253,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>reached elapsed time limit [cpu=0.75s, elapsed=0.75s]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -271,7 +274,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
 </code></pre></div>
     </div>
   </div>

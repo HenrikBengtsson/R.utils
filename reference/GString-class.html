@@ -27,7 +27,7 @@ extends character
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9005</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ extends character<br></p>
     <div id="fields-and-methods">
     <h2>Fields and Methods</h2>
     <p><b>Methods:</b><br></p><table class="table table"><tr><td></td><td><code><a href="as.character.GString.html">as.character</a></code></td><td>Gets the processed character string.</td></tr><tr><td></td><td><code><a href="evaluate.GString.html">evaluate</a></code></td><td>Parses and evaluates a GString.</td></tr><tr><td></td><td><code>gcat</code></td><td>-</td></tr><tr><td></td><td><code><a href="getBuiltinDate.GString.html">getBuiltinDate</a></code></td><td>Gets the current date.</td></tr><tr><td></td><td><code><a href="getBuiltinDatetime.GString.html">getBuiltinDatetime</a></code></td><td>Gets the current date and time.</td></tr><tr><td></td><td><code><a href="getBuiltinHostname.GString.html">getBuiltinHostname</a></code></td><td>Gets the hostname of the system running R.</td></tr><tr><td></td><td><code><a href="getBuiltinOs.GString.html">getBuiltinOs</a></code></td><td>Gets the operating system of the running machine.</td></tr><tr><td></td><td><code><a href="getBuiltinPid.GString.html">getBuiltinPid</a></code></td><td>Gets the process id of the current R session.</td></tr><tr><td></td><td><code><a href="getBuiltinRhome.GString.html">getBuiltinRhome</a></code></td><td>Gets the path where R is installed.</td></tr><tr><td></td><td><code><a href="getBuiltinRversion.GString.html">getBuiltinRversion</a></code></td><td>Gets the current R version.</td></tr><tr><td></td><td><code><a href="getBuiltinTime.GString.html">getBuiltinTime</a></code></td><td>Gets the current time.</td></tr><tr><td></td><td><code><a href="getBuiltinUsername.GString.html">getBuiltinUsername</a></code></td><td>Gets the username of the user running R.</td></tr><tr><td></td><td><code><a href="getRaw.GString.html">getRaw</a></code></td><td>Gets the unprocessed GString.</td></tr><tr><td></td><td><code><a href="getVariableValue.GString.html">getVariableValue</a></code></td><td>Gets a variable value given a name and attributes.</td></tr><tr><td></td><td><code>gstring</code></td><td>-</td></tr><tr><td></td><td><code><a href="parse.GString.html">parse</a></code></td><td>Parses a GString.</td></tr><tr><td></td><td><code><a href="print.GString.html">print</a></code></td><td>Prints the processed GString.</td></tr></table><p><b>Methods inherited from character</b>:<br>
-Ops,nonStructure,vector-method, Ops,structure,vector-method, Ops,vector,nonStructure-method, Ops,vector,structure-method, all.equal, as.Date, as.POSIXlt, as.data.frame, as.raster, coerce,ANY,character-method, coerce,character,SuperClassMethod-method, coerce,character,signature-method, coerce&lt;-,ObjectsWithPackage,character-method, coerce&lt;-,signature,character-method, downloadFile, formula, getDLLRegisteredRoutines, isOpen, toAsciiRegExprPattern, toFileListTree, toLatex, uses</p>
+Ops,nonStructure,vector-method, Ops,structure,vector-method, Ops,vector,nonStructure-method, Ops,vector,structure-method, all.equal, as.Date, as.POSIXlt, as.data.frame, as.raster, coerce,ANY,character-method, coerce,character,SuperClassMethod-method, coerce,character,signature-method, coerce&lt;-,ObjectsWithPackage,character-method, coerce&lt;-,signature,character-method, downloadFile, formula, getDLLRegisteredRoutines, isOpen, toAsciiRegExprPattern, toFileListTree, uses</p>
 
 
     </div>
@@ -138,7 +138,7 @@ Ops,nonStructure,vector-method, Ops,structure,vector-method, Ops,vector,nonStruc
 <span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">GString</span><span class="op">(</span><span class="st">"Hello ${username} on host ${hostname} running "</span>,</span></span>
 <span class="r-in"><span><span class="st">"R v${rversion} in process #${pid} on ${os}. R is installed in ${rhome}."</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hello hb on host hb-x1 running R v4.2.1 in process #3560506 on unix. R is installed in /home/hb/shared/software/CBI/R-4.2.1-gcc9/lib/R.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hello hb on host hb-x1 running R v4.2.1 in process #3740355 on unix. R is installed in /home/hb/shared/software/CBI/R-4.2.1-gcc9/lib/R.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Other built-in variables/functions...</span></span></span>
@@ -147,7 +147,7 @@ Ops,nonStructure,vector-method, Ops,structure,vector-method, Ops,vector,nonStruc
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">GString</span><span class="op">(</span><span class="st">"Current date: $[format='%d/%m/%y']{date}\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Current date: $[format='%d/%m/%y']{date}</span>
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">GString</span><span class="op">(</span><span class="st">"Current time: ${time}\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Current time: 13:26:51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Current time: 18:25:29</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
@@ -156,7 +156,7 @@ Ops,nonStructure,vector-method, Ops,structure,vector-method, Ops,vector,nonStruc
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">GString</span><span class="op">(</span><span class="st">"Simple calculation: 1+1=${`1+1`}\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple calculation: 1+1=2</span>
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu">GString</span><span class="op">(</span><span class="st">"Alternative current date: ${`date()`}\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative current date: Sun Oct 23 13:26:51 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative current date: Sun Oct 23 18:25:29 2022</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>

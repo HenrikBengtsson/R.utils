@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.0-9005</span>
       </span>
     </div>
 
@@ -103,14 +103,14 @@
 <span class="r-in"><span><span class="co"># 2. Current time stamp</span></span></span>
 <span class="r-in"><span><span class="va">ta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.info</a></span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span><span class="op">$</span><span class="va">mtime</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ta</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-10-23 13:27:36 PDT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-10-23 18:26:40 PDT"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 3. Update time stamp</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">1.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">touchFile</span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.info</a></span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span><span class="op">$</span><span class="va">mtime</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">tb</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-10-23 13:27:38 PDT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-10-23 18:26:41 PDT"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 4. Verify that the timestamp got updated</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">tb</span> <span class="op">&gt;</span> <span class="va">ta</span><span class="op">)</span></span></span>
