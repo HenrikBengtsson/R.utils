@@ -31,10 +31,13 @@ The package has been verified using `R CMD check --as-cran` on:
 R-hub checks:
 
 ```r
-res <- rhub::check(platform = c(
-  "debian-clang-devel", "debian-gcc-patched", "linux-x86_64-centos-epel",
-  "macos-highsierra-release-cran", "macos-m1-bigsur-release",
-  "windows-x86_64-release"))
+res <- rhub::check(platforms = c(
+  "debian-clang-devel", 
+  "debian-gcc-patched", 
+  "fedora-gcc-devel",
+  "macos-highsierra-release-cran",
+  "windows-x86_64-release"
+))
 print(res)
 ```
 

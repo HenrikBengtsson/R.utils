@@ -5,6 +5,8 @@
  * Documented the limitation that `withTimeout()` may fail to detect
    the timeout error if the language is temporarily switched during
    evaluation.
+   
+ * Updated moved and broken URLs in help pages.
 
 ## Bug Fixes()
 
