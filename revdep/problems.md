@@ -353,25 +353,6 @@ Run `revdep_details(, "BANDITS")` for more info
       p x
     ```
 
-# BgeeDB
-
-<details>
-
-* Version: 2.22.3
-* GitHub: https://github.com/BgeeDB/BgeeDB_R
-* Source code: https://github.com/cran/BgeeDB
-* Date/Publication: 2022-06-28
-* Number of recursive dependencies: 95
-
-Run `revdep_details(, "BgeeDB")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-
 # bigsnpr
 
 <details>
@@ -399,6 +380,59 @@ Run `revdep_details(, "bigsnpr")` for more info
     ```
     Namespace in Imports field not imported from: ‘runonce’
       All declared Imports should be used.
+    ```
+
+# biscuiteer
+
+<details>
+
+* Version: 1.10.0
+* GitHub: https://github.com/trichelab/biscuiteer
+* Source code: https://github.com/cran/biscuiteer
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 216
+
+Run `revdep_details(, "biscuiteer")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘biscuiteer.Rmd’ using rmarkdown
+    Error: processing vignette 'biscuiteer.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘biscuiteer.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘biscuiteer.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking whether package ‘biscuiteer’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.8Mb
+      sub-directories of 1Mb or more:
+        data      1.1Mb
+        extdata   3.4Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘QDNAseq:::expectedVariance’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # borealis
@@ -583,6 +617,47 @@ Run `revdep_details(, "cifti")` for more info
 *   checking LazyData ... NOTE
     ```
       'LazyData' is specified without a 'data' directory
+    ```
+
+# circRNAprofiler
+
+<details>
+
+* Version: 1.10.0
+* GitHub: https://github.com/Aufiero/circRNAprofiler
+* Source code: https://github.com/cran/circRNAprofiler
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 228
+
+Run `revdep_details(, "circRNAprofiler")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘circRNAprofiler-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: liftBSJcoords
+    > ### Title: LiftOver back-spliced junction coordinates
+    > ### Aliases: liftBSJcoords
+    > 
+    > ### ** Examples
+    > 
+    > # Load a data frame containing detected back-spliced junctions
+    ...
+    > data("mergedBSJunctions")
+    > 
+    > # LiftOver the first 10 back-spliced junction coordinates
+    > liftedBSJcoords <- liftBSJcoords(mergedBSJunctions[1:10,], map = "hg19ToMm9")
+    snapshotDate(): 2022-04-25
+    Error: Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      filename: annotationhub.index.rds
+    Execution halted
     ```
 
 # civis
@@ -831,12 +906,12 @@ Run `revdep_details(, "COTAN")` for more info
     > ### ** Examples
     > 
     ...
-    
-    Please update conda by running
-    
-        $ conda update -n base -c defaults conda
-    
-    
+    + cond = "test")
+    [1] "Initializing S4 object"
+    [1] "Condition test"
+    [1] "n cells 815"
+    [1] "Start estimation mu with linear method"
+    [1] 2001  815
     Error in py_run_file_impl(file, local, convert) : 
       ImportError: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by /c4/home/henrik/.cache/R/basilisk/1.8.1/COTAN/1.0.0/my_env_cotan/lib/python3.7/site-packages/pandas/_libs/window/aggregations.cpython-37m-x86_64-linux-gnu.so)
     Calls: automatic.COTAN.object.creation ... <Anonymous> -> <Anonymous> -> py_run_file -> py_run_file_impl
@@ -995,11 +1070,8 @@ Run `revdep_details(, "cTRAP")` for more info
     > ### ** Examples
     > 
     > genes <- c("ENSG00000012048", "ENSG00000083093", "ENSG00000141510",
-    ...
-    
-    ENSG00000012048 ENSG00000083093 ENSG00000141510 ENSG00000051180 
-            "BRCA1"         "PALB2"          "TP53"         "RAD51" 
-    > convertGeneIdentifiers(genes, key="ENSEMBL", target="UNIPROT")
+    +            "ENSG00000051180")
+    > convertGeneIdentifiers(genes)
     snapshotDate(): 2022-04-25
     Error: Corrupt Cache: index file
       See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
@@ -1090,6 +1162,60 @@ Run `revdep_details(, "ddPCRclust")` for more info
 Run `revdep_details(, "DeepBlueR")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking re-building of vignette outputs ...sh: line 1: 255334 Killed                  '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla --no-echo > '/c4/home/henrik/repositories/R.utils/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/build_vignettes.log' 2>&1 < '/scratch/henrik/977578/RtmpHAMYTu/file5d821ed3f290'
+    ```
+     ERROR
+    Error(s) in re-building vignettes:
+    --- re-building ‘DeepBlueR.Rmd’ using rmarkdown
+    Loading required package: XML
+    Loading required package: RCurl
+    Welcome to the DeepBlueR package
+    DeepBlue is online
+    Called method: deepblue_search
+    Reported status was: okay
+    Warning in deepblue_search(keyword = "'H3k27AC' 'blood' 'peak'", type = "experiments") :
+    ...
+    Reported status was: okay
+    fetching data
+    Called method: deepblue_info
+    Reported status was: okay
+    trying URL 'http://deepblue.mpi-inf.mpg.de/xmlrpc/download/?r=r820622&key=anonymous_key'
+    Content type 'application/x-bzip2' length 10467 bytes (10 KB)
+    ==================================================
+    downloaded 10 KB
+    
+    Decompressing downloaded file to /scratch/henrik/977578/RtmpJKMgpJ/file3e5661656b49_uncompress
+    ```
+
+## Newly fixed
+
+*   checking re-building of vignette outputs ...sh: line 1: 254631 Killed                  '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla --no-echo > '/c4/home/henrik/repositories/R.utils/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/build_vignettes.log' 2>&1 < '/scratch/henrik/977578/Rtmp3rE2W9/file5b2853df7da7'
+    ```
+     ERROR
+    Error(s) in re-building vignettes:
+    --- re-building ‘DeepBlueR.Rmd’ using rmarkdown
+    Loading required package: XML
+    Loading required package: RCurl
+    Welcome to the DeepBlueR package
+    DeepBlue is online
+    Called method: deepblue_search
+    Reported status was: okay
+    Warning in deepblue_search(keyword = "'H3k27AC' 'blood' 'peak'", type = "experiments") :
+    ...
+    Called method: deepblue_merge_queries
+    Reported status was: okay
+    Called method: deepblue_get_regions
+    Reported status was: okay
+    Called method: deepblue_info
+    Reported status was: okay
+    fetching data
+    Called method: deepblue_info
+    Reported status was: okay
+    trying URL 'http://deepblue.mpi-inf.mpg.de/xmlrpc/download/?r=r3726043&key=anonymous_key'
+    ```
 
 ## In both
 
@@ -1323,6 +1449,60 @@ Run `revdep_details(, "eegc")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking examples ...sh: line 1:  6257 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla > 'eegc-Ex.Rout' 2>&1 < 'eegc-Ex.R'
+    ```
+     ERROR
+    Running examples in ‘eegc-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: functionEnrich
+    > ### Title: Funtional Enrichment Analysis
+    > ### Aliases: functionEnrich
+    > 
+    > ### ** Examples
+    > 
+    ...
+      13.84% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      9.22% of input gene IDs are fail to map...
+    'select()' returned 1:many mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      10.74% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      8.33% of input gene IDs are fail to map...
+    ```
+
+## Newly fixed
+
+*   checking examples ...sh: line 1:  6085 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla > 'eegc-Ex.Rout' 2>&1 < 'eegc-Ex.R'
+    ```
+     ERROR
+    Running examples in ‘eegc-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: functionEnrich
+    > ### Title: Funtional Enrichment Analysis
+    > ### Aliases: functionEnrich
+    > 
+    > ### ** Examples
+    > 
+    ...
+      13.84% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      9.22% of input gene IDs are fail to map...
+    'select()' returned 1:many mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      10.74% of input gene IDs are fail to map...
+    'select()' returned 1:1 mapping between keys and columns
+    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
+      8.33% of input gene IDs are fail to map...
+    ```
+
 ## In both
 
 *   checking re-building of vignette outputs ... ERROR
@@ -1542,6 +1722,95 @@ Run `revdep_details(, "ELMER")` for more info
     to your NAMESPACE file.
     ```
 
+# enrichTF
+
+<details>
+
+* Version: 1.12.0
+* GitHub: https://github.com/wzthu/enrichTF
+* Source code: https://github.com/cran/enrichTF
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 209
+
+Run `revdep_details(, "enrichTF")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘enrichTF-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: GenBackground
+    > ### Title: Generate background regions and reset the size of foreground
+    > ###   regions
+    > ### Aliases: GenBackground enrichGenBackground,Step-method
+    > ###   enrichGenBackground genBackground
+    > 
+    > ### ** Examples
+    > 
+    > setGenome("testgenome") #Use "hg19","hg38",etc. for your application
+    Configure bsgenome ...
+    Error in get_data_annotation_contrib_url(type) : 
+      Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+    Calls: setGenome ... checkAndInstallBSgenome -> <Anonymous> -> get_data_annotation_contrib_url
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(enrichTF)
+      Loading required package: pipeFrame
+      
+      > 
+      > test_check("enrichTF")
+    ...
+       4.       └─enrichTF (local) cai()
+       5.         └─pipeFrame::runWithFinishCheck(...)
+       6.           └─enrichTF (local) func(NULL)
+       7.             └─pipeFrame::checkAndInstallBSgenome(refFilePath, genome)
+       8.               └─BSgenome::available.genomes()
+       9.                 └─BSgenome:::get_data_annotation_contrib_url(type)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘enrichTF.Rmd’ using rmarkdown
+    Loading required package: pipeFrame
+    
+    Quitting from lines 58-62 (enrichTF.Rmd) 
+    Error: processing vignette 'enrichTF.Rmd' failed with diagnostics:
+    Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+    --- failed re-building ‘enrichTF.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘enrichTF.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    processing,TissueOpennessConserve: no visible binding for global
+      variable ‘X2’
+    Undefined global functions or variables:
+      X2
+    ```
+
 # EpiNow2
 
 <details>
@@ -1568,6 +1837,93 @@ Run `revdep_details(, "EpiNow2")` for more info
       installed size is 225.9Mb
       sub-directories of 1Mb or more:
         libs  224.3Mb
+    ```
+
+# esATAC
+
+<details>
+
+* Version: 1.18.0
+* GitHub: https://github.com/wzthu/esATAC
+* Source code: https://github.com/cran/esATAC
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 228
+
+Run `revdep_details(, "esATAC")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘esATAC-Introduction.Rmd’ using rmarkdown
+    Error: processing vignette 'esATAC-Introduction.Rmd' failed with diagnostics:
+    there is no package called ‘prettydoc’
+    --- failed re-building ‘esATAC-Introduction.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘esATAC-Introduction.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'PeakCallingMACS2'
+      ‘genomeSize’ ‘pvalueThreshold’
+    Documented arguments not in \usage in documentation object 'PeakCallingMACS2':
+      ‘threshold’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 14.3Mb
+      sub-directories of 1Mb or more:
+        doc       3.3Mb
+        extdata   5.1Mb
+        libs      4.9Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘ShortRead:::.ShortReadQQA’ ‘ShortRead:::.qa_adapterContamination’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    atacPipe2: no visible global function definition for ‘getObjsInPipe’
+    atacPipe2: no visible binding for global variable ‘case.peak’
+    atacPipe2: no visible binding for global variable ‘ctrl.peak’
+    atacPipe2: no visible binding for global variable ‘pwm’
+    atacPipe2: no visible binding for global variable ‘bed.case’
+    atacPipe2: no visible binding for global variable ‘bed.ctrl’
+    atacPipe2: no visible binding for global variable ‘caselist’
+    atacPipe2: no visible binding for global variable ‘ctrllist’
+    atacPipe2: no visible global function definition for ‘.obtainConfigure’
+    atacPipe2: no visible binding for global variable ‘param.tmp’
+    ...
+    atacPipe2: no visible binding for global variable ‘esATAC_report’
+    atacPipe2: no visible global function definition for ‘getReportVal’
+    atacPipe2: no visible binding for global variable ‘esATAC_result’
+    processing,BamToBed : <anonymous>: no visible global function
+      definition for ‘readGAlignments’
+    processing,BedToBigWig: no visible binding for global variable ‘score’
+    Undefined global functions or variables:
+      .obtainConfigure bed.case bed.ctrl case.peak caselist ctrl.peak
+      ctrllist esATAC_report esATAC_result getObjsInPipe getReportVal
+      param.tmp pwm readGAlignments score
     ```
 
 # eudysbiome
@@ -1754,14 +2110,14 @@ Run `revdep_details(, "FRASER")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘FRASER.Rnw’ using knitr
-    Sun Oct 23 17:52:03 2022: Start counting the split reads ...
-    Sun Oct 23 17:52:03 2022: Count split reads for sample: sample1
-    Sun Oct 23 17:52:06 2022: Count split reads for sample: sample2
-    Sun Oct 23 17:52:06 2022: Count split reads for sample: sample3
-    Sun Oct 23 17:52:08 2022 : count ranges need to be merged ...
-    Sun Oct 23 17:52:09 2022: Create splice site indices ...
-    Sun Oct 23 17:52:09 2022: Writing split counts to folder: FRASER_output/savedObjects/Data_Analysis/splitCounts
-    Sun Oct 23 17:52:09 2022: Identifying introns with read count <= 20 in all samples...
+    Mon Oct 24 01:10:41 2022: Start counting the split reads ...
+    Mon Oct 24 01:10:42 2022: Count split reads for sample: sample1
+    Mon Oct 24 01:10:45 2022: Count split reads for sample: sample2
+    Mon Oct 24 01:10:46 2022: Count split reads for sample: sample3
+    Mon Oct 24 01:10:52 2022 : count ranges need to be merged ...
+    Mon Oct 24 01:10:52 2022: Create splice site indices ...
+    Mon Oct 24 01:10:52 2022: Writing split counts to folder: FRASER_output/savedObjects/Data_Analysis/splitCounts
+    Mon Oct 24 01:10:56 2022: Identifying introns with read count <= 20 in all samples...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -1866,47 +2222,6 @@ Run `revdep_details(, "geneExpressionFromGEO")` for more info
     Namespaces in Imports field not imported from:
       ‘BiocManager’ ‘R.utils’ ‘markdown’
       All declared Imports should be used.
-    ```
-
-# GenomicDataCommons
-
-<details>
-
-* Version: 1.20.3
-* GitHub: https://github.com/Bioconductor/GenomicDataCommons
-* Source code: https://github.com/cran/GenomicDataCommons
-* Date/Publication: 2022-10-09
-* Number of recursive dependencies: 156
-
-Run `revdep_details(, "GenomicDataCommons")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘overview.Rmd’ using rmarkdown
-    Loading required package: magrittr
-    
-    Attaching package: 'GenomicDataCommons'
-    
-    The following object is masked from 'package:stats':
-    
-        filter
-    
-    ...
-        tabulate
-    
-    The magick package is required to crop "/c4/home/henrik/repositories/R.utils/revdep/checks/GenomicDataCommons/new/GenomicDataCommons.Rcheck/vign_test/GenomicDataCommons/vignettes/somatic_mutations_files/figure-html/unnamed-chunk-14-1.png" but not available.
-    --- finished re-building ‘somatic_mutations.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘overview.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # GEOquery
@@ -2033,30 +2348,6 @@ Run `revdep_details(, "HiCBricks")` for more info
 Run `revdep_details(, "HiCDCPlus")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘HiCDCPlus-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: extract_hic_eigenvectors
-    > ### Title: extract_hic_eigenvectors
-    > ### Aliases: extract_hic_eigenvectors
-    > 
-    > ### ** Examples
-    > 
-    > eigenvector_filepaths<-extract_hic_eigenvectors(
-    + hicfile=system.file("extdata", "eigenvector_example.hic",
-    + package = "HiCDCPlus"),
-    + chrs=c("chr22"),binsize=250e3,mode="NONE")
-    Error: Invalid or corrupt jarfile /c4/home/henrik/.cache/HiCDCPlus/122c8ec0dcef_juicer_tools.jar
-    Error in data.table::fread(tmpfile) : 
-      File '/scratch/henrik/977533/Rtmpa0MsSu/file1252c1ded187b.txt' does not exist or is non-readable. getwd()=='/c4/home/henrik/repositories/R.utils/revdep/checks/HiCDCPlus/new/HiCDCPlus.Rcheck'
-    Calls: extract_hic_eigenvectors -> <Anonymous>
-    Execution halted
-    ```
 
 ## In both
 
@@ -3046,7 +3337,7 @@ Run `revdep_details(, "NxtIRFcore")` for more info
     ...
     +     gtf = chrZ_gtf()
     + )
-    Oct 23 18:19:48 NxtIRF reference already exists in given directory
+    Oct 24 01:22:10 NxtIRF reference already exists in given directory
     NULL
     > 
     > bams <- NxtIRF_example_bams()
@@ -3085,14 +3376,14 @@ Run `revdep_details(, "NxtIRFcore")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘NxtIRF.Rmd’ using rmarkdown
-    Oct 23 18:20:56 Reference generated without non-polyA reference
-    Oct 23 18:20:56 Reference generated without Mappability reference
-    Oct 23 18:20:56 Reference generated without Blacklist exclusion
-    Oct 23 18:20:56 Converting FASTA to local TwoBitFile...done
-    Oct 23 18:20:58 Connecting to genome TwoBitFile...done
-    Oct 23 18:20:58 Making local copy of GTF file...done
-    Oct 23 18:20:58 Reading source GTF file...done
-    Oct 23 18:20:58 Processing gtf file...
+    Oct 24 01:23:29 Reference generated without non-polyA reference
+    Oct 24 01:23:29 Reference generated without Mappability reference
+    Oct 24 01:23:29 Reference generated without Blacklist exclusion
+    Oct 24 01:23:29 Converting FASTA to local TwoBitFile...done
+    Oct 24 01:23:31 Connecting to genome TwoBitFile...done
+    Oct 24 01:23:31 Making local copy of GTF file...done
+    Oct 24 01:23:31 Reading source GTF file...done
+    Oct 24 01:23:32 Processing gtf file...
     ...
     Quitting from lines 122-124 (NxtIRF.Rmd) 
     Error: processing vignette 'NxtIRF.Rmd' failed with diagnostics:
@@ -3541,47 +3832,6 @@ Run `revdep_details(, "PhenotypeSimulator")` for more info
         libs      1.2Mb
     ```
 
-# pins
-
-<details>
-
-* Version: 1.0.3
-* GitHub: https://github.com/rstudio/pins-r
-* Source code: https://github.com/cran/pins
-* Date/Publication: 2022-09-24 06:00:02 UTC
-* Number of recursive dependencies: 96
-
-Run `revdep_details(, "pins")` for more info
-
-</details>
-
-## In both
-
-*   checking for new files in some other directories ... NOTE
-    ```
-    Found the following files/directories:
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/bioc/src/contrib/CytoML_2.8.1.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/bioc/src/contrib/flowStats_4.8.2.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/bioc/src/contrib/ggcyto_1.24.1.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/cran-bin/src/contrib/renv_0.16.0_R_x86_64-pc-linux-gnu.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/cran/src/contrib/RRphylo_2.7.0.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/cran/src/contrib/renv_0.16.0.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/cran/src/contrib/shinydrive_0.1.3.tar.gz’
-      ‘~/.cache/R-crancache/x86_64-pc-linux-gnu-library/4.2-CBI-gcc10/cran/src/contrib/shinymanager_1.0.410.tar.gz’
-      ‘~/.cache/R/basilisk/1.8.1/0/pkgs/argcomplete-2.0.0-pyhd8ed1ab_0’
-    ...
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/ct_log_list.cnf.dist’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/misc’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/misc/CA.pl’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/misc/tsget’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/misc/tsget.pl’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/openssl.cnf’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/ssl/openssl.cnf.dist’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/var’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/var/cache’
-      ‘~/.cache/R/basilisk/1.8.1/basilisk/1.8.1/env_Rcwl/var/cache/fontconfig’
-    ```
-
 # pmparser
 
 <details>
@@ -3708,31 +3958,6 @@ Run `revdep_details(, "psichomics")` for more info
       cache: /c4/home/henrik/.cache/R/AnnotationHub
       filename: annotationhub.index.rds
     Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        |================================        |  80% 
-        |========================================| 100% 
-        |                                        |   0% 
-        |========                                |  20% 
-        |================                        |  40% 
-    ...
-      `actual`:   FALSE
-      `expected`: TRUE 
-      Backtrace:
-          ▆
-       1. └─psichomics (local) checkDiscardCvgPSIvalues(vals, samples = 20, events = 15) at testDiscardLowCoveragePSIs.R:78:4
-       2.   └─testthat::expect_true(all(is.na(unique(filter[toNA])))) at testDiscardLowCoveragePSIs.R:55:8
-      
-      [ FAIL 1 | WARN 0 | SKIP 2 | PASS 1483 ]
-      Error: Test failures
-      Execution halted
     ```
 
 *   checking re-building of vignette outputs ... ERROR
@@ -4448,6 +4673,27 @@ Run `revdep_details(, "RforProteomics")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘RforProteomics-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: id
+    > ### Title: An 'mzIdentML' file
+    > ### Aliases: TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzid
+    > ### Keywords: datasets
+    > 
+    > ### ** Examples
+    > 
+    > ## source files to repeat the search
+    > library("rpx")
+    > px <- PXDataset("PXD000001")
+    Loading PXD000001 from cache.
+    Error in gzfile(file, "rb") : invalid 'description' argument
+    Calls: PXDataset -> readRDS -> gzfile
+    Execution halted
+    ```
+
 *   checking re-building of vignette outputs ... ERROR
     ```
     Error(s) in re-building vignettes:
@@ -4807,13 +5053,13 @@ Run `revdep_details(, "simpleSingleCell")` for more info
     > 
     > tmp <- tempfile(fileext=".Rmd")
     ...
-    processing file: filea9e62ec6f4fb.Rmd
+    processing file: file9a6f3884945a.Rmd
     label: unnamed-chunk-1 (with options) 
     List of 2
      $ echo   : logi FALSE
      $ results: chr "asis"
     
-    Quitting from lines 2-3 (filea9e62ec6f4fb.Rmd) 
+    Quitting from lines 2-3 (file9a6f3884945a.Rmd) 
     Error in loadNamespace(x) : there is no package called 'rebook'
     Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
     Execution halted
@@ -4838,43 +5084,6 @@ Run `revdep_details(, "simpleSingleCell")` for more info
     ```
     Namespace in Imports field not imported from: ‘BiocStyle’
       All declared Imports should be used.
-    ```
-
-# sparrow
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/lianos/sparrow
-* Source code: https://github.com/cran/sparrow
-* Date/Publication: 2022-04-26
-* Number of recursive dependencies: 206
-
-Run `revdep_details(, "sparrow")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘PANTHER.db’
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        R         1.1Mb
-        doc       2.0Mb
-        extdata   2.1Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    geneSetsStats: no visible binding for global variable ‘direction’
-    Undefined global functions or variables:
-      direction
     ```
 
 # systemPipeShiny
