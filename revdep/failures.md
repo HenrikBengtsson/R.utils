@@ -1,3 +1,116 @@
+# biscuiteer
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/HenrikBengtsson/R.utils
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/verbose.c -o ucsc/verbose.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/os.c -o ucsc/os.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/wildcmp.c -o ucsc/wildcmp.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/_portimpl.c -o ucsc/_portimpl.o
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o rtracklayer.so S4Vectors_stubs.o IRanges_stubs.o XVector_stubs.o R_init_rtracklayer.o readGFF.o bbiHelper.o bigWig.o bigBedHelper.o bigBed.o chain_io.o twoBit.o handlers.o utils.o ucsc/memgfx.o ucsc/aliType.o ucsc/binRange.o ucsc/htmlColor.o ucsc/sqlList.o ucsc/tokenizer.o ucsc/asParse.o ucsc/basicBed.o ucsc/bigBed.o ucsc/bPlusTree.o ucsc/bbiRead.o ucsc/bbiWrite.o ucsc/bwgCreate.o ucsc/bwgQuery.o ucsc/cirTree.o ucsc/common.o ucsc/dnaseq.o ucsc/dnautil.o ucsc/errAbort.o ucsc/hash.o ucsc/linefile.o ucsc/localmem.o ucsc/sqlNum.o ucsc/zlibFace.o ucsc/dystring.o ucsc/hmmstats.o ucsc/obscure.o ucsc/pipeline.o ucsc/rangeTree.o ucsc/rbTree.o ucsc/memalloc.o ucsc/dlist.o ucsc/hex.o ucsc/filePath.o ucsc/htmlPage.o ucsc/udc.o ucsc/net.o ucsc/bits.o ucsc/twoBit.o ucsc/_cheapcgi.o ucsc/internet.o ucsc/https.o ucsc/base64.o ucsc/verbose.o ucsc/os.o ucsc/wildcmp.o ucsc/_portimpl.o -lz -pthread -lssl -lcrypto -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘offset’ from package ‘stats’ in package ‘rtracklayer’
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c check_M_and_Cov.cpp -o check_M_and_Cov.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c init.cpp -o init.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o bsseq.so check_M_and_Cov.o init.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+trying URL 'https://cloud.r-project.org/src/contrib/ragg_1.2.4.tar.gz'
+Content type 'application/x-gzip' length 427579 bytes (417 KB)
+==================================================
+downloaded 417 KB
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BH’ ...
+...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+
+
+```
+### CRAN
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/verbose.c -o ucsc/verbose.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/os.c -o ucsc/os.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/wildcmp.c -o ucsc/wildcmp.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -DUSE_SSL -D_FILE_OFFSET_BITS=64 -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/IRanges/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/XVector/include' -I/usr/local/include   -fpic  -g -O2  -c ucsc/_portimpl.c -o ucsc/_portimpl.o
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o rtracklayer.so S4Vectors_stubs.o IRanges_stubs.o XVector_stubs.o R_init_rtracklayer.o readGFF.o bbiHelper.o bigWig.o bigBedHelper.o bigBed.o chain_io.o twoBit.o handlers.o utils.o ucsc/memgfx.o ucsc/aliType.o ucsc/binRange.o ucsc/htmlColor.o ucsc/sqlList.o ucsc/tokenizer.o ucsc/asParse.o ucsc/basicBed.o ucsc/bigBed.o ucsc/bPlusTree.o ucsc/bbiRead.o ucsc/bbiWrite.o ucsc/bwgCreate.o ucsc/bwgQuery.o ucsc/cirTree.o ucsc/common.o ucsc/dnaseq.o ucsc/dnautil.o ucsc/errAbort.o ucsc/hash.o ucsc/linefile.o ucsc/localmem.o ucsc/sqlNum.o ucsc/zlibFace.o ucsc/dystring.o ucsc/hmmstats.o ucsc/obscure.o ucsc/pipeline.o ucsc/rangeTree.o ucsc/rbTree.o ucsc/memalloc.o ucsc/dlist.o ucsc/hex.o ucsc/filePath.o ucsc/htmlPage.o ucsc/udc.o ucsc/net.o ucsc/bits.o ucsc/twoBit.o ucsc/_cheapcgi.o ucsc/internet.o ucsc/https.o ucsc/base64.o ucsc/verbose.o ucsc/os.o ucsc/wildcmp.o ucsc/_portimpl.o -lz -pthread -lssl -lcrypto -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘offset’ from package ‘stats’ in package ‘rtracklayer’
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c check_M_and_Cov.cpp -o check_M_and_Cov.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c init.cpp -o init.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/biscuiteer/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o bsseq.so check_M_and_Cov.o init.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+trying URL 'https://cloud.r-project.org/src/contrib/ragg_1.2.4.tar.gz'
+Content type 'application/x-gzip' length 427579 bytes (417 KB)
+==================================================
+downloaded 417 KB
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BH’ ...
+...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+
+
+```
 # CINdex
 
 <details>
@@ -130,111 +243,258 @@ Run `revdep_details(, "fastreeR")` for more info
 *   R CMD check timed out
     
 
-# metaboliteIDmapping
-
-<details>
-
-* Version: 1.0.0
-* GitHub: https://github.com/yigbt/metaboliteIDmapping
-* Source code: https://github.com/cran/metaboliteIDmapping
-* Number of recursive dependencies: 107
-
-Run `revdep_details(, "metaboliteIDmapping")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘metaboliteIDmapping’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/00install.out’ for details.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘metaboliteIDmapping’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
-
-
-```
-### CRAN
-
-```
-* installing *source* package ‘metaboliteIDmapping’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/old/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
-
-
-```
 # muscData
 
 <details>
 
-* Version: 1.10.0
-* GitHub: https://github.com/HelenaLC/muscData
-* Source code: https://github.com/cran/muscData
-* Date/Publication: 2022-04-28
-* Number of recursive dependencies: 269
+* Version: 
+* GitHub: https://github.com/HenrikBengtsson/R.utils
+* Source code: NA
+* Number of recursive dependencies: 0
 
-Run `revdep_details(, "muscData")` for more info
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+Warning in checkMatrixPackageVersion() :
+  Package version inconsistency detected.
+TMB was built with Matrix version 1.4.1
+Current Matrix version is 1.5.1
+Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package
+Warning in checkDepPackageVersion(dep_pkg = "TMB") :
+  Package version inconsistency detected.
+glmmTMB was built with TMB version 1.9.0
+Current TMB version is 1.9.1
+Please re-install glmmTMB from source or restore original ‘TMB’ package (see '?reinstalling' for more information)
+
+
+trying URL 'https://cloud.r-project.org/src/contrib/shiny_1.7.3.tar.gz'
+Content type 'application/x-gzip' length 2417504 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://cloud.r-project.org/src/contrib/spatstat.geom_3.0-3.tar.gz'
+Content type 'application/x-gzip' length 750545 bytes (732 KB)
+==================================================
+downloaded 732 KB
+
+...
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (muscat)
+
+The downloaded source packages are in
+	‘/scratch/henrik/Rtmp9xO8uM/downloaded_packages’
+
+
+```
+### CRAN
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+Warning in checkMatrixPackageVersion() :
+  Package version inconsistency detected.
+TMB was built with Matrix version 1.4.1
+Current Matrix version is 1.5.1
+Please re-install 'TMB' from source using install.packages('TMB', type = 'source') or ask CRAN for a binary version of 'TMB' matching CRAN's 'Matrix' package
+Warning in checkDepPackageVersion(dep_pkg = "TMB") :
+  Package version inconsistency detected.
+glmmTMB was built with TMB version 1.9.0
+Current TMB version is 1.9.1
+Please re-install glmmTMB from source or restore original ‘TMB’ package (see '?reinstalling' for more information)
+
+
+trying URL 'https://cloud.r-project.org/src/contrib/shiny_1.7.3.tar.gz'
+Content type 'application/x-gzip' length 2417504 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://cloud.r-project.org/src/contrib/spatstat.geom_3.0-3.tar.gz'
+Content type 'application/x-gzip' length 750545 bytes (732 KB)
+==================================================
+downloaded 732 KB
+
+...
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (muscat)
+
+The downloaded source packages are in
+	‘/scratch/henrik/Rtmp9xO8uM/downloaded_packages’
+
+
+```
+# OSCA.intro
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/HenrikBengtsson/R.utils
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c pool_size_factors.cpp -o pool_size_factors.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c sum_counts.cpp -o sum_counts.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o scuttle.so RcppExports.o cumulative_prop.o downsample_counts.o fit_linear_model.o pool_size_factors.o sum_counts.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c adjust_shift_variance.cpp -o adjust_shift_variance.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c find_mutual_nns.cpp -o find_mutual_nns.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c smooth_gaussian_kernel.cpp -o smooth_gaussian_kernel.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o batchelor.so RcppExports.o adjust_shift_variance.o find_mutual_nns.o smooth_gaussian_kernel.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beeswarm’ ...
+* DONE (beeswarm)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (biomaRt)
+* installing *binary* package ‘DropletUtils’ ...
+* DONE (DropletUtils)
+* installing *source* package ‘scater’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+
+
+```
+### CRAN
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c pool_size_factors.cpp -o pool_size_factors.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c sum_counts.cpp -o sum_counts.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG -I../inst/include/ -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/beachmat/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o scuttle.so RcppExports.o cumulative_prop.o downsample_counts.o fit_linear_model.o pool_size_factors.o sum_counts.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c adjust_shift_variance.cpp -o adjust_shift_variance.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c find_mutual_nns.cpp -o find_mutual_nns.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c smooth_gaussian_kernel.cpp -o smooth_gaussian_kernel.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/OSCA.intro/Rcpp/include' -I/usr/local/include   -fpic  -g -O2  -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o batchelor.so RcppExports.o adjust_shift_variance.o find_mutual_nns.o smooth_gaussian_kernel.o utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beeswarm’ ...
+* DONE (beeswarm)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (biomaRt)
+* installing *binary* package ‘DropletUtils’ ...
+* DONE (DropletUtils)
+* installing *source* package ‘scater’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+
+
+```
+# RcisTarget
+
+<details>
+
+* Version: 1.16.0
+* GitHub: https://github.com/aertslab/RcisTarget
+* Source code: https://github.com/cran/RcisTarget
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 146
+
+Run `revdep_details(, "RcisTarget")` for more info
 
 </details>
 
 ## In both
 
-*   checking whether package ‘muscData’ can be installed ... ERROR
+*   checking whether package ‘RcisTarget’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00install.out’ for details.
     ```
 
-*   checking for hidden files and directories ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Found the following hidden files and directories:
-      .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    Packages which this enhances but not available for checking:
+      'doMC', 'doRNG', 'zoo'
     ```
 
 ## Installation
@@ -242,54 +502,167 @@ Run `revdep_details(, "muscData")` for more info
 ### Devel
 
 ```
-* installing *source* package ‘muscData’ ...
+* installing *source* package ‘RcisTarget’ ...
 ** using staged installation
 ** R
+** data
 ** inst
 ** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
+sh: line 1: 36705 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmp9Yw4QD/file8f5b641b179d'
+
+ *** caught illegal operation ***
+address 0x2acb618a32e7, cause 'illegal operand'
 ...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/muscData’
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget’
 
 
 ```
 ### CRAN
 
 ```
-* installing *source* package ‘muscData’ ...
+* installing *source* package ‘RcisTarget’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+sh: line 1: 36634 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmpu6NOaM/file8f1475564b2e'
+
+ *** caught illegal operation ***
+address 0x2b21e03252e7, cause 'illegal operand'
+...
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget’
+
+
+```
+# RforProteomics
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/HenrikBengtsson/R.utils
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+Creating a new generic function for ‘strsplit’ in package ‘Biostrings’
+Creating a generic function for ‘ls’ from package ‘base’ in package ‘Biostrings’
+Creating a new generic function for ‘pattern’ in package ‘Biostrings’
+Creating a new generic function for ‘offset’ in package ‘Biostrings’
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c R_init_GenomicRanges.c -o R_init_GenomicRanges.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c transcript_utils.c -o transcript_utils.o
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o GenomicRanges.so IRanges_stubs.o R_init_GenomicRanges.o S4Vectors_stubs.o transcript_utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘lapply’ from package ‘base’ in package ‘rols’
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beanplot’ ...
+* DONE (beanplot)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SummarizedExperiment)
+* installing *binary* package ‘vroom’ ...
+* DONE (vroom)
+* installing *source* package ‘AnnotationDbi’ ...
 ** using staged installation
 ** R
 ** inst
 ** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
+
+
+```
+### CRAN
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
 ...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/old/muscData.Rcheck/muscData’
+Creating a new generic function for ‘strsplit’ in package ‘Biostrings’
+Creating a generic function for ‘ls’ from package ‘base’ in package ‘Biostrings’
+Creating a new generic function for ‘pattern’ in package ‘Biostrings’
+Creating a new generic function for ‘offset’ in package ‘Biostrings’
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c R_init_GenomicRanges.c -o R_init_GenomicRanges.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/S4Vectors/include' -I'/c4/home/henrik/repositories/R.utils/revdep/library/RforProteomics/IRanges/include' -I/usr/local/include   -fpic  -g -O2  -c transcript_utils.c -o transcript_utils.o
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o GenomicRanges.so IRanges_stubs.o R_init_GenomicRanges.o S4Vectors_stubs.o transcript_utils.o -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘lapply’ from package ‘base’ in package ‘rols’
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beanplot’ ...
+* DONE (beanplot)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SummarizedExperiment)
+* installing *binary* package ‘vroom’ ...
+* DONE (vroom)
+* installing *source* package ‘AnnotationDbi’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
 
 
 ```
@@ -516,6 +889,119 @@ Execution halted
 
 The downloaded source packages are in
 	‘/scratch/henrik/977578/RtmpCqP4mm/downloaded_packages’
+
+
+```
+# TCGAutils
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/HenrikBengtsson/R.utils
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o rtracklayer.so S4Vectors_stubs.o IRanges_stubs.o XVector_stubs.o R_init_rtracklayer.o readGFF.o bbiHelper.o bigWig.o bigBedHelper.o bigBed.o chain_io.o twoBit.o handlers.o utils.o ucsc/memgfx.o ucsc/aliType.o ucsc/binRange.o ucsc/htmlColor.o ucsc/sqlList.o ucsc/tokenizer.o ucsc/asParse.o ucsc/basicBed.o ucsc/bigBed.o ucsc/bPlusTree.o ucsc/bbiRead.o ucsc/bbiWrite.o ucsc/bwgCreate.o ucsc/bwgQuery.o ucsc/cirTree.o ucsc/common.o ucsc/dnaseq.o ucsc/dnautil.o ucsc/errAbort.o ucsc/hash.o ucsc/linefile.o ucsc/localmem.o ucsc/sqlNum.o ucsc/zlibFace.o ucsc/dystring.o ucsc/hmmstats.o ucsc/obscure.o ucsc/pipeline.o ucsc/rangeTree.o ucsc/rbTree.o ucsc/memalloc.o ucsc/dlist.o ucsc/hex.o ucsc/filePath.o ucsc/htmlPage.o ucsc/udc.o ucsc/net.o ucsc/bits.o ucsc/twoBit.o ucsc/_cheapcgi.o ucsc/internet.o ucsc/https.o ucsc/base64.o ucsc/verbose.o ucsc/os.o ucsc/wildcmp.o ucsc/_portimpl.o -lz -pthread -lssl -lcrypto -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘offset’ from package ‘stats’ in package ‘rtracklayer’
+g++ -std=gnu++14 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c half_range_mode.cpp -o half_range_mode.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c nd.c -o nd.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c pAUC.c -o pAUC.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c rowPAUCs.c -o rowPAUCs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c rowttests.c -o rowttests.o
+gfortran -fno-optimize-sibling-calls  -fpic  -g -O2  -c ttest.f -o ttest.o
+g++ -std=gnu++14 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o genefilter.so half_range_mode.o init.o nd.o pAUC.o rowPAUCs.o rowttests.o ttest.o -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beanplot’ ...
+* DONE (beanplot)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (IlluminaHumanMethylation450kanno.ilmn12.hg19)
+
+The downloaded source packages are in
+	‘/scratch/henrik/RtmpQdb2ve/downloaded_packages’
+
+
+```
+### CRAN
+
+```
+Creating a new generic function for ‘append’ in package ‘BiocGenerics’
+Creating a new generic function for ‘as.data.frame’ in package ‘BiocGenerics’
+Creating a new generic function for ‘cbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘rbind’ in package ‘BiocGenerics’
+Creating a new generic function for ‘do.call’ in package ‘BiocGenerics’
+Creating a new generic function for ‘duplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘anyDuplicated’ in package ‘BiocGenerics’
+Creating a new generic function for ‘eval’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmax’ in package ‘BiocGenerics’
+Creating a new generic function for ‘pmin’ in package ‘BiocGenerics’
+...
+gcc -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o rtracklayer.so S4Vectors_stubs.o IRanges_stubs.o XVector_stubs.o R_init_rtracklayer.o readGFF.o bbiHelper.o bigWig.o bigBedHelper.o bigBed.o chain_io.o twoBit.o handlers.o utils.o ucsc/memgfx.o ucsc/aliType.o ucsc/binRange.o ucsc/htmlColor.o ucsc/sqlList.o ucsc/tokenizer.o ucsc/asParse.o ucsc/basicBed.o ucsc/bigBed.o ucsc/bPlusTree.o ucsc/bbiRead.o ucsc/bbiWrite.o ucsc/bwgCreate.o ucsc/bwgQuery.o ucsc/cirTree.o ucsc/common.o ucsc/dnaseq.o ucsc/dnautil.o ucsc/errAbort.o ucsc/hash.o ucsc/linefile.o ucsc/localmem.o ucsc/sqlNum.o ucsc/zlibFace.o ucsc/dystring.o ucsc/hmmstats.o ucsc/obscure.o ucsc/pipeline.o ucsc/rangeTree.o ucsc/rbTree.o ucsc/memalloc.o ucsc/dlist.o ucsc/hex.o ucsc/filePath.o ucsc/htmlPage.o ucsc/udc.o ucsc/net.o ucsc/bits.o ucsc/twoBit.o ucsc/_cheapcgi.o ucsc/internet.o ucsc/https.o ucsc/base64.o ucsc/verbose.o ucsc/os.o ucsc/wildcmp.o ucsc/_portimpl.o -lz -pthread -lssl -lcrypto -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+Creating a generic function for ‘offset’ from package ‘stats’ in package ‘rtracklayer’
+g++ -std=gnu++14 -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c half_range_mode.cpp -o half_range_mode.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c nd.c -o nd.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c pAUC.c -o pAUC.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c rowPAUCs.c -o rowPAUCs.o
+gcc -I"/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c rowttests.c -o rowttests.o
+gfortran -fno-optimize-sibling-calls  -fpic  -g -O2  -c ttest.f -o ttest.o
+g++ -std=gnu++14 -shared -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -L/usr/local/lib64 -o genefilter.so half_range_mode.o init.o nd.o pAUC.o rowPAUCs.o rowttests.o ttest.o -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘beanplot’ ...
+* DONE (beanplot)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *source* package ‘BiocGenerics’ ...
+** using staged installation
+...
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (IlluminaHumanMethylation450kanno.ilmn12.hg19)
+
+The downloaded source packages are in
+	‘/scratch/henrik/RtmpQdb2ve/downloaded_packages’
 
 
 ```
