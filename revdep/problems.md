@@ -382,6 +382,59 @@ Run `revdep_details(, "bigsnpr")` for more info
       All declared Imports should be used.
     ```
 
+# biscuiteer
+
+<details>
+
+* Version: 1.10.0
+* GitHub: https://github.com/trichelab/biscuiteer
+* Source code: https://github.com/cran/biscuiteer
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 216
+
+Run `revdep_details(, "biscuiteer")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘biscuiteer.Rmd’ using rmarkdown
+    Error: processing vignette 'biscuiteer.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘biscuiteer.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘biscuiteer.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking whether package ‘biscuiteer’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.8Mb
+      sub-directories of 1Mb or more:
+        data      1.1Mb
+        extdata   3.4Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘QDNAseq:::expectedVariance’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
 # bsseq
 
 <details>
@@ -2610,6 +2663,46 @@ Run `revdep_details(, "msgbsR")` for more info
       All declared Imports should be used.
     ```
 
+# muscData
+
+<details>
+
+* Version: 1.10.0
+* GitHub: https://github.com/HelenaLC/muscData
+* Source code: https://github.com/cran/muscData
+* Date/Publication: 2022-04-28
+* Number of recursive dependencies: 269
+
+Run `revdep_details(, "muscData")` for more info
+
+</details>
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘Crowell19_4vs4’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Package in Depends field not imported from: ‘SingleCellExperiment’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
+
 # nc
 
 <details>
@@ -2932,6 +3025,71 @@ Run `revdep_details(, "ORFik")` for more info
       importFrom("stats", "df")
       importFrom("utils", "head")
     to your NAMESPACE file.
+    ```
+
+# OSCA.intro
+
+<details>
+
+* Version: 1.4.1
+* GitHub: https://github.com/OSCA-source/OSCA.intro
+* Source code: https://github.com/cran/OSCA.intro
+* Date/Publication: 2022-05-23
+* Number of recursive dependencies: 199
+
+Run `revdep_details(, "OSCA.intro")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘stub.Rmd’ using rmarkdown
+    [WARNING] This document format requires a nonempty <title> element.
+      Defaulting to 'stub.knit' as the title.
+      To specify a title, use 'title' in metadata or --metadata title="...".
+    --- finished re-building ‘stub.Rmd’
+    
+    "/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R" -e "work.dir <- rebook::bookCache('OSCA.intro'); handle <- rebook::preCompileBook('../inst/book', work.dir=work.dir, desc='../DESCRIPTION'); old.dir <- setwd(work.dir); bookdown::render_book('index.Rmd'); setwd(old.dir); rebook::postCompileBook(work.dir=work.dir, final.dir='../inst/doc/book', handle=handle)"
+    
+    R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
+    ...
+    # Execution halted
+    
+    Error in compileChapter(path) : 
+      failed to compile '~/.cache/rebook/OSCA.intro/1.4.1/installation.Rmd'
+    Calls: <Anonymous> ... .precompile_book -> .locked_compile_chapter -> compileChapter
+    Execution halted
+    make: *** [Makefile:4: compiled] Error 1
+    Error in tools:::buildVignettes(dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/OSCA.intro/new/OSCA.intro.Rcheck/vign_test/OSCA.intro") : 
+      running 'make' failed
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'batchelor', 'BiocFileCache', 'BiocManager', 'bluster',
+      'DropletTestFiles', 'DropletUtils', 'gridExtra', 'knitr',
+      'LoomExperiment', 'R.utils', 'readxl', 'rebook', 'rmarkdown',
+      'rtracklayer', 'scater', 'scran', 'scRNAseq', 'scuttle',
+      'SingleCellExperiment', 'uwot', 'zellkonverter'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘BiocManager’ ‘rmarkdown’ ‘knitr’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘BiocStyle’
     ```
 
 # pagoda2
@@ -3769,6 +3927,61 @@ Run `revdep_details(, "ReportingTools")` for more info
       keytype mcols org.Hs.eg.db tag tagList tags
     ```
 
+# RforProteomics
+
+<details>
+
+* Version: 1.34.1
+* GitHub: NA
+* Source code: https://github.com/cran/RforProteomics
+* Date/Publication: 2022-09-01
+* Number of recursive dependencies: 276
+
+Run `revdep_details(, "RforProteomics")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘RProtVis.Rmd’ using rmarkdown
+    Loading required package: MSnbase
+    Loading required package: BiocGenerics
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:stats':
+    
+        IQR, mad, sd, var, xtabs
+    ...
+    Error: processing vignette 'RforProteomics.Rmd' failed with diagnostics:
+    Can not open file /c4/home/henrik/.cache/R/rpx/9cda763ac7f8_TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML! Original error was: Error in pwizModule$open(filename): [SAXParser::parse()] Empty tag at offset 182886312.
+    
+    --- failed re-building ‘RforProteomics.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘RProtVis.Rmd’ ‘RforProteomics.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking whether package ‘RforProteomics’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘MSnbase::plot’ by ‘graphics::plot’ when loading ‘RforProteomics’
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RforProteomics/new/RforProteomics.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 10.4Mb
+      sub-directories of 1Mb or more:
+        doc   9.6Mb
+    ```
+
 # RLSeq
 
 <details>
@@ -4181,6 +4394,83 @@ Run `revdep_details(, "TCGAbiolinks")` for more info
     ```
     '::' or ':::' import not declared from: ‘DT’
     'library' or 'require' call not declared from: ‘DT’
+    ```
+
+# TCGAutils
+
+<details>
+
+* Version: 1.16.1
+* GitHub: https://github.com/waldronlab/TCGAutils
+* Source code: https://github.com/cran/TCGAutils
+* Date/Publication: 2022-10-11
+* Number of recursive dependencies: 224
+
+Run `revdep_details(, "TCGAutils")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘TCGAutils-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getFileName
+    > ### Title: Find the file names used in RTCGAToolbox
+    > ### Aliases: getFileName
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > getFileName("COAD", dataType = "CNASNP")
+    Error in open.connection(x, "rb") : HTTP error 503.
+    Calls: getFileName -> <Anonymous> -> read_html.default
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘TCGAutils.Rmd’ using rmarkdown
+    Loading required package: MultiAssayExperiment
+    Loading required package: SummarizedExperiment
+    Loading required package: MatrixGenerics
+    Loading required package: matrixStats
+    
+    Attaching package: 'MatrixGenerics'
+    
+    The following objects are masked from 'package:matrixStats':
+    ...
+    Quitting from lines 41-48 (TCGAutils.Rmd) 
+    Error: processing vignette 'TCGAutils.Rmd' failed with diagnostics:
+    there is no package called 'RTCGAToolbox'
+    --- failed re-building ‘TCGAutils.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘TCGAutils.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘RTCGAToolbox’
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘BiocGenerics:::replaceSlots’ ‘GenomicRanges:::.normarg_field’
+      ‘S4Vectors:::selectSome’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘RTCGAToolbox’
     ```
 
 # TFEA.ChIP

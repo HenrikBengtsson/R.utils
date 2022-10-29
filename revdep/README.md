@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                 |
 |ctype    |en_US.UTF-8                                                 |
 |tz       |America/Los_Angeles                                         |
-|date     |2022-10-26                                                  |
+|date     |2022-10-28                                                  |
 |pandoc   |2.19.2 @ /software/c4/cbi/software/pandoc-2.19.2/bin/pandoc |
 
 # Dependencies
@@ -23,20 +23,15 @@
 
 # Revdeps
 
-## Failed to check (10)
+## Failed to check (5)
 
 |package                              |version |error |warning |note |
 |:------------------------------------|:-------|:-----|:-------|:----|
-|biscuiteer                           |?       |      |        |     |
 |CINdex                               |?       |      |        |     |
 |[fastreeR](failures.md#fastreer)     |1.0.0   |1     |        |     |
-|muscData                             |?       |      |        |     |
-|OSCA.intro                           |?       |      |        |     |
 |[RcisTarget](failures.md#rcistarget) |1.16.0  |1     |        |1    |
-|RforProteomics                       |?       |      |        |     |
 |singleCellTK                         |?       |      |        |     |
 |sparrow                              |?       |      |        |     |
-|TCGAutils                            |?       |      |        |     |
 
 ## All (261)
 
@@ -67,7 +62,7 @@
 |[bigsnpr](problems.md#bigsnpr)                                                   |1.11.4         |      |        |2    |
 |bigstep                                                                          |1.0.3          |      |        |     |
 |biomartr                                                                         |1.0.2          |      |        |     |
-|biscuiteer                                                                       |?              |      |        |     |
+|[biscuiteer](problems.md#biscuiteer)                                             |1.10.0         |1     |1       |2    |
 |borealis                                                                         |1.0.1          |      |        |     |
 |[bsseq](problems.md#bsseq)                                                       |1.32.0         |1     |        |4    |
 |calmate                                                                          |0.13.0         |      |        |     |
@@ -183,7 +178,7 @@
 |MPAgenomics                                                                      |1.2.3          |      |        |     |
 |[msgbsR](problems.md#msgbsr)                                                     |1.20.0         |      |        |2    |
 |MungeSumstats                                                                    |1.4.5          |      |        |     |
-|muscData                                                                         |?              |      |        |     |
+|[muscData](problems.md#muscdata)                                                 |1.10.0         |      |1       |2    |
 |namedropR                                                                        |2.4.1          |      |        |     |
 |[nc](problems.md#nc)                                                             |2020.8.6       |      |        |1    |
 |[nearBynding](problems.md#nearbynding)                                           |1.6.0          |      |        |1    |
@@ -203,7 +198,7 @@
 |[openCyto](problems.md#opencyto)                                                 |2.8.4          |      |        |5    |
 |optimizeR                                                                        |0.1.1          |      |        |     |
 |[ORFik](problems.md#orfik)                                                       |1.16.6         |      |        |3    |
-|OSCA.intro                                                                       |?              |      |        |     |
+|[OSCA.intro](problems.md#oscaintro)                                              |1.4.1          |1     |        |3    |
 |osrmr                                                                            |0.1.36         |      |        |     |
 |ottrpal                                                                          |1.0.1          |      |        |     |
 |packageRank                                                                      |0.7.2          |      |        |     |
@@ -255,7 +250,7 @@
 |rehh                                                                             |3.2.2          |      |        |     |
 |[ReportingTools](problems.md#reportingtools)                                     |2.36.0         |      |        |1    |
 |restez                                                                           |2.1.2          |      |        |     |
-|RforProteomics                                                                   |?              |      |        |     |
+|[RforProteomics](problems.md#rforproteomics)                                     |1.34.1         |1     |1       |1    |
 |[RLSeq](problems.md#rlseq)                                                       |1.2.0          |1     |        |     |
 |[RMassBank](problems.md#rmassbank)                                               |3.6.1          |1     |        |     |
 |[RNAseq123](problems.md#rnaseq123)                                               |1.20.0         |1     |        |3    |
@@ -284,7 +279,7 @@
 |taxadb                                                                           |0.1.6          |      |        |     |
 |taxonomizr                                                                       |0.9.3          |      |        |     |
 |[TCGAbiolinks](problems.md#tcgabiolinks)                                         |2.24.3         |      |1       |3    |
-|TCGAutils                                                                        |?              |      |        |     |
+|[TCGAutils](problems.md#tcgautils)                                               |1.16.1         |2     |        |3    |
 |[TFEA.ChIP](problems.md#tfeachip)                                                |1.16.0         |1     |        |2    |
 |tinyProject                                                                      |0.6.1          |      |        |     |
 |tinyscholar                                                                      |0.1.7          |      |        |     |
