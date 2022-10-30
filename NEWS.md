@@ -1,5 +1,10 @@
 # Version (development version)
 
+ * ...
+ 
+
+# Version 2.12.1 [2022-10-30]
+
 ## Documentation
 
  * Documented the limitation that `withTimeout()` may fail to detect
