@@ -435,47 +435,6 @@ Run `revdep_details(, "biscuiteer")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
-# borealis
-
-<details>
-
-* Version: 1.0.1
-* GitHub: NA
-* Source code: https://github.com/cran/borealis
-* Date/Publication: 2022-05-26
-* Number of recursive dependencies: 170
-
-Run `revdep_details(, "borealis")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘borealis.Rmd’ using rmarkdown
-    Loading required package: Biobase
-    Loading required package: BiocGenerics
-    
-    Attaching package: 'BiocGenerics'
-    
-    The following objects are masked from 'package:stats':
-    
-        IQR, mad, sd, var, xtabs
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
-      filename: annotationhub.index.rds
-    --- failed re-building ‘borealis.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘borealis.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # bsseq
 
 <details>
@@ -617,47 +576,6 @@ Run `revdep_details(, "cifti")` for more info
 *   checking LazyData ... NOTE
     ```
       'LazyData' is specified without a 'data' directory
-    ```
-
-# circRNAprofiler
-
-<details>
-
-* Version: 1.10.0
-* GitHub: https://github.com/Aufiero/circRNAprofiler
-* Source code: https://github.com/cran/circRNAprofiler
-* Date/Publication: 2022-04-26
-* Number of recursive dependencies: 228
-
-Run `revdep_details(, "circRNAprofiler")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘circRNAprofiler-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: liftBSJcoords
-    > ### Title: LiftOver back-spliced junction coordinates
-    > ### Aliases: liftBSJcoords
-    > 
-    > ### ** Examples
-    > 
-    > # Load a data frame containing detected back-spliced junctions
-    ...
-    > data("mergedBSJunctions")
-    > 
-    > # LiftOver the first 10 back-spliced junction coordinates
-    > liftedBSJcoords <- liftBSJcoords(mergedBSJunctions[1:10,], map = "hg19ToMm9")
-    snapshotDate(): 2022-04-25
-    Error: Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
-      filename: annotationhub.index.rds
-    Execution halted
     ```
 
 # civis
@@ -985,31 +903,6 @@ Run `revdep_details(, "countyfloods")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘countyfloods-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: find_nws
-    > ### Title: Get National Weather Service (NWS) flood stage/discharge levels
-    > ###   for gages.
-    > ### Aliases: find_nws
-    > 
-    > ### ** Examples
-    > 
-    ...
-      6. │ ├─dplyr::filter(.data, !!!dots)
-      7. │ └─dplyr:::filter.data.frame(.data, !!!dots)
-      8. │   └─dplyr:::filter_rows(.data, ..., caller_env = caller_env())
-      9. │     └─dplyr:::filter_eval(dots, mask = mask, error_call = error_call)
-     10. │       ├─base::withCallingHandlers(...)
-     11. │       └─mask$eval_all_filter(dots, env_filter)
-     12. └─base::.handleSimpleError(...)
-     13.   └─dplyr (local) h(simpleError(msg, call))
-     14.     └─rlang::abort(bullets, call = error_call, parent = skip_internal_condition(e))
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘maps’
@@ -1057,28 +950,6 @@ Run `revdep_details(, "cTRAP")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘cTRAP-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: convertGeneIdentifiers
-    > ### Title: Convert gene identifiers
-    > ### Aliases: convertGeneIdentifiers
-    > 
-    > ### ** Examples
-    > 
-    > genes <- c("ENSG00000012048", "ENSG00000083093", "ENSG00000141510",
-    +            "ENSG00000051180")
-    > convertGeneIdentifiers(genes)
-    snapshotDate(): 2022-04-25
-    Error: Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
-      filename: annotationhub.index.rds
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -1162,60 +1033,6 @@ Run `revdep_details(, "ddPCRclust")` for more info
 Run `revdep_details(, "DeepBlueR")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking re-building of vignette outputs ...sh: line 1: 255334 Killed                  '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla --no-echo > '/c4/home/henrik/repositories/R.utils/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/build_vignettes.log' 2>&1 < '/scratch/henrik/977578/RtmpHAMYTu/file5d821ed3f290'
-    ```
-     ERROR
-    Error(s) in re-building vignettes:
-    --- re-building ‘DeepBlueR.Rmd’ using rmarkdown
-    Loading required package: XML
-    Loading required package: RCurl
-    Welcome to the DeepBlueR package
-    DeepBlue is online
-    Called method: deepblue_search
-    Reported status was: okay
-    Warning in deepblue_search(keyword = "'H3k27AC' 'blood' 'peak'", type = "experiments") :
-    ...
-    Reported status was: okay
-    fetching data
-    Called method: deepblue_info
-    Reported status was: okay
-    trying URL 'http://deepblue.mpi-inf.mpg.de/xmlrpc/download/?r=r820622&key=anonymous_key'
-    Content type 'application/x-bzip2' length 10467 bytes (10 KB)
-    ==================================================
-    downloaded 10 KB
-    
-    Decompressing downloaded file to /scratch/henrik/977578/RtmpJKMgpJ/file3e5661656b49_uncompress
-    ```
-
-## Newly fixed
-
-*   checking re-building of vignette outputs ...sh: line 1: 254631 Killed                  '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla --no-echo > '/c4/home/henrik/repositories/R.utils/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/build_vignettes.log' 2>&1 < '/scratch/henrik/977578/Rtmp3rE2W9/file5b2853df7da7'
-    ```
-     ERROR
-    Error(s) in re-building vignettes:
-    --- re-building ‘DeepBlueR.Rmd’ using rmarkdown
-    Loading required package: XML
-    Loading required package: RCurl
-    Welcome to the DeepBlueR package
-    DeepBlue is online
-    Called method: deepblue_search
-    Reported status was: okay
-    Warning in deepblue_search(keyword = "'H3k27AC' 'blood' 'peak'", type = "experiments") :
-    ...
-    Called method: deepblue_merge_queries
-    Reported status was: okay
-    Called method: deepblue_get_regions
-    Reported status was: okay
-    Called method: deepblue_info
-    Reported status was: okay
-    fetching data
-    Called method: deepblue_info
-    Reported status was: okay
-    trying URL 'http://deepblue.mpi-inf.mpg.de/xmlrpc/download/?r=r3726043&key=anonymous_key'
-    ```
 
 ## In both
 
@@ -1449,60 +1266,6 @@ Run `revdep_details(, "eegc")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ...sh: line 1:  6257 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla > 'eegc-Ex.Rout' 2>&1 < 'eegc-Ex.R'
-    ```
-     ERROR
-    Running examples in ‘eegc-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: functionEnrich
-    > ### Title: Funtional Enrichment Analysis
-    > ### Aliases: functionEnrich
-    > 
-    > ### ** Examples
-    > 
-    ...
-      13.84% of input gene IDs are fail to map...
-    'select()' returned 1:1 mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      9.22% of input gene IDs are fail to map...
-    'select()' returned 1:many mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      10.74% of input gene IDs are fail to map...
-    'select()' returned 1:1 mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      8.33% of input gene IDs are fail to map...
-    ```
-
-## Newly fixed
-
-*   checking examples ...sh: line 1:  6085 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --vanilla > 'eegc-Ex.Rout' 2>&1 < 'eegc-Ex.R'
-    ```
-     ERROR
-    Running examples in ‘eegc-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: functionEnrich
-    > ### Title: Funtional Enrichment Analysis
-    > ### Aliases: functionEnrich
-    > 
-    > ### ** Examples
-    > 
-    ...
-      13.84% of input gene IDs are fail to map...
-    'select()' returned 1:1 mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      9.22% of input gene IDs are fail to map...
-    'select()' returned 1:many mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      10.74% of input gene IDs are fail to map...
-    'select()' returned 1:1 mapping between keys and columns
-    Warning in bitr(x, fromType = from, toType = c("ENTREZID"), OrgDb = OrgDb) :
-      8.33% of input gene IDs are fail to map...
-    ```
-
 ## In both
 
 *   checking re-building of vignette outputs ... ERROR
@@ -1588,81 +1351,6 @@ Run `revdep_details(, "ELMER")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘ELMER-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: createMAE
-    > ### Title: Construct a Multi Assay Experiment for ELMER analysis
-    > ### Aliases: createMAE
-    > 
-    > ### ** Examples
-    > 
-    > # NON TCGA example: matrices has different column names
-    ...
-    Creating a SummarizedExperiment from gene expression input
-    =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-    Creating a SummarizedExperiment from DNA methylation input
-    Accessing DNAm annotation from sesame package for: hg38 - 450K
-    snapshotDate(): 2022-04-26
-    Error: Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-        cache: /c4/home/henrik/.cache/R/ExperimentHub
-        filename: experimenthub.index.rds
-      Backtrace:
-          ▆
-       1. └─ELMER:::makeSummarizedExperimentFromDNAMethylation(...) at test-getTF.R:165:2
-    ...
-      Backtrace:
-          ▆
-       1. └─ELMER:::getInfiniumAnnotation(plat = "450K", genome = "hg19") at test-neargenes.R:70:2
-       2.   └─ExperimentHub::ExperimentHub()
-       3.     └─AnnotationHub::.Hub(...)
-       4.       └─AnnotationHub:::.db_create_index(hub)
-      
-      [ FAIL 6 | WARN 2 | SKIP 1 | PASS 71 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘analysis_data_input.Rmd’ using rmarkdown
-    Loading required package: ELMER.data
-    
-    Attaching package: 'dplyr'
-    
-    The following objects are masked from 'package:stats':
-    
-        filter, lag
-    
-    ...
-    
-    SUMMARY: processing the following files failed:
-      ‘analysis_data_input.Rmd’ ‘analysis_diff_meth.Rmd’
-      ‘analysis_get_pair.Rmd’ ‘analysis_motif_enrichment.Rmd’
-      ‘analysis_regulatory_tf.Rmd’ ‘input.Rmd’ ‘plots_TF.Rmd’
-      ‘plots_heatmap.Rmd’ ‘plots_motif_enrichment.Rmd’ ‘plots_scatter.Rmd’
-      ‘plots_schematic.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... WARNING
     ```
@@ -2722,68 +2410,22 @@ Run `revdep_details(, "metaboliteIDmapping")` for more info
 
 ## In both
 
-*   checking whether package ‘metaboliteIDmapping’ can be installed ... ERROR
+*   checking re-building of vignette outputs ... ERROR
     ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/00install.out’ for details.
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘metaboliteIDmapping.Rmd’ using rmarkdown
+    Error: processing vignette 'metaboliteIDmapping.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘metaboliteIDmapping.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘metaboliteIDmapping.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘metaboliteIDmapping’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
-
-
-```
-### CRAN
-
-```
-* installing *source* package ‘metaboliteIDmapping’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/old/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
-
-
-```
 # MetaDBparse
 
 <details>
@@ -2821,52 +2463,6 @@ Run `revdep_details(, "MethReg")` for more info
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      [ FAIL 3 | WARN 9 | SKIP 4 | PASS 154 ]
-      
-      ══ Skipped tests ═══════════════════════════════════════════════════════════════
-      • On CRAN (2)
-      • empty test (2)
-      
-    ...
-          ▆
-       1. └─MethReg::make_dnam_se(dna.met.chr21) at test-utils.R:52:4
-       2.   └─MethReg::get_met_probes_info(genome = genome, arrayType = arrayType)
-       3.     └─ExperimentHub::ExperimentHub()
-       4.       └─AnnotationHub::.Hub(...)
-       5.         └─AnnotationHub:::.db_create_index(hub)
-      
-      [ FAIL 3 | WARN 9 | SKIP 4 | PASS 154 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MethReg.Rmd’ using rmarkdown
-    The magick package is required to crop "/c4/home/henrik/repositories/R.utils/revdep/checks/MethReg/new/MethReg.Rcheck/vign_test/MethReg/vignettes/MethReg_files/figure-html/workflow-1.png" but not available.
-    Quitting from lines 174-181 (MethReg.Rmd) 
-    Error: processing vignette 'MethReg.Rmd' failed with diagnostics:
-    Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    --- failed re-building ‘MethReg.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘MethReg.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking Rd \usage sections ... WARNING
     ```
@@ -3083,10 +2679,13 @@ Run `revdep_details(, "muscData")` for more info
 
 ## In both
 
-*   checking whether package ‘muscData’ can be installed ... ERROR
+*   checking for missing documentation entries ... WARNING
     ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/00install.out’ for details.
+    Undocumented code objects:
+      ‘Crowell19_4vs4’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -3097,62 +2696,13 @@ Run `revdep_details(, "muscData")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-## Installation
+*   checking dependencies in R code ... NOTE
+    ```
+    Package in Depends field not imported from: ‘SingleCellExperiment’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
 
-### Devel
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/muscData’
-
-
-```
-### CRAN
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/old/muscData.Rcheck/muscData’
-
-
-```
 # nc
 
 <details>
@@ -3322,81 +2872,6 @@ Run `revdep_details(, "NxtIRFcore")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘NxtIRFcore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: CollateData
-    > ### Title: Processes data from IRFinder output
-    > ### Aliases: CollateData
-    > 
-    > ### ** Examples
-    > 
-    > BuildReference(
-    ...
-    +     gtf = chrZ_gtf()
-    + )
-    Oct 24 01:22:10 NxtIRF reference already exists in given directory
-    NULL
-    > 
-    > bams <- NxtIRF_example_bams()
-    snapshotDate(): 2022-04-26
-    Error in NxtIRFdata::example_bams() : object 'hubobj' not found
-    Calls: NxtIRF_example_bams -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(NxtIRFcore)
-      Loading required package: NxtIRFdata
-      > 
-      > test_check("NxtIRFcore")
-      snapshotDate(): 2022-04-26
-    ...
-      ── Error ('test-OpenMP.R:14'): NxtIRF OpenMP produces same output regardless of threads ──
-      Error in `NxtIRFdata::example_bams()`: object 'hubobj' not found
-      Backtrace:
-          ▆
-       1. └─NxtIRFcore::NxtIRF_example_bams() at test-OpenMP.R:14:8
-       2.   └─NxtIRFdata::example_bams()
-      
-      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 0 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘NxtIRF.Rmd’ using rmarkdown
-    Oct 24 01:23:29 Reference generated without non-polyA reference
-    Oct 24 01:23:29 Reference generated without Mappability reference
-    Oct 24 01:23:29 Reference generated without Blacklist exclusion
-    Oct 24 01:23:29 Converting FASTA to local TwoBitFile...done
-    Oct 24 01:23:31 Connecting to genome TwoBitFile...done
-    Oct 24 01:23:31 Making local copy of GTF file...done
-    Oct 24 01:23:31 Reading source GTF file...done
-    Oct 24 01:23:32 Processing gtf file...
-    ...
-    Quitting from lines 122-124 (NxtIRF.Rmd) 
-    Error: processing vignette 'NxtIRF.Rmd' failed with diagnostics:
-    object 'hubobj' not found
-    --- failed re-building ‘NxtIRF.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘NxtIRF.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 13.7Mb
@@ -3404,90 +2879,6 @@ Run `revdep_details(, "NxtIRFcore")` for more info
         R      1.6Mb
         doc    2.4Mb
         libs   9.0Mb
-    ```
-
-# NxtIRFdata
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/alexchwong/NxtIRFdata
-* Source code: https://github.com/cran/NxtIRFdata
-* Date/Publication: 2022-04-28
-* Number of recursive dependencies: 126
-
-Run `revdep_details(, "NxtIRFdata")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘NxtIRFdata-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: NxtIRFdata-package
-    > ### Title: NxtIRFdata: Data Package for NxtIRF
-    > ### Aliases: NxtIRFdata-package chrZ_genome chrZ_gtf example_bams
-    > ###   get_mappability_exclusion
-    > ### Keywords: package
-    > 
-    > ### ** Examples
-    ...
-    > 
-    > gtf_path <- chrZ_gtf() 
-    > 
-    > # Fetches data from ExperimentHub and places them in the given path
-    > # returns the locations of the 6 example bam files
-    > 
-    > bam_paths <- example_bams(path = tempdir()) 
-    snapshotDate(): 2022-04-26
-    Error in example_bams(path = tempdir()) : object 'hubobj' not found
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      
-      The following objects are masked from 'package:stats':
-      
-          IQR, mad, sd, var, xtabs
-      
-      The following objects are masked from 'package:base':
-    ...
-          ▆
-       1. ├─testthat::expect_equal(...) at test-NxtIRFdata.R:45:8
-       2. │ └─testthat::quasi_label(enquo(object), label, arg = "object")
-       3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
-       4. ├─base::file.exists(...)
-       5. └─NxtIRFdata::get_mappability_exclusion(...)
-      
-      [ FAIL 3 | WARN 0 | SKIP 0 | PASS 2 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘NxtIRFdata.Rmd’ using rmarkdown
-    snapshotDate(): 2022-04-26
-    Quitting from lines 82-83 (NxtIRFdata.Rmd) 
-    Error: processing vignette 'NxtIRFdata.Rmd' failed with diagnostics:
-    object 'hubobj' not found
-    --- failed re-building ‘NxtIRFdata.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘NxtIRFdata.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # oce
@@ -3668,7 +3059,7 @@ Run `revdep_details(, "OSCA.intro")` for more info
     # Execution halted
     
     Error in compileChapter(path) : 
-      failed to compile '~/.cache/rebook/OSCA.intro/1.4.1/getting-datasets.Rmd'
+      failed to compile '~/.cache/rebook/OSCA.intro/1.4.1/installation.Rmd'
     Calls: <Anonymous> ... .precompile_book -> .locked_compile_chapter -> compileChapter
     Execution halted
     make: *** [Makefile:4: compiled] Error 1
@@ -3739,56 +3130,6 @@ Run `revdep_details(, "paxtoolsr")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘paxtoolsr-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: validate
-    > ### Title: Validate BioPAX files
-    > ### Aliases: validate
-    > 
-    > ### ** Examples
-    > 
-    > outFile <- tempfile()
-    ...
-    	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
-    	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:186)
-    	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
-    	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
-    	at org.apache.http.client.fluent.Executor.execute(Executor.java:215)
-    	at org.biopax.paxtools.client.BiopaxValidatorClient.validate(BiopaxValidatorClient.java:175)
-    	at org.biopax.paxtools.PaxtoolsMain.validate(PaxtoolsMain.java:310)
-    Start tag expected, '<' not found
-    Error: 1: Start tag expected, '<' not found
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      	at java.net.InetAddress.getAllByName(InetAddress.java:1127)
-      	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
-      	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:102)
-      	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:314)
-      	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:357)
-      	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:218)
-    ...
-      
-      Backtrace:
-          ▆
-       1. ├─paxtoolsr::validate(...) at test_paxtools.R:41:4
-       2. │ └─XML::xmlTreeParse(outputFile, useInternalNodes = TRUE)
-       3. └─XML (local) `<fn>`(`<chr>`)
-      
-      [ FAIL 2 | WARN 0 | SKIP 3 | PASS 54 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3934,56 +3275,6 @@ Run `revdep_details(, "psichomics")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘psichomics-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: convertGeneIdentifiers
-    > ### Title: Convert gene identifiers
-    > ### Aliases: convertGeneIdentifiers
-    > 
-    > ### ** Examples
-    > 
-    > # Use species name to automatically look for a OrgDb database
-    ...
-    > sp <- "Homo sapiens"
-    > genes <- c("ENSG00000012048", "ENSG00000083093", "ENSG00000141510",
-    +            "ENSG00000051180")
-    > convertGeneIdentifiers(sp, genes)
-    snapshotDate(): 2022-04-25
-    Error: Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/AnnotationHub
-      filename: annotationhub.index.rds
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘AS_events_preparation.Rmd’ using rmarkdown
-    Loading required package: shiny
-    Loading required package: shinyBS
-    Setting options('download.file.method.GEOquery'='auto')
-    Setting options('GEOquery.inmemory.gpl'=FALSE)
-    
-    psichomics 1.22.1: start the visual interface by running psichomics()
-    Full documentation and tutorials at https://nuno-agostinho.github.io/psichomics
-    --- finished re-building ‘AS_events_preparation.Rmd’
-    ...
-    --- finished re-building ‘GUI_tutorial.Rmd’
-    
-    --- re-building ‘custom_data.Rmd’ using rmarkdown
-    --- finished re-building ‘custom_data.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘CLI_tutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -4317,79 +3608,10 @@ Run `revdep_details(, "RcisTarget")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘RcisTarget’ can be installed ... ERROR
     ```
-    Running examples in ‘RcisTarget-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: addSignificantGenes
-    > ### Title: Add significant genes
-    > ### Aliases: addSignificantGenes addSignificantGenes,list-method
-    > ###   addSignificantGenes,character-method
-    > ###   addSignificantGenes,GeneSet-method
-    > ###   addSignificantGenes,GeneSetCollection-method getSignificantGenes
-    > ###   getSignificantGenes,list-method getSignificantGenes,character-method
-    ...
-    +                                        genesFormat="geneList",
-    +                                        plotCurve=TRUE,
-    +                                        geneSets=geneLists,
-    +                                        rankings=motifRankings,
-    +                                        method="aprox")
-    [1] 5050
-    Error in .getSignificantGenes(geneSet = geneSet, rankings = rankings,  : 
-      Package 'zoo' is required to calculate the aproximate RCC distributions.To install it, run:	 install.packages('zoo')
-    Calls: addSignificantGenes ... .addSignificantGenes -> lapply -> FUN -> .getSignificantGenes
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(RcisTarget)
-      > 
-      > test_check("RcisTarget")
-      [1] 5050
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 45 ]
-    ...
-       3.     ├─RcisTarget::addSignificantGenes(...) at test_RcisTarget.R:57:2
-       4.     └─RcisTarget::addSignificantGenes(...)
-       5.       └─RcisTarget:::.addSignificantGenes(...)
-       6.         └─base::lapply(...)
-       7.           └─RcisTarget (local) FUN(X[[i]], ...)
-       8.             └─RcisTarget:::.getSignificantGenes(...)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 45 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘RcisTarget_MainTutorial.Rmd’ using rmarkdown
-    Quitting from lines 346-350 (RcisTarget_MainTutorial.Rmd) 
-    Error: processing vignette 'RcisTarget_MainTutorial.Rmd' failed with diagnostics:
-    Package 'zoo' is required to calculate the aproximate RCC distributions.To install it, run:	 install.packages('zoo')
-    --- failed re-building ‘RcisTarget_MainTutorial.Rmd’
-    
-    --- re-building ‘Tutorial_AnalysisOfGenomicRegions.Rmd’ using rmarkdown
-    trying URL 'https://gbiomed.kuleuven.be/apps/lcb/i-cisTarget/examples/input_files/human/peaks/Encode_GATA1_peaks.bed'
-    ...
-    --- finished re-building ‘Tutorial_AnalysisOfGenomicRegions.Rmd’
-    
-    --- re-building ‘Tutorial_AnalysisWithBackground.Rmd’ using rmarkdown
-    --- finished re-building ‘Tutorial_AnalysisWithBackground.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘RcisTarget_MainTutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -4398,14 +3620,62 @@ Run `revdep_details(, "RcisTarget")` for more info
       'doMC', 'doRNG', 'zoo'
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.8Mb
-      sub-directories of 1Mb or more:
-        data   8.2Mb
-        doc    3.1Mb
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘RcisTarget’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+sh: line 1: 36705 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmp9Yw4QD/file8f5b641b179d'
+
+ *** caught illegal operation ***
+address 0x2acb618a32e7, cause 'illegal operand'
+...
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘RcisTarget’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+sh: line 1: 36634 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmpu6NOaM/file8f1475564b2e'
+
+ *** caught illegal operation ***
+address 0x2b21e03252e7, cause 'illegal operand'
+...
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget’
+
+
+```
 # Rcwl
 
 <details>
@@ -4673,27 +3943,6 @@ Run `revdep_details(, "RforProteomics")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘RforProteomics-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: id
-    > ### Title: An 'mzIdentML' file
-    > ### Aliases: TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzid
-    > ### Keywords: datasets
-    > 
-    > ### ** Examples
-    > 
-    > ## source files to repeat the search
-    > library("rpx")
-    > px <- PXDataset("PXD000001")
-    Loading PXD000001 from cache.
-    Error in gzfile(file, "rb") : invalid 'description' argument
-    Calls: PXDataset -> readRDS -> gzfile
-    Execution halted
-    ```
-
 *   checking re-building of vignette outputs ... ERROR
     ```
     Error(s) in re-building vignettes:
@@ -4707,9 +3956,9 @@ Run `revdep_details(, "RforProteomics")` for more info
     
         IQR, mad, sd, var, xtabs
     ...
-    Quitting from lines 384-392 (RforProteomics.Rmd) 
     Error: processing vignette 'RforProteomics.Rmd' failed with diagnostics:
-    invalid 'description' argument
+    Can not open file /c4/home/henrik/.cache/R/rpx/9cda763ac7f8_TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML! Original error was: Error in pwizModule$open(filename): [SAXParser::parse()] Empty tag at offset 182886312.
+    
     --- failed re-building ‘RforProteomics.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -4749,77 +3998,29 @@ Run `revdep_details(, "RLSeq")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘RLSeq-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: RLRangesFromRLBase
-    > ### Title: Access RLBase samples as RLRanges
-    > ### Aliases: RLRangesFromRLBase
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > rlr <- RLRangesFromRLBase("SRX1070676")
-    snapshotDate(): 2022-04-26
-    Error in h(simpleError(msg, call)) : 
-      error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    Calls: RLRangesFromRLBase ... <Anonymous> -> geh -> <Anonymous> -> .Hub -> .db_create_index
-    Execution halted
-    ```
-
 *   checking tests ...
     ```
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-        6. │   ├─AnnotationHub::query(geh(), "RLHub")
-        7. │   └─ExperimentHub (local) geh()
-        8. │     └─ExperimentHub::ExperimentHub()
-        9. │       └─AnnotationHub::.Hub(...)
-       10. │         └─AnnotationHub:::.db_create_index(hub)
-       11. │           └─base::stop(...)
+      see ?RLHub and browseVignettes('RLHub') for documentation
+      see ?RLHub and browseVignettes('RLHub') for documentation
+      see ?RLHub and browseVignettes('RLHub') for documentation
+      see ?RLHub and browseVignettes('RLHub') for documentation
+      [1] "Note: The minimum p-value with only 10 permutations is 0.0909090909090909. You should consider increasing the number of permutations."
+      see ?RLHub and browseVignettes('RLHub') for documentation
     ...
-        9. │       └─ExperimentHub::ExperimentHub()
-       10. │         └─AnnotationHub::.Hub(...)
-       11. │           └─AnnotationHub:::.db_create_index(hub)
-       12. │             └─base::stop(...)
-       13. └─base::.handleSimpleError(...)
-       14.   └─base (local) h(simpleError(msg, call))
+      warns\[1\] does not match "User-supplied sample test value is NA for .*".
+      Actual value: "Use of \.data in tidyselect expressions was deprecated in tidyselect 1\.2\.0\.\\ni Please use `"db"` instead of `\.data\$db`"
+      Backtrace:
+          ▆
+       1. └─testthat::expect_match(warns[1], regexp = "User-supplied sample test value is NA for .*") at test-plotEnrichment.R:15:4
+       2.   └─testthat:::expect_match_(...)
       
-      [ FAIL 3 | WARN 20 | SKIP 0 | PASS 1 ]
+      [ FAIL 1 | WARN 116 | SKIP 0 | PASS 6 ]
       Error: Test failures
       Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘RLSeq.Rmd’ using rmarkdown
-    
-    Attaching package: 'dplyr'
-    
-    The following objects are masked from 'package:stats':
-    
-        filter, lag
-    
-    The following objects are masked from 'package:base':
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    --- failed re-building ‘RLSeq.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘RLSeq.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # RMassBank
@@ -4967,56 +4168,6 @@ Run `revdep_details(, "signatureSearchData")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘signatureSearchData-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: ES_NULL
-    > ### Title: Null Distribution of WTCS from 'gess_lincs' Method
-    > ### Aliases: ES_NULL
-    > ### Keywords: datasets
-    > 
-    > ### ** Examples
-    > 
-    ...
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    > eh <- ExperimentHub()
-    snapshotDate(): 2022-04-26
-    Error: Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘signatureSearchData.Rmd’ using rmarkdown
-    Loading required package: BiocGenerics
-    
-    Attaching package: 'BiocGenerics'
-    
-    The following objects are masked from 'package:stats':
-    
-        IQR, mad, sd, var, xtabs
-    
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
-    --- failed re-building ‘signatureSearchData.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘signatureSearchData.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
@@ -5053,13 +4204,13 @@ Run `revdep_details(, "simpleSingleCell")` for more info
     > 
     > tmp <- tempfile(fileext=".Rmd")
     ...
-    processing file: file9a6f3884945a.Rmd
+    processing file: file2e2b17189046.Rmd
     label: unnamed-chunk-1 (with options) 
     List of 2
      $ echo   : logi FALSE
      $ results: chr "asis"
     
-    Quitting from lines 2-3 (file9a6f3884945a.Rmd) 
+    Quitting from lines 2-3 (file2e2b17189046.Rmd) 
     Error in loadNamespace(x) : there is no package called 'rebook'
     Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
     Execution halted
@@ -5266,23 +4417,16 @@ Run `revdep_details(, "TCGAutils")` for more info
     Running examples in ‘TCGAutils-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: TCGAprimaryTumors
-    > ### Title: Select primary tumors from TCGA datasets
-    > ### Aliases: TCGAprimaryTumors
+    > ### Name: getFileName
+    > ### Title: Find the file names used in RTCGAToolbox
+    > ### Aliases: getFileName
     > 
     > ### ** Examples
     > 
     > 
-    ...
-    gtSbtM> gbm <- curatedTCGAData("GBM", c("RPPA*", "CNA*"), version = "2.0.1", FALSE)
-    snapshotDate(): 2022-04-26
-    Using 'localHub=TRUE'
-      If offline, please also see BiocManager vignette section on offline use
-    snapshotDate(): 2022-10-17
-    Error: Corrupt Cache: index file
-      See  AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.index.rds
+    > getFileName("COAD", dataType = "CNASNP")
+    Error in open.connection(x, "rb") : HTTP error 503.
+    Calls: getFileName -> <Anonymous> -> read_html.default
     Execution halted
     ```
 

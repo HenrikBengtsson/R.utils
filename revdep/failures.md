@@ -130,25 +130,32 @@ Run `revdep_details(, "fastreeR")` for more info
 *   R CMD check timed out
     
 
-# metaboliteIDmapping
+# RcisTarget
 
 <details>
 
-* Version: 1.0.0
-* GitHub: https://github.com/yigbt/metaboliteIDmapping
-* Source code: https://github.com/cran/metaboliteIDmapping
-* Number of recursive dependencies: 107
+* Version: 1.16.0
+* GitHub: https://github.com/aertslab/RcisTarget
+* Source code: https://github.com/cran/RcisTarget
+* Date/Publication: 2022-04-26
+* Number of recursive dependencies: 146
 
-Run `revdep_details(, "metaboliteIDmapping")` for more info
+Run `revdep_details(, "RcisTarget")` for more info
 
 </details>
 
 ## In both
 
-*   checking whether package ‘metaboliteIDmapping’ can be installed ... ERROR
+*   checking whether package ‘RcisTarget’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'doMC', 'doRNG', 'zoo'
     ```
 
 ## Installation
@@ -156,140 +163,54 @@ Run `revdep_details(, "metaboliteIDmapping")` for more info
 ### Devel
 
 ```
-* installing *source* package ‘metaboliteIDmapping’ ...
+* installing *source* package ‘RcisTarget’ ...
 ** using staged installation
 ** R
+** data
 ** inst
 ** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
+sh: line 1: 36705 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmp9Yw4QD/file8f5b641b179d'
+
+ *** caught illegal operation ***
+address 0x2acb618a32e7, cause 'illegal operand'
 ...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/new/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/new/RcisTarget.Rcheck/RcisTarget’
 
 
 ```
 ### CRAN
 
 ```
-* installing *source* package ‘metaboliteIDmapping’ ...
+* installing *source* package ‘RcisTarget’ ...
 ** using staged installation
 ** R
+** data
 ** inst
 ** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
+sh: line 1: 36634 Illegal instruction     (core dumped) R_TESTS= '/software/c4/cbi/software/R-4.2.1-gcc10/lib64/R/bin/R' --no-save --no-restore --no-echo 2>&1 < '/scratch/henrik/Rtmpu6NOaM/file8f1475564b2e'
+
+ *** caught illegal operation ***
+address 0x2b21e03252e7, cause 'illegal operand'
 ...
- .onLoad failed in loadNamespace() for 'metaboliteIDmapping', details:
-  call: NULL
-  error: Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/AnnotationHub
-  filename: annotationhub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/metaboliteIDmapping/old/metaboliteIDmapping.Rcheck/metaboliteIDmapping’
-
-
-```
-# muscData
-
-<details>
-
-* Version: 1.10.0
-* GitHub: https://github.com/HelenaLC/muscData
-* Source code: https://github.com/cran/muscData
-* Date/Publication: 2022-04-28
-* Number of recursive dependencies: 269
-
-Run `revdep_details(, "muscData")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘muscData’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/00install.out’ for details.
-    ```
-
-*   checking for hidden files and directories ... NOTE
-    ```
-    Found the following hidden files and directories:
-      .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/new/muscData.Rcheck/muscData’
-
-
-```
-### CRAN
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.index.rds
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/muscData/old/muscData.Rcheck/muscData’
+ 4: asNamespace(ns)
+ 5: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc,     .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+ 6: loadNamespace(package = package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, partial = TRUE)
+ 7: withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+ 8: suppressPackageStartupMessages(loadNamespace(package = package,     lib.loc = lib.loc, keep.source = keep.source, keep.parse.data = keep.parse.data,     partial = TRUE))
+ 9: code2LazyLoadDB(package, lib.loc = lib.loc, keep.source = keep.source,     keep.parse.data = keep.parse.data, compress = compress, set.install.dir = set.install.dir)
+10: tools:::makeLazyLoading("RcisTarget", "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/00LOCK-RcisTarget/00new",     keep.source = FALSE, keep.parse.data = FALSE, set.install.dir = "/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget")
+An irrecoverable exception occurred. R is aborting now ...
+ERROR: lazy loading failed for package ‘RcisTarget’
+* removing ‘/c4/home/henrik/repositories/R.utils/revdep/checks/RcisTarget/old/RcisTarget.Rcheck/RcisTarget’
 
 
 ```
