@@ -1,3 +1,29 @@
+# Version (development version)
+
+## Documentation
+
+ * Documented the limitation that `withTimeout()` may fail to detect
+   the timeout error if the language is temporarily switched during
+   evaluation.
+   
+ * Updated moved and broken URLs in help pages.
+
+## Bug Fixes()
+
+ * `filePath()` could produce `Error in if (components[pos] == ".." &&
+   components[pos - 1L] != "..") { : missing value where TRUE/FALSE
+   needed` when there were too many `..` components in the specified
+   path, e.g. `filePath("C:/foo/../bar/../..")`.  Now it returns the 
+   maximum pruned path, e.g. `"C:/.."`.
+ 
+ * `withTimeout()` did not return NULL on timeouts when `onTimeout`
+   was `"warning"` or `"silent"`.
+ 
+ * `parseRepos()` would produce `"Error in get(".read_repositories",
+   envir = ns) : object '.read_repositories' not found"` in 
+   R-devel (>= rev 83148).
+
+
 # Version 2.12.0 [2022-06-27]
 
 ## New Features

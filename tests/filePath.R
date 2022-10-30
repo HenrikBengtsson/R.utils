@@ -39,6 +39,11 @@ assertEqual(path, "..")
 path <- filePath("C:/foo/..")
 assertEqual(path, "C:/")
 
+path <- filePath("/tmp/../../..")
+assertEqual(path, "/../..")
+
+path <- filePath("C:/../../..")
+assertEqual(path, "C:/../../..")
 
 
 

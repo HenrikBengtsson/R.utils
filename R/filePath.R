@@ -135,12 +135,17 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     if (regexpr(pattern, pathname) != -1L)
       return(pathname)
 
-    # Treat C:/, C:\\, ... special
+    # Treat C:/, C:\\, ... specially
     pattern <- getWindowsDrivePattern("^[%s]:[/\\]$")
     if (regexpr(pattern, pathname) != -1L)
       return(gsub("\\\\", "/", pathname))
 
+    # Split path into the individual components
     components <- strsplit(pathname, split="[/\\]")[[1L]]
+
+    # Get the root, if it exists
+    rootPath <- components[1]
+    if (rootPath %in% c(".", "..")) rootPath <- NA_character_
 
     # Remove all "." parts, because they are non-informative
     if (length(components) > 1L) {
@@ -152,9 +157,13 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
     # Remove ".." and its parent by reading from the left(!)
     pos <- 2L
-    while (pos <= length(components)) {
+    while (pos >= 2L && pos <= length(components)) {
       if (components[pos] == ".." && components[pos-1L] != "..") {
-        # Remove the ".." and its parent
+        # Remove the ".." and its parent, if possible
+        if (pos == 2L && identical(components[1], rootPath)) {
+          ## Not possible, e.g. /foo/.. and C:/..
+          break
+        }
         if (verbose) {
           message("Removing: ", paste(components[c(pos-1L,pos)], collapse=", "))
         }

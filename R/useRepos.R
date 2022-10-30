@@ -92,8 +92,20 @@ parseRepos <- function(sets=NULL, where=c("before", "after", "replace"), fallbac
   reposKnownToR <- function() {
     p <- file.path(Sys.getenv("HOME"), ".R", "repositories")
     if (!file.exists(p)) p <- file.path(R.home("etc"), "repositories")
-    ns <- getNamespace("tools")
-    .read_repositories <- get(".read_repositories", envir=ns)
+
+    ## Find .read_repositories() in 'utils' or 'tools' [R (< 4.3.0)]
+    .read_repositories <- NULL
+    for (pkg in c("utils", "tools")) {
+      ns <- getNamespace(pkg)
+      if (exists(".read_repositories", envir = ns)) {
+        .read_repositories <- get(".read_repositories", envir = ns)
+        break
+      }
+    }
+    if (is.null(.read_repositories)) {
+      stop("[INTERNAL ERROR] Failed to locate base-R function .read_repositories()")
+    }
+    
     a <- .read_repositories(p)
     repos <- a$URL
     names <- rownames(a)
