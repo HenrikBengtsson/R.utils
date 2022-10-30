@@ -2,6 +2,8 @@
 
 on 2022-10-28
 
+This submission address check ERRORs on R-devel.
+
 I've verified that this submission does not cause issues for the 261 reverse package dependencies available on CRAN and Bioconductor.
 
 Thanks in advance
