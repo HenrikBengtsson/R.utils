@@ -1,13 +1,13 @@
 Package: R.utils
-Version: 2.12.1-9000
+Version: 2.12.1-9001
 Depends:
   R (>= 2.14.0),
-  R.oo (>= 1.24.0)
+  R.oo
 Imports:
   methods,
   utils,
   tools,
-  R.methodsS3 (>= 1.8.1)
+  R.methodsS3
 Suggests:
   datasets,
   digest (>= 0.6.10)
