@@ -1,6 +1,8 @@
 # Version (development version)
 
- * ...
+## Documentation
+
+ * Drop duplicated arguments from `help("parse.SmartComments")`.
  
 
 # Version 2.12.1 [2022-10-30]
