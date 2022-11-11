@@ -1,4 +1,16 @@
-# Version (development version)
+# Version 2.12.2 [2022-11-11]
+
+## Documentation
+
+ * Drop duplicated arguments from `help("parse.SmartComments")`.
+
+## Deprecated and Defunct
+
+ * S3 method `warnings()` for `Verbose`, and the corresponding generic
+   function, has been deprecated in favor of the `printWarnings()`.
+
+
+# Version 2.12.1 [2022-10-30]
 
 ## Documentation
 

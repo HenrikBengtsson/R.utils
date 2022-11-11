@@ -114,8 +114,6 @@ setMethodS3("reset", "SmartComments", function(this, ...) {
 #  \item{letter}{The letter of the smart comment. Available to avoid lookup
 #     at every line.}
 #  \item{pattern}{The pattern of the smart comment.}
-#  \item{letter}{The letter of the smart comment. Available to avoid lookup
-#     at every line.}
 # }
 #
 # \value{

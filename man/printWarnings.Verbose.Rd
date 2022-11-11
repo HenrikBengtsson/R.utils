@@ -6,10 +6,10 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{warnings.Verbose}
-\alias{warnings.Verbose}
-\alias{Verbose.warnings}
-\alias{warnings,Verbose-method}
+\name{printWarnings.Verbose}
+\alias{printWarnings.Verbose}
+\alias{Verbose.printWarnings}
+\alias{printWarnings,Verbose-method}
 
 \title{Outputs any warnings recorded}
 
@@ -20,7 +20,7 @@
 }
 
 \usage{
-\method{warnings}{Verbose}(this, title="Warnings detected:", ..., level=this$defaultLevel)
+\method{printWarnings}{Verbose}(this, title="Warnings detected:", ..., level=this$defaultLevel)
 }
 
 \arguments{
@@ -40,6 +40,8 @@
   For more information see \code{\link{Verbose}}.
 }
 
+\alias{printWarnings}
+\alias{warnings.Verbose}
 
 \keyword{internal}
 \keyword{methods}
