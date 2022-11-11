@@ -78,6 +78,7 @@ Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE,
  \tab \code{\link[R.utils:on.Verbose]{on}} \tab Turn on the output.\cr
  \tab \code{popState} \tab  -\cr
  \tab \code{\link[R.utils:print.Verbose]{print}} \tab Prints objects if above threshold.\cr
+ \tab \code{\link[R.utils:printWarnings.Verbose]{printWarnings}} \tab Outputs any warnings recorded.\cr
  \tab \code{\link[R.utils:printf.Verbose]{printf}} \tab Formats and prints object if above threshold.\cr
  \tab \code{\link[R.utils:pushState.Verbose]{pushState}} \tab Pushes the current indentation state of the Verbose object.\cr
  \tab \code{\link[R.utils:ruler.Verbose]{ruler}} \tab Writes a ruler.\cr
@@ -89,7 +90,6 @@ Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE,
  \tab \code{\link[R.utils:timestamp.Verbose]{timestamp}} \tab Writes a timestamp.\cr
  \tab \code{timestampOff} \tab  -\cr
  \tab \code{\link[R.utils:timestampOn.Verbose]{timestampOn}} \tab Turns automatic timestamping on and off.\cr
- \tab \code{\link[R.utils:warnings.Verbose]{warnings}} \tab Outputs any warnings recorded.\cr
  \tab \code{\link[R.utils:writeRaw.Verbose]{writeRaw}} \tab Writes objects if above threshold.\cr
 }
 

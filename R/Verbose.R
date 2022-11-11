@@ -1481,7 +1481,7 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 
 
 ###########################################################################/**
-# @RdocMethod warnings
+# @RdocMethod printWarnings
 #
 # @title "Outputs any warnings recorded"
 #
@@ -1510,9 +1510,11 @@ setMethodS3("timestampOff", "Verbose", function(this, ...) {
 #   @seeclass
 # }
 #
+# @alias printWarnings
+# @alias warnings.Verbose
 # @keyword programming
 #*/###########################################################################
-setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", ..., level=this$defaultLevel) {
+setMethodS3("printWarnings", "Verbose", function(this, title="Warnings detected:", ..., level=this$defaultLevel) {
   if (!isVisible(this, level))
     return(invisible(FALSE))
 
@@ -1525,6 +1527,12 @@ setMethodS3("warnings", "Verbose", function(this, title="Warnings detected:", ..
 
   invisible(TRUE)
 })
+
+
+setMethodS3("warnings", "Verbose", function(this, ...) {
+  .Deprecated(new = "printWarnings()", package = .packageName)
+  printWarnings(this, ...)
+}, deprecated = TRUE)
 
 
 ###########################################################################/**
