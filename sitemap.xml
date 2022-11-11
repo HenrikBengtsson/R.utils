@@ -598,6 +598,9 @@
     <loc>/reference/print.Verbose.html</loc>
   </url>
   <url>
+    <loc>/reference/printWarnings.Verbose.html</loc>
+  </url>
+  <url>
     <loc>/reference/printf.Verbose.html</loc>
   </url>
   <url>
@@ -800,9 +803,6 @@
   </url>
   <url>
     <loc>/reference/validate.VComments.html</loc>
-  </url>
-  <url>
-    <loc>/reference/warnings.Verbose.html</loc>
   </url>
   <url>
     <loc>/reference/whichVector.logical.html</loc>
