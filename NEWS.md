@@ -1,6 +1,10 @@
 # Version (development version)
 
- * ...
+## Miscellaneous
+
+ * The unit tests on absolute and relative paths would fail on MS Windows
+   where the `HOME` folder was a subfolder directly under the drive, e.g.
+   `HOME=C:\msys64`.
 
 
 # Version 2.12.2 [2022-11-11]
