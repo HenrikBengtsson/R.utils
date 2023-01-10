@@ -1,12 +1,13 @@
 library("R.utils")
 warnifnot <- egsub("stop", "warning", stopifnot, value=FALSE)
 
+message("Absolute and relative paths ...")
 
-# Current directory
+message("- Absolute and relative path of getwd()")
 stopifnot(identical(getAbsolutePath("."), getwd()))
 stopifnot(identical(getRelativePath("."), "."))
 
-# Tilde expansion
+message("- Tilde expansion")
 pathH0 <- normalizePath("~")
 print(pathH0)
 pathH <- normalizePath("~", winslash = "/")
@@ -25,20 +26,27 @@ warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 pathR <- getRelativePath("~", caseSensitive=TRUE)
 print(pathR)
 
+
+message("- ~/../Documents")
 pathA <- getAbsolutePath("~/../Documents", expandTilde=TRUE)
 pathA0 <- file.path(getParent(pathH), "Documents")
+## Account for the case when getParent(pathH) = "C:/", which in case
+## we get C://Documents instead of C:/Documents
+pathA0 <- normalizePath(pathA0, winslash = "/")
 utils::str(list(pathA = pathA, pathA0 = pathA0))
 stopifnot(pathA == pathA0)
 
+message("- /tmp/")
 pathA <- getAbsolutePath("/tmp/", expandTilde=TRUE)
 print(pathA)
 stopifnot(identical(pathA, "/tmp"))
 
-# Microsoft Windows UNC paths
+
+message("- Microsoft Windows UNC paths")
 stopifnot(identical(getAbsolutePath("//vinata/biomed"), "//vinata/biomed"))
 stopifnot(identical(getAbsolutePath("//vinata///biomed"), "//vinata/biomed"))
 
-# Vector of files
+message("- Vector of files")
 paths <- c(".", "..", getwd())
 print(paths)
 pathsA <- getAbsolutePath(paths)
@@ -56,7 +64,8 @@ stopifnot(all(!isAbsolutePath(pathsR)))
 stopifnot(all(pathsRA == pathsA))
 stopifnot(all(pathsAR == pathsR))
 
-# Paths relative to given directories
+
+message("- Paths relative to given directories")
 stopifnot(getRelativePath("foo", "foo") == ".")
 stopifnot(getRelativePath("foo/bar", "foo") == "bar")
 stopifnot(getRelativePath("foo/bar", "foo/bar/yah") == "..")
@@ -65,3 +74,5 @@ stopifnot(getRelativePath("/tmp/foo/", "/tmp/") == "foo")
 stopifnot(getRelativePath("/tmp/bar/", "/bar/foo/") == "../../tmp/bar")
 stopifnot(getRelativePath("C:/foo/bar/", "C:/bar/") == "../foo/bar")
 stopifnot(getRelativePath("C:/foo/bar/", "D:/bar/") == "C:/foo/bar")
+
+message("Absolute and relative paths ... DONE")
