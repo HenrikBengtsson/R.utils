@@ -7,15 +7,19 @@ stopifnot(identical(getAbsolutePath("."), getwd()))
 stopifnot(identical(getRelativePath("."), "."))
 
 # Tilde expansion
-pathH <- normalizePath("~")
+pathH0 <- normalizePath("~")
+print(pathH0)
+pathH <- normalizePath("~", winslash = "/")
 print(pathH)
 pathHA <- getAbsolutePath(pathH)
 print(pathHA)
+
 pathA <- getAbsolutePath("~", expandTilde=TRUE)
 print(pathA)
+warnifnot(identical(tolower(pathA), tolower(pathH)))
+
 pathR <- getRelativePath("~")
 print(pathR)
-warnifnot(identical(tolower(pathA), tolower(pathH)))
 warnifnot(identical(tolower(getAbsolutePath(pathR)), tolower(pathH)))
 
 pathR <- getRelativePath("~", caseSensitive=TRUE)
