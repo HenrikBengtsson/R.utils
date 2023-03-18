@@ -84,5 +84,5 @@ withLocale <- function(expr, category, locale, ..., substitute=TRUE, envir=paren
     warning(msg)
   }
 
-  eval(expr, envir=envir)
+  eval(expr, envir = envir, enclos = baseenv())
 } # withLocale()

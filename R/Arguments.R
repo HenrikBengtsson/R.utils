@@ -1373,5 +1373,5 @@ withoutGString <- function(..., envir=parent.frame()) {
   # Temporarily disable 'asGString' for Arguments$getCharacters()
   oopts <- options("Arguments$getCharacters/args/asGString"=FALSE)
   on.exit(options(oopts))
-  eval(..., envir=envir)
+  eval(..., envir = envir, enclos = baseenv())
 } # withoutGString()

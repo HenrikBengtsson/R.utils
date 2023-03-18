@@ -1155,7 +1155,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 
   pf <- parent.frame()
   evalVis <- function(expr) {
-    withVisible(eval(expr, pf))
+    withVisible(eval(expr, envir = pf, enclos = baseenv()))
   }
 
   for (kk in seq_along(args)) {

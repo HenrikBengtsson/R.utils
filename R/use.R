@@ -85,7 +85,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
 
       # Evaluate
       tryCatch({
-        eval(expr, envir=envir)
+        eval(expr, envir = envir, enclos = baseenv())
       }, error = function(ex) {
         out <<- closeAll(out)
         # If error, output all messages...
@@ -104,7 +104,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
     } # captureAll()
   } else {
     captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
-      eval(expr, envir=envir)
+      eval(expr, envir = envir, enclos = baseenv())
     }
   } # if (quietly)
 

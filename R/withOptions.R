@@ -73,5 +73,5 @@ withOptions <- function(expr, ..., args=list(), substitute=TRUE, envir=parent.fr
   })
   if (length(new) > 0L) options(new)
 
-  eval(expr, envir=envir)
+  eval(expr, envir = envir, enclos = baseenv())
 } # withOptions()
