@@ -37,7 +37,7 @@
 #   level must be greater than (not equal to) current threshold.
 #   Thus, the lower the threshold is set, the more messages will be seen.
 #
-#   \itemize{
+#   \describe{
 #    \item{<= -100}{Only for debug messages, i.e. messages containing all
 #      necessary information for debugging purposes and to find bugs in
 #      the code. Normally these messages are so detailed so they will be

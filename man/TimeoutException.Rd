@@ -57,7 +57,7 @@ TimeoutException(..., cpu=NA, elapsed=NA)
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:getMessage.TimeoutException]{getMessage}} \tab Gets the message of the exception.\cr
+ \tab \code{getMessage} \tab  -\cr
 }
 
 
