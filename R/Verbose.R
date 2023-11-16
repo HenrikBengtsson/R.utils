@@ -1333,7 +1333,7 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 # @synopsis
 #
 # \arguments{
-#  \item{stamp}{A timestamp @character to be written.}
+#  \item{format}{A @function or a @character specifying the format of the timestamp.}
 #  \item{...}{Not used.}
 # }
 #

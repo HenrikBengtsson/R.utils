@@ -22,7 +22,7 @@
 }
 
 \arguments{
- \item{stamp}{A timestamp \code{\link[base]{character}} to be written.}
+ \item{format}{A \code{\link[base]{function}} or a \code{\link[base]{character}} specifying the format of the timestamp.}
  \item{...}{Not used.}
 }
 
