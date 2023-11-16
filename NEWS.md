@@ -10,6 +10,11 @@
    where the `HOME` folder was a subfolder directly under the drive, e.g.
    `HOME=C:\msys64`.
 
+## Bug Fixes
+
+ * Package would fail to install in R-devel when it introduces the new
+   **base** package function `use()`.
+
 
 # Version 2.12.2 [2022-11-11]
 
