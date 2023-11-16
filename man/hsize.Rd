@@ -19,7 +19,9 @@
 }
 
 \usage{
-hsize(...)
+  \method{hsize}{numeric}(sizes, digits=1L, units="auto", standard=getOption("hsize.standard", "IEC"),
+  bytes=getOption("hsize.bytes", "B"), ...)
+  \method{hsize}{object_size}(sizes, ...)
 }
 
 \arguments{
