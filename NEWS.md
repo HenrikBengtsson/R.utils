@@ -1,5 +1,9 @@
 # Version (development version)
 
+## Documentation
+
+ * Fix various Rd issues.
+ 
 ## Miscellaneous
 
  * The unit tests on absolute and relative paths would fail on MS Windows
@@ -29,7 +33,7 @@
    
  * Updated moved and broken URLs in help pages.
 
-## Bug Fixes()
+## Bug Fixes
 
  * `filePath()` could produce `Error in if (components[pos] == ".." &&
    components[pos - 1L] != "..") { : missing value where TRUE/FALSE
