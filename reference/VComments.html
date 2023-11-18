@@ -30,7 +30,7 @@ The VComments class."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.2-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.3</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ extends <em><a href="SmartComments.html">SmartComments</a></em><br></p>
 </dl></div>
     <div id="fields-and-methods">
     <h2>Fields and Methods</h2>
-    <p><b>Methods:</b><br></p><table class="table table"><tr><td></td><td><code><a href="convertComment.VComments.html">convertComment</a></code></td><td>Converts a verbose comment to R code.</td></tr><tr><td></td><td><code><a href="reset.VComments.html">reset</a></code></td><td>Resets a VComments compiler.</td></tr><tr><td></td><td><code><a href="validate.VComments.html">validate</a></code></td><td>Validates the compiled lines.</td></tr></table><p><b>Methods inherited from SmartComments</b>:<br>
+    <p><b>Methods:</b><br></p><table class="table table"><tr><td></td><td><code>convertComment</code></td><td>-</td></tr><tr><td></td><td><code>reset</code></td><td>-</td></tr><tr><td></td><td><code>validate</code></td><td>-</td></tr></table><p><b>Methods inherited from SmartComments</b>:<br>
 compile, convertComment, parse, reset, validate</p>
 <p><b>Methods inherited from Object</b>:<br>
 $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, names, objectSize, print, save</p>
@@ -103,30 +103,75 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
  to the <code><a href="Verbose.html">Verbose</a></code> class.</p>
 <p>Here is a list of VComments and the <span style="R">R</span> code that replaces each of them
  by the compiler:</p>
-<p><b>Constructors</b><br></p><ul><li><p>#V0#[&lt;args&gt;] - NullVerbose(&lt;args&gt;)</p></li>
-<li><p>#V1#[&lt;args&gt;] - Verbose(&lt;args&gt;)</p></li>
-</ul><p><b>Controls</b><br></p><ul><li><p>#V=#[&lt;variable&gt;] - Sets the name of the &lt;verbose&gt; object.
-                             Default is 'verbose'.</p></li>
-<li><p>#V^#&lt;threshold&gt; - setThreshold(&lt;verbose&gt;, &lt;threshold&gt;)</p></li>
-<li><p>#V?#&lt;expression&gt; - if (isVisible(&lt;verbose&gt;)) { &lt;expression&gt; }</p></li>
-<li><p>#V@#&lt;level&gt; - setDefaultLevel(&lt;verbose&gt;, &lt;level&gt;)</p></li>
-<li><p>#Vm#&lt;method&gt; &lt;args&gt; - &lt;method&gt;(&lt;verbose&gt;, &lt;args&gt;)</p></li>
-</ul><p><b>Enters and exits</b><br></p><ul><li><p>#V+#[&lt;message&gt;] - enter(&lt;verbose&gt;, &lt;message&gt;)</p></li>
-<li><p>#V-#[&lt;message&gt;] - exit(&lt;verbose&gt;, &lt;message&gt;)</p></li>
-<li><p>#V!#[&lt;message&gt;] - pushState(&lt;verbose&gt;)<br>
+<p><b>Constructors</b><br></p><dl><dt>#V0#</dt>
+<dd><p>[&lt;args&gt;] - NullVerbose(&lt;args&gt;)</p></dd>
+
+  <dt>#V1#</dt>
+<dd><p>[&lt;args&gt;] - Verbose(&lt;args&gt;)</p></dd>
+
+ 
+</dl><p><b>Controls</b><br></p><dl><dt>#V=#</dt>
+<dd><p>[&lt;variable&gt;] - Sets the name of the &lt;verbose&gt; object.
+                             Default is 'verbose'.</p></dd>
+
+  <dt>#V^#</dt>
+<dd><p>&lt;threshold&gt; - setThreshold(&lt;verbose&gt;, &lt;threshold&gt;)</p></dd>
+
+  <dt>#V?#</dt>
+<dd><p>&lt;expression&gt; - if (isVisible(&lt;verbose&gt;)) { &lt;expression&gt; }</p></dd>
+
+  <dt>#V@#</dt>
+<dd><p>&lt;level&gt; - setDefaultLevel(&lt;verbose&gt;, &lt;level&gt;)</p></dd>
+
+  <dt>#Vm#</dt>
+<dd><p>&lt;method&gt; &lt;args&gt; - &lt;method&gt;(&lt;verbose&gt;, &lt;args&gt;)</p></dd>
+
+ 
+</dl><p><b>Enters and exits</b><br></p><dl><dt>#V+#</dt>
+<dd><p>[&lt;message&gt;] - enter(&lt;verbose&gt;, &lt;message&gt;)</p></dd>
+
+  <dt>#V-#</dt>
+<dd><p>[&lt;message&gt;] - exit(&lt;verbose&gt;, &lt;message&gt;)</p></dd>
+
+  <dt>#V!#</dt>
+<dd><p>[&lt;message&gt;] - pushState(&lt;verbose&gt;)<br>
                             on.exit(popState(&lt;verbose&gt;))<br>
-                            If &lt;message&gt;, enter(&lt;verbose&gt;, &lt;message&gt;)</p></li>
-</ul><p><b>Simple output</b><br></p><ul><li><p>#Vn#&lt;ignored&gt; - newline(&lt;verbose&gt;)</p></li>
-<li><p>#Vr#&lt;ignored&gt; - ruler(&lt;verbose&gt;)</p></li>
-<li><p>#Vt#&lt;ignored&gt; - timestamp(&lt;verbose&gt;)</p></li>
-<li><p>#Vw#[&lt;title&gt;] - warnings(&lt;verbose&gt;, &lt;title&gt;)</p></li>
-</ul><p><b>Output messages</b><br></p><ul><li><p>#Vc#[&lt;message&gt;] - cat(&lt;verbose&gt;, &lt;message&gt;)</p></li>
-<li><p>#Ve#&lt;expression&gt; - eval(&lt;verbose&gt;, &lt;expression&gt;)</p></li>
-<li><p>#Vh#&lt;message&gt; - header(&lt;verbose&gt;, &lt;message&gt;)</p></li>
-<li><p>#Vp#&lt;object&gt; - print(&lt;verbose&gt;, &lt;object&gt;)</p></li>
-<li><p>#Vs#&lt;object&gt; - summary(&lt;verbose&gt;, &lt;object&gt;)</p></li>
-<li><p>#Vz#&lt;object&gt; - str(&lt;verbose&gt;, &lt;object&gt;)</p></li>
-</ul></div>
+                            If &lt;message&gt;, enter(&lt;verbose&gt;, &lt;message&gt;)</p></dd>
+
+ 
+</dl><p><b>Simple output</b><br></p><dl><dt>#Vn#</dt>
+<dd><p>&lt;ignored&gt; - newline(&lt;verbose&gt;)</p></dd>
+
+  <dt>#Vr#</dt>
+<dd><p>&lt;ignored&gt; - ruler(&lt;verbose&gt;)</p></dd>
+
+  <dt>#Vt#</dt>
+<dd><p>&lt;ignored&gt; - timestamp(&lt;verbose&gt;)</p></dd>
+
+  <dt>#Vw#</dt>
+<dd><p>[&lt;title&gt;] - warnings(&lt;verbose&gt;, &lt;title&gt;)</p></dd>
+
+ 
+</dl><p><b>Output messages</b><br></p><dl><dt>#Vc#</dt>
+<dd><p>[&lt;message&gt;] - cat(&lt;verbose&gt;, &lt;message&gt;)</p></dd>
+
+  <dt>#Ve#</dt>
+<dd><p>&lt;expression&gt; - eval(&lt;verbose&gt;, &lt;expression&gt;)</p></dd>
+
+  <dt>#Vh#</dt>
+<dd><p>&lt;message&gt; - header(&lt;verbose&gt;, &lt;message&gt;)</p></dd>
+
+  <dt>#Vp#</dt>
+<dd><p>&lt;object&gt; - print(&lt;verbose&gt;, &lt;object&gt;)</p></dd>
+
+  <dt>#Vs#</dt>
+<dd><p>&lt;object&gt; - summary(&lt;verbose&gt;, &lt;object&gt;)</p></dd>
+
+  <dt>#Vz#</dt>
+<dd><p>&lt;object&gt; - str(&lt;verbose&gt;, &lt;object&gt;)</p></dd>
+
+ 
+</dl></div>
     <div id="author">
     <h2>Author</h2>
     <p>Henrik Bengtsson</p>
@@ -163,7 +208,7 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>

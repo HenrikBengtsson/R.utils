@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.2-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.3</span>
       </span>
     </div>
 
@@ -182,8 +182,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>             dots &lt;- match.call()[-1L]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             if (is.null(msg &lt;- names(dots)) || !nzchar(msg &lt;- msg[i])) {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 cl.i &lt;- dots[[i]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 msg &lt;- if (is.call(cl.i) &amp;&amp; identical(cl.i[[1]], </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   quote(all.equal)) &amp;&amp; (is.null(ni &lt;- names(cl.i)) || </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 msg &lt;- if (is.call(cl.i) &amp;&amp; identical(1L, pmatch(quote(all.equal), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   cl.i[[1]])) &amp;&amp; (is.null(ni &lt;- names(cl.i)) || </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   length(cl.i) == 3L || length(cl.i &lt;- cl.i[!nzchar(ni)]) == </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   3L)) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   sprintf(gettext("%s and %s are not equal:\n  %s"), </span>
@@ -214,7 +214,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>

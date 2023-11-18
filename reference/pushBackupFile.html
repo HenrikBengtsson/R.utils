@@ -19,7 +19,7 @@ In combination with popBackupFile(), this method is useful
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.2-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.3</span>
       </span>
     </div>
 
@@ -126,12 +126,12 @@ In combination with popBackupFile(), this method is useful
 <span class="r-in"><span><span class="co"># Turn it into a backup file</span></span></span>
 <span class="r-in"><span><span class="va">pathnameB</span> <span class="op">&lt;-</span> <span class="fu">pushBackupFile</span><span class="op">(</span><span class="va">pathname</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pathnameB</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/hb/Rtmp35UOzh/foobar.txt.bak"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/henrik/RtmpAr1qq8/foobar.txt.bak"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restore main file from backup</span></span></span>
 <span class="r-in"><span><span class="va">pathnameR</span> <span class="op">&lt;-</span> <span class="fu"><a href="popBackupFile.html">popBackupFile</a></span><span class="op">(</span><span class="va">pathnameB</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pathnameR</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/hb/Rtmp35UOzh/foobar.txt"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/henrik/RtmpAr1qq8/foobar.txt"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
@@ -140,7 +140,7 @@ In combination with popBackupFile(), this method is useful
 <span class="r-in"><span><span class="co"># Turn it into a backup file</span></span></span>
 <span class="r-in"><span><span class="va">pathnameB</span> <span class="op">&lt;-</span> <span class="fu">pushBackupFile</span><span class="op">(</span><span class="va">pathname</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pathnameB</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/hb/Rtmp35UOzh/foobar.txt.bak"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/henrik/RtmpAr1qq8/foobar.txt.bak"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a new file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span>file<span class="op">=</span><span class="va">pathname</span>, <span class="st">"File v2\n"</span><span class="op">)</span></span></span>
@@ -148,7 +148,7 @@ In combination with popBackupFile(), this method is useful
 <span class="r-in"><span><span class="co"># Drop backup because a new main file was successfully created</span></span></span>
 <span class="r-in"><span><span class="va">pathnameR</span> <span class="op">&lt;-</span> <span class="fu"><a href="popBackupFile.html">popBackupFile</a></span><span class="op">(</span><span class="va">pathnameB</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pathnameR</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/hb/Rtmp35UOzh/foobar.txt"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/henrik/RtmpAr1qq8/foobar.txt"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -164,7 +164,7 @@ In combination with popBackupFile(), this method is useful
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>

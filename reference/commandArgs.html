@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.2-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.3</span>
       </span>
     </div>
 
@@ -205,17 +205,17 @@
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="st">"How R was invoked:\n"</span><span class="op">)</span>;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> How R was invoked:</span>
 <span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">cat</a></span><span class="op">(</span><span class="va">cmd</span>, <span class="st">"\n"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /home/hb/shared/software/CBI/R-4.2.2-gcc9/lib/R/bin/exec/R --slave --no-save --no-restore -f /tmp/hb/RtmpCqlUdN/callr-scr-2e0bf39ce6072 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /home/henrik/shared/software/CBI/_ubuntu22_04/R-4.3.2-gcc11/lib/R/bin/exec/R --slave --no-save --no-restore -f /tmp/henrik/RtmpsaLUi7/callr-scr-230bf2582fd15 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all arguments</span></span></span>
 <span class="r-in"><span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu">commandArgs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/home/hb/shared/software/CBI/R-4.2.2-gcc9/lib/R/bin/exec/R"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "--slave"                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "--no-save"                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "--no-restore"                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "-f"                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "/tmp/hb/RtmpCqlUdN/callr-scr-2e0bf39ce6072"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/home/henrik/shared/software/CBI/_ubuntu22_04/R-4.3.2-gcc11/lib/R/bin/exec/R"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "--slave"                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "--no-save"                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "--no-restore"                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "-f"                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "/tmp/henrik/RtmpsaLUi7/callr-scr-230bf2582fd15"                              </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get only "private" arguments and not the name of the R executable.</span></span></span>
 <span class="r-in"><span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu">commandArgs</span><span class="op">(</span>excludeReserved<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
@@ -242,11 +242,11 @@
 <span class="r-in"><span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu">commandArgs</span><span class="op">(</span>asValues<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">args</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $           : chr "/home/hb/shared/software/CBI/R-4.2.2-gcc9/lib/R/bin/exec/R"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $           : chr "/home/henrik/shared/software/CBI/_ubuntu22_04/R-4.3.2-gcc11/lib/R/bin/exec/R"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ slave     : logi TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ no-save   : logi TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ no-restore: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ f         : chr "/tmp/hb/RtmpCqlUdN/callr-scr-2e0bf39ce6072"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ f         : chr "/tmp/henrik/RtmpsaLUi7/callr-scr-230bf2582fd15"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Turn arguments into R variables</span></span></span>
 <span class="r-in"><span><span class="va">args</span> <span class="op">&lt;-</span> <span class="fu">commandArgs</span><span class="op">(</span>asValues<span class="op">=</span><span class="cn">TRUE</span>, excludeReserved<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
@@ -271,7 +271,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>

@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.utils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.2-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.12.3</span>
       </span>
     </div>
 
@@ -103,14 +103,14 @@
 <span class="r-in"><span><span class="co"># 2. Current time stamp</span></span></span>
 <span class="r-in"><span><span class="va">ta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.info</a></span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span><span class="op">$</span><span class="va">mtime</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ta</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-11-11 15:58:53 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2023-11-17 17:03:57 PST"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 3. Update time stamp</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">1.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">touchFile</span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.info</a></span><span class="op">(</span><span class="va">pathname</span><span class="op">)</span><span class="op">$</span><span class="va">mtime</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">tb</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-11-11 15:58:55 PST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2023-11-17 17:03:58 PST"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 4. Verify that the timestamp got updated</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">tb</span> <span class="op">&gt;</span> <span class="va">ta</span><span class="op">)</span></span></span>
@@ -132,7 +132,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9005.</p>
 </div>
 
       </footer></div>
