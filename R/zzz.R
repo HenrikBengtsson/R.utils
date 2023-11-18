@@ -56,6 +56,35 @@
 } # .onAttach()
 
 
+
+########################################################################/**
+# @RdocFunction .Last.lib
+# @alias .Last.lib
+#
+# @title "Undo changed done by this package when detached"
+#
+# @synopsis
+#
+# \description{
+#  @get "title".
+#  Reverts \code{.Last()} to the function that existed before this package
+#  was attached.
+# }
+#
+# \arguments{
+#   \item{libpath}{a character string giving the complete path to the package.}
+# }
+#
+# \value{
+#   Returns nothing.
+# }
+#
+# @author
+#
+# @keyword "utilities"
+# @keyword "programming"
+# @keyword "internal"
+#*/#########################################################################
 .Last.lib <- function(libpath) {
   # Revert to original .Last() function
   .LastOriginal <- NULL # To please R CMD check R v2.6.0
