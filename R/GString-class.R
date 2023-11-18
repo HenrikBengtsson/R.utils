@@ -477,7 +477,7 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes="",
     if (length(simpleAttrs) == 0L)
       simpleAttrs <- NULL
     attrs <- paste(attrs[!isSimpleAttr], collapse=", ")
-    attrs <- eval(parse(text=paste("list(", attrs, ")")))
+    attrs <- eval(parse(text=paste("list(", attrs, ")")), enclos = baseenv())
   } else {
     attrs <- NULL
     simpleAttrs <- NULL
@@ -737,7 +737,7 @@ setMethodS3("evaluate", "GString", function(object, envir=parent.frame(), ...) {
   for (kk in which(isExpression)) {
     part <- parts[[kk]]
     expr <- parse(text=part$call)
-    value <- eval(expr)
+    value <- eval(expr, enclos = baseenv())
     if (!is.null(part$searchReplace))
       value <- gsub(part$searchReplace$search,
                     part$searchReplace$replace, value)

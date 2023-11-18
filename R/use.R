@@ -53,6 +53,8 @@
 # @keyword utilities
 # @keyword internal
 #*/###########################################################################
+setGenericS3("use")
+
 setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=getOption("R.utils.use.install", Sys.getenv("R_R_UTILS_USE_INSTALL", "TRUE")), repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -85,7 +87,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
 
       # Evaluate
       tryCatch({
-        eval(expr, envir=envir)
+        eval(expr, envir = envir, enclos = baseenv())
       }, error = function(ex) {
         out <<- closeAll(out)
         # If error, output all messages...
@@ -104,7 +106,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
     } # captureAll()
   } else {
     captureAll <- function(expr, envir=parent.frame(), echo=TRUE) {
-      eval(expr, envir=envir)
+      eval(expr, envir = envir, enclos = baseenv())
     }
   } # if (quietly)
 
@@ -408,7 +410,7 @@ setMethodS3("use", "default", function(pkg="R.utils", version=NULL, how=c("attac
 
   names(ver) <- pkg
   invisible(ver)
-}) # use()
+})
 
 
 .splitBy <- function(s, split=",", fixed=TRUE, ...) {

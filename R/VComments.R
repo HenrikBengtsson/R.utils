@@ -29,13 +29,13 @@
 #  by the compiler:
 #
 #  \bold{Constructors}\cr
-#  \itemize{
+#  \describe{
 #   \item{#V0#}{[<args>] - NullVerbose(<args>)}
 #   \item{#V1#}{[<args>] - Verbose(<args>)}
 #  }
 #
 #  \bold{Controls}\cr
-#  \itemize{
+#  \describe{
 #   \item{#V=#}{[<variable>] - Sets the name of the <verbose> object.
 #                              Default is 'verbose'.}
 #   \item{#V^#}{<threshold> - setThreshold(<verbose>, <threshold>)}
@@ -45,7 +45,7 @@
 #  }
 #
 #  \bold{Enters and exits}\cr
-#  \itemize{
+#  \describe{
 #   \item{#V+#}{[<message>] - enter(<verbose>, <message>)}
 #   \item{#V-#}{[<message>] - exit(<verbose>, <message>)}
 #   \item{#V!#}{[<message>] - pushState(<verbose>)\cr
@@ -54,7 +54,7 @@
 #  }
 #
 #  \bold{Simple output}\cr
-#  \itemize{
+#  \describe{
 #   \item{#Vn#}{<ignored> - newline(<verbose>)}
 #   \item{#Vr#}{<ignored> - ruler(<verbose>)}
 #   \item{#Vt#}{<ignored> - timestamp(<verbose>)}
@@ -62,7 +62,7 @@
 #  }
 #
 #  \bold{Output messages}\cr
-#  \itemize{
+#  \describe{
 #   \item{#Vc#}{[<message>] - cat(<verbose>, <message>)}
 #   \item{#Ve#}{<expression> - eval(<verbose>, <expression>)}
 #   \item{#Vh#}{<message> - header(<verbose>, <message>)}

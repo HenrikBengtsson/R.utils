@@ -47,9 +47,9 @@ VComments(letter="V", verboseName="verbose", ...)
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:convertComment.VComments]{convertComment}} \tab Converts a verbose comment to R code.\cr
- \tab \code{\link[R.utils:reset.VComments]{reset}} \tab Resets a VComments compiler.\cr
- \tab \code{\link[R.utils:validate.VComments]{validate}} \tab Validates the compiled lines.\cr
+ \tab \code{convertComment} \tab  -\cr
+ \tab \code{reset} \tab  -\cr
+ \tab \code{validate} \tab  -\cr
 }
 
 
@@ -70,13 +70,13 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  by the compiler:
 
  \bold{Constructors}\cr
- \itemize{
+ \describe{
   \item{#V0#}{[<args>] - NullVerbose(<args>)}
   \item{#V1#}{[<args>] - Verbose(<args>)}
  }
 
  \bold{Controls}\cr
- \itemize{
+ \describe{
   \item{#V=#}{[<variable>] - Sets the name of the <verbose> object.
                              Default is 'verbose'.}
   \item{#V^#}{<threshold> - setThreshold(<verbose>, <threshold>)}
@@ -86,7 +86,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  }
 
  \bold{Enters and exits}\cr
- \itemize{
+ \describe{
   \item{#V+#}{[<message>] - enter(<verbose>, <message>)}
   \item{#V-#}{[<message>] - exit(<verbose>, <message>)}
   \item{#V!#}{[<message>] - pushState(<verbose>)\cr
@@ -95,7 +95,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  }
 
  \bold{Simple output}\cr
- \itemize{
+ \describe{
   \item{#Vn#}{<ignored> - newline(<verbose>)}
   \item{#Vr#}{<ignored> - ruler(<verbose>)}
   \item{#Vt#}{<ignored> - timestamp(<verbose>)}
@@ -103,7 +103,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  }
 
  \bold{Output messages}\cr
- \itemize{
+ \describe{
   \item{#Vc#}{[<message>] - cat(<verbose>, <message>)}
   \item{#Ve#}{<expression> - eval(<verbose>, <expression>)}
   \item{#Vh#}{<message> - header(<verbose>, <message>)}

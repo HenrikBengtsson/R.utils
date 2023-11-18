@@ -9,7 +9,10 @@
 #  @get "title".
 # }
 #
-# @synopsis
+# \usage{
+#   @usage hsize,numeric
+#   @usage hsize,object_size
+# }
 #
 # \arguments{
 #   \item{sizes}{A @numeric @vector of sizes.}

@@ -1,3 +1,21 @@
+# Version 2.12.3 [2022-11-16]
+
+## Documentation
+
+ * Fix various Rd issues.
+ 
+## Miscellaneous
+
+ * The unit tests on absolute and relative paths would fail on MS Windows
+   where the `HOME` folder was a subfolder directly under the drive, e.g.
+   `HOME=C:\msys64`.
+
+## Bug Fixes
+
+ * Package would fail to install in R-devel when it introduces the new
+   **base** package function `use()`.
+
+
 # Version 2.12.2 [2022-11-11]
 
 ## Documentation
@@ -20,7 +38,7 @@
    
  * Updated moved and broken URLs in help pages.
 
-## Bug Fixes()
+## Bug Fixes
 
  * `filePath()` could produce `Error in if (components[pos] == ".." &&
    components[pos - 1L] != "..") { : missing value where TRUE/FALSE

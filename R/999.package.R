@@ -29,7 +29,7 @@
 # } 
 #
 # \section{To get started}{
-#   \itemize{
+#   \describe{
 #    \item{\link{Arguments}}{[alpha] Methods for common argument processing.}
 #    \item{\link{Assert}}{[alpha] Methods for assertion of values and states.}
 #    \item{\link{GString}}{[alpha] A character string class with methods for 

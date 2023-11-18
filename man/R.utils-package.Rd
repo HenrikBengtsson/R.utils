@@ -42,7 +42,7 @@
 }
 
 \section{To get started}{
-  \itemize{
+  \describe{
    \item{\link{Arguments}}{[alpha] Methods for common argument processing.}
    \item{\link{Assert}}{[alpha] Methods for assertion of values and states.}
    \item{\link{GString}}{[alpha] A character string class with methods for
@@ -108,7 +108,7 @@ A. (ed.), 2003
 }
 
 \section{References}{
-[1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}
+[1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{https://www.r-project.org/conferences/DSC-2003/Proceedings/}
  \cr
 }
 \keyword{package}

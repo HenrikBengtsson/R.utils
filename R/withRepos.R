@@ -65,5 +65,5 @@ withRepos <- function(expr, repos="[[mainstream]]", ..., substitute=TRUE, envir=
   on.exit(useRepos(prev))
 
   # Evaluate expression
-  eval(expr, envir=envir)
+  eval(expr, envir = envir, enclos = baseenv())
 } # withOptions()

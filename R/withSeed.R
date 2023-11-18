@@ -85,6 +85,6 @@ withSeed <- local({
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Evaluate expression
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    eval(expr, envir=envir)
+    eval(expr, envir = envir, enclos = baseenv())
   } # withSeed()
 })

@@ -44,7 +44,7 @@ setMethodS3("reassignInPackage", "default", function(name, pkgName, value, keepO
 
   # Workaround for the fact that getAnywhere() is not accepting a string!  
   expr <- substitute(getAnywhere(name), list(name=name))
-  obj <- eval(expr)
+  obj <- eval(expr, enclos = baseenv())
 
   pos <- which(obj$where == sprintf("namespace:%s", pkgName))
   if (length(pos) == 0) {

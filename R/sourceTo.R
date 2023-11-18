@@ -160,7 +160,7 @@ setMethodS3("sourceTo", "default", function(file, path=NULL, chdir=FALSE, ..., l
   }, list(args=args))
 
   # Call source()
-  res <- eval(expr, envir=envir)
+  res <- eval(expr, envir=envir, enclos = baseenv())
 
   # If successfully sourced, record last modification date.
   if (is.character(file) && !isUrl) {

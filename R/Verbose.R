@@ -37,7 +37,7 @@
 #   level must be greater than (not equal to) current threshold.
 #   Thus, the lower the threshold is set, the more messages will be seen.
 #
-#   \itemize{
+#   \describe{
 #    \item{<= -100}{Only for debug messages, i.e. messages containing all
 #      necessary information for debugging purposes and to find bugs in
 #      the code. Normally these messages are so detailed so they will be
@@ -1155,7 +1155,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 
   pf <- parent.frame()
   evalVis <- function(expr) {
-    withVisible(eval(expr, pf))
+    withVisible(eval(expr, envir = pf, enclos = baseenv()))
   }
 
   for (kk in seq_along(args)) {
@@ -1333,7 +1333,7 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 # @synopsis
 #
 # \arguments{
-#  \item{stamp}{A timestamp @character to be written.}
+#  \item{format}{A @function or a @character specifying the format of the timestamp.}
 #  \item{...}{Not used.}
 # }
 #

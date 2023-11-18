@@ -45,8 +45,8 @@ FileProgressBar(pathname=NULL, ...)
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:cleanup.FileProgressBar]{cleanup}} \tab Removes the progress file for a file progress bar.\cr
- \tab \code{\link[R.utils:update.FileProgressBar]{update}} \tab Updates file progress bar.\cr
+ \tab \code{cleanup} \tab  -\cr
+ \tab \code{update} \tab  -\cr
 }
 
 

@@ -84,7 +84,7 @@ setMethodS3("extract", "array", function(x, ..., indices=list(...), dims=names(i
   args <- paste(args, collapse=",")
   code <- paste("x[", args, "]", sep="")
   expr <- parse(text=code)
-  eval(expr)
+  eval(expr, enclos = baseenv())
 })
 
 

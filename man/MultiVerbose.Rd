@@ -48,8 +48,8 @@ MultiVerbose(verboseList=NULL, ...)
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.utils:as.list.MultiVerbose]{as.list}} \tab Gets a list of Verbose objects.\cr
- \tab \code{\link[R.utils:writeRaw.MultiVerbose]{writeRaw}} \tab Writes to each of the Verbose objects.\cr
+ \tab \code{as.list} \tab  -\cr
+ \tab \code{writeRaw} \tab  -\cr
 }
 
 
