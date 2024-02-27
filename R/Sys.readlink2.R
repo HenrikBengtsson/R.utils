@@ -53,6 +53,7 @@ Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
 
     # Search for symbolic file or directory links
     pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path)
+    Encoding(pattern) <- "UTF-8" # https://github.com/HenrikBengtsson/R.cache/issues/52
     bfr <- grep(pattern, bfr, value=TRUE)
 
     # Not a symbolic link?
