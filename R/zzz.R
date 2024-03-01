@@ -23,6 +23,17 @@
     }
   }
 
+  # Set 'R.utils::Sys.readlinks2.Windows' option via environment variable
+  value <- getOption("R.utils::Sys.readlinks2.Windows", NA)
+  if (is.na(value)) {
+    value <- Sys.getenv("R_R_UTILS_SYS_READLINKS2_WINDOWS", NA_character_)
+    if (!is.na(value)) {
+      value <- isTRUE(as.logical(value))
+      options("R.utils::Sys.readlinks2.Windows" = value)
+    }
+  }
+
+
 } # .onLoad()
 
 

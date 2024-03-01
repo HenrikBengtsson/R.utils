@@ -6,8 +6,10 @@
    attempts to infer whether a path is a symbolic on Windows by
    setting R option `R.utils::Sys.readlink2.Windows`.  If `TRUE`
    (default), it tries to follow links by inspecting the output of
-   `shell("dir", ...)`, which can be very slow for large folders.
-   It might also not work in all locales.
+   `shell("dir", ...)`, which can be very slow for large folders.  It
+   might also not work in all locales.  The default for this option is
+   set via environment variable `R_R_UTILS_SYS_READLINKS2_WINDOWS`
+   when the package is loaded.
  
 
 # Version 2.12.3 [2023-11-16]

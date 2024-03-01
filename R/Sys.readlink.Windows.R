@@ -18,7 +18,7 @@
   ## with 1,000s of files and folders, e.g. the parent folder of tempdir()
   ## on CRAN's MS Windows hosts. /Uwe Ligges 2023-11-21, /HB 2024-02-17
   ## See https://github.com/HenrikBengtsson/R.utils/issues/152
-  if (!isTRUE(getOption("R.utils::Sys.readlink.Windows", TRUE))) {
+  if (!isTRUE(getOption("R.utils::Sys.readlinks.Windows", TRUE))) {
     return("")
   }
   
