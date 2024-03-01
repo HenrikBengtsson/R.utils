@@ -1,4 +1,9 @@
-# Version 2.12.3 [2022-11-16]
+# Version (development version)
+
+ * ...
+ 
+
+# Version 2.12.3 [2023-11-16]
 
 ## Documentation
 
