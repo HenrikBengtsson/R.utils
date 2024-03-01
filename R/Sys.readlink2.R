@@ -29,64 +29,14 @@
 #**/#######################################################################
 Sys.readlink2 <- function(paths, what=c("asis", "corrected")) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  readlink <- function(path) {
-    if (!file.exists(path)) return(NA_character_)
-
-    # Only files with zero size are candidates for symbolic file links
-    info <- file.info(path)
-    if (is.na(info$size) || info$size > 0) return("")
-
-    # Temporarily change working directory
-    path <- normalizePath(path, mustWork=FALSE)
-    dir <- dirname(path)
-    opwd <- setwd(dir)
-    on.exit(setwd(opwd))
-    path <- basename(path)
-
-    # List all files
-    bfr <- shell("dir", shell=Sys.getenv("COMSPEC"),
-                        mustWork=TRUE, intern=TRUE)
-
-    setwd(opwd)
-
-    # Search for symbolic file or directory links
-    pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path)
-    bfr <- grep(pattern, bfr, value=TRUE)
-
-    # Not a symbolic link?
-    if (length(bfr) == 0L) return("")
-
-    # Sanity check
-    link <- gsub(pattern, "\\2", bfr)
-    .stop_if_not(identical(link, path))
-
-    # Extract the target
-    target <- gsub(pattern, "\\3", bfr)
-
-    # Relative path?
-    if (!isAbsolutePath(target)) {
-      # Prepend working directory
-      target <- file.path(dir, target)
-      # Return the relative pathname, iff possible
-      target <- getRelativePath(target)
-    }
-
-    target
-  } # readlink()
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'return':
   what <- match.arg(what)
 
-
   # Workaround for Windows?
   if (.Platform$OS.type == "windows") {
-    pathsR <- sapply(paths, FUN=readlink, USE.NAMES=FALSE)
+    pathsR <- sapply(paths, FUN=.Windows.Sys.readlink, USE.NAMES=FALSE)
   } else {
     pathsR <- Sys.readlink(paths)
   }
