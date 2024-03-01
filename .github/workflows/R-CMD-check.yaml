@@ -40,7 +40,6 @@ jobs:
       _R_CHECK_SUGGESTS_ONLY_: true
       ## Test in other locale (optional)
       LANGUAGE: ${{ matrix.config.language }}
-      LANG: ${{ matrix.config.language }}
       
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +85,7 @@ jobs:
       - name: Check (Windows)
         if: runner.os == 'Windows'
         run: |
-          if (is.na(Sys.getenv("LANG", NA_character_))) {
+          if (is.na(Sys.getenv("LANGUAGE", NA_character_))) {
             Sys.setenv(R_R_UTILS_SYS_READLINKS2_WINDOWS = "FALSE")
           }
           rcmdcheck::rcmdcheck(
