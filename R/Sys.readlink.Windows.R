@@ -2,9 +2,6 @@
 # Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # WARNING:
-# The below shell("dir", ...) approach is very slow (~20-30s) for folders
-# with 1,000s of files and folders, e.g. the parent folder of tempdir()
-# on CRAN's MS Windows hosts. /Uwe Ligges 2023-11-21, /HB 2024-02-17
 .Windows.Sys.readlink <- function(path) {
   if (!file.exists(path)) return(NA_character_)
   
@@ -15,6 +12,16 @@
   info <- file.info(path)
   if (is.na(info$size) || info$size > 0) return("")
 
+  ## Skip on Windows?
+  ## REASON/BACKGROUND:
+  ## The below shell("dir", ...) approach is very slow (~20-30s) for folders
+  ## with 1,000s of files and folders, e.g. the parent folder of tempdir()
+  ## on CRAN's MS Windows hosts. /Uwe Ligges 2023-11-21, /HB 2024-02-17
+  ## See https://github.com/HenrikBengtsson/R.utils/issues/152
+  if (!isTRUE(getOption("R.utils::Sys.readlink.Windows", TRUE))) {
+    return("")
+  }
+  
   # Temporarily change working directory
   path <- normalizePath(path, mustWork=FALSE)
   dir <- dirname(path)

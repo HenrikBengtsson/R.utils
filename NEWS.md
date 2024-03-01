@@ -1,6 +1,13 @@
 # Version (development version)
 
- * ...
+## New Features
+
+ * MS Windows: It is now possible to control whether `Sys.readlink2()`
+   attempts to infer whether a path is a symbolic on Windows by
+   setting R option `R.utils::Sys.readlink2.Windows`.  If `TRUE`
+   (default), it tries to follow links by inspecting the output of
+   `shell("dir", ...)`, which can be very slow for large folders.
+   It might also not work in all locales.
  
 
 # Version 2.12.3 [2023-11-16]
