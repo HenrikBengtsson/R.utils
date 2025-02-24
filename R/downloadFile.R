@@ -161,6 +161,12 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
     # Command-line options
     args <- NULL
 
+    timeout <- getOption("timeout")
+    if (!is.null(timeout)) {
+      timeout <- as.integer(timeout)
+      stopifnot(length(timeout) == 1L, !is.na(timeout))
+    }
+    
     if (names(bin) == "curl") {
       # Less strict (=more likely to succeed)
       arg <- "--insecure"
@@ -178,6 +184,12 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
         args <- c(args, arg)
       }
 
+      # Timeout?
+      if (!is.null(timeout)) {
+        arg <- sprintf("--connect-timeout %d", timeout)
+        args <- c(args, arg)
+      }
+      
       # Output file
       arg <- sprintf("--output \"%s\"", pathnameT)
       args <- c(args, arg)
@@ -196,6 +208,12 @@ setMethodS3("downloadFile", "character", function(url, filename=basename(url), p
 
       if (!is.null(password)) {
         arg <- sprintf("--http-passwd=%s", password)
+        args <- c(args, arg)
+      }
+
+      # Timeout?
+      if (!is.null(timeout)) {
+        arg <- sprintf("--timeout=%d", timeout)
         args <- c(args, arg)
       }
 

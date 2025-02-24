@@ -10,6 +10,9 @@
    might also not work in all locales.  The default for this option is
    set via environment variable `R_R_UTILS_SYS_READLINKS2_WINDOWS`
    when the package is loaded.
+   
+ * Now `downloadFile()` forwards the `timeout` option to corresponding
+   command-line arguments for `curl` and `wget`.
 
 ## Miscellaneous
 
