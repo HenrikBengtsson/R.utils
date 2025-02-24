@@ -480,7 +480,7 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #      \url{https://en.wikipedia.org/wiki/Environment_variable}\cr
 #  [3] \emph{Environment.SpecialFolder Enumeration},
 #      Microsoft, 2013.
-#      \url{https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder}\cr
+#      \url{https://learn.microsoft.com/en-us/dotnet/api/system.environment.specialfolder}\cr
 # }
 #
 # \seealso{
