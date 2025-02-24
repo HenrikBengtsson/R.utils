@@ -10,7 +10,12 @@
    might also not work in all locales.  The default for this option is
    set via environment variable `R_R_UTILS_SYS_READLINKS2_WINDOWS`
    when the package is loaded.
- 
+
+## Miscellaneous
+
+  * Suppress `grep(pattern, bfr, value = TRUE)` warnings that might
+    occur in R (>= 4.3.0) on MS Windows for some strings.
+
 
 # Version 2.12.3 [2023-11-16]
 
