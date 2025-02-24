@@ -37,8 +37,10 @@
 
   # Search for symbolic file or directory links
   pattern <- sprintf(".*[ ]+<SYMLINK(|D)>[ ]+(%s)[ ]+\\[(.+)\\][ ]*$", path)
-  bfr <- grep(pattern, bfr, value=TRUE)
 
+  # On R > 4.3, bfr encoding may be problematic in some locales
+  # https://github.com/HenrikBengtsson/R.utils/issues/152
+  bfr <- suppressWarnings(grep(pattern, bfr, value=TRUE))
   # Not a symbolic link?
   if (length(bfr) == 0L) return("")
 
