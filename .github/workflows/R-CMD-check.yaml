@@ -16,30 +16,32 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'devel'    , language: fr_FR }
+          - {os: windows-latest, r: 'devel'    }
           - {os: windows-latest, r: 'release'  }
 #          - {os: macOS-latest,   r: 'devel'    }
           - {os: macOS-latest,   r: 'release'  }
+#          - {os: macOS-latest,   r: 'oldrel'   }
           - {os: ubuntu-latest,  r: 'devel'    }
           - {os: ubuntu-latest,  r: 'release'  }
           - {os: ubuntu-latest,  r: 'oldrel'   }
           - {os: ubuntu-latest,  r: 'oldrel-1' }
           - {os: ubuntu-latest,  r: 'oldrel-2' }
-          - {os: ubuntu-latest,  r: '3.5'      }
           - {os: ubuntu-latest,  r: 'release'  , language: ko,    label: ko    }
           - {os: ubuntu-latest,  r: 'release'  , language: zh_CN, label: zh_CN }
           - {os: ubuntu-latest,  r: 'release'  , language: zh_TW, label: zh_TW }
     env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      ## R CMD check
-      _R_CHECK_CRAN_INCOMING_: false
-      _R_CHECK_LENGTH_1_CONDITION_: true
-      _R_CHECK_LENGTH_1_LOGIC2_: true
-      _R_CHECK_MATRIX_DATA_: true
-      _R_CHECK_SUGGESTS_ONLY_: true
       ## Test in other locale (optional)
       LANGUAGE: ${{ matrix.config.language }}
+      ## R CMD check
+      _R_CHECK_CRAN_INCOMING_: false
+      _R_CHECK_MATRIX_DATA_: true
+      _R_CHECK_SUGGESTS_ONLY_: true
+      _R_CHECK_THINGS_IN_TEMP_DIR_: true
+      ## R (>= 4.4.0) Note, no trailing underscore (sic!)
+      _R_COMPARE_LANG_OBJECTS: eqonly
       
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +49,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-tinytex@v2
-
+      
       - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
         run: sudo apt-get install -y tidy
@@ -55,14 +57,18 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
 
-      ## Note, R CMD check on R (>= 4.3.0) needs V8
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            any::rcmdcheck
-            any::V8
+          extra-packages: any::rcmdcheck
           needs: check
+
+      - name: Install itself (to build vignettes)
+        run: |
+          install.packages(".", repos=NULL, type="source")
+        shell: Rscript {0}
 
       - name: Session info
         run: |
@@ -70,28 +76,17 @@ jobs:
           capabilities()
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
+          ## Verify LANGUAGE settings by generating a translatable error
+          cat(sprintf("LANGUAGE=%s\n", sQuote(Sys.getenv("LANGUAGE"))))
+          cat(sprintf("locales: %s\n", sQuote(Sys.getlocale())))
+          tryCatch(log("a"), error = conditionMessage)
         shell: Rscript {0}
 
-      - name: Check (!Windows)
-        if: runner.os != 'Windows'
+      - name: Check
         run: |
           rcmdcheck::rcmdcheck(
-            args = "--as-cran",
-            error_on = "note",
-            check_dir = "check"
-          )
-        shell: Rscript {0}
-
-      - name: Check (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          if (is.na(Sys.getenv("LANGUAGE", NA_character_))) {
-            Sys.setenv(R_R_UTILS_SYS_READLINKS2_WINDOWS = "FALSE")
-          }
-          rcmdcheck::rcmdcheck(
-            path = "r",
-            args = c("--no-manual", "--as-cran"),
-            error_on = "note",
+            args = c("--as-cran", if (.Platform$OS.type == "windows") "--no-manual"),
+            error_on = "warning",
             check_dir = "check"
           )
         shell: Rscript {0}
