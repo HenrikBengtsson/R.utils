@@ -13,7 +13,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Any arguments accepted by @see "Exception"}.
+#   \item{...}{Any arguments accepted by @see "R.oo::Exception"}.
 #   \item{cpu, elapsed}{The maximum time the R expressions were allowed
 #     to be running before the timeout occurred as measured in CPU time
 #     and (physically) elapsed time.}
@@ -26,7 +26,7 @@
 # @author
 #
 # \seealso{
-#   For detailed information about exceptions see @see "Exception".
+#   For detailed information about exceptions see @see "R.oo::Exception".
 # }
 #
 # \keyword{programming}
