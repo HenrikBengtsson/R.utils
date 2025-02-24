@@ -89,7 +89,7 @@ setMethodS3("popBackupFile", "default", function(filename, path=NULL, suffix=".b
   verbose && cat(verbose, "Regular expression for suffix: ", pattern)
 
   # Assert that suffix exists in the temporary pathname
-  if (!regexpr(pattern, "", pathnameB) == -1) {
+  if (regexpr(pattern, pathnameB) == -1) {
     throw(sprintf("Cannot rename backup pathname. The specified temporary pathname does not contain the specified suffix ('%s'): %s", suffix, pathnameB))
   }
 

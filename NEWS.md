@@ -19,6 +19,13 @@
   * Suppress `grep(pattern, bfr, value = TRUE)` warnings that might
     occur in R (>= 4.3.0) on MS Windows for some strings.
 
+## Bug Fixes
+
+  * `popTemporaryFile()` and `popBackupFile()` would produce `Error in
+    regexpr(as.character(pattern), text, ignore.case, perl, fixed,: NA
+    in coercion to Rboolean` in recent versions of R-devel (to become
+    R 4.5.0).
+    
 
 # Version 2.12.3 [2023-11-16]
 

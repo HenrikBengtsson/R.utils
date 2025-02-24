@@ -78,7 +78,7 @@ setMethodS3("popTemporaryFile", "default", function(filename, path=NULL, suffix=
   verbose && cat(verbose, "Regular expression for suffix: ", pattern)
 
   # Assert that suffix exists in the temporary pathname
-  if (!regexpr(pattern, "", pathnameT) == -1) {
+  if (regexpr(pattern, pathnameT) == -1) {
     throw(sprintf("Cannot rename temporary pathname. The specified temporary pathname does not contain the specified suffix ('%s'): %s", suffix, pathnameT))
   }
 
