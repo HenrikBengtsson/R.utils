@@ -121,4 +121,53 @@ bfr <- withCapture({})
 print(bfr)
 stopifnot(length(bfr) == 0L)
 
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Output style
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bfr <- withCapture({
+  x <- 1
+  x
+  for (kk in 1:2) {
+    cat("Iteration", kk, "\n")
+  }
+}, style="script")
+print(bfr)
+stopifnot(bfr == paste(c(
+  "x <- 1",
+  "x",
+  "#> [1] 1",
+  "for (kk in 1:2) {",
+  "    cat(\"Iteration\", kk, \"\\n\")",
+  "}",
+  "#> Iteration 1 ",
+  "#> Iteration 2 ",
+  ""
+), collapse="\n"))
+
+## The default style is unchanged
+bfr0 <- withCapture({ x <- 1; x })
+bfr1 <- withCapture({ x <- 1; x }, style="console")
+stopifnot(identical(bfr0, bfr1))
+stopifnot(bfr1 == "> x <- 1\n> x\n[1] 1\n")
+
+## Code or output only
+bfr <- withCapture({ x <- 1; x }, style="script", code=FALSE, output=TRUE)
+stopifnot(bfr == "#> [1] 1\n")
+bfr <- withCapture({ x <- 1; x }, style="script", output=FALSE)
+stopifnot(bfr == "x <- 1\nx\n")
+
+## Default style via R option
+oopts2 <- options("withCapture/style"="script")
+bfr <- withCapture({ x <- 1; x })
+options(oopts2)
+stopifnot(bfr == "x <- 1\nx\n#> [1] 1\n")
+
+## Invalid style and conflicting arguments
+res <- tryCatch(withCapture({ x <- 1 }, style="unknown"), error=identity)
+stopifnot(inherits(res, "error"))
+res <- tryCatch(withCapture({ x <- 1 }, style="script", prompt.echo="$ "), error=identity)
+stopifnot(inherits(res, "error"))
+
 options(oopts)

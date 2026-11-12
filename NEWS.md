@@ -2,6 +2,14 @@
 
 ## New Features
 
+ * Add argument `style` to `withCapture()` to control the format of
+   the captured code and output.  The default, `"console"`, keeps the
+   current behavior, where the code is echoed with the R prompts, as
+   in an interactive R session.  With `style = "script"`, the code is
+   echoed without prompts and each line of output is prefixed with
+   `#> `, which makes the result suitable for copy-and-pasting into R.
+   The default style can be set via R option `withCapture/style`.
+
  * MS Windows: It is now possible to control whether `Sys.readlink2()`
    attempts to infer whether a path is a symbolic on Windows by
    setting R option `R.utils::Sys.readlink2.Windows`.  If `TRUE`

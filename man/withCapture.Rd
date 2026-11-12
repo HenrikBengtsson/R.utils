@@ -20,7 +20,8 @@
 \usage{
 withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
   output=code, ..., max.deparse.length=getOption("max.deparse.length", 10000), trim=TRUE,
-  newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame())
+  newline=getOption("withCapture/newline", TRUE), style=getOption("withCapture/style",
+  "console"), collapse="\n", envir=parent.frame())
 }
 
 \arguments{
@@ -37,6 +38,16 @@ withCapture(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE,
   \item{trim}{If \code{\link[base:logical]{TRUE}}, the captured rows are trimmed.}
   \item{newline}{If \code{\link[base:logical]{TRUE}} and \code{collapse} is non-\code{\link[base]{NULL}}, a newline
      is appended at the end.}
+  \item{style}{A \code{\link[base]{character}} string specifying the format of the
+     captured rows.  If \code{"console"} (default), the code is echoed
+     as in an interactive R session, that is, each line of code is
+     prefixed with the R prompt (\code{getOption("prompt")} and
+     \code{getOption("continue")}), and the output is left as is.
+     If \code{"script"}, the code is echoed as is, without any prompts,
+     and each line of output is prefixed with \code{"#> "}, which
+     makes the result suitable for copy-and-pasting into R.
+     This argument cannot be combined with arguments \code{prompt.echo}
+     and \code{continue.echo} passed via \code{...}.}
   \item{collapse}{A \code{\link[base]{character}} string used for collapsing the captured
      rows.  If \code{\link[base]{NULL}}, the rows are not collapsed.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression is evaluated.}

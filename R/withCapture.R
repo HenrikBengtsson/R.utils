@@ -24,6 +24,16 @@
 #   \item{trim}{If @TRUE, the captured rows are trimmed.}
 #   \item{newline}{If @TRUE and \code{collapse} is non-@NULL, a newline
 #      is appended at the end.}
+#   \item{style}{A @character string specifying the format of the
+#      captured rows.  If \code{"console"} (default), the code is echoed
+#      as in an interactive R session, that is, each line of code is
+#      prefixed with the R prompt (\code{getOption("prompt")} and
+#      \code{getOption("continue")}), and the output is left as is.
+#      If \code{"script"}, the code is echoed as is, without any prompts,
+#      and each line of output is prefixed with \code{"#> "}, which
+#      makes the result suitable for copy-and-pasting into R.
+#      This argument cannot be combined with arguments \code{prompt.echo}
+#      and \code{continue.echo} passed via \code{...}.}
 #   \item{collapse}{A @character string used for collapsing the captured
 #      rows.  If @NULL, the rows are not collapsed.}
 #   \item{envir}{The @environment in which the expression is evaluated.}
@@ -43,7 +53,16 @@
 #
 # @keyword utilities
 #*/###########################################################################
-withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), collapse="\n", envir=parent.frame()) {
+withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x."), code=TRUE, output=code, ..., max.deparse.length=getOption("max.deparse.length", 10e3), trim=TRUE, newline=getOption("withCapture/newline", TRUE), style=getOption("withCapture/style", "console"), collapse="\n", envir=parent.frame()) {
+  # Validate arguments
+  style <- match.arg(style, choices=c("console", "script"))
+  if (style != "console") {
+    args <- names(list(...))
+    if (any(c("prompt.echo", "continue.echo") %in% args)) {
+      throw("Arguments 'prompt.echo' and 'continue.echo' cannot be used with style = ", dQuote(style))
+    }
+  }
+
   # Get code/expression without evaluating it
   expr2 <- substitute(expr)
 
@@ -162,8 +181,16 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
 
   # Evaluate the sourceCode via source()
   con <- textConnection(sourceCode, open="r")
+  # Use unique prompts, if the code and output need to be distinguished
+  if (style == "console") {
+    promptArgs <- list()
+  } else {
+    promptCode <- "\001> "
+    promptCont <- "\001+ "
+    promptArgs <- list(prompt.echo=promptCode, continue.echo=promptCont)
+  }
   res <- captureOutput({
-    sourceTo(file=con, echo=code, print.eval=output, keep.source=TRUE, max.deparse.length=max.deparse.length, ..., envir=envir)
+    do.call(sourceTo, args=c(list(file=con, echo=code, print.eval=output, keep.source=TRUE, max.deparse.length=max.deparse.length), promptArgs, list(...), list(envir=envir)))
   })
 
 
@@ -173,6 +200,14 @@ withCapture <- function(expr, replace=getOption("withCapture/substitute", ".x.")
   # Drop empty lines?
   if (trim) {
     res <- res[nchar(res) > 0L]
+  }
+
+  # Reformat as a script?
+  if (style == "script") {
+    isCode <- (substr(res, start=1L, stop=1L) == "\001")
+    isOutput <- (!isCode & nchar(res) > 0L)
+    res[isCode] <- substring(res[isCode], first=nchar(promptCode) + 1L)
+    res[isOutput] <- paste0("#> ", res[isOutput])
   }
 
   if (!is.null(collapse)) {
